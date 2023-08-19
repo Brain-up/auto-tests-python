@@ -1,0 +1,10 @@
+class MainPageLinks:
+    URL_MAIN_PAGE = "https://brainup.site/"
+    URL_DESCRIPTION_PAGE = "https://brainup.site/description"
+    URL_TELEGRAM_PAGE = "https://t.me/BrainUpUsers"
+    URL_DONATE_PAGE = "https://opencollective.com/brainup"
+    URL_CONTACTS = "https://brainup.site/contact"
+    URL_SPECIALISTS_PAGE = "https://brainup.site/specialists"
+    URL_GITHUB = "https://github.com/Brain-up/brn"
+    URL_CONTRIBUTORS_PAGE = "https://brainup.site/contributors"
+    URL_USED_RESOURCES_PAGE = "https://brainup.site/used-resources"
