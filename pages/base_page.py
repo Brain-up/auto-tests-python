@@ -1,7 +1,3 @@
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver import ActionChains
-from selenium.webdriver import Keys
 from locators.locators import BasePageLocators
 
 

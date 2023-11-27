@@ -1,4 +1,3 @@
-from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import BasePage
 from locators.locators import BasePageLocators
 from test_data.links import MainPageLinks
@@ -6,12 +5,10 @@ from test_data.links import MainPageLinks
 
 class MainPage(BasePage):
 
-
     def open_description_page(self):
         self.driver.find_element(*BasePageLocators.DESCRIPTION_PAGE).click()
         assert self.driver.current_url == MainPageLinks.URL_DESCRIPTION_PAGE, \
             "The link leads to an incorrect page"
-
 
     def open_telegram_page(self):
         self.driver.find_element(*BasePageLocators.TELEGRAM_PAGE).click()
@@ -44,7 +41,6 @@ class MainPage(BasePage):
         self.switch_to_new_window()
         assert self.driver.current_url == MainPageLinks.URL_GITHUB, \
             "The link leads to an incorrect page"
-
 
     def open_contributors_page(self):
         self.driver.find_element(*BasePageLocators.MORE_MENU).click()
