@@ -50,18 +50,21 @@ jobs:
           path: ./.github/gh-pages
 
 
-      - name: Get Allure history
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Allure Report action
-        uses: simple-elf/allure-report-action@v1.6
+      - name: Copy history from gh-pages to allure-results
         if: always()
-        with:
-            allure_results: allure-results
-            allure_history: allure-history
+        run: |
+          sudo mkdir -p allure-results/history
+          sudo cp -R ./.github/gh-pages/history/* allure-results/history/
+
+      - name: Generate Allure report
+        if: always()
+        run: |
+          sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
+
+      - name: Update Allure history
+        if: always()
+        run: |
+          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -71,4 +74,4 @@ jobs:
           branch: gh-pages
           folder: allure-report
           history dir: allure-history
-          clean: true
+#          clean: true
