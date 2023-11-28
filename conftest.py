@@ -37,4 +37,3 @@ def main_page_open(driver):
     with allure.step(f'Open page: {URL}'):
         driver.get(URL)
         print('Open page:', URL)
-
