@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 URL = 'https://brainup.site/'
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture()
 def driver():
     print('\nstart browser...')
     chrome_options = Options()
