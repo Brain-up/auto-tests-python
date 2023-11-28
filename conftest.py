@@ -1,19 +1,26 @@
+import os
+
 import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 
-URL = 'https://brainup.site'
+URL = 'https://brainup.site/'
 
 
-@pytest.fixture()
+@pytest.fixture(scope='function')
 def driver():
     print('\nstart browser...')
-    options = Options()
-    # options.add_argument('--headless')
-    driver = webdriver.Chrome(options=options)
-    driver.maximize_window()
+    chrome_options = Options()
+    if 'CI' in os.environ:
+        chrome_options.add_argument('--headless')
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.set_window_size(1920, 1080)
+    else:
+        chrome_options.add_argument("--start-maximized")
+        # chrome_options.add_argument('--headless')
+        driver = webdriver.Chrome(options=chrome_options)
     yield driver
     print('\nquit browser...')
     driver.quit()
