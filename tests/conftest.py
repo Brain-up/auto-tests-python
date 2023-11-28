@@ -1,9 +1,10 @@
+import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 
-URL = 'https://brainup.site/'
+URL = 'https://brainup.site'
 
 
 @pytest.fixture()
@@ -26,4 +27,7 @@ def wait(driver):
 
 @pytest.fixture()
 def main_page_open(driver):
-    driver.get(URL)
+    with allure.step(f'Open page: {URL}'):
+        driver.get(URL)
+        print('Open page:', URL)
+

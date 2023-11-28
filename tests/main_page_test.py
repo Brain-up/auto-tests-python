@@ -1,5 +1,8 @@
+import time
+
 import pytest
 from pages.main_page import MainPage
+from test_data.links import MainPageLinks
 
 
 class TestMainPage:
@@ -24,6 +27,10 @@ class TestMainPage:
     def test_mp_05_verify_redirection_to_specialists_page(self, driver, main_page_open):
         page = MainPage(driver)
         page.open_specialists_page()
+        current_page_url = driver.current_url
+        assert current_page_url == MainPageLinks.URL_SPECIALISTS_PAGE, \
+            (f"The link leads to an incorrect page. \nExpected link: {MainPageLinks.URL_SPECIALISTS_PAGE}."
+             f"\nGotten link: {current_page_url}")
 
     def test_mp_06_verify_redirection_to_github(self, driver, main_page_open):
         page = MainPage(driver)
