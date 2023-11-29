@@ -1,12 +1,8 @@
 import os
-
-import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
-
-URL = 'https://brainup.site/'
 
 
 @pytest.fixture(scope='function')
@@ -18,8 +14,8 @@ def driver():
         driver = webdriver.Chrome(options=chrome_options)
         driver.set_window_size(1920, 1080)
     else:
-        chrome_options.add_argument("--start-maximized")
-        # chrome_options.add_argument('--headless')
+        # chrome_options.add_argument("--window-size=1920,1080")
+        chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(options=chrome_options)
     yield driver
     print('\nquit browser...')
@@ -32,8 +28,3 @@ def wait(driver):
     yield wait
 
 
-@pytest.fixture()
-def main_page_open(driver):
-    with allure.step(f'Open page: {URL}'):
-        driver.get(URL)
-        print('Open page:', URL)
