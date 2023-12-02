@@ -50,11 +50,11 @@ jobs:
           path: ./.github/gh-pages
 
 
-      - name: Copy history from gh-pages to allure-results
-        if: always()
-        run: |
-          sudo mkdir -p allure-results/history
-          sudo cp -R ./.github/gh-pages/history/* allure-results/history/
+#      - name: Copy history from gh-pages to allure-results
+#        if: always()
+#        run: |
+#          sudo mkdir -p allure-results/history
+#          sudo cp -R ./.github/gh-pages/history/* allure-results/history/
 
       - name: Generate Allure report
         if: always()
@@ -64,7 +64,8 @@ jobs:
       - name: Update Allure history
         if: always()
         run: |
-          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
+          sudo cp -R allure-report/allure-report/* ./.github/gh-pages/allure-report/
+#          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -73,5 +74,5 @@ jobs:
           token: ${{ secrets.CI_TOKEN }}
           branch: gh-pages
           folder: allure-report
-          history dir: allure-history
+#          history dir: allure-history
           #clean: true
