@@ -1,6 +1,6 @@
 class MainPageLinks:
-    # URL_MAIN_PAGE = "https://brainup.site"
-    URL_MAIN_PAGE = 'https://brainup.fun'
+    URL_MAIN_PAGE = "https://brainup.site"
+    # URL_MAIN_PAGE = 'https://brainup.fun'
     URL_DESCRIPTION_PAGE = f"{URL_MAIN_PAGE}/description"
     URL_TELEGRAM_PAGE = "https://t.me/BrainUpUsers"
     URL_DONATE_PAGE = "https://opencollective.com/brainup"
