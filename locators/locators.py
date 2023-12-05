@@ -12,3 +12,10 @@ class BasePageLocators:
     GITHUB = (By.XPATH, "//div[@id='other-menu']//a[2]")
     CONTRIBUTORS_PAGE = (By.XPATH, "//div[@id='other-menu']//a[6]")
     USED_RESOURCES_PAGE = (By.XPATH, "//div[@id='other-menu']//a[7]")
+    LOGIN_BUTTON = (By.XPATH, '//a[@id="ember11"]')
+
+
+class LoginPageLocators:
+    INPUT_LOGIN = (By.XPATH, '//input[@id="login"]')
+    INPUT_PASSWORD = (By.XPATH, '//input[@id="password"]')
+    SIGN_IN_BUTTON = (By.XPATH, '//*[@type="submit"]')
