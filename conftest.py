@@ -1,9 +1,10 @@
 import os
+from datetime import datetime
 
+import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 @pytest.fixture(scope='function')
@@ -19,5 +20,7 @@ def driver():
         # chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(options=chrome_options)
     yield driver
+    attach = driver.get_screenshot_as_png()
+    allure.attach(attach, name=f"Screenshot {datetime.today()}", attachment_type=allure.attachment_type.PNG)
     print('\nquit browser...')
     driver.quit()
