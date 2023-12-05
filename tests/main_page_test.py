@@ -1,5 +1,3 @@
-import pytest
-
 from pages.main_page import MainPage
 from test_data.links import MainPageLinks
 
@@ -8,38 +6,49 @@ class TestMainPage:
 
     def test_mp_01_verify_redirection_to_description_page(self, driver, main_page_open):
         page = MainPage(driver)
-        page.open_description_page()
+        description_url = page.open_description_page()
+        assert description_url == MainPageLinks.URL_DESCRIPTION_PAGE, \
+            "The link leads to an incorrect page"
 
     def test_mp_02_verify_redirection_to_telegram_page(self, driver, main_page_open):
         page = MainPage(driver)
-        page.open_telegram_page()
+        telegram_url = page.open_telegram_page()
+        assert telegram_url == MainPageLinks.URL_TELEGRAM_PAGE, \
+            "The link leads to an incorrect page"
 
     def test_mp_03_verify_redirection_to_donate_page(self, driver, main_page_open):
         page = MainPage(driver)
-        page.open_donate_page()
+        donate_url = page.open_donate_page()
+        assert donate_url == MainPageLinks.URL_DONATE_PAGE, \
+            "The link leads to an incorrect page"
 
     def test_mp_04_verify_redirection_to_contacts_page(self, driver, main_page_open):
         page = MainPage(driver)
-        page.open_contacts_page()
+        contacts_page_url = page.open_contacts_page()
+        assert contacts_page_url == MainPageLinks.URL_CONTACTS, \
+            "The link leads to an incorrect page"
 
-    @pytest.mark.xfail
     def test_mp_05_verify_redirection_to_specialists_page(self, driver, main_page_open):
         page = MainPage(driver)
-        page.open_specialists_page()
-        current_page_url = driver.current_url
-        assert current_page_url == MainPageLinks.URL_SPECIALISTS_PAGE, \
+        specialists_page_url = page.open_specialists_page()
+        assert specialists_page_url == MainPageLinks.URL_SPECIALISTS_PAGE, \
             (f"The link leads to an incorrect page. \nExpected link: {MainPageLinks.URL_SPECIALISTS_PAGE}."
-             f"\nGotten link: {current_page_url}")
+             f"\nGotten link: {specialists_page_url}")
 
     def test_mp_06_verify_redirection_to_github(self, driver, main_page_open):
         page = MainPage(driver)
-        page.open_github()
+        github_page_url = page.open_github()
+        assert github_page_url == MainPageLinks.URL_GITHUB, \
+            "The link leads to an incorrect page"
 
-    @pytest.mark.xfail
     def test_mp_07_verify_redirection_to_contributors_page(self, driver, main_page_open):
         page = MainPage(driver)
-        page.open_contributors_page()
+        contributors_page_url = page.open_contributors_page()
+        assert contributors_page_url == MainPageLinks.URL_CONTRIBUTORS_PAGE, \
+            "The link leads to an incorrect page"
 
     def test_mp_08_verify_redirection_to_used_resources_page(self, driver, main_page_open):
         page = MainPage(driver)
-        page.open_used_resources_page()
+        resources_page_url = page.open_used_resources_page()
+        assert resources_page_url == MainPageLinks.URL_USED_RESOURCES_PAGE, \
+            "The link leads to an incorrect page"

@@ -1,4 +1,5 @@
 import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -14,17 +15,9 @@ def driver():
         driver = webdriver.Chrome(options=chrome_options)
         driver.set_window_size(1920, 1080)
     else:
-        # chrome_options.add_argument("--window-size=1920,1080")
-        chrome_options.add_argument('--headless')
+        chrome_options.add_argument("--window-size=1920,1080")
+        # chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(options=chrome_options)
     yield driver
     print('\nquit browser...')
     driver.quit()
-
-
-@pytest.fixture()
-def wait(driver):
-    wait = WebDriverWait(driver, 15)
-    yield wait
-
-
