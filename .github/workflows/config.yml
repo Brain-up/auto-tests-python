@@ -1,8 +1,11 @@
 name: CI
 
-#on: [ push, pull_request ]
-on: workflow_dispatch
-
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+#  pull_request:
+#    branches: [ "main" ]
 
 jobs:
   test:
@@ -42,7 +45,6 @@ jobs:
           echo GIT_COMMIT_AUTHOR_NAME=$(git show -s --format='%ae' HEAD) >> environment.properties
           echo GIT_COMMIT_TIME=$(git show -s --format=%ci HEAD) >> environment.properties
           echo CHROME_VERSION=$(google-chrome --product-version) >> environment.properties
-          
 
       - name: Checkout (copy) gh-pages repository to GitHub runner
         uses: actions/checkout@v2
@@ -50,7 +52,6 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
-
 
       - name: Copy history from gh-pages to allure-results
         if: always()
@@ -77,15 +78,3 @@ jobs:
           folder: allure-report
 #          history dir: allure-history
           #clean: true
-
-
-
-
-#            Make sure you have the previous report generated in the allure-report directory.
-#            Remove the allure-results directory.
-#            Run the tests.
-#            Copy the allure-report/history subdirectory to allure-results/history.
-#            Generate the new report.
-#          If you follow such a routine regularly,
-#          Allure will each time keep data from up to 20 latest reports in allure-results/history.
-#          This creates up to 20 history entries for each test and up to 20 columns in each graph.
