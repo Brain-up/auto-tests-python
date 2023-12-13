@@ -9,8 +9,7 @@ The project structure is made in accordance with the POM
 ## Installation and use
 ___
 * To get started, you need to install a Python interpreter on your computer,
-  download 
-  #### [![Python Version](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/doc/versions/)
+  download [it from the official website](https://www.python.org/downloads/)
 ___
 * Clone the repository to your computer, the command 
 ```
@@ -29,8 +28,7 @@ pytest -s –v
 ```
 ___
 * View the test
-  report 
-  #### [![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://brain-up.github.io/auto-tests-python/)
+  report [![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://brain-up.github.io/auto-tests-python/)
 
 ----  
 
@@ -45,8 +43,7 @@ ___
 ## Установка и использование
 ___
 * Для начала работы необходимо установить на ваш компьютер интерпретатор Python,
-  скачать 
-  #### [![Python Version](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/doc/versions/)
+  скачать [с официального сайта]( https://www.python.org/downloads/)
 ___
 * Клонировать репозиторий на свой компьютер, команда 
 ```
@@ -64,5 +61,6 @@ pytest -s –v
 ```
 ___
 * Просмотреть отчет о
-  тестировании 
-  #### [![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://brain-up.github.io/auto-tests-python/)   
+  тестировании [![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://brain-up.github.io/auto-tests-python/)   
+
+

@@ -26,3 +26,21 @@ class LoginPageLocators:
     INPUT_LOGIN = (By.XPATH, '//input[@id="login"]')
     INPUT_PASSWORD = (By.XPATH, '//input[@id="password"]')
     SIGN_IN_BUTTON = (By.XPATH, '//*[@type="submit"]')
+
+
+class AuthorizedUserHomePageLocators:
+    """
+    link: https://brainup.site/groups?locale=ru-ru
+    """
+    # Header
+    EN_BUTTON = (By.XPATH, "//*[contains(text(),'EN')]")
+    RU_BUTTON = (By.XPATH, "//*[contains(text(),'RU')]")
+
+    SPEECH_EXERCISES = (By.XPATH, '//a[@title="Речевые упражнения"]')
+
+
+class SpeechExercisesPageLocators:
+    """
+    link: https://brainup.site/groups/2/series/1
+    """
+    FAMILY_CARD = (By.XPATH, '//a[@title="Слова про семью"]')
