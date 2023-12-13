@@ -36,11 +36,18 @@ class AuthorizedUserHomePageLocators:
     EN_BUTTON = (By.XPATH, "//*[contains(text(),'EN')]")
     RU_BUTTON = (By.XPATH, "//*[contains(text(),'RU')]")
 
-    SPEECH_EXERCISES = (By.XPATH, '//a[@title="Речевые упражнения"]')
+    SPEECH_EXERCISES_RU = (By.XPATH, '//a[@title="Речевые упражнения"]')
+    SPEECH_EXERCISES_EN = (By.XPATH, '//a[@title="Speech"]')
+
+    # Speech exercises_EN Header
+    WORDS_BUTTON = (By.XPATH, '//button[@data-test-active-link = "Words"]')
 
 
 class SpeechExercisesPageLocators:
     """
     link: https://brainup.site/groups/2/series/1
     """
-    FAMILY_CARD = (By.XPATH, '//a[@title="Слова про семью"]')
+
+    # Cards
+    FAMILY_CARD_RU = (By.XPATH, '//a[@title="Слова про семью"]')
+    FAMILY_CARD_EN = (By.XPATH, '//a[@title="Family words"]')
