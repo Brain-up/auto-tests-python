@@ -44,3 +44,17 @@ class SpeechExercisesPageLocators:
     link: https://brainup.site/groups/2/series/1
     """
     FAMILY_CARD = (By.XPATH, '//a[@title="Слова про семью"]')
+
+
+class FooterLocators:
+    FOOTER_ELEMENTS_LOCATORS = {
+        "FOOTER_SECTION": (By.TAG_NAME, "footer"),
+        "FOOTER_CONTENT": (By.CSS_SELECTOR, "footer > div"),
+        "CONTACT_US_LINK": (By.CSS_SELECTOR, "footer a[title]"),
+        "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]"),
+        "JETBRAINS_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1)"),
+        "REG_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2)"),
+        "ARASAAC_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3)"),
+        "SELECTEL_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4)"),
+        "EPAM_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(5)")
+    }
