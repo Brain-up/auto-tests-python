@@ -1,8 +1,11 @@
 name: CI
 
-#on: [ push, pull_request ]
-on: workflow_dispatch
-
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+#  pull_request:
+#    branches: [ "main" ]
 
 jobs:
   test:
@@ -42,31 +45,29 @@ jobs:
           echo GIT_COMMIT_AUTHOR_NAME=$(git show -s --format='%ae' HEAD) >> environment.properties
           echo GIT_COMMIT_TIME=$(git show -s --format=%ci HEAD) >> environment.properties
           echo CHROME_VERSION=$(google-chrome --product-version) >> environment.properties
-          
 
       - name: Checkout (copy) gh-pages repository to GitHub runner
         uses: actions/checkout@v2
         if: always()
         with:
           ref: gh-pages
-          path: ./.github/gh-pages
-
+          path: gh-pages
 
       - name: Copy history from gh-pages to allure-results
         if: always()
         run: |
-          sudo mkdir -p allure-results/history
-          sudo cp -R ./.github/gh-pages/history/* allure-results/history/
+          sudo mkdir -p allure-results/history gh-pages/history
+          sudo cp -R gh-pages/history/* allure-results/history/
 
       - name: Generate Allure report
         if: always()
         run: |
           sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
 
-      - name: Update Allure history
-        if: always()
-        run: |
-          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
+#      - name: Update Allure history
+#        if: always()
+#        run: |
+#          sudo cp -R allure-report/history/* gh-pages/history/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -75,5 +76,5 @@ jobs:
           token: ${{ secrets.CI_TOKEN }}
           branch: gh-pages
           folder: allure-report
-          history dir: allure-history
+#          history dir: allure-history
           #clean: true
