@@ -35,7 +35,7 @@ class AuthorizedUserHomePageLocators:
     # Header
     EN_BUTTON = (By.XPATH, "//*[contains(text(),'EN')]")
     RU_BUTTON = (By.XPATH, "//*[contains(text(),'RU')]")
-
+    PROFILE_USER = (By.XPATH, '//a[@href="/profile"]')
     SPEECH_EXERCISES = (By.XPATH, '//a[@title="Речевые упражнения"]')
 
 
@@ -58,3 +58,12 @@ class FooterLocators:
         "SELECTEL_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4)"),
         "EPAM_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(5)")
     }
+
+
+class ProfilePageLocators:
+    PASSWORD_RECOVERY = (By.XPATH, '//a[@href="/password-recovery"]')
+    EMAIL_INPUT = (By.ID, 'email-input')
+    SEND_EMAIL = (By.CSS_SELECTOR, 'form [type="button"]')
+    NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
+    SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
+    SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')

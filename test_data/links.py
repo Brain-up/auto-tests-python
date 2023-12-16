@@ -11,6 +11,7 @@ class MainPageLinks:
     URL_USED_RESOURCES_PAGE = f"{URL_MAIN_PAGE}/used-resources"
     URL_LOGIN_PAGE = f"{URL_MAIN_PAGE}/login"
     URL_GROUPS_PAGE = f"{URL_MAIN_PAGE}/groups"
+    URL_PROFILE_PAGE = f"{URL_MAIN_PAGE}/profile"
 
 
 class PagesUrls:
