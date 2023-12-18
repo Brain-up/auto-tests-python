@@ -65,3 +65,8 @@ class BasePage:
         with allure.step(f'Check url is presence: {url}'):
             return Wait(self.driver, self.timeout).until(ec.url_to_be(url),
                                                          message=f"Can't find element by locator {url}")
+
+    @allure.step('Get element text')
+    def get_text(self, locator):
+        text = self.element_is_visible(locator)
+        return text.text
