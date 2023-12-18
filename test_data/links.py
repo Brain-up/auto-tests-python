@@ -15,7 +15,7 @@ class MainPageLinks:
 
 
 class PagesUrls:
-    PAGES_URLS = [
+    pages_urls = [
         "https://brainup.site",
         "https://brainup.site/description",
         # "https://brainup.site/contact",
