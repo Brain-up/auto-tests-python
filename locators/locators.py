@@ -35,6 +35,7 @@ class AuthorizedUserHomePageLocators:
     # Header
     EN_BUTTON = (By.XPATH, "//*[contains(text(),'EN')]")
     RU_BUTTON = (By.XPATH, "//*[contains(text(),'RU')]")
+    PROFILE_USER = (By.XPATH, '//a[@href="/profile"]')
 
     SPEECH_EXERCISES_RU = (By.XPATH, '//a[@title="Речевые упражнения"]')
     SPEECH_EXERCISES_EN = (By.XPATH, '//a[@title="Speech"]')
@@ -51,3 +52,26 @@ class SpeechExercisesPageLocators:
     # Cards
     FAMILY_CARD_RU = (By.XPATH, '//a[@title="Слова про семью"]')
     FAMILY_CARD_EN = (By.XPATH, '//a[@title="Family words"]')
+
+
+class FooterLocators:
+    FOOTER_ELEMENTS_LOCATORS = {
+        "FOOTER_SECTION": (By.TAG_NAME, "footer"),
+        "FOOTER_CONTENT": (By.CSS_SELECTOR, "footer > div"),
+        "CONTACT_US_LINK": (By.CSS_SELECTOR, "footer a[title]"),
+        "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]"),
+        "JETBRAINS_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1)"),
+        "REG_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2)"),
+        "ARASAAC_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3)"),
+        "SELECTEL_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4)"),
+        "EPAM_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(5)")
+    }
+
+
+class ProfilePageLocators:
+    PASSWORD_RECOVERY = (By.XPATH, '//a[@href="/password-recovery"]')
+    EMAIL_INPUT = (By.ID, 'email-input')
+    SEND_EMAIL = (By.CSS_SELECTOR, 'form [type="button"]')
+    NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
+    SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
+    SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
