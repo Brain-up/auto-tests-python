@@ -1,8 +1,10 @@
-import time
-from pages.base_page import BasePage
 import imaplib
+import time
+
 import allure
+
 from locators.locators import LoginPageLocators, BasePageLocators, AuthorizedUserHomePageLocators, ProfilePageLocators
+from pages.base_page import BasePage
 
 
 def get_link_change_password_by_email():
