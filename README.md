@@ -48,6 +48,6 @@ pytest -s –v
 
 ___
 
-* View the test report [![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://brain-up.github.io/auto-tests-python/)
+* To view the current test report, click the button: [![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://brain-up.github.io/auto-tests-python/)
 
 
