@@ -1,8 +1,7 @@
-
-**Task name:**
-
-[bug] what, where, when found, brief description of the bug found
-
+---
+name: what, where, when found, brief description of the bug found
+title: [BUG]
+---
 **Preconditions:**
 
 If necessary
