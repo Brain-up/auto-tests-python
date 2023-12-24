@@ -54,6 +54,15 @@ class SpeechExercisesPageLocators:
     FAMILY_CARD_EN = (By.XPATH, '//a[@title="Family words"]')
 
 
+class ProfilePageLocators:
+    PASSWORD_RECOVERY = (By.XPATH, '//a[@href="/password-recovery"]')
+    EMAIL_INPUT = (By.ID, 'email-input')
+    SEND_EMAIL = (By.CSS_SELECTOR, 'form [type="button"]')
+    NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
+    SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
+    SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
+
+
 class FooterLocators:
     FOOTER_ELEMENTS_LOCATORS = {
         "FOOTER_SECTION": (By.TAG_NAME, "footer"),
@@ -71,11 +80,3 @@ class FooterLocators:
         "CONTACT_US_LINK": (By.CSS_SELECTOR, "footer a[title]"),
         "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]")
     }
-
-class ProfilePageLocators:
-    PASSWORD_RECOVERY = (By.XPATH, '//a[@href="/password-recovery"]')
-    EMAIL_INPUT = (By.ID, 'email-input')
-    SEND_EMAIL = (By.CSS_SELECTOR, 'form [type="button"]')
-    NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
-    SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
-    SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
