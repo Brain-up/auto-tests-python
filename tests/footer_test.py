@@ -24,6 +24,7 @@ class TestFooter:
                              zip(locators.FOOTER_TEXT_LOCATORS.values(),
                                  FooterData.footer_elements_text_ru.values())
                              )
+    @pytest.mark.xfail("ru-en local")
     @pytest.mark.parametrize("url", urls.pages_urls)
     def test_fp_02_verify_text_of_elements_in_footer_on_pages(self, driver, element_locator, expected_text, url):
         page = BasePage(driver, url)
