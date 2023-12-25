@@ -3,7 +3,6 @@ import time
 import allure
 import os
 from dotenv import load_dotenv
-
 from locators.locators import LoginPageLocators, BasePageLocators, AuthorizedUserHomePageLocators, ProfilePageLocators
 from pages.base_page import BasePage
 
@@ -21,7 +20,7 @@ def get_link_change_password_by_email():
         raw_email = str(data_id[0][1])
         mail.logout()
         # print(raw_email)
-        first = raw_email.find(os.getenv("PASSWORD_LINK"))
+        first = raw_email.find(os.environ["PASSWORD_LINK"])
         link = raw_email[first:first + 186]
         return link
 

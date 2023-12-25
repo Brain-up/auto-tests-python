@@ -50,4 +50,8 @@ ___
 
 * To view the current test report, click the button: [![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://brain-up.github.io/auto-tests-python/)
 
+____
 
+## If a bug is found
+
+To create a bug report, go  [![here](https://img.shields.io/badge/here-green)](https://github.com/Brain-up/auto-tests-python/issues) and create a task by selecting the Bug Report template
