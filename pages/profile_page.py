@@ -3,7 +3,6 @@ import time
 import allure
 import os
 from dotenv import load_dotenv
-
 from locators.locators import LoginPageLocators, BasePageLocators, AuthorizedUserHomePageLocators, ProfilePageLocators
 from pages.base_page import BasePage
 
@@ -13,7 +12,7 @@ load_dotenv()
 def get_link_change_password_by_email():
     with allure.step('Get a link to change the password by email'):
         mail = imaplib.IMAP4_SSL('imap.mail.ru')
-        mail.login(os.getenv("CHANGE_PASSWORD_EMAIL"), os.getenv("PASSWORD_EMAIL"))
+        mail.login(os.environ["CHANGE_PASSWORD_EMAIL"], os.environ["PASSWORD_EMAIL"])
         mail.select('INBOX')
         result, data_id = mail.search(None, 'ALL')
         message_ids = data_id[0].split()
@@ -21,7 +20,7 @@ def get_link_change_password_by_email():
         raw_email = str(data_id[0][1])
         mail.logout()
         # print(raw_email)
-        first = raw_email.find(os.getenv("PASSWORD_LINK"))
+        first = raw_email.find(os.environ["PASSWORD_LINK"])
         link = raw_email[first:first + 186]
         return link
 
@@ -30,8 +29,8 @@ class ProfilePage(BasePage):
 
     @allure.step("The user has authorised")
     def user_has_authorised(self):
-        self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.getenv("CHANGE_PASSWORD_EMAIL"))
-        self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.getenv("CHANGE_PASSWORD"))
+        self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
+        self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
         self.element_is_presence_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
 
     @allure.step("Open login page")
@@ -53,7 +52,7 @@ class ProfilePage(BasePage):
 
     @allure.step("Enter the data in the email field")
     def enter_new_password_field(self):
-        self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.getenv("CHANGE_PASSWORD"))
+        self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
 
     @allure.step("Click the button 'SAVE'")
     def click_save_button(self):
