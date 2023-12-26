@@ -15,6 +15,7 @@ class TestProfilePage:
         page.user_has_authorised()
         page.go_to_profile_page()
         page.click_change_password_link()
+        page.field_recovery_email()
         page.click_send_recovery_email_link()
         link = get_link_change_password_by_email()
         driver.get(link)

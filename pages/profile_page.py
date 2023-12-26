@@ -45,6 +45,11 @@ class ProfilePage(BasePage):
     def click_change_password_link(self):
         self.element_is_presence_and_clickable(ProfilePageLocators.PASSWORD_RECOVERY).click()
 
+    @allure.step("Clear field the email and enter data")
+    def field_recovery_email(self):
+        self.element_is_visible(ProfilePageLocators.EMAIL_INPUT).clear()
+        self.element_is_visible(ProfilePageLocators.EMAIL_INPUT).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
+
     @allure.step("Click the button 'Send recovery email'")
     def click_send_recovery_email_link(self):
         self.element_is_presence_and_clickable(ProfilePageLocators.SEND_EMAIL).click()
