@@ -57,7 +57,7 @@ class ProfilePage(BasePage):
 
     @allure.step("Enter the data in the email field")
     def enter_new_password_field(self):
-        self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
+        self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.environ["PASSWORD"])
 
     @allure.step("Click the button 'SAVE'")
     def click_save_button(self):
@@ -66,3 +66,13 @@ class ProfilePage(BasePage):
     @allure.step("Receive a successful message")
     def get_successful_message(self):
         return self.element_is_visible(ProfilePageLocators.SUCCESSFUL_MESSAGE)
+
+    @allure.step("The user has authorised with new password")
+    def user_has_authorised_with_new_password(self):
+        self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
+        self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
+        self.element_is_presence_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+
+    @allure.step("Enter old password in the email field")
+    def enter_old_password_field(self):
+        self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
