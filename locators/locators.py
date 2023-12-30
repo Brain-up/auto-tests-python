@@ -65,7 +65,6 @@ class SpeechExercisesPageLocators:
     LIST_CARDS_ID = (By.XPATH, '//div[@class="flex"]')
 
 
-
 class ProfilePageLocators:
     PASSWORD_RECOVERY = (By.XPATH, '//a[@href="/password-recovery"]')
     EMAIL_INPUT = (By.ID, 'email-input')
@@ -75,6 +74,7 @@ class ProfilePageLocators:
     SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
 
 
+class FooterLocators:
     FOOTER_ELEMENTS_LOCATORS = {
         "FOOTER_SECTION": (By.TAG_NAME, "footer"),
         "FOOTER_CONTENT": (By.CSS_SELECTOR, "footer > div"),
