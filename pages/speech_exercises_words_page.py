@@ -24,7 +24,9 @@ class SpeechExercisesWordsPage(BasePage):
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
         result_get = json.loads(list_cards_id.text)
-        # print(result_get['data'][0]['exercises'])
+        print(result_get['data'][0]['exercises'])
+        id_number = random.choice(result_get['data'][0]['exercises'])
+        print(id_number)
         return random.choice(result_get['data'][0]['exercises'])
 
     @staticmethod

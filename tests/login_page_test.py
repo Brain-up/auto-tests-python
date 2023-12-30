@@ -35,6 +35,9 @@ class TestCards:
         random_id = page.get_random_id_from_list_all_family_cards()  # getting random ID from exercises group
         print(driver.current_url + f'/exercise/{random_id}')
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
+        page.wait_changed_url(driver.current_url)
+        print(driver.current_url)
+        id_for_back = str(driver.current_url).split('/')[-1]
         list_words_ui = page.click_start_and_get_list_words()
-        list_words_back = page.get_list_of_words_from_card(f'{random_id}')
+        list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
