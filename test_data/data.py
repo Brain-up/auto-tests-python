@@ -1,3 +1,6 @@
+import os
+
+
 class Data:
 
     DEFAULT_USER_1 = {'login': 'autoTestSpecialist@brainup.spb.ru',
