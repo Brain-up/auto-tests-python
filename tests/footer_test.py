@@ -22,12 +22,12 @@ class TestFooter:
     @allure.title("Correctness of texts in Footer on each page")
     @pytest.mark.parametrize("element_locator, expected_text",
                              zip(locators.FOOTER_TEXT_LOCATORS.values(),
-                                 FooterData.footer_elements_text_ru.values())
+                                 FooterData.footer_elements_text.values())
                              )
     @pytest.mark.parametrize("url", urls.pages_urls)
     def test_fp_02_verify_text_of_elements_in_footer_on_pages(self, driver, element_locator, expected_text, url):
         page = BasePage(driver, url)
         page.open()
         actual_text = page.get_text(element_locator)
-        assert actual_text == expected_text, f"The text {actual_text} of the element does not match " \
-                                             f"the expected value {expected_text} on the page {url}"
+        assert actual_text in expected_text, f"The actual text '{actual_text}' of the element does not match " \
+                                             f"any of the valid options '{' | '.join(expected_text)}' on the page {url}"

@@ -15,10 +15,28 @@ class TestProfilePage:
         page.user_has_authorised()
         page.go_to_profile_page()
         page.click_change_password_link()
+        page.field_recovery_email()
         page.click_send_recovery_email_link()
         link = get_link_change_password_by_email()
         driver.get(link)
         page.enter_new_password_field()
+        page.click_save_button()
+        page.get_successful_message()
+        assert page.get_successful_message(), "The password hasn't changed"
+
+    @allure.title("Return the password by receiving an email link")
+    def test_return_password(self, driver):
+        page = ProfilePage(driver)
+        driver.get(self.urls.URL_MAIN_PAGE)
+        page.open_login_page()
+        page.user_has_authorised_with_new_password()
+        page.go_to_profile_page()
+        page.click_change_password_link()
+        page.field_recovery_email()
+        page.click_send_recovery_email_link()
+        link = get_link_change_password_by_email()
+        driver.get(link)
+        page.enter_old_password_field()
         page.click_save_button()
         page.get_successful_message()
         assert page.get_successful_message(), "The password hasn't changed"
