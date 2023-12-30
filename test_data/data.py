@@ -6,6 +6,7 @@ class Data:
                       'password': 'password'}  # default user with limited access
     LOGIN = os.getenv("LOGIN")
     PASSWORD = os.getenv("PASSWORD")
+    DEFAULT_USER_2 = {'login': 'default@default.ru', 'password': 'password'}  # default user with limited access
 
 
 class FooterData:
