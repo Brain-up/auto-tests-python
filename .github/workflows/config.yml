@@ -32,6 +32,13 @@ jobs:
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run tests
+        env:
+          LOGIN: ${{ secrets.LOGIN }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          CHANGE_PASSWORD_EMAIL: ${{ secrets.CHANGE_PASSWORD_EMAIL }}
+          CHANGE_PASSWORD: ${{ secrets.CHANGE_PASSWORD }}
+          PASSWORD_EMAIL: ${{ secrets.PASSWORD_EMAIL }}
+          PASSWORD_LINK: ${{ secrets.PASSWORD_LINK }}
         run: |
           pytest -s -vv --alluredir=allure-results 
 

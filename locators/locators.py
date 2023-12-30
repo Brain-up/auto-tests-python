@@ -65,6 +65,15 @@ class SpeechExercisesPageLocators:
     LIST_CARDS_ID = (By.XPATH, '//div[@class="flex"]')
 
 
+class ProfilePageLocators:
+    PASSWORD_RECOVERY = (By.XPATH, '//a[@href="/password-recovery"]')
+    EMAIL_INPUT = (By.ID, 'email-input')
+    SEND_EMAIL = (By.CSS_SELECTOR, 'form [type="button"]')
+    NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
+    SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
+    SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
+
+
 class FooterLocators:
     FOOTER_ELEMENTS_LOCATORS = {
         "FOOTER_SECTION": (By.TAG_NAME, "footer"),
@@ -84,6 +93,7 @@ class FooterLocators:
     }
 
 
+
 class ProfilePageLocators:
     PASSWORD_RECOVERY = (By.XPATH, '//a[@href="/password-recovery"]')
     EMAIL_INPUT = (By.ID, 'email-input')
@@ -91,3 +101,4 @@ class ProfilePageLocators:
     NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
     SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
     SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
+
