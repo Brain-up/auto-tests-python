@@ -51,7 +51,6 @@ class SpeechExercisesPageLocators:
     BUTTON_START = (By.XPATH, '//button[@aria-label="Start exercise"]')
     LIST_CARD_WORDS_WE = (By.XPATH, '//li[@class="task-player__option flex"]')
 
-
     # Language
     FAMILY_CARD_RU = (By.XPATH, '//a[@title="Слова про семью"]')
     FAMILY_CARD_EN = (By.XPATH, '//a[@title="Family words"]')
@@ -64,7 +63,6 @@ class SpeechExercisesPageLocators:
     WORDS = (By.ID, 'ember317')
 
     LIST_CARDS_ID = (By.XPATH, '//div[@class="flex"]')
-
 
 
 class FooterLocators:
