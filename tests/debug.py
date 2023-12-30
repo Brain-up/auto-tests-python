@@ -7,7 +7,7 @@ import soundfile as sf
 
 authorization_url = ('https://www.googleapis.com/identitytoolkit/v3/'
                      'relyingparty/verifyPassword?key=AIzaSyCxu7mVxd_waBDUn9VKblBl4zl8MX5WxWY')
-data_default_user = {"email": "default@default.ru", "password": "password", "returnSecureToken": "true"}
+data_default_user = {"email": "autoTestSpecialist@brainup.spb.ru", "password": "password", "returnSecureToken": "true"}
 
 
 def record():
