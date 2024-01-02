@@ -32,7 +32,7 @@ class TestFooter:
         assert actual_text in expected_text, f"The actual text '{actual_text}' of the element does not match " \
                                              f"any of the valid options '{' | '.join(expected_text)}' on the page {url}"
 
-    @allure.title("Verify visibility and accuracy of the image in the JETBRAINS link in Footer on the Main Page")
+    @allure.title("Verify visibility and accuracy of the image in the JETBRAINS link in Footer on the Home Page")
     def test_fp_03_verify_image_visibility_and_accuracy_in_jetbrains_link(self, driver, main_page_open):
         page = FooterPage(driver)
         jetbrains_image = page.element_is_visible(self.locators.JETBRAINS_IMAGE)
@@ -41,4 +41,17 @@ class TestFooter:
         assert jetbrains_image is not None \
                and jetbrains_image_src == FooterData.footer_images_src["jetbrains_img_src"] \
                and jetbrains_image_alt == FooterData.footer_images_alt["jetbrains_img_alt"], \
-               f"The image in the {jetbrains_image_alt} link is invisible or inaccurate in Footer on the Main Page"
+               f"The image in the {jetbrains_image_alt} link is invisible or inaccurate in Footer on the Home Page"
+
+    @allure.title("Verify visibility and accuracy of the image in the РЕГ.РУ link in Footer on the Home Page")
+    def test_fp_04_verify_image_visibility_and_accuracy_in_reg_link(self, driver, main_page_open):
+        page = FooterPage(driver)
+        reg_image = page.element_is_visible(self.locators.REG_IMAGE)
+        reg_image_src = page.get_image_src(self.locators.REG_IMAGE)
+        reg_image_alt = page.get_image_alt(self.locators.REG_IMAGE)
+        assert reg_image is not None \
+               and reg_image_src == FooterData.footer_images_src["reg_img_src"] \
+               and reg_image_alt == FooterData.footer_images_alt["reg_img_alt"], \
+               f"The image in the {reg_image_alt} link is invisible or inaccurate in Footer on the Home Page"
+
+
