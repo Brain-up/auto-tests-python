@@ -91,3 +91,5 @@ class FooterLocators:
         "CONTACT_US_LINK": (By.CSS_SELECTOR, "footer a[title]"),
         "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]")
     }
+
+    JETBRAINS_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1) img")
