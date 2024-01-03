@@ -31,19 +31,19 @@ class ProfilePage(BasePage):
     def user_has_authorised(self):
         self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
         self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
-        self.element_is_presence_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+        self.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
 
     @allure.step("Open login page")
     def open_login_page(self):
-        self.element_is_presence_and_clickable(BasePageLocators.LOGIN_BUTTON).click()
+        self.element_is_present_and_clickable(BasePageLocators.LOGIN_BUTTON).click()
 
     @allure.step("Go to the Profile page")
     def go_to_profile_page(self):
-        self.element_is_presence_and_clickable(AuthorizedUserHomePageLocators.PROFILE_USER).click()
+        self.element_is_present_and_clickable(AuthorizedUserHomePageLocators.PROFILE_USER).click()
 
     @allure.step("Click the button 'Change password'")
     def click_change_password_link(self):
-        self.element_is_presence_and_clickable(ProfilePageLocators.PASSWORD_RECOVERY).click()
+        self.element_is_present_and_clickable(ProfilePageLocators.PASSWORD_RECOVERY).click()
 
     @allure.step("Clear field the email and enter data")
     def field_recovery_email(self):
@@ -52,7 +52,7 @@ class ProfilePage(BasePage):
 
     @allure.step("Click the button 'Send recovery email'")
     def click_send_recovery_email_link(self):
-        self.element_is_presence_and_clickable(ProfilePageLocators.SEND_EMAIL).click()
+        self.element_is_present_and_clickable(ProfilePageLocators.SEND_EMAIL).click()
         time.sleep(5)
 
     @allure.step("Enter the data in the email field")
@@ -61,7 +61,7 @@ class ProfilePage(BasePage):
 
     @allure.step("Click the button 'SAVE'")
     def click_save_button(self):
-        self.element_is_presence_and_clickable(ProfilePageLocators.SAVE_BUTTON).click()
+        self.element_is_present_and_clickable(ProfilePageLocators.SAVE_BUTTON).click()
 
     @allure.step("Receive a successful message")
     def get_successful_message(self):
@@ -71,7 +71,7 @@ class ProfilePage(BasePage):
     def user_has_authorised_with_new_password(self):
         self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
         self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
-        self.element_is_presence_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+        self.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
 
     @allure.step("Enter old password in the email field")
     def enter_old_password_field(self):

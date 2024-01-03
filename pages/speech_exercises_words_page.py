@@ -42,7 +42,7 @@ class SpeechExercisesWordsPage(BasePage):
         return words
 
     def click_start_and_get_list_words(self):
-        self.element_is_presence_and_clickable(self.locators.BUTTON_START).click()
+        self.element_is_present_and_clickable(self.locators.BUTTON_START).click()
         list_words = self.elements_are_visible(self.locators.LIST_CARD_WORDS_WE)
         words = [i.text.lower() for i in list_words]
         print(words)

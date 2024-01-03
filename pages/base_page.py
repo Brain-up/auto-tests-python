@@ -24,7 +24,7 @@ class BasePage:
         get_url = self.driver.current_url
         print('Current url: ' + get_url)
 
-    def element_is_presence_and_clickable(self, locator):
+    def element_is_present_and_clickable(self, locator):
         with allure.step(f'Check element is visible and clickable: {locator}'):
             return (Wait(self.driver, self.timeout).until(ec.visibility_of_element_located(locator),
                                                           message=f"Can't find element by locator {locator}") and
@@ -32,7 +32,7 @@ class BasePage:
 
     def element_is_visible(self, locator):
         with allure.step(f'Check element is visible: {locator}'):
-            self.go_to_element(self.element_is_presence(locator))
+            self.go_to_element(self.element_is_present(locator))
             return Wait(self.driver, self.timeout).until(ec.visibility_of_element_located(locator),
                                                          message=f"Can't find element by locator {locator}")
 
@@ -41,13 +41,13 @@ class BasePage:
             return Wait(self.driver, self.timeout).until(ec.visibility_of_all_elements_located(locator),
                                                          message=f"Can't find elements by locator {locator}")
 
-    def element_is_presence(self, locator):
-        with allure.step(f'Check element is presence: {locator}'):
+    def element_is_present(self, locator):
+        with allure.step(f'Check element is present: {locator}'):
             return Wait(self.driver, self.timeout).until(ec.presence_of_element_located(locator),
                                                          message=f"Can't find element by locator {locator}")
 
-    def elements_are_presence(self, locator):
-        with allure.step(f'Check elements are presence: {locator}'):
+    def elements_are_present(self, locator):
+        with allure.step(f'Check elements are present: {locator}'):
             return Wait(self.driver, self.timeout).until(ec.presence_of_all_elements_located(locator),
                                                          message=f"Can't find elements by locator {locator}")
 
@@ -62,7 +62,7 @@ class BasePage:
             return self.driver.execute_script("arguments[0].scrollIntoView({ block: 'center'});", element)
 
     def check_expected_link(self, url):
-        with allure.step(f'Check url is presence: {url}'):
+        with allure.step(f'Check url is present: {url}'):
             return Wait(self.driver, self.timeout).until(ec.url_to_be(url),
                                                          message=f"Can't find element by locator {url}")
 
