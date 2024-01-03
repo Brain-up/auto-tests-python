@@ -68,7 +68,7 @@ class ProfilePage(BasePage):
         return self.element_is_visible(ProfilePageLocators.SUCCESSFUL_MESSAGE)
 
     @allure.step("The user has authorised with new password")
-    def fuser_has_authorised_with_new_password(self):
+    def user_has_authorised_with_new_password(self):
         self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
         self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
         self.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
