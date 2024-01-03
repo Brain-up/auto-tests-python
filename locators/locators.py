@@ -16,6 +16,7 @@ class BasePageLocators:
     CONTRIBUTORS_PAGE = (By.XPATH, "//div[@id='other-menu']//a[6]")
     USED_RESOURCES_PAGE = (By.XPATH, "//div[@id='other-menu']//a[7]")
     LOGIN_BUTTON = (By.XPATH, '//a[@id="ember11"]')
+    BUTTON_START = (By.ID, "ember11")
 
 
 class LoginPageLocators:
