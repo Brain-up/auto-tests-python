@@ -41,6 +41,11 @@ class BasePage:
             return Wait(self.driver, self.timeout).until(ec.visibility_of_all_elements_located(locator),
                                                          message=f"Can't find elements by locator {locator}")
 
+    def element_is_not_visible(self, locator):
+        with allure.step(f'Check element is invisible: {locator}'):
+            return Wait(self.driver, self.timeout).until(ec.invisibility_of_element_located(locator),
+                                                         message=f"The element located by {locator} is invisible")
+
     def element_is_present(self, locator):
         with allure.step(f'Check element is present: {locator}'):
             return Wait(self.driver, self.timeout).until(ec.presence_of_element_located(locator),
