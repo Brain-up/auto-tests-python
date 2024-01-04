@@ -17,6 +17,7 @@ class BasePageLocators:
     USED_RESOURCES_PAGE = (By.XPATH, "//div[@id='other-menu']//a[7]")
     LOGIN_BUTTON = (By.XPATH, '//a[@id="ember11"]')
     BUTTON_START = (By.ID, "ember11")
+    REGISTRATION_BUTTON =(By.XPATH, '//a[@href="/registration"]')
 
 
 class LoginPageLocators:
@@ -73,7 +74,7 @@ class ProfilePageLocators:
     NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
     SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
     SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
-    PROFILE = (By.CSS_SELECTOR, '#ember19 p')
+    PROFILE = (By.XPATH, '//a[@href="/profile"]')
     WRONG_AUTH_DATA_MSG = (By.XPATH, '//p[contains(@class, "text-red-500")]')
 
 
@@ -98,3 +99,17 @@ class FooterLocators:
     ARASAAC_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3) img")
     JETBRAINS_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1) img")
     REG_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2) img")
+
+
+class RegistrationPageLocators:
+
+    FIRST_NAME = (By.ID, 'firstName')
+    BIRTHDAY = (By.ID, 'birthday')
+    FEMALE = (By.ID, 'female')
+    MALE = (By.ID, 'male')
+    EMAIL = (By.ID, 'email')
+    PASSWORD = (By.ID, 'password')
+    REPEAT_PASSWORD = (By.ID, 'repeatPassword')
+    AGREEMENT = (By.ID, 'agreement')
+    SUBMIT_BUTTON = (By.XPATH, '//button[@type="submit"]')
+    ERROR_MESSAGE_EXISTING_EMAIL = (By.XPATH, '//p[contains(@class, "text-red-500")]')

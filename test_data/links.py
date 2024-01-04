@@ -12,7 +12,7 @@ class MainPageLinks:
     URL_LOGIN_PAGE = f"{URL_MAIN_PAGE}/login"
     URL_GROUPS_PAGE = f"{URL_MAIN_PAGE}/groups"
     URL_PROFILE_PAGE = f"{URL_MAIN_PAGE}/profile"
-
+    URL_REGISTRATION_PAGE = f"{URL_MAIN_PAGE}/registration"
 
 class PagesUrls:
     pages_urls = [
