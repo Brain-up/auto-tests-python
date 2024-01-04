@@ -14,6 +14,11 @@ class MainPageLinks:
     URL_PROFILE_PAGE = f"{URL_MAIN_PAGE}/profile"
     URL_REGISTRATION_PAGE = f"{URL_MAIN_PAGE}/registration"
 
+    # Specific Exercises URLs
+    # Speech Exercises > Words > Family
+    URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE = f"{URL_MAIN_PAGE}/groups/4/series/9/subgroup/73/exercise/919/task/919"
+
+
 class PagesUrls:
     pages_urls = [
         "https://brainup.site",
