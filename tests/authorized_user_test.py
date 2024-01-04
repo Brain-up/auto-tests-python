@@ -4,8 +4,8 @@ from test_data.links import MainPageLinks
 from test_data.data import Messages
 
 
-@allure.epic("Test Profile Page")
-class TestProfilePage:
+@allure.epic("Test Authorized User Page")
+class TestAuthorizedUserPage:
     urls = MainPageLinks
     msg = Messages
 

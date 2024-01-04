@@ -1,4 +1,7 @@
 import os
+import random
+import time
+from datetime import datetime
 
 
 class Data:
@@ -8,6 +11,9 @@ class Data:
     LOGIN = os.getenv("LOGIN")
     PASSWORD = os.getenv("PASSWORD")
     DEFAULT_USER_2 = {'login': 'default@default.ru', 'password': 'password'}  # default user with limited access
+    FIRST_NAME = 'Auto Test'
+    BIRTHDAY = random.randint(datetime.now().year - 100, datetime.now().year)
+    EMAIL = f'autotest_N@{time.time()}.com'
 
 
 class FooterData:
@@ -36,3 +42,4 @@ class FooterData:
 class Messages:
 
     WRONG_AUTH_DATA = 'Error: The password is invalid or the user does not have a password.'
+    EXISTING_EMAIL = 'The email address is already in use by another account.'
