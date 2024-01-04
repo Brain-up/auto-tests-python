@@ -76,3 +76,11 @@ class ProfilePage(BasePage):
     @allure.step("Enter old password in the email field")
     def enter_old_password_field(self):
         self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
+
+    @allure.step("Check user's profile")
+    def check_user_profile(self):
+        return self.element_is_visible(ProfilePageLocators.PROFILE)
+
+    @allure.step("Get error message")
+    def get_error_message(self):
+        return self.element_is_visible(ProfilePageLocators.WRONG_AUTH_DATA_MSG).text
