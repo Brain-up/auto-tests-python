@@ -54,4 +54,15 @@ class TestFooter:
                and reg_image_alt == FooterData.footer_images_alt["reg_img_alt"], \
                f"The image in the {reg_image_alt} link is invisible or inaccurate in Footer on the Home Page"
 
+    @allure.title("Verify visibility and accuracy of the image in the ARASAAC link in Footer on the Home Page")
+    def test_fp_05_verify_image_visibility_and_accuracy_in_arasaac_link(self, driver, main_page_open):
+        page = FooterPage(driver)
+        reg_image = page.element_is_visible(self.locators.ARASAAC_IMAGE)
+        reg_image_src = page.get_image_src(self.locators.ARASAAC_IMAGE)
+        reg_image_alt = page.get_image_alt(self.locators.ARASAAC_IMAGE)
+        assert reg_image is not None \
+               and reg_image_src == FooterData.footer_images_src["arasaac_img_src"] \
+               and reg_image_alt == FooterData.footer_images_alt["arasaac_img_alt"], \
+               f"The image in the {reg_image_alt} link is invisible or inaccurate in Footer on the Home Page"
+
 
