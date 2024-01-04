@@ -31,3 +31,8 @@ class FooterData:
         "reg_img_alt": "Регистратор доменных имен РЕГ.РУ",
         "selectel_img_alt": "Selectel"
     }
+
+
+class Messages:
+
+    WRONG_AUTH_DATA = 'Error: The password is invalid or the user does not have a password.'

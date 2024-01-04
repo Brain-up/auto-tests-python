@@ -73,6 +73,8 @@ class ProfilePageLocators:
     NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
     SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
     SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
+    PROFILE = (By.CSS_SELECTOR, '#ember19 p')
+    WRONG_AUTH_DATA_MSG = (By.XPATH, '//p[contains(@class, "text-red-500")]')
 
 
 class FooterLocators:
