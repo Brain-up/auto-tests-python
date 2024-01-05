@@ -44,11 +44,11 @@ class RegistrationPage(BasePage):
 
     @allure.step("Click REGISTRATION button")
     def click_registration_button(self):
-        self.element_is_clickable(self.locators.SUBMIT_BUTTON).click()
+        self.element_is_visible(self.locators.SUBMIT_BUTTON).click()
 
     @allure.step("Check error message")
-    def check_error_message_existing_email(self):
-        return self.element_is_clickable(self.locators.ERROR_MESSAGE_EXISTING_EMAIL).text
+    def check_error_message(self):
+        return self.element_is_visible(self.locators.ERROR_MESSAGE).text
 
     @allure.step("Wait changing url")
     def check_change_url(self):

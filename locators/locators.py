@@ -17,7 +17,7 @@ class BasePageLocators:
     USED_RESOURCES_PAGE = (By.XPATH, "//div[@id='other-menu']//a[7]")
     LOGIN_BUTTON = (By.XPATH, '//a[@id="ember11"]')
     BUTTON_START = (By.ID, "ember11")
-    REGISTRATION_BUTTON =(By.XPATH, '//a[@href="/registration"]')
+    REGISTRATION_BUTTON = (By.XPATH, '//a[@href="/registration"]')
 
 
 class LoginPageLocators:
@@ -113,4 +113,4 @@ class RegistrationPageLocators:
     REPEAT_PASSWORD = (By.ID, 'repeatPassword')
     AGREEMENT = (By.ID, 'agreement')
     SUBMIT_BUTTON = (By.XPATH, '//button[@type="submit"]')
-    ERROR_MESSAGE_EXISTING_EMAIL = (By.XPATH, '//p[contains(@class, "text-red-500")]')
+    ERROR_MESSAGE = (By.XPATH, '//p[contains(@class, "text-red-500")]')
