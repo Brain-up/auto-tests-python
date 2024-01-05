@@ -14,9 +14,21 @@ class MainPageLinks:
     URL_PROFILE_PAGE = f"{URL_MAIN_PAGE}/profile"
     URL_REGISTRATION_PAGE = f"{URL_MAIN_PAGE}/registration"
 
-    # Specific Exercises URLs
+
+class SpecificExercisesUrls:
+    STARTING_POINT = MainPageLinks.URL_GROUPS_PAGE
+
     # Speech Exercises > Words > Family
-    URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE = f"{URL_MAIN_PAGE}/groups/4/series/9/subgroup/73/exercise/919/task/919"
+    URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE = f"{STARTING_POINT}/4/series/9/subgroup/73/exercise/919/task/919"
+
+
+class FooterLinks:
+    ARASAAC_LINK = "https://arasaac.org/"
+    CONTACT_US_LINK = "mailto:brainupproject@yandex.ru?subject=BrainUp"
+    EPAM_LINK = "https://epam.com/"
+    JETBRAINS_LINK = "https://www.jetbrains.com/"
+    REG_IMAGE = "https://reg.ru/"
+    SELECTEL_LINK = "https://selectel.ru/"
 
 
 class PagesUrls:

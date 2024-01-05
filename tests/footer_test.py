@@ -3,12 +3,13 @@ import pytest
 from pages.footer_page import FooterPage
 from pages.login_page import LoginPage
 from locators.locators import FooterLocators
-from test_data.links import PagesUrls, MainPageLinks
+from test_data.links import PagesUrls, SpecificExercisesUrls
 from test_data.data import FooterData
 
 
 @allure.epic("Test Footer")
 class TestFooter:
+
     class TestFooterCommon:
         locators = FooterLocators()
         urls = PagesUrls
@@ -34,16 +35,13 @@ class TestFooter:
             assert actual_text in expected_text, f"The actual text '{actual_text}' of the element does not match " \
                                                  f"any of the valid options '{' | '.join(expected_text)}' on the page {url}"
 
-        @allure.title("Verify visibility and accuracy of the image in the JETBRAINS link in Footer on the Home Page")
+        @allure.title("Verify presence, visibility and accuracy of the image in the JETBRAINS link in Footer")
         def test_fp_01_03_verify_image_visibility_and_accuracy_in_jetbrains_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            jetbrains_image = page.element_is_visible(self.locators.JETBRAINS_IMAGE)
-            jetbrains_image_src = page.get_image_src(self.locators.JETBRAINS_IMAGE)
-            jetbrains_image_alt = page.get_image_alt(self.locators.JETBRAINS_IMAGE)
-            assert jetbrains_image is not None \
-                   and jetbrains_image_src == FooterData.footer_images_src["jetbrains_img_src"] \
-                   and jetbrains_image_alt == FooterData.footer_images_alt["jetbrains_img_alt"], \
-                   f"The image in the {jetbrains_image_alt} link is invisible or inaccurate in Footer on the Home Page"
+            assert page.check_jetbrains_image_visibility() \
+                   and page.get_jetbrains_image_src() == FooterData.footer_images_src["jetbrains_img_src"] \
+                   and page.get_jetbrains_image_alt() == FooterData.footer_images_alt["jetbrains_img_alt"], \
+                   "The image in the JETBRAINS link is absent or invisible or inaccurate in Footer"
 
         @allure.title("Verify visibility and accuracy of the image in the РЕГ.РУ link in Footer on the Home Page")
         def test_fp_01_04_verify_image_visibility_and_accuracy_in_reg_link(self, driver, main_page_open):
@@ -75,7 +73,7 @@ class TestFooter:
             page = LoginPage(driver)
             page.login_user()
 
-            modal_window_page = FooterPage(driver, MainPageLinks.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
+            modal_window_page = FooterPage(driver, SpecificExercisesUrls.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
 
             footer_presence = modal_window_page.check_footer_presence()
