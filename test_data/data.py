@@ -43,3 +43,4 @@ class Messages:
 
     WRONG_AUTH_DATA = 'Error: The password is invalid or the user does not have a password.'
     EXISTING_EMAIL = 'The email address is already in use by another account.'
+    EMPTY_CONFIRM_PASSWORD = ['Passwords should match', 'Пароли должны совпадать']
