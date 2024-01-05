@@ -21,14 +21,26 @@ class FooterPage(BasePage):
     def check_footer_presence(self):
         return self.element_is_present(FooterLocators.FOOTER_SECTION)
 
-    @allure.step('Check Jetbrains image is present in the DOM tree on the page')
-    def check_jetbrains_image_presence(self):
-        return self.element_is_present(FooterLocators.JETBRAINS_IMAGE)
-
     @allure.step('Check Footer is invisible')
     def check_footer_invisibility(self):
         return self.element_is_not_visible(FooterLocators.FOOTER_SECTION)
 
+    @allure.step('Check Jetbrains image is present in the DOM tree on the page')
+    def check_jetbrains_image_presence(self):
+        return self.element_is_present(FooterLocators.JETBRAINS_IMAGE)
+
+    @allure.step('Check Jetbrains image is present and visible in Footer')
+    def check_jetbrains_image_visibility(self):
+        return self.element_is_visible(FooterLocators.JETBRAINS_IMAGE)
+
     @allure.step('Check Jetbrains image is invisible in Footer')
     def check_jetbrains_image_invisibility(self):
         return self.element_is_not_visible(FooterLocators.JETBRAINS_IMAGE)
+
+    @allure.step('Get attribute "src" of Jetbrains image in Footer')
+    def get_jetbrains_image_src(self):
+        return self.get_image_src(FooterLocators.JETBRAINS_IMAGE)
+
+    @allure.step('Get attribute "alt" of Jetbrains image in Footer')
+    def get_jetbrains_image_alt(self):
+        return self.get_image_alt(FooterLocators.JETBRAINS_IMAGE)
