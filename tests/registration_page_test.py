@@ -14,9 +14,8 @@ class TestRegistrationPage:
     msg = Messages
 
     @allure.title('Check registration with an existing email')
-    def test_registration_with_existing_email(self, driver):
+    def test_registration_with_existing_email(self, driver, main_page_open):
         page = RegistrationPage(driver)
-        driver.get(self.urls.URL_MAIN_PAGE)
         page.open_registration_page()
         page.fill_first_name(Data.FIRST_NAME)
         page.fill_birthday(Data.BIRTHDAY)
@@ -30,9 +29,8 @@ class TestRegistrationPage:
         assert text == self.msg.EXISTING_EMAIL, 'The user has registered with an existing email'
 
     @allure.title('Check registration with new email')
-    def test_registration_with_new_email(self, driver):
+    def test_registration_with_new_email(self, main_page_open, driver):
         page = RegistrationPage(driver)
-        driver.get(self.urls.URL_MAIN_PAGE)
         page.open_registration_page()
         page.fill_first_name(Data.FIRST_NAME)
         page.fill_birthday(Data.BIRTHDAY)
@@ -47,9 +45,8 @@ class TestRegistrationPage:
         assert page.check_user_profile(), 'The user has not registered with a new email'
 
     @allure.title('Check registration with new email and empty confirm password')
-    def test_registration_with_new_email_and_empty_confirm_password(self, driver):
+    def test_registration_with_new_email_and_empty_confirm_password(self, main_page_open, driver):
         page = RegistrationPage(driver)
-        driver.get(self.urls.URL_MAIN_PAGE)
         page.open_registration_page()
         page.fill_first_name(Data.FIRST_NAME)
         page.fill_birthday(Data.BIRTHDAY)
@@ -60,5 +57,19 @@ class TestRegistrationPage:
         page.choose_agreement()
         page.click_registration_button()
         text = page.check_error_message()
-        print(text)
+        assert text in self.msg.EMPTY_CONFIRM_PASSWORD, 'The user has registered without confirm password'
+
+    @allure.title('Check registration with new email and empty password')
+    def test_registration_with_new_email_and_empty_password(self, main_page_open, driver):
+        page = RegistrationPage(driver)
+        page.open_registration_page()
+        page.fill_first_name(Data.FIRST_NAME)
+        page.fill_birthday(Data.BIRTHDAY)
+        page.choose_gender()
+        page.fill_email(Data.EMAIL)
+        page.fill_password('')
+        page.fill_repeat_password(os.environ["CHANGE_PASSWORD"])
+        page.choose_agreement()
+        page.click_registration_button()
+        text = page.check_error_message()
         assert text in self.msg.EMPTY_CONFIRM_PASSWORD, 'The user has registered without confirm password'
