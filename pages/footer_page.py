@@ -44,3 +44,15 @@ class FooterPage(BasePage):
     @allure.step('Get attribute "alt" of Jetbrains image in Footer')
     def get_jetbrains_image_alt(self):
         return self.get_image_alt(FooterLocators.JETBRAINS_IMAGE)
+
+    @allure.step('Check REG.RU image is present and visible in Footer')
+    def check_reg_image_visibility(self):
+        return self.element_is_visible(FooterLocators.REG_IMAGE)
+
+    @allure.step('Get attribute "src" of REG.RU image in Footer')
+    def get_reg_image_src(self):
+        return self.get_image_src(FooterLocators.REG_IMAGE)
+
+    @allure.step('Get attribute "alt" of REG.RU image in Footer')
+    def get_reg_image_alt(self):
+        return self.get_image_alt(FooterLocators.REG_IMAGE)

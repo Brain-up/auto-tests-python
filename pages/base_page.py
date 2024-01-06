@@ -76,7 +76,6 @@ class BasePage:
             return Wait(self.driver, self.timeout).until(ec.url_changes(url),
                                                          message=f"Url: {url} has not been changed!!!")
 
-    @allure.step('Get element text')
     def get_text(self, locator):
-        text = self.element_is_visible(locator)
-        return text.text
+        with allure.step(f'Get text in the element: {locator}'):
+            return self.element_is_visible(locator).text
