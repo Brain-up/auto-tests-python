@@ -41,6 +41,13 @@ class FooterData:
 
 class Messages:
 
-    WRONG_AUTH_DATA = 'Error: The password is invalid or the user does not have a password.'
+    WRONG_PASSWORD = 'Error: The password is invalid or the user does not have a password.'
+    WRONG_USER = 'Error: There is no user record corresponding to this identifier. The user may have been deleted.'
     EXISTING_EMAIL = 'The email address is already in use by another account.'
     EMPTY_CONFIRM_PASSWORD = ['Passwords should match', 'Пароли должны совпадать']
+    EMPTY_NAME = ['Empty LastName', 'Фамилия не Указана']
+    EMPTY_BIRTHDAY = ['Invalid date', 'Некорректная дата']
+    EMPTY_GENDER = ['Empty gender', 'Пол не указан']
+    EMPTY_EMAIL = ['Passwords should match', 'Пароли должны совпадать']
+    EMPTY_PASSWORD = ['Please enter your login and password', 'Пожалуйста, введите логин и пароль.']
+    ONLY_FIRST_NAME = ['Empty LastName', 'Фамилия не Указана']
