@@ -1,4 +1,5 @@
 import allure
+from selenium.common import TimeoutException
 
 from locators.locators import BasePageLocators
 from selenium.webdriver.support import expected_conditions as ec
@@ -79,3 +80,11 @@ class BasePage:
     def get_text(self, locator):
         with allure.step(f'Get text in the element: {locator}'):
             return self.element_is_visible(locator).text
+
+    def element_is_not_clickable(self, locator):
+        self.timeout = 5
+        try:
+            Wait(self.driver, self.timeout).until(ec.element_to_be_clickable(locator))
+            return False
+        except TimeoutException:
+            return True

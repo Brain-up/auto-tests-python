@@ -2,6 +2,9 @@ import os
 import random
 import time
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Data:
@@ -48,6 +51,67 @@ class Messages:
     EMPTY_NAME = ['Empty LastName', 'Фамилия не Указана']
     EMPTY_BIRTHDAY = ['Invalid date', 'Некорректная дата']
     EMPTY_GENDER = ['Empty gender', 'Пол не указан']
-    EMPTY_EMAIL = ['Passwords should match', 'Пароли должны совпадать']
-    EMPTY_PASSWORD = ['Please enter your login and password', 'Пожалуйста, введите логин и пароль.']
+    EMPTY_EMAIL = ['Please enter your login and password', 'Пожалуйста, введите логин и пароль.']
+    EMPTY_PASSWORD = ['Passwords should match', 'Пароли должны совпадать']
     ONLY_FIRST_NAME = ['Empty LastName', 'Фамилия не Указана']
+
+
+class Registration:
+
+    test_data = 'title, first_name, birthday, email, password, confirm_password, error_message'
+    DATA_REGISTRATION = [
+        (
+            'an existing email',
+            Data.FIRST_NAME,
+            Data.BIRTHDAY,
+            os.environ["CHANGE_PASSWORD_EMAIL"],
+            'password',
+            'password',
+            Messages.EXISTING_EMAIL
+        ),
+        (
+            'new email and empty confirm password',
+            Data.FIRST_NAME,
+            Data.BIRTHDAY,
+            Data.EMAIL,
+            'password',
+            '',
+            Messages.EMPTY_CONFIRM_PASSWORD
+        ),
+        (
+            'new email and empty password',
+            Data.FIRST_NAME,
+            Data.BIRTHDAY,
+            Data.EMAIL,
+            '',
+            'password',
+            Messages.EMPTY_PASSWORD
+        ),
+        (
+            'new email and empty first name',
+            '',
+            Data.BIRTHDAY,
+            Data.EMAIL,
+            'password',
+            'password',
+            Messages.EMPTY_NAME
+        ),
+        (
+            'new email and empty birthday',
+            Data.FIRST_NAME,
+            '',
+            Data.EMAIL,
+            'password',
+            'password',
+            Messages.EMPTY_BIRTHDAY
+        ),
+        (
+            'new email and empty email',
+            Data.FIRST_NAME,
+            Data.BIRTHDAY,
+            '',
+            'password',
+            'password',
+            Messages.EMPTY_EMAIL
+        )
+    ]

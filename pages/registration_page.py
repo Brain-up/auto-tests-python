@@ -26,15 +26,12 @@ class RegistrationPage(BasePage):
         gender = random.choice([self.locators.MALE, self.locators.FEMALE])
         self.element_is_clickable(gender).click()
 
-    @allure.step("Fill email")
     def fill_email(self, email):
         self.element_is_visible(self.locators.EMAIL).send_keys(email)
 
-    @allure.step("Fill password")
     def fill_password(self, password):
         self.element_is_visible(self.locators.PASSWORD).send_keys(password)
 
-    @allure.step("Fill repeat password")
     def fill_repeat_password(self, repeat_password):
         self.element_is_visible(self.locators.REPEAT_PASSWORD).send_keys(repeat_password)
 
@@ -53,3 +50,7 @@ class RegistrationPage(BasePage):
     @allure.step("Wait changing url")
     def check_change_url(self):
         return self.wait_changed_url(self.links.URL_REGISTRATION_PAGE)
+
+    @allure.step("Check REGISTRATION button is not clickable")
+    def check_registration_button_is_not_clickable(self):
+        self.element_is_not_clickable(self.locators.SUBMIT_BUTTON).click()

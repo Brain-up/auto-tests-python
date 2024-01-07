@@ -58,9 +58,9 @@ class TestMainPage:
         assert resources_page_url == MainPageLinks.URL_USED_RESOURCES_PAGE, "The link leads to an incorrect page."
 
     @allure.title("Checking the clickability of the Start button.")
-    def test_mp_9_сhecking_the_clickability_of_the_Start_button(self, driver, main_page_open):
+    def test_mp_9_checking_the_clickability_of_the_start_button(self, driver, main_page_open):
         page = MainPage(driver)
-        start_button = page.clickability_of_the_Start_button()
+        start_button = page.clickability_of_the_start_button()
         assert start_button == MainPageLinks.URL_LOGIN_PAGE, "The link leads to an incorrect page."
 
 
