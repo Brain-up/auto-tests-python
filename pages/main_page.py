@@ -69,7 +69,7 @@ class MainPage(BasePage):
         return self.driver.current_url
 
     @allure.step("Clickability of the Start button")
-    def clickability_of_the_Start_button(self):
+    def clickability_of_the_start_button(self):
         self.element_is_clickable(self.locators.BUTTON_START).click()
         self.check_expected_link(MainPageLinks.URL_LOGIN_PAGE)
         return self.driver.current_url
