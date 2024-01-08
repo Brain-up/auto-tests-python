@@ -17,7 +17,7 @@ class BasePageLocators:
     USED_RESOURCES_PAGE = (By.XPATH, "//div[@id='other-menu']//a[7]")
     LOGIN_BUTTON = (By.XPATH, '//a[@id="ember11"]')
     BUTTON_START = (By.ID, "ember11")
-    REGISTRATION_BUTTON = (By.XPATH, '//a[@href="/registration"]')
+    LOGO = (By.ID, "ember4")
 
 
 class LoginPageLocators:
@@ -74,21 +74,19 @@ class ProfilePageLocators:
     NEW_PASSWORD = (By.XPATH, '//input[@name="newPassword"]')
     SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
     SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
-    PROFILE = (By.XPATH, '//a[@href="/profile"]')
-    WRONG_AUTH_DATA_MSG = (By.XPATH, '//p[contains(@class, "text-red-500")]')
 
 
 class FooterLocators:
     FOOTER_ELEMENTS_LOCATORS = {
         "FOOTER_SECTION": (By.TAG_NAME, "footer"),
         "FOOTER_CONTENT": (By.CSS_SELECTOR, "footer > div"),
-        "ARASAAC_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3)"),
         "CONTACT_US_LINK": (By.CSS_SELECTOR, "footer a[title]"),
-        "EPAM_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(5)"),
+        "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]"),
         "JETBRAINS_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1)"),
         "REG_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2)"),
+        "ARASAAC_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3)"),
         "SELECTEL_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4)"),
-        "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]")
+        "EPAM_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(5)")
     }
 
     FOOTER_TEXT_LOCATORS = {
@@ -96,22 +94,5 @@ class FooterLocators:
         "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]")
     }
 
-    ARASAAC_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3) img")
-    FOOTER_SECTION = (By.TAG_NAME, "footer")
     JETBRAINS_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1) img")
     REG_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2) img")
-    SELECTEL_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4) img")
-
-
-class RegistrationPageLocators:
-
-    FIRST_NAME = (By.ID, 'firstName')
-    BIRTHDAY = (By.ID, 'birthday')
-    FEMALE = (By.ID, 'female')
-    MALE = (By.ID, 'male')
-    EMAIL = (By.ID, 'email')
-    PASSWORD = (By.ID, 'password')
-    REPEAT_PASSWORD = (By.ID, 'repeatPassword')
-    AGREEMENT = (By.ID, 'agreement')
-    SUBMIT_BUTTON = (By.XPATH, '//button[@type="submit"]')
-    ERROR_MESSAGE = (By.XPATH, '//p[contains(@class, "text-red-500")]')
