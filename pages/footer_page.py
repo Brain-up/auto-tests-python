@@ -68,3 +68,15 @@ class FooterPage(BasePage):
     @allure.step('Get attribute "alt" of ARASAAC image in Footer')
     def get_arasaac_image_alt(self):
         return self.get_image_alt(FooterLocators.ARASAAC_IMAGE)
+
+    @allure.step('Check Selectel image is present and visible in Footer')
+    def check_selectel_image_visibility(self):
+        return self.element_is_visible(FooterLocators.SELECTEL_IMAGE)
+
+    @allure.step('Get attribute "src" of Selectel image in Footer')
+    def get_selectel_image_src(self):
+        return self.get_image_src(FooterLocators.SELECTEL_IMAGE)
+
+    @allure.step('Get attribute "alt" of Selectel image in Footer')
+    def get_selectel_image_alt(self):
+        return self.get_image_alt(FooterLocators.SELECTEL_IMAGE)

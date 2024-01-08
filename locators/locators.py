@@ -100,6 +100,7 @@ class FooterLocators:
     FOOTER_SECTION = (By.TAG_NAME, "footer")
     JETBRAINS_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1) img")
     REG_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2) img")
+    SELECTEL_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4) img")
 
 
 class RegistrationPageLocators:
