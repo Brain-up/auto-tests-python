@@ -1,7 +1,7 @@
 import allure
 from pages.profile_page import ProfilePage
 from test_data.links import MainPageLinks
-from test_data.data import Messages
+from test_data.registration_data import Messages
 
 
 @allure.epic("Test Authorized User Page")
