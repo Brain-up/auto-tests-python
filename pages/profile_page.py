@@ -3,8 +3,12 @@ import time
 import allure
 import os
 from dotenv import load_dotenv
-from locators.locators import LoginPageLocators, BasePageLocators, AuthorizedUserHomePageLocators, ProfilePageLocators
+from locators.main_page_locators import MainPageLocators
+from locators.login_page_locators import LoginPageLocators
+from locators.authotised_user_home_page_locators import AuthorizedUserHomePageLocators
+from locators.profile_page_locators import ProfilePageLocators
 from pages.base_page import BasePage
+from test_data.links import MainPageLinks
 
 load_dotenv()
 
@@ -32,10 +36,11 @@ class ProfilePage(BasePage):
         self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
         self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
         self.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+        self.wait_changed_url(MainPageLinks.URL_PROFILE_PAGE)
 
     @allure.step("Open login page")
     def open_login_page(self):
-        self.element_is_present_and_clickable(BasePageLocators.LOGIN_BUTTON).click()
+        self.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
 
     @allure.step("Go to the Profile page")
     def go_to_profile_page(self):

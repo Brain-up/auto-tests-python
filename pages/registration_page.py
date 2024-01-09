@@ -1,6 +1,7 @@
 import random
 import allure
-from locators.locators import BasePageLocators, RegistrationPageLocators
+from locators.main_page_locators import MainPageLocators
+from locators.registration_page_locators import RegistrationPageLocators
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 
@@ -11,7 +12,7 @@ class RegistrationPage(BasePage):
 
     @allure.step("Open registration page")
     def open_registration_page(self):
-        self.element_is_present_and_clickable(BasePageLocators.REGISTRATION_BUTTON).click()
+        self.element_is_present_and_clickable(MainPageLocators.REGISTRATION_BUTTON).click()
 
     @allure.step("Fill first name")
     def fill_first_name(self, firstname):

@@ -70,7 +70,7 @@ class TestRegistrationPage:
         page.choose_agreement()
         page.click_registration_button()
         text = page.check_error_message()
-        assert text in self.msg.EMPTY_GENDER, f'The user has registered without choosing a gender'
+        assert text in self.msg.EMPTY_GENDER, 'The user has registered without choosing a gender'
 
     @allure.title('Check registration without choosing agreement')
     def test_registration_without_choosing_agreement(self, main_page_open, driver):
@@ -90,4 +90,4 @@ class TestRegistrationPage:
             page.check_change_url()
         except TimeoutException:
             pass
-        assert TimeoutException, f'The user has registered without choosing agreement'
+        assert TimeoutException, 'The user has registered without choosing agreement'

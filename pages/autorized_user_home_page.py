@@ -1,4 +1,4 @@
-from locators.locators import AuthorizedUserHomePageLocators
+from locators.authotised_user_home_page_locators import AuthorizedUserHomePageLocators
 from pages.base_page import BasePage
 
 

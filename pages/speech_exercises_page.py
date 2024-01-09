@@ -1,4 +1,4 @@
-from locators.locators import SpeechExercisesPageLocators
+from locators.speech_exercises_page_locators import SpeechExercisesPageLocators
 from pages.base_page import BasePage
 
 
