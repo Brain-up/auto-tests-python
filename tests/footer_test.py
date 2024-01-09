@@ -69,6 +69,14 @@ class TestFooter:
                    and page.get_selectel_image_alt() == FooterData.footer_images_alt["selectel_img_alt"], \
                    "The image in the Selectel link is absent or invisible or inaccurate in Footer"
 
+        @allure.title("Verify presence, visibility and accuracy of the image in the EPAM link in Footer")
+        def test_fp_01_07_verify_image_in_epam_link(self, driver, main_page_open):
+            page = FooterPage(driver)
+            assert page.check_epam_image_visibility() \
+                   and page.get_epam_image_src() == FooterData.footer_images_src["epam_img_src"] \
+                   and page.get_epam_image_alt() == FooterData.footer_images_alt["epam_img_alt"], \
+                   "The image in the EPAM link is absent or invisible or inaccurate in Footer"
+
     class TestFooterForAuthorizedUserOnly:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")

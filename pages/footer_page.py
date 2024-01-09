@@ -80,3 +80,15 @@ class FooterPage(BasePage):
     @allure.step('Get attribute "alt" of Selectel image in Footer')
     def get_selectel_image_alt(self):
         return self.get_image_alt(FooterLocators.SELECTEL_IMAGE)
+
+    @allure.step('Check EPAM image is present and visible in Footer')
+    def check_epam_image_visibility(self):
+        return self.element_is_visible(FooterLocators.EPAM_IMAGE)
+
+    @allure.step('Get attribute "src" of EPAM image in Footer')
+    def get_epam_image_src(self):
+        return self.get_image_src(FooterLocators.EPAM_IMAGE)
+
+    @allure.step('Get attribute "alt" of EPAM image in Footer')
+    def get_epam_image_alt(self):
+        return self.get_image_alt(FooterLocators.EPAM_IMAGE)
