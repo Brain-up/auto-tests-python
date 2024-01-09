@@ -6,7 +6,7 @@ from selenium.common import TimeoutException
 from pages.profile_page import ProfilePage
 from pages.registration_page import RegistrationPage
 from test_data.links import MainPageLinks
-from test_data.data import Messages, Data, Registration
+from test_data.registration_data import Messages, Registration
 
 load_dotenv()
 
@@ -20,11 +20,11 @@ class TestRegistrationPage:
     def test_registration_with_new_email(self, main_page_open, driver):
         page = RegistrationPage(driver)
         page.open_registration_page()
-        page.fill_first_name(Data.FIRST_NAME)
-        page.fill_birthday(Data.BIRTHDAY)
+        page.fill_first_name(Registration.FIRST_NAME)
+        page.fill_birthday(Registration.BIRTHDAY)
         page.choose_gender()
         with allure.step("Fill email"):
-            page.fill_email(Data.EMAIL)
+            page.fill_email(Registration.EMAIL)
         with allure.step("Fill password"):
             page.fill_password(os.environ["CHANGE_PASSWORD"])
         with allure.step("Fill repeat password"):
@@ -59,10 +59,10 @@ class TestRegistrationPage:
     def test_registration_without_choosing_gender(self, main_page_open, driver):
         page = RegistrationPage(driver)
         page.open_registration_page()
-        page.fill_first_name(Data.FIRST_NAME)
-        page.fill_birthday(Data.BIRTHDAY)
+        page.fill_first_name(Registration.FIRST_NAME)
+        page.fill_birthday(Registration.BIRTHDAY)
         with allure.step("Fill email"):
-            page.fill_email(Data.EMAIL)
+            page.fill_email(Registration.EMAIL)
         with allure.step("Fill password"):
             page.fill_password(os.environ["CHANGE_PASSWORD"])
         with allure.step("Fill repeat password"):
@@ -76,11 +76,11 @@ class TestRegistrationPage:
     def test_registration_without_choosing_agreement(self, main_page_open, driver):
         page = RegistrationPage(driver)
         page.open_registration_page()
-        page.fill_first_name(Data.FIRST_NAME)
-        page.fill_birthday(Data.BIRTHDAY)
+        page.fill_first_name(Registration.FIRST_NAME)
+        page.fill_birthday(Registration.BIRTHDAY)
         page.choose_gender()
         with allure.step("Fill email"):
-            page.fill_email(Data.EMAIL)
+            page.fill_email(Registration.EMAIL)
         with allure.step("Fill password"):
             page.fill_password(os.environ["CHANGE_PASSWORD"])
         with allure.step("Fill repeat password"):
