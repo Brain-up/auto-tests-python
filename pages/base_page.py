@@ -1,18 +1,18 @@
 import allure
 from selenium.common import TimeoutException
 
-from locators.locators import BasePageLocators
+from locators.main_page_locators import MainPageLocators
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 
 class BasePage:
-    locators = BasePageLocators()
+    locators = MainPageLocators()
 
     def __init__(self, driver, link=None):
         self.driver = driver
         self.link = link
-        self.timeout = 10
+        self.timeout = 20
 
     def open(self):
         with allure.step(f'Open page: {self.link}'):

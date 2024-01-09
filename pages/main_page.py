@@ -1,12 +1,12 @@
 import allure
 
-from locators.locators import BasePageLocators
+from locators.main_page_locators import MainPageLocators
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 
 
 class MainPage(BasePage):
-    locators = BasePageLocators()
+    locators = MainPageLocators()
 
     @allure.step("Open description page")
     def open_description_page(self):

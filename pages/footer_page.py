@@ -1,6 +1,6 @@
 import allure
 
-from locators.locators import FooterLocators
+from locators.footer_page_locators import FooterLocators
 from pages.base_page import BasePage
 
 

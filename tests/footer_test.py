@@ -2,7 +2,7 @@ import allure
 import pytest
 from pages.footer_page import FooterPage
 from pages.login_page import LoginPage
-from locators.locators import FooterLocators
+from locators.footer_page_locators import FooterLocators
 from test_data.links import PagesUrls, SpecificExercisesUrls
 from test_data.data import FooterData
 
