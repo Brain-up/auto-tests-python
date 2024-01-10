@@ -4,7 +4,7 @@ from pages.footer_page import FooterPage
 from pages.login_page import LoginPage
 from locators.footer_page_locators import FooterLocators
 from test_data.links import PagesUrls, SpecificExercisesUrls
-from test_data.data import FooterData
+from test_data.footer_data import FooterData
 
 
 @allure.epic("Test Footer")
@@ -76,6 +76,16 @@ class TestFooter:
                    and page.get_epam_image_src() == FooterData.footer_images_src["epam_img_src"] \
                    and page.get_epam_image_alt() == FooterData.footer_images_alt["epam_img_alt"], \
                    "The image in the EPAM link is absent or invisible or inaccurate in Footer"
+
+        @allure.title("Verify accuracy of the attribute 'href' in the Jetbrains link in Footer")
+        def test_fp_01_08_verify_href_in_jetbrains_link_in_footer(self, driver, main_page_open):
+            page = FooterPage(driver)
+            actual_href = page.get_jetbrains_link_href()
+            expected_href = FooterData.footer_links_href["jetbrains_link_href"]
+            print(actual_href)
+            print(expected_href)
+            assert actual_href == expected_href, \
+                f"The attribute href of the link '{actual_href}' does not match the expected value"
 
     class TestFooterForAuthorizedUserOnly:
 
