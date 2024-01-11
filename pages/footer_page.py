@@ -21,10 +21,6 @@ class FooterPage(BasePage):
     def get_link_href(self, locator):
         return self.driver.find_element(*locator).get_attribute("href")
 
-    @allure.step("Get attribute 'href' of the Jetbrains link")
-    def get_jetbrains_link_href(self):
-        return self.get_link_href(FooterLocators.JETBRAINS_LINK)
-
     @allure.step('Check Footer is present in the DOM tree on the page')
     def check_footer_presence(self):
         return self.element_is_present(FooterLocators.FOOTER_SECTION)
@@ -100,3 +96,11 @@ class FooterPage(BasePage):
     @allure.step('Get attribute "alt" of EPAM image in Footer')
     def get_epam_image_alt(self):
         return self.get_image_alt(FooterLocators.EPAM_IMAGE)
+
+    @allure.step("Get attribute 'href' of the Jetbrains link")
+    def get_jetbrains_link_href(self):
+        return self.get_link_href(FooterLocators.JETBRAINS_LINK)
+
+    @allure.step("Get attribute 'href' of the REG.RU link")
+    def get_reg_link_href(self):
+        return self.get_link_href(FooterLocators.REG_LINK)
