@@ -4,35 +4,38 @@ from selenium.webdriver.common.by import By
 class FooterLocators:
     FOOTER_ELEMENTS_LOCATORS = {
         "FOOTER_SECTION": (By.TAG_NAME, "footer"),
-        "FOOTER_CONTENT": (By.CSS_SELECTOR, "footer > div"),
-        "ARASAAC_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3)"),
-        "CONTACT_US_LINK": (By.CSS_SELECTOR, "footer a[title]"),
-        "EPAM_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(5)"),
-        "JETBRAINS_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1)"),
-        "REG_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2)"),
-        "SELECTEL_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4)"),
-        "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]")
+        "FOOTER_CONTENT": (By.XPATH, "(//footer//div)[1]"),
+        "ARASAAC_LINK_SECTION": (By.XPATH, "(//footer//li)[3]"),
+        "CONTACT_US_LINK_SECTION": (By.XPATH, "(//footer//div)[2]"),
+        "EPAM_LINK_SECTION": (By.XPATH, "(//footer//li)[5]"),
+        "JETBRAINS_LINK_SECTION": (By.XPATH, "(//footer//li)[1]"),
+        "REG_LINK_SECTION": (By.XPATH, "(//footer//li)[2]"),
+        "SELECTEL_LINK_SECTION": (By.XPATH, "(//footer//li)[4]"),
+        "WITH_THE_SUPPORT_PHRASE_SECTION": (By.XPATH, "(//footer//div)[4]")
     }
 
     FOOTER_TEXT_LOCATORS = {
-        "CONTACT_US_LINK": (By.CSS_SELECTOR, "footer a[title]"),
-        "WITH_THE_SUPPORT_PHRASE": (By.CSS_SELECTOR, "footer [data-test-support-message]")
+        "CONTACT_US_LINK_TEXT": (By.XPATH, "//footer//a[@title]"),
+        "WITH_THE_SUPPORT_PHRASE_TEXT": (By.XPATH, "//span[@data-test-support-message]")
     }
 
     FOOTER_LINKS_LOCATORS = {
-        "ARASAAC_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3)"),
-        "CONTACT_US_LINK": (By.CSS_SELECTOR, "footer a[title]"),
-        "EPAM_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(5)"),
-        "JETBRAINS_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1)"),
-        "REG_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2)"),
-        "SELECTEL_LINK": (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4)")
+        "ARASAAC_LINK": (By.XPATH, "(//footer//li)[3]//a"),
+        "CONTACT_US_LINK": (By.XPATH, "//footer//a[@title]"),
+        "EPAM_LINK": (By.XPATH, "(//footer//li)[5]//a"),
+        "JETBRAINS_LINK": (By.XPATH, "(//footer//li)[1]//a"),
+        "REG_LINK": (By.XPATH, "(//footer//li)[2]//a"),
+        "SELECTEL_LINK": (By.XPATH, "(//footer//li)[4]//a")
     }
 
-    ARASAAC_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(3) img")
-    EPAM_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(5) img")
+    # Footer images locators
+    ARASAAC_IMAGE = (By.XPATH, "(//footer//li)[3]//img")
+    EPAM_IMAGE = (By.XPATH, "(//footer//li)[5]//img")
+    JETBRAINS_IMAGE = (By.XPATH, "(//footer//li)[1]//img")
+    REG_IMAGE = (By.XPATH, "(//footer//li)[2]//img")
+    SELECTEL_IMAGE = (By.XPATH, "(//footer//li)[4]//img")
+
+    # Footer elements locators
     FOOTER_SECTION = (By.TAG_NAME, "footer")
-    JETBRAINS_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1) img")
-    JETBRAINS_LINK = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(1) a")
-    # body > footer > div > div.flex.items - center > div: nth - child(2) > ul > li:nth - child(1) > a
-    REG_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(2) img")
-    SELECTEL_IMAGE = (By.CSS_SELECTOR, "footer [data-test-support-logo]:nth-child(4) img")
+    JETBRAINS_LINK = (By.XPATH, "(//footer//li)[1]//a")
+    REG_LINK = (By.XPATH, "(//footer//li)[2]//a")

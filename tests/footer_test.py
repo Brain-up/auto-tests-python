@@ -80,10 +80,14 @@ class TestFooter:
         @allure.title("Verify accuracy of the attribute 'href' in the Jetbrains link in Footer")
         def test_fp_01_08_verify_href_in_jetbrains_link_in_footer(self, driver, main_page_open):
             page = FooterPage(driver)
-            actual_href = page.get_jetbrains_link_href()
-            expected_href = FooterData.footer_links_href["jetbrains_link_href"]
-            print(actual_href)
-            print(expected_href)
+            assert page.get_jetbrains_link_href() == FooterData.footer_links_href["jetbrains_link_href"], \
+                "The attribute href of the Jetbrains link does not match the expected value"
+
+        @allure.title("Verify accuracy of the attribute 'href' in the REG.RU link in Footer")
+        def test_fp_01_09_verify_href_in_reg_link_in_footer(self, driver, main_page_open):
+            page = FooterPage(driver)
+            actual_href = page.get_reg_link_href()
+            expected_href = FooterData.footer_links_href["reg_link_href"]
             assert actual_href == expected_href, \
                 f"The attribute href of the link '{actual_href}' does not match the expected value"
 

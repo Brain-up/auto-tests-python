@@ -2,8 +2,8 @@
 
 class FooterData:
     footer_elements_text = {
-        "CONTACT_US_LINK": ["Обратная связь", "Contact us"],
-        "WITH_THE_SUPPORT_PHRASE": ["При поддержке", "With the support"]
+        "CONTACT_US_LINK_TEXT": ["Обратная связь", "Contact us"],
+        "WITH_THE_SUPPORT_PHRASE_TEXT": ["При поддержке", "With the support"]
     }
 
     footer_images_src = {
