@@ -104,3 +104,7 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'href' of the REG.RU link")
     def get_reg_link_href(self):
         return self.get_link_href(FooterLocators.REG_LINK)
+
+    @allure.step("Get attribute 'href' of the ARASAAC link")
+    def get_arasaac_link_href(self):
+        return self.get_link_href(FooterLocators.ARASAAC_LINK)

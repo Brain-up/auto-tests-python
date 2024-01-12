@@ -20,12 +20,12 @@ class FooterLocators:
     }
 
     FOOTER_LINKS_LOCATORS = {
-        "ARASAAC_LINK": (By.XPATH, "(//footer//li)[3]//a"),
+        "ARASAAC_LINK": (By.XPATH, "(//footer//li)[3]/a"),
         "CONTACT_US_LINK": (By.XPATH, "//footer//a[@title]"),
-        "EPAM_LINK": (By.XPATH, "(//footer//li)[5]//a"),
-        "JETBRAINS_LINK": (By.XPATH, "(//footer//li)[1]//a"),
-        "REG_LINK": (By.XPATH, "(//footer//li)[2]//a"),
-        "SELECTEL_LINK": (By.XPATH, "(//footer//li)[4]//a")
+        "EPAM_LINK": (By.XPATH, "(//footer//li)[5]/a"),
+        "JETBRAINS_LINK": (By.XPATH, "(//footer//li)[1]/a"),
+        "REG_LINK": (By.XPATH, "(//footer//li)[2]/a"),
+        "SELECTEL_LINK": (By.XPATH, "(//footer//li)[4]/a")
     }
 
     # Footer images locators
@@ -36,6 +36,7 @@ class FooterLocators:
     SELECTEL_IMAGE = (By.XPATH, "(//footer//li)[4]//img")
 
     # Footer elements locators
+    ARASAAC_LINK = (By.XPATH, "(//footer//li)[3]/a")
     FOOTER_SECTION = (By.TAG_NAME, "footer")
-    JETBRAINS_LINK = (By.XPATH, "(//footer//li)[1]//a")
-    REG_LINK = (By.XPATH, "(//footer//li)[2]//a")
+    JETBRAINS_LINK = (By.XPATH, "(//footer//li)[1]/a")
+    REG_LINK = (By.XPATH, "(//footer//li)[2]/a")
