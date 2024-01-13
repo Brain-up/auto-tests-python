@@ -17,8 +17,9 @@ class TestLoginPage:
         assert login_page_url == MainPageLinks.URL_GROUPS_PAGE, "The link leads to an incorrect page"
 
 
-@allure.epic("WORD.")
+@allure.epic("Speech exercises.")
 class TestCards:
+    @allure.suite('Words.')
     @allure.title('Select random card from word group and compare UI vs BACKEND data')
     def test_random_word_cards(self, driver, main_page_open):
         page = LoginPage(driver)
@@ -33,10 +34,8 @@ class TestCards:
 
         page = SpeechExercisesWordsPage(driver)
         random_id = page.get_random_id_from_list_all_family_cards()  # getting random ID from exercises group
-        print(driver.current_url + f'/exercise/{random_id}')
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
-        print(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
         list_words_ui = page.click_start_and_get_list_words()
         list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')

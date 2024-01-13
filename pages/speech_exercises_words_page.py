@@ -1,6 +1,7 @@
 import json
 import random
 
+import allure
 import requests
 
 from locators.speech_exercises_page_locators import SpeechExercisesPageLocators
@@ -24,7 +25,7 @@ class SpeechExercisesWordsPage(BasePage):
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
         result_get = json.loads(list_cards_id.text)
-        print(result_get['data'][0]['exercises'])
+        # print(result_get['data'][0]['exercises'])
         id_number = random.choice(result_get['data'][0]['exercises'])
         print(id_number)
         return random.choice(result_get['data'][0]['exercises'])
@@ -38,12 +39,15 @@ class SpeechExercisesWordsPage(BasePage):
         word = json.loads(result_get.text)['data']["answerOptions"][0]['word']
         amount_words = len(json.loads(result_get.text)['data']["answerOptions"])
         words = [json.loads(result_get.text)['data']["answerOptions"][i]['word'] for i in range(amount_words)]
-        print(words)
+        with allure.step(f'Getting a list of exercise words from the backend: {words}.'):
+            print(words)
         return words
 
     def click_start_and_get_list_words(self):
-        self.element_is_present_and_clickable(self.locators.BUTTON_START).click()
+        with allure.step('Click button "Start".'):
+            self.element_is_present_and_clickable(self.locators.BUTTON_START).click()
         list_words = self.elements_are_visible(self.locators.LIST_CARD_WORDS_WE)
         words = [i.text.lower() for i in list_words]
-        print(words)
+        with allure.step(f'Getting a list of exercise words from the front: {words}'):
+            print(words)
         return words
