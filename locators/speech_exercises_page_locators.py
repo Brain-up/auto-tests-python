@@ -7,6 +7,9 @@ class SpeechExercisesPageLocators:
     """
     BUTTON_START = (By.XPATH, '//button[@aria-label="Start exercise"]')
     LIST_CARD_WORDS_WE = (By.XPATH, '//li[@class="task-player__option flex"]')
+    PROGRESS_BAR = (By.XPATH, '//div[@class="progress-bar"]')
+    BUTTON_SOLVE = (By.XPATH, '//*[text()="Solve"]')
+    BUTTON_INTERACT = (By.XPATH, '//*[text()="Interact"]')
 
     # Language
     FAMILY_CARD_RU = (By.XPATH, '//a[@title="Слова про семью"]')
