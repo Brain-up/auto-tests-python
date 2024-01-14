@@ -10,7 +10,7 @@ from pages.speech_exercises_page_api import SpeechExercisesWordsPage
 class TestCards:
     @allure.suite('Words.')
     @allure.title('Select random card from word group and compare UI vs BACKEND data')
-    def test_random_word_cards(self, driver, main_page_open, specialist_user_authorized):
+    def test_random_word_cards(self, driver, main_page_open):
         page = LoginPage(driver)
         page.login_user()
 
@@ -30,7 +30,7 @@ class TestCards:
         list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
-    def test_progress_bar_is_present(self, driver, main_page_open, specialist_user_authorized):
+    def test_progress_bar_is_present(self, driver, main_page_open):
         page = LoginPage(driver)
         page.login_user()
 
