@@ -1,3 +1,5 @@
+import random
+
 import allure
 
 from locators.speech_exercises_page_locators import SpeechExercisesPageLocators
@@ -10,6 +12,18 @@ class SpeechExercisesPage(BasePage):
     def click_family_card(self):
         with allure.step('Click button "Family card"'):
             self.element_is_present_and_clickable(self.locators.FAMILY_CARD_EN).click()
+
+    def click_random_card_in_words(self):
+        self.element_is_present(self.locators.FAMILY_CARD_EN)
+        self.element_is_present_and_clickable(self.locators.WORDS).click()
+        list_cards_name = [i.text for i in self.elements_are_present(self.locators.LIST_OF_CARD_FROM_WORDS)]
+        id_card_from_list = random.randint(0, len(list_cards_name))
+        print('Card ID in list is:', id_card_from_list + 1)
+        random_card = self.elements_are_present(self.locators.LIST_OF_CARD_FROM_WORDS)[id_card_from_list]
+        self.go_to_element(random_card)
+        random_card.click()
+        print('Selected sub group is:', random_card.text)
+        return id_card_from_list
 
     def check_button_interact(self):
         with allure.step('Check button "INTERACT" is present.'):
