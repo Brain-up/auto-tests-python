@@ -98,7 +98,7 @@ class TestFooter:
     class TestFooterForAuthorizedUserOnly:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")
-        def test_fp_02_01_verify_footer_invisibility_through_the_modal_window(self, driver, main_page_open):
+        def test_fp_02_01_verify_footer_invisibility_through_the_modal_window(self, driver, auto_test_user_authorized):
             page = LoginPage(driver)
             page.login_user()
 

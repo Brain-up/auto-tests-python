@@ -38,3 +38,7 @@ class TestProfilePage:
         page.click_save_button()
         page.get_successful_message()
         assert page.get_successful_message(), "The password hasn't changed"
+
+
+def test_auto_user(auto_test_user_authorized):
+    pass
