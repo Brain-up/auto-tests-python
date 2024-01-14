@@ -30,7 +30,8 @@ def auto_test_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["LOGIN"])
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
-    page.wait_changed_url(MainPageLinks.URL_PROFILE_PAGE)
+    page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
+    return page
 
 
 @pytest.fixture()
@@ -41,7 +42,8 @@ def specialist_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["SPECIALIST_LOGIN"])
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
-    page.wait_changed_url(MainPageLinks.URL_PROFILE_PAGE)
+    page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
+    return page
 
 
 @pytest.fixture()
@@ -52,4 +54,5 @@ def default_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["DEFAULT_LOGIN"])
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
-    page.wait_changed_url(MainPageLinks.URL_PROFILE_PAGE)
+    page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
+    return page
