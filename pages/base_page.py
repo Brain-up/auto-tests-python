@@ -59,7 +59,7 @@ class BasePage:
 
     @allure.step('Check element is clickable')
     def element_is_clickable(self, locator):
-        with allure.step(f'Check elements are clickable: {locator}'):
+        with allure.step(f'Check element is clickable: {locator}'):
             return Wait(self.driver, self.timeout).until(ec.element_to_be_clickable(locator),
                                                          message=f"Can't find element by locator {locator}")
 
