@@ -37,6 +37,7 @@ def auto_test_user_authorized(driver, main_page_open):
 @pytest.fixture()
 @allure.step('USER specialist authorized')
 def specialist_user_authorized(driver, main_page_open):
+    load_dotenv()
     page = BasePage(driver)
     page.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
     page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["SPECIALIST_LOGIN"])
