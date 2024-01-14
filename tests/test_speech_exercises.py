@@ -1,7 +1,5 @@
 import allure
-
 from pages.autorized_user_home_page import AuthorizedUserHomePage
-from pages.login_page import LoginPage
 from pages.speech_exercises_page import SpeechExercisesPage
 from pages.speech_exercises_page_api import SpeechExercisesWordsPage
 
@@ -10,9 +8,9 @@ from pages.speech_exercises_page_api import SpeechExercisesWordsPage
 class TestCards:
     @allure.suite('Words.')
     @allure.title('Select random card from word group and compare UI vs BACKEND data')
-    def test_random_word_cards(self, driver, main_page_open):
-        page = LoginPage(driver)
-        page.login_user()
+    def test_random_word_cards(self, driver, specialist_user_authorized):
+        # page = LoginPage(driver)
+        # page.login_user()
 
         page = AuthorizedUserHomePage(driver)
         page.click_speech_exercises()
@@ -30,9 +28,9 @@ class TestCards:
         list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
-    def test_progress_bar_is_present(self, driver, main_page_open):
-        page = LoginPage(driver)
-        page.login_user()
+    def test_progress_bar_is_present(self, driver, specialist_user_authorized):
+        # page = LoginPage(driver)
+        # page.login_user()
 
         page = AuthorizedUserHomePage(driver)
         page.click_speech_exercises()

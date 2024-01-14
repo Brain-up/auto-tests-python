@@ -1,6 +1,4 @@
 import allure
-
-from pages.login_page import LoginPage
 from test_data.links import MainPageLinks
 
 
@@ -8,7 +6,6 @@ from test_data.links import MainPageLinks
 class TestLoginPage:
 
     @allure.title('Test for authorization customer.')
-    def test_logining_user(self, driver, main_page_open):
-        page = LoginPage(driver)
-        login_page_url = page.login_user()
+    def test_logining_user(self, driver, auto_test_user_authorized):
+        login_page_url = driver.current_url
         assert login_page_url == MainPageLinks.URL_GROUPS_PAGE, "The link leads to an incorrect page"

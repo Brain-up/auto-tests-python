@@ -1,7 +1,6 @@
 import allure
 import pytest
 from pages.footer_page import FooterPage
-from pages.login_page import LoginPage
 from locators.footer_page_locators import FooterLocators
 from test_data.links import PagesUrls, SpecificExercisesUrls
 from test_data.footer_data import FooterData
@@ -98,10 +97,7 @@ class TestFooter:
     class TestFooterForAuthorizedUserOnly:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")
-        def test_fp_02_01_verify_footer_invisibility_through_the_modal_window(self, driver, main_page_open):
-            page = LoginPage(driver)
-            page.login_user()
-
+        def test_fp_02_01_verify_footer_invisibility_through_the_modal_window(self, driver, auto_test_user_authorized):
             modal_window_page = FooterPage(driver, SpecificExercisesUrls.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
             assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()) \
