@@ -40,8 +40,8 @@ def specialist_user_authorized(driver, main_page_open):
     load_dotenv()
     page = BasePage(driver)
     page.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
-    page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["SPECIALIST_LOGIN"])
-    page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
+    page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys("autoTestSpecialist@brainup.spb.ru")
+    page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys("password")
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
     return page
