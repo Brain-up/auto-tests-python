@@ -46,15 +46,7 @@ class SpeechExercisesPage(BasePage):
             progress_bar = self.elements_are_visible(self.locators.PROGRESS_BAR)
             return progress_bar
 
-    # Methods for checking of exercises in the "Sentences" group
-
-    # def click_speech_exercises_01(self):
-    #     with allure.step('Select English language. Click "EN" button.'):
-    #         self.element_is_present_and_clickable(self.locators.EN_BUTTON).click()
-    #     with allure.step('Click button "Speech exercises".'):
-    #         self.element_is_present_and_clickable(self.locators.SPEECH_EXERCISES_EN).click()
-    #     with allure.step('Click button "Words".'):
-    #         self.element_is_present_and_clickable(self.locators.WORDS_BUTTON).click()
+    # Methods for checking of exercises in the "Similar phrases" group
 
     def click_similar_phrases_card(self):
         with allure.step('Click "Similar phrases" card'):
