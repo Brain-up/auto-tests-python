@@ -33,7 +33,7 @@ class FooterPage(BasePage):
     def check_jetbrains_link_presence_and_visibility(self):
         return self.element_is_visible(FooterLocators.JETBRAINS_LINK)
 
-    @allure.step('Check Jetbrains link is present and visible in Footer')
+    @allure.step('Check Jetbrains link is clickable in Footer')
     def check_jetbrains_link_clickability(self):
         return self.element_is_clickable(FooterLocators.JETBRAINS_LINK)
 
