@@ -17,3 +17,8 @@ class AuthorizedUserHomePage(BasePage):
         with allure.step('Click button "Words".'):
             self.element_is_present_and_clickable(self.locators.WORDS_BUTTON).click()
 
+    def click_speech_exercises_01(self):
+        with allure.step('Select English language. Click "EN" button.'):
+            self.element_is_present_and_clickable(self.locators.EN_BUTTON).click()
+        with allure.step('Click button "Speech exercises".'):
+            self.element_is_present_and_clickable(self.locators.SPEECH_EXERCISES_EN).click()
