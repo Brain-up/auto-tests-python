@@ -29,6 +29,18 @@ class FooterPage(BasePage):
     def check_footer_invisibility(self):
         return self.element_is_not_visible(FooterLocators.FOOTER_SECTION)
 
+    @allure.step('Check Jetbrains link is present and visible in Footer')
+    def check_jetbrains_link_presence_and_visibility(self):
+        return self.element_is_visible(FooterLocators.JETBRAINS_LINK)
+
+    @allure.step('Check Jetbrains link is present and visible in Footer')
+    def check_jetbrains_link_clickability(self):
+        return self.element_is_clickable(FooterLocators.JETBRAINS_LINK)
+
+    @allure.step("Get attribute 'href' of the Jetbrains link")
+    def get_jetbrains_link_href(self):
+        return self.get_link_href(FooterLocators.JETBRAINS_LINK)
+
     @allure.step('Check Jetbrains image is present in the DOM tree on the page')
     def check_jetbrains_image_presence(self):
         return self.element_is_present(FooterLocators.JETBRAINS_IMAGE)
@@ -96,10 +108,6 @@ class FooterPage(BasePage):
     @allure.step('Get attribute "alt" of EPAM image in Footer')
     def get_epam_image_alt(self):
         return self.get_image_alt(FooterLocators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'href' of the Jetbrains link")
-    def get_jetbrains_link_href(self):
-        return self.get_link_href(FooterLocators.JETBRAINS_LINK)
 
     @allure.step("Get attribute 'href' of the REG.RU link")
     def get_reg_link_href(self):

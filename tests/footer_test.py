@@ -1,5 +1,7 @@
 import allure
 import pytest
+import requests
+
 from pages.footer_page import FooterPage
 from locators.footer_page_locators import FooterLocators
 from test_data.links import PagesUrls, SpecificExercisesUrls
@@ -36,13 +38,23 @@ class TestFooter:
                 f"The actual text '{actual_text}' of the element does not match any of the valid options" \
                 f"'{' | '.join(expected_text)}' on the page {url}"
 
-        @allure.title("Verify presence, visibility and accuracy of the image in the JETBRAINS link in Footer")
-        def test_fp_01_03_verify_image_in_jetbrains_link(self, driver, main_page_open):
+        @allure.title("Verify presence, visibility and accuracy of the JETBRAINS link in Footer")
+        def test_fp_01_03_verify_jetbrains_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            assert page.check_jetbrains_image_visibility() \
-                   and page.get_jetbrains_image_src() == FooterData.footer_images_src["jetbrains_img_src"] \
-                   and page.get_jetbrains_image_alt() == FooterData.footer_images_alt["jetbrains_img_alt"], \
-                   "The image in the JETBRAINS link is absent or invisible or inaccurate in Footer"
+            link_presence_and_visibility = page.check_jetbrains_link_presence_and_visibility()
+            link_clickability = page.check_jetbrains_link_clickability()
+            link_href = page.get_jetbrains_link_href()
+            link_status_code = requests.head(page.get_jetbrains_link_href()).status_code
+            link_image_src = page.get_jetbrains_image_src()
+            link_image_alt = page.get_jetbrains_image_alt()
+            assert link_presence_and_visibility is not None\
+                   and link_clickability is not None \
+                   and link_href == FooterData.footer_links_href["jetbrains_link_href"] \
+                   and link_status_code == 200 \
+                   and link_image_src == FooterData.footer_images_src["jetbrains_img_src"] \
+                   and link_image_alt == FooterData.footer_images_alt["jetbrains_img_alt"], \
+                   "The JETBRAINS link or link's image is absent or invisible or inaccurate,/" \
+                   "or the attribute 'href' does not match the expected value or the link functionality is broken"
 
         @allure.title("Verify presence, visibility and accuracy of the image in the REG.RU link in Footer")
         def test_fp_01_04_verify_image_in_reg_link(self, driver, main_page_open):
@@ -76,12 +88,6 @@ class TestFooter:
                    and page.get_epam_image_alt() == FooterData.footer_images_alt["epam_img_alt"], \
                    "The image in the EPAM link is absent or invisible or inaccurate in Footer"
 
-        @allure.title("Verify accuracy of the attribute 'href' in the Jetbrains link in Footer")
-        def test_fp_01_08_verify_href_in_jetbrains_link(self, driver, main_page_open):
-            page = FooterPage(driver)
-            assert page.get_jetbrains_link_href() == FooterData.footer_links_href["jetbrains_link_href"], \
-                "The attribute 'href' of the Jetbrains link does not match the expected value"
-
         @allure.title("Verify accuracy of the attribute 'href' in the REG.RU link in Footer")
         def test_fp_01_09_verify_href_in_reg_link(self, driver, main_page_open):
             page = FooterPage(driver)
@@ -101,6 +107,6 @@ class TestFooter:
             modal_window_page = FooterPage(driver, SpecificExercisesUrls.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
             assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()) \
-                and (modal_window_page.check_footer_invisibility()
-                     and modal_window_page.check_jetbrains_image_invisibility()), \
-                "Footer (including the Jetbrains image) is absent or visible through the modal window"
+                   and (modal_window_page.check_footer_invisibility()
+                        and modal_window_page.check_jetbrains_image_invisibility()), \
+                   "Footer (including the Jetbrains image) is absent or visible through the modal window"
