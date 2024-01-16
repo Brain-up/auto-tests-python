@@ -45,3 +45,19 @@ class SpeechExercisesPage(BasePage):
         with allure.step('Check "progress-bar" is present after click button "SOLVE".'):
             progress_bar = self.elements_are_visible(self.locators.PROGRESS_BAR)
             return progress_bar
+
+    # Methods for checking of exercises in the "Similar phrases" group
+
+    def click_similar_phrases_card(self):
+        with allure.step('Click "Similar phrases" card'):
+            self.element_is_present_and_clickable(self.locators.SIMILAR_PHRASES_GROUP).click()
+
+    def click_random_card_in_similar_phrases(self):
+        list_cards_name = [i.text for i in self.elements_are_present(self.locators.CARDS_LIST_IN_SIMILAR_PHRASES)]
+        id_card_from_list = random.randint(0, len(list_cards_name))
+        print('Card ID in list is:', id_card_from_list + 1)
+        random_card = self.elements_are_present(self.locators.CARDS_LIST_IN_SIMILAR_PHRASES)[id_card_from_list]
+        self.go_to_element(random_card)
+        random_card.click()
+        print('Selected sub group is:', random_card.text)
+        return id_card_from_list
