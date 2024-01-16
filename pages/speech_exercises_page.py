@@ -52,11 +52,26 @@ class SpeechExercisesPage(BasePage):
         with allure.step('Click "Similar phrases" card'):
             self.element_is_present_and_clickable(self.locators.SIMILAR_PHRASES_GROUP).click()
 
-    def click_random_card_in_similar_phrases(self):
+    def click_random_sub_group_in_similar_phrases(self):
         list_cards_name = [i.text for i in self.elements_are_present(self.locators.CARDS_LIST_IN_SIMILAR_PHRASES)]
-        id_card_from_list = random.randint(0, len(list_cards_name))
+        print('Cards name on FRONT:', list_cards_name)
+        print('Sub-group cards list len is: ', len(list_cards_name))
+        id_card_from_list = random.randint(1, len(list_cards_name) - 1)
         print('Card ID in list is:', id_card_from_list + 1)
         random_card = self.elements_are_present(self.locators.CARDS_LIST_IN_SIMILAR_PHRASES)[id_card_from_list]
+        print('random_card is:', random_card.text)
+        self.go_to_element(random_card)
+        random_card.click()
+        print('Selected sub group is:', random_card.text)
+        return id_card_from_list
+
+    def click_random_card_in_similar_phrases(self):
+        list_cards_name = [i.text for i in self.elements_are_present(self.locators.LIST_CARDS_ID)]
+        print(list_cards_name)
+        id_card_from_list = random.randint(0, len(list_cards_name))
+        print('Card ID in list is:', id_card_from_list + 1)
+        random_card = self.elements_are_present(self.locators.LIST_CARDS_ID)[id_card_from_list - 1]
+        print('random_card is:', random_card.text)
         self.go_to_element(random_card)
         random_card.click()
         print('Selected sub group is:', random_card.text)

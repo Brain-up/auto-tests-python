@@ -16,7 +16,7 @@ id_token = json.loads(result_post.text)['idToken']
 print(id_token)
 
 
-class SpeechExercisesWordsPage(BasePage):
+class SpeechExercisesAPI(BasePage):
     locators = SpeechExercisesPageLocators()
 
     @staticmethod
@@ -25,8 +25,25 @@ class SpeechExercisesWordsPage(BasePage):
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
         result_get = json.loads(list_cards_id.text)
+        print(result_get['data'])
         id_number = random.choice(result_get['data'][card_id]['exercises'])
+        print(id_number)
         return random.choice(result_get['data'][card_id]['exercises'])
+
+    @staticmethod
+    def get_random_id_from_list_sub_group_similar_cards(card_id):
+        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=10',
+                                     headers={'Content-Type': 'application/json',
+                                              'Authorization': 'Bearer {}'.format(id_token)})
+        result_get = json.loads(list_cards_id.text)
+        print(result_get)
+        id_number = random.choice(result_get['data'][card_id]['exercises'])
+        print(
+            f'Random card from selected sub_group where level == card_id + 1, '
+            f'it is mean current id {card_id} + 1 will be equal {card_id + 1}.\n',
+            'ID exercise on the backend is: ', id_number,
+            '\nThat is, we take a list of exercises on the back, and choose one exercise from it.')
+        return id_number
 
     @staticmethod
     def get_list_of_words_from_card(card_id):
@@ -37,8 +54,10 @@ class SpeechExercisesWordsPage(BasePage):
         amount_words = len(json.loads(result_get.text)['data']["answerOptions"])
         words = [json.loads(result_get.text)['data']["answerOptions"][i]['word'] for i in range(amount_words)]
         with allure.step(f'Getting a list of exercise words from the backend: {words}.'):
-            print(words)
-        return words
+            print('\nBACKEND LIST: ', words)
+            ref_list = [i.lower() for i in words]
+            print('\nBACKEND LIST in lowercase: ', ref_list)
+        return ref_list
 
     def click_start_and_get_list_words(self):
         with allure.step('Click button "Start".'):
@@ -46,5 +65,5 @@ class SpeechExercisesWordsPage(BasePage):
         list_words = self.elements_are_visible(self.locators.LIST_WORDS_IN_CARD)
         words = [i.text.lower() for i in list_words]
         with allure.step(f'Getting a list of exercise words from the front: {words}'):
-            print(words)
+            print('\nUI LIST: ', words)
         return words
