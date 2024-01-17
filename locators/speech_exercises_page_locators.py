@@ -25,7 +25,6 @@ class SpeechExercisesPageLocators:
     WORDS_GROUP = (By.ID, 'ember314')
     WORDS_GROUP_BY_FREQUENCY = (By.ID, 'ember316')
 
-
     # WORDS
     LIST_OF_CARD_FROM_WORDS = (
         By.XPATH,
@@ -38,6 +37,7 @@ class SpeechExercisesPageLocators:
                               f'[{str(random.randint(1, len(LIST_OF_CARD_FROM_WORDS)))}]')
 
     LIST_CARDS_ID = (By.XPATH, '//div[@class="flex"]')
+    RANDOM_CARDS_FROM_SIMILAR = (By.XPATH, f'//div[@class="flex"][{str(random.randint(1, len(LIST_CARDS_ID)))}]')
 
     # Cards in the SIMILAR PHRASES GROUP
     CARDS_LIST_IN_SIMILAR_PHRASES = (By.XPATH, '//div[contains(@class, "series-container")]//a')
