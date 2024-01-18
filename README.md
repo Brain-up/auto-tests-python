@@ -54,4 +54,4 @@ ____
 
 ## If a bug is found
 
-To create a bug report, go  [![here](https://img.shields.io/badge/here-green)](https://github.com/Brain-up/auto-tests-python/issues) and create a task by selecting the Bug Report template
+To create a bug report, go  [![here](https://img.shields.io/badge/here-green)](https://github.com/Brain-up/brn/issues/new/choose) and create a task by selecting the Bug Report template
