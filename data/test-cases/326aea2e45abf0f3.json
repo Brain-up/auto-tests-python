@@ -1,0 +1,841 @@
+{
+  "uid" : "326aea2e45abf0f3",
+  "name" : "Select a random card from \"Similar phrases\" group and compare UI vs BACKEND data",
+  "fullName" : "tests.test_speech_exercises.TestCards#test_random_cards_in_similar_phrases_v2",
+  "historyId" : "ce55d09dc36bd8593b2769b3a848d55a",
+  "time" : {
+    "start" : 1705607039829,
+    "stop" : 1705607050420,
+    "duration" : 10591
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert ['we met a hedgehog on the way', 'we met a hedgehog toward the way'] == [' we met a hedgehog on the way', ' we met a hedgehog toward the way']\n  At index 0 diff: 'we met a hedgehog on the way' != ' we met a hedgehog on the way'\n  Full diff:\n  - [' we met a hedgehog on the way', ' we met a hedgehog toward the way']\n  ?   -                                -\n  + ['we met a hedgehog on the way', 'we met a hedgehog toward the way']",
+  "statusTrace" : "self = <tests.test_speech_exercises.TestCards object at 0x7fda0f727d10>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"105e92638547ef708d3ff716e270cdd3\")>\nspecialist_user_authorized = <pages.base_page.BasePage object at 0x7fda0f651df0>\n\n    @allure.suite('Similar phrases')\n    @allure.title('Select a random card from \"Similar phrases\" group and compare UI vs BACKEND data')\n    def test_random_cards_in_similar_phrases_v2(self, driver, specialist_user_authorized):\n        page = AuthorizedUserHomePage(driver)\n        page.click_speech_exercises_01()\n    \n        page = SpeechExercisesPage(driver)\n        page.click_similar_phrases_card()\n        card_id = page.click_random_sub_group_in_similar_phrases()\n    \n        page.wait_changed_url(driver.current_url)\n    \n        page = SpeechExercisesAPI(driver)\n    \n        random_id = page.get_random_id_from_list_sub_group_similar_cards(\n            card_id)  # getting random ID from exercises group\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n        page.wait_changed_url(driver.current_url)\n        id_for_back = str(driver.current_url).split('/')[-1]\n        list_words_ui = page.click_start_and_get_list_words()\n        list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')\n>       assert sorted(list_words_ui) == sorted(list_words_back)\nE       AssertionError: assert ['we met a hedgehog on the way', 'we met a hedgehog toward the way'] == [' we met a hedgehog on the way', ' we met a hedgehog toward the way']\nE         At index 0 diff: 'we met a hedgehog on the way' != ' we met a hedgehog on the way'\nE         Full diff:\nE         - [' we met a hedgehog on the way', ' we met a hedgehog toward the way']\nE         ?   -                                -\nE         + ['we met a hedgehog on the way', 'we met a hedgehog toward the way']\n\ntests/test_speech_exercises.py:99: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ {
+    "name" : "specialist_user_authorized",
+    "time" : {
+      "start" : 1705607037495,
+      "stop" : 1705607039828,
+      "duration" : 2333
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "USER specialist authorized",
+      "time" : {
+        "start" : 1705607037496,
+        "stop" : 1705607039828,
+        "duration" : 2332
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[@id=\"ember11\"]')",
+        "time" : {
+          "start" : 1705607037496,
+          "stop" : 1705607037531,
+          "duration" : 35
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1705607037513,
+            "stop" : 1705607037531,
+            "duration" : 18
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[@id=\"ember11\"]')",
+            "time" : {
+              "start" : 1705607037513,
+              "stop" : 1705607037531,
+              "duration" : 18
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[@id=\"ember11\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"login\"]')",
+        "time" : {
+          "start" : 1705607037580,
+          "stop" : 1705607037604,
+          "duration" : 24
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"login\"]')",
+          "time" : {
+            "start" : 1705607037580,
+            "stop" : 1705607037589,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"105e92638547ef708d3ff716e270cdd3\", element=\"B8118A6567CA054DA56AFF3EC66B654B_element_27\")>",
+          "time" : {
+            "start" : 1705607037589,
+            "stop" : 1705607037593,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"password\"]')",
+        "time" : {
+          "start" : 1705607037670,
+          "stop" : 1705607037696,
+          "duration" : 26
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"password\"]')",
+          "time" : {
+            "start" : 1705607037670,
+            "stop" : 1705607037680,
+            "duration" : 10
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"105e92638547ef708d3ff716e270cdd3\", element=\"B8118A6567CA054DA56AFF3EC66B654B_element_30\")>",
+          "time" : {
+            "start" : 1705607037680,
+            "stop" : 1705607037684,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//*[@type=\"submit\"]')",
+        "time" : {
+          "start" : 1705607037735,
+          "stop" : 1705607037764,
+          "duration" : 29
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1705607037749,
+            "stop" : 1705607037764,
+            "duration" : 15
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//*[@type=\"submit\"]')",
+            "time" : {
+              "start" : 1705607037749,
+              "stop" : 1705607037763,
+              "duration" : 14
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//*[@type=\"submit\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check url is present: https://brainup.site/groups",
+        "time" : {
+          "start" : 1705607037797,
+          "stop" : 1705607039828,
+          "duration" : 2031
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"105e92638547ef708d3ff716e270cdd3\")>"
+      }, {
+        "name" : "main_page_open",
+        "value" : "None"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 13,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 14,
+    "hasContent" : true
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1705607033355,
+      "stop" : 1705607037495,
+      "duration" : 4140
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1705607033355,
+        "stop" : 1705607037495,
+        "duration" : 4140
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"105e92638547ef708d3ff716e270cdd3\")>"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 1,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1705606631058,
+      "stop" : 1705606631058,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1705607032585,
+      "stop" : 1705607033355,
+      "duration" : 770
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert ['we met a hedgehog on the way', 'we met a hedgehog toward the way'] == [' we met a hedgehog on the way', ' we met a hedgehog toward the way']\n  At index 0 diff: 'we met a hedgehog on the way' != ' we met a hedgehog on the way'\n  Full diff:\n  - [' we met a hedgehog on the way', ' we met a hedgehog toward the way']\n  ?   -                                -\n  + ['we met a hedgehog on the way', 'we met a hedgehog toward the way']",
+    "statusTrace" : "self = <tests.test_speech_exercises.TestCards object at 0x7fda0f727d10>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"105e92638547ef708d3ff716e270cdd3\")>\nspecialist_user_authorized = <pages.base_page.BasePage object at 0x7fda0f651df0>\n\n    @allure.suite('Similar phrases')\n    @allure.title('Select a random card from \"Similar phrases\" group and compare UI vs BACKEND data')\n    def test_random_cards_in_similar_phrases_v2(self, driver, specialist_user_authorized):\n        page = AuthorizedUserHomePage(driver)\n        page.click_speech_exercises_01()\n    \n        page = SpeechExercisesPage(driver)\n        page.click_similar_phrases_card()\n        card_id = page.click_random_sub_group_in_similar_phrases()\n    \n        page.wait_changed_url(driver.current_url)\n    \n        page = SpeechExercisesAPI(driver)\n    \n        random_id = page.get_random_id_from_list_sub_group_similar_cards(\n            card_id)  # getting random ID from exercises group\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n        page.wait_changed_url(driver.current_url)\n        id_for_back = str(driver.current_url).split('/')[-1]\n        list_words_ui = page.click_start_and_get_list_words()\n        list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')\n>       assert sorted(list_words_ui) == sorted(list_words_back)\nE       AssertionError: assert ['we met a hedgehog on the way', 'we met a hedgehog toward the way'] == [' we met a hedgehog on the way', ' we met a hedgehog toward the way']\nE         At index 0 diff: 'we met a hedgehog on the way' != ' we met a hedgehog on the way'\nE         Full diff:\nE         - [' we met a hedgehog on the way', ' we met a hedgehog toward the way']\nE         ?   -                                -\nE         + ['we met a hedgehog on the way', 'we met a hedgehog toward the way']\n\ntests/test_speech_exercises.py:99: AssertionError",
+    "steps" : [ {
+      "name" : "Select English language. Click \"EN\" button.",
+      "time" : {
+        "start" : 1705607039829,
+        "stop" : 1705607039885,
+        "duration" : 56
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', \"//*[contains(text(),'EN')]\")",
+        "time" : {
+          "start" : 1705607039829,
+          "stop" : 1705607039858,
+          "duration" : 29
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1705607039843,
+            "stop" : 1705607039858,
+            "duration" : 15
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', \"//*[contains(text(),'EN')]\")",
+            "time" : {
+              "start" : 1705607039843,
+              "stop" : 1705607039858,
+              "duration" : 15
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', \"//*[contains(text(),'EN')]\")"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 3,
+      "hasContent" : true
+    }, {
+      "name" : "Click button \"Speech exercises\".",
+      "time" : {
+        "start" : 1705607039886,
+        "stop" : 1705607039940,
+        "duration" : 54
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[@title=\"Speech\"]')",
+        "time" : {
+          "start" : 1705607039886,
+          "stop" : 1705607039914,
+          "duration" : 28
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1705607039899,
+            "stop" : 1705607039914,
+            "duration" : 15
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[@title=\"Speech\"]')",
+            "time" : {
+              "start" : 1705607039899,
+              "stop" : 1705607039914,
+              "duration" : 15
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[@title=\"Speech\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 3,
+      "hasContent" : true
+    }, {
+      "name" : "Click \"Similar phrases\" card",
+      "time" : {
+        "start" : 1705607039940,
+        "stop" : 1705607041548,
+        "duration" : 1608
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '(//aside//li)[1]')",
+        "time" : {
+          "start" : 1705607039940,
+          "stop" : 1705607041521,
+          "duration" : 1581
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1705607041483,
+            "stop" : 1705607041521,
+            "duration" : 38
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '(//aside//li)[1]')",
+            "time" : {
+              "start" : 1705607041483,
+              "stop" : 1705607041521,
+              "duration" : 38
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '(//aside//li)[1]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 3,
+      "hasContent" : true
+    }, {
+      "name" : "Check elements are present: ('xpath', '//div[contains(@class, \"series-container\")]//a')",
+      "time" : {
+        "start" : 1705607041548,
+        "stop" : 1705607041557,
+        "duration" : 9
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "Check elements are present: ('xpath', '//div[contains(@class, \"series-container\")]//a')",
+      "time" : {
+        "start" : 1705607041596,
+        "stop" : 1705607041601,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"105e92638547ef708d3ff716e270cdd3\", element=\"B8118A6567CA054DA56AFF3EC66B654B_element_59\")>",
+      "time" : {
+        "start" : 1705607041606,
+        "stop" : 1705607041609,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "Wait until url: https://brainup.site/groups/4/series/10 will be changed.",
+      "time" : {
+        "start" : 1705607041646,
+        "stop" : 1705607042666,
+        "duration" : 1020
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "Wait until url: https://brainup.site/groups/4/series/10/subgroup/111/exercise/3115 will be changed.",
+      "time" : {
+        "start" : 1705607044588,
+        "stop" : 1705607049164,
+        "duration" : 4576
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "Click button \"Start\".",
+      "time" : {
+        "start" : 1705607049167,
+        "stop" : 1705607049452,
+        "duration" : 285
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//button[@aria-label=\"Start exercise\"]')",
+        "time" : {
+          "start" : 1705607049167,
+          "stop" : 1705607049352,
+          "duration" : 185
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1705607049181,
+            "stop" : 1705607049352,
+            "duration" : 171
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//button[@aria-label=\"Start exercise\"]')",
+            "time" : {
+              "start" : 1705607049181,
+              "stop" : 1705607049352,
+              "duration" : 171
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//button[@aria-label=\"Start exercise\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 3,
+      "hasContent" : true
+    }, {
+      "name" : "Check elements are visible: ('xpath', '//li[@class=\"task-player__option flex\"]')",
+      "time" : {
+        "start" : 1705607049452,
+        "stop" : 1705607049482,
+        "duration" : 30
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "Getting a list of exercise words from the front: ['we met a hedgehog on the way', 'we met a hedgehog toward the way']",
+      "time" : {
+        "start" : 1705607049494,
+        "stop" : 1705607049494,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "Getting a list of exercise words from the backend: [' We met a hedgehog on the way', ' We met a hedgehog toward the way'].",
+      "time" : {
+        "start" : 1705607050418,
+        "stop" : 1705607050418,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "191b0d667ee0573c",
+      "name" : "Screenshot",
+      "source" : "191b0d667ee0573c.png",
+      "type" : "image/png",
+      "size" : 29647
+    }, {
+      "uid" : "344c968b3e73b66",
+      "name" : "HTML source",
+      "source" : "344c968b3e73b66.html",
+      "type" : "text/html",
+      "size" : 97416
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "stepsCount" : 24,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1705607050590,
+      "stop" : 1705607050797,
+      "duration" : 207
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "2a73fd71c5cc2ae6",
+      "name" : "Screenshot 2024-01-18 19:44:10.737310",
+      "source" : "2a73fd71c5cc2ae6.png",
+      "type" : "image/png",
+      "size" : 29647
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : true
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Speech exercises."
+  }, {
+    "name" : "suite",
+    "value" : "Similar phrases"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCards"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1206-117"
+  }, {
+    "name" : "thread",
+    "value" : "1829-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_speech_exercises"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "3afe07ff5136f860",
+        "status" : "passed",
+        "time" : {
+          "start" : 1705604141415,
+          "stop" : 1705604151181,
+          "duration" : 9766
+        }
+      }, {
+        "uid" : "fd12ddaf7effc61f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1705600043745,
+          "stop" : 1705600054166,
+          "duration" : 10421
+        }
+      }, {
+        "uid" : "1a4320ff41c8d703",
+        "status" : "passed",
+        "time" : {
+          "start" : 1705571435657,
+          "stop" : 1705571445506,
+          "duration" : 9849
+        }
+      }, {
+        "uid" : "cf31b7304a50fb58",
+        "status" : "passed",
+        "time" : {
+          "start" : 1705570600677,
+          "stop" : 1705570612078,
+          "duration" : 11401
+        }
+      }, {
+        "uid" : "548ac50409134689",
+        "status" : "passed",
+        "time" : {
+          "start" : 1705556521405,
+          "stop" : 1705556532106,
+          "duration" : 10701
+        }
+      }, {
+        "uid" : "2b41c4eedaa3dacb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1705514127227,
+          "stop" : 1705514137238,
+          "duration" : 10011
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "326aea2e45abf0f3.json",
+  "parameterValues" : [ ]
+}
