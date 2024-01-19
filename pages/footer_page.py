@@ -29,6 +29,30 @@ class FooterPage(BasePage):
     def check_footer_invisibility(self):
         return self.element_is_not_visible(FooterLocators.FOOTER_SECTION)
 
+    @allure.step('Check ARASAAC link is present and visible in Footer')
+    def check_arasaac_link_presence_and_visibility(self):
+        return self.element_is_visible(FooterLocators.ARASAAC_LINK)
+
+    @allure.step('Check ARASAAC link is clickable in Footer')
+    def check_arasaac_link_clickability(self):
+        return self.element_is_clickable(FooterLocators.ARASAAC_LINK)
+
+    @allure.step("Get attribute 'href' of the ARASAAC link")
+    def get_arasaac_link_href(self):
+        return self.get_link_href(FooterLocators.ARASAAC_LINK)
+
+    @allure.step('Check ARASAAC image is present and visible in Footer')
+    def check_arasaac_image_visibility(self):
+        return self.element_is_visible(FooterLocators.ARASAAC_IMAGE)
+
+    @allure.step('Get attribute "src" of ARASAAC image in Footer')
+    def get_arasaac_image_src(self):
+        return self.get_image_src(FooterLocators.ARASAAC_IMAGE)
+
+    @allure.step('Get attribute "alt" of ARASAAC image in Footer')
+    def get_arasaac_image_alt(self):
+        return self.get_image_alt(FooterLocators.ARASAAC_IMAGE)
+
     @allure.step('Check Jetbrains link is present and visible in Footer')
     def check_jetbrains_link_presence_and_visibility(self):
         return self.element_is_visible(FooterLocators.JETBRAINS_LINK)
@@ -73,18 +97,6 @@ class FooterPage(BasePage):
     def get_reg_image_alt(self):
         return self.get_image_alt(FooterLocators.REG_IMAGE)
 
-    @allure.step('Check ARASAAC image is present and visible in Footer')
-    def check_arasaac_image_visibility(self):
-        return self.element_is_visible(FooterLocators.ARASAAC_IMAGE)
-
-    @allure.step('Get attribute "src" of ARASAAC image in Footer')
-    def get_arasaac_image_src(self):
-        return self.get_image_src(FooterLocators.ARASAAC_IMAGE)
-
-    @allure.step('Get attribute "alt" of ARASAAC image in Footer')
-    def get_arasaac_image_alt(self):
-        return self.get_image_alt(FooterLocators.ARASAAC_IMAGE)
-
     @allure.step('Check Selectel image is present and visible in Footer')
     def check_selectel_image_visibility(self):
         return self.element_is_visible(FooterLocators.SELECTEL_IMAGE)
@@ -112,7 +124,3 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'href' of the REG.RU link")
     def get_reg_link_href(self):
         return self.get_link_href(FooterLocators.REG_LINK)
-
-    @allure.step("Get attribute 'href' of the ARASAAC link")
-    def get_arasaac_link_href(self):
-        return self.get_link_href(FooterLocators.ARASAAC_LINK)
