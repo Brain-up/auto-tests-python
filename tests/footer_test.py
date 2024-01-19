@@ -38,39 +38,53 @@ class TestFooter:
                 f"The actual text '{actual_text}' of the element does not match any of the valid options" \
                 f"'{' | '.join(expected_text)}' on the page {url}"
 
-        @allure.title("Verify presence, visibility and accuracy of the JETBRAINS link in Footer")
-        def test_fp_01_03_verify_jetbrains_link(self, driver, main_page_open):
+        @allure.title("Verify presence, visibility and accuracy of the ARASAAC link and link's image in Footer")
+        def test_fp_01_03_verify_arasaac_link(self, driver, main_page_open):
+            page = FooterPage(driver)
+            link_presence_and_visibility = page.check_arasaac_link_presence_and_visibility()
+            link_clickability = page.check_arasaac_link_clickability()
+            link_href = page.get_arasaac_link_href()
+            link_status_code = requests.head(link_href).status_code
+            link_image_visibility = page.check_arasaac_image_visibility()
+            link_image_src = page.get_arasaac_image_src()
+            link_image_alt = page.get_arasaac_image_alt()
+            assert link_presence_and_visibility is not None\
+                   and link_clickability is not None \
+                   and link_href == FooterData.footer_links_href["arasaac_link_href"] \
+                   and link_status_code == 200 \
+                   and link_image_visibility is not None \
+                   and link_image_src == FooterData.footer_images_src["arasaac_img_src"] \
+                   and link_image_alt == FooterData.footer_images_alt["arasaac_img_alt"], \
+                   "The ARASAAC link or link's image is absent or invisible or inaccurate,/" \
+                   "or the attribute 'href' does not match the expected value or the link functionality is broken"
+
+        @allure.title("Verify presence, visibility and accuracy of the JETBRAINS link and link's image in Footer")
+        def test_fp_01_04_verify_jetbrains_link(self, driver, main_page_open):
             page = FooterPage(driver)
             link_presence_and_visibility = page.check_jetbrains_link_presence_and_visibility()
             link_clickability = page.check_jetbrains_link_clickability()
             link_href = page.get_jetbrains_link_href()
-            link_status_code = requests.head(page.get_jetbrains_link_href()).status_code
+            link_status_code = requests.head(link_href).status_code
+            link_image_visibility = page.check_jetbrains_image_visibility()
             link_image_src = page.get_jetbrains_image_src()
             link_image_alt = page.get_jetbrains_image_alt()
             assert link_presence_and_visibility is not None\
                    and link_clickability is not None \
                    and link_href == FooterData.footer_links_href["jetbrains_link_href"] \
                    and link_status_code == 200 \
+                   and link_image_visibility is not None \
                    and link_image_src == FooterData.footer_images_src["jetbrains_img_src"] \
                    and link_image_alt == FooterData.footer_images_alt["jetbrains_img_alt"], \
                    "The JETBRAINS link or link's image is absent or invisible or inaccurate,/" \
                    "or the attribute 'href' does not match the expected value or the link functionality is broken"
 
         @allure.title("Verify presence, visibility and accuracy of the image in the REG.RU link in Footer")
-        def test_fp_01_04_verify_image_in_reg_link(self, driver, main_page_open):
+        def test_fp_01_05_verify_image_in_reg_link(self, driver, main_page_open):
             page = FooterPage(driver)
             assert page.check_reg_image_visibility() \
                    and page.get_reg_image_src() == FooterData.footer_images_src["reg_img_src"] \
                    and page.get_reg_image_alt() == FooterData.footer_images_alt["reg_img_alt"], \
                    "The image in the REG.RU link is absent or invisible or inaccurate in Footer"
-
-        @allure.title("Verify presence, visibility and accuracy of the image in the ARASAAC link in Footer")
-        def test_fp_01_05_verify_image_in_arasaac_link(self, driver, main_page_open):
-            page = FooterPage(driver)
-            assert page.check_arasaac_image_visibility() \
-                   and page.get_arasaac_image_src() == FooterData.footer_images_src["arasaac_img_src"] \
-                   and page.get_arasaac_image_alt() == FooterData.footer_images_alt["arasaac_img_alt"], \
-                   "The image in the ARASAAC link is absent or invisible or inaccurate in Footer"
 
         @allure.title("Verify presence, visibility and accuracy of the image in the Selectel link in Footer")
         def test_fp_01_06_verify_image_in_selectel_link(self, driver, main_page_open):
@@ -93,12 +107,6 @@ class TestFooter:
             page = FooterPage(driver)
             assert page.get_reg_link_href() == FooterData.footer_links_href["reg_link_href"], \
                 f"The attribute 'href' of the link REG.RU does not match the expected value"
-
-        @allure.title("Verify accuracy of the attribute 'href' in the ARASAAC link in Footer")
-        def test_fp_01_10_verify_href_in_arasaac_link(self, driver, main_page_open):
-            page = FooterPage(driver)
-            assert page.get_arasaac_link_href() == FooterData.footer_links_href["arasaac_link_href"], \
-                f"The attribute 'href' of the ARASAAC link does not match the expected value"
 
     class TestFooterForAuthorizedUserOnly:
 
