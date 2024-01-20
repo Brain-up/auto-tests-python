@@ -1,5 +1,3 @@
-import time
-
 import allure
 
 from locators.authotised_user_home_page_locators import AuthorizedUserHomePageLocators

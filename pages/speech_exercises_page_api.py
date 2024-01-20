@@ -20,7 +20,18 @@ class SpeechExercisesAPI(BasePage):
     locators = SpeechExercisesPageLocators()
 
     @staticmethod
-    def get_random_id_from_list_sub_group_cards(card_id):
+    def get_random_id_from_list_sub_group_words_cards_ru(card_id):
+        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=1',
+                                     headers={'Content-Type': 'application/json',
+                                              'Authorization': 'Bearer {}'.format(id_token)})
+        result_get = json.loads(list_cards_id.text)
+        print(result_get['data'])
+        id_number = random.choice(result_get['data'][card_id]['exercises'])
+        print(id_number)
+        return random.choice(result_get['data'][card_id]['exercises'])
+
+    @staticmethod
+    def get_random_id_from_list_sub_group_words_cards_en(card_id):
         list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=9',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
@@ -59,9 +70,18 @@ class SpeechExercisesAPI(BasePage):
             print('\nBACKEND LIST in lowercase: ', ref_list)
         return ref_list
 
-    def click_start_and_get_list_words(self):
+    def click_start_and_get_list_words_en(self):
         with allure.step('Click button "Start".'):
-            self.element_is_present_and_clickable(self.locators.BUTTON_START).click()
+            self.element_is_present_and_clickable(self.locators.BUTTON_START_EN).click()
+        list_words = self.elements_are_visible(self.locators.LIST_WORDS_IN_CARD)
+        words = [i.text.lower() for i in list_words]
+        with allure.step(f'Getting a list of exercise words from the front: {words}'):
+            print('\nUI LIST: ', words)
+        return words
+
+    def click_start_and_get_list_words_ru(self):
+        with allure.step('Click button "Start".'):
+            self.element_is_present_and_clickable(self.locators.BUTTON_START_RU).click()
         list_words = self.elements_are_visible(self.locators.LIST_WORDS_IN_CARD)
         words = [i.text.lower() for i in list_words]
         with allure.step(f'Getting a list of exercise words from the front: {words}'):
