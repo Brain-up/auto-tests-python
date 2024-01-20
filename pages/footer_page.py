@@ -53,6 +53,31 @@ class FooterPage(BasePage):
     def get_arasaac_image_alt(self):
         return self.get_image_alt(FooterLocators.ARASAAC_IMAGE)
 
+
+    @allure.step('Check EPAM link is present and visible in Footer')
+    def check_epam_link_presence_and_visibility(self):
+        return self.element_is_visible(FooterLocators.EPAM_LINK)
+
+    @allure.step('Check EPAM link is clickable in Footer')
+    def check_epam_link_clickability(self):
+        return self.element_is_clickable(FooterLocators.EPAM_LINK)
+
+    @allure.step("Get attribute 'href' of the EPAM link")
+    def get_epam_link_href(self):
+        return self.get_link_href(FooterLocators.EPAM_LINK)
+
+    @allure.step('Check EPAM image is present and visible in Footer')
+    def check_epam_image_visibility(self):
+        return self.element_is_visible(FooterLocators.EPAM_IMAGE)
+
+    @allure.step('Get attribute "src" of EPAM image in Footer')
+    def get_epam_image_src(self):
+        return self.get_image_src(FooterLocators.EPAM_IMAGE)
+
+    @allure.step('Get attribute "alt" of EPAM image in Footer')
+    def get_epam_image_alt(self):
+        return self.get_image_alt(FooterLocators.EPAM_IMAGE)
+
     @allure.step('Check Jetbrains link is present and visible in Footer')
     def check_jetbrains_link_presence_and_visibility(self):
         return self.element_is_visible(FooterLocators.JETBRAINS_LINK)
