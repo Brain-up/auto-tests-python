@@ -17,7 +17,7 @@ If necessary
 
 **Reproduction steps:**
 
-1. Request GET URL: https://brainup.site/groups/4/series/10/subgroup/111/exercise/3143/task/3131
+1. 
 2. 
 3.
 
