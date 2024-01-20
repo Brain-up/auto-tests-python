@@ -47,17 +47,6 @@ def specialist_user_authorized(driver, main_page_open):
 
 
 @pytest.fixture()
-@allure.step('USER specialist authorized with ru-locale')
-def specialist_user_authorized(driver, main_page_open):
-    page = BasePage(driver)
-    page.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
-    page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["SPECIALIST_LOGIN"])
-    page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
-    page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
-    page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE_RU)
-    return page
-
-@pytest.fixture()
 @allure.step('DEFAULT user authorized')
 def default_user_authorized(driver, main_page_open):
     page = BasePage(driver)
