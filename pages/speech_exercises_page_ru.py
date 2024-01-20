@@ -10,10 +10,12 @@ class SpeechExercisesPageRU(BasePage):
     locators = locators
 
     def click_speech_exercises(self):
-        with allure.step('Click button "Speech exercises".'):
+        with allure.step('Select English language. Click "RU" button.'):
+            self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.RU_BUTTON).click()
+        with allure.step('Click button "Речевые упражнения".'):
             self.element_is_present_and_clickable(
                 self.locators.AuthorizedUserHomePageLocators.SPEECH_EXERCISES_RU).click()
-        with allure.step('Click button "Words".'):
+        with allure.step('Click button "Слова".'):
             self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.WORDS_BUTTON_RU).click()
 
     def click_family_card(self):
