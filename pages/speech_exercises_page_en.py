@@ -15,7 +15,7 @@ class SpeechExercisesPage(BasePage):
 
     def click_random_card_in_words(self):
         self.element_is_present(self.locators.FAMILY_CARD_EN)
-        self.element_is_present_and_clickable(self.locators.WORDS).click()
+        self.element_is_present_and_clickable(self.locators.WORDS_EN).click()
         list_cards_name = [i.text for i in self.elements_are_present(self.locators.LIST_OF_CARD_FROM_WORDS)]
         id_card_from_list = random.randint(0, len(list_cards_name))
         print('Card ID in list is:', id_card_from_list + 1)
