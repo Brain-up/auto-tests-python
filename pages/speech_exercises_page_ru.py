@@ -27,7 +27,7 @@ class SpeechExercisesPageRU(BasePage):
         self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.WORDS_BUTTON_RU).click()
         list_cards_name = [i.text for i in self.elements_are_present(
             self.locators.SpeechExercisesPageLocators.LIST_OF_CARD_FROM_WORDS_RU)]
-        id_card_from_list = random.randint(0, len(list_cards_name))
+        id_card_from_list = random.randint(0, len(list_cards_name)-1)
         print('Card ID in list is:', id_card_from_list + 1)
         random_card = self.elements_are_present(self.locators.SpeechExercisesPageLocators.LIST_OF_CARD_FROM_WORDS_RU)[
             id_card_from_list]
