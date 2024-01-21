@@ -53,7 +53,6 @@ class FooterPage(BasePage):
     def get_arasaac_image_alt(self):
         return self.get_image_alt(FooterLocators.ARASAAC_IMAGE)
 
-
     @allure.step('Check EPAM link is present and visible in Footer')
     def check_epam_link_presence_and_visibility(self):
         return self.element_is_visible(FooterLocators.EPAM_LINK)
@@ -110,6 +109,18 @@ class FooterPage(BasePage):
     def get_jetbrains_image_alt(self):
         return self.get_image_alt(FooterLocators.JETBRAINS_IMAGE)
 
+    @allure.step('Check REG.RU link is present and visible in Footer')
+    def check_reg_link_presence_and_visibility(self):
+        return self.element_is_visible(FooterLocators.REG_LINK)
+
+    @allure.step('Check REG.RU link is clickable in Footer')
+    def check_reg_link_clickability(self):
+        return self.element_is_clickable(FooterLocators.REG_LINK)
+
+    @allure.step("Get attribute 'href' of the REG.RU link")
+    def get_reg_link_href(self):
+        return self.get_link_href(FooterLocators.REG_LINK)
+
     @allure.step('Check REG.RU image is present and visible in Footer')
     def check_reg_image_visibility(self):
         return self.element_is_visible(FooterLocators.REG_IMAGE)
@@ -133,19 +144,3 @@ class FooterPage(BasePage):
     @allure.step('Get attribute "alt" of Selectel image in Footer')
     def get_selectel_image_alt(self):
         return self.get_image_alt(FooterLocators.SELECTEL_IMAGE)
-
-    @allure.step('Check EPAM image is present and visible in Footer')
-    def check_epam_image_visibility(self):
-        return self.element_is_visible(FooterLocators.EPAM_IMAGE)
-
-    @allure.step('Get attribute "src" of EPAM image in Footer')
-    def get_epam_image_src(self):
-        return self.get_image_src(FooterLocators.EPAM_IMAGE)
-
-    @allure.step('Get attribute "alt" of EPAM image in Footer')
-    def get_epam_image_alt(self):
-        return self.get_image_alt(FooterLocators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'href' of the REG.RU link")
-    def get_reg_link_href(self):
-        return self.get_link_href(FooterLocators.REG_LINK)
