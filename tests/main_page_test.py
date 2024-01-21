@@ -63,4 +63,9 @@ class TestMainPage:
         start_button = page.clickability_of_the_start_button()
         assert start_button == MainPageLinks.URL_LOGIN_PAGE, "The link leads to an incorrect page."
 
+    @allure.title("Checking the clickability of the Registration button.")
+    def test_mp_10_checking_clickability_of_the_registration_button(self, driver, main_page_open):
+        page = MainPage(driver)
+        registration_button = page.clicability_of_registration_button()
+        assert registration_button == MainPageLinks.URL_REGISTRATION_PAGE, "The link leads to an incorrect page."
 
