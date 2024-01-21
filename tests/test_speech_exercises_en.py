@@ -6,7 +6,7 @@ from pages.speech_exercises_page_en import SpeechExercisesPage
 
 
 @allure.epic("Speech exercises.")
-class TestCards:
+class TestCardsEN:
     @allure.suite('Words.')
     @allure.title('Select random card from word group and compare UI vs BACKEND data')
     def test_random_word_cards_en(self, driver, specialist_user_authorized):
