@@ -13,23 +13,23 @@ from test_data.links import MainPageLinks
 load_dotenv()
 
 
-def get_link_change_password_by_email():
-    with allure.step('Get a link to change the password by email'):
-        mail = imaplib.IMAP4_SSL('imap.mail.ru')
-        mail.login(os.environ["CHANGE_PASSWORD_EMAIL"], os.environ["PASSWORD_EMAIL"])
-        mail.select('INBOX')
-        result, data_id = mail.search(None, 'ALL')
-        message_ids = data_id[0].split()
-        result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-        raw_email = str(data_id[0][1])
-        mail.logout()
-        # print(raw_email)
-        first = raw_email.find(os.environ["PASSWORD_LINK"])
-        link = raw_email[first:first + 186]
-        return link
-
-
 class ProfilePage(BasePage):
+
+    @staticmethod
+    def get_link_change_password_by_email():
+        with allure.step('Get a link to change the password by email'):
+            mail = imaplib.IMAP4_SSL('imap.mail.ru')
+            mail.login(os.environ["CHANGE_PASSWORD_EMAIL"], os.environ["PASSWORD_EMAIL"])
+            mail.select('INBOX')
+            result, data_id = mail.search(None, 'ALL')
+            message_ids = data_id[0].split()
+            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
+            raw_email = str(data_id[0][1])
+            mail.logout()
+            # print(raw_email)
+            first = raw_email.find(os.environ["PASSWORD_LINK"])
+            link = raw_email[first:first + 186]
+            return link
 
     @allure.step("The user has authorised")
     def user_has_authorised(self):
