@@ -30,3 +30,7 @@ class FooterData:
         "reg_link_href": "https://reg.ru/",
         "selectel_link_href": "https://selectel.ru/"
     }
+
+    footer_links_status_codes = {
+        "reg_link_status_code": [200, 301, 302]
+    }
