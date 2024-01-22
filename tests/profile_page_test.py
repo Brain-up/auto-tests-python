@@ -1,11 +1,12 @@
 import allure
-from pages.profile_page import ProfilePage, get_link_change_password_by_email
+from pages.profile_page import ProfilePage
 from test_data.links import MainPageLinks
 
 
 @allure.epic("Test Profile Page")
 class TestProfilePage:
     urls = MainPageLinks
+    page = ProfilePage
 
     @allure.title("Change the password by receiving an email link")
     def test_change_password(self, driver, main_page_open):
@@ -16,7 +17,7 @@ class TestProfilePage:
         page.click_change_password_link()
         page.field_recovery_email()
         page.click_send_recovery_email_link()
-        link = get_link_change_password_by_email()
+        link = self.page.get_link_change_password_by_email()
         driver.get(link)
         page.enter_new_password_field()
         page.click_save_button()
@@ -32,7 +33,7 @@ class TestProfilePage:
         page.click_change_password_link()
         page.field_recovery_email()
         page.click_send_recovery_email_link()
-        link = get_link_change_password_by_email()
+        link = self.page.get_link_change_password_by_email()
         driver.get(link)
         page.enter_old_password_field()
         page.click_save_button()
