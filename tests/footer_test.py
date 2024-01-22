@@ -113,7 +113,7 @@ class TestFooter:
             assert link_clickability is not None, "The REG.RU link is unclickable"
             assert link_href == FooterData.footer_links_href["reg_link_href"], \
                 "The attribute 'href' in the REG.RU link does not match the expected value"
-            assert link_status_code == 302, "The REG.RU link status code does not match the expected value"
+            assert link_status_code == 200, "The REG.RU link status code does not match the expected value"
             assert link_image_visibility is not None, "The REG.RU link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["reg_img_src"], \
                 "The REG.RU link image is unaccurate"
