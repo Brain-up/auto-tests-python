@@ -156,3 +156,20 @@ class FooterPage(BasePage):
     @allure.step('Get attribute "alt" of the Selectel image in Footer')
     def get_selectel_image_alt(self):
         return self.get_image_alt(FooterLocators.SELECTEL_IMAGE)
+
+    @allure.step('Check the Contact us link is present and visible in Footer')
+    def check_contact_us_link_presence_and_visibility(self):
+        return self.element_is_visible(FooterLocators.CONTACT_US_LINK)
+
+    @allure.step('Check the Contact us link is clickable in Footer')
+    def check_contact_us_link_clickability(self):
+        return self.element_is_clickable(FooterLocators.CONTACT_US_LINK)
+
+    @allure.step("Get attribute 'href' of the Contact us link")
+    def get_contact_us_link_href(self):
+        return self.get_link_href(FooterLocators.CONTACT_US_LINK)
+
+    @allure.step("Check the prefix and the subject in the attribute 'href' of the Contact us link")
+    def check_contact_us_link_href(self):
+        link_href = self.get_contact_us_link_href()
+        return "mailto" in link_href, "subject=BrainUp" in link_href
