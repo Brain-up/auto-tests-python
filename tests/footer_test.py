@@ -51,7 +51,7 @@ class TestFooter:
             assert link_presence_and_visibility is not None, "The ARASAAC link is absent or invisible"
             assert link_clickability is not None, "The ARASAAC link is unclickable"
             assert link_href == FooterData.footer_links_href["arasaac_link_href"], \
-                "The attribute 'href' in the ARASAAC link does not match the expected value"
+                "The attribute 'href' of the ARASAAC link does not match the expected value"
             assert link_status_code == 200, "The ARASAAC link status code does not match the expected value"
             assert link_image_visibility is not None, "The ARASAAC link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["arasaac_img_src"], \
@@ -72,7 +72,7 @@ class TestFooter:
             assert link_presence_and_visibility is not None, "The EPAM link is absent or invisible"
             assert link_clickability is not None, "The EPAM link is unclickable"
             assert link_href == FooterData.footer_links_href["epam_link_href"], \
-                "The attribute 'href' in the EPAM link does not match the expected value"
+                "The attribute 'href' of the EPAM link does not match the expected value"
             assert link_status_code == 301, "The EPAM link status code does not match the expected value"
             assert link_image_visibility is not None, "The EPAM link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["epam_img_src"], "The EPAM link image is unaccurate"
@@ -91,7 +91,7 @@ class TestFooter:
             assert link_presence_and_visibility is not None, "The JETBRAINS link is absent or invisible"
             assert link_clickability is not None, "The JETBRAINS link is unclickable"
             assert link_href == FooterData.footer_links_href["jetbrains_link_href"], \
-                "The attribute 'href' in the JETBRAINS link does not match the expected value"
+                "The attribute 'href' of the JETBRAINS link does not match the expected value"
             assert link_status_code == 200, "The JETBRAINS link status code does not match the expected value"
             assert link_image_visibility is not None, "The JETBRAINS link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["jetbrains_img_src"], \
@@ -112,7 +112,7 @@ class TestFooter:
             assert link_presence_and_visibility is not None, "The REG.RU link is absent or invisible"
             assert link_clickability is not None, "The REG.RU link is unclickable"
             assert link_href == FooterData.footer_links_href["reg_link_href"], \
-                "The attribute 'href' in the REG.RU link does not match the expected value"
+                "The attribute 'href' of the REG.RU link does not match the expected value"
             assert link_status_code in FooterData.footer_links_status_codes["reg_link_status_code"], \
                 "The REG.RU link status code does not match any of the expected values"
             assert link_image_visibility is not None, "The REG.RU link image is absent or invisible"
@@ -134,13 +134,27 @@ class TestFooter:
             assert link_presence_and_visibility is not None, "The Selectel link is absent or invisible"
             assert link_clickability is not None, "The Selectel link is unclickable"
             assert link_href == FooterData.footer_links_href["selectel_link_href"], \
-                "The attribute 'href' in the Selectel link does not match the expected value"
+                "The attribute 'href' of the Selectel link does not match the expected value"
             assert link_status_code == 200, "The Selectel link status code does not match the expected value"
             assert link_image_visibility is not None, "The Selectel link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["selectel_img_src"], \
                 "The Selectel link image is unaccurate"
             assert link_image_alt == FooterData.footer_images_alt["selectel_img_alt"], \
                 "The Selectel link image is unaccurate"
+
+        @allure.title("Verify presence, visibility and accuracy of the Contact us link in Footer")
+        def test_fp_01_08_verify_contact_us_link(self, driver, main_page_open):
+            page = FooterPage(driver)
+            link_presence_and_visibility = page.check_contact_us_link_presence_and_visibility()
+            link_clickability = page.check_contact_us_link_clickability()
+            link_href = page.get_contact_us_link_href()
+            link_prefix_and_subject = page.check_contact_us_link_href()
+            assert link_presence_and_visibility is not None, "The Contact us link is absent or invisible"
+            assert link_clickability is not None, "The Contact us link is unclickable"
+            assert link_href == FooterData.footer_links_href["contact_us_link_href"], \
+                "The attribute 'href' of the Contact us link does not match the expected value"
+            assert link_prefix_and_subject, \
+                "The attribute 'href' of the Contact us link does not contain the proper prefix and/or subject"
 
     class TestFooterForAuthorizedUserOnly:
 
