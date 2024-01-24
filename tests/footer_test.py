@@ -52,7 +52,8 @@ class TestFooter:
             assert link_clickability is not None, "The ARASAAC link is unclickable"
             assert link_href == FooterData.footer_links_href["arasaac_link_href"], \
                 "The attribute 'href' of the ARASAAC link does not match the expected value"
-            assert link_status_code == 200, "The ARASAAC link status code does not match the expected value"
+            assert link_status_code == FooterData.footer_links_status_codes["arasaac_link_status_code"], \
+                "The ARASAAC link status code does not match the expected value"
             assert link_image_visibility is not None, "The ARASAAC link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["arasaac_img_src"], \
                 "The ARASAAC link image is unaccurate"
@@ -73,7 +74,8 @@ class TestFooter:
             assert link_clickability is not None, "The EPAM link is unclickable"
             assert link_href == FooterData.footer_links_href["epam_link_href"], \
                 "The attribute 'href' of the EPAM link does not match the expected value"
-            assert link_status_code == 301, "The EPAM link status code does not match the expected value"
+            assert link_status_code == FooterData.footer_links_status_codes["epam_link_status_code"], \
+                "The EPAM link status code does not match the expected value"
             assert link_image_visibility is not None, "The EPAM link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["epam_img_src"], "The EPAM link image is unaccurate"
             assert link_image_alt == FooterData.footer_images_alt["epam_img_alt"], "The EPAM link image is unaccurate"
@@ -92,7 +94,8 @@ class TestFooter:
             assert link_clickability is not None, "The JETBRAINS link is unclickable"
             assert link_href == FooterData.footer_links_href["jetbrains_link_href"], \
                 "The attribute 'href' of the JETBRAINS link does not match the expected value"
-            assert link_status_code == 200, "The JETBRAINS link status code does not match the expected value"
+            assert link_status_code == FooterData.footer_links_status_codes["jetbrains_link_status_code"], \
+                "The JETBRAINS link status code does not match the expected value"
             assert link_image_visibility is not None, "The JETBRAINS link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["jetbrains_img_src"], \
                 "The JETBRAINS link image is unaccurate"
@@ -135,7 +138,8 @@ class TestFooter:
             assert link_clickability is not None, "The Selectel link is unclickable"
             assert link_href == FooterData.footer_links_href["selectel_link_href"], \
                 "The attribute 'href' of the Selectel link does not match the expected value"
-            assert link_status_code == 200, "The Selectel link status code does not match the expected value"
+            assert link_status_code == FooterData.footer_links_status_codes["selectel_link_status_code"], \
+                "The Selectel link status code does not match the expected value"
             assert link_image_visibility is not None, "The Selectel link image is absent or invisible"
             assert link_image_src == FooterData.footer_images_src["selectel_img_src"], \
                 "The Selectel link image is unaccurate"
