@@ -32,5 +32,9 @@ class FooterData:
     }
 
     footer_links_status_codes = {
-        "reg_link_status_code": [200, 301, 302]
+        "arasaac_link_status_code": 200,
+        "epam_link_status_code": 301,
+        "jetbrains_link_status_code": 200,
+        "reg_link_status_code": [200, 301, 302],
+        "selectel_link_status_code": 200
     }
