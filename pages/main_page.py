@@ -73,3 +73,11 @@ class MainPage(BasePage):
         self.element_is_clickable(self.locators.BUTTON_START).click()
         self.check_expected_link(MainPageLinks.URL_LOGIN_PAGE)
         return self.driver.current_url
+
+    @allure.step("Clickability of the Registration button")
+    def clicability_of_registration_button(self):
+        self.element_is_present_and_clickable(self.locators.REGISTRATION_BUTTON).click()
+        self.check_expected_link(MainPageLinks.URL_REGISTRATION_PAGE)
+        return self.driver.current_url
+
+    

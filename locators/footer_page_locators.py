@@ -37,7 +37,9 @@ class FooterLocators:
 
     # Footer elements locators
     ARASAAC_LINK = (By.XPATH, "(//footer//li)[3]/a")
+    CONTACT_US_LINK = (By.XPATH, "//footer//a[@title]")
     EPAM_LINK = (By.XPATH, "(//footer//li)[5]/a")
     FOOTER_SECTION = (By.TAG_NAME, "footer")
     JETBRAINS_LINK = (By.XPATH, "(//footer//li)[1]/a")
     REG_LINK = (By.XPATH, "(//footer//li)[2]/a")
+    SELECTEL_LINK = (By.XPATH, "(//footer//li)[4]/a")

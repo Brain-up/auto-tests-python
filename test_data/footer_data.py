@@ -2,8 +2,8 @@
 
 class FooterData:
     footer_elements_text = {
-        "CONTACT_US_LINK_TEXT": ["Обратная связь", "Contact us"],
-        "WITH_THE_SUPPORT_PHRASE_TEXT": ["При поддержке", "With the support"]
+        "contact_us_link_text": ["Обратная связь", "Contact us"],
+        "with_the_support_phrase_text": ["При поддержке", "With the support"]
     }
 
     footer_images_src = {
@@ -29,4 +29,12 @@ class FooterData:
         "jetbrains_link_href": "https://www.jetbrains.com/",
         "reg_link_href": "https://reg.ru/",
         "selectel_link_href": "https://selectel.ru/"
+    }
+
+    footer_links_status_codes = {
+        "arasaac_link_status_code": 200,
+        "epam_link_status_code": 301,
+        "jetbrains_link_status_code": 200,
+        "reg_link_status_code": [200, 301, 302],
+        "selectel_link_status_code": 200
     }
