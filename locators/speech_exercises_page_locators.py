@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 
 class AuthorizedUserHomePageLocators:
     """
-    link: https://brainup.site/groups?locale=ru-ru
+    link: https://brainup.site/groups
     """
     # Header
     EN_BUTTON = (By.XPATH, "//*[contains(text(),'EN')]")
@@ -21,6 +21,7 @@ class AuthorizedUserHomePageLocators:
     # Speech exercises_RU Header
     WORDS_BUTTON_RU = (By.XPATH, '//button[@data-test-active-link="Слова"]')
     WORDS_BY_KOROLEVA_BUTTON = (By.XPATH, '//button[@data-test-active-link="Слова Королёвой"]')
+    WORDS_SIMILAR_PHRASES_RU = (By.XPATH, '//button[@title="Распознавание похожих фраз"]')
 
 
 class SpeechExercisesPageLocators:
@@ -37,6 +38,7 @@ class SpeechExercisesPageLocators:
     FAMILY_CARD_RU = (By.XPATH, '//a[@title="Слова про семью"]')
     FAMILY_CARD_EN = (By.XPATH, '//a[@title="Family words"]')
     WORD_1_GROUP = (By.XPATH, '//a[@title="1я группа слов: по одному"]')
+    DIV_SIMILAR_PHRASE_RU = (By.XPATH, '//div[@class="series-page--canvas flex justify-center flex-grow"]')
 
     # SubGroups
     SENTENCES = (By.ID, 'ember315')
@@ -66,3 +68,4 @@ class SpeechExercisesPageLocators:
 
     # Cards in the SIMILAR PHRASES GROUP
     CARDS_LIST_IN_SIMILAR_PHRASES = (By.XPATH, '//div[contains(@class, "series-container")]//a')
+
