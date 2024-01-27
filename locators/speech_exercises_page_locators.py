@@ -41,6 +41,7 @@ class SpeechExercisesPageLocators:
     WORDS_BY_KOROLEVA_BUTTON = (By.XPATH, '//button[@data-test-active-link="Слова Королёвой"]')
     WORDS_SIMILAR_PHRASES_RU = (By.XPATH, '//button[@title="Распознавание похожих фраз"]')
     WORDS_GROUP_RU = (By.XPATH, '//button[@title="Распознавание последовательности слов"]')
+    SENTENCES_RU = (By.XPATH, '//button[@title="Распознавание предложений"]')
     LIST_OF_LESSONS = (By.XPATH, '//div[contains(@class, "series-container")]//a')
 
     # SubGroups
