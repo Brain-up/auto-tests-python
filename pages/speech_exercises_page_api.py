@@ -34,7 +34,6 @@ class SpeechExercisesAPI(BasePage):
         with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
             pass
         result_get = json.loads(list_cards_id.text)
-        # print(result_get['data'])
         id_number = random.choice(result_get['data'][card_id]['exercises'])
         with allure.step(f'Select random id from list: {id_number}'):
             pass
@@ -46,7 +45,6 @@ class SpeechExercisesAPI(BasePage):
         list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=17',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
-        # print(list_cards_id.text)
         with allure.step(
                 f'Send GET request with params: '
                 f'https://brainup.site/api/subgroups?seriesId=17 '
@@ -66,7 +64,6 @@ class SpeechExercisesAPI(BasePage):
         list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=2',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
-        # print(list_cards_id.text)
         with allure.step(
                 f'Send GET request with params: '
                 f'https://brainup.site/api/subgroups?seriesId=2 '
@@ -86,10 +83,28 @@ class SpeechExercisesAPI(BasePage):
         list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=3',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
-        # print(list_cards_id.text)
         with allure.step(
                 f'Send GET request with params: '
                 f'https://brainup.site/api/subgroups?seriesId=3 '
+                f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
+            pass
+        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
+            pass
+        result_get = json.loads(list_cards_id.text)
+        id_number = random.choice(result_get['data'][card_id]['exercises'])
+        with allure.step(f'Select random id from list: {id_number}'):
+            pass
+        print('Nuber exercise on backend is: ', id_number)
+        return id_number
+
+    @staticmethod
+    def get_random_id_from_list_sub_group_sentences_ru(card_id):
+        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=4',
+                                     headers={'Content-Type': 'application/json',
+                                              'Authorization': 'Bearer {}'.format(id_token)})
+        with allure.step(
+                f'Send GET request with params: '
+                f'https://brainup.site/api/subgroups?seriesId=4 '
                 f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
             pass
         with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
@@ -107,7 +122,6 @@ class SpeechExercisesAPI(BasePage):
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
         result_get = json.loads(list_cards_id.text)
-        # print(result_get['data'])
         id_number = random.choice(result_get['data'][card_id]['exercises'])
         print('Nuber exercise on backend is: ', id_number)
         return id_number
@@ -118,7 +132,6 @@ class SpeechExercisesAPI(BasePage):
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
         result_get = json.loads(list_cards_id.text)
-        # print(result_get)
         id_number = random.choice(result_get['data'][card_id]['exercises'])
         print(
             f'Random card from selected sub_group where level == card_id + 1, '
@@ -132,7 +145,6 @@ class SpeechExercisesAPI(BasePage):
         result_get = requests.get(f'https://brainup.site/api/tasks/{str(card_id)}',
                                   headers={'Content-Type': 'application/json',
                                            'Authorization': 'Bearer {}'.format(id_token)})
-        print(result_get.text)
         # word = json.loads(result_get.text)['data']["answerOptions"][0]['word']
         amount_words = len(json.loads(result_get.text)['data']["answerOptions"])
         words = [json.loads(result_get.text)['data']["answerOptions"][i]['word'] for i in range(amount_words)]
