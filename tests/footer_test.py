@@ -170,3 +170,11 @@ class TestFooter:
                    and (modal_window_page.check_footer_invisibility()
                         and modal_window_page.check_jetbrains_image_invisibility()), \
                    "Footer (including the Jetbrains image) is absent or visible through the modal window"
+
+    class TestFooterNavigation:
+        @allure.title("Verify that the ARASAAC link in Footer leads to the correct page after click")
+        def test_fp_03_01_verify_arasaac_link_leads_to_the_correct_page(self, driver, main_page_open):
+            page = FooterPage(driver)
+            page.click_arasaac_link()
+            page.switch_to_opened_tab()
+            assert page.get_element_text_on_opened_tab() == "Центр альтернативной и аументативной коммуникации Арагона"
