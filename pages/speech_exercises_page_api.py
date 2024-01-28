@@ -117,6 +117,25 @@ class SpeechExercisesAPI(BasePage):
         return id_number
 
     @staticmethod
+    def get_random_id_from_list_sub_group_words_with_frequency_grouping_ru(card_id):
+        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=6',
+                                     headers={'Content-Type': 'application/json',
+                                              'Authorization': 'Bearer {}'.format(id_token)})
+        with allure.step(
+                f'Send GET request with params: '
+                f'https://brainup.site/api/subgroups?seriesId=6 '
+                f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
+            pass
+        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
+            pass
+        result_get = json.loads(list_cards_id.text)
+        id_number = random.choice(result_get['data'][card_id]['exercises'])
+        with allure.step(f'Select random id from list: {id_number}'):
+            pass
+        print('Nuber exercise on backend is: ', id_number)
+        return id_number
+
+    @staticmethod
     def get_random_id_from_list_sub_group_words_cards_en(card_id):
         list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=9',
                                      headers={'Content-Type': 'application/json',
@@ -140,6 +159,7 @@ class SpeechExercisesAPI(BasePage):
             '\nThat is, we take a list of exercises on the back, and choose one exercise from it.')
         return id_number
 
+    # General methods
     @staticmethod
     def get_list_of_words_from_card(card_id):
         result_get = requests.get(f'https://brainup.site/api/tasks/{str(card_id)}',

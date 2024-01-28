@@ -42,6 +42,7 @@ class SpeechExercisesPageLocators:
     WORDS_SIMILAR_PHRASES_RU = (By.XPATH, '//button[@title="Распознавание похожих фраз"]')
     WORDS_GROUP_RU = (By.XPATH, '//button[@title="Распознавание последовательности слов"]')
     SENTENCES_RU = (By.XPATH, '//button[@title="Распознавание предложений"]')
+    WORDS_WITH_FREQUENCY_GROUPING_RU = (By.XPATH, '//button[@title="Слова с частотной группировкой"]')
     LIST_OF_LESSONS = (By.XPATH, '//div[contains(@class, "series-container")]//a')
 
     # SubGroups
