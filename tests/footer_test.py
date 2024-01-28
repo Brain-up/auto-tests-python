@@ -177,4 +177,7 @@ class TestFooter:
             page = FooterPage(driver)
             page.click_arasaac_link()
             page.switch_to_opened_tab()
-            assert page.get_element_text_on_opened_tab() == "Центр альтернативной и аументативной коммуникации Арагона"
+            text_on_opened_tab = page.get_element_text_on_opened_tab()
+            assert text_on_opened_tab in FooterData.footer_related_elements_text["arasaac_owner_title"], \
+                "The ARASAAC link in Footer leads to an incorrect page after click " \
+                "or opened page does not loaded correctly"
