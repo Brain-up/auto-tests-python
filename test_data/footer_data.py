@@ -38,3 +38,9 @@ class FooterData:
         "reg_link_status_code": [200, 301, 302],
         "selectel_link_status_code": 200
     }
+
+    # Related pages elements text
+    footer_related_elements_text = {
+        "arasaac_owner_title": ["Центр альтернативной и аументативной коммуникации Арагона",
+                                "Aragonese Center of Augmentative and Alternative Communication"]
+    }

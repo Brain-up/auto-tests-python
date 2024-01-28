@@ -43,3 +43,8 @@ class FooterLocators:
     JETBRAINS_LINK = (By.XPATH, "(//footer//li)[1]/a")
     REG_LINK = (By.XPATH, "(//footer//li)[2]/a")
     SELECTEL_LINK = (By.XPATH, "(//footer//li)[4]/a")
+    WITH_THE_SUPPORT_PHRASE_TEXT = (By.XPATH, "//span[@data-test-support-message]")
+
+    # Related pages elements locators
+    # on ARASAAC page
+    ARASAAC_OWNER_TITLE = (By.XPATH, "(//h2)[1]")
