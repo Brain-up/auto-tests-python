@@ -1,5 +1,4 @@
 import allure
-
 from locators.footer_page_locators import FooterLocators
 from pages.base_page import BasePage
 
@@ -36,6 +35,18 @@ class FooterPage(BasePage):
     @allure.step('Check the ARASAAC link is clickable in Footer')
     def check_arasaac_link_clickability(self):
         return self.element_is_clickable(FooterLocators.ARASAAC_LINK)
+
+    @allure.step('Click on the ARASAAC link in Footer and thereby open the corresponding web page in a new tab')
+    def click_arasaac_link(self):
+        self.element_is_present_and_clickable(FooterLocators.ARASAAC_LINK).click()
+
+    @allure.step('Forward to the tab opened by clicking on the ARASAAC link in Footer and check its details')
+    def switch_to_opened_tab(self):
+        self.switch_to_new_window()
+
+    @allure.step("Get text of the element on the ARASAAC page")
+    def get_element_text_on_opened_tab(self):
+        return self.get_text(FooterLocators.ARASAAC_OWNER_TITLE)
 
     @allure.step("Get attribute 'href' of the ARASAAC link")
     def get_arasaac_link_href(self):
