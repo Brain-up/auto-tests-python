@@ -11,13 +11,13 @@ class TestCardsRU:
     @allure.title('Select random card from group "Слова" and compare UI vs BACKEND data.')
     def test_random_word_cards_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
-        card_id = page.click_random_card_in_words()
+        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
+        card_id = page.click_random_card()
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group_words_cards_ru(
-            card_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(
+            card_id, seria_id)  # getting random ID from exercises group
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -29,13 +29,13 @@ class TestCardsRU:
     @allure.title('Select random card from group "Слова Королёвой" and compare UI vs BACKEND data.')
     def test_random_word_by_koroleva_cards_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
-        card_id = page.click_random_card_in_words_by_koroleva()
+        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
+        card_id = page.click_random_card()
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group_words_by_koroleva_cards_ru(
-            card_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(
+            card_id, seria_id)  # getting random ID from exercises group
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -47,14 +47,13 @@ class TestCardsRU:
     @allure.title('Select a random card from "Похожие фразы" group and compare UI vs BACKEND data.')
     def test_random_cards_in_similar_phrases_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        page.select_group(SpeechExercisesPageLocators.WORDS_SIMILAR_PHRASES_RU)
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
-        card_id = page.click_random_card_in_similar_phrases_ru()
+        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_SIMILAR_PHRASES_RU)
+        card_id = page.click_random_card()
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group_similar_phrase_ru(
-            card_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(
+            card_id, seria_id)  # getting random ID from exercises group
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -66,14 +65,13 @@ class TestCardsRU:
     @allure.title('Select a random card from "Группа слов" group and compare UI vs BACKEND data.')
     def test_random_cards_in_group_words_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        page.select_group(SpeechExercisesPageLocators.WORDS_GROUP_RU)
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
-        card_id = page.click_random_card_in_group_words_ru()
+        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_GROUP_RU)
+        card_id = page.click_random_card()
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group_group_words_ru(
-            card_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(
+            card_id, seria_id)  # getting random ID from exercises group
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -85,14 +83,13 @@ class TestCardsRU:
     @allure.title('Select a random card from "Предложения" group and compare UI vs BACKEND data.')
     def test_random_cards_in_sentences_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        page.select_group(SpeechExercisesPageLocators.SENTENCES_RU)
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
-        card_id = page.click_random_card_in_sentences_ru()
+        seria_id = page.select_group(SpeechExercisesPageLocators.SENTENCES_RU)
+        card_id = page.click_random_card()
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group_sentences_ru(
-            card_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(
+            card_id, seria_id)  # getting random ID from exercises group
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -104,14 +101,13 @@ class TestCardsRU:
     @allure.title('Select a random card from "Слова с частотной группировкой" group and compare UI vs BACKEND data.')
     def test_random_cards_in_words_with_frequency_grouping_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        page.select_group(SpeechExercisesPageLocators.WORDS_WITH_FREQUENCY_GROUPING_RU)
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
-        card_id = page.click_random_card_in_words_with_frequency_grouping_ru()
+        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_WITH_FREQUENCY_GROUPING_RU)
+        card_id = page.click_random_card()
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group_words_with_frequency_grouping_ru(
-            card_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(
+            card_id, seria_id)  # getting random ID from exercises group
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]

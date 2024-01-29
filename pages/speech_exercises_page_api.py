@@ -15,20 +15,19 @@ result_post = requests.post(authorization_url, data_default_user)
 id_token = json.loads(result_post.text)['idToken']
 
 
-# print(id_token)
-
-
 class SpeechExercisesAPI(BasePage):
     locators = SpeechExercisesPageLocators()
 
     @staticmethod
-    def get_random_id_from_list_sub_group_words_cards_ru(card_id):
-        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=1',
+    def get_random_id_from_list_sub_group(card_id, seria_id):
+        print('Card_id is:', card_id)
+        print('Seria_id is:', seria_id)
+        list_cards_id = requests.get(f'https://brainup.site/api/subgroups?seriesId={seria_id}',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
         with allure.step(
                 f'Send GET request with params: '
-                f'https://brainup.site/api/subgroups?seriesId=1 '
+                f'https://brainup.site/api/subgroups?seriesId={seria_id} '
                 f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
             pass
         with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
@@ -38,125 +37,6 @@ class SpeechExercisesAPI(BasePage):
         with allure.step(f'Select random id from list: {id_number}'):
             pass
         print('Nuber exercise on backend is: ', id_number)
-        return id_number
-
-    @staticmethod
-    def get_random_id_from_list_sub_group_words_by_koroleva_cards_ru(card_id):
-        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=17',
-                                     headers={'Content-Type': 'application/json',
-                                              'Authorization': 'Bearer {}'.format(id_token)})
-        with allure.step(
-                f'Send GET request with params: '
-                f'https://brainup.site/api/subgroups?seriesId=17 '
-                f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
-            pass
-        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
-            pass
-        result_get = json.loads(list_cards_id.text)
-        id_number = random.choice(result_get['data'][card_id]['exercises'])
-        with allure.step(f'Select random id from list: {id_number}'):
-            pass
-        print('Nuber exercise on backend is: ', id_number)
-        return id_number
-
-    @staticmethod
-    def get_random_id_from_list_sub_group_similar_phrase_ru(card_id):
-        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=2',
-                                     headers={'Content-Type': 'application/json',
-                                              'Authorization': 'Bearer {}'.format(id_token)})
-        with allure.step(
-                f'Send GET request with params: '
-                f'https://brainup.site/api/subgroups?seriesId=2 '
-                f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
-            pass
-        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
-            pass
-        result_get = json.loads(list_cards_id.text)
-        id_number = random.choice(result_get['data'][card_id]['exercises'])
-        with allure.step(f'Select random id from list: {id_number}'):
-            pass
-        print('Nuber exercise on backend is: ', id_number)
-        return id_number
-
-    @staticmethod
-    def get_random_id_from_list_sub_group_group_words_ru(card_id):
-        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=3',
-                                     headers={'Content-Type': 'application/json',
-                                              'Authorization': 'Bearer {}'.format(id_token)})
-        with allure.step(
-                f'Send GET request with params: '
-                f'https://brainup.site/api/subgroups?seriesId=3 '
-                f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
-            pass
-        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
-            pass
-        result_get = json.loads(list_cards_id.text)
-        id_number = random.choice(result_get['data'][card_id]['exercises'])
-        with allure.step(f'Select random id from list: {id_number}'):
-            pass
-        print('Nuber exercise on backend is: ', id_number)
-        return id_number
-
-    @staticmethod
-    def get_random_id_from_list_sub_group_sentences_ru(card_id):
-        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=4',
-                                     headers={'Content-Type': 'application/json',
-                                              'Authorization': 'Bearer {}'.format(id_token)})
-        with allure.step(
-                f'Send GET request with params: '
-                f'https://brainup.site/api/subgroups?seriesId=4 '
-                f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
-            pass
-        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
-            pass
-        result_get = json.loads(list_cards_id.text)
-        id_number = random.choice(result_get['data'][card_id]['exercises'])
-        with allure.step(f'Select random id from list: {id_number}'):
-            pass
-        print('Nuber exercise on backend is: ', id_number)
-        return id_number
-
-    @staticmethod
-    def get_random_id_from_list_sub_group_words_with_frequency_grouping_ru(card_id):
-        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=6',
-                                     headers={'Content-Type': 'application/json',
-                                              'Authorization': 'Bearer {}'.format(id_token)})
-        with allure.step(
-                f'Send GET request with params: '
-                f'https://brainup.site/api/subgroups?seriesId=6 '
-                f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
-            pass
-        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
-            pass
-        result_get = json.loads(list_cards_id.text)
-        id_number = random.choice(result_get['data'][card_id]['exercises'])
-        with allure.step(f'Select random id from list: {id_number}'):
-            pass
-        print('Nuber exercise on backend is: ', id_number)
-        return id_number
-
-    @staticmethod
-    def get_random_id_from_list_sub_group_words_cards_en(card_id):
-        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=9',
-                                     headers={'Content-Type': 'application/json',
-                                              'Authorization': 'Bearer {}'.format(id_token)})
-        result_get = json.loads(list_cards_id.text)
-        id_number = random.choice(result_get['data'][card_id]['exercises'])
-        print('Nuber exercise on backend is: ', id_number)
-        return id_number
-
-    @staticmethod
-    def get_random_id_from_list_sub_group_similar_cards_en(card_id):
-        list_cards_id = requests.get('https://brainup.site/api/subgroups?seriesId=10',
-                                     headers={'Content-Type': 'application/json',
-                                              'Authorization': 'Bearer {}'.format(id_token)})
-        result_get = json.loads(list_cards_id.text)
-        id_number = random.choice(result_get['data'][card_id]['exercises'])
-        print(
-            f'Random card from selected sub_group where level == card_id + 1, '
-            f'it is mean current id {card_id} + 1 will be equal {card_id + 1}.\n',
-            'ID exercise on the backend is: ', id_number,
-            '\nThat is, we take a list of exercises on the back, and choose one exercise from it.')
         return id_number
 
     # General methods

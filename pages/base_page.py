@@ -1,9 +1,9 @@
 import allure
 from selenium.common import TimeoutException
-
-from locators.main_page_locators import MainPageLocators
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait as Wait
+
+from locators.main_page_locators import MainPageLocators
 
 
 class BasePage:
@@ -12,7 +12,7 @@ class BasePage:
     def __init__(self, driver, link=None):
         self.driver = driver
         self.link = link
-        self.timeout = 20
+        self.timeout = 5
 
     def open(self):
         with allure.step(f'Open page: {self.link}'):
@@ -24,6 +24,7 @@ class BasePage:
     def get_current_url(self):
         get_url = self.driver.current_url
         print('Current url: ' + get_url)
+        return get_url
 
     def element_is_present_and_clickable(self, locator):
         with allure.step(f'Check element is visible and clickable: {locator}'):
@@ -74,8 +75,8 @@ class BasePage:
 
     def wait_changed_url(self, url):
         with allure.step(f'Wait until url: {url} will be changed.'):
-            return Wait(self.driver, self.timeout).until(ec.url_changes(url),
-                                                         message=f"Url: {url} has not been changed!!!")
+            Wait(self.driver, self.timeout).until(ec.url_changes(url), message=f"Url: {url} has not been changed!!!")
+            self.get_current_url()
 
     def get_text(self, locator):
         with allure.step(f'Get text in the element: {locator}'):
