@@ -166,18 +166,29 @@ class TestFooter:
         def test_fp_02_01_verify_footer_invisibility_through_the_modal_window(self, driver, auto_test_user_authorized):
             modal_window_page = FooterPage(driver, SpecificExercisesUrls.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
-            assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()) \
-                   and (modal_window_page.check_footer_invisibility()
-                        and modal_window_page.check_jetbrains_image_invisibility()), \
-                   "Footer (including the Jetbrains image) is absent or visible through the modal window"
+            assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()), \
+                "Footer (including the Jetbrains image) is absent in the DOM tree"
+            assert (modal_window_page.check_footer_invisibility()
+                    and modal_window_page.check_jetbrains_image_invisibility()), \
+                "Footer (including the Jetbrains image) is visible through the modal window"
 
     class TestFooterNavigation:
         @allure.title("Verify that the ARASAAC link in Footer leads to the correct page after click")
         def test_fp_03_01_verify_arasaac_link_leads_to_the_correct_page(self, driver, main_page_open):
             page = FooterPage(driver)
             page.click_arasaac_link()
-            page.switch_to_opened_tab()
-            text_on_opened_tab = page.get_element_text_on_opened_tab()
+            page.switch_to_new_window()
+            text_on_opened_tab = page.get_element_text_on_opened_arasaac_tab()
             assert text_on_opened_tab in FooterData.footer_related_elements_text["arasaac_owner_title"], \
                 "The ARASAAC link in Footer leads to an incorrect page after click " \
-                "or opened page does not loaded correctly"
+                "or opened page does not load correctly"
+
+        @allure.title("Verify that the EPAM link in Footer leads to the correct page after click")
+        def test_fp_03_02_verify_epam_link_leads_to_the_correct_page(self, driver, main_page_open):
+            page = FooterPage(driver)
+            page.click_epam_link()
+            page.switch_to_new_window()
+            text_on_opened_tab = page.get_element_text_on_opened_epam_tab()
+            assert text_on_opened_tab == FooterData.footer_related_elements_text["epam_start_page_text"], \
+                "The EPAM link in Footer leads to an incorrect page after click " \
+                "or opened page does not load correctly"

@@ -42,5 +42,6 @@ class FooterData:
     # Related pages elements text
     footer_related_elements_text = {
         "arasaac_owner_title": ["Центр альтернативной и аументативной коммуникации Арагона",
-                                "Aragonese Center of Augmentative and Alternative Communication"]
+                                "Aragonese Center of Augmentative and Alternative Communication"],
+        "epam_start_page_text": "We can help you"
     }

@@ -48,3 +48,4 @@ class FooterLocators:
     # Related pages elements locators
     # on ARASAAC page
     ARASAAC_OWNER_TITLE = (By.XPATH, "(//h2)[1]")
+    EPAM_START_PAGE_TEXT = (By.XPATH, "(//span[@class='font-size-80-33'])[1]")
