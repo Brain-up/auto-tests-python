@@ -40,12 +40,8 @@ class FooterPage(BasePage):
     def click_arasaac_link(self):
         self.element_is_present_and_clickable(FooterLocators.ARASAAC_LINK).click()
 
-    @allure.step('Forward to the tab opened by clicking on the ARASAAC link in Footer and check its details')
-    def switch_to_opened_tab(self):
-        self.switch_to_new_window()
-
     @allure.step("Get text of the element on the ARASAAC page")
-    def get_element_text_on_opened_tab(self):
+    def get_element_text_on_opened_arasaac_tab(self):
         return self.get_text(FooterLocators.ARASAAC_OWNER_TITLE)
 
     @allure.step("Get attribute 'href' of the ARASAAC link")
@@ -71,6 +67,14 @@ class FooterPage(BasePage):
     @allure.step('Check the EPAM link is clickable in Footer')
     def check_epam_link_clickability(self):
         return self.element_is_clickable(FooterLocators.EPAM_LINK)
+
+    @allure.step('Click on the EPAM link in Footer and thereby open the corresponding web page in a new tab')
+    def click_epam_link(self):
+        self.element_is_present_and_clickable(FooterLocators.EPAM_LINK).click()
+
+    @allure.step("Get text of the element on the EPAM page")
+    def get_element_text_on_opened_epam_tab(self):
+        return self.get_text(FooterLocators.EPAM_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the EPAM link")
     def get_epam_link_href(self):

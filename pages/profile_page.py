@@ -33,6 +33,7 @@ class ProfilePage(BasePage):
 
     @allure.step("The user has authorised")
     def user_has_authorised(self):
+        self.timeout = 20
         self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
         self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
         self.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
