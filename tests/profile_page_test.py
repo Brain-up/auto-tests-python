@@ -23,9 +23,8 @@ class TestProfilePage:
         page.click_save_button()
         page.get_successful_message()
         assert page.get_successful_message(), "The password hasn't changed"
-
-    @allure.title("Return the password by receiving an email link")
-    def test_return_password(self, driver, main_page_open):
+        driver.back()
+        # Return the password by receiving an email link
         page = ProfilePage(driver)
         page.open_login_page()
         page.user_has_authorised_with_new_password()
