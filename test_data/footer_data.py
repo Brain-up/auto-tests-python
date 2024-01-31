@@ -39,9 +39,10 @@ class FooterData:
         "selectel_link_status_code": 200
     }
 
-    # Related pages elements text
+    # Related web pages elements text
     footer_related_elements_text = {
-        "arasaac_owner_title": ["Центр альтернативной и аументативной коммуникации Арагона",
+        "arasaac_start_page_text": ["Центр альтернативной и аументативной коммуникации Арагона",
                                 "Aragonese Center of Augmentative and Alternative Communication"],
-        "epam_start_page_text": "We can help you"
+        "epam_start_page_text": "We can help you",
+        "jetbrains_start_page_text": "The complete\ndeveloper toolkit"
     }

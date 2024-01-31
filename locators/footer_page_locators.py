@@ -45,7 +45,11 @@ class FooterLocators:
     SELECTEL_LINK = (By.XPATH, "(//footer//li)[4]/a")
     WITH_THE_SUPPORT_PHRASE_TEXT = (By.XPATH, "//span[@data-test-support-message]")
 
-    # Related pages elements locators
-    # on ARASAAC page
+
+class RelatedPagesElementsLocators:
+    # on ARASAAC web page
     ARASAAC_OWNER_TITLE = (By.XPATH, "(//h2)[1]")
+    # on EPAM web page
     EPAM_START_PAGE_TEXT = (By.XPATH, "(//span[@class='font-size-80-33'])[1]")
+    # on JETBRAINS web page
+    JETBRAINS_START_PAGE_TEXT = (By.XPATH, "(//p[contains(@class, 'product-card__text')])[1]")
