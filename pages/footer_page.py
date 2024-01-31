@@ -1,5 +1,5 @@
 import allure
-from locators.footer_page_locators import FooterLocators
+from locators.footer_page_locators import FooterLocators, RelatedPagesElementsLocators
 from pages.base_page import BasePage
 
 
@@ -42,7 +42,7 @@ class FooterPage(BasePage):
 
     @allure.step("Get text of the element on the ARASAAC page")
     def get_element_text_on_opened_arasaac_tab(self):
-        return self.get_text(FooterLocators.ARASAAC_OWNER_TITLE)
+        return self.get_text(RelatedPagesElementsLocators.ARASAAC_OWNER_TITLE)
 
     @allure.step("Get attribute 'href' of the ARASAAC link")
     def get_arasaac_link_href(self):
@@ -74,7 +74,7 @@ class FooterPage(BasePage):
 
     @allure.step("Get text of the element on the EPAM page")
     def get_element_text_on_opened_epam_tab(self):
-        return self.get_text(FooterLocators.EPAM_START_PAGE_TEXT)
+        return self.get_text(RelatedPagesElementsLocators.EPAM_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the EPAM link")
     def get_epam_link_href(self):
@@ -99,6 +99,14 @@ class FooterPage(BasePage):
     @allure.step('Check the Jetbrains link is clickable in Footer')
     def check_jetbrains_link_clickability(self):
         return self.element_is_clickable(FooterLocators.JETBRAINS_LINK)
+
+    @allure.step('Click on the JETBRAINS link in Footer and thereby open the corresponding web page in a new tab')
+    def click_jetbrains_link(self):
+        self.element_is_present_and_clickable(FooterLocators.JETBRAINS_LINK).click()
+
+    @allure.step("Get text of the element on the JETBRAINS page")
+    def get_element_text_on_opened_jetbrains_tab(self):
+        return self.get_text(RelatedPagesElementsLocators.JETBRAINS_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the Jetbrains link")
     def get_jetbrains_link_href(self):
