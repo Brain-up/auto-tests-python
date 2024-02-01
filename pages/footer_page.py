@@ -146,6 +146,8 @@ class FooterPage(BasePage):
 
     @allure.step("Get text of the element on the REG.RU page")
     def get_element_text_on_opened_reg_tab(self):
+        self.timeout = 20
+        self.element_is_visible(RelatedPagesElementsLocators.REG_START_PAGE_TEXT)
         return self.get_text(RelatedPagesElementsLocators.REG_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the REG.RU link")
