@@ -53,3 +53,5 @@ class RelatedPagesElementsLocators:
     EPAM_START_PAGE_TEXT = (By.XPATH, "(//span[@class='font-size-80-33'])[1]")
     # on JETBRAINS web page
     JETBRAINS_START_PAGE_TEXT = (By.XPATH, "(//p[contains(@class, 'product-card__text')])[1]")
+    # on REG.RU web page
+    REG_START_PAGE_TEXT = (By.XPATH, "(//h2)[1]")

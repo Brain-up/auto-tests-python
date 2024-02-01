@@ -140,6 +140,14 @@ class FooterPage(BasePage):
     def check_reg_link_clickability(self):
         return self.element_is_clickable(FooterLocators.REG_LINK)
 
+    @allure.step('Click on the REG.RU link in Footer and thereby open the corresponding web page in a new tab')
+    def click_reg_link(self):
+        self.element_is_present_and_clickable(FooterLocators.REG_LINK).click()
+
+    @allure.step("Get text of the element on the REG.RU page")
+    def get_element_text_on_opened_reg_tab(self):
+        return self.get_text(RelatedPagesElementsLocators.REG_START_PAGE_TEXT)
+
     @allure.step("Get attribute 'href' of the REG.RU link")
     def get_reg_link_href(self):
         return self.get_link_href(FooterLocators.REG_LINK)
