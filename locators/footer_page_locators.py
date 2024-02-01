@@ -55,4 +55,6 @@ class RelatedPagesElementsLocators:
     JETBRAINS_START_PAGE_TEXT = (By.XPATH, "(//p[contains(@class, 'product-card__text')])[1]")
     # on REG.RU web page
     # REG_START_PAGE_TEXT = (By.XPATH, "//h2)[1]")
-    REG_START_PAGE_TEXT = (By.XPATH, "//p[contains(@class, 'p-main__title')]")
+    # REG_START_PAGE_TEXT = (By.XPATH, "//p[contains(@class, 'p-main__title')]")
+    REG_START_PAGE_TEXT = (By.XPATH, "//a[@class='u-auth-button i-auth__open-login-tab qa-auth-btn']")
+#     a class="u-auth-button i-auth__open-login-tab qa-auth-btn" href="/user/authorize">

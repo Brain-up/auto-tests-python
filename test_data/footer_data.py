@@ -46,5 +46,6 @@ class FooterData:
         "epam_start_page_text": "We can help you",
         "jetbrains_start_page_text": "The complete\ndeveloper toolkit",
         # "reg_start_page_text": "Хостинг"
-        "reg_start_page_text": "Всё начинается с домена"
+        # "reg_start_page_text": "Всё начинается с домена"
+        "reg_start_page_text": "Вход"
     }
