@@ -1,4 +1,5 @@
 import allure
+import time
 from locators.footer_page_locators import FooterLocators, RelatedPagesElementsLocators
 from pages.base_page import BasePage
 
@@ -143,6 +144,7 @@ class FooterPage(BasePage):
     @allure.step('Click on the REG.RU link in Footer and thereby open the corresponding web page in a new tab')
     def click_reg_link(self):
         self.element_is_present_and_clickable(FooterLocators.REG_LINK).click()
+        time.sleep(5)
 
     @allure.step("Get text of the element on the REG.RU page")
     def get_element_text_on_opened_reg_tab(self):
@@ -173,6 +175,14 @@ class FooterPage(BasePage):
     @allure.step('Check the Selectel link is clickable in Footer')
     def check_selectel_link_clickability(self):
         return self.element_is_clickable(FooterLocators.SELECTEL_LINK)
+
+    @allure.step('Click on the Selectel link in Footer and thereby open the corresponding web page in a new tab')
+    def click_selectel_link(self):
+        self.element_is_present_and_clickable(FooterLocators.SELECTEL_LINK).click()
+
+    @allure.step("Get text of the element on the Selectel page")
+    def get_element_text_on_opened_selectel_tab(self):
+        return self.get_text(RelatedPagesElementsLocators.SELECTEL_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the Selectel link")
     def get_selectel_link_href(self):
