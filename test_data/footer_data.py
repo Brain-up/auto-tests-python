@@ -47,5 +47,6 @@ class FooterData:
         "jetbrains_start_page_text": "The complete\ndeveloper toolkit",
         # "reg_start_page_text": "Хостинг"
         # "reg_start_page_text": "Всё начинается с домена"
-        "reg_start_page_text": "Вход"
+        "reg_start_page_text": "Вход",
+        "selectel_start_page_text": "Продукты и предложения"
     }

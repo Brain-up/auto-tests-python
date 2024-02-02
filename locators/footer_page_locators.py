@@ -57,4 +57,7 @@ class RelatedPagesElementsLocators:
     # REG_START_PAGE_TEXT = (By.XPATH, "//h2)[1]")
     # REG_START_PAGE_TEXT = (By.XPATH, "//p[contains(@class, 'p-main__title')]")
     REG_START_PAGE_TEXT = (By.XPATH, "//a[@class='u-auth-button i-auth__open-login-tab qa-auth-btn']")
-#     a class="u-auth-button i-auth__open-login-tab qa-auth-btn" href="/user/authorize">
+    # on SELECTEL web page
+    SELECTEL_START_PAGE_TEXT = (By.XPATH, "(//h2)[1]")
+
+
