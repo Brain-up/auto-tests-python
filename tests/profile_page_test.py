@@ -17,7 +17,8 @@ class TestProfilePage:
         page.click_change_password_link()
         page.field_recovery_email()
         page.click_send_recovery_email_link()
-        link = self.page.get_link_change_password_by_email()
+        link = page.get_link_change_password_by_email()
+        assert link, "The link to change the password was not received"
         driver.get(link)
         page.enter_new_password_field()
         page.click_save_button()
@@ -32,7 +33,8 @@ class TestProfilePage:
         page.click_change_password_link()
         page.field_recovery_email()
         page.click_send_recovery_email_link()
-        link = self.page.get_link_change_password_by_email()
+        link = page.get_link_change_password_by_email()
+        assert link, "The link to change the password was not received"
         driver.get(link)
         page.enter_old_password_field()
         page.click_save_button()
