@@ -59,7 +59,7 @@ class ProfilePage(BasePage):
     @allure.step("Click the button 'Send recovery email'")
     def click_send_recovery_email_link(self):
         self.element_is_present_and_clickable(ProfilePageLocators.SEND_EMAIL).click()
-        time.sleep(5)
+        time.sleep(10)
 
     @allure.step("Enter the data in the email field")
     def enter_new_password_field(self):
