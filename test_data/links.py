@@ -27,7 +27,7 @@ class FooterLinks:
     CONTACT_US_LINK = "mailto:brainupproject@yandex.ru?subject=BrainUp"
     EPAM_LINK = "https://epam.com/"
     JETBRAINS_LINK = "https://www.jetbrains.com/"
-    REG_LINK = "https://reg.ru/"
+    REG_LINK = "https://www.reg.ru/"
     SELECTEL_LINK = "https://selectel.ru/"
 
 

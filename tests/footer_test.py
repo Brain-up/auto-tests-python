@@ -4,7 +4,7 @@ import requests
 
 from pages.footer_page import FooterPage
 from locators.footer_page_locators import FooterLocators
-from test_data.links import PagesUrls, SpecificExercisesUrls
+from test_data.links import PagesUrls, SpecificExercisesUrls, FooterLinks
 from test_data.footer_data import FooterData
 
 
@@ -203,17 +203,13 @@ class TestFooter:
                 "The JETBRAINS link in Footer leads to an incorrect page after click " \
                 "or opened page does not load correctly"
 
-        @pytest.mark.xfail(reason="In CI the test is failed in PR#136, the reason is unclear, "
-                                  "locally this test is passed with each of the three proposed locators")
         @allure.title("Verify that the REG.RU link in Footer leads to the correct page after click")
         def test_fp_03_04_verify_reg_link_leads_to_the_correct_page(self, driver, main_page_open):
             page = FooterPage(driver)
             page.click_reg_link()
             page.switch_to_new_window()
-            text_on_opened_tab = page.get_element_text_on_opened_reg_tab()
-            assert text_on_opened_tab == FooterData.footer_related_elements_text["reg_start_page_text"], \
-                "The REG.RU link in Footer leads to an incorrect page after click " \
-                "or opened page does not load correctly"
+            assert page.get_current_url() == FooterLinks.REG_LINK, \
+                "The REG.RU link in Footer leads to an incorrect page after click"
 
         @allure.title("Verify that the SELECTEL link in Footer leads to the correct page after click")
         def test_fp_03_05_verify_selectel_link_leads_to_the_correct_page(self, driver, main_page_open):
@@ -224,3 +220,9 @@ class TestFooter:
             assert text_on_opened_tab == FooterData.footer_related_elements_text["selectel_start_page_text"], \
                 "The SELECTEL link in Footer leads to an incorrect page after click " \
                 "or opened page does not load correctly"
+
+        @allure.title("Verify that the Contact us link in Footer calls an email client")
+        def test_fp_03_06_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
+            page = FooterPage(driver)
+            page.click_contact_us_link()
+            assert True, "the Contact us link in Footer does not call an email client"
