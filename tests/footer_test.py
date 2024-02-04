@@ -208,7 +208,7 @@ class TestFooter:
             page = FooterPage(driver)
             page.click_reg_link()
             page.switch_to_new_window()
-            assert page.get_current_url() == FooterLinks.REG_LINK, \
+            assert page.driver.current_url == FooterLinks.REG_LINK, \
                 "The REG.RU link in Footer leads to an incorrect page after click"
 
         @allure.title("Verify that the SELECTEL link in Footer leads to the correct page after click")
