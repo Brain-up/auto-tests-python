@@ -143,14 +143,7 @@ class FooterPage(BasePage):
 
     @allure.step('Click on the REG.RU link in Footer and thereby open the corresponding web page in a new tab')
     def click_reg_link(self):
-        self.element_is_present_and_clickable(FooterLocators.REG_LINK).click()
-        time.sleep(5)
-
-    @allure.step("Get text of the element on the REG.RU page")
-    def get_element_text_on_opened_reg_tab(self):
-        self.timeout = 20
-        self.element_is_visible(RelatedPagesElementsLocators.REG_START_PAGE_TEXT)
-        return self.get_text(RelatedPagesElementsLocators.REG_START_PAGE_TEXT)
+        return self.element_is_present_and_clickable(FooterLocators.REG_LINK).click()
 
     @allure.step("Get attribute 'href' of the REG.RU link")
     def get_reg_link_href(self):
@@ -207,6 +200,10 @@ class FooterPage(BasePage):
     @allure.step('Check the Contact us link is clickable in Footer')
     def check_contact_us_link_clickability(self):
         return self.element_is_clickable(FooterLocators.CONTACT_US_LINK)
+
+    @allure.step('Click on the Contact us link in Footer and thereby open an email client')
+    def click_contact_us_link(self):
+        self.element_is_present_and_clickable(FooterLocators.CONTACT_US_LINK).click()
 
     @allure.step("Get attribute 'href' of the Contact us link")
     def get_contact_us_link_href(self):
