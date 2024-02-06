@@ -1,6 +1,7 @@
 import allure
 from pages.used_resources_page import UsedResourcesPage
 from locators.used_resources_page_locators import UsedResourcesPageLocators
+from test_data.used_resources_page_data import UsedResourcesPageData
 
 
 @allure.epic("Test Used Resources Page")
@@ -18,4 +19,5 @@ class TestUsedResourcesPage:
             page_title_text = page.get_used_resources_page_title_text()
             print(page_title_text)
             assert page_title, "The page title is invisible on the page"
-            assert page_title_text == "Используемые ресурсы", "The page title text does not match the expected value"
+            assert page_title_text in UsedResourcesPageData.used_resources_page_elements_text["page_title_text"], \
+                "The page title text does not match the expected value"
