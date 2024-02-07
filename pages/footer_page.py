@@ -29,8 +29,12 @@ class FooterPage(BasePage):
     def check_footer_invisibility(self):
         return self.element_is_not_visible(FooterLocators.FOOTER_SECTION)
 
-    @allure.step('Check the ARASAAC link is present and visible in Footer')
-    def check_arasaac_link_presence_and_visibility(self):
+    @allure.step('Check the ARASAAC link is present in Footer')
+    def check_arasaac_link_presence(self):
+        return self.element_is_present(FooterLocators.ARASAAC_LINK)
+
+    @allure.step('Check the ARASAAC link is visible in Footer')
+    def check_arasaac_link_visibility(self):
         return self.element_is_visible(FooterLocators.ARASAAC_LINK)
 
     @allure.step('Check the ARASAAC link is clickable in Footer')
@@ -49,7 +53,11 @@ class FooterPage(BasePage):
     def get_arasaac_link_href(self):
         return self.get_link_href(FooterLocators.ARASAAC_LINK)
 
-    @allure.step('Check the ARASAAC image is present and visible in Footer')
+    @allure.step('Check the ARASAAC image is present in Footer')
+    def check_arasaac_image_presence(self):
+        return self.element_is_present(FooterLocators.ARASAAC_IMAGE)
+
+    @allure.step('Check the ARASAAC image is visible in Footer')
     def check_arasaac_image_visibility(self):
         return self.element_is_visible(FooterLocators.ARASAAC_IMAGE)
 

@@ -41,20 +41,24 @@ class TestFooter:
         @allure.title("Verify presence, visibility and accuracy of the ARASAAC link and link's image in Footer")
         def test_fp_01_03_verify_arasaac_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_presence_and_visibility = page.check_arasaac_link_presence_and_visibility()
+            link_presence = page.check_arasaac_link_presence()
+            link_visibility = page.check_arasaac_link_visibility()
             link_clickability = page.check_arasaac_link_clickability()
             link_href = page.get_arasaac_link_href()
             link_status_code = requests.head(link_href).status_code
+            link_image_presence = page.check_arasaac_image_presence()
             link_image_visibility = page.check_arasaac_image_visibility()
             link_image_src = page.get_arasaac_image_src()
             link_image_alt = page.get_arasaac_image_alt()
-            assert link_presence_and_visibility is not None, "The ARASAAC link is absent or invisible"
-            assert link_clickability is not None, "The ARASAAC link is unclickable"
+            assert link_presence is not None, "The ARASAAC link is absent"
+            assert link_visibility, "The ARASAAC link is invisible"
+            assert link_clickability, "The ARASAAC link is unclickable"
             assert link_href == FooterData.footer_links_href["arasaac_link_href"], \
                 "The attribute 'href' of the ARASAAC link does not match the expected value"
             assert link_status_code == FooterData.footer_links_status_codes["arasaac_link_status_code"], \
                 "The ARASAAC link status code does not match the expected value"
-            assert link_image_visibility is not None, "The ARASAAC link image is absent or invisible"
+            assert link_image_presence is not None, "The ARASAAC link image is absent"
+            assert link_image_visibility, "The ARASAAC link image is invisible"
             assert link_image_src == FooterData.footer_images_src["arasaac_img_src"], \
                 "The ARASAAC link image is unaccurate"
             assert link_image_alt == FooterData.footer_images_alt["arasaac_img_alt"], \

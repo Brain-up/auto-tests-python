@@ -11,7 +11,11 @@ class UsedResourcesPage(BasePage):
     def open_used_resources_page(self):
         self.driver.get(MainPageLinks.URL_USED_RESOURCES_PAGE)
 
-    @allure.step('Check the page title is present and visible')
+    @allure.step('Check the page title is present in DOM')
+    def check_used_resources_page_title_presence(self):
+        return self.element_is_present(self.locators.PAGE_TITLE)
+
+    @allure.step('Check the page title is visible on the page')
     def check_used_resources_page_title_visibility(self):
         return self.element_is_visible(self.locators.PAGE_TITLE)
 
