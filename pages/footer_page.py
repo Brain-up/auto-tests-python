@@ -5,6 +5,9 @@ from pages.base_page import BasePage
 
 
 class FooterPage(BasePage):
+    locators = FooterLocators
+    locators1 = RelatedPagesElementsLocators
+
     @allure.step('Find the element on the page')
     def find_element(self, locator):
         return self.driver.find_element(*locator)
@@ -23,199 +26,199 @@ class FooterPage(BasePage):
 
     @allure.step('Check Footer is present in the DOM tree on the page')
     def check_footer_presence(self):
-        return self.element_is_present(FooterLocators.FOOTER_SECTION)
+        return self.element_is_present(self.locators.FOOTER_SECTION)
 
     @allure.step('Check Footer is invisible')
     def check_footer_invisibility(self):
-        return self.element_is_not_visible(FooterLocators.FOOTER_SECTION)
+        return self.element_is_not_visible(self.locators.FOOTER_SECTION)
 
     @allure.step('Check the ARASAAC link is present in Footer')
     def check_arasaac_link_presence(self):
-        return self.element_is_present(FooterLocators.ARASAAC_LINK)
+        return self.element_is_present(self.locators.ARASAAC_LINK)
 
     @allure.step('Check the ARASAAC link is visible in Footer')
     def check_arasaac_link_visibility(self):
-        return self.element_is_visible(FooterLocators.ARASAAC_LINK)
+        return self.element_is_visible(self.locators.ARASAAC_LINK)
 
     @allure.step('Check the ARASAAC link is clickable in Footer')
     def check_arasaac_link_clickability(self):
-        return self.element_is_clickable(FooterLocators.ARASAAC_LINK)
+        return self.element_is_clickable(self.locators.ARASAAC_LINK)
 
     @allure.step('Click on the ARASAAC link in Footer and thereby open the corresponding web page in a new tab')
     def click_arasaac_link(self):
-        self.element_is_present_and_clickable(FooterLocators.ARASAAC_LINK).click()
+        self.element_is_present_and_clickable(self.locators.ARASAAC_LINK).click()
 
     @allure.step("Get text of the element on the ARASAAC page")
     def get_element_text_on_opened_arasaac_tab(self):
-        return self.get_text(RelatedPagesElementsLocators.ARASAAC_OWNER_TITLE)
+        return self.get_text(self.locators1.ARASAAC_OWNER_TITLE)
 
     @allure.step("Get attribute 'href' of the ARASAAC link")
     def get_arasaac_link_href(self):
-        return self.get_link_href(FooterLocators.ARASAAC_LINK)
+        return self.get_link_href(self.locators.ARASAAC_LINK)
 
     @allure.step('Check the ARASAAC image is present in Footer')
     def check_arasaac_image_presence(self):
-        return self.element_is_present(FooterLocators.ARASAAC_IMAGE)
+        return self.element_is_present(self.locators.ARASAAC_IMAGE)
 
     @allure.step('Check the ARASAAC image is visible in Footer')
     def check_arasaac_image_visibility(self):
-        return self.element_is_visible(FooterLocators.ARASAAC_IMAGE)
+        return self.element_is_visible(self.locators.ARASAAC_IMAGE)
 
     @allure.step('Get attribute "src" of the ARASAAC image in Footer')
     def get_arasaac_image_src(self):
-        return self.get_image_src(FooterLocators.ARASAAC_IMAGE)
+        return self.get_image_src(self.locators.ARASAAC_IMAGE)
 
     @allure.step('Get attribute "alt" of the ARASAAC image in Footer')
     def get_arasaac_image_alt(self):
-        return self.get_image_alt(FooterLocators.ARASAAC_IMAGE)
+        return self.get_image_alt(self.locators.ARASAAC_IMAGE)
 
     @allure.step('Check the EPAM link is present and visible in Footer')
     def check_epam_link_presence_and_visibility(self):
-        return self.element_is_visible(FooterLocators.EPAM_LINK)
+        return self.element_is_visible(self.locators.EPAM_LINK)
 
     @allure.step('Check the EPAM link is clickable in Footer')
     def check_epam_link_clickability(self):
-        return self.element_is_clickable(FooterLocators.EPAM_LINK)
+        return self.element_is_clickable(self.locators.EPAM_LINK)
 
     @allure.step('Click on the EPAM link in Footer and thereby open the corresponding web page in a new tab')
     def click_epam_link(self):
-        self.element_is_present_and_clickable(FooterLocators.EPAM_LINK).click()
+        self.element_is_present_and_clickable(self.locators.EPAM_LINK).click()
 
     @allure.step("Get text of the element on the EPAM page")
     def get_element_text_on_opened_epam_tab(self):
-        return self.get_text(RelatedPagesElementsLocators.EPAM_START_PAGE_TEXT)
+        return self.get_text(self.locators1.EPAM_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the EPAM link")
     def get_epam_link_href(self):
-        return self.get_link_href(FooterLocators.EPAM_LINK)
+        return self.get_link_href(self.locators.EPAM_LINK)
 
     @allure.step('Check the EPAM image is present and visible in Footer')
     def check_epam_image_visibility(self):
-        return self.element_is_visible(FooterLocators.EPAM_IMAGE)
+        return self.element_is_visible(self.locators.EPAM_IMAGE)
 
     @allure.step('Get attribute "src" of the EPAM image in Footer')
     def get_epam_image_src(self):
-        return self.get_image_src(FooterLocators.EPAM_IMAGE)
+        return self.get_image_src(self.locators.EPAM_IMAGE)
 
     @allure.step('Get attribute "alt" of the EPAM image in Footer')
     def get_epam_image_alt(self):
-        return self.get_image_alt(FooterLocators.EPAM_IMAGE)
+        return self.get_image_alt(self.locators.EPAM_IMAGE)
 
     @allure.step('Check the Jetbrains link is present and visible in Footer')
     def check_jetbrains_link_presence_and_visibility(self):
-        return self.element_is_visible(FooterLocators.JETBRAINS_LINK)
+        return self.element_is_visible(self.locators.JETBRAINS_LINK)
 
     @allure.step('Check the Jetbrains link is clickable in Footer')
     def check_jetbrains_link_clickability(self):
-        return self.element_is_clickable(FooterLocators.JETBRAINS_LINK)
+        return self.element_is_clickable(self.locators.JETBRAINS_LINK)
 
     @allure.step('Click on the JETBRAINS link in Footer and thereby open the corresponding web page in a new tab')
     def click_jetbrains_link(self):
-        self.element_is_present_and_clickable(FooterLocators.JETBRAINS_LINK).click()
+        self.element_is_present_and_clickable(self.locators.JETBRAINS_LINK).click()
 
     @allure.step("Get text of the element on the JETBRAINS page")
     def get_element_text_on_opened_jetbrains_tab(self):
-        return self.get_text(RelatedPagesElementsLocators.JETBRAINS_START_PAGE_TEXT)
+        return self.get_text(self.locators1.JETBRAINS_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the Jetbrains link")
     def get_jetbrains_link_href(self):
-        return self.get_link_href(FooterLocators.JETBRAINS_LINK)
+        return self.get_link_href(self.locators.JETBRAINS_LINK)
 
     @allure.step('Check the Jetbrains image is present in the DOM tree on the page')
     def check_jetbrains_image_presence(self):
-        return self.element_is_present(FooterLocators.JETBRAINS_IMAGE)
+        return self.element_is_present(self.locators.JETBRAINS_IMAGE)
 
     @allure.step('Check the Jetbrains image is present and visible in Footer')
     def check_jetbrains_image_visibility(self):
-        return self.element_is_visible(FooterLocators.JETBRAINS_IMAGE)
+        return self.element_is_visible(self.locators.JETBRAINS_IMAGE)
 
     @allure.step('Check the Jetbrains image is invisible in Footer')
     def check_jetbrains_image_invisibility(self):
-        return self.element_is_not_visible(FooterLocators.JETBRAINS_IMAGE)
+        return self.element_is_not_visible(self.locators.JETBRAINS_IMAGE)
 
     @allure.step('Get attribute "src" of the Jetbrains image in Footer')
     def get_jetbrains_image_src(self):
-        return self.get_image_src(FooterLocators.JETBRAINS_IMAGE)
+        return self.get_image_src(self.locators.JETBRAINS_IMAGE)
 
     @allure.step('Get attribute "alt" of the Jetbrains image in Footer')
     def get_jetbrains_image_alt(self):
-        return self.get_image_alt(FooterLocators.JETBRAINS_IMAGE)
+        return self.get_image_alt(self.locators.JETBRAINS_IMAGE)
 
     @allure.step('Check the REG.RU link is present and visible in Footer')
     def check_reg_link_presence_and_visibility(self):
-        return self.element_is_visible(FooterLocators.REG_LINK)
+        return self.element_is_visible(self.locators.REG_LINK)
 
     @allure.step('Check the REG.RU link is clickable in Footer')
     def check_reg_link_clickability(self):
-        return self.element_is_clickable(FooterLocators.REG_LINK)
+        return self.element_is_clickable(self.locators.REG_LINK)
 
     @allure.step('Click on the REG.RU link in Footer and thereby open the corresponding web page in a new tab')
     def click_reg_link(self):
-        return self.element_is_present_and_clickable(FooterLocators.REG_LINK).click()
+        return self.element_is_present_and_clickable(self.locators.REG_LINK).click()
 
     @allure.step("Get attribute 'href' of the REG.RU link")
     def get_reg_link_href(self):
-        return self.get_link_href(FooterLocators.REG_LINK)
+        return self.get_link_href(self.locators.REG_LINK)
 
     @allure.step('Check the REG.RU image is present and visible in Footer')
     def check_reg_image_visibility(self):
-        return self.element_is_visible(FooterLocators.REG_IMAGE)
+        return self.element_is_visible(self.locators.REG_IMAGE)
 
     @allure.step('Get attribute "src" of the REG.RU image in Footer')
     def get_reg_image_src(self):
-        return self.get_image_src(FooterLocators.REG_IMAGE)
+        return self.get_image_src(self.locators.REG_IMAGE)
 
     @allure.step('Get attribute "alt" of the REG.RU image in Footer')
     def get_reg_image_alt(self):
-        return self.get_image_alt(FooterLocators.REG_IMAGE)
+        return self.get_image_alt(self.locators.REG_IMAGE)
 
     @allure.step('Check the Selectel link is present and visible in Footer')
     def check_selectel_link_presence_and_visibility(self):
-        return self.element_is_visible(FooterLocators.SELECTEL_LINK)
+        return self.element_is_visible(self.locators.SELECTEL_LINK)
 
     @allure.step('Check the Selectel link is clickable in Footer')
     def check_selectel_link_clickability(self):
-        return self.element_is_clickable(FooterLocators.SELECTEL_LINK)
+        return self.element_is_clickable(self.locators.SELECTEL_LINK)
 
     @allure.step('Click on the Selectel link in Footer and thereby open the corresponding web page in a new tab')
     def click_selectel_link(self):
-        self.element_is_present_and_clickable(FooterLocators.SELECTEL_LINK).click()
+        self.element_is_present_and_clickable(self.locators.SELECTEL_LINK).click()
 
     @allure.step("Get text of the element on the Selectel page")
     def get_element_text_on_opened_selectel_tab(self):
-        return self.get_text(RelatedPagesElementsLocators.SELECTEL_START_PAGE_TEXT)
+        return self.get_text(self.locators1.SELECTEL_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the Selectel link")
     def get_selectel_link_href(self):
-        return self.get_link_href(FooterLocators.SELECTEL_LINK)
+        return self.get_link_href(self.locators.SELECTEL_LINK)
 
     @allure.step('Check the Selectel image is present and visible in Footer')
     def check_selectel_image_visibility(self):
-        return self.element_is_visible(FooterLocators.SELECTEL_IMAGE)
+        return self.element_is_visible(self.locators.SELECTEL_IMAGE)
 
     @allure.step('Get attribute "src" of the Selectel image in Footer')
     def get_selectel_image_src(self):
-        return self.get_image_src(FooterLocators.SELECTEL_IMAGE)
+        return self.get_image_src(self.locators.SELECTEL_IMAGE)
 
     @allure.step('Get attribute "alt" of the Selectel image in Footer')
     def get_selectel_image_alt(self):
-        return self.get_image_alt(FooterLocators.SELECTEL_IMAGE)
+        return self.get_image_alt(self.locators.SELECTEL_IMAGE)
 
     @allure.step('Check the Contact us link is present and visible in Footer')
     def check_contact_us_link_presence_and_visibility(self):
-        return self.element_is_visible(FooterLocators.CONTACT_US_LINK)
+        return self.element_is_visible(self.locators.CONTACT_US_LINK)
 
     @allure.step('Check the Contact us link is clickable in Footer')
     def check_contact_us_link_clickability(self):
-        return self.element_is_clickable(FooterLocators.CONTACT_US_LINK)
+        return self.element_is_clickable(self.locators.CONTACT_US_LINK)
 
     @allure.step('Click on the Contact us link in Footer and thereby open an email client')
     def click_contact_us_link(self):
-        self.element_is_present_and_clickable(FooterLocators.CONTACT_US_LINK).click()
+        self.element_is_present_and_clickable(self.locators.CONTACT_US_LINK).click()
 
     @allure.step("Get attribute 'href' of the Contact us link")
     def get_contact_us_link_href(self):
-        return self.get_link_href(FooterLocators.CONTACT_US_LINK)
+        return self.get_link_href(self.locators.CONTACT_US_LINK)
 
     @allure.step("Check the prefix and the subject in the attribute 'href' of the Contact us link")
     def check_contact_us_link_href(self):
