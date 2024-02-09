@@ -38,7 +38,7 @@ class TestFooter:
                 f"The actual text '{actual_text}' of the element does not match any of the valid options" \
                 f"'{' | '.join(expected_text)}' on the page {url}"
 
-        @allure.title("Verify presence, visibility and accuracy of the ARASAAC link and link's image in Footer")
+        @allure.title("Verify presence, visibility, clickability, href, status code of the ARASAAC link in Footer")
         def test_fp_01_03_verify_arasaac_link(self, driver, main_page_open):
             page = FooterPage(driver)
             link_presence = page.check_arasaac_link_presence()
@@ -46,10 +46,6 @@ class TestFooter:
             link_clickability = page.check_arasaac_link_clickability()
             link_href = page.get_arasaac_link_href()
             link_status_code = requests.head(link_href).status_code
-            link_image_presence = page.check_arasaac_image_presence()
-            link_image_visibility = page.check_arasaac_image_visibility()
-            link_image_src = page.get_arasaac_image_src()
-            link_image_alt = page.get_arasaac_image_alt()
             assert link_presence is not None, "The ARASAAC link is absent"
             assert link_visibility, "The ARASAAC link is invisible"
             assert link_clickability, "The ARASAAC link is unclickable"
@@ -57,12 +53,6 @@ class TestFooter:
                 "The attribute 'href' of the ARASAAC link does not match the expected value"
             assert link_status_code == FooterData.footer_links_status_codes["arasaac_link_status_code"], \
                 "The ARASAAC link status code does not match the expected value"
-            assert link_image_presence is not None, "The ARASAAC link image is absent"
-            assert link_image_visibility, "The ARASAAC link image is invisible"
-            assert link_image_src == FooterData.footer_images_src["arasaac_img_src"], \
-                "The ARASAAC link image is unaccurate"
-            assert link_image_alt == FooterData.footer_images_alt["arasaac_img_alt"], \
-                "The ARASAAC link image is unaccurate"
 
         @allure.title("Verify presence, visibility and accuracy of the EPAM link and link's image in Footer")
         def test_fp_01_04_verify_epam_link(self, driver, main_page_open):
@@ -230,3 +220,19 @@ class TestFooter:
             page = FooterPage(driver)
             page.click_contact_us_link()
             assert True, "the Contact us link in Footer does not call an email client"
+
+    class TestFooterImages:
+        @allure.title("Verify presence, visibility and accuracy of the ARASAAC link's image in Footer")
+        def test_fp_04_01_verify_arasaac_link_image(self, driver, main_page_open):
+            page = FooterPage(driver)
+            link_image_presence = page.check_arasaac_image_presence()
+            link_image_visibility = page.check_arasaac_image_visibility()
+            link_image_src = page.get_arasaac_image_src()
+            link_image_alt = page.get_arasaac_image_alt()
+            assert link_image_presence is not None, "The ARASAAC link image is absent"
+            assert link_image_visibility, "The ARASAAC link image is invisible"
+            assert link_image_src == FooterData.footer_images_src["arasaac_img_src"], \
+                "The ARASAAC link image is unaccurate"
+            assert link_image_alt == FooterData.footer_images_alt["arasaac_img_alt"], \
+                "The ARASAAC link image is unaccurate"
+
