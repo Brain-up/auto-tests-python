@@ -35,4 +35,10 @@ class UsedResourcesPage(BasePage):
     def get_text_content_on_the_used_resources_page(self):
         return self.element_is_visible(self.locators.PAGE_TEXT).text
 
+    @allure.step('Check if the section with links is present in DOM')
+    def check_presence_of_links_section_on_used_resources_page(self):
+        return self.element_is_present(self.locators.LINKS_SECTION)
 
+    @allure.step('Check if the section with links is visible on the page')
+    def check_visibility_of_links_section_on_used_resources_page(self):
+        return self.element_is_visible(self.locators.LINKS_SECTION)
