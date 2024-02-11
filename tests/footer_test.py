@@ -229,10 +229,11 @@ class TestFooter:
             link_image_visibility = page.check_arasaac_image_visibility()
             link_image_src = page.get_arasaac_image_src()
             link_image_alt = page.get_arasaac_image_alt()
-            assert link_image_presence is not None, "The ARASAAC link image is absent"
+            assert link_image_presence is not None, "The image in the ARASAAC link is absent"
             assert link_image_visibility, "The ARASAAC link image is invisible"
+            assert link_image_src, "The 'src' attribute value of the ARASAAC link's image is empty"
             assert link_image_src == FooterData.footer_images_src["arasaac_img_src"], \
-                "The ARASAAC link image is unaccurate"
+                "The 'src' attribute value of the ARASAAC link image is unaccurate"
+            assert link_image_alt, "The 'alt' attribute value of the ARASAAC link image is empty"
             assert link_image_alt == FooterData.footer_images_alt["arasaac_img_alt"], \
                 "The ARASAAC link image is unaccurate"
-
