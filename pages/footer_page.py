@@ -72,6 +72,14 @@ class FooterPage(BasePage):
     def get_arasaac_image_alt(self):
         return self.get_image_alt(self.locators.ARASAAC_IMAGE)
 
+    @allure.step('Get attribute "width" of the ARASAAC image in Footer')
+    def get_visible_width_of_arasaac_image(self):
+        return self.element_is_visible(self.locators.ARASAAC_IMAGE).get_attribute('width')
+
+    @allure.step('Get attribute "height" of the ARASAAC image in Footer')
+    def get_visible_height_of_arasaac_image(self):
+        return self.element_is_visible(self.locators.ARASAAC_IMAGE).get_attribute('height')
+
     @allure.step('Check the EPAM link is present and visible in Footer')
     def check_epam_link_presence_and_visibility(self):
         return self.element_is_visible(self.locators.EPAM_LINK)
