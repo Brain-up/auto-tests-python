@@ -83,6 +83,11 @@ class BasePage:
         with allure.step(f'Get text in the element: {locator}'):
             return self.element_is_visible(locator).text
 
+    def get_current_page_title(self):
+        current_page_title = self.driver.title
+        print('The title of the current page is: ', current_page_title)
+        return current_page_title
+
     def element_is_not_clickable(self, locator):
         self.timeout = 5
         try:
