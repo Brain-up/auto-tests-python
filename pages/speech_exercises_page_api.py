@@ -24,6 +24,7 @@ class SpeechExercisesAPI(BasePage):
     locators = SpeechExercisesPageLocators()
 
     @staticmethod
+    @allure.step('get_random_id_from_list_sub_group')
     def get_random_id_from_list_sub_group(card_id, seria_id):
         print('Card_id is:', card_id)
         print('Seria_id is:', seria_id)
@@ -46,6 +47,7 @@ class SpeechExercisesAPI(BasePage):
 
     # General methods
     @staticmethod
+    @allure.step('get_list_of_words_from_card')
     def get_list_of_words_from_card(card_id):
         result_get = requests.get(f'https://brainup.site/api/tasks/{str(card_id)}',
                                   headers={'Content-Type': 'application/json',
@@ -60,6 +62,7 @@ class SpeechExercisesAPI(BasePage):
         return ref_list
 
     @staticmethod
+    @allure.step('get_list_of_words_from_card_group_words')
     def get_list_of_words_from_card_group_words(card_id):
         result_get = requests.get(f'https://brainup.site/api/tasks/{str(card_id)}',
                                   headers={'Content-Type': 'application/json',
@@ -75,6 +78,7 @@ class SpeechExercisesAPI(BasePage):
             print('\nBACKEND LIST in lowercase: ', ref_list)
         return ref_list
 
+    @allure.step('click_start_and_get_list_words_en')
     def click_start_and_get_list_words_en(self):
         with allure.step('Click button "Start".'):
             self.element_is_present_and_clickable(self.locators.BUTTON_START_EN).click()
@@ -84,6 +88,7 @@ class SpeechExercisesAPI(BasePage):
             print('\nUI LIST: ', words)
         return words
 
+    @allure.step('click_start_and_get_list_words_ru')
     def click_start_and_get_list_words_ru(self):
         with allure.step('Click button "Start".'):
             self.element_is_present_and_clickable(self.locators.BUTTON_START_RU).click()
@@ -97,6 +102,7 @@ class SpeechExercisesAPI(BasePage):
             self.element_is_present_and_clickable(self.locators.BUTTON_SOLVE_RU).click()
         return words
 
+    @allure.step('click_start_and_get_list_words_for_group_words_ru')
     def click_start_and_get_list_words_for_group_words_ru(self):
         with allure.step('Click button "Start".'):
             self.element_is_present_and_clickable(self.locators.BUTTON_START_RU).click()
@@ -107,6 +113,7 @@ class SpeechExercisesAPI(BasePage):
         return words
 
     @staticmethod
+    @allure.step('get_random_id_from_list_sub_group_default')
     def get_random_id_from_list_sub_group_default(card_id, seria_id):
         print('Card_id is:', card_id)
         print('Seria_id is:', seria_id)
@@ -133,6 +140,7 @@ class SpeechExercisesAPI(BasePage):
 
     # General methods
     @staticmethod
+    @allure.step('get_list_of_words_from_card_default')
     def get_list_of_words_from_card_default(card_id):
         result_get = requests.post(f'https://brainup.site/api/tasks/{str(card_id)}',
                                    headers={'Content-Type': 'application/json',
@@ -146,6 +154,7 @@ class SpeechExercisesAPI(BasePage):
         return ref_list
 
     @staticmethod
+    @allure.step('get_random_id_from_payloads')
     def get_random_id_from_payloads(payloads):
         exercises = requests.post(f'https://brainup.site/api/exercises/byIds',
                                   headers={'Content-Type': 'application/json',
