@@ -9,6 +9,7 @@ from pages.base_page import BasePage
 class SpeechExercisesPage(BasePage):
     locators = locators
 
+    @allure.step('select_group')
     def select_group(self, selector_for_sub_group):
         with allure.step('Select Russian language. Click "RU" button.'):
             self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.EN_BUTTON).click()
@@ -31,6 +32,7 @@ class SpeechExercisesPage(BasePage):
             id_for_api_group = str(url).split('/')[-1]
             return id_for_api_group
 
+    @allure.step('click_random_card_in_words')
     def click_random_card_in_words(self):
         self.element_is_present(self.locators.SpeechExercisesPageLocators.LIST_OF_LESSONS)
         self.element_is_present_and_clickable(self.locators.SpeechExercisesPageLocators.WORDS_EN).click()
@@ -45,6 +47,7 @@ class SpeechExercisesPage(BasePage):
         print('Selected sub group is:', random_card.text)
         return id_card_from_list
 
+    @allure.step('check_button_interact')
     def check_button_interact(self):
         with allure.step('Check button "INTERACT" is present.'):
             button_interact = self.element_is_present_and_clickable(
@@ -54,6 +57,7 @@ class SpeechExercisesPage(BasePage):
             print('Clicked button INTERACT.')
             return button_interact
 
+    @allure.step('check_button_solve')
     def check_button_solve(self):
         with allure.step('Check button "SOLVE" is present.'):
             button_solve = self.element_is_present_and_clickable(self.locators.SpeechExercisesPageLocators.BUTTON_SOLVE)
@@ -62,12 +66,14 @@ class SpeechExercisesPage(BasePage):
             print('Clicked button SOLVE.')
             return button_solve
 
+    @allure.step('check_progressbar')
     def check_progressbar(self):
         with allure.step('Check "progress-bar" is present after click button "SOLVE".'):
             progress_bar = self.elements_are_visible(self.locators.SpeechExercisesPageLocators.PROGRESS_BAR)
             return progress_bar
 
     # Methods for checking of exercises in the "Similar phrases" group
+    @allure.step('click_random_sub_group_in_similar_phrases')
     def click_random_sub_group_in_similar_phrases(self):
         with allure.step('Wait until cards is present.'):
             self.element_is_present(self.locators.SpeechExercisesPageLocators.LIST_OF_LESSONS)
