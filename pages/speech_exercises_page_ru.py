@@ -1,6 +1,7 @@
 import random
 
 import allure
+from selenium.webdriver.common.by import By
 
 from locators import speech_exercises_page_locators as locators
 from pages.base_page import BasePage
@@ -52,3 +53,50 @@ class SpeechExercisesPageRU(BasePage):
             random_card.click()
         print('Selected sub group is:', random_card.text)
         return id_card_from_list
+
+    def click_random_card_for_solve(self):
+        list_cards_name = [i.text for i in self.elements_are_present(
+            self.locators.SpeechExercisesPageLocators.LIST_OF_LESSONS)]
+        with allure.step(f'Getting list cards: {list_cards_name}'):
+            pass
+        id_card_from_list = random.randint(0, len(list_cards_name) - 1)
+        with allure.step(f'Select random id from list of cards. \nCard ID in list is:, {id_card_from_list + 1}'):
+            print('Card ID in list is:', id_card_from_list + 1)
+        random_card = self.elements_are_present(self.locators.SpeechExercisesPageLocators.AVAILABLE_EXERCISES)[
+            id_card_from_list]
+        with allure.step(f'Selected card is: {random_card.text}'):
+            self.go_to_element(random_card)
+            random_card.click()
+        print('Selected sub group is:', random_card.text)
+        return id_card_from_list
+
+    def get_correct_answer(self):
+        try:
+            while True:
+                self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)
+                answer_value = self.element_is_present(
+                    self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(
+                    'data-correct-answer')
+                if answer_value != "undefined":
+                    correct_card = self.element_is_present_and_clickable((By.XPATH, f'//*[text()="{answer_value}"]'))
+                    self.action_move_to_element(correct_card)
+
+                    correct_card.click()
+                else:
+                    message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)
+                    print(message.text)
+                    return message.text
+        except Exception as ex:
+            print(ex)
+            message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)
+            print(message.text)
+            return message.text
+
+    def get_stats_data(self):
+        result = [i.text for i in
+                  self.elements_are_present(self.locators.SpeechExercisesPageLocators.LIST_RESULT_SOLUTION)]
+        print(result)
+        return result
+
+    def click_button_continue(self):
+        self.element_is_present_and_clickable(self.locators.SpeechExercisesPageLocators.CONTINUE_BUTTON_RU).click()

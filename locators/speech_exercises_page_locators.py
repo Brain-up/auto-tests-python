@@ -22,9 +22,17 @@ class SpeechExercisesPageLocators:
     BUTTON_SOLVE = (By.XPATH, '//*[text()="Solve"]')
     BUTTON_START_EN = (By.XPATH, '//button[@aria-label="Start exercise"]')
     BUTTON_START_RU = (By.XPATH, '//button[@aria-label="Начать выполнение упражнения"]')
+    BUTTON_REPEAT_RU = (By.XPATH, '//*[text()="Повторить"]')
+    BUTTON_SOLVE_RU = (By.XPATH, '//*[text()="Решать"]')
+    CORRECT_ANSWER = (By.XPATH, '//body[@data-correct-answer]')
+
     LIST_WORDS_IN_CARD = (By.XPATH, '//li[@class="task-player__option flex"]')
     LIST_WORDS_FOR_GROUP_WORDS = (By.XPATH, '//div[@class="flex justify-center flex-grow mt-4"]//span')
     PROGRESS_BAR = (By.XPATH, '//div[@class="progress-bar"]')
+    PROGRESS_BAR_VALUE = (By.XPATH, '//div[@class="progress-bar"]/div')
+    RESULT_SOLUTION = (By.XPATH, '//ul[@class="leading-10 text-center"]')
+    LIST_RESULT_SOLUTION = (By.XPATH, '//ul[@class="leading-10 text-center"]/li')
+    CONGRATULATION_MESSAGE = (By.XPATH, '//h3[@class="mt-6 mb-6 text-2xl font-semibold"]')
 
     # Speech exercises_EN Header
     WORDS_BUTTON_EN = (By.XPATH, '//button[@data-test-active-link="Words"]')
@@ -38,6 +46,8 @@ class SpeechExercisesPageLocators:
     SENTENCES_RU = (By.XPATH, '//button[@title="Распознавание предложений"]')
     WORDS_WITH_FREQUENCY_GROUPING_RU = (By.XPATH, '//button[@title="Слова с частотной группировкой"]')
     LIST_OF_LESSONS = (By.XPATH, '//div[contains(@class, "series-container")]//a/div/div')
+    AVAILABLE_EXERCISES = (By.XPATH, '//div[@class="flex"]//div[@class="title"]')
+    CONTINUE_BUTTON_RU = (By.XPATH, '//*[text()="Продолжить"]')
 
     WORDS_EN = (By.XPATH, '//button[@data-test-active-link="Words"]')
 
