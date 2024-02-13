@@ -115,10 +115,13 @@ class TestCardsRU:
         list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
-    @allure.suite('Решение.')
-    @allure.title('Решение Слова.')
+    @allure.suite('Слова.')
+    @allure.title('Solutions to a random task in the "Слова" group and comparison of statics.')
     def test_solve_word_cards_ru(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)
+        table = page.get_statistic_data()
+        start_result = list(table[1].values())[5]
+        page.click_button_exercises()
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
         card_id = page.click_random_card()
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
@@ -132,6 +135,18 @@ class TestCardsRU:
         page.click_start_and_get_list_words_ru()
         page = SpeechExercisesPageRU(driver)
         message = page.get_correct_answer()
-        assert message == 'Поздравляем! Упражнение выполнено!'
+        assert message == 'Поздравляем! Упражнение выполнено!', 'Congratulation text is missing.'
         result = page.get_stats_data()
+        middle_result = result[1].split(':')[-1]
         page.click_button_continue()
+        table = page.get_statistic_data()
+        finish_result = list(table[1].values())[5]
+        assert int(start_result) + int(middle_result) == int(finish_result), 'Incorrect display of statistics data.'
+
+    @allure.suite('Statistic.')
+    @allure.title('Check statistic table.')
+    def test_get_statistic_data(self, driver, default_user_authorized):
+        page = SpeechExercisesPageRU(driver)
+        table = page.get_statistic_data()
+        assert table != {}
+

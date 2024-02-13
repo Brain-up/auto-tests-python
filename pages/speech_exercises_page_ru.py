@@ -1,4 +1,5 @@
 import random
+import time
 
 import allure
 from selenium.webdriver.common.by import By
@@ -77,6 +78,7 @@ class SpeechExercisesPageRU(BasePage):
     def get_correct_answer(self):
         try:
             while True:
+                time.sleep(1)
                 self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)
                 answer_value = self.element_is_present(
                     self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(
@@ -92,16 +94,40 @@ class SpeechExercisesPageRU(BasePage):
         except Exception as ex:
             print(ex)
             message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)
-            print(message.text)
             return message.text
 
-    @allure.step('get_stats_data')
+    @allure.step('get_result_data')
     def get_stats_data(self):
         result = [i.text for i in
                   self.elements_are_present(self.locators.SpeechExercisesPageLocators.LIST_RESULT_SOLUTION)]
-        print(result)
+        with allure.step(f'Result is: {result}'):
+            pass
         return result
 
-    @allure.step('click_button_continue')
+    @allure.step('Click button "Продолжить".')
     def click_button_continue(self):
         self.element_is_present_and_clickable(self.locators.SpeechExercisesPageLocators.CONTINUE_BUTTON_RU).click()
+
+    @allure.step('get_statistic_data')
+    def get_statistic_data(self):
+        with allure.step('Click button "Статистика"".'):
+            self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.STATISTIC_RU).click()
+        with allure.step('Check statistic table is present and scroll to table'):
+            table = self.element_is_present(self.locators.AuthorizedUserHomePageLocators.STATISTIC_TABLE)
+            self.go_to_element(table)
+        with allure.step('Get data from the table.'):
+            lens = len(self.elements_are_present((By.XPATH, "//tbody/tr")))
+            titles = self.elements_are_present(self.locators.AuthorizedUserHomePageLocators.STATISTIC_DATA_TITLES)
+            title = [i.text for i in titles]
+            table = {}
+            for i in range(1, lens + 1):
+                table.setdefault(i, {})
+                for j in range(len(title)):
+                    table[i].setdefault(title[j], self.element_is_present((By.XPATH, f"//tbody/tr[{i}]/td[{j + 1}]")).text)
+        with allure.step(f'Table data: {table}'):
+            pass
+        return table
+
+    @allure.step('Click button "Упражнения".')
+    def click_button_exercises(self):
+        self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.BUTTON_EXERCISES_RU).click()
