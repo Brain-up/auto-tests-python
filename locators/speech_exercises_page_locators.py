@@ -13,6 +13,15 @@ class AuthorizedUserHomePageLocators:
     SPEECH_EXERCISES_RU = (By.XPATH, '//a[@title="Речевые упражнения"]')
     SPEECH_EXERCISES_EN = (By.XPATH, '//a[@title="Speech"]')
 
+    STATISTIC_RU = (By.XPATH, "//a[text()='Статистика']")
+    AMOUNT_TABLE_TR = (By.XPATH, "//tr")
+
+    STATISTIC_TABLE = (By.XPATH, '//div[@class="__51e19"]')
+    STATISTIC_DATA = (By.XPATH, '//td[@class="px-4 py-2 border"]')
+    STATISTIC_DATA_TITLES = (By.XPATH, '//th[@class="px-4 py-2"]')
+
+    BUTTON_EXERCISES_RU = (By.XPATH, '//a[text()="Упражнения"]')
+
 
 class SpeechExercisesPageLocators:
     """
