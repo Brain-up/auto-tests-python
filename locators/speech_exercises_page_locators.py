@@ -13,7 +13,7 @@ class AuthorizedUserHomePageLocators:
     SPEECH_EXERCISES_RU = (By.XPATH, '//a[@title="Речевые упражнения"]')
     SPEECH_EXERCISES_EN = (By.XPATH, '//a[@title="Speech"]')
 
-    STATISTIC_RU = (By.XPATH, "//a[text()='Статистика']")
+    STATISTIC_BUTTON = (By.ID, '#ember6')
     AMOUNT_TABLE_TR = (By.XPATH, "//tr")
 
     STATISTIC_TABLE = (By.XPATH, '//div[@class="__51e19"]')
