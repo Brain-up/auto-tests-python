@@ -111,7 +111,7 @@ class SpeechExercisesPageRU(BasePage):
     @allure.step('get_statistic_data')
     def get_statistic_data(self):
         with allure.step('Click button "Статистика"".'):
-            self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.STATISTIC_RU).click()
+            self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.STATISTIC_BUTTON).click()
         with allure.step('Check statistic table is present and scroll to table'):
             table = self.element_is_present(self.locators.AuthorizedUserHomePageLocators.STATISTIC_TABLE)
             self.go_to_element(table)
