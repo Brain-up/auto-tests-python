@@ -85,6 +85,9 @@ class BasePage:
         with allure.step(f'Get text in the element: {locator}'):
             return self.element_is_visible(locator).text
 
+    def get_link_href(self, locator):
+        return self.driver.find_element(*locator).get_attribute("href")
+
     def get_current_page_title(self):
         current_page_title = self.driver.title
         print('The title of the current page is: ', current_page_title)

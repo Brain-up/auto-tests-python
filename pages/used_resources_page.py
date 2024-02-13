@@ -42,3 +42,19 @@ class UsedResourcesPage(BasePage):
     @allure.step('Check if the section with links is visible on the page')
     def check_visibility_of_links_section_on_used_resources_page(self):
         return self.element_is_visible(self.locators.LINKS_SECTION)
+
+    @allure.step('Check the freepik.com link is present in DOM')
+    def check_freepik_com_link_presence(self):
+        return self.element_is_present(self.locators.FREEPIK_COM_LINK)
+
+    @allure.step('Check the freepik.com link is visible on the page')
+    def check_freepik_com_link_visibility(self):
+        return self.element_is_visible(self.locators.FREEPIK_COM_LINK)
+
+    @allure.step('Check the freepik.com link is clickable')
+    def check_freepik_com_link_clickability(self):
+        return self.element_is_clickable(self.locators.FREEPIK_COM_LINK)
+
+    @allure.step("Get attribute 'href' of the freepik.com link")
+    def get_freepik_com_link_href(self):
+        return self.get_link_href(self.locators.FREEPIK_COM_LINK)
