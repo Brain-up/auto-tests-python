@@ -20,10 +20,6 @@ class FooterPage(BasePage):
     def get_image_alt(self, locator):
         return self.driver.find_element(*locator).get_attribute("alt")
 
-    @allure.step("Get attribute 'href' of link")
-    def get_link_href(self, locator):
-        return self.driver.find_element(*locator).get_attribute("href")
-
     @allure.step('Check Footer is present in the DOM tree on the page')
     def check_footer_presence(self):
         return self.element_is_present(self.locators.FOOTER_SECTION)
