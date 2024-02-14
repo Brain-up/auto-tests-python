@@ -21,6 +21,7 @@ class AuthorizedUserHomePageLocators:
     STATISTIC_DATA_TITLES = (By.XPATH, '//th[@class="px-4 py-2"]')
 
     BUTTON_EXERCISES_RU = (By.XPATH, '//a[text()="Упражнения"]')
+    BUTTON_EXERCISES_EN = (By.XPATH, '//a[text()="Groups"]')
 
 
 class SpeechExercisesPageLocators:
