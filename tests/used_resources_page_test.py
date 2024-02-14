@@ -48,9 +48,15 @@ class TestUsedResourcesPage:
             assert links_section_presence is not None, "The section with links is absent in DOM"
             assert links_section_visibility, "The section with links is invisible on the page"
 
-        @allure.title("Verify presence and visibility of the section with freepik.com link on the page")
+        @allure.title("Verify presence and visibility of the section with the freepik.com link on the page")
         def test_ur_01_04_verify_section_of_freepik_com_link(self, driver, auto_test_user_authorized):
-            pass
+            page = UsedResourcesPage(driver)
+            page.open_used_resources_page()
+            print(driver.current_url)
+            section_presence = page.check_presence_of_freepik_com_link_section()
+            section_visibility = page.check_visibility_of_freepik_com_link_section()
+            assert section_presence is not None, "The section with the freepik.com link is absent"
+            assert section_visibility, "The section with the freepik.com link is invisible"
 
         @allure.title("Verify presence, visibility, clickability, href, status code of the freepik.com link")
         def test_ur_01_05_verify_freepik_com_link(self, driver, auto_test_user_authorized):
