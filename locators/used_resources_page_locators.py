@@ -6,3 +6,4 @@ class UsedResourcesPageLocators:
     PAGE_TEXT = (By.XPATH, "//section/p")
     LINKS_SECTION = (By.XPATH, "//section/ul")
     FREEPIK_COM_LINK = (By.XPATH, "(//section//li)[1]/a")
+    FREEPIK_COM_LINK_SECTION = (By.XPATH, "(//section//li)[1]")
