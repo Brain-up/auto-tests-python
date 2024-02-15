@@ -190,3 +190,6 @@ class TestCardsRU:
         table = page.get_statistic_data()
         print(table)
         assert table != {}
+EMAIL="test4"
+PASSWORD="testpassword"
+BODY={"email":"test4","password":"testpassword"}
