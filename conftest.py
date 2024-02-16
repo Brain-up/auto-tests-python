@@ -1,7 +1,6 @@
 import os
-from datetime import datetime
-
 import shutil
+from datetime import datetime
 
 import allure
 import pytest
