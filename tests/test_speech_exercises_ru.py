@@ -117,7 +117,6 @@ class TestCardsRU:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @allure.suite('Слова.')
-    @pytest.mark.xfail(reason="In CI the test failed in PR#156, PR#158, PR#159, the contributor team has been notified")
     @allure.title('Solutions to a random task in the "Слова" group and comparison of statics.')
     def test_solve_word_cards_ru(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)
