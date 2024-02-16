@@ -130,6 +130,13 @@ class SpeechExercisesPageRU(BasePage):
 
     @allure.step('Click button "Упражнения".')
     def click_button_exercises(self):
+        with allure.step('Click button "RU".'):
+            self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.RU_BUTTON).click()
         button = self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.BUTTON_EXERCISES_RU)
         self.go_to_element(button)
         self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.BUTTON_EXERCISES_RU).click()
+
+    @allure.step('click_button RU')
+    def click_button_ru(self):
+        with allure.step('Click button "RU".'):
+            self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.RU_BUTTON).click()

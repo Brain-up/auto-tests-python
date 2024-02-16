@@ -53,7 +53,5 @@ def default_user_authorized(driver, main_page_open):
     page.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
     page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["DEFAULT_LOGIN"])
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
-    current_page = page.get_current_url()
-    page.wait_changed_url(current_page)
-    page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+    page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
     return page
