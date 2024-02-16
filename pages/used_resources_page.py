@@ -66,3 +66,7 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get attribute 'href' of the freepik.com link")
     def get_freepik_com_link_href(self):
         return self.get_link_href(self.locators.FREEPIK_COM_LINK)
+
+    @allure.step('Get content of the text in the freepik.com link')
+    def get_text_in_freepik_com_link(self):
+        return self.element_is_visible(self.locators.FREEPIK_COM_LINK).text
