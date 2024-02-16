@@ -40,8 +40,8 @@ jobs:
           SPECIALIST_LOGIN: ${{ secrets.SPECIALIST_LOGIN }}
           DEFAULT_LOGIN: ${{ secrets.DEFAULT_LOGIN }}
         run: |
-#          pytest -s -vv --alluredir=allure-results
-          pytest -s -vv --alluredir=allure-results .tests/test_speech_exercises_ru.py
+#              pytest -s -vv --alluredir=allure-results
+               pytest -s -vv --alluredir=allure-results .tests/test_speech_exercises_ru.py
 
       - name: Add allure information
         working-directory: allure-results
@@ -72,10 +72,10 @@ jobs:
         run: |
           sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
 
-#      - name: Update Allure history
-#        if: always()
-#        run: |
-#          sudo cp -R allure-report/history/* gh-pages/history/
+      #      - name: Update Allure history
+      #        if: always()
+      #        run: |
+      #          sudo cp -R allure-report/history/* gh-pages/history/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -84,5 +84,5 @@ jobs:
           token: ${{ secrets.CI_TOKEN }}
           branch: gh-pages
           folder: allure-report
-#          history dir: allure-history
+          #          history dir: allure-history
           #clean: true
