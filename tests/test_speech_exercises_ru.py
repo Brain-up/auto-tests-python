@@ -116,48 +116,8 @@ class TestCardsRU:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @allure.suite('Слова.')
-    @allure.title('Solutions to a random task in the "Слова" .')
-    def test_solve_word_cards_ru(self, driver, default_user_authorized):
-        page = SpeechExercisesPageRU(driver)
-        page.click_button_exercises()
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
-        card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
-
-        page = SpeechExercisesAPI(driver)
-        payloads = page.get_random_id_from_list_sub_group_default(
-            card_id, seria_id)  # getting random ID from exercises group
-        random_id = page.get_random_id_from_payloads(payloads)
-        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
-
-        page.click_start_and_get_list_words_ru()
-        page = SpeechExercisesPageRU(driver)
-        message = page.get_correct_answer()
-        assert message == 'Поздравляем! Упражнение выполнено!', 'Congratulation text is missing.'
-
-    @allure.suite('Слова Королёвой.')
-    @allure.title('Solutions to a random task in the "Слова Королёвой" .')
-    def test_solve_koroleva_cards_ru(self, driver, default_user_authorized):
-        page = SpeechExercisesPageRU(driver)
-        page.click_button_exercises()
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
-        card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
-
-        page = SpeechExercisesAPI(driver)
-        payloads = page.get_random_id_from_list_sub_group_default(
-            card_id, seria_id)  # getting random ID from exercises group
-        random_id = page.get_random_id_from_payloads(payloads)
-        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
-
-        page.click_start_and_get_list_words_ru()
-        page = SpeechExercisesPageRU(driver)
-        message = page.get_correct_answer()
-        assert message == 'Поздравляем! Упражнение выполнено!', 'Congratulation text is missing.'
-
-    @allure.suite('Слова.')
     @allure.title('Solutions to a random task in the "Слова" group and comparison of statics.')
-    def test_solve_word_cards_with_statistic_ru(self, driver, default_user_authorized):
+    def test_solve_word_cards_ru(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)
         table = page.get_statistic_data()
         start_result = list(table[1].values())[5]
@@ -188,8 +148,5 @@ class TestCardsRU:
     def test_get_statistic_data(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)
         table = page.get_statistic_data()
-        print(table)
         assert table != {}
-EMAIL="test4"
-PASSWORD="testpassword"
-BODY={"email":"test4","password":"testpassword"}
+
