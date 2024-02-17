@@ -76,8 +76,12 @@ class FooterPage(BasePage):
     def get_visible_height_of_arasaac_image(self):
         return self.element_is_visible(self.locators.ARASAAC_IMAGE).get_attribute('height')
 
-    @allure.step('Check the EPAM link is present and visible in Footer')
-    def check_epam_link_presence_and_visibility(self):
+    @allure.step('Check the EPAM link is present in Footer')
+    def check_epam_link_presence(self):
+        return self.element_is_present(self.locators.EPAM_LINK)
+
+    @allure.step('Check the EPAM link is visible in Footer')
+    def check_epam_link_visibility(self):
         return self.element_is_visible(self.locators.EPAM_LINK)
 
     @allure.step('Check the EPAM link is clickable in Footer')
@@ -95,6 +99,10 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'href' of the EPAM link")
     def get_epam_link_href(self):
         return self.get_link_href(self.locators.EPAM_LINK)
+
+    @allure.step('Check the EPAM image is present in Footer')
+    def check_epam_image_presence(self):
+        return self.element_is_present(self.locators.EPAM_IMAGE)
 
     @allure.step('Check the EPAM image is present and visible in Footer')
     def check_epam_image_visibility(self):
