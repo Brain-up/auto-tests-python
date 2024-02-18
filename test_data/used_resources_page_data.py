@@ -14,3 +14,8 @@ class UsedResourcesPageData:
     used_resources_page_links_status_codes = {
         "freepik_com_link_status_code": 403
     }
+
+    # Related web pages elements text
+    used_resources_page_related_elements_text = {
+        "freepik_com_start_page_text": "Create great designs, faster"
+    }
