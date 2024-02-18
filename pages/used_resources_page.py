@@ -1,11 +1,12 @@
 import allure
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
-from locators.used_resources_page_locators import UsedResourcesPageLocators
+from locators.used_resources_page_locators import UsedResourcesPageLocators, RelatedPagesElementsLocators
 
 
 class UsedResourcesPage(BasePage):
     locators = UsedResourcesPageLocators
+    locators1 = RelatedPagesElementsLocators
 
     @allure.step("Open the 'Used resources' page")
     def open_used_resources_page(self):
@@ -62,6 +63,14 @@ class UsedResourcesPage(BasePage):
     @allure.step('Check the freepik.com link is clickable')
     def check_freepik_com_link_clickability(self):
         return self.element_is_clickable(self.locators.FREEPIK_COM_LINK)
+
+    @allure.step('Click on the freepik.com link and thereby open the corresponding web page in a new tab')
+    def click_freepik_com_link(self):
+        self.element_is_present_and_clickable(self.locators.FREEPIK_COM_LINK).click()
+
+    @allure.step("Get text of the element on the freepik.com page")
+    def get_element_text_on_opened_freepik_com_tab(self):
+        return self.get_text(self.locators1.FREEPIK_COM_TEXT)
 
     @allure.step("Get attribute 'href' of the freepik.com link")
     def get_freepik_com_link_href(self):

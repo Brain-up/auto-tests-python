@@ -7,3 +7,8 @@ class UsedResourcesPageLocators:
     LINKS_SECTION = (By.XPATH, "//section/ul")
     FREEPIK_COM_LINK = (By.XPATH, "(//section//li)[1]/a")
     FREEPIK_COM_LINK_SECTION = (By.XPATH, "(//section//li)[1]")
+
+
+class RelatedPagesElementsLocators:
+    # on freepik.com web page
+    FREEPIK_COM_TEXT = (By.XPATH, "//main//h1")
