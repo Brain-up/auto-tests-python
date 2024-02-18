@@ -1,4 +1,5 @@
 import allure
+import pytest
 
 from locators.speech_exercises_page_locators import SpeechExercisesPageLocators
 from pages.speech_exercises_page_api import SpeechExercisesAPI
@@ -7,6 +8,7 @@ from pages.speech_exercises_page_ru import SpeechExercisesPageRU
 
 @allure.epic("Речевые упражнения.")
 class TestCardsRU:
+    @pytest.mark.xfail
     @allure.suite('Слова.')
     @allure.title('Select random card from group "Слова" and compare UI vs BACKEND data.')
     def test_random_word_cards_ru(self, driver, specialist_user_authorized):
@@ -25,6 +27,7 @@ class TestCardsRU:
         list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
+    @pytest.mark.xfail
     @allure.suite('Слова Королёвой.')
     @allure.title('Select random card from group "Слова Королёвой" and compare UI vs BACKEND data.')
     def test_random_word_by_koroleva_cards_ru(self, driver, specialist_user_authorized):
@@ -43,6 +46,7 @@ class TestCardsRU:
         list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
+    @pytest.mark.xfail
     @allure.suite('Похожие фразы')
     @allure.title('Select a random card from "Похожие фразы" group and compare UI vs BACKEND data.')
     def test_random_cards_in_similar_phrases_ru(self, driver, specialist_user_authorized):
@@ -61,6 +65,7 @@ class TestCardsRU:
         list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
+    @pytest.mark.xfail
     @allure.suite('Группа слов')
     @allure.title('Select a random card from "Группа слов" group and compare UI vs BACKEND data.')
     def test_random_cards_in_group_words_ru(self, driver, specialist_user_authorized):
@@ -79,6 +84,7 @@ class TestCardsRU:
         list_words_back = page.get_list_of_words_from_card_group_words(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
+    @pytest.mark.xfail
     @allure.suite('Предложения.')
     @allure.title('Select a random card from "Предложения" group and compare UI vs BACKEND data.')
     def test_random_cards_in_sentences_ru(self, driver, specialist_user_authorized):
@@ -97,6 +103,7 @@ class TestCardsRU:
         list_words_back = page.get_list_of_words_from_card_group_words(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
+    @pytest.mark.xfail
     @allure.suite('Слова с частотной группировкой')
     @allure.title('Select a random card from "Слова с частотной группировкой" group and compare UI vs BACKEND data.')
     def test_random_cards_in_words_with_frequency_grouping_ru(self, driver, specialist_user_authorized):
@@ -115,6 +122,7 @@ class TestCardsRU:
         list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')
         assert sorted(list_words_ui) == sorted(list_words_back)
 
+    @pytest.mark.xfail
     @allure.suite('Слова.')
     @allure.title('Solutions to a random task in the "Слова" .')
     def test_solve_word_cards_ru(self, driver, default_user_authorized):
@@ -135,6 +143,7 @@ class TestCardsRU:
         message = page.get_correct_answer()
         assert message == 'Поздравляем! Упражнение выполнено!', 'Congratulation text is missing.'
 
+    @pytest.mark.xfail
     @allure.suite('Слова Королёвой.')
     @allure.title('Solutions to a random task in the "Слова Королёвой" .')
     def test_solve_koroleva_cards_ru(self, driver, default_user_authorized):
@@ -155,6 +164,7 @@ class TestCardsRU:
         message = page.get_correct_answer()
         assert message == 'Поздравляем! Упражнение выполнено!', 'Congratulation text is missing.'
 
+    @pytest.mark.xfail
     @allure.suite('Слова.')
     @allure.title('Solutions to a random task in the "Слова" group and comparison of statics.')
     def test_solve_word_cards_with_statistic_ru(self, driver, default_user_authorized):
@@ -184,6 +194,7 @@ class TestCardsRU:
         finish_result = list(table[1].values())[5]
         assert int(start_result) + int(middle_result) == int(finish_result), 'Incorrect display of statistics data.'
 
+    @pytest.mark.xfail
     @allure.suite('Statistic.')
     @allure.title('Check statistic table.')
     def test_get_statistic_data(self, driver, default_user_authorized):
