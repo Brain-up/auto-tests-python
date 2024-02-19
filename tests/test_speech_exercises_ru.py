@@ -15,7 +15,7 @@ class TestCardsRU:
         page = SpeechExercisesPageRU(driver)
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
+        # page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         random_id = page.get_random_id_from_list_sub_group(
@@ -35,7 +35,6 @@ class TestCardsRU:
         page = SpeechExercisesPageRU(driver)
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         random_id = page.get_random_id_from_list_sub_group(
@@ -54,7 +53,6 @@ class TestCardsRU:
         page = SpeechExercisesPageRU(driver)
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_SIMILAR_PHRASES_RU)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         random_id = page.get_random_id_from_list_sub_group(
@@ -73,7 +71,6 @@ class TestCardsRU:
         page = SpeechExercisesPageRU(driver)
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_GROUP_RU)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         random_id = page.get_random_id_from_list_sub_group(
@@ -92,7 +89,6 @@ class TestCardsRU:
         page = SpeechExercisesPageRU(driver)
         seria_id = page.select_group(SpeechExercisesPageLocators.SENTENCES_RU)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         random_id = page.get_random_id_from_list_sub_group(
@@ -111,7 +107,6 @@ class TestCardsRU:
         page = SpeechExercisesPageRU(driver)
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_WITH_FREQUENCY_GROUPING_RU)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         random_id = page.get_random_id_from_list_sub_group(
@@ -131,7 +126,6 @@ class TestCardsRU:
         page.click_button_exercises()
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         payloads = page.get_random_id_from_list_sub_group_default(
@@ -152,7 +146,6 @@ class TestCardsRU:
         page.click_button_exercises()
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         payloads = page.get_random_id_from_list_sub_group_default(
@@ -176,7 +169,6 @@ class TestCardsRU:
         page.click_button_exercises()
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
         card_id = page.click_random_card()
-        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
         payloads = page.get_random_id_from_list_sub_group_default(
