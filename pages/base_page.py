@@ -1,6 +1,6 @@
 import allure
 from selenium.common import TimeoutException
-from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
@@ -107,10 +107,3 @@ class BasePage:
                 action = ActionChains(self.driver)
                 action.move_to_element(element)
                 action.perform()
-
-    def find_with_implicitly_wait(self, locators):
-        self.driver.implicitly_wait(10)
-        self.driver.find_element(locators)
-
-
-

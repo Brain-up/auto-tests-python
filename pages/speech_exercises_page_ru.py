@@ -123,7 +123,13 @@ class SpeechExercisesPageRU(BasePage):
             for i in range(1, lens + 1):
                 table.setdefault(i, {})
                 for j in range(len(title)):
-                    table[i].setdefault(title[j], self.element_is_present((By.XPATH, f"//tbody/tr[{i}]/td[{j + 1}]")).text)
+                    try:
+                        table[i].setdefault(title[j],
+                                            self.element_is_present((By.XPATH, f"//tbody/tr[{i}]/td[{j + 1}]")).text)
+                    except Exception as ex:
+                        print(ex)
+                        table[i].setdefault(title[j],
+                                            self.element_is_present((By.XPATH, f"//tbody/tr[{i}]/td[{j + 1}]")).text)
         with allure.step(f'Table data: {table}'):
             pass
         return table
