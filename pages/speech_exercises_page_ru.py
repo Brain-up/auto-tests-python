@@ -84,9 +84,17 @@ class SpeechExercisesPageRU(BasePage):
                     self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(
                     'data-correct-answer')
                 if answer_value != "undefined":
-                    correct_card = self.element_is_present_and_clickable((By.XPATH, f'//*[text()="{answer_value}"]'))
-                    self.action_move_to_element(correct_card)
-                    correct_card.click()
+                    try:
+                        correct_card = self.element_is_present_and_clickable(
+                            (By.XPATH, f'//*[text()="{answer_value}"]'))
+                        self.action_move_to_element(correct_card)
+                        correct_card.click()
+                    except Exception as ex:
+                        print(ex)
+                        correct_card = self.element_is_present_and_clickable(
+                            (By.XPATH, f'//*[text()="{answer_value}"]'))
+                        self.action_move_to_element(correct_card)
+                        correct_card.click()
                 else:
                     message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)
                     print(message.text)

@@ -52,7 +52,6 @@ class SpeechExercisesAPI(BasePage):
         result_get = requests.get(f'https://brainup.site/api/tasks/{str(card_id)}',
                                   headers={'Content-Type': 'application/json',
                                            'Authorization': 'Bearer {}'.format(id_token)})
-        # word = json.loads(result_get.text)['data']["answerOptions"][0]['word']
         amount_words = len(json.loads(result_get.text)['data']["answerOptions"])
         words = [json.loads(result_get.text)['data']["answerOptions"][i]['word'] for i in range(amount_words)]
         with allure.step(f'Getting a list of exercise words from the backend: {words}.'):

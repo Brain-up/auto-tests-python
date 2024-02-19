@@ -8,16 +8,13 @@ class AuthorizedUserHomePageLocators:
     # Header
     EN_BUTTON = (By.XPATH, "//*[contains(text(),'EN')]")
     RU_BUTTON = (By.XPATH, "//*[contains(text(),'RU')]")
-    PROFILE_USER = (By.XPATH, '//a[@href="/profile"]')
 
     SPEECH_EXERCISES_RU = (By.XPATH, '//a[@title="Речевые упражнения"]')
     SPEECH_EXERCISES_EN = (By.XPATH, '//a[@title="Speech"]')
 
     STATISTIC_BUTTON = (By.XPATH, '//a[@href="/profile/statistics"]')
-    AMOUNT_TABLE_TR = (By.XPATH, "//tr")
 
     STATISTIC_TABLE = (By.XPATH, '//div[@class="__51e19"]')
-    STATISTIC_DATA = (By.XPATH, '//td[@class="px-4 py-2 border"]')
     STATISTIC_DATA_TITLES = (By.XPATH, '//th[@class="px-4 py-2"]')
 
     BUTTON_EXERCISES_RU = (By.XPATH, '//a[text()="Упражнения"]')
@@ -40,7 +37,6 @@ class SpeechExercisesPageLocators:
     LIST_WORDS_FOR_GROUP_WORDS = (By.XPATH, '//div[@class="flex justify-center flex-grow mt-4"]//span')
     PROGRESS_BAR = (By.XPATH, '//div[@class="progress-bar"]')
     PROGRESS_BAR_VALUE = (By.XPATH, '//div[@class="progress-bar"]/div')
-    RESULT_SOLUTION = (By.XPATH, '//ul[@class="leading-10 text-center"]')
     LIST_RESULT_SOLUTION = (By.XPATH, '//ul[@class="leading-10 text-center"]/li')
     CONGRATULATION_MESSAGE = (By.XPATH, '//h3[@class="mt-6 mb-6 text-2xl font-semibold"]')
 

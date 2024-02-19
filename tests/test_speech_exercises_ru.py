@@ -15,11 +15,9 @@ class TestCardsRU:
         page = SpeechExercisesPageRU(driver)
         seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
         card_id = page.click_random_card()
-        # page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -37,8 +35,7 @@ class TestCardsRU:
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -55,8 +52,7 @@ class TestCardsRU:
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -73,8 +69,7 @@ class TestCardsRU:
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -91,8 +86,7 @@ class TestCardsRU:
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -109,8 +103,7 @@ class TestCardsRU:
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -128,8 +121,7 @@ class TestCardsRU:
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
-        payloads = page.get_random_id_from_list_sub_group_default(
-            card_id, seria_id)  # getting random ID from exercises group
+        payloads = page.get_random_id_from_list_sub_group_default(card_id, seria_id)
         random_id = page.get_random_id_from_payloads(payloads)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
 
@@ -148,8 +140,7 @@ class TestCardsRU:
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
-        payloads = page.get_random_id_from_list_sub_group_default(
-            card_id, seria_id)  # getting random ID from exercises group
+        payloads = page.get_random_id_from_list_sub_group_default(card_id, seria_id)
         random_id = page.get_random_id_from_payloads(payloads)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
 
@@ -171,8 +162,7 @@ class TestCardsRU:
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
-        payloads = page.get_random_id_from_list_sub_group_default(
-            card_id, seria_id)  # getting random ID from exercises group
+        payloads = page.get_random_id_from_list_sub_group_default(card_id, seria_id)
         random_id = page.get_random_id_from_payloads(payloads)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
 
