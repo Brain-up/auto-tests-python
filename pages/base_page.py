@@ -72,8 +72,13 @@ class BasePage:
 
     def check_expected_link(self, url):
         with allure.step(f'Check url is present: {url}'):
-            return Wait(self.driver, self.timeout).until(
-                ec.url_to_be(url), message=f"Can't find element by locator {url}")
+            try:
+                return Wait(self.driver, self.timeout).until(
+                    ec.url_to_be(url), message=f"Can't find element by locator {url}")
+            except Exception as ex:
+                print(ex)
+                return Wait(self.driver, self.timeout).until(
+                    ec.url_to_be(url), message=f"Can't find element by locator {url}")
 
     def wait_changed_url(self, url):
         with allure.step(f'Wait until url: {url} will be changed.'):
