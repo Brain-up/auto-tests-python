@@ -79,3 +79,14 @@ class UsedResourcesPage(BasePage):
     @allure.step('Get content of the text in the freepik.com link')
     def get_text_in_freepik_com_link(self):
         return self.element_is_visible(self.locators.FREEPIK_COM_LINK).text
+
+    @allure.step("Check the icon is present in freepik.com link's section")
+    def check_icon_presence_in_freepik_com_section(self):
+        return self.element_is_present(self.locators.FREEPIK_COM_SECTION_ICON)
+
+    @allure.step("Check the icon is visible in freepik.com link's section")
+    def check_icon_visibility_in_freepik_com_section(self):
+        return self.element_is_visible(self.locators.FREEPIK_COM_SECTION_ICON)
+
+    def get_icon_xmlns_in_freepik_com_section(self):
+        return self.driver.find_element(*self.locators.FREEPIK_COM_SECTION_ICON).get_attribute("xmlns")

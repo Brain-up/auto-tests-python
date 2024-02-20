@@ -19,3 +19,7 @@ class UsedResourcesPageData:
     used_resources_page_related_elements_text = {
         "freepik_com_start_page_text": "Create great designs, faster"
     }
+
+    icons_xmlns = {
+        "icons_xmlns_on_used_resources_page": "http://www.w3.org/2000/svg"
+    }
