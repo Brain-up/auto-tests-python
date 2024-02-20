@@ -1,5 +1,3 @@
-import time
-
 import allure
 import requests
 from pages.used_resources_page import UsedResourcesPage
