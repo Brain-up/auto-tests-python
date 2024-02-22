@@ -6,10 +6,10 @@ from pages.speech_exercises_page_api import SpeechExercisesAPI
 from pages.speech_exercises_page_ru import SpeechExercisesPageRU
 
 
-@allure.epic("Речевые упражнения.")
+@allure.epic("Speech exercises.")
 class TestCardsRU:
     @pytest.mark.xfail
-    @allure.suite('Слова.')
+    @allure.suite("Речевые упражнения.")
     @allure.title('Select random card from group "Слова" and compare UI vs BACKEND data.')
     def test_random_word_cards_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
@@ -27,8 +27,7 @@ class TestCardsRU:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @pytest.mark.xfail
-    @allure.suite('Слова Королёвой.')
-    @pytest.mark.xfail(reason="In CI the test failed in PR#162, the autotest author has been notified")
+    @allure.suite("Речевые упражнения.")
     @allure.title('Select random card from group "Слова Королёвой" and compare UI vs BACKEND data.')
     def test_random_word_by_koroleva_cards_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
@@ -46,7 +45,7 @@ class TestCardsRU:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @pytest.mark.xfail
-    @allure.suite('Похожие фразы')
+    @allure.suite("Речевые упражнения.")
     @allure.title('Select a random card from "Похожие фразы" group and compare UI vs BACKEND data.')
     def test_random_cards_in_similar_phrases_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
@@ -64,7 +63,7 @@ class TestCardsRU:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @pytest.mark.xfail
-    @allure.suite('Группа слов')
+    @allure.suite("Речевые упражнения.")
     @allure.title('Select a random card from "Группа слов" group and compare UI vs BACKEND data.')
     def test_random_cards_in_group_words_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
@@ -82,7 +81,7 @@ class TestCardsRU:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @pytest.mark.xfail
-    @allure.suite('Предложения.')
+    @allure.suite("Речевые упражнения.")
     @allure.title('Select a random card from "Предложения" group and compare UI vs BACKEND data.')
     def test_random_cards_in_sentences_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
@@ -100,7 +99,7 @@ class TestCardsRU:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @pytest.mark.xfail
-    @allure.suite('Слова с частотной группировкой')
+    @allure.suite("Речевые упражнения.")
     @allure.title('Select a random card from "Слова с частотной группировкой" group and compare UI vs BACKEND data.')
     def test_random_cards_in_words_with_frequency_grouping_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
@@ -118,7 +117,7 @@ class TestCardsRU:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @pytest.mark.xfail
-    @allure.suite('Слова.')
+    @allure.suite("Речевые упражнения.")
     @allure.title('Solutions to a random task in the "Слова" .')
     def test_solve_word_cards_ru(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)
@@ -138,7 +137,7 @@ class TestCardsRU:
         assert message == 'Поздравляем! Упражнение выполнено!', 'Congratulation text is missing.'
 
     @pytest.mark.xfail
-    @allure.suite('Слова Королёвой.')
+    @allure.suite("Речевые упражнения.")
     @allure.title('Solutions to a random task in the "Слова Королёвой" .')
     def test_solve_koroleva_cards_ru(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)
@@ -158,7 +157,7 @@ class TestCardsRU:
         assert message == 'Поздравляем! Упражнение выполнено!', 'Congratulation text is missing.'
 
     @pytest.mark.xfail
-    @allure.suite('Слова.')
+    @allure.suite("Речевые упражнения.")
     @allure.title('Solutions to a random task in the "Слова" group and comparison of statics.')
     def test_solve_word_cards_with_statistic_ru(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)

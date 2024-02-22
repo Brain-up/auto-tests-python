@@ -9,7 +9,7 @@ from pages.speech_exercises_page_en import SpeechExercisesPage
 @allure.epic("Speech exercises.")
 class TestCardsEN:
     @pytest.mark.xfail
-    @allure.suite('Words.')
+    @allure.suite("Speech exercises EN.")
     @allure.title('Select random card from "Word" group and compare UI vs BACKEND data')
     def test_random_word_cards_en(self, driver, specialist_user_authorized):
         page = SpeechExercisesPage(driver)
@@ -27,8 +27,8 @@ class TestCardsEN:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @pytest.mark.xfail
-    @allure.suite('Check progres-bar and buttons.')
-    @allure.title('test_progress_bar_is_present_en')
+    @allure.suite("Speech exercises EN.")
+    @allure.title('Check progres-bar and buttons.')
     def test_progress_bar_is_present_en(self, driver, specialist_user_authorized):
         page = SpeechExercisesPage(driver)
         page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_EN)
@@ -50,7 +50,7 @@ class TestCardsEN:
         assert bool(progress_bar) is True
 
     @pytest.mark.xfail
-    @allure.suite('Similar phrases')
+    @allure.suite("Speech exercises EN.")
     @allure.title('Select a random card from "Similar phrases" group and compare UI vs BACKEND data')
     def test_random_cards_in_similar_phrases_en(self, driver, specialist_user_authorized):
         page = SpeechExercisesPage(driver)

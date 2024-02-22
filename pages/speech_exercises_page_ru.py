@@ -16,7 +16,6 @@ class SpeechExercisesPageRU(BasePage):
         """
         Select random group and return id number from getting url
         :param selector_for_sub_group: Any
-        :return str(id)
         """
         with allure.step('Select Russian language. Click "RU" button.'):
             self.element_is_present_and_clickable(self.locators.AuthorizedUserHomePageLocators.RU_BUTTON).click()
@@ -28,43 +27,48 @@ class SpeechExercisesPageRU(BasePage):
         with allure.step(f'Click button "{text_of_the_button.text}".'):
             self.element_is_present_and_clickable(selector_for_sub_group).click()
 
+    @allure.step('Get seria ID from URL: https://brainup.site/groups/2/series/1')
     def set_url_to_get_id_words_ru_group(self):
         self.wait_url_to_be('https://brainup.site/groups/2/series/1')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
 
+    @allure.step('Get seria ID from URL: https://brainup.site/groups/2/series/17')
     def set_url_to_get_id_words_koroleva_ru_group(self):
         self.wait_url_to_be('https://brainup.site/groups/2/series/17')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
 
+    @allure.step('Get seria ID from URL: https://brainup.site/groups/2/series/2')
     def set_url_to_get_id_similar_phrase_ru_group(self):
         self.wait_url_to_be('https://brainup.site/groups/2/series/2')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
 
+    @allure.step('Get seria ID from URL: https://brainup.site/groups/2/series/3')
     def set_url_to_get_id_words_group_ru_group(self):
         self.wait_url_to_be('https://brainup.site/groups/2/series/3')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
 
+    @allure.step('Get seria ID from URL: https://brainup.site/groups/2/series/4')
     def set_url_to_get_id_sentences_ru_group(self):
         self.wait_url_to_be('https://brainup.site/groups/2/series/4')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
 
+    @allure.step('Get seria ID from URL: https://brainup.site/groups/2/series/6')
     def set_url_to_get_id_words_with_frequency_grouping(self):
         self.wait_url_to_be('https://brainup.site/groups/2/series/6')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
 
-    # Methods for Group Слова
     @allure.step('click_random_card')
     def click_random_card(self):
         list_cards_name = [i.text for i in self.elements_are_present(

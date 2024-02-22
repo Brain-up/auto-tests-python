@@ -21,12 +21,14 @@ class SpeechExercisesPage(BasePage):
         with allure.step(f'Click button "{text_of_the_button.text}".'):
             self.element_is_present_and_clickable(selector_for_sub_group).click()
 
+    @allure.step('Get seria ID from URL: https://brainup.site/groups/4/series/9')
     def set_url_to_get_id_words_group(self):
         self.wait_url_to_be('https://brainup.site/groups/4/series/9')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
 
+    @allure.step('Get seria ID from URL: https://brainup.site/groups/4/series/10')
     def set_url_to_get_id_similar_phrase_group(self):
         self.wait_url_to_be('https://brainup.site/groups/4/series/10')
         url = self.get_current_url()
