@@ -84,7 +84,11 @@ class BasePage:
         with allure.step(f'Wait until url: {url} will be changed.'):
             Wait(self.driver, self.timeout).until(
                 ec.url_changes(url), message=f"Url: {url} has not been changed!!!")
-            self.get_current_url()
+
+    def wait_url_to_be(self, url):
+        with allure.step(f'Wait until url to be: {url}.'):
+            Wait(self.driver, self.timeout).until(
+                ec.url_to_be(url), message=f"Url: {url} has not been changed!!!")
 
     def get_text(self, locator):
         with allure.step(f'Get text in the element: {locator}'):

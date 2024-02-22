@@ -13,7 +13,8 @@ class TestCardsRU:
     @allure.title('Select random card from group "Слова" and compare UI vs BACKEND data.')
     def test_random_word_cards_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
+        page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
+        seria_id = page.set_url_to_get_id_words_ru_group()
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
@@ -31,7 +32,8 @@ class TestCardsRU:
     @allure.title('Select random card from group "Слова Королёвой" and compare UI vs BACKEND data.')
     def test_random_word_by_koroleva_cards_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
+        page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
+        seria_id = page.set_url_to_get_id_words_koroleva_ru_group()
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
@@ -48,7 +50,8 @@ class TestCardsRU:
     @allure.title('Select a random card from "Похожие фразы" group and compare UI vs BACKEND data.')
     def test_random_cards_in_similar_phrases_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_SIMILAR_PHRASES_RU)
+        page.select_group(SpeechExercisesPageLocators.WORDS_SIMILAR_PHRASES_RU)
+        seria_id = page.set_url_to_get_id_similar_phrase_ru_group()
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
@@ -65,7 +68,8 @@ class TestCardsRU:
     @allure.title('Select a random card from "Группа слов" group and compare UI vs BACKEND data.')
     def test_random_cards_in_group_words_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_GROUP_RU)
+        page.select_group(SpeechExercisesPageLocators.WORDS_GROUP_RU)
+        seria_id = page.set_url_to_get_id_words_group_ru_group()
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
@@ -82,7 +86,8 @@ class TestCardsRU:
     @allure.title('Select a random card from "Предложения" group and compare UI vs BACKEND data.')
     def test_random_cards_in_sentences_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.SENTENCES_RU)
+        page.select_group(SpeechExercisesPageLocators.SENTENCES_RU)
+        seria_id = page.set_url_to_get_id_sentences_ru_group()
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
@@ -99,7 +104,8 @@ class TestCardsRU:
     @allure.title('Select a random card from "Слова с частотной группировкой" group and compare UI vs BACKEND data.')
     def test_random_cards_in_words_with_frequency_grouping_ru(self, driver, specialist_user_authorized):
         page = SpeechExercisesPageRU(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_WITH_FREQUENCY_GROUPING_RU)
+        page.select_group(SpeechExercisesPageLocators.WORDS_WITH_FREQUENCY_GROUPING_RU)
+        seria_id = page.set_url_to_get_id_words_with_frequency_grouping()
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
@@ -117,7 +123,8 @@ class TestCardsRU:
     def test_solve_word_cards_ru(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)
         page.click_button_exercises()
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
+        page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_RU)
+        seria_id = page.set_url_to_get_id_words_ru_group()
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)
@@ -136,7 +143,8 @@ class TestCardsRU:
     def test_solve_koroleva_cards_ru(self, driver, default_user_authorized):
         page = SpeechExercisesPageRU(driver)
         page.click_button_exercises()
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
+        page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)
+        seria_id = page.set_url_to_get_id_words_koroleva_ru_group()
         card_id = page.click_random_card()
 
         page = SpeechExercisesAPI(driver)

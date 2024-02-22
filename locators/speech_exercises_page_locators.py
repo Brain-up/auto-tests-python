@@ -57,11 +57,11 @@ class SpeechExercisesPageLocators:
 
     WORDS_EN = (By.XPATH, '//button[@data-test-active-link="Words"]')
 
-    # WORDS
-    LIST_OF_CARD_FROM_WORDS = (
-        By.XPATH,
-        '//div[@class="sm:tracking-normal sm:leading-normal sm:text-base '
-        'text-xs leading-none tracking-tighter text-center"]')
+    # # WORDS
+    # LIST_OF_CARD_FROM_WORDS = (
+    #     By.XPATH,
+    #     '//div[@class="sm:tracking-normal sm:leading-normal sm:text-base '
+    #     'text-xs leading-none tracking-tighter text-center"]')
 
     # Слова
     LIST_OF_CARD_FROM_WORDS_RU = (By.XPATH,
