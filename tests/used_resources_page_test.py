@@ -113,3 +113,14 @@ class TestUsedResourcesPage:
             assert icon_xmlns, "The 'xmlns' attribute value of the icon in the freepik.com link's section is empty"
             assert icon_xmlns == UsedResourcesPageData.icons_xmlns["icons_xmlns_on_used_resources_page"], \
                 "The 'xmlns' attribute value of the icon in the freepik.com link's section is unaccurate"
+
+        @allure.title("Verify sizes of the icon in the freepik.com link's section")
+        def test_ur_01_08_verify_sizes_of_icon_in_freepik_com_section(self, driver, auto_test_user_authorized):
+            page = UsedResourcesPage(driver)
+            page.open_used_resources_page()
+            print(driver.current_url)
+            icon_width = page.get_visible_width_of_icon_in_freepik_com_section()
+            icon_height = page.get_visible_height_of_icon_in_freepik_com_section()
+            print(f"The icon sizes are: {icon_width}x{icon_height} px")
+            assert icon_width != 0, "The icon in the freepik.com link's section hasn't width"
+            assert icon_height != 0, "The icon in the freepik.com link's section hasn't height"
