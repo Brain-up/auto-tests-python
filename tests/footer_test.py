@@ -240,7 +240,7 @@ class TestFooter:
             link_href = page.get_arasaac_link_href()
             image_width = page.get_visible_width_of_arasaac_image()
             image_height = page.get_visible_height_of_arasaac_image()
-            print(f"The current visible sizes of the picture in the {link_href} link is: "
+            print(f"The current visible sizes of the picture in the {link_href} link are: "
                   f"{image_width}x{image_height} px")
             assert image_width != 0, \
                 f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
@@ -253,12 +253,12 @@ class TestFooter:
             link_href = page.get_arasaac_link_href()
             image_width = page.get_visible_width_of_arasaac_image()
             image_height = page.get_visible_height_of_arasaac_image()
-            print(f"The current visible sizes of the picture in the {link_href} link is: "
+            print(f"The current visible sizes of the picture in the {link_href} link are: "
                   f"{image_width}x{image_height} px")
             driver.set_window_size(504, 638)
             image_width_new = page.get_visible_width_of_arasaac_image()
             image_height_new = page.get_visible_height_of_arasaac_image()
-            print(f"The new visible sizes of the picture in the {link_href} link is: "
+            print(f"The new visible sizes of the picture in the {link_href} link are: "
                   f"{image_width_new}x{image_height_new} px")
             assert image_width != image_width_new, \
                 f"The image width in the {link_href} link in Footer has not changed due to resizing"
@@ -287,9 +287,27 @@ class TestFooter:
             link_href = page.get_epam_link_href()
             image_width = page.get_visible_width_of_epam_image()
             image_height = page.get_visible_height_of_epam_image()
-            print(f"The current visible sizes of the picture in the {link_href} link is: "
+            print(f"The current visible sizes of the picture in the {link_href} link are: "
                   f"{image_width}x{image_height} px")
             assert image_width != 0, \
                 f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
             assert image_height != 0, \
                 f"The image in the {link_href} link in Footer is invisible, a reason: image height = 0"
+
+        @allure.title("Verify changes of visible sizes of the EPAM link's image in Footer")
+        def test_fp_04_06_verify_changes_of_visible_sizes_of_epam_link_image(self, driver, main_page_open):
+            page = FooterPage(driver)
+            link_href = page.get_epam_link_href()
+            image_width = page.get_visible_width_of_epam_image()
+            image_height = page.get_visible_height_of_epam_image()
+            print(f"The current visible sizes of the picture in the {link_href} link are: "
+                  f"{image_width}x{image_height} px")
+            driver.set_window_size(504, 638)
+            image_width_new = page.get_visible_width_of_epam_image()
+            image_height_new = page.get_visible_height_of_epam_image()
+            print(f"The new visible sizes of the picture in the {link_href} link are: "
+                  f"{image_width_new}x{image_height_new} px")
+            assert image_width != image_width_new, \
+                f"The image width in the {link_href} link in Footer has not changed due to resizing"
+            assert image_height == image_height_new, \
+                f"The image height in the {link_href} link in Footer has changed due to resizing"

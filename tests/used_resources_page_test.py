@@ -100,3 +100,27 @@ class TestUsedResourcesPage:
                    UsedResourcesPageData.used_resources_page_related_elements_text["freepik_com_start_page_text"], \
                    "The freepik.com link leads to an incorrect page after click " \
                    "or opened page does not load correctly"
+
+        @allure.title("Verify presence, visibility and accuracy of the icon in the freepik.com link's section")
+        def test_ur_01_07_verify_icon_in_freepik_com_section(self, driver, auto_test_user_authorized):
+            page = UsedResourcesPage(driver)
+            page.open_used_resources_page()
+            icon_presence = page.check_icon_presence_in_freepik_com_section()
+            icon_visibility = page.check_icon_visibility_in_freepik_com_section()
+            icon_xmlns = page.get_icon_xmlns_in_freepik_com_section()
+            assert icon_presence is not None, "The icon in the freepik.com link's section is absent"
+            assert icon_visibility, "The icon in the freepik.com link's section is invisible"
+            assert icon_xmlns, "The 'xmlns' attribute value of the icon in the freepik.com link's section is empty"
+            assert icon_xmlns == UsedResourcesPageData.icons_xmlns["icons_xmlns_on_used_resources_page"], \
+                "The 'xmlns' attribute value of the icon in the freepik.com link's section is unaccurate"
+
+        @allure.title("Verify sizes of the icon in the freepik.com link's section")
+        def test_ur_01_08_verify_sizes_of_icon_in_freepik_com_section(self, driver, auto_test_user_authorized):
+            page = UsedResourcesPage(driver)
+            page.open_used_resources_page()
+            print(driver.current_url)
+            icon_width = page.get_visible_width_of_icon_in_freepik_com_section()
+            icon_height = page.get_visible_height_of_icon_in_freepik_com_section()
+            print(f"The icon sizes are: {icon_width}x{icon_height} px")
+            assert icon_width != 0, "The icon in the freepik.com link's section hasn't width"
+            assert icon_height != 0, "The icon in the freepik.com link's section hasn't height"
