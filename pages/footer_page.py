@@ -124,8 +124,12 @@ class FooterPage(BasePage):
     def get_visible_height_of_epam_image(self):
         return self.element_is_visible(self.locators.EPAM_IMAGE).get_attribute('height')
 
-    @allure.step('Check the Jetbrains link is present and visible in Footer')
-    def check_jetbrains_link_presence_and_visibility(self):
+    @allure.step('Check the Jetbrains link is present in Footer')
+    def check_jetbrains_link_presence(self):
+        return self.element_is_present(self.locators.JETBRAINS_LINK)
+
+    @allure.step('Check the Jetbrains link is visible in Footer')
+    def check_jetbrains_link_visibility(self):
         return self.element_is_visible(self.locators.JETBRAINS_LINK)
 
     @allure.step('Check the Jetbrains link is clickable in Footer')
