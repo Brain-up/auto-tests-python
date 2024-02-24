@@ -119,8 +119,18 @@ class TestUsedResourcesPage:
             page = UsedResourcesPage(driver)
             page.open_used_resources_page()
             print(driver.current_url)
-            icon_width = page.get_visible_width_of_icon_in_freepik_com_section()
-            icon_height = page.get_visible_height_of_icon_in_freepik_com_section()
+            icon_width = page.get_width_of_icon_in_freepik_com_section()
+            icon_height = page.get_height_of_icon_in_freepik_com_section()
             print(f"The icon sizes are: {icon_width}x{icon_height} px")
             assert icon_width != 0, "The icon in the freepik.com link's section hasn't width"
             assert icon_height != 0, "The icon in the freepik.com link's section hasn't height"
+
+        @allure.title("Verify presence and visibility of the section with the Plants link on the page")
+        def test_ur_01_09_verify_section_of_plants_link(self, driver, auto_test_user_authorized):
+            page = UsedResourcesPage(driver)
+            page.open_used_resources_page()
+            print(driver.current_url)
+            section_presence = page.check_presence_of_plants_link_section()
+            section_visibility = page.check_visibility_of_plants_link_section()
+            assert section_presence is not None, "The section with the PLANTS link is absent"
+            assert section_visibility, "The section with the PLANTS link is invisible"
