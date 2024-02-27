@@ -69,16 +69,13 @@ class TestUsedResourcesPage:
             link_visibility = page.check_freepik_com_link_visibility()
             link_clickability = page.check_freepik_com_link_clickability()
             link_href = page.get_freepik_com_link_href()
-            print(link_href)
             link_status_code = requests.head(link_href).status_code
-            print(link_status_code)
             actual_link_text = page.get_text_in_freepik_com_link()
-            print(actual_link_text)
             assert link_presence is not None, f"The {link_href} link is absent"
             assert link_visibility, f"The {link_href} link is invisible"
             assert link_clickability, f"The {link_href} link is unclickable"
             assert link_href == UsedResourcesPageData.used_resources_page_links_href["freepik_com_link_href"], \
-                   f"The attribute 'href' of the {link_href} link does not match the expected value"
+                f"The attribute 'href' of the {link_href} link does not match the expected value"
             assert link_status_code == \
                    UsedResourcesPageData.used_resources_page_links_status_codes["freepik_com_link_status_code"], \
                    f"The {link_href} link status code does not match the expected value"
@@ -125,12 +122,39 @@ class TestUsedResourcesPage:
             assert icon_width != 0, "The icon in the freepik.com link's section hasn't width"
             assert icon_height != 0, "The icon in the freepik.com link's section hasn't height"
 
-        @allure.title("Verify presence and visibility of the section with the Plants link on the page")
+        @allure.title("Verify presence and visibility of the section with the 'Plants' link on the page")
         def test_ur_01_09_verify_section_of_plants_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
             page.open_used_resources_page()
             print(driver.current_url)
             section_presence = page.check_presence_of_plants_link_section()
             section_visibility = page.check_visibility_of_plants_link_section()
-            assert section_presence is not None, "The section with the PLANTS link is absent"
-            assert section_visibility, "The section with the PLANTS link is invisible"
+            assert section_presence is not None, "The section with the 'Plants' link is absent"
+            assert section_visibility, "The section with the 'Plants' link is invisible"
+
+        @allure.title("Verify presence, visibility, clickability, href, status code, text of the 'Plants' link")
+        def test_ur_01_10_verify_plants_link(self, driver, auto_test_user_authorized):
+            page = UsedResourcesPage(driver)
+            page.open_used_resources_page()
+            print(driver.current_url)
+            link_presence = page.check_plants_link_presence()
+            link_visibility = page.check_plants_link_visibility()
+            link_clickability = page.check_plants_link_clickability()
+            link_href = page.get_plants_link_href()
+            print(link_href)
+            link_status_code = requests.head(link_href).status_code
+            print(link_status_code)
+            actual_link_text = page.get_text_in_plants_link()
+            print(actual_link_text)
+            assert link_presence is not None, f"The {link_href} link is absent"
+            assert link_visibility, f"The {link_href} link is invisible"
+            assert link_clickability, f"The {link_href} link is unclickable"
+            assert link_href == UsedResourcesPageData.used_resources_page_links_href["plants_link_href"], \
+                f"The attribute 'href' of the {link_href} link does not match the expected value"
+            assert link_status_code == \
+                   UsedResourcesPageData.used_resources_page_links_status_codes["plants_link_status_code"], \
+                   f"The {link_href} link status code does not match the expected value"
+            assert actual_link_text == \
+                   UsedResourcesPageData.used_resources_page_elements_content["plants_link_content"], \
+                   f"The actual text '{actual_link_text}' of the {link_href} link does not match the valid option" \
+                   f"on the page {link_href}"
