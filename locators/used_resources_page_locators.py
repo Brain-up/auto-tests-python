@@ -15,3 +15,5 @@ class UsedResourcesPageLocators:
 class RelatedPagesElementsLocators:
     # on freepik.com web page
     FREEPIK_COM_TEXT = (By.XPATH, "//main//h1")
+    # on 'Plants' web page
+    PLANTS_TEXT = (By.XPATH, "//h1/span")
