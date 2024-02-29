@@ -26,7 +26,8 @@ class UsedResourcesPageData:
 
     # Related web pages elements text
     used_resources_page_related_elements_text = {
-        "freepik_com_start_page_text": "Create great designs, faster"
+        "freepik_com_start_page_text": "Create great designs, faster",
+        "plants_page_text": "Список растений, иллюстрации к которым размещены в справочнике Köhler’s Medizinal-Pflanzen"
     }
 
     icons_xmlns = {
