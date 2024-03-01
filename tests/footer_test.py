@@ -86,27 +86,19 @@ class TestFooter:
             assert link_status_code == FooterData.footer_links_status_codes["jetbrains_link_status_code"], \
                 f"The {link_href} link status code does not match the expected value"
 
-        @allure.title("Verify presence, visibility and accuracy of the REG.RU link and link's image in Footer")
+        @allure.title("Verify presence, visibility, clickability, href, status code of the REG.RU link in Footer")
         def test_fp_01_06_verify_reg_link(self, driver, main_page_open):
             page = FooterPage(driver)
             link_presence_and_visibility = page.check_reg_link_presence_and_visibility()
             link_clickability = page.check_reg_link_clickability()
             link_href = page.get_reg_link_href()
             link_status_code = requests.head(link_href).status_code
-            link_image_visibility = page.check_reg_image_visibility()
-            link_image_src = page.get_reg_image_src()
-            link_image_alt = page.get_reg_image_alt()
             assert link_presence_and_visibility is not None, "The REG.RU link is absent or invisible"
             assert link_clickability is not None, "The REG.RU link is unclickable"
             assert link_href == FooterData.footer_links_href["reg_link_href"], \
                 "The attribute 'href' of the REG.RU link does not match the expected value"
             assert link_status_code in FooterData.footer_links_status_codes["reg_link_status_code"], \
                 "The REG.RU link status code does not match any of the expected values"
-            assert link_image_visibility is not None, "The REG.RU link image is absent or invisible"
-            assert link_image_src == FooterData.footer_images_src["reg_img_src"], \
-                "The REG.RU link image is unaccurate"
-            assert link_image_alt == FooterData.footer_images_alt["reg_img_alt"], \
-                "The REG.RU link image is unaccurate"
 
         @allure.title("Verify presence, visibility and accuracy of the Selectel link and link's image in Footer")
         def test_fp_01_07_verify_selectel_link(self, driver, main_page_open):
@@ -351,3 +343,17 @@ class TestFooter:
                 f"The image width in the {link_href} link in Footer has not changed due to resizing"
             assert image_height == image_height_new, \
                 f"The image height in the {link_href} link in Footer has changed due to resizing"
+
+        @allure.title("Verify presence, visibility and accuracy of the REG.RU link's image in Footer")
+        def test_fp_04_10_verify_reg_link_image(self, driver, main_page_open):
+            page = FooterPage(driver)
+            link_image_presence = page.check_reg_image_presence()
+            link_image_visibility = page.check_reg_image_visibility()
+            link_image_src = page.get_reg_image_src()
+            link_image_alt = page.get_reg_image_alt()
+            assert link_image_presence is not None, "The image in the REG.RU link is absent"
+            assert link_image_visibility, "The image in the REG.RU link is invisible"
+            assert link_image_src == FooterData.footer_images_src["reg_img_src"], \
+                "The 'src' attribute value of the REG.RU link image is unaccurate"
+            assert link_image_alt, "The 'alt' attribute value of the REG.RU link image is empty"
+            assert link_image_alt == FooterData.footer_images_alt["reg_img_alt"], "The REG.RU link image is unaccurate"

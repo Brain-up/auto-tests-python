@@ -200,7 +200,11 @@ class FooterPage(BasePage):
     def get_reg_link_href(self):
         return self.get_link_href(self.locators.REG_LINK)
 
-    @allure.step("Check the REG.RU image is present and visible in Footer")
+    @allure.step("Check the REG.RU image is present in Footer")
+    def check_reg_image_presence(self):
+        return self.element_is_present(self.locators.REG_IMAGE)
+
+    @allure.step("Check the REG.RU image is visible in Footer")
     def check_reg_image_visibility(self):
         return self.element_is_visible(self.locators.REG_IMAGE)
 
