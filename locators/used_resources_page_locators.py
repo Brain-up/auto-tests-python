@@ -10,6 +10,7 @@ class UsedResourcesPageLocators:
     FREEPIK_COM_SECTION_ICON = (By.XPATH, "(//*[name()='svg'][@class])[1]")
     PLANTS_LINK = (By.XPATH, "(//section//li)[2]/a")
     PLANTS_LINK_SECTION = (By.XPATH, "(//section//li)[2]")
+    PLANTS_SECTION_ICON = (By.XPATH, "(//*[name()='svg'][@class])[2]")
 
 
 class RelatedPagesElementsLocators:

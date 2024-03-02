@@ -136,3 +136,15 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get content of the text in the 'Plants' link")
     def get_text_in_plants_link(self):
         return self.element_is_present(self.locators.PLANTS_LINK).text
+
+    @allure.step("Check the icon is present in 'Plants' link's section")
+    def check_icon_presence_in_plants_section(self):
+        return self.element_is_present(self.locators.PLANTS_SECTION_ICON)
+
+    @allure.step("Check the icon is visible in 'Plants' link's section")
+    def check_icon_visibility_in_plants_section(self):
+        return self.element_is_visible(self.locators.PLANTS_SECTION_ICON)
+
+    @allure.step("Get attribute 'xmlns' of the icon in the 'Plants' link's section")
+    def get_icon_xmlns_in_plants_section(self):
+        return self.driver.find_element(*self.locators.PLANTS_SECTION_ICON).get_attribute("xmlns")
