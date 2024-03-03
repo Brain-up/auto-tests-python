@@ -216,6 +216,14 @@ class FooterPage(BasePage):
     def get_reg_image_alt(self):
         return self.get_image_alt(self.locators.REG_IMAGE)
 
+    @allure.step("Get attribute 'width' of the REG.RU image in Footer")
+    def get_visible_width_of_reg_image(self):
+        return self.get_image_width(self.locators.REG_IMAGE)
+
+    @allure.step("Get attribute 'height' of the REG.RU image in Footer")
+    def get_visible_height_of_reg_image(self):
+        return self.get_image_height(self.locators.REG_IMAGE)
+
     @allure.step("Check the Selectel link is present and visible in Footer")
     def check_selectel_link_presence_and_visibility(self):
         return self.element_is_visible(self.locators.SELECTEL_LINK)
