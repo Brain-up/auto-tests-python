@@ -13,6 +13,14 @@ class UsedResourcesPage(BasePage):
     def open_used_resources_page(self):
         self.driver.get(MainPageLinks.URL_USED_RESOURCES_PAGE)
 
+    @allure.step("Get attribute 'width' of an icon")
+    def get_icon_width(self, locator):
+        return self.element_is_present(locator).get_attribute("width")
+
+    @allure.step("Get attribute 'height' of an icon")
+    def get_icon_height(self, locator):
+        return self.element_is_present(locator).get_attribute("height")
+
     @allure.step("Check the page title is present in DOM")
     def check_used_resources_page_title_presence(self):
         return self.element_is_present(self.locators.PAGE_TITLE)
@@ -95,11 +103,11 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Get attribute 'width' of the icon in freepik.com link's section")
     def get_width_of_icon_in_freepik_com_section(self):
-        return self.element_is_visible(self.locators.FREEPIK_COM_SECTION_ICON).get_attribute('width')
+        return self.get_icon_width(self.locators.FREEPIK_COM_SECTION_ICON)
 
     @allure.step("Get attribute 'height' of the icon in freepik.com link's section")
     def get_height_of_icon_in_freepik_com_section(self):
-        return self.element_is_visible(self.locators.FREEPIK_COM_SECTION_ICON).get_attribute('height')
+        return self.get_icon_height(self.locators.FREEPIK_COM_SECTION_ICON)
 
     @allure.step('Check if the section with the "Plants" link is present in DOM')
     def check_presence_of_plants_link_section(self):
@@ -148,3 +156,11 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get attribute 'xmlns' of the icon in the 'Plants' link's section")
     def get_icon_xmlns_in_plants_section(self):
         return self.driver.find_element(*self.locators.PLANTS_SECTION_ICON).get_attribute("xmlns")
+
+    @allure.step("Get attribute 'width' of the icon in 'Plants' link's section")
+    def get_width_of_icon_in_plants_section(self):
+        return self.get_icon_width(self.locators.PLANTS_SECTION_ICON)
+
+    @allure.step("Get attribute 'height' of the icon in 'Plants' link's section")
+    def get_height_of_icon_in_plants_section(self):
+        return self.get_icon_height(self.locators.PLANTS_SECTION_ICON)
