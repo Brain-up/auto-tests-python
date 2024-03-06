@@ -164,3 +164,11 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get attribute 'height' of the icon in 'Plants' link's section")
     def get_height_of_icon_in_plants_section(self):
         return self.get_icon_height(self.locators.PLANTS_SECTION_ICON)
+
+    @allure.step('Check if the section with the "Flora" link is present in DOM')
+    def check_presence_of_flora_link_section(self):
+        return self.element_is_present(self.locators.FLORA_LINK_SECTION)
+
+    @allure.step('Check if the section with the "Flora" link is visible on the page')
+    def check_visibility_of_flora_link_section(self):
+        return self.element_is_visible(self.locators.FLORA_LINK_SECTION)
