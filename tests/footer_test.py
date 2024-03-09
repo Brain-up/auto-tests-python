@@ -100,7 +100,7 @@ class TestFooter:
             assert link_status_code in FooterData.footer_links_status_codes["reg_link_status_code"], \
                 "The REG.RU link status code does not match any of the expected values"
 
-        @allure.title("Verify presence, visibility and accuracy of the Selectel link and link's image in Footer")
+        @allure.title("Verify presence, visibility, clickability, href, status code of the Selectel link in Footer")
         def test_fp_01_07_verify_selectel_link(self, driver, main_page_open):
             page = FooterPage(driver)
             link_presence_and_visibility = page.check_selectel_link_presence_and_visibility()
