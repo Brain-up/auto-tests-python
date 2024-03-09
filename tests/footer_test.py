@@ -100,27 +100,19 @@ class TestFooter:
             assert link_status_code in FooterData.footer_links_status_codes["reg_link_status_code"], \
                 "The REG.RU link status code does not match any of the expected values"
 
-        @allure.title("Verify presence, visibility and accuracy of the Selectel link and link's image in Footer")
+        @allure.title("Verify presence, visibility, clickability, href, status code of the Selectel link in Footer")
         def test_fp_01_07_verify_selectel_link(self, driver, main_page_open):
             page = FooterPage(driver)
             link_presence_and_visibility = page.check_selectel_link_presence_and_visibility()
             link_clickability = page.check_selectel_link_clickability()
             link_href = page.get_selectel_link_href()
             link_status_code = requests.head(link_href).status_code
-            link_image_visibility = page.check_selectel_image_visibility()
-            link_image_src = page.get_selectel_image_src()
-            link_image_alt = page.get_selectel_image_alt()
             assert link_presence_and_visibility is not None, "The Selectel link is absent or invisible"
             assert link_clickability is not None, "The Selectel link is unclickable"
             assert link_href == FooterData.footer_links_href["selectel_link_href"], \
                 "The attribute 'href' of the Selectel link does not match the expected value"
             assert link_status_code == FooterData.footer_links_status_codes["selectel_link_status_code"], \
                 "The Selectel link status code does not match the expected value"
-            assert link_image_visibility is not None, "The Selectel link image is absent or invisible"
-            assert link_image_src == FooterData.footer_images_src["selectel_img_src"], \
-                "The Selectel link image is unaccurate"
-            assert link_image_alt == FooterData.footer_images_alt["selectel_img_alt"], \
-                "The Selectel link image is unaccurate"
 
         @allure.title("Verify presence, visibility and accuracy of the Contact us link in Footer")
         def test_fp_01_08_verify_contact_us_link(self, driver, main_page_open):
@@ -388,3 +380,18 @@ class TestFooter:
                 f"The image width in the {link_href} link in Footer has not changed due to resizing"
             assert image_height == image_height_new, \
                 f"The image height in the {link_href} link in Footer has changed due to resizing"
+
+        @allure.title("Verify presence, visibility and accuracy of the Selectel link's image in Footer")
+        def test_fp_04_13_verify_selectel_link_image(self, driver, main_page_open):
+            page = FooterPage(driver)
+            link_image_presence = page.check_selectel_image_presence()
+            link_image_visibility = page.check_selectel_image_visibility()
+            link_image_src = page.get_selectel_image_src()
+            link_image_alt = page.get_selectel_image_alt()
+            assert link_image_presence is not None, "The image in the Selectel link is absent"
+            assert link_image_visibility, "The image in the Selectel link is invisible"
+            assert link_image_src == FooterData.footer_images_src["selectel_img_src"], \
+                "The 'src' attribute value of the Selectel link image is unaccurate"
+            assert link_image_alt, "The 'alt' attribute value of the Selectel link image is empty"
+            assert link_image_alt == FooterData.footer_images_alt["selectel_img_alt"], \
+                "The Selectel link image is unaccurate"
