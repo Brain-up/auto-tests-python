@@ -244,7 +244,11 @@ class FooterPage(BasePage):
     def get_selectel_link_href(self):
         return self.get_link_href(self.locators.SELECTEL_LINK)
 
-    @allure.step("Check the Selectel image is present and visible in Footer")
+    @allure.step("Check the Selectel image is present in Footer")
+    def check_selectel_image_presence(self):
+        return self.element_is_present(self.locators.SELECTEL_IMAGE)
+
+    @allure.step("Check the Selectel image is visible in Footer")
     def check_selectel_image_visibility(self):
         return self.element_is_visible(self.locators.SELECTEL_IMAGE)
 
