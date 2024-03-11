@@ -4,11 +4,15 @@ class UsedResourcesPageData:
         "page_title_content": ["Используемые ресурсы", "Used Resources"],
         "page_text_content": ["Фотографии упражнений в приложении взяты со следующих платформ:",
                               "Exercise pictures in the application are taken from the following platforms:"],
+        "flora_link_content": "Flora («Flora von Deutschland, Österreich und der Schweiz in Wort und Bild für "
+                              "Schule und Haus»)",
         "freepik_com_link_content": "freepik.com",
         "plants_link_content": "Plants (Köhler's Medizinal-Pflanzen)"
     }
 
     used_resources_page_links_href = {
+        "flora_link_href": "https://web.archive.org/web/20090601012031/http://caliban.mpiz-koeln.mpg.de/~stueber/"
+                           "thome/Alphabetical_list.html",
         "freepik_com_link_href": "https://freepik.com/",
         "plants_link_href": "https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_"
                             "%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD%D0%B8%D0%B9,"
@@ -20,6 +24,7 @@ class UsedResourcesPageData:
     }
 
     used_resources_page_links_status_codes = {
+        "flora_link_status_code": 200,
         "freepik_com_link_status_code": 403,
         "plants_link_status_code": 200
     }
