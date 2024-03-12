@@ -207,3 +207,30 @@ class TestUsedResourcesPage:
             section_visibility = page.check_visibility_of_flora_link_section()
             assert section_presence is not None, "The section with the 'Flora' link is absent"
             assert section_visibility, "The section with the 'Flora' link is invisible"
+
+        @allure.title("Verify presence, visibility, clickability, href, status code, text of the 'Flora' link")
+        def test_ur_01_15_verify_flora_link(self, driver, auto_test_user_authorized):
+            page = UsedResourcesPage(driver)
+            page.open_used_resources_page()
+            print(driver.current_url)
+            link_presence = page.check_flora_link_presence()
+            link_visibility = page.check_flora_link_visibility()
+            link_clickability = page.check_flora_link_clickability()
+            link_href = page.get_flora_link_href()
+            print(link_href)
+            link_status_code = requests.head(link_href).status_code
+            print(link_status_code)
+            actual_link_text = page.get_text_in_flora_link()
+            print(actual_link_text)
+            assert link_presence is not None, f"The {link_href} link is absent"
+            assert link_visibility, f"The {link_href} link is invisible"
+            assert link_clickability, f"The {link_href} link is unclickable"
+            assert link_href == UsedResourcesPageData.used_resources_page_links_href["flora_link_href"], \
+                   f"The attribute 'href' of the {link_href} link does not match the expected value"
+            assert link_status_code == \
+                   UsedResourcesPageData.used_resources_page_links_status_codes["flora_link_status_code"], \
+                   f"The {link_href} link status code does not match the expected value"
+            assert actual_link_text == \
+                   UsedResourcesPageData.used_resources_page_elements_content["flora_link_content"], \
+                   f"The actual text '{actual_link_text}' of the {link_href} link does not match the valid option" \
+                   f"on the page {link_href}"

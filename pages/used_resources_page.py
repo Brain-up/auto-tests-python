@@ -172,3 +172,23 @@ class UsedResourcesPage(BasePage):
     @allure.step('Check if the section with the "Flora" link is visible on the page')
     def check_visibility_of_flora_link_section(self):
         return self.element_is_visible(self.locators.FLORA_LINK_SECTION)
+
+    @allure.step("Check the 'Flora' link is present in DOM")
+    def check_flora_link_presence(self):
+        return self.element_is_present(self.locators.FLORA_LINK)
+
+    @allure.step("Check the 'Flora' link is visible on the page")
+    def check_flora_link_visibility(self):
+        return self.element_is_visible(self.locators.FLORA_LINK)
+
+    @allure.step("Check the 'Flora' link is clickable")
+    def check_flora_link_clickability(self):
+        return self.element_is_clickable(self.locators.FLORA_LINK)
+
+    @allure.step("Get attribute 'href' of the 'Flora' link")
+    def get_flora_link_href(self):
+        return self.get_link_href(self.locators.FLORA_LINK)
+
+    @allure.step("Get content of the text in the 'Flora' link")
+    def get_text_in_flora_link(self):
+        return self.element_is_present(self.locators.FLORA_LINK).text
