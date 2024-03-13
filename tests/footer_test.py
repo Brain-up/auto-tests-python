@@ -395,3 +395,16 @@ class TestFooter:
             assert link_image_alt, "The 'alt' attribute value of the Selectel link image is empty"
             assert link_image_alt == FooterData.footer_images_alt["selectel_img_alt"], \
                 "The Selectel link image is unaccurate"
+
+        @allure.title("Verify visible sizes of the Selectel link's image in Footer")
+        def test_fp_04_14_verify_visible_sizes_of_selectel_link_image(self, driver, main_page_open):
+            page = FooterPage(driver)
+            link_href = page.get_selectel_link_href()
+            image_width = page.get_visible_width_of_selectel_image()
+            image_height = page.get_visible_height_of_selectel_image()
+            print(f"The current visible sizes of the picture in the {link_href} link are: "
+                  f"{image_width}x{image_height} px")
+            assert image_width != 0, \
+                f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
+            assert image_height != 0, \
+                f"The image in the {link_href} link in Footer is invisible, a reason: image height = 0"
