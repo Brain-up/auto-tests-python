@@ -185,6 +185,14 @@ class UsedResourcesPage(BasePage):
     def check_flora_link_clickability(self):
         return self.element_is_clickable(self.locators.FLORA_LINK)
 
+    @allure.step("Click on the 'Flora' link and thereby open the corresponding web page in a new tab")
+    def click_flora_link(self):
+        self.element_is_present_and_clickable(self.locators.FLORA_LINK).click()
+
+    @allure.step("Get text of the element on the 'Flora' page")
+    def get_element_text_on_opened_flora_tab(self):
+        return self.get_text(self.locators1.FLORA_TEXT)
+
     @allure.step("Get attribute 'href' of the 'Flora' link")
     def get_flora_link_href(self):
         return self.get_link_href(self.locators.FLORA_LINK)
