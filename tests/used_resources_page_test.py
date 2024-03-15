@@ -234,3 +234,18 @@ class TestUsedResourcesPage:
                    UsedResourcesPageData.used_resources_page_elements_content["flora_link_content"], \
                    f"The actual text '{actual_link_text}' of the {link_href} link does not match the valid option" \
                    f"on the page {link_href}"
+
+        @allure.title("Verify that the 'Flora' link leads to the correct page after click")
+        def test_ur_01_16_verify_flora_link_leads_to_the_correct_page(self, driver, auto_test_user_authorized):
+            page = UsedResourcesPage(driver)
+            page.open_used_resources_page()
+            print(driver.current_url)
+            page.click_flora_link()
+            page.switch_to_new_window()
+            print(driver.current_url)
+            text_on_opened_tab = page.get_element_text_on_opened_flora_tab()
+            print(text_on_opened_tab)
+            assert text_on_opened_tab == \
+                   UsedResourcesPageData.used_resources_page_related_elements_text["flora_page_text"], \
+                   "The 'Flora' link leads to an incorrect page after click " \
+                   "or opened page does not load correctly"
