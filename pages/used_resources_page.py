@@ -21,6 +21,10 @@ class UsedResourcesPage(BasePage):
     def get_icon_height(self, locator):
         return self.element_is_present(locator).get_attribute("height")
 
+    @allure.step("Get attribute 'xmlns' of an icon")
+    def get_icon_xmlns(self, locator):
+        return self.element_is_present(locator).get_attribute("xmlns")
+
     @allure.step("Check the page title is present in DOM")
     def check_used_resources_page_title_presence(self):
         return self.element_is_present(self.locators.PAGE_TITLE)
@@ -99,7 +103,7 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Get attribute 'xmlns' of the icon in the freepik.com link's section")
     def get_icon_xmlns_in_freepik_com_section(self):
-        return self.driver.find_element(*self.locators.FREEPIK_COM_SECTION_ICON).get_attribute("xmlns")
+        return self.get_icon_xmlns(self.locators.FREEPIK_COM_SECTION_ICON)
 
     @allure.step("Get attribute 'width' of the icon in freepik.com link's section")
     def get_width_of_icon_in_freepik_com_section(self):
@@ -155,7 +159,7 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Get attribute 'xmlns' of the icon in the 'Plants' link's section")
     def get_icon_xmlns_in_plants_section(self):
-        return self.driver.find_element(*self.locators.PLANTS_SECTION_ICON).get_attribute("xmlns")
+        return self.get_icon_xmlns(self.locators.PLANTS_SECTION_ICON)
 
     @allure.step("Get attribute 'width' of the icon in 'Plants' link's section")
     def get_width_of_icon_in_plants_section(self):
@@ -200,3 +204,15 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get content of the text in the 'Flora' link")
     def get_text_in_flora_link(self):
         return self.element_is_present(self.locators.FLORA_LINK).text
+
+    @allure.step("Check the icon is present in 'Flora' link's section")
+    def check_icon_presence_in_flora_section(self):
+        return self.element_is_present(self.locators.FLORA_SECTION_ICON)
+
+    @allure.step("Check the icon is visible in 'Flora' link's section")
+    def check_icon_visibility_in_flora_section(self):
+        return self.element_is_visible(self.locators.FLORA_SECTION_ICON)
+
+    @allure.step("Get attribute 'xmlns' of the icon in the 'Flora' link's section")
+    def get_icon_xmlns_in_flora_section(self):
+        return self.get_icon_xmlns(self.locators.FLORA_SECTION_ICON)
