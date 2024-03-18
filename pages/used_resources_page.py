@@ -216,3 +216,11 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get attribute 'xmlns' of the icon in the 'Flora' link's section")
     def get_icon_xmlns_in_flora_section(self):
         return self.get_icon_xmlns(self.locators.FLORA_SECTION_ICON)
+
+    @allure.step("Get attribute 'width' of the icon in 'Flora' link's section")
+    def get_width_of_icon_in_flora_section(self):
+        return self.get_icon_width(self.locators.FLORA_SECTION_ICON)
+
+    @allure.step("Get attribute 'height' of the icon in 'Flora' link's section")
+    def get_height_of_icon_in_flora_section(self):
+        return self.get_icon_height(self.locators.FLORA_SECTION_ICON)
