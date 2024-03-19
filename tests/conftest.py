@@ -1,4 +1,5 @@
 import os
+import time
 
 import allure
 import pytest
@@ -6,6 +7,7 @@ from dotenv import load_dotenv
 
 from locators.login_page_locators import LoginPageLocators
 from locators.main_page_locators import MainPageLocators
+from locators.header_page_locators import HeaderPageLocators
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 
@@ -22,6 +24,15 @@ def main_page_open(driver):
 @allure.step(f'Open page: {MainPageLinks.URL_DESCRIPTION_PAGE}')
 def description_page_open(driver):
     driver.get(MainPageLinks.URL_DESCRIPTION_PAGE)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {MainPageLinks.URL_SPECIALISTS_PAGE}')
+def specialists_page_open(driver, main_page_open):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(HeaderPageLocators.MORE_MENU).click()
+    page.element_is_present_and_clickable(HeaderPageLocators.SPECIALISTS_LINK_IN_MORE_MENU).click()
+    time.sleep(1)
 
 
 @pytest.fixture()
