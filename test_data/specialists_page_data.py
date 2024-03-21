@@ -9,3 +9,5 @@ class SpecialistsPageData:
                               "in the field of deaf education from Russia and Belarus"],
         "page_title_content": ["Специалисты", "Specialists"]
     }
+
+    specialists_page_grid_size = 8

@@ -20,12 +20,23 @@ class TestSpecialistsPage:
     @allure.title("Verify presence, visibility and content accuracy of the text on the Specialists page")
     def test_sp_01_02_verify_specialists_page_text(self, driver, specialists_page_open):
         page = SpecialistsPage(driver)
-        print(driver.current_url)
         page_text_presence = page.check_specialists_page_text_presence()
         page_text_visibility = page.check_specialists_page_text_visibility()
         page_text_content = page.get_text_content_on_the_specialists_page()
-        print(page_text_content)
         assert page_text_presence is not None, "The text is absent in DOM"
         assert page_text_visibility, "The text is invisible on the page"
         assert page_text_content in SpecialistsPageData.specialists_page_elements_content["page_text_content"], \
             "The text content does not match the any of the valid option"
+
+    @allure.title("Verify presence, visibility and size of the grid on the Specialists page")
+    def test_sp_01_03_verify_specialists_page_grid(self, driver, specialists_page_open):
+        page = SpecialistsPage(driver)
+        print(driver.current_url)
+        page_grid_presence = page.check_specialists_page_grid_presence()
+        page_grid_visibility = page.check_specialists_page_grid_visibility()
+        page_grid_size = page.get_specialists_page_grid_size()
+        print(page_grid_size)
+        assert page_grid_presence is not None, "The grid is absent in DOM"
+        assert page_grid_visibility, "The grid is invisible on the page"
+        assert page_grid_size == SpecialistsPageData.specialists_page_grid_size, \
+               "The grid size does not match the expected value"
