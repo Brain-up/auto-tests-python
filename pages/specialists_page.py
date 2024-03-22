@@ -1,5 +1,6 @@
 import allure
-
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from locators.specialists_page_locators import SpecialistsPageLocators
 
@@ -43,3 +44,10 @@ class SpecialistsPage(BasePage):
     def get_specialists_page_grid_size(self):
         grid = self.elements_are_present(self.locators.PAGE_GRID_CONTENT)
         return len(grid)
+
+    @allure.step("Check the card of each specialist is visible on the page")
+    def check_visibility_of_specialist_cards(self):
+        cards = self.elements_are_present(self.locators.PAGE_GRID_CONTENT)
+        print(len(cards))
+        for card in cards:
+            return card.is_displayed()
