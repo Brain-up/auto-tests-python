@@ -31,7 +31,6 @@ class TestSpecialistsPage:
     @allure.title("Verify presence, visibility and size of the grid on the Specialists page")
     def test_sp_01_03_verify_specialists_page_grid(self, driver, specialists_page_open):
         page = SpecialistsPage(driver)
-        print(driver.current_url)
         page_grid_presence = page.check_specialists_page_grid_presence()
         page_grid_visibility = page.check_specialists_page_grid_visibility()
         page_grid_size = page.get_specialists_page_grid_size()
@@ -40,3 +39,10 @@ class TestSpecialistsPage:
         assert page_grid_visibility, "The grid is invisible on the page"
         assert page_grid_size == SpecialistsPageData.specialists_page_grid_size, \
                "The grid size does not match the expected value"
+
+    @allure.title("Verify visibility of cards in the grid on the Specialists page")
+    def test_sp_01_04_verify_specialist_cards_visibility(self, driver, specialists_page_open):
+        page = SpecialistsPage(driver)
+        print(driver.current_url)
+        cards_visibility = page.check_visibility_of_specialist_cards()
+        assert cards_visibility, "Specialist cards are invisible in the grid"
