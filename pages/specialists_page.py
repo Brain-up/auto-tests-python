@@ -68,10 +68,7 @@ class SpecialistsPage(BasePage):
     def get_the_1th_card_image_alt(self):
         return self.get_image_alt(self.locators.GRID_CARD_01_IMAGE)
 
-    @allure.step("Get attribute 'width' of the ARASAAC image in Footer")
-    def get_visible_width_of_the_1th_card_image(self):
-        return self.get_image_width(self.locators.GRID_CARD_01_IMAGE)
-
     @allure.step("Get attribute 'height' of the ARASAAC image in Footer")
-    def get_visible_height_of_the_1th_card_image(self):
-        return self.get_image_height(self.locators.GRID_CARD_01_IMAGE)
+    def get_visible_size_of_the_1th_card_image(self):
+        image = self.element_is_present(self.locators.GRID_CARD_01_IMAGE)
+        return image.size
