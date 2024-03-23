@@ -34,7 +34,6 @@ class TestSpecialistsPage:
         page_grid_presence = page.check_specialists_page_grid_presence()
         page_grid_visibility = page.check_specialists_page_grid_visibility()
         page_grid_size = page.get_specialists_page_grid_size()
-        print(page_grid_size)
         assert page_grid_presence is not None, "The grid is absent in DOM"
         assert page_grid_visibility, "The grid is invisible on the page"
         assert page_grid_size == SpecialistsPageData.specialists_page_grid_size, \
@@ -43,6 +42,28 @@ class TestSpecialistsPage:
     @allure.title("Verify visibility of cards in the grid on the Specialists page")
     def test_sp_01_04_verify_specialist_cards_visibility(self, driver, specialists_page_open):
         page = SpecialistsPage(driver)
-        print(driver.current_url)
         cards_visibility = page.check_visibility_of_specialist_cards()
         assert cards_visibility, "Specialist cards are invisible in the grid"
+
+    class TestSpecialistsPageImages:
+
+        @allure.title("Verify presence, visibility and accuracy of the 1th card's image in the grid")
+        def test_sp_02_01_verify_1th_card_image(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            print(driver.current_url)
+            image_presence = page.check_the_1th_card_image_presence()
+            image_visibility = page.check_the_1th_card_image_visibility()
+            image_src = page.get_the_1th_card_image_src()
+            image_alt = page.get_the_1th_card_image_alt()
+            image_size = page.get_visible_size_of_the_1th_card_image()
+            print(f"The visible sizes of the 1th card image are: {image_size}")
+            driver.set_window_size(820, 1180)
+            image_size_new = page.get_visible_size_of_the_1th_card_image()
+            print(f"The new visible sizes of the 1th card image are: {image_size_new}")
+            assert image_presence is not None, "The image in the 1th card is absent"
+            assert image_visibility, "The 1th card image is invisible"
+            assert image_src, "The 'src' attribute value of the 1th card image is empty"
+            assert image_src == SpecialistsPageData.specialists_page_images_src["1th_card_img_src"], \
+                "The 'src' attribute value of the 1th card image is unaccurate"
+            assert image_alt, "The 'alt' attribute value of the 1th card image is empty"
+            assert image_alt == SpecialistsPageData.specialists_page_images_alt, "The 1th card image is unaccurate"

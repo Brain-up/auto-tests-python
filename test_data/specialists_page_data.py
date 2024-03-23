@@ -11,3 +11,9 @@ class SpecialistsPageData:
     }
 
     specialists_page_grid_size = 8
+
+    specialists_page_images_src = {
+        "1th_card_img_src": "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png"
+    }
+
+    specialists_page_images_alt = "user avatar"
