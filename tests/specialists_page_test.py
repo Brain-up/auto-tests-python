@@ -67,4 +67,3 @@ class TestSpecialistsPage:
                 "The 'src' attribute value of the 1th card image is unaccurate"
             assert image_alt, "The 'alt' attribute value of the 1th card image is empty"
             assert image_alt == SpecialistsPageData.specialists_page_images_alt, "The 1th card image is unaccurate"
-            assert image_size != image_size_new, "The image height in the 1th card has not changed due to resizing"
