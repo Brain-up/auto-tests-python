@@ -93,6 +93,18 @@ class BasePage:
     def get_link_href(self, locator):
         return self.driver.find_element(*locator).get_attribute("href")
 
+    def get_image_src(self, locator):
+        return self.driver.find_element(*locator).get_attribute("src")
+
+    def get_image_alt(self, locator):
+        return self.driver.find_element(*locator).get_attribute("alt")
+
+    def get_image_width(self, locator):
+        return self.driver.find_element(*locator).get_attribute("width")
+
+    def get_image_height(self, locator):
+        return self.driver.find_element(*locator).get_attribute("height")
+
     def get_current_page_title(self):
         current_page_title = self.driver.title
         print('The title of the current page is: ', current_page_title)
