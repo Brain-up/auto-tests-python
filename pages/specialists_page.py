@@ -52,6 +52,13 @@ class SpecialistsPage(BasePage):
         for card in cards:
             return card.is_displayed()
 
+    @allure.step("Check the image in each specialist card is visible on the page")
+    def check_image_presence_and_visibility_in_specialist_cards(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        print(f"\nNumber of images in cards is: {len(card_images)}")
+        for image in card_images:
+            return image.is_displayed()
+
     @allure.step("Check the image is present in the 1th card")
     def check_the_1th_card_image_presence(self):
         return self.element_is_present(self.locators.GRID_CARD_01_IMAGE)
@@ -70,5 +77,5 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Get size of the image in the 1th card")
     def get_visible_size_of_the_1th_card_image(self):
-        image = self.element_is_present(self.locators.GRID_CARD_01_IMAGE)
-        return image.size
+        image_size = self.get_image_size(self.locators.GRID_CARD_01_IMAGE)
+        return image_size
