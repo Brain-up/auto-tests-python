@@ -105,6 +105,9 @@ class BasePage:
     def get_image_height(self, locator):
         return self.driver.find_element(*locator).get_attribute("height")
 
+    def get_image_size(self, locator):
+        return self.driver.find_element(*locator).size
+
     def get_current_page_title(self):
         current_page_title = self.driver.title
         print('The title of the current page is: ', current_page_title)

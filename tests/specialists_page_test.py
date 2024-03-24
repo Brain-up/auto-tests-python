@@ -47,8 +47,14 @@ class TestSpecialistsPage:
 
     class TestSpecialistsPageImages:
 
+        @allure.title("Verify presence and visibility of images in specialist cards in the grid")
+        def test_sp_02_01_verify_images_in_cards_are_present_and_visible(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            images_visibility = page.check_image_presence_and_visibility_in_specialist_cards()
+            assert images_visibility, "Images in specialist cards are invisible in the grid"
+
         @allure.title("Verify presence, visibility and accuracy of the 1th card's image in the grid")
-        def test_sp_02_01_verify_1th_card_image(self, driver, specialists_page_open):
+        def test_sp_02_02_verify_1th_card_image(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             print(driver.current_url)
             image_presence = page.check_the_1th_card_image_presence()
