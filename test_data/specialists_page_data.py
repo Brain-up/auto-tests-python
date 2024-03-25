@@ -17,3 +17,14 @@ class SpecialistsPageData:
     }
 
     specialists_page_images_alt = "user avatar"
+
+    specialists_images_src = [
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/proshina.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/berezkina.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/metelskaya.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/koroleva.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/kibalova.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/platonenko.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/sivenkova.png"
+    ]
