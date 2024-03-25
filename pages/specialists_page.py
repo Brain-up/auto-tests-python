@@ -1,6 +1,5 @@
 import allure
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+
 from pages.base_page import BasePage
 from locators.specialists_page_locators import SpecialistsPageLocators
 
@@ -58,6 +57,14 @@ class SpecialistsPage(BasePage):
         print(f"\nNumber of images in cards is: {len(card_images)}")
         for image in card_images:
             return image.is_displayed()
+
+    @allure.step("Get attribute 'src' of the image in each specialist card on the page")
+    def get_images_src_in_specialist_cards(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        print(f"\nNumber of images in cards is: {len(card_images)}")
+        src_list = [image.get_attribute('src') for image in card_images]
+        print(*src_list, sep='\n')
+        return src_list
 
     @allure.step("Check the image is present in the 1th card")
     def check_the_1th_card_image_presence(self):
