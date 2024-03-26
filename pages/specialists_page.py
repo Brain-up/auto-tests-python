@@ -51,20 +51,31 @@ class SpecialistsPage(BasePage):
         for card in cards:
             return card.is_displayed()
 
-    @allure.step("Check the image in each specialist card is visible on the page")
-    def check_image_presence_and_visibility_in_specialist_cards(self):
+    @allure.step("Get the list of images in specialist cards on the page")
+    def get_list_of_card_images(self):
         card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
         print(f"\nNumber of images in cards is: {len(card_images)}")
+        return card_images
+
+    @allure.step("Check the image in each specialist card is visible on the page")
+    def check_image_presence_and_visibility_in_specialist_cards(self):
+        card_images = self.get_list_of_card_images()
         for image in card_images:
             return image.is_displayed()
 
-    @allure.step("Get attribute 'src' of the image in each specialist card on the page")
+    @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
     def get_images_src_in_specialist_cards(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        print(f"\nNumber of images in cards is: {len(card_images)}")
+        card_images = self.get_list_of_card_images()
         src_list = [image.get_attribute('src') for image in card_images]
         print(*src_list, sep='\n')
         return src_list
+
+    @allure.step("Get the list of attribute 'alt' values of images in specialist cards on the page")
+    def get_images_alt_in_specialist_cards(self):
+        card_images = self.get_list_of_card_images()
+        alt_list = [image.get_attribute('alt') for image in card_images]
+        print(*alt_list, sep='\n')
+        return alt_list
 
     @allure.step("Check the image is present in the 1th card")
     def check_the_1th_card_image_presence(self):
