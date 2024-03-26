@@ -16,7 +16,7 @@ class SpecialistsPageData:
         "1th_card_img_src": "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png"
     }
 
-    specialists_page_images_alt = "user avatar"
+    specialists_images_alt = "user avatar"
 
     specialists_images_src = [
         "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png",
