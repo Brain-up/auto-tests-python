@@ -53,18 +53,20 @@ class TestSpecialistsPage:
             images_visibility = page.check_image_presence_and_visibility_in_specialist_cards()
             assert images_visibility, "Images in specialist cards are invisible in the grid"
 
-        @allure.title("Verify attribute values of images in specialist cards in the grid")
-        def test_sp_02_02_verify_images_src_and_alt_in_cards(self, driver, specialists_page_open):
+        @allure.title("Verify attribute values and sizes of images in specialist cards in the grid")
+        def test_sp_02_02_verify_images_src_alt_and_sizes_in_cards(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             images_src = page.get_images_src_in_specialist_cards()
             images_alt = page.get_images_alt_in_specialist_cards()
+            images_size = page.get_sizes_of_card_images()
             assert images_src, "The 'src' attribute value of some card images is empty"
             assert images_src == SpecialistsPageData.specialists_images_src, \
                 "The 'src' attribute values of the card images are unaccurate"
-            assert images_alt, "The 'src' attribute value of some card images is empty"
+            assert images_alt, "The 'alt' attribute value of some card images is empty"
             for item in images_alt:
                 assert item == SpecialistsPageData.specialists_images_alt, \
                     f"The attribute 'alt' '{item}' in the list does not match expected value"
+            assert images_size, "Sizes of card images have not values"
 
         @allure.title("Verify presence, visibility and accuracy of the 1th card's image in the grid")
         def test_sp_02_03_verify_1th_card_image(self, driver, specialists_page_open):
