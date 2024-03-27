@@ -77,6 +77,13 @@ class SpecialistsPage(BasePage):
         print(*alt_list, sep='\n')
         return alt_list
 
+    @allure.step("Get the list of size values of images in specialist cards on the page")
+    def get_sizes_of_card_images(self):
+        card_images = self.get_list_of_card_images()
+        size_list = [image.size for image in card_images]
+        print(*size_list, sep='\n')
+        return size_list
+
     @allure.step("Check the image is present in the 1th card")
     def check_the_1th_card_image_presence(self):
         return self.element_is_present(self.locators.GRID_CARD_01_IMAGE)
