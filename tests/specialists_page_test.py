@@ -45,7 +45,7 @@ class TestSpecialistsPage:
         cards_visibility = page.check_visibility_of_specialist_cards()
         assert cards_visibility, "Specialist cards are invisible in the grid"
 
-    class TestSpecialistsPageImages:
+    class TestSpecialistCardImages:
 
         @allure.title("Verify presence and visibility of images in specialist cards in the grid")
         def test_sp_02_01_verify_images_in_cards_are_present_and_visible(self, driver, specialists_page_open):
@@ -88,3 +88,11 @@ class TestSpecialistsPage:
                 "The 'src' attribute value of the 1th card image is unaccurate"
             assert image_alt, "The 'alt' attribute value of the 1th card image is empty"
             assert image_alt == SpecialistsPageData.specialists_images_alt, "The 1th card image is unaccurate"
+
+    class TestSpecialistCardsText:
+
+        @allure.title("Verify presence and visibility of text sections in specialist cards in the grid")
+        def test_sp_03_01_verify_text_sections_in_cards_are_present_and_visible(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            text_sections_visibility = page.check_presence_and_visibility_of_text_sections_in_specialist_cards()
+            assert text_sections_visibility, "Sections with text in specialist cards are invisible in the grid"
