@@ -138,3 +138,27 @@ class SpecialistsPage(BasePage):
         card_text_sections = self.get_list_of_text_sections_in_cards()
         for text_section in card_text_sections:
             return text_section.is_displayed()
+
+    @allure.step("Get the list of names in specialist cards on the page")
+    def get_list_of_specialist_names_in_cards(self):
+        specialist_names = self.elements_are_present(self.locators.SPECIALIST_NAMES)
+        print(f"Amount of specialist names in cards is: {len(specialist_names)}")
+        return specialist_names
+
+    @allure.step("Check the name in each specialist card is visible on the page")
+    def check_presence_and_visibility_of_names_in_specialist_cards(self):
+        specialist_names = self.get_list_of_specialist_names_in_cards()
+        for specialist_name in specialist_names:
+            return specialist_name.is_displayed()
+
+    @allure.step("Get the list of sections with profession in specialist cards on the page")
+    def get_list_of_specialist_professions_in_cards(self):
+        specialist_profession_sections = self.elements_are_present(self.locators.SPECIALIST_PROFESSION_SECTIONS)
+        print(f"Amount of specialist profession descriptions in cards is: {len(specialist_profession_sections)}")
+        return specialist_profession_sections
+
+    @allure.step("Check the section with profession in each specialist card is visible on the page")
+    def check_presence_and_visibility_of_professions_in_specialist_cards(self):
+        specialist_profession_sections = self.get_list_of_specialist_professions_in_cards()
+        for specialist_profession_section in specialist_profession_sections:
+            return specialist_profession_section.is_displayed()
