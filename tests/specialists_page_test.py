@@ -91,8 +91,13 @@ class TestSpecialistsPage:
 
     class TestSpecialistCardsText:
 
-        @allure.title("Verify presence and visibility of text sections in specialist cards in the grid")
-        def test_sp_03_01_verify_text_sections_in_cards_are_present_and_visible(self, driver, specialists_page_open):
+        @allure.title("""Verify presence and visibility of text sections (including names and professions) 
+         in specialist cards in the grid""")
+        def test_sp_03_01_verify_text_in_cards_is_present_and_visible(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            text_sections_visibility = page.check_presence_and_visibility_of_text_sections_in_specialist_cards()
-            assert text_sections_visibility, "Sections with text in specialist cards are invisible in the grid"
+            text_sections = page.check_presence_and_visibility_of_text_sections_in_specialist_cards()
+            specialist_names = page.check_presence_and_visibility_of_names_in_specialist_cards()
+            specialist_professions = page.check_presence_and_visibility_of_professions_in_specialist_cards()
+            assert text_sections, "Sections with text in specialist cards are invisible in the grid"
+            assert specialist_names, "Names in specialist cards are invisible in the grid"
+            assert specialist_professions, "Professions in specialist cards are invisible in the grid"
