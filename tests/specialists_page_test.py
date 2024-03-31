@@ -1,3 +1,4 @@
+import time
 import allure
 from pages.specialists_page import SpecialistsPage
 from test_data.specialists_page_data import SpecialistsPageData
@@ -50,6 +51,7 @@ class TestSpecialistsPage:
         @allure.title("Verify presence and visibility of images in specialist cards in the grid")
         def test_sp_02_01_verify_images_in_cards_are_present_and_visible(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
+            time.sleep(1)
             images_visibility = page.check_image_presence_and_visibility_in_specialist_cards()
             assert images_visibility, "Images in specialist cards are invisible in the grid"
 
@@ -101,3 +103,11 @@ class TestSpecialistsPage:
             assert text_sections, "Sections with text in specialist cards are invisible in the grid"
             assert specialist_names, "Names in specialist cards are invisible in the grid"
             assert specialist_professions, "Professions in specialist cards are invisible in the grid"
+
+        @allure.title("Verify values of names in specialist cards in the grid")
+        def test_sp_03_02_verify_name_values_in_cards(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            name_values = page.get_name_values_in_specialist_cards()
+            assert name_values, "Name values in cards are empty"
+            assert name_values in SpecialistsPageData.specialists_names, \
+                "The names in specialist cards do not match the expected values"

@@ -54,7 +54,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Get the list of images in specialist cards on the page")
     def get_list_of_card_images(self):
         card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        print(f"\nNumber of images in cards is: {len(card_images)}")
+        print(f"\nAmount of images in cards is: {len(card_images)}")
         return card_images
 
     @allure.step("Check the image in each specialist card is present and visible on the page")
@@ -67,7 +67,6 @@ class SpecialistsPage(BasePage):
     def get_images_src_in_specialist_cards(self):
         card_images = self.get_list_of_card_images()
         src_list = [image.get_attribute('src') for image in card_images]
-        # print(*src_list, sep='\n')
         print(f"The attribute 'src' values of images in cards on the page are:", *src_list, sep='\n')
         return src_list
 
@@ -162,3 +161,10 @@ class SpecialistsPage(BasePage):
         specialist_profession_sections = self.get_list_of_specialist_professions_in_cards()
         for specialist_profession_section in specialist_profession_sections:
             return specialist_profession_section.is_displayed()
+
+    @allure.step("Get the list of name values in specialist cards on the page")
+    def get_name_values_in_specialist_cards(self):
+        specialist_names = self.get_list_of_specialist_names_in_cards()
+        name_values = [name.text for name in specialist_names]
+        print(f"The name values in cards on the page are:", *name_values, sep='\n')
+        return name_values

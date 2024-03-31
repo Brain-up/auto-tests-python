@@ -28,3 +28,11 @@ class SpecialistsPageData:
         "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/platonenko.png",
         "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/sivenkova.png"
     ]
+
+    specialists_names = [
+        ["Гарбарук Екатерина Сергеевна", "Прошина Любовь Александровна", "Березкина Ксения Сергеевна",
+         "Метельская Наталья Николаевна", "Королева Инна Васильевна", "Юлия Кибалова", "Платоненко Дарья Сергеевна",
+         "Сивенкова Кристина Александровна"],
+        ["Ekaterina Garbaruk", "Lubov Proshina", "Ksenia Berezkina", "Natalia Metelskaya", "Inna Koroleva",
+        "Yulia Kibalova", "Daria Platonenko", "Kristina Sivenkova"]
+    ]
