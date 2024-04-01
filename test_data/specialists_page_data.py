@@ -36,3 +36,29 @@ class SpecialistsPageData:
         ["Ekaterina Garbaruk", "Lubov Proshina", "Ksenia Berezkina", "Natalia Metelskaya", "Inna Koroleva",
         "Yulia Kibalova", "Daria Platonenko", "Kristina Sivenkova"]
     ]
+
+    specialists_professions = [
+        ["Кандидат биологических наук, специалист Лаборатории слуха и речи ПСПбГМУ, специалист "
+         "в области диагностики слуховых нарушений",
+         "Сурдопедагог, РНПЦ оториноларингологии, опыт работы более 10 лет",
+         "Сурдопедагог, Городской ресурсный центр для детей с нарушением слуха, опыт работы более 10 лет",
+         "Сурдопедагог, УЗ Могилевская областная детская больница, опыт работы более 20 лет",
+         'Научный руководитель реабилитационного отделения, доктор психологических наук, профессор, '
+         'автор серии методических пособий "Учусь слушать и говорить"',
+         "Сурдопедагог, дефектолог, Лаборатория слуха и речи ПСПбГМУ, опыт работы более 10 лет",
+         "Сурдопедагог, РНПЦ оториноларингологии, опыт работы более 3 лет",
+         "Сурдопедагог, СПб Сурдоцентр, молодой специалист"],
+        ["Candidate of Biological Sciences, expert at the Laboratory of Hearing and Speech "
+         "(The Pavlov First Saint Petersburg State Medical University), expert in diagnosis of aural disorders",
+         "Teacher of the deaf, Belarusian Republican Scientific and Practical Center of Otorhinolaryngology, "
+         "10+ years of experience",
+         "Teacher of the deaf, City Resource Center for Hearing Impaired Children, 10+ years of experience",
+         "Teacher of the deaf, Mogilev Regional Children's Hospital (Belarus), 20+ years of experience",
+         'Academic supervisor of the rehabilitation department, Doctor of Psychology, Professor, '
+         'author of the manuals "Learning to listen and speak"',
+         "Teacher of the deaf, defectologist, expert at the Laboratory of Hearing and Speech "
+         "(The Pavlov First Saint Petersburg State Medical University), 10+ years of experience",
+         "Teacher of the deaf, Belarusian Republican Scientific and Practical Center of Otorhinolaryngology, "
+         "3+ years of experience",
+         "Teacher of the deaf, Saint Petersburg Center of Otorhinolaryngology, young professional"]
+    ]
