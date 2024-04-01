@@ -111,3 +111,11 @@ class TestSpecialistsPage:
             assert name_values, "Name values in cards are empty"
             assert name_values in SpecialistsPageData.specialists_names, \
                 "The names in specialist cards do not match the expected values"
+
+        @allure.title("Verify values of profession in specialist cards in the grid")
+        def test_sp_03_03_verify_profession_values_in_cards(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            profession_values = page.get_profession_values_in_specialist_cards()
+            assert profession_values, "Profession values in cards are empty"
+            assert profession_values in SpecialistsPageData.specialists_professions, \
+                "The professions in specialist cards do not match the expected values"

@@ -67,14 +67,14 @@ class SpecialistsPage(BasePage):
     def get_images_src_in_specialist_cards(self):
         card_images = self.get_list_of_card_images()
         src_list = [image.get_attribute('src') for image in card_images]
-        print(f"The attribute 'src' values of images in cards on the page are:", *src_list, sep='\n')
+        # print(f"The attribute 'src' values of images in cards on the page are:", *src_list, sep='\n')
         return src_list
 
     @allure.step("Get the list of attribute 'alt' values of images in specialist cards on the page")
     def get_images_alt_in_specialist_cards(self):
         card_images = self.get_list_of_card_images()
         alt_list = [image.get_attribute('alt') for image in card_images]
-        print(f"The attribute 'alt' values of images in cards on the page are:", *alt_list, sep='\n')
+        # print(f"The attribute 'alt' values of images in cards on the page are:", *alt_list, sep='\n')
         return alt_list
 
     @allure.step("""Get the list of size values of images in specialist cards on the page 
@@ -141,7 +141,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Get the list of names in specialist cards on the page")
     def get_list_of_specialist_names_in_cards(self):
         specialist_names = self.elements_are_present(self.locators.SPECIALIST_NAMES)
-        print(f"Amount of specialist names in cards is: {len(specialist_names)}")
+        print(f"\nAmount of specialist names in cards is: {len(specialist_names)}")
         return specialist_names
 
     @allure.step("Check the name in each specialist card is visible on the page")
@@ -153,7 +153,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Get the list of sections with profession in specialist cards on the page")
     def get_list_of_specialist_professions_in_cards(self):
         specialist_profession_sections = self.elements_are_present(self.locators.SPECIALIST_PROFESSION_SECTIONS)
-        print(f"Amount of specialist profession descriptions in cards is: {len(specialist_profession_sections)}")
+        print(f"\nAmount of specialist profession descriptions in cards is: {len(specialist_profession_sections)}")
         return specialist_profession_sections
 
     @allure.step("Check the section with profession in each specialist card is visible on the page")
@@ -166,5 +166,12 @@ class SpecialistsPage(BasePage):
     def get_name_values_in_specialist_cards(self):
         specialist_names = self.get_list_of_specialist_names_in_cards()
         name_values = [name.text for name in specialist_names]
-        print(f"The name values in cards on the page are:", *name_values, sep='\n')
+        # print(f"The name values in cards on the page are:", *name_values, sep='\n')
         return name_values
+
+    @allure.step("Get the list of profession values in specialist cards on the page")
+    def get_profession_values_in_specialist_cards(self):
+        specialist_professions = self.get_list_of_specialist_professions_in_cards()
+        profession_values = [profession.text for profession in specialist_professions]
+        # print(f"The profession values in cards on the page are:", *profession_values, sep='\n')
+        return profession_values
