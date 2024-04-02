@@ -119,3 +119,13 @@ class TestSpecialistsPage:
             assert profession_values, "Profession values in cards are empty"
             assert profession_values in SpecialistsPageData.specialists_professions, \
                 "The professions in specialist cards do not match the expected values"
+
+    class TestSpecialistPageLinks:
+
+        @allure.title("Verify presence and visibility of the 'All Specialists' link on the Specialists page")
+        def test_sp_04_01_verify_all_specialists_link(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            link_presence = page.check_all_specialists_link_presence()
+            link_visibility = page.check_all_specialists_link_visibility()
+            assert link_presence is not None, "The 'All Specialists' link is absent in DOM"
+            assert link_visibility, "The 'All Specialists' link is invisible on the page"

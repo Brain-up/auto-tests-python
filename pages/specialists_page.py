@@ -175,3 +175,11 @@ class SpecialistsPage(BasePage):
         profession_values = [profession.text for profession in specialist_professions]
         # print(f"The profession values in cards on the page are:", *profession_values, sep='\n')
         return profession_values
+
+    @allure.step("Check the 'All Specialists' link is present in DOM")
+    def check_all_specialists_link_presence(self):
+        return self.element_is_present(self.locators.ALL_SPECIALISTS_LINK)
+
+    @allure.step("Check the 'All Specialists' link is visible on the page")
+    def check_all_specialists_link_visibility(self):
+        return self.element_is_visible(self.locators.ALL_SPECIALISTS_LINK)
