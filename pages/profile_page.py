@@ -91,3 +91,13 @@ class ProfilePage(BasePage):
     @allure.step("Get error message")
     def get_error_message(self):
         return self.element_is_visible(ProfilePageLocators.WRONG_AUTH_DATA_MSG).text
+
+    def authorisation_user(self, login, password):
+        with allure.step('Fill the login'):
+            self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(login)
+        with allure.step('Fill the password'):
+            self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(password)
+        with allure.step('Click the button submit'):
+            self.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+        with allure.step('Wait changing url'):
+            self.wait_changed_url(MainPageLinks.URL_PROFILE_PAGE)
