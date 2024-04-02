@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 
 class SpecialistsPageLocators:
+    ALL_SPECIALISTS_LINK = (By.XPATH, "//div[contains(@class, 'mt-20')]/a")
     GRID_CARD_IMAGES = (By.XPATH, "//img[@class='rounded-full']")
     GRID_CARD_TEXT_SECTIONS = (By.XPATH, "//div[@class='flex-1']")
     GRID_CARD_01_IMAGE = (By.XPATH, "(//img[@class='rounded-full'])[1]")
