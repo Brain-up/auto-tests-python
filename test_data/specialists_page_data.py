@@ -62,3 +62,9 @@ class SpecialistsPageData:
          "3+ years of experience",
          "Teacher of the deaf, Saint Petersburg Center of Otorhinolaryngology, young professional"]
     ]
+
+    all_specialists_link_href = "https://brainup.site/specialists#"
+
+    all_specialists_link_status_code = 200
+
+    all_specialists_link_text = ["Все Специалисты", "All Specialists"]
