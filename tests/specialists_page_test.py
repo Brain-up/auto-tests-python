@@ -1,5 +1,7 @@
 import time
 import allure
+import requests
+
 from pages.specialists_page import SpecialistsPage
 from test_data.specialists_page_data import SpecialistsPageData
 
@@ -110,7 +112,7 @@ class TestSpecialistsPage:
             name_values = page.get_name_values_in_specialist_cards()
             assert name_values, "Name values in cards are empty"
             assert name_values in SpecialistsPageData.specialists_names, \
-                "The names in specialist cards do not match the expected values"
+                "The names in specialist cards do not match the valid values"
 
         @allure.title("Verify values of profession in specialist cards in the grid")
         def test_sp_03_03_verify_profession_values_in_cards(self, driver, specialists_page_open):
@@ -118,7 +120,7 @@ class TestSpecialistsPage:
             profession_values = page.get_profession_values_in_specialist_cards()
             assert profession_values, "Profession values in cards are empty"
             assert profession_values in SpecialistsPageData.specialists_professions, \
-                "The professions in specialist cards do not match the expected values"
+                "The professions in specialist cards do not match the valid values"
 
     class TestSpecialistPageLinks:
 
@@ -127,5 +129,16 @@ class TestSpecialistsPage:
             page = SpecialistsPage(driver)
             link_presence = page.check_all_specialists_link_presence()
             link_visibility = page.check_all_specialists_link_visibility()
+            link_clickability = page.check_all_specialists_link_clickability()
+            link_href = page.get_all_specialists_link_href()
+            link_status_code = requests.head(link_href).status_code
+            actual_link_text = page.get_text_in_all_specialists_link()
             assert link_presence is not None, "The 'All Specialists' link is absent in DOM"
             assert link_visibility, "The 'All Specialists' link is invisible on the page"
+            assert link_clickability, f"The {link_href} link is unclickable"
+            assert link_href == SpecialistsPageData.all_specialists_link_href, \
+                f"The attribute 'href' of the {link_href} link does not match the valid value"
+            assert link_status_code == SpecialistsPageData.all_specialists_link_status_code, \
+                f"The {link_href} link status code does not match the valid value"
+            assert actual_link_text in SpecialistsPageData.all_specialists_link_text, \
+                f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"

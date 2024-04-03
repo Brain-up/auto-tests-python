@@ -6,7 +6,6 @@ from test_data.links import MainPageLinks
 from test_data.registration_data import Messages
 
 
-@pytest.mark.one
 @allure.epic("Test Authorized User Page")
 class TestAuthorizedUserPage:
     urls = MainPageLinks

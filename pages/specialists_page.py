@@ -183,3 +183,15 @@ class SpecialistsPage(BasePage):
     @allure.step("Check the 'All Specialists' link is visible on the page")
     def check_all_specialists_link_visibility(self):
         return self.element_is_visible(self.locators.ALL_SPECIALISTS_LINK)
+
+    @allure.step("Check the 'All Specialists' link is clickable")
+    def check_all_specialists_link_clickability(self):
+        return self.element_is_clickable(self.locators.ALL_SPECIALISTS_LINK)
+
+    @allure.step("Get attribute 'href' of the 'All Specialists' link")
+    def get_all_specialists_link_href(self):
+        return self.get_link_href(self.locators.ALL_SPECIALISTS_LINK)
+
+    @allure.step("Get text in the 'All Specialists' link")
+    def get_text_in_all_specialists_link(self):
+        return self.get_text(self.locators.ALL_SPECIALISTS_LINK)
