@@ -4,6 +4,7 @@ import requests
 
 from pages.specialists_page import SpecialistsPage
 from test_data.specialists_page_data import SpecialistsPageData
+from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 
 
 @allure.epic("Test Specialists Page")
@@ -124,7 +125,8 @@ class TestSpecialistsPage:
 
     class TestSpecialistPageLinks:
 
-        @allure.title("Verify presence and visibility of the 'All Specialists' link on the Specialists page")
+        @allure.title("""Verify presence, visibility, clickability, href, status code, text 
+                         of the 'All Specialists' link on the Specialists page""")
         def test_sp_04_01_verify_all_specialists_link(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             link_presence = page.check_all_specialists_link_presence()
@@ -142,3 +144,19 @@ class TestSpecialistsPage:
                 f"The {link_href} link status code does not match the valid value"
             assert actual_link_text in SpecialistsPageData.all_specialists_link_text, \
                 f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
+
+        @allure.title("""Verify that the 'All Specialists' link leads an unauthorized user 
+                         to the correct page after clicking""")
+        def test_sp_04_02_verify_all_specialists_link_leads_unauthorized_user_to_the_correct_page(self,
+                                                                                        driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            print(driver.current_url)
+            page.click_all_specialists_link()
+            page.switch_to_new_window()
+            print(driver.current_url)
+            text_on_opened_tab = page.get_element_text_on_opened_tab_with_start_unauthorized_page()
+            print(text_on_opened_tab)
+            assert text_on_opened_tab in \
+                   StartUnauthorizedPageData.start_unauthorized_page_elements_content["page_title_1_content"], \
+                   "The 'All Specialists' link leads to an incorrect page after clicking " \
+                   "or opened page does not load correctly"
