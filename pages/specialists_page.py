@@ -2,10 +2,12 @@ import allure
 
 from pages.base_page import BasePage
 from locators.specialists_page_locators import SpecialistsPageLocators
+from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 
 
 class SpecialistsPage(BasePage):
     locators = SpecialistsPageLocators
+    locators1 = StartUnauthorizedPageLocators
 
     @allure.step("Check the page title is present in DOM")
     def check_specialists_page_title_presence(self):
@@ -187,6 +189,14 @@ class SpecialistsPage(BasePage):
     @allure.step("Check the 'All Specialists' link is clickable")
     def check_all_specialists_link_clickability(self):
         return self.element_is_clickable(self.locators.ALL_SPECIALISTS_LINK)
+
+    @allure.step("Click on the 'All Specialists' link and thereby open the corresponding web page in a new tab")
+    def click_all_specialists_link(self):
+        self.element_is_present_and_clickable(self.locators.ALL_SPECIALISTS_LINK).click()
+
+    @allure.step("Get text of the element on the Start Unauthorized page")
+    def get_element_text_on_opened_tab_with_start_unauthorized_page(self):
+        return self.get_text(self.locators1.UNAUTH_START_PAGE_TITLE_1)
 
     @allure.step("Get attribute 'href' of the 'All Specialists' link")
     def get_all_specialists_link_href(self):
