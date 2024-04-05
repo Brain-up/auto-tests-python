@@ -1,6 +1,7 @@
 import allure
 
 from pages.base_page import BasePage
+from test_data.links import MainPageLinks
 from locators.specialists_page_locators import SpecialistsPageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 
@@ -8,6 +9,10 @@ from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocat
 class SpecialistsPage(BasePage):
     locators = SpecialistsPageLocators
     locators1 = StartUnauthorizedPageLocators
+
+    @allure.step("Open the 'Used resources' page")
+    def open_specialists_page(self):
+        self.driver.get(MainPageLinks.URL_SPECIALISTS_PAGE)
 
     @allure.step("Check the page title is present in DOM")
     def check_specialists_page_title_presence(self):
