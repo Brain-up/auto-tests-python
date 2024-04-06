@@ -1,4 +1,4 @@
-"""Data for testing the start page for unauthorized users"""
+"""Data for verifying web elements on the starting page for unauthorized users"""
 
 
 class StartUnauthorizedPageData:

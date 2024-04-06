@@ -1,4 +1,4 @@
-"""Locators of web elements on the start page for unauthorized users"""
+"""Locators of web elements on the starting page for unauthorized users"""
 
 from selenium.webdriver.common.by import By
 

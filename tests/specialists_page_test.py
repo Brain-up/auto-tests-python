@@ -1,3 +1,4 @@
+"""Auto tests for verifying web elements on the 'Specialists' page"""
 import time
 import allure
 import requests
@@ -161,7 +162,7 @@ class TestSpecialistsPage:
                    "The 'All Specialists' link leads to an incorrect page after clicking " \
                    "or opened page does not load correctly"
 
-        @allure.title("""Verify that the 'All Specialists' link leads an unauthorized user 
+        @allure.title("""Verify that the 'All Specialists' link leads an authorized user 
                          to the correct page after clicking""")
         def test_sp_04_03_verify_all_specialists_link_leads_authorized_user_to_the_correct_page(self,
                                                                                     driver, auto_test_user_authorized):

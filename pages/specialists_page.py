@@ -1,3 +1,4 @@
+"""Methods for verifying web elements on the 'Specialists' page"""
 import allure
 
 from pages.base_page import BasePage
@@ -10,7 +11,7 @@ class SpecialistsPage(BasePage):
     locators = SpecialistsPageLocators
     locators1 = StartUnauthorizedPageLocators
 
-    @allure.step("Open the 'Used resources' page")
+    @allure.step("Open the 'Specialists' page")
     def open_specialists_page(self):
         self.driver.get(MainPageLinks.URL_SPECIALISTS_PAGE)
 
