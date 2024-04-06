@@ -1,4 +1,4 @@
-"""Data for testing 'Specialists' page"""
+"""Data for verifying web elements on the 'Specialists' page"""
 
 
 class SpecialistsPageData:
