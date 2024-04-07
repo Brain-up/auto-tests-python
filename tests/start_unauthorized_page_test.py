@@ -6,15 +6,29 @@ from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 
 @allure.epic("The Start Unauthorized Page")
 class TestStartUnauthorizedPage:
+    class TestStartUnauthorizedPageText:
 
-    @allure.title("Verify presence, visibility and text accuracy of the title #1 on the page")
-    def test_su_01_01_verify_title_01(self, driver, main_page_open):
-        page = StartUnauthorizedPage(driver)
-        title_01_presence = page.check_start_unauthorized_page_title_01_presence()
-        title_01_visibility = page.check_start_unauthorized_page_title_01_visibility()
-        title_01_content = page.get_content_of_title_01_on_start_unauthorized_page()
-        assert title_01_presence is not None, "The element is absent in DOM"
-        assert title_01_visibility, "The element is absent in DOM"
-        assert (title_01_content in
-                StartUnauthorizedPageData.start_unauthorized_page_elements_content["page_title_1_content"]), \
-               "The content of the title #1  does not match the any of the valid option"
+        @allure.title("Verify presence, visibility and text accuracy of the title #1 on the page")
+        def test_su_01_01_verify_title_01(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            title_01_presence = page.check_start_unauthorized_page_title_01_presence()
+            title_01_visibility = page.check_start_unauthorized_page_title_01_visibility()
+            title_01_content = page.get_content_of_title_01_on_start_unauthorized_page()
+            assert title_01_presence is not None, "The element is absent in DOM"
+            assert title_01_visibility, "The element is invisible on the page"
+            assert (title_01_content in
+                    StartUnauthorizedPageData.start_unauthorized_page_elements_content["page_title_1_content"]), \
+                   "The content of the title #1 does not match the any of the valid option"
+
+        @allure.title("Verify presence, visibility and content accuracy of the text #1 on the page")
+        def test_su_01_02_verify_text_01(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            text_01_presence = page.check_start_unauthorized_page_text_01_presence()
+            text_01_visibility = page.check_start_unauthorized_page_text_01_visibility()
+            text_01_content = page.get_content_of_text_01_on_start_unauthorized_page()
+            assert text_01_presence is not None, "The element is absent in DOM"
+            assert text_01_visibility, "The element is invisible on the page"
+            assert (text_01_content in
+                    StartUnauthorizedPageData.start_unauthorized_page_elements_content["page_text_1_content"]), \
+                   "The content of the text #1 does not match the any of the valid option"
+
