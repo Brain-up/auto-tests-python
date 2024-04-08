@@ -6,10 +6,23 @@ from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 
 @allure.epic("The Start Unauthorized Page")
 class TestStartUnauthorizedPage:
+    class TestStartUnauthorizedPageStructure:
+
+        @allure.title("Verify presence, visibility and amount of sections with content on the page")
+        def test_su_01_01_verify_page_structure(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            page_content_presence = page.check_presence_of_page_content()
+            page_content_visibility = page.check_visibility_of_page_content()
+            page_structure = page.get_amount_of_sections_on_page()
+            assert page_content_presence is not None, "The page content is absent in DOM"
+            assert page_content_visibility, "The page content is invisible on the page"
+            assert page_structure == StartUnauthorizedPageData.amount_of_sections_with_content_on_page, \
+                "The amount of sections with content does not match the expected value"
+
     class TestStartUnauthorizedPageText:
 
         @allure.title("Verify presence, visibility and text accuracy of the title #1 on the page")
-        def test_su_01_01_verify_title_01(self, driver, main_page_open):
+        def test_su_02_01_verify_title_01(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             title_01_presence = page.check_start_unauthorized_page_title_01_presence()
             title_01_visibility = page.check_start_unauthorized_page_title_01_visibility()
@@ -21,7 +34,7 @@ class TestStartUnauthorizedPage:
                    "The content of the title #1 does not match the any of the valid option"
 
         @allure.title("Verify presence, visibility and content accuracy of the text #1 on the page")
-        def test_su_01_02_verify_text_01(self, driver, main_page_open):
+        def test_su_02_02_verify_text_01(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             text_01_presence = page.check_start_unauthorized_page_text_01_presence()
             text_01_visibility = page.check_start_unauthorized_page_text_01_visibility()

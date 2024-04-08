@@ -12,3 +12,5 @@ class StartUnauthorizedPageData:
                                  "of seven with cognitive speech perception problems, which helps to train the ability "
                                  "to listen and understand."]
     }
+
+    amount_of_sections_with_content_on_page = 2
