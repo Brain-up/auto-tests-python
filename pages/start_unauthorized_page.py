@@ -1,6 +1,5 @@
 """Methods for verifying web elements on the starting page for unauthorized users"""
 import allure
-
 from pages.base_page import BasePage
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 
@@ -19,7 +18,14 @@ class StartUnauthorizedPage(BasePage):
     @allure.step("Get amount of sections with content on the page")
     def get_amount_of_sections_on_page(self):
         sections = self.elements_are_present(self.locators.UNAUTH_START_PAGE_SECTIONS)
+        print(len(sections))
         return len(sections)
+
+    @allure.step("Check sections are visible on the page")
+    def check_visibility_of_sections(self):
+        sections = self.elements_are_present(self.locators.UNAUTH_START_PAGE_SECTIONS)
+        for section in sections:
+            return section.is_displayed()
 
     @allure.step("Check the page title 01 is present in DOM")
     def check_start_unauthorized_page_title_01_presence(self):
