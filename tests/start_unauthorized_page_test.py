@@ -8,16 +8,22 @@ from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 class TestStartUnauthorizedPage:
     class TestStartUnauthorizedPageStructure:
 
-        @allure.title("Verify presence, visibility and amount of sections with content on the page")
+        @allure.title("Verify presence and visibility of content on the page")
         def test_su_01_01_verify_page_structure(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             page_content_presence = page.check_presence_of_page_content()
             page_content_visibility = page.check_visibility_of_page_content()
-            page_structure = page.get_amount_of_sections_on_page()
             assert page_content_presence is not None, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible on the page"
+
+        @allure.title("Verify structure and visibility of sections with content on the page")
+        def test_su_01_02_verify_sections_visibility(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            page_structure = page.get_amount_of_sections_on_page()
+            sections_visibility = page.check_visibility_of_sections()
             assert page_structure == StartUnauthorizedPageData.amount_of_sections_with_content_on_page, \
                 "The amount of sections with content does not match the expected value"
+            assert sections_visibility, "Sections with content are invisible on the page"
 
     class TestStartUnauthorizedPageText:
 
