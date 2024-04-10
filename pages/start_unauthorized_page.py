@@ -27,6 +27,20 @@ class StartUnauthorizedPage(BasePage):
         for section in sections:
             return section.is_displayed()
 
+    @allure.step("Get structure of section 01 with content on the page")
+    def get_structure_of_section_1(self):
+        elements = self.elements_are_present(self.locators.SECTION_1_FIRST_LEVEL_ELEMENTS)
+        print(f"Amount of first level elements in the section 1 is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of first level elements in the section 1 are: {tags}")
+        return tags
+
+    @allure.step("Check if elements of the first level are visible in the section 1")
+    def check_visibility_of_elements_in_section_1(self):
+        elements = self.elements_are_present(self.locators.SECTION_1_FIRST_LEVEL_ELEMENTS)
+        for element in elements:
+            return element.is_displayed()
+
     @allure.step("Check the page title 01 is present in DOM")
     def check_start_unauthorized_page_title_01_presence(self):
         return self.element_is_present(self.locators.UNAUTH_START_PAGE_TITLE_1)
