@@ -157,7 +157,7 @@ class TestFooter:
             page = FooterPage(driver)
             page.click_epam_link()
             page.switch_to_new_window()
-            time.sleep(1)
+            time.sleep(5)
             text_on_opened_tab = page.get_element_text_on_opened_epam_tab()
             assert text_on_opened_tab == FooterData.footer_related_elements_text["epam_start_page_text"], \
                 "The EPAM link in Footer leads to an incorrect page after click " \
