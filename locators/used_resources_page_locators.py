@@ -1,3 +1,4 @@
+"""Locators of web elements on the 'Used Resources' page and related pages"""
 from selenium.webdriver.common.by import By
 
 

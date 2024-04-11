@@ -1,3 +1,5 @@
+"""Data for verifying web elements on the 'Used Resources' page and related pages"""
+
 
 class UsedResourcesPageData:
     used_resources_page_elements_content = {

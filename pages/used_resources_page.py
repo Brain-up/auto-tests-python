@@ -1,5 +1,5 @@
+"""Methods for verifying web elements on the 'Used Resources' page"""
 import allure
-
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 from locators.used_resources_page_locators import UsedResourcesPageLocators, RelatedPagesElementsLocators
@@ -45,39 +45,39 @@ class UsedResourcesPage(BasePage):
     def check_used_resources_page_text_visibility(self):
         return self.element_is_visible(self.locators.PAGE_TEXT)
 
-    @allure.step('Get content of the text on the page')
+    @allure.step("Get content of the text on the page")
     def get_text_content_on_the_used_resources_page(self):
         return self.element_is_visible(self.locators.PAGE_TEXT).text
 
-    @allure.step('Check if the section with links is present in DOM')
+    @allure.step("Check if the section with links is present in DOM")
     def check_presence_of_links_section_on_used_resources_page(self):
         return self.element_is_present(self.locators.LINKS_SECTION)
 
-    @allure.step('Check if the section with links is visible on the page')
+    @allure.step("Check if the section with links is visible on the page")
     def check_visibility_of_links_section_on_used_resources_page(self):
         return self.element_is_visible(self.locators.LINKS_SECTION)
 
-    @allure.step('Check if the section with the freepik.com link is present in DOM')
+    @allure.step("Check if the section with the freepik.com link is present in DOM")
     def check_presence_of_freepik_com_link_section(self):
         return self.element_is_present(self.locators.FREEPIK_COM_LINK_SECTION)
 
-    @allure.step('Check if the section with the freepik.com link is visible on the page')
+    @allure.step("Check if the section with the freepik.com link is visible on the page")
     def check_visibility_of_freepik_com_link_section(self):
         return self.element_is_visible(self.locators.FREEPIK_COM_LINK_SECTION)
 
-    @allure.step('Check the freepik.com link is present in DOM')
+    @allure.step("Check the freepik.com link is present in DOM")
     def check_freepik_com_link_presence(self):
         return self.element_is_present(self.locators.FREEPIK_COM_LINK)
 
-    @allure.step('Check the freepik.com link is visible on the page')
+    @allure.step("Check the freepik.com link is visible on the page")
     def check_freepik_com_link_visibility(self):
         return self.element_is_visible(self.locators.FREEPIK_COM_LINK)
 
-    @allure.step('Check the freepik.com link is clickable')
+    @allure.step("Check the freepik.com link is clickable")
     def check_freepik_com_link_clickability(self):
         return self.element_is_clickable(self.locators.FREEPIK_COM_LINK)
 
-    @allure.step('Click on the freepik.com link and thereby open the corresponding web page in a new tab')
+    @allure.step("Click on the freepik.com link and thereby open the corresponding web page in a new tab")
     def click_freepik_com_link(self):
         self.element_is_present_and_clickable(self.locators.FREEPIK_COM_LINK).click()
 
@@ -89,7 +89,7 @@ class UsedResourcesPage(BasePage):
     def get_freepik_com_link_href(self):
         return self.get_link_href(self.locators.FREEPIK_COM_LINK)
 
-    @allure.step('Get content of the text in the freepik.com link')
+    @allure.step("Get content of the text in the freepik.com link")
     def get_text_in_freepik_com_link(self):
         return self.element_is_present(self.locators.FREEPIK_COM_LINK).text
 
@@ -113,11 +113,11 @@ class UsedResourcesPage(BasePage):
     def get_height_of_icon_in_freepik_com_section(self):
         return self.get_icon_height(self.locators.FREEPIK_COM_SECTION_ICON)
 
-    @allure.step('Check if the section with the "Plants" link is present in DOM')
+    @allure.step("Check if the section with the 'Plants' link is present in DOM")
     def check_presence_of_plants_link_section(self):
         return self.element_is_present(self.locators.PLANTS_LINK_SECTION)
 
-    @allure.step('Check if the section with the "Plants" link is visible on the page')
+    @allure.step("Check if the section with the 'Plants' link is visible on the page")
     def check_visibility_of_plants_link_section(self):
         return self.element_is_visible(self.locators.PLANTS_LINK_SECTION)
 
@@ -169,11 +169,11 @@ class UsedResourcesPage(BasePage):
     def get_height_of_icon_in_plants_section(self):
         return self.get_icon_height(self.locators.PLANTS_SECTION_ICON)
 
-    @allure.step('Check if the section with the "Flora" link is present in DOM')
+    @allure.step("Check if the section with the 'Flora' link is present in DOM")
     def check_presence_of_flora_link_section(self):
         return self.element_is_present(self.locators.FLORA_LINK_SECTION)
 
-    @allure.step('Check if the section with the "Flora" link is visible on the page')
+    @allure.step("Check if the section with the 'Flora' link is visible on the page")
     def check_visibility_of_flora_link_section(self):
         return self.element_is_visible(self.locators.FLORA_LINK_SECTION)
 
