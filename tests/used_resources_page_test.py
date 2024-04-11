@@ -21,6 +21,7 @@ class TestUsedResourcesPage:
             page_title_presence = page.check_used_resources_page_title_presence()
             page_title_visibility = page.check_used_resources_page_title_visibility()
             page_title_text = page.get_used_resources_page_title_content()
+            print(page_title_text)
             assert page_title_presence is not None, "The title is absent in DOM"
             assert page_title_visibility, "The title is invisible on the page"
             assert page_title_text in UsedResourcesPageData.used_resources_page_elements_content["page_title_content"], \
