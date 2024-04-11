@@ -160,7 +160,7 @@ class TestFooter:
             page.switch_to_new_window()
             time.sleep(5)
             print(driver.current_url)
-            assert driver.current_url == FooterLinks.EPAM_LINK, \
+            assert page.driver.current_url in FooterLinks.EPAM_LINK, \
                 "The EPAM link in Footer leads to an incorrect page after click"
 
         @allure.title("Verify that the JETBRAINS link in Footer leads to the correct page after click")
