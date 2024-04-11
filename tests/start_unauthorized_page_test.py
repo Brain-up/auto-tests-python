@@ -33,6 +33,14 @@ class TestStartUnauthorizedPage:
             assert section_1_structure, "The section 1 is empty"
             assert elements_visibility, "Elements in the section 1 are invisible on the page"
 
+        @allure.title("Verify the composition and visibility of elements of the first level in the section 2")
+        def test_su_01_04_verify_section_2_structure_and_visibility(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            section_2_structure = page.get_structure_of_section_2()
+            elements_visibility = page.check_visibility_of_elements_in_section_2()
+            assert section_2_structure, "The section 2 is empty"
+            assert elements_visibility, "Elements in the section 2 are invisible on the page"
+
     class TestStartUnauthorizedPageText:
 
         @allure.title("Verify presence, visibility and text accuracy of the title #1 on the page")

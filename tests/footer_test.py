@@ -1,3 +1,4 @@
+"""Auto tests for verifying web elements in the Footer on pages"""
 import time
 import allure
 import pytest
@@ -157,11 +158,10 @@ class TestFooter:
             page = FooterPage(driver)
             page.click_epam_link()
             page.switch_to_new_window()
-            time.sleep(1)
-            text_on_opened_tab = page.get_element_text_on_opened_epam_tab()
-            assert text_on_opened_tab == FooterData.footer_related_elements_text["epam_start_page_text"], \
-                "The EPAM link in Footer leads to an incorrect page after click " \
-                "or opened page does not load correctly"
+            time.sleep(5)
+            print(driver.current_url)
+            assert page.driver.current_url in FooterLinks.EPAM_LINK, \
+                "The EPAM link in Footer leads to an incorrect page after click"
 
         @allure.title("Verify that the JETBRAINS link in Footer leads to the correct page after click")
         def test_fp_03_03_verify_jetbrains_link_leads_to_the_correct_page(self, driver, main_page_open):

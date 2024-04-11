@@ -25,7 +25,7 @@ class SpecificExercisesUrls:
 class FooterLinks:
     ARASAAC_LINK = "https://arasaac.org/"
     CONTACT_US_LINK = "mailto:brainupproject@yandex.ru?subject=BrainUp"
-    EPAM_LINK = "https://epam.com/"
+    EPAM_LINK = ["https://www.epam.com/", "https://epam.com/"]
     JETBRAINS_LINK = "https://www.jetbrains.com/"
     # REG_LINK = "https://www.reg.ru/"
     REG_LINK = ["https://www.reg.ru/", "https://reg.ru/"]
