@@ -33,17 +33,22 @@ class TestStartUnauthorizedPage:
             assert section_1_structure, "The section 1 is empty"
             assert elements_visibility, "Elements in the section 1 are invisible on the page"
 
-        @allure.title("Verify the composition and visibility of elements of the first level in the section 2")
+        @allure.title("Verify the composition and visibility of elements of the 1th, 2th, 3th levels in the section 2")
         def test_su_01_04_verify_section_2_structure_and_visibility(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             structure_of_section_2 = page.get_structure_of_section_2()
-            visibility_of_elements_on_the_first_level = page.check_visibility_of_elements_in_section_2()
-            structure_of_subsection_in_section_2 = page.get_structure_of_subsection_in_section_2()
-            visibility_of_elements_on_the_second_level = page.check_visibility_of_elements_in_subsection_in_section_2()
+            visibility_of_subsections_on_the_1st_level = page.check_visibility_of_elements_in_section_2()
+            structure_of_2nd_level_subsection = page.get_structure_of_subsection_in_section_2()
+            visibility_of_subsections_in_2nd_level_subsection = (
+                page.check_visibility_of_elements_in_subsection_in_section_2())
+            structure_of_3rd_level_subsections = page.get_structure_of_3th_level_in_section_2()
+            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3th_level_in_section_2()
             assert structure_of_section_2, "The section 2 is empty"
-            assert visibility_of_elements_on_the_first_level, "Elements in the section 2 are invisible on the page"
-            assert structure_of_subsection_in_section_2, "The section 2 is empty"
-            assert visibility_of_elements_on_the_second_level, "Elements in the section 2 are invisible on the page"
+            assert visibility_of_subsections_on_the_1st_level, "1th-level subsections are invisible on the page"
+            assert structure_of_2nd_level_subsection, "Subsections on the 2nd level in the section 2 are empty"
+            assert visibility_of_subsections_in_2nd_level_subsection, "2nd-level subsections are invisible on the page"
+            assert structure_of_3rd_level_subsections, "Elements on the 3rd level in the section 2 are empty"
+            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible on the page"
 
     class TestStartUnauthorizedPageText:
 
