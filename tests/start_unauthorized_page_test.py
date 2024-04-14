@@ -25,15 +25,26 @@ class TestStartUnauthorizedPage:
                 "The amount of sections with content does not match the expected value"
             assert sections_visibility, "Sections with content are invisible on the page"
 
-        @allure.title("Verify the composition and visibility of elements of the first level in the section 1")
+        @allure.title("""Verify the composition and visibility of elements 
+        on the 1st, 2nd, 3rd levels of nesting in the section 1""")
         def test_su_01_03_verify_section_1_structure_and_visibility(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
-            section_1_structure = page.get_structure_of_section_1()
-            elements_visibility = page.check_visibility_of_elements_in_section_1()
-            assert section_1_structure, "The section 1 is empty"
-            assert elements_visibility, "Elements in the section 1 are invisible on the page"
+            structure_of_section_1 = page.get_structure_of_section_1()
+            visibility_of_subsections_on_the_1st_level = page.check_visibility_of_elements_in_section_1()
+            structure_of_2nd_level_subsection = page.get_structure_of_subsection_in_section_1()
+            visibility_of_subsections_in_2nd_level_subsection = (
+                page.check_visibility_of_elements_in_subsection_in_section_1())
+            structure_of_3rd_level_subsections = page.get_structure_of_3th_level_in_section_1()
+            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3th_level_in_section_1()
+            assert structure_of_section_1, "The section 1 is empty"
+            assert visibility_of_subsections_on_the_1st_level, "1th-level subsections are invisible on the page"
+            assert structure_of_2nd_level_subsection, "Subsections on the 2nd level in the section 1 are empty"
+            assert visibility_of_subsections_in_2nd_level_subsection, "2nd-level subsections are invisible on the page"
+            assert structure_of_3rd_level_subsections, "Elements on the 3rd level in the section 1 are empty"
+            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible on the page"
 
-        @allure.title("Verify the composition and visibility of elements of the 1th, 2th, 3th levels in the section 2")
+        @allure.title("""Verify the composition and visibility of elements 
+        on the 1st, 2nd, 3rd levels of nesting in the section 2""")
         def test_su_01_04_verify_section_2_structure_and_visibility(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             structure_of_section_2 = page.get_structure_of_section_2()
