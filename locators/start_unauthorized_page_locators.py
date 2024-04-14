@@ -4,6 +4,9 @@ from selenium.webdriver.common.by import By
 
 class StartUnauthorizedPageLocators:
     SECTION_1_FIRST_LEVEL_ELEMENTS = (By.XPATH, '(//section)[1]/*')
+    SECTION_1_SECOND_LEVEL_ELEMENTS = (By.XPATH, '(//section)[1]/*/*')
+    SECTION_1_THIRD_LEVEL_ELEMENTS = (By.XPATH, '(//section)[1]/*/*/*')
+    SECTION_1_FOURTH_LEVEL_ELEMENTS = (By.XPATH, '(//section)[1]/*/*/*/*')
     SECTION_2_FIRST_LEVEL_ELEMENTS = (By.XPATH, '(//section)[2]/*')
     SECTION_2_SECOND_LEVEL_ELEMENTS = (By.XPATH, '//div[contains(@class, "m-auto")]/*')
     SECTION_2_THIRD_LEVEL_ELEMENTS = (By.XPATH, '(//section)[2]/*//*//*')
