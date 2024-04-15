@@ -63,8 +63,16 @@ class TestStartUnauthorizedPage:
 
     class TestStartUnauthorizedPageText:
 
+        @allure.title("Verify values of titles with tag 'h2' on the page")
+        def test_su_02_01_verify_titles_on_the_page(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            title_values = page.get_values_of_titles()
+            assert title_values, "Title values on ghe page are empty"
+            assert title_values in StartUnauthorizedPageData.titles_on_start_unauthorized_page, \
+                "The titles on start unauthorized page do not match the valid values"
+
         @allure.title("Verify presence, visibility and text accuracy of the title #1 on the page")
-        def test_su_02_01_verify_title_01(self, driver, main_page_open):
+        def test_su_02_02_verify_title_01(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             title_01_presence = page.check_start_unauthorized_page_title_01_presence()
             title_01_visibility = page.check_start_unauthorized_page_title_01_visibility()
@@ -76,7 +84,7 @@ class TestStartUnauthorizedPage:
                    "The content of the title #1 does not match the any of the valid option"
 
         @allure.title("Verify presence, visibility and content accuracy of the text #1 on the page")
-        def test_su_02_02_verify_text_01(self, driver, main_page_open):
+        def test_su_02_03_verify_text_01(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             text_01_presence = page.check_start_unauthorized_page_text_01_presence()
             text_01_visibility = page.check_start_unauthorized_page_text_01_visibility()
