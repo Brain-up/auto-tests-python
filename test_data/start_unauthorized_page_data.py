@@ -19,3 +19,7 @@ class StartUnauthorizedPageData:
         ["BrainUP - онлайн занятия для детей и взрослых", "Преимущества"],
         ["BrainUP - online classes for children and adults", "Advantages"]
     ]
+
+    subtitles_on_start_unauthorized_page = [
+        ["BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ"]
+    ]

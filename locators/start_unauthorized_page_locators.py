@@ -16,3 +16,4 @@ class StartUnauthorizedPageLocators:
     UNAUTH_START_PAGE_TEXT_1 = (By.XPATH, "//p[contains(@class, 'text-lg')]")
     UNAUTH_START_PAGE_TITLE_1 = (By.XPATH, "(//h2)[1]")
     UNAUTH_START_PAGE_TITLES = (By.XPATH, "//h2")
+    UNAUTH_START_PAGE_SUBTITLES = (By.XPATH, "//h4")

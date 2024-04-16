@@ -120,10 +120,22 @@ class StartUnauthorizedPage(BasePage):
     @allure.step("Get the list of title values on the page")
     def get_values_of_titles(self):
         titles = self.get_list_of_titles_on_page()
-        title_values = [name.text for name in titles]
+        title_values = [title.text for title in titles]
         print(f"The title values on the page are:", *title_values, sep='\n')
         return title_values
 
+    @allure.step("Get the list of subtitles on the page")
+    def get_list_of_subtitles_on_page(self):
+        subtitles = self.elements_are_present(self.locators.UNAUTH_START_PAGE_SUBTITLES)
+        print(f"\nAmount of subtitles on the page is: {len(subtitles)}")
+        return subtitles
+
+    @allure.step("Get the list of subtitle values on the page")
+    def get_values_of_subtitles(self):
+        subtitles = self.get_list_of_subtitles_on_page()
+        subtitle_values = [subtitle.text for subtitle in subtitles]
+        print(f"The subtitle values on the page are:", *subtitle_values, sep='\n')
+        return subtitle_values
 
     @allure.step("Check the page title 01 is present in DOM")
     def check_start_unauthorized_page_title_01_presence(self):
