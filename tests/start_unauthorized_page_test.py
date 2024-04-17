@@ -79,27 +79,10 @@ class TestStartUnauthorizedPage:
             assert subtitle_values in StartUnauthorizedPageData.subtitles_on_start_unauthorized_page, \
                 "The subtitles on start unauthorized page do not match the valid values"
 
-        @allure.title("Verify presence, visibility and text accuracy of the title #1 on the page")
-        def test_su_02_03_verify_title_01(self, driver, main_page_open):
+        @allure.title("Verify values of the text in the section 1 on the page")
+        def test_su_02_03_verify_text_in_section_1(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
-            title_01_presence = page.check_start_unauthorized_page_title_01_presence()
-            title_01_visibility = page.check_start_unauthorized_page_title_01_visibility()
-            title_01_content = page.get_content_of_title_01_on_start_unauthorized_page()
-            assert title_01_presence is not None, "The element is absent in DOM"
-            assert title_01_visibility, "The element is invisible on the page"
-            assert (title_01_content in
-                    StartUnauthorizedPageData.start_unauthorized_page_elements_content["page_title_1_content"]), \
-                   "The content of the title #1 does not match the any of the valid option"
-
-        @allure.title("Verify presence, visibility and content accuracy of the text #1 on the page")
-        def test_su_02_04_verify_text_01(self, driver, main_page_open):
-            page = StartUnauthorizedPage(driver)
-            text_01_presence = page.check_start_unauthorized_page_text_01_presence()
-            text_01_visibility = page.check_start_unauthorized_page_text_01_visibility()
-            text_01_content = page.get_content_of_text_01_on_start_unauthorized_page()
-            assert text_01_presence is not None, "The element is absent in DOM"
-            assert text_01_visibility, "The element is invisible on the page"
-            assert (text_01_content in
-                    StartUnauthorizedPageData.start_unauthorized_page_elements_content["page_text_1_content"]), \
-                   "The content of the text #1 does not match the any of the valid option"
-
+            text_value_in_section_1 = page.get_values_of_text_in_section_1()
+            assert (text_value_in_section_1 in
+                    StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_1"]), \
+                "The text in section 1 does not match the any of the valid option"

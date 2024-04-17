@@ -159,7 +159,7 @@ class TestSpecialistsPage:
             text_on_opened_tab = page.get_element_text_on_opened_tab_with_start_unauthorized_page()
             print(text_on_opened_tab)
             assert text_on_opened_tab in \
-                   StartUnauthorizedPageData.start_unauthorized_page_elements_content["page_title_1_content"], \
+                   StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_1"], \
                    "The 'All Specialists' link leads to an incorrect page after clicking " \
                    "or opened page does not load correctly"
 
