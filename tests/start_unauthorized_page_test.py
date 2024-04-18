@@ -86,3 +86,11 @@ class TestStartUnauthorizedPage:
             assert (text_value_in_section_1 in
                     StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_1"]), \
                 "The text in section 1 does not match the any of the valid option"
+
+        @allure.title("Verify values of the text in the section 2 on the page")
+        def test_su_02_04_verify_text_in_section_2(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            text_value_in_section_2 = page.get_values_of_text_in_section_2()
+            assert (text_value_in_section_2 ==
+                    StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_2"]), \
+                "The text in section 2 does not match the valid options"
