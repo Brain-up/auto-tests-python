@@ -1,0 +1,1310 @@
+{
+  "uid" : "dafd13c958d8c5aa",
+  "name" : "Select random card from group \"Слова Королёвой\" and compare UI vs BACKEND data.",
+  "fullName" : "tests.test_speech_exercises_ru.TestCardsRU#test_random_word_by_koroleva_cards_ru",
+  "historyId" : "719ec095fba3c0668a1a244a8c64916e",
+  "time" : {
+    "start" : 1713432704373,
+    "stop" : 1713432776139,
+    "duration" : 71766
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL In CI the test failed in PR#162, the autotest author has been notified\n\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "statusTrace" : "self = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7f5b710651c0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"a126266e6cef9ad9778c2c6c97debfc4\")>\nspecialist_user_authorized = <pages.base_page.BasePage object at 0x7f5b70f16810>\n\n    @pytest.mark.xfail\n    @allure.suite('Слова Королёвой.')\n    @pytest.mark.xfail(reason=\"In CI the test failed in PR#162, the autotest author has been notified\")\n    @allure.title('Select random card from group \"Слова Королёвой\" and compare UI vs BACKEND data.')\n    def test_random_word_by_koroleva_cards_ru(self, driver, specialist_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)\n        card_id = page.click_random_card()\n    \n        page = SpeechExercisesAPI(driver)\n        random_id = page.get_random_id_from_list_sub_group(\n            card_id, seria_id)  # getting random ID from exercises group\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded\n        id_for_back = str(driver.current_url).split('/')[-1]\n        list_words_ui = page.click_start_and_get_list_words_ru()\n>       list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')\n\ntests/test_speech_exercises_ru.py:46: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_api.py:56: in get_list_of_words_from_card\n    amount_words = len(json.loads(result_get.text)['data'][\"answerOptions\"])\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/__init__.py:346: in loads\n    return _default_decoder.decode(s)\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py:337: in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <json.decoder.JSONDecoder object at 0x7f5b72056e40>\ns = '<!DOCTYPE html>\\n<html>\\n<head>\\n<title>Error</title>\\n<style>\\nhtml { color-scheme: light dark; }\\nbody { width: 35e...ce then you should check\\nthe error log for details.</p>\\n<p><em>Faithfully yours, nginx.</em></p>\\n</body>\\n</html>\\n'\nidx = 0\n\n    def raw_decode(self, s, idx=0):\n        \"\"\"Decode a JSON document from ``s`` (a ``str`` beginning with\n        a JSON document) and return a 2-tuple of the Python\n        representation and the index in ``s`` where the document ended.\n    \n        This can be used to decode a JSON document from a string that may\n        have extraneous data at the end.\n    \n        \"\"\"\n        try:\n            obj, end = self.scan_once(s, idx)\n        except StopIteration as err:\n>           raise JSONDecodeError(\"Expecting value\", s, err.value) from None\nE           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py:355: JSONDecodeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1713432696982,
+      "stop" : 1713432697752,
+      "duration" : 770
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "specialist_user_authorized",
+    "time" : {
+      "start" : 1713432701540,
+      "stop" : 1713432704372,
+      "duration" : 2832
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "USER specialist authorized",
+      "time" : {
+        "start" : 1713432701540,
+        "stop" : 1713432704372,
+        "duration" : 2832
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[@id=\"ember11\"]')",
+        "time" : {
+          "start" : 1713432701540,
+          "stop" : 1713432701576,
+          "duration" : 36
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1713432701558,
+            "stop" : 1713432701576,
+            "duration" : 18
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[@id=\"ember11\"]')",
+            "time" : {
+              "start" : 1713432701558,
+              "stop" : 1713432701576,
+              "duration" : 18
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[@id=\"ember11\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"login\"]')",
+        "time" : {
+          "start" : 1713432701625,
+          "stop" : 1713432701651,
+          "duration" : 26
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"login\"]')",
+          "time" : {
+            "start" : 1713432701625,
+            "stop" : 1713432701635,
+            "duration" : 10
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"a126266e6cef9ad9778c2c6c97debfc4\", element=\"f.CE97C51E66EF245D37B576F9FD29FC43.d.0CC9BDA82120E4E89DC85774B9F0A3FE.e.27\")>",
+          "time" : {
+            "start" : 1713432701636,
+            "stop" : 1713432701640,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"password\"]')",
+        "time" : {
+          "start" : 1713432701718,
+          "stop" : 1713432701744,
+          "duration" : 26
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"password\"]')",
+          "time" : {
+            "start" : 1713432701718,
+            "stop" : 1713432701728,
+            "duration" : 10
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"a126266e6cef9ad9778c2c6c97debfc4\", element=\"f.CE97C51E66EF245D37B576F9FD29FC43.d.0CC9BDA82120E4E89DC85774B9F0A3FE.e.30\")>",
+          "time" : {
+            "start" : 1713432701728,
+            "stop" : 1713432701732,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//*[@type=\"submit\"]')",
+        "time" : {
+          "start" : 1713432701783,
+          "stop" : 1713432701813,
+          "duration" : 30
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1713432701797,
+            "stop" : 1713432701813,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//*[@type=\"submit\"]')",
+            "time" : {
+              "start" : 1713432701797,
+              "stop" : 1713432701813,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//*[@type=\"submit\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check url is present: https://brainup.site/groups",
+        "time" : {
+          "start" : 1713432701847,
+          "stop" : 1713432704372,
+          "duration" : 2525
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"a126266e6cef9ad9778c2c6c97debfc4\")>"
+      }, {
+        "name" : "main_page_open",
+        "value" : "None"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 13,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 14,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1713431908967,
+      "stop" : 1713431908967,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1713432697753,
+      "stop" : 1713432701540,
+      "duration" : 3787
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1713432697753,
+        "stop" : 1713432701540,
+        "duration" : 3787
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"a126266e6cef9ad9778c2c6c97debfc4\")>"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 1,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL In CI the test failed in PR#162, the autotest author has been notified\n\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+    "statusTrace" : "self = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7f5b710651c0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"a126266e6cef9ad9778c2c6c97debfc4\")>\nspecialist_user_authorized = <pages.base_page.BasePage object at 0x7f5b70f16810>\n\n    @pytest.mark.xfail\n    @allure.suite('Слова Королёвой.')\n    @pytest.mark.xfail(reason=\"In CI the test failed in PR#162, the autotest author has been notified\")\n    @allure.title('Select random card from group \"Слова Королёвой\" and compare UI vs BACKEND data.')\n    def test_random_word_by_koroleva_cards_ru(self, driver, specialist_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)\n        card_id = page.click_random_card()\n    \n        page = SpeechExercisesAPI(driver)\n        random_id = page.get_random_id_from_list_sub_group(\n            card_id, seria_id)  # getting random ID from exercises group\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n        page.wait_changed_url(driver.current_url)  # Wait until cards will be loaded\n        id_for_back = str(driver.current_url).split('/')[-1]\n        list_words_ui = page.click_start_and_get_list_words_ru()\n>       list_words_back = page.get_list_of_words_from_card(f'{id_for_back}')\n\ntests/test_speech_exercises_ru.py:46: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_api.py:56: in get_list_of_words_from_card\n    amount_words = len(json.loads(result_get.text)['data'][\"answerOptions\"])\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/__init__.py:346: in loads\n    return _default_decoder.decode(s)\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py:337: in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <json.decoder.JSONDecoder object at 0x7f5b72056e40>\ns = '<!DOCTYPE html>\\n<html>\\n<head>\\n<title>Error</title>\\n<style>\\nhtml { color-scheme: light dark; }\\nbody { width: 35e...ce then you should check\\nthe error log for details.</p>\\n<p><em>Faithfully yours, nginx.</em></p>\\n</body>\\n</html>\\n'\nidx = 0\n\n    def raw_decode(self, s, idx=0):\n        \"\"\"Decode a JSON document from ``s`` (a ``str`` beginning with\n        a JSON document) and return a 2-tuple of the Python\n        representation and the index in ``s`` where the document ended.\n    \n        This can be used to decode a JSON document from a string that may\n        have extraneous data at the end.\n    \n        \"\"\"\n        try:\n            obj, end = self.scan_once(s, idx)\n        except StopIteration as err:\n>           raise JSONDecodeError(\"Expecting value\", s, err.value) from None\nE           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py:355: JSONDecodeError",
+    "steps" : [ {
+      "name" : "select_group",
+      "time" : {
+        "start" : 1713432704373,
+        "stop" : 1713432709778,
+        "duration" : 5405
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Select Russian language. Click \"RU\" button.",
+        "time" : {
+          "start" : 1713432704373,
+          "stop" : 1713432704437,
+          "duration" : 64
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', \"//*[contains(text(),'RU')]\")",
+          "time" : {
+            "start" : 1713432704373,
+            "stop" : 1713432704403,
+            "duration" : 30
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713432704387,
+              "stop" : 1713432704402,
+              "duration" : 15
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', \"//*[contains(text(),'RU')]\")",
+              "time" : {
+                "start" : 1713432704387,
+                "stop" : 1713432704402,
+                "duration" : 15
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', \"//*[contains(text(),'RU')]\")"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Click button \"Речевые упражнения\".",
+        "time" : {
+          "start" : 1713432704437,
+          "stop" : 1713432705516,
+          "duration" : 1079
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//a[@title=\"Речевые упражнения\"]')",
+          "time" : {
+            "start" : 1713432704437,
+            "stop" : 1713432705488,
+            "duration" : 1051
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713432705472,
+              "stop" : 1713432705488,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//a[@title=\"Речевые упражнения\"]')",
+              "time" : {
+                "start" : 1713432705472,
+                "stop" : 1713432705488,
+                "duration" : 16
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//a[@title=\"Речевые упражнения\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')",
+        "time" : {
+          "start" : 1713432705516,
+          "stop" : 1713432708657,
+          "duration" : 3141
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1713432708641,
+            "stop" : 1713432708657,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')",
+            "time" : {
+              "start" : 1713432708641,
+              "stop" : 1713432708657,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Click button \"СЛОВА КОРОЛЁВОЙ\".",
+        "time" : {
+          "start" : 1713432708694,
+          "stop" : 1713432708764,
+          "duration" : 70
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')",
+          "time" : {
+            "start" : 1713432708694,
+            "stop" : 1713432708722,
+            "duration" : 28
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713432708706,
+              "stop" : 1713432708722,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')",
+              "time" : {
+                "start" : 1713432708706,
+                "stop" : 1713432708722,
+                "duration" : 16
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Wait until url: https://brainup.site/groups/2/series/1 will be changed.",
+        "time" : {
+          "start" : 1713432708764,
+          "stop" : 1713432709776,
+          "duration" : 1012
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "selector_for_sub_group",
+        "value" : "('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 16,
+      "hasContent" : true
+    }, {
+      "name" : "click_random_card",
+      "time" : {
+        "start" : 1713432709778,
+        "stop" : 1713432709905,
+        "duration" : 127
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check elements are present: ('xpath', '//div[contains(@class, \"series-container\")]//a/div/div')",
+        "time" : {
+          "start" : 1713432709778,
+          "stop" : 1713432709787,
+          "duration" : 9
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Getting list cards: ['1 слово из 2..4 (1)', '1 слово из 2..4 (2)', '1 слово из 2..4 (3)', '1 слово из 2..4 (4)', '1 слово из 2..4 (5)', '1 слово из 2..4 (6)', '1 слово из 6', '2 слова из 4', '3 слова из 6', '2 слова из 6']",
+        "time" : {
+          "start" : 1713432709855,
+          "stop" : 1713432709856,
+          "duration" : 1
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list of cards. \nCard ID in list is:, 7",
+        "time" : {
+          "start" : 1713432709856,
+          "stop" : 1713432709856,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Check elements are present: ('xpath', '//div[contains(@class, \"series-container\")]//a/div/div')",
+        "time" : {
+          "start" : 1713432709856,
+          "stop" : 1713432709861,
+          "duration" : 5
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Selected card is: 1 слово из 6",
+        "time" : {
+          "start" : 1713432709866,
+          "stop" : 1713432709899,
+          "duration" : 33
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"a126266e6cef9ad9778c2c6c97debfc4\", element=\"f.CE97C51E66EF245D37B576F9FD29FC43.d.0CC9BDA82120E4E89DC85774B9F0A3FE.e.85\")>",
+          "time" : {
+            "start" : 1713432709866,
+            "stop" : 1713432709870,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 1,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 6,
+      "hasContent" : true
+    }, {
+      "name" : "get_random_id_from_list_sub_group",
+      "time" : {
+        "start" : 1713432709905,
+        "stop" : 1713432710935,
+        "duration" : 1030
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Send GET request with params: https://brainup.site/api/subgroups?seriesId=17 headers=\"Content-Type\": \"application/json\",\"Authorization\": \"Bearer\": \"{id_token}\"",
+        "time" : {
+          "start" : 1713432710934,
+          "stop" : 1713432710934,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Getting list of cards id: {'data': [{'seriesId': 17, 'id': 115, 'level': 1, 'name': '1 слово из 2..4 (1)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_1.svg', 'description': '1я группа слов: по одному', 'withPictures': False, 'exercises': [1905, 1906, 1907, 1908, 1909]}, {'seriesId': 17, 'id': 116, 'level': 2, 'name': '1 слово из 2..4 (2)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_2.svg', 'description': '2я группа слов: по одному', 'withPictures': False, 'exercises': [1910, 1911, 1912, 1913, 1914]}, {'seriesId': 17, 'id': 117, 'level': 3, 'name': '1 слово из 2..4 (3)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_3.svg', 'description': '3я группа слов: по одному', 'withPictures': False, 'exercises': [1915, 1916, 1917, 1918, 1919]}, {'seriesId': 17, 'id': 118, 'level': 4, 'name': '1 слово из 2..4 (4)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_4.svg', 'description': '4я группа слов: по одному', 'withPictures': False, 'exercises': [1920, 1921, 1922, 1923, 1924]}, {'seriesId': 17, 'id': 119, 'level': 5, 'name': '1 слово из 2..4 (5)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_5.svg', 'description': '5я группа слов: по одному', 'withPictures': False, 'exercises': [1925, 1926, 1927, 1928, 1929]}, {'seriesId': 17, 'id': 120, 'level': 6, 'name': '1 слово из 2..4 (6)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_6.svg', 'description': '6я группа слов: по одному', 'withPictures': False, 'exercises': [1930, 1931, 1932, 1933, 1934]}, {'seriesId': 17, 'id': 121, 'level': 20, 'name': '1 слово из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_1_4.svg', 'description': 'Одно слово из 6', 'withPictures': False, 'exercises': [1935, 1936, 1937, 1938, 1939, 1940]}, {'seriesId': 17, 'id': 122, 'level': 21, 'name': '2 слова из 4', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_2_4.svg', 'description': 'Два слово из 4', 'withPictures': False, 'exercises': [1941, 1942, 1943, 1944, 1945, 1946]}, {'seriesId': 17, 'id': 124, 'level': 21, 'name': '3 слова из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_3_6.svg', 'description': 'Три слово из 6', 'withPictures': False, 'exercises': [1954, 1958, 1953, 1956, 1957, 1955, 1974, 1975, 1976, 1977]}, {'seriesId': 17, 'id': 123, 'level': 21, 'name': '2 слова из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_2_6.svg', 'description': 'Два слово из 6', 'withPictures': False, 'exercises': [1947, 1948, 1949, 1950, 1951, 1952, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973]}], 'errors': [], 'meta': []}",
+        "time" : {
+          "start" : 1713432710934,
+          "stop" : 1713432710934,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list: 1938",
+        "time" : {
+          "start" : 1713432710934,
+          "stop" : 1713432710934,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "card_id",
+        "value" : "6"
+      }, {
+        "name" : "seria_id",
+        "value" : "'17'"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 3,
+      "hasContent" : true
+    }, {
+      "name" : "Wait until url: https://brainup.site/groups/2/series/17/subgroup/121/exercise/1938 will be changed.",
+      "time" : {
+        "start" : 1713432711311,
+        "stop" : 1713432714840,
+        "duration" : 3529
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    }, {
+      "name" : "click_start_and_get_list_words_ru",
+      "time" : {
+        "start" : 1713432714843,
+        "stop" : 1713432715197,
+        "duration" : 354
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Click button \"Start\".",
+        "time" : {
+          "start" : 1713432714843,
+          "stop" : 1713432714946,
+          "duration" : 103
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')",
+          "time" : {
+            "start" : 1713432714843,
+            "stop" : 1713432714880,
+            "duration" : 37
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713432714862,
+              "stop" : 1713432714880,
+              "duration" : 18
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')",
+              "time" : {
+                "start" : 1713432714862,
+                "stop" : 1713432714880,
+                "duration" : 18
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Check elements are visible: ('xpath', '//li[@class=\"task-player__option flex\"]')",
+        "time" : {
+          "start" : 1713432714946,
+          "stop" : 1713432715009,
+          "duration" : 63
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Getting a list of exercise words from the front: ['кот', 'самолёт', 'стук', 'горячий', 'ключ', 'послушай']",
+        "time" : {
+          "start" : 1713432715049,
+          "stop" : 1713432715049,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"Повторить\".",
+        "time" : {
+          "start" : 1713432715049,
+          "stop" : 1713432715122,
+          "duration" : 73
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//*[text()=\"Повторить\"]')",
+          "time" : {
+            "start" : 1713432715049,
+            "stop" : 1713432715091,
+            "duration" : 42
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713432715064,
+              "stop" : 1713432715091,
+              "duration" : 27
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//*[text()=\"Повторить\"]')",
+              "time" : {
+                "start" : 1713432715064,
+                "stop" : 1713432715091,
+                "duration" : 27
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//*[text()=\"Повторить\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Click button \"Решать\".",
+        "time" : {
+          "start" : 1713432715122,
+          "stop" : 1713432715197,
+          "duration" : 75
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//*[text()=\"Решать\"]')",
+          "time" : {
+            "start" : 1713432715122,
+            "stop" : 1713432715157,
+            "duration" : 35
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713432715140,
+              "stop" : 1713432715157,
+              "duration" : 17
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//*[text()=\"Решать\"]')",
+              "time" : {
+                "start" : 1713432715140,
+                "stop" : 1713432715157,
+                "duration" : 17
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//*[text()=\"Решать\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 14,
+      "hasContent" : true
+    }, {
+      "name" : "get_list_of_words_from_card",
+      "time" : {
+        "start" : 1713432715198,
+        "stop" : 1713432776110,
+        "duration" : 60912
+      },
+      "status" : "broken",
+      "statusMessage" : "json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/speech_exercises_page_api.py\", line 56, in get_list_of_words_from_card\n    amount_words = len(json.loads(result_get.text)['data'][\"answerOptions\"])\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "card_id",
+        "value" : "'1926'"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "stepsCount" : 0,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "5c5adeffc06305e2",
+      "name" : "Screenshot",
+      "source" : "5c5adeffc06305e2.png",
+      "type" : "image/png",
+      "size" : 68675
+    }, {
+      "uid" : "14a016a80e5b50d",
+      "name" : "HTML source",
+      "source" : "14a016a80e5b50d.html",
+      "type" : "text/html",
+      "size" : 47322
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "stepsCount" : 45,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1713432776329,
+      "stop" : 1713432776520,
+      "duration" : 191
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "74fe80922db34a2e",
+      "name" : "Screenshot 2024-04-18 09:32:56.455537",
+      "source" : "74fe80922db34a2e.png",
+      "type" : "image/png",
+      "size" : 68675
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : true
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Речевые упражнения."
+  }, {
+    "name" : "suite",
+    "value" : "Слова Королёвой."
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(reason='In CI the test failed in PR#162, the autotest author has been notified')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCardsRU"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1149-844"
+  }, {
+    "name" : "thread",
+    "value" : "1796-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_speech_exercises_ru"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 9,
+        "skipped" : 8,
+        "passed" : 255,
+        "unknown" : 0,
+        "total" : 272
+      },
+      "items" : [ {
+        "uid" : "5efe11dcac47d37c",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713360611564,
+          "stop" : 1713360623722,
+          "duration" : 12158
+        }
+      }, {
+        "uid" : "edd57be5268718de",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713347474268,
+          "stop" : 1713347483409,
+          "duration" : 9141
+        }
+      }, {
+        "uid" : "7bfad07336f22dd4",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713258052044,
+          "stop" : 1713258066321,
+          "duration" : 14277
+        }
+      }, {
+        "uid" : "45ce8197de2b4ec5",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713256287508,
+          "stop" : 1713256295999,
+          "duration" : 8491
+        }
+      }, {
+        "uid" : "f99876e9fb29c130",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713195147867,
+          "stop" : 1713195157177,
+          "duration" : 9310
+        }
+      }, {
+        "uid" : "18dd793cb8207c67",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713180981437,
+          "stop" : 1713180990761,
+          "duration" : 9324
+        }
+      }, {
+        "uid" : "4f3e721cbd264c",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713174095929,
+          "stop" : 1713174105012,
+          "duration" : 9083
+        }
+      }, {
+        "uid" : "6e2f246e7c7fd8b2",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713172422750,
+          "stop" : 1713172431324,
+          "duration" : 8574
+        }
+      }, {
+        "uid" : "275ee797c97af5fa",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713091210933,
+          "stop" : 1713091221766,
+          "duration" : 10833
+        }
+      }, {
+        "uid" : "47241edccf74da6b",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713089318821,
+          "stop" : 1713089327983,
+          "duration" : 9162
+        }
+      }, {
+        "uid" : "22e7dbb4ddba06dc",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713017543522,
+          "stop" : 1713017553190,
+          "duration" : 9668
+        }
+      }, {
+        "uid" : "578e603e2ad6f19e",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713010467627,
+          "stop" : 1713010475782,
+          "duration" : 8155
+        }
+      }, {
+        "uid" : "388fa2748d7819d2",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713008952775,
+          "stop" : 1713008961628,
+          "duration" : 8853
+        }
+      }, {
+        "uid" : "eabf06fa3baea0",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1713007423530,
+          "stop" : 1713007432061,
+          "duration" : 8531
+        }
+      }, {
+        "uid" : "23e723d019b67a4c",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1712917998106,
+          "stop" : 1712918007105,
+          "duration" : 8999
+        }
+      }, {
+        "uid" : "ea201d4cd029cc00",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1712911449537,
+          "stop" : 1712911459258,
+          "duration" : 9721
+        }
+      }, {
+        "uid" : "31cb471a23e934ac",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1712825298987,
+          "stop" : 1712825308474,
+          "duration" : 9487
+        }
+      }, {
+        "uid" : "79b528aaee67fdf9",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1712823837386,
+          "stop" : 1712823847154,
+          "duration" : 9768
+        }
+      }, {
+        "uid" : "9fb1517656c99c22",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1712821804881,
+          "stop" : 1712821814690,
+          "duration" : 9809
+        }
+      }, {
+        "uid" : "45b67b33696ada0b",
+        "status" : "passed",
+        "statusDetails" : "XPASS In CI the test failed in PR#162, the autotest author has been notified",
+        "time" : {
+          "start" : 1712818634644,
+          "stop" : 1712818644295,
+          "duration" : 9651
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail(reason='In CI the test failed in PR#162, the autotest author has been notified')" ]
+  },
+  "source" : "dafd13c958d8c5aa.json",
+  "parameterValues" : [ ]
+}
