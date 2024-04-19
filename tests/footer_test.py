@@ -168,6 +168,7 @@ class TestFooter:
             page = FooterPage(driver)
             page.click_jetbrains_link()
             page.switch_to_new_window()
+            time.sleep(5)
             text_on_opened_tab = page.get_element_text_on_opened_jetbrains_tab()
             assert text_on_opened_tab == FooterData.footer_related_elements_text["jetbrains_start_page_text"], \
                 "The JETBRAINS link in Footer leads to an incorrect page after click " \

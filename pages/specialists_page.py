@@ -202,7 +202,7 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Get text of the element on the Start Unauthorized page")
     def get_element_text_on_opened_tab_with_start_unauthorized_page(self):
-        return self.get_text(self.locators1.UNAUTH_START_PAGE_SECTION_1_TEXT)
+        return self.get_text(self.locators1.SECTION_1_TEXT)
 
     @allure.step("Get attribute 'href' of the 'All Specialists' link")
     def get_all_specialists_link_href(self):
