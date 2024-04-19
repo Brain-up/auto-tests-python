@@ -37,3 +37,7 @@ class StartUnauthorizedPageData:
             "А также, расширить словарный запас в интересной игровой форме и в дальшейшем использовать новые слова "
             "в общении с друзьями и знакомыми."]
     }
+
+    image_src_in_section_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAGICAYAAAC5"
+
+    image_alt_in_section_1 = "girl with book"

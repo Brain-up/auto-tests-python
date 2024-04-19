@@ -9,21 +9,21 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Check if some content is present in DOM")
     def check_presence_of_page_content(self):
-        return self.element_is_present(self.locators.UNAUTH_START_PAGE_CONTENT)
+        return self.element_is_present(self.locators.PAGE_CONTENT)
 
     @allure.step("Check if page content is visible on the page")
     def check_visibility_of_page_content(self):
-        return self.element_is_visible(self.locators.UNAUTH_START_PAGE_CONTENT)
+        return self.element_is_visible(self.locators.PAGE_CONTENT)
 
     @allure.step("Get amount of sections with content on the page")
     def get_amount_of_sections_on_page(self):
-        sections = self.elements_are_present(self.locators.UNAUTH_START_PAGE_SECTIONS)
+        sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
         # print(len(sections))
         return len(sections)
 
     @allure.step("Check sections are visible on the page")
     def check_visibility_of_sections(self):
-        sections = self.elements_are_present(self.locators.UNAUTH_START_PAGE_SECTIONS)
+        sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
         for section in sections:
             return section.is_displayed()
 
@@ -113,7 +113,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get the list of titles on the page")
     def get_list_of_titles_on_page(self):
-        titles = self.elements_are_present(self.locators.UNAUTH_START_PAGE_TITLES)
+        titles = self.elements_are_present(self.locators.PAGE_TITLES)
         # print(f"\nAmount of titles on the page is: {len(titles)}")
         return titles
 
@@ -126,7 +126,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get the list of subtitles on the page")
     def get_list_of_subtitles_on_page(self):
-        subtitles = self.elements_are_present(self.locators.UNAUTH_START_PAGE_SUBTITLES)
+        subtitles = self.elements_are_present(self.locators.PAGE_SUBTITLES)
         # print(f"\nAmount of subtitles on the page is: {len(subtitles)}")
         return subtitles
 
@@ -139,11 +139,11 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get content of the text in the section 1 on the page")
     def get_values_of_text_in_section_1(self):
-        return self.get_text(self.locators.UNAUTH_START_PAGE_SECTION_1_TEXT)
+        return self.get_text(self.locators.SECTION_1_TEXT)
 
     @allure.step("Get the list of elements with text in the section 2 on the page")
     def get_list_of_elements_with_text_in_section_2(self):
-        elements_with_text = self.elements_are_present(self.locators.UNAUTH_START_PAGE_SECTION_2_TEXT)
+        elements_with_text = self.elements_are_present(self.locators.SECTION_2_TEXT)
         print(f"\nAmount of elements with text in the section 2 is: {len(elements_with_text)}")
         return elements_with_text
 
@@ -153,3 +153,12 @@ class StartUnauthorizedPage(BasePage):
         element_values = [element.text for element in elements_with_text]
         print(f"The content of the text in the section 2 are:", *element_values, sep='\n\n')
         return element_values
+
+    @allure.step("Get attribute 'src' of the image in the section 1 on the page")
+    def get_image_src_in_section_1(self):
+        return self.get_image_src(self.locators.SECTION_1_IMAGE)
+
+    @allure.step("Get attribute 'alt' of the image in the section 1 on the page")
+    def get_image_alt_in_section_1(self):
+        return self.get_image_alt(self.locators.SECTION_1_IMAGE)
+

@@ -94,3 +94,15 @@ class TestStartUnauthorizedPage:
             assert (text_value_in_section_2 ==
                     StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_2"]), \
                 "The text in section 2 does not match the valid options"
+
+    class TestStartUnauthorizedPageImage:
+
+        @allure.title("Verify attributes 'src' and 'alt' of the image in the section 1 on the page")
+        def test_su_03_01_verify_image_attributs_in_section_1(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            image_src = page.get_image_src_in_section_1()
+            image_alt = page.get_image_alt_in_section_1()
+            assert StartUnauthorizedPageData.image_src_in_section_1 in image_src, \
+                "The 'src' attribute value of the image in the section 1 does not match the valid value"
+            assert image_alt == StartUnauthorizedPageData.image_alt_in_section_1, \
+                "The 'alt' attribute value of the image in the section 1 does not match the valid value"
