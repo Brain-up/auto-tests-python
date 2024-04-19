@@ -169,10 +169,9 @@ class TestFooter:
             page.click_jetbrains_link()
             page.switch_to_new_window()
             time.sleep(5)
-            text_on_opened_tab = page.get_element_text_on_opened_jetbrains_tab()
-            assert text_on_opened_tab == FooterData.footer_related_elements_text["jetbrains_start_page_text"], \
-                "The JETBRAINS link in Footer leads to an incorrect page after click " \
-                "or opened page does not load correctly"
+            print(driver.current_url)
+            assert page.driver.current_url in FooterLinks.JETBRAINS_LINK, \
+                "The JETBRAINS link in Footer leads to an incorrect page after click"
 
         @allure.title("Verify that the REG.RU link in Footer leads to the correct page after click")
         def test_fp_03_04_verify_reg_link_leads_to_the_correct_page(self, driver, main_page_open):

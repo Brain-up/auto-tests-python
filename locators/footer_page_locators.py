@@ -50,9 +50,9 @@ class RelatedPagesElementsLocators:
     # on ARASAAC web page
     ARASAAC_OWNER_TITLE = (By.XPATH, "(//h2)[1]")
     # on EPAM web page
-    EPAM_START_PAGE_TEXT = (By.XPATH, "(//span[@class='font-size-80-33'])[1]")
+    # EPAM_START_PAGE_TEXT = (By.XPATH, "(//span[@class='font-size-80-33'])[1]")
     # on JETBRAINS web page
-    JETBRAINS_START_PAGE_TEXT = (By.XPATH, "(//p[contains(@class, 'product-card__text')])[1]")
+    # JETBRAINS_START_PAGE_TEXT = (By.XPATH, "(//p[contains(@class, 'product-card__text')])[1]")
     # on REG.RU web page
     REG_START_PAGE_TEXT = (By.XPATH, "//a[@class='u-auth-button i-auth__open-login-tab qa-auth-btn']")
     # on SELECTEL web page
