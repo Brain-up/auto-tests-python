@@ -98,18 +98,17 @@ class TestStartUnauthorizedPage:
     class TestStartUnauthorizedPageImage:
 
         @allure.title("Verify attribute values and size of the image in the section 1 on the page")
-        def test_su_03_01_verify_image_attributs_in_section_1(self, driver, main_page_open):
+        def test_su_03_01_verify_image_attributs_and_changed_sizes_in_section_1(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             image_src = page.get_image_src_in_section_1()
             image_alt = page.get_image_alt_in_section_1()
             image_size = page.get_visible_size_of_image_in_section_1()
-            print(f"The visible sizes of the image in section 1 are: {image_size}")
-            driver.set_window_size(1200, 800)
-            image_size_new = page.get_visible_size_of_image_in_section_1()
-            print(f"The new visible sizes of the image in section 1 are: {image_size_new}")
+            image_size_changes = page.check_size_changes_of_image_in_section_1()
+            assert image_src, "The 'src' attribute value of the image is empty"
             assert StartUnauthorizedPageData.image_src_in_section_1 in image_src, \
                 "The 'src' attribute value of the image in the section 1 does not match the valid value"
+            assert image_alt, "The 'alt' attribute value of the image is empty"
             assert image_alt == StartUnauthorizedPageData.image_alt_in_section_1, \
                 "The 'alt' attribute value of the image in the section 1 does not match the valid value"
-            assert image_size != 0, \
-                f"The image in the section 1 is invisible, a reason: image width = 0"
+            assert image_size != 0, f"The image in the section 1 is invisible due its size = 0, 0"
+            assert image_size_changes, "Checks of changes in image sizes have not carried out"

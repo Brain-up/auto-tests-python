@@ -165,3 +165,15 @@ class StartUnauthorizedPage(BasePage):
     @allure.step("Get size values of the image in the section 1 on the page")
     def get_visible_size_of_image_in_section_1(self):
         return self.get_image_size(self.locators.SECTION_1_IMAGE)
+
+    @allure.step("Get size values of image in the section 1 on the page and check its changes after resizing")
+    def check_size_changes_of_image_in_section_1(self):
+        image_size_before = self.get_visible_size_of_image_in_section_1()
+        # print(f"The visible sizes of the image in section 1 are: {image_size_before}")
+        self.driver.set_window_size(1200, 800)
+        image_size_after = self.get_visible_size_of_image_in_section_1()
+        # print(f"The visible sizes of the image in section 1 are: {image_size_after}")
+        if image_size_before != image_size_after:
+            print(f"\n   The image in the section 1 has sizes that changed: \nfrom {image_size_before} before "
+                  f"resizing \nto {image_size_after} after resizing")
+            return image_size_before, image_size_after
