@@ -162,3 +162,6 @@ class StartUnauthorizedPage(BasePage):
     def get_image_alt_in_section_1(self):
         return self.get_image_alt(self.locators.SECTION_1_IMAGE)
 
+    @allure.step("Get size values of the image in the section 1 on the page")
+    def get_visible_size_of_image_in_section_1(self):
+        return self.get_image_size(self.locators.SECTION_1_IMAGE)
