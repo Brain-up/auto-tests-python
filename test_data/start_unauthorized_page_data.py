@@ -41,3 +41,9 @@ class StartUnauthorizedPageData:
     image_src_in_section_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAGICAYAAAC5"
 
     image_alt_in_section_1 = "girl with book"
+
+    login_link_href = "https://brainup.site/login"
+
+    login_link_status_code = 200
+
+    login_link_text = ["Начать", "Login"]

@@ -1,5 +1,6 @@
 """Auto tests for verifying web elements on the starting page for unauthorized users"""
 import allure
+import requests
 from pages.start_unauthorized_page import StartUnauthorizedPage
 from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 
@@ -112,3 +113,25 @@ class TestStartUnauthorizedPage:
                 "The 'alt' attribute value of the image in the section 1 does not match the valid value"
             assert image_size != 0, f"The image in the section 1 is invisible due its size = 0, 0"
             assert image_size_changes, "Checks of changes in image sizes have not carried out"
+
+    class TestStartUnauthorizedPageLinks:
+
+        @allure.title("""Verify presence, visibility, clickability, href, status code, text 
+                         of the 'Login' link in the section 1 on the page""")
+        def test_su_04_01_verify_login_link(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            link_presence = page.check_login_link_presence()
+            link_visibility = page.check_login_link_visibility()
+            link_clickability = page.check_login_link_clickability()
+            link_href = page.get_login_link_href()
+            link_status_code = requests.head(link_href).status_code
+            actual_link_text = page.get_text_in_login_link()
+            assert link_presence is not None, "The 'Login' link is absent in DOM"
+            assert link_visibility, "The 'Login' link is invisible on the page"
+            assert link_clickability, "The 'Login' link is unclickable"
+            assert link_href == StartUnauthorizedPageData.login_link_href, \
+                f"The attribute 'href' of the {link_href} link does not match the valid value"
+            assert link_status_code == StartUnauthorizedPageData.login_link_status_code, \
+                f"The {link_href} link status code does not match the valid value"
+            assert actual_link_text in StartUnauthorizedPageData.login_link_text, \
+                f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
