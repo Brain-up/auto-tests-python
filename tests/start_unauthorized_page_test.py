@@ -3,6 +3,7 @@ import allure
 import requests
 from pages.start_unauthorized_page import StartUnauthorizedPage
 from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
+from test_data.login_page_data import LoginPageData
 
 
 @allure.epic("The Start Unauthorized Page")
@@ -135,3 +136,11 @@ class TestStartUnauthorizedPage:
                 f"The {link_href} link status code does not match the valid value"
             assert actual_link_text in StartUnauthorizedPageData.login_link_text, \
                 f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
+
+        @allure.title("Verify that the 'Login' link leads to the correct page after clicking")
+        def test_su_04_02_verify_login_link_leads_to_the_correct_page(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            page.click_login_link()
+            text_on_opened_page = page.get_element_text_on_opened_login_page()
+            assert text_on_opened_page in LoginPageData.sign_in_tab, \
+                "The 'Login' link leads to an incorrect page after clicking or opened page does not load correctly"
