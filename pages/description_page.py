@@ -33,7 +33,7 @@ class DescriptionPage(BasePage):
     def transition_contacts_page(self):
         self.element_is_present_and_clickable(self.locators.MORE_MENU).click()
         self.element_is_present_and_clickable(self.locators.CONTACTS).click()
-        self.check_expected_link(MainPageLinks.URL_CONTACTS)
+        self.check_expected_link(MainPageLinks.URL_CONTACTS_PAGE)
         return self.driver.current_url
 
     @allure.step("Open specialists page")
