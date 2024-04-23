@@ -21,6 +21,15 @@ def main_page_open(driver):
 
 
 @pytest.fixture()
+@allure.step(f'Open page: {MainPageLinks.URL_CONTACTS_PAGE}')
+def contacts_page_open(driver, main_page_open):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(HeaderPageLocators.MORE_MENU).click()
+    page.element_is_present_and_clickable(HeaderPageLocators.CONTACTS_LINK_IN_MORE_MENU).click()
+    time.sleep(1)
+
+
+@pytest.fixture()
 @allure.step(f'Open page: {MainPageLinks.URL_DESCRIPTION_PAGE}')
 def description_page_open(driver):
     driver.get(MainPageLinks.URL_DESCRIPTION_PAGE)

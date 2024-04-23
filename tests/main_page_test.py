@@ -29,7 +29,7 @@ class TestMainPage:
     def test_mp_04_verify_redirection_to_contacts_page(self, driver, main_page_open):
         page = MainPage(driver)
         contacts_page_url = page.open_contacts_page()
-        assert contacts_page_url == MainPageLinks.URL_CONTACTS, "The link leads to an incorrect page."
+        assert contacts_page_url == MainPageLinks.URL_CONTACTS_PAGE, "The link leads to an incorrect page."
 
     @allure.title("Verify redirection to specialists page not authorized user.")
     def test_mp_05_verify_redirection_to_specialists_page(self, driver, main_page_open):

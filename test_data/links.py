@@ -4,7 +4,7 @@ class MainPageLinks:
     URL_DESCRIPTION_PAGE = f"{URL_MAIN_PAGE}description"
     URL_TELEGRAM_PAGE = "https://t.me/BrainUpUsers"
     URL_DONATE_PAGE = "https://opencollective.com/brainup"
-    URL_CONTACTS = f"{URL_MAIN_PAGE}contact"
+    URL_CONTACTS_PAGE = f"{URL_MAIN_PAGE}contact"
     URL_SPECIALISTS_PAGE = f"{URL_MAIN_PAGE}specialists"
     URL_GITHUB = "https://github.com/Brain-up/brn"
     URL_CONTRIBUTORS_PAGE = f"{URL_MAIN_PAGE}contributors"
