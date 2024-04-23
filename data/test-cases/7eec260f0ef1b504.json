@@ -1,0 +1,1563 @@
+{
+  "uid" : "7eec260f0ef1b504",
+  "name" : "Solutions to a random task in the \"Слова Королёвой\" .",
+  "fullName" : "tests.test_speech_exercises_ru.TestCardsRU#test_solve_koroleva_cards_ru",
+  "historyId" : "c9fe4fbd9394e2fb5a6898be66ba433b",
+  "time" : {
+    "start" : 1713894422379,
+    "stop" : 1713894472007,
+    "duration" : 49628
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55c6ca289863 <unknown>\n#1 0x55c6c9f7f8c6 <unknown>\n#2 0x55c6c9fca618 <unknown>\n#3 0x55c6c9fca6d1 <unknown>\n#4 0x55c6ca00d744 <unknown>\n#5 0x55c6c9fec5cd <unknown>\n#6 0x55c6ca00ac19 <unknown>\n#7 0x55c6c9fec343 <unknown>\n#8 0x55c6c9fbd593 <unknown>\n#9 0x55c6c9fbdf5e <unknown>\n#10 0x55c6ca24d84b <unknown>\n#11 0x55c6ca2517a5 <unknown>\n#12 0x55c6ca23b571 <unknown>\n#13 0x55c6ca252332 <unknown>\n#14 0x55c6ca22087f <unknown>\n#15 0x55c6ca278728 <unknown>\n#16 0x55c6ca2788fb <unknown>\n#17 0x55c6ca2889b4 <unknown>\n#18 0x7f70b4e94ac3 <unknown>",
+  "statusTrace" : "self = <pages.speech_exercises_page_ru.SpeechExercisesPageRU object at 0x7f324049e1b0>\n\n    @allure.step('get_correct_answer')\n    def get_correct_answer(self):\n        try:\n            while True:\n                time.sleep(1)\n                self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                answer_value = self.element_is_present(\n                    self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                    'data-correct-answer')\n                if answer_value != \"undefined\":\n>                   correct_card = self.element_is_present_and_clickable((By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n\npages/speech_exercises_page_ru.py:87: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/base_page.py:32: in element_is_present_and_clickable\n    return (Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"359f1543074947ca3eb0fa838e670200\")>\nmethod = <function visibility_of_element_located.<locals>._predicate at 0x7f32403042c0>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//*[text()=\"машина,спать,мышь\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//*[text()=\"машина,спать,мышь\"]')\nE       Stacktrace:\nE       #0 0x55c6ca289863 <unknown>\nE       #1 0x55c6c9f7f8c6 <unknown>\nE       #2 0x55c6c9fca618 <unknown>\nE       #3 0x55c6c9fca6d1 <unknown>\nE       #4 0x55c6ca00d744 <unknown>\nE       #5 0x55c6c9fec5cd <unknown>\nE       #6 0x55c6ca00ac19 <unknown>\nE       #7 0x55c6c9fec343 <unknown>\nE       #8 0x55c6c9fbd593 <unknown>\nE       #9 0x55c6c9fbdf5e <unknown>\nE       #10 0x55c6ca24d84b <unknown>\nE       #11 0x55c6ca2517a5 <unknown>\nE       #12 0x55c6ca23b571 <unknown>\nE       #13 0x55c6ca252332 <unknown>\nE       #14 0x55c6ca22087f <unknown>\nE       #15 0x55c6ca278728 <unknown>\nE       #16 0x55c6ca2788fb <unknown>\nE       #17 0x55c6ca2889b4 <unknown>\nE       #18 0x7f70b4e94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7f3240473260>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"359f1543074947ca3eb0fa838e670200\")>\ndefault_user_authorized = <pages.base_page.BasePage object at 0x7f324030bd10>\n\n    @pytest.mark.xfail\n    @allure.suite('Слова Королёвой.')\n    @allure.title('Solutions to a random task in the \"Слова Королёвой\" .')\n    def test_solve_koroleva_cards_ru(self, driver, default_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        page.click_button_exercises()\n        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)\n        card_id = page.click_random_card()\n    \n        page = SpeechExercisesAPI(driver)\n        payloads = page.get_random_id_from_list_sub_group_default(\n            card_id, seria_id)  # getting random ID from exercises group\n        random_id = page.get_random_id_from_payloads(payloads)\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n    \n        page.click_start_and_get_list_words_ru()\n        page = SpeechExercisesPageRU(driver)\n>       message = page.get_correct_answer()\n\ntests/test_speech_exercises_ru.py:158: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_ru.py:96: in get_correct_answer\n    message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)\npages/base_page.py:55: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"359f1543074947ca3eb0fa838e670200\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7f32402c1a80>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nE       Stacktrace:\nE       #0 0x55c6ca289863 <unknown>\nE       #1 0x55c6c9f7f8c6 <unknown>\nE       #2 0x55c6c9fca618 <unknown>\nE       #3 0x55c6c9fca6d1 <unknown>\nE       #4 0x55c6ca00d744 <unknown>\nE       #5 0x55c6c9fec5cd <unknown>\nE       #6 0x55c6ca00ac19 <unknown>\nE       #7 0x55c6c9fec343 <unknown>\nE       #8 0x55c6c9fbd593 <unknown>\nE       #9 0x55c6c9fbdf5e <unknown>\nE       #10 0x55c6ca24d84b <unknown>\nE       #11 0x55c6ca2517a5 <unknown>\nE       #12 0x55c6ca23b571 <unknown>\nE       #13 0x55c6ca252332 <unknown>\nE       #14 0x55c6ca22087f <unknown>\nE       #15 0x55c6ca278728 <unknown>\nE       #16 0x55c6ca2788fb <unknown>\nE       #17 0x55c6ca2889b4 <unknown>\nE       #18 0x7f70b4e94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1713894416629,
+      "stop" : 1713894417399,
+      "duration" : 770
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1713894417399,
+      "stop" : 1713894420048,
+      "duration" : 2649
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1713894417399,
+        "stop" : 1713894420048,
+        "duration" : 2649
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"359f1543074947ca3eb0fa838e670200\")>"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 1,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1713893581083,
+      "stop" : 1713893581083,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "default_user_authorized",
+    "time" : {
+      "start" : 1713894420048,
+      "stop" : 1713894422379,
+      "duration" : 2331
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "DEFAULT user authorized",
+      "time" : {
+        "start" : 1713894420048,
+        "stop" : 1713894422379,
+        "duration" : 2331
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[@id=\"ember11\"]')",
+        "time" : {
+          "start" : 1713894420048,
+          "stop" : 1713894420086,
+          "duration" : 38
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1713894420066,
+            "stop" : 1713894420086,
+            "duration" : 20
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[@id=\"ember11\"]')",
+            "time" : {
+              "start" : 1713894420066,
+              "stop" : 1713894420086,
+              "duration" : 20
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[@id=\"ember11\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"login\"]')",
+        "time" : {
+          "start" : 1713894420133,
+          "stop" : 1713894420158,
+          "duration" : 25
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"login\"]')",
+          "time" : {
+            "start" : 1713894420133,
+            "stop" : 1713894420142,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"359f1543074947ca3eb0fa838e670200\", element=\"f.C4206599778A538FD6AC521282CA7B03.d.62F205EDA09561CBDD2EC038A33C0B9F.e.27\")>",
+          "time" : {
+            "start" : 1713894420142,
+            "stop" : 1713894420146,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"password\"]')",
+        "time" : {
+          "start" : 1713894420213,
+          "stop" : 1713894420239,
+          "duration" : 26
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"password\"]')",
+          "time" : {
+            "start" : 1713894420213,
+            "stop" : 1713894420222,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"359f1543074947ca3eb0fa838e670200\", element=\"f.C4206599778A538FD6AC521282CA7B03.d.62F205EDA09561CBDD2EC038A33C0B9F.e.30\")>",
+          "time" : {
+            "start" : 1713894420222,
+            "stop" : 1713894420227,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//*[@type=\"submit\"]')",
+        "time" : {
+          "start" : 1713894420279,
+          "stop" : 1713894420309,
+          "duration" : 30
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1713894420293,
+            "stop" : 1713894420309,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//*[@type=\"submit\"]')",
+            "time" : {
+              "start" : 1713894420293,
+              "stop" : 1713894420309,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//*[@type=\"submit\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Check url is present: https://brainup.site/groups",
+        "time" : {
+          "start" : 1713894420360,
+          "stop" : 1713894422379,
+          "duration" : 2019
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"359f1543074947ca3eb0fa838e670200\")>"
+      }, {
+        "name" : "main_page_open",
+        "value" : "None"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 13,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 14,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55c6ca289863 <unknown>\n#1 0x55c6c9f7f8c6 <unknown>\n#2 0x55c6c9fca618 <unknown>\n#3 0x55c6c9fca6d1 <unknown>\n#4 0x55c6ca00d744 <unknown>\n#5 0x55c6c9fec5cd <unknown>\n#6 0x55c6ca00ac19 <unknown>\n#7 0x55c6c9fec343 <unknown>\n#8 0x55c6c9fbd593 <unknown>\n#9 0x55c6c9fbdf5e <unknown>\n#10 0x55c6ca24d84b <unknown>\n#11 0x55c6ca2517a5 <unknown>\n#12 0x55c6ca23b571 <unknown>\n#13 0x55c6ca252332 <unknown>\n#14 0x55c6ca22087f <unknown>\n#15 0x55c6ca278728 <unknown>\n#16 0x55c6ca2788fb <unknown>\n#17 0x55c6ca2889b4 <unknown>\n#18 0x7f70b4e94ac3 <unknown>",
+    "statusTrace" : "self = <pages.speech_exercises_page_ru.SpeechExercisesPageRU object at 0x7f324049e1b0>\n\n    @allure.step('get_correct_answer')\n    def get_correct_answer(self):\n        try:\n            while True:\n                time.sleep(1)\n                self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                answer_value = self.element_is_present(\n                    self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                    'data-correct-answer')\n                if answer_value != \"undefined\":\n>                   correct_card = self.element_is_present_and_clickable((By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n\npages/speech_exercises_page_ru.py:87: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/base_page.py:32: in element_is_present_and_clickable\n    return (Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"359f1543074947ca3eb0fa838e670200\")>\nmethod = <function visibility_of_element_located.<locals>._predicate at 0x7f32403042c0>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//*[text()=\"машина,спать,мышь\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//*[text()=\"машина,спать,мышь\"]')\nE       Stacktrace:\nE       #0 0x55c6ca289863 <unknown>\nE       #1 0x55c6c9f7f8c6 <unknown>\nE       #2 0x55c6c9fca618 <unknown>\nE       #3 0x55c6c9fca6d1 <unknown>\nE       #4 0x55c6ca00d744 <unknown>\nE       #5 0x55c6c9fec5cd <unknown>\nE       #6 0x55c6ca00ac19 <unknown>\nE       #7 0x55c6c9fec343 <unknown>\nE       #8 0x55c6c9fbd593 <unknown>\nE       #9 0x55c6c9fbdf5e <unknown>\nE       #10 0x55c6ca24d84b <unknown>\nE       #11 0x55c6ca2517a5 <unknown>\nE       #12 0x55c6ca23b571 <unknown>\nE       #13 0x55c6ca252332 <unknown>\nE       #14 0x55c6ca22087f <unknown>\nE       #15 0x55c6ca278728 <unknown>\nE       #16 0x55c6ca2788fb <unknown>\nE       #17 0x55c6ca2889b4 <unknown>\nE       #18 0x7f70b4e94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7f3240473260>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"359f1543074947ca3eb0fa838e670200\")>\ndefault_user_authorized = <pages.base_page.BasePage object at 0x7f324030bd10>\n\n    @pytest.mark.xfail\n    @allure.suite('Слова Королёвой.')\n    @allure.title('Solutions to a random task in the \"Слова Королёвой\" .')\n    def test_solve_koroleva_cards_ru(self, driver, default_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        page.click_button_exercises()\n        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)\n        card_id = page.click_random_card()\n    \n        page = SpeechExercisesAPI(driver)\n        payloads = page.get_random_id_from_list_sub_group_default(\n            card_id, seria_id)  # getting random ID from exercises group\n        random_id = page.get_random_id_from_payloads(payloads)\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n    \n        page.click_start_and_get_list_words_ru()\n        page = SpeechExercisesPageRU(driver)\n>       message = page.get_correct_answer()\n\ntests/test_speech_exercises_ru.py:158: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_ru.py:96: in get_correct_answer\n    message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)\npages/base_page.py:55: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"359f1543074947ca3eb0fa838e670200\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7f32402c1a80>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nE       Stacktrace:\nE       #0 0x55c6ca289863 <unknown>\nE       #1 0x55c6c9f7f8c6 <unknown>\nE       #2 0x55c6c9fca618 <unknown>\nE       #3 0x55c6c9fca6d1 <unknown>\nE       #4 0x55c6ca00d744 <unknown>\nE       #5 0x55c6c9fec5cd <unknown>\nE       #6 0x55c6ca00ac19 <unknown>\nE       #7 0x55c6c9fec343 <unknown>\nE       #8 0x55c6c9fbd593 <unknown>\nE       #9 0x55c6c9fbdf5e <unknown>\nE       #10 0x55c6ca24d84b <unknown>\nE       #11 0x55c6ca2517a5 <unknown>\nE       #12 0x55c6ca23b571 <unknown>\nE       #13 0x55c6ca252332 <unknown>\nE       #14 0x55c6ca22087f <unknown>\nE       #15 0x55c6ca278728 <unknown>\nE       #16 0x55c6ca2788fb <unknown>\nE       #17 0x55c6ca2889b4 <unknown>\nE       #18 0x7f70b4e94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+    "steps" : [ {
+      "name" : "Click button \"Упражнения\".",
+      "time" : {
+        "start" : 1713894422379,
+        "stop" : 1713894422540,
+        "duration" : 161
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Click button \"RU\".",
+        "time" : {
+          "start" : 1713894422379,
+          "stop" : 1713894422451,
+          "duration" : 72
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', \"//*[contains(text(),'RU')]\")",
+          "time" : {
+            "start" : 1713894422379,
+            "stop" : 1713894422410,
+            "duration" : 31
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713894422394,
+              "stop" : 1713894422410,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', \"//*[contains(text(),'RU')]\")",
+              "time" : {
+                "start" : 1713894422394,
+                "stop" : 1713894422410,
+                "duration" : 16
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', \"//*[contains(text(),'RU')]\")"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[text()=\"Упражнения\"]')",
+        "time" : {
+          "start" : 1713894422451,
+          "stop" : 1713894422484,
+          "duration" : 33
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1713894422468,
+            "stop" : 1713894422484,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[text()=\"Упражнения\"]')",
+            "time" : {
+              "start" : 1713894422468,
+              "stop" : 1713894422484,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[text()=\"Упражнения\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"359f1543074947ca3eb0fa838e670200\", element=\"f.C4206599778A538FD6AC521282CA7B03.d.62F205EDA09561CBDD2EC038A33C0B9F.e.59\")>",
+        "time" : {
+          "start" : 1713894422484,
+          "stop" : 1713894422487,
+          "duration" : 3
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[text()=\"Упражнения\"]')",
+        "time" : {
+          "start" : 1713894422487,
+          "stop" : 1713894422515,
+          "duration" : 28
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1713894422499,
+            "stop" : 1713894422515,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[text()=\"Упражнения\"]')",
+            "time" : {
+              "start" : 1713894422499,
+              "stop" : 1713894422515,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[text()=\"Упражнения\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 11,
+      "hasContent" : true
+    }, {
+      "name" : "select_group",
+      "time" : {
+        "start" : 1713894422540,
+        "stop" : 1713894425395,
+        "duration" : 2855
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Select Russian language. Click \"RU\" button.",
+        "time" : {
+          "start" : 1713894422540,
+          "stop" : 1713894422599,
+          "duration" : 59
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', \"//*[contains(text(),'RU')]\")",
+          "time" : {
+            "start" : 1713894422540,
+            "stop" : 1713894422573,
+            "duration" : 33
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713894422554,
+              "stop" : 1713894422573,
+              "duration" : 19
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', \"//*[contains(text(),'RU')]\")",
+              "time" : {
+                "start" : 1713894422554,
+                "stop" : 1713894422573,
+                "duration" : 19
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', \"//*[contains(text(),'RU')]\")"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Click button \"Речевые упражнения\".",
+        "time" : {
+          "start" : 1713894422599,
+          "stop" : 1713894423236,
+          "duration" : 637
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//a[@title=\"Речевые упражнения\"]')",
+          "time" : {
+            "start" : 1713894422599,
+            "stop" : 1713894423209,
+            "duration" : 610
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713894423192,
+              "stop" : 1713894423209,
+              "duration" : 17
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//a[@title=\"Речевые упражнения\"]')",
+              "time" : {
+                "start" : 1713894423193,
+                "stop" : 1713894423209,
+                "duration" : 16
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//a[@title=\"Речевые упражнения\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')",
+        "time" : {
+          "start" : 1713894423236,
+          "stop" : 1713894424806,
+          "duration" : 1570
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1713894424789,
+            "stop" : 1713894424806,
+            "duration" : 17
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')",
+            "time" : {
+              "start" : 1713894424789,
+              "stop" : 1713894424806,
+              "duration" : 17
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 0,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 1,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 2,
+        "hasContent" : true
+      }, {
+        "name" : "Click button \"СЛОВА КОРОЛЁВОЙ\".",
+        "time" : {
+          "start" : 1713894424824,
+          "stop" : 1713894424884,
+          "duration" : 60
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')",
+          "time" : {
+            "start" : 1713894424824,
+            "stop" : 1713894424852,
+            "duration" : 28
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713894424836,
+              "stop" : 1713894424852,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')",
+              "time" : {
+                "start" : 1713894424836,
+                "stop" : 1713894424852,
+                "duration" : 16
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Wait until url: https://brainup.site/groups/2/series/1 will be changed.",
+        "time" : {
+          "start" : 1713894424884,
+          "stop" : 1713894425392,
+          "duration" : 508
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "selector_for_sub_group",
+        "value" : "('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 16,
+      "hasContent" : true
+    }, {
+      "name" : "click_random_card",
+      "time" : {
+        "start" : 1713894425395,
+        "stop" : 1713894425528,
+        "duration" : 133
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check elements are present: ('xpath', '//div[contains(@class, \"series-container\")]//a/div/div')",
+        "time" : {
+          "start" : 1713894425395,
+          "stop" : 1713894425404,
+          "duration" : 9
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Getting list cards: ['1 слово из 2..4 (1)', '1 слово из 2..4 (2)', '1 слово из 2..4 (3)', '1 слово из 2..4 (4)', '1 слово из 2..4 (5)', '1 слово из 2..4 (6)', '1 слово из 6', '2 слова из 4', '3 слова из 6', '2 слова из 6']",
+        "time" : {
+          "start" : 1713894425478,
+          "stop" : 1713894425478,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list of cards. \nCard ID in list is:, 9",
+        "time" : {
+          "start" : 1713894425478,
+          "stop" : 1713894425478,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Check elements are present: ('xpath', '//div[contains(@class, \"series-container\")]//a/div/div')",
+        "time" : {
+          "start" : 1713894425478,
+          "stop" : 1713894425483,
+          "duration" : 5
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Selected card is: 3 слова из 6",
+        "time" : {
+          "start" : 1713894425488,
+          "stop" : 1713894425522,
+          "duration" : 34
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"359f1543074947ca3eb0fa838e670200\", element=\"f.C4206599778A538FD6AC521282CA7B03.d.62F205EDA09561CBDD2EC038A33C0B9F.e.88\")>",
+          "time" : {
+            "start" : 1713894425488,
+            "stop" : 1713894425492,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 0,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 1,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 6,
+      "hasContent" : true
+    }, {
+      "name" : "get_random_id_from_list_sub_group_default",
+      "time" : {
+        "start" : 1713894425528,
+        "stop" : 1713894426319,
+        "duration" : 791
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Send GET request with params: https://brainup.site/api/subgroups?seriesId=17headers=\"Content-Type\": \"application/json\",\"Authorization\": \"Bearer\": \"{id_token_default}\"",
+        "time" : {
+          "start" : 1713894426318,
+          "stop" : 1713894426318,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Getting list of cards id: {'data': [{'seriesId': 17, 'id': 115, 'level': 1, 'name': '1 слово из 2..4 (1)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_1.svg', 'description': '1я группа слов: по одному', 'withPictures': False, 'exercises': [1905, 1906, 1907, 1908, 1909]}, {'seriesId': 17, 'id': 116, 'level': 2, 'name': '1 слово из 2..4 (2)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_2.svg', 'description': '2я группа слов: по одному', 'withPictures': False, 'exercises': [1910, 1911, 1912, 1913, 1914]}, {'seriesId': 17, 'id': 117, 'level': 3, 'name': '1 слово из 2..4 (3)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_3.svg', 'description': '3я группа слов: по одному', 'withPictures': False, 'exercises': [1915, 1916, 1917, 1918, 1919]}, {'seriesId': 17, 'id': 118, 'level': 4, 'name': '1 слово из 2..4 (4)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_4.svg', 'description': '4я группа слов: по одному', 'withPictures': False, 'exercises': [1920, 1921, 1922, 1923, 1924]}, {'seriesId': 17, 'id': 119, 'level': 5, 'name': '1 слово из 2..4 (5)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_5.svg', 'description': '5я группа слов: по одному', 'withPictures': False, 'exercises': [1925, 1926, 1927, 1928, 1929]}, {'seriesId': 17, 'id': 120, 'level': 6, 'name': '1 слово из 2..4 (6)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_6.svg', 'description': '6я группа слов: по одному', 'withPictures': False, 'exercises': [1930, 1931, 1932, 1933, 1934]}, {'seriesId': 17, 'id': 121, 'level': 20, 'name': '1 слово из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_1_4.svg', 'description': 'Одно слово из 6', 'withPictures': False, 'exercises': [1935, 1936, 1937, 1938, 1939, 1940]}, {'seriesId': 17, 'id': 122, 'level': 21, 'name': '2 слова из 4', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_2_4.svg', 'description': 'Два слово из 4', 'withPictures': False, 'exercises': [1941, 1942, 1943, 1944, 1945, 1946]}, {'seriesId': 17, 'id': 124, 'level': 21, 'name': '3 слова из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_3_6.svg', 'description': 'Три слово из 6', 'withPictures': False, 'exercises': [1954, 1958, 1953, 1956, 1957, 1955, 1974, 1975, 1976, 1977]}, {'seriesId': 17, 'id': 123, 'level': 21, 'name': '2 слова из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_2_6.svg', 'description': 'Два слово из 6', 'withPictures': False, 'exercises': [1947, 1948, 1949, 1950, 1951, 1952, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973]}], 'errors': [], 'meta': []}",
+        "time" : {
+          "start" : 1713894426318,
+          "stop" : 1713894426318,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list: 1974",
+        "time" : {
+          "start" : 1713894426318,
+          "stop" : 1713894426318,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "card_id",
+        "value" : "8"
+      }, {
+        "name" : "seria_id",
+        "value" : "'17'"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 3,
+      "hasContent" : true
+    }, {
+      "name" : "get_random_id_from_payloads",
+      "time" : {
+        "start" : 1713894426319,
+        "stop" : 1713894426922,
+        "duration" : 603
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "payloads",
+        "value" : "{'ids': [1954, 1958, 1953, 1956, 1957, 1955, 1974, 1975, 1976, 1977]}"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : true
+    }, {
+      "name" : "click_start_and_get_list_words_ru",
+      "time" : {
+        "start" : 1713894427213,
+        "stop" : 1713894430215,
+        "duration" : 3002
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Click button \"Start\".",
+        "time" : {
+          "start" : 1713894427213,
+          "stop" : 1713894429962,
+          "duration" : 2749
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')",
+          "time" : {
+            "start" : 1713894427213,
+            "stop" : 1713894429841,
+            "duration" : 2628
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713894429820,
+              "stop" : 1713894429841,
+              "duration" : 21
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')",
+              "time" : {
+                "start" : 1713894429820,
+                "stop" : 1713894429841,
+                "duration" : 21
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Check elements are visible: ('xpath', '//li[@class=\"task-player__option flex\"]')",
+        "time" : {
+          "start" : 1713894429963,
+          "stop" : 1713894430044,
+          "duration" : 81
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Getting a list of exercise words from the front: ['круг', 'рубашка', 'спать', 'голова', 'мышь', 'машина']",
+        "time" : {
+          "start" : 1713894430088,
+          "stop" : 1713894430088,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"Повторить\".",
+        "time" : {
+          "start" : 1713894430088,
+          "stop" : 1713894430150,
+          "duration" : 62
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//*[text()=\"Повторить\"]')",
+          "time" : {
+            "start" : 1713894430088,
+            "stop" : 1713894430119,
+            "duration" : 31
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713894430103,
+              "stop" : 1713894430119,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//*[text()=\"Повторить\"]')",
+              "time" : {
+                "start" : 1713894430103,
+                "stop" : 1713894430119,
+                "duration" : 16
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//*[text()=\"Повторить\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      }, {
+        "name" : "Click button \"Решать\".",
+        "time" : {
+          "start" : 1713894430150,
+          "stop" : 1713894430215,
+          "duration" : 65
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is visible and clickable: ('xpath', '//*[text()=\"Решать\"]')",
+          "time" : {
+            "start" : 1713894430150,
+            "stop" : 1713894430189,
+            "duration" : 39
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable",
+            "time" : {
+              "start" : 1713894430170,
+              "stop" : 1713894430189,
+              "duration" : 19
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Check element is clickable: ('xpath', '//*[text()=\"Решать\"]')",
+              "time" : {
+                "start" : 1713894430170,
+                "stop" : 1713894430189,
+                "duration" : 19
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "stepsCount" : 0,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//*[text()=\"Решать\"]')"
+            } ],
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "stepsCount" : 1,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "stepsCount" : 2,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 3,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 14,
+      "hasContent" : true
+    }, {
+      "name" : "get_correct_answer",
+      "time" : {
+        "start" : 1713894430215,
+        "stop" : 1713894472006,
+        "duration" : 41791
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55c6ca289863 <unknown>\n#1 0x55c6c9f7f8c6 <unknown>\n#2 0x55c6c9fca618 <unknown>\n#3 0x55c6c9fca6d1 <unknown>\n#4 0x55c6ca00d744 <unknown>\n#5 0x55c6c9fec5cd <unknown>\n#6 0x55c6ca00ac19 <unknown>\n#7 0x55c6c9fec343 <unknown>\n#8 0x55c6c9fbd593 <unknown>\n#9 0x55c6c9fbdf5e <unknown>\n#10 0x55c6ca24d84b <unknown>\n#11 0x55c6ca2517a5 <unknown>\n#12 0x55c6ca23b571 <unknown>\n#13 0x55c6ca252332 <unknown>\n#14 0x55c6ca22087f <unknown>\n#15 0x55c6ca278728 <unknown>\n#16 0x55c6ca2788fb <unknown>\n#17 0x55c6ca2889b4 <unknown>\n#18 0x7f70b4e94ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/speech_exercises_page_ru.py\", line 96, in get_correct_answer\n    message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 55, in element_is_present\n    return Wait(self.driver, self.timeout).until(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ {
+        "name" : "Check element is present: ('xpath', '//body[@data-correct-answer]')",
+        "time" : {
+          "start" : 1713894431215,
+          "stop" : 1713894431234,
+          "duration" : 19
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Check element is present: ('xpath', '//body[@data-correct-answer]')",
+        "time" : {
+          "start" : 1713894431234,
+          "stop" : 1713894431240,
+          "duration" : 6
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "stepsCount" : 0,
+        "hasContent" : false
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//*[text()=\"машина,спать,мышь\"]')",
+        "time" : {
+          "start" : 1713894431249,
+          "stop" : 1713894451641,
+          "duration" : 20392
+        },
+        "status" : "broken",
+        "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//*[text()=\"машина,спать,мышь\"]')\nStacktrace:\n#0 0x55c6ca289863 <unknown>\n#1 0x55c6c9f7f8c6 <unknown>\n#2 0x55c6c9fca618 <unknown>\n#3 0x55c6c9fca6d1 <unknown>\n#4 0x55c6ca00d744 <unknown>\n#5 0x55c6c9fec5cd <unknown>\n#6 0x55c6ca00ac19 <unknown>\n#7 0x55c6c9fec343 <unknown>\n#8 0x55c6c9fbd593 <unknown>\n#9 0x55c6c9fbdf5e <unknown>\n#10 0x55c6ca24d84b <unknown>\n#11 0x55c6ca2517a5 <unknown>\n#12 0x55c6ca23b571 <unknown>\n#13 0x55c6ca252332 <unknown>\n#14 0x55c6ca22087f <unknown>\n#15 0x55c6ca278728 <unknown>\n#16 0x55c6ca2788fb <unknown>\n#17 0x55c6ca2889b4 <unknown>\n#18 0x7f70b4e94ac3 <unknown>\n\n",
+        "statusTrace" : "  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 32, in element_is_present_and_clickable\n    return (Wait(self.driver, self.timeout).until(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "stepsCount" : 0,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is present: ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')",
+        "time" : {
+          "start" : 1713894451641,
+          "stop" : 1713894472006,
+          "duration" : 20365
+        },
+        "status" : "broken",
+        "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55c6ca289863 <unknown>\n#1 0x55c6c9f7f8c6 <unknown>\n#2 0x55c6c9fca618 <unknown>\n#3 0x55c6c9fca6d1 <unknown>\n#4 0x55c6ca00d744 <unknown>\n#5 0x55c6c9fec5cd <unknown>\n#6 0x55c6ca00ac19 <unknown>\n#7 0x55c6c9fec343 <unknown>\n#8 0x55c6c9fbd593 <unknown>\n#9 0x55c6c9fbdf5e <unknown>\n#10 0x55c6ca24d84b <unknown>\n#11 0x55c6ca2517a5 <unknown>\n#12 0x55c6ca23b571 <unknown>\n#13 0x55c6ca252332 <unknown>\n#14 0x55c6ca22087f <unknown>\n#15 0x55c6ca278728 <unknown>\n#16 0x55c6ca2788fb <unknown>\n#17 0x55c6ca2889b4 <unknown>\n#18 0x7f70b4e94ac3 <unknown>\n\n",
+        "statusTrace" : "  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 55, in element_is_present\n    return Wait(self.driver, self.timeout).until(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "stepsCount" : 0,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 4,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "4bb74451e6b09153",
+      "name" : "Screenshot",
+      "source" : "4bb74451e6b09153.png",
+      "type" : "image/png",
+      "size" : 64796
+    }, {
+      "uid" : "d00dbf2d80a4ec1c",
+      "name" : "HTML source",
+      "source" : "d00dbf2d80a4ec1c.html",
+      "type" : "text/html",
+      "size" : 67423
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "stepsCount" : 61,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1713894472171,
+      "stop" : 1713894472377,
+      "duration" : 206
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "500aaf2223d62153",
+      "name" : "Screenshot 2024-04-23 17:47:52.311194",
+      "source" : "500aaf2223d62153.png",
+      "type" : "image/png",
+      "size" : 64796
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : true
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Речевые упражнения."
+  }, {
+    "name" : "suite",
+    "value" : "Слова Королёвой."
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCardsRU"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1543-400"
+  }, {
+    "name" : "thread",
+    "value" : "1787-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_speech_exercises_ru"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 7,
+        "skipped" : 97,
+        "passed" : 70,
+        "unknown" : 0,
+        "total" : 174
+      },
+      "items" : [ {
+        "uid" : "eb9f14e06b7dbfc0",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x562d6b29c863 <unknown>\n#1 0x562d6af928c6 <unknown>\n#2 0x562d6afdd618 <unknown>\n#3 0x562d6afdd6d1 <unknown>\n#4 0x562d6b020744 <unknown>\n#5 0x562d6afff5cd <unknown>\n#6 0x562d6b01dc19 <unknown>\n#7 0x562d6afff343 <unknown>\n#8 0x562d6afd0593 <unknown>\n#9 0x562d6afd0f5e <unknown>\n#10 0x562d6b26084b <unknown>\n#11 0x562d6b2647a5 <unknown>\n#12 0x562d6b24e571 <unknown>\n#13 0x562d6b265332 <unknown>\n#14 0x562d6b23387f <unknown>\n#15 0x562d6b28b728 <unknown>\n#16 0x562d6b28b8fb <unknown>\n#17 0x562d6b29b9b4 <unknown>\n#18 0x7f26fda94ac3 <unknown>",
+        "time" : {
+          "start" : 1713880615857,
+          "stop" : 1713880667389,
+          "duration" : 51532
+        }
+      }, {
+        "uid" : "9b464b34caaf44f7",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55e441eb4863 <unknown>\n#1 0x55e441baa8c6 <unknown>\n#2 0x55e441bf5618 <unknown>\n#3 0x55e441bf56d1 <unknown>\n#4 0x55e441c38744 <unknown>\n#5 0x55e441c175cd <unknown>\n#6 0x55e441c35c19 <unknown>\n#7 0x55e441c17343 <unknown>\n#8 0x55e441be8593 <unknown>\n#9 0x55e441be8f5e <unknown>\n#10 0x55e441e7884b <unknown>\n#11 0x55e441e7c7a5 <unknown>\n#12 0x55e441e66571 <unknown>\n#13 0x55e441e7d332 <unknown>\n#14 0x55e441e4b87f <unknown>\n#15 0x55e441ea3728 <unknown>\n#16 0x55e441ea38fb <unknown>\n#17 0x55e441eb39b4 <unknown>\n#18 0x7ffbb1294ac3 <unknown>",
+        "time" : {
+          "start" : 1713878845113,
+          "stop" : 1713878895292,
+          "duration" : 50179
+        }
+      }, {
+        "uid" : "ff7cfcf2864a7981",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55f51e075863 <unknown>\n#1 0x55f51dd6b8c6 <unknown>\n#2 0x55f51ddb6618 <unknown>\n#3 0x55f51ddb66d1 <unknown>\n#4 0x55f51ddf9744 <unknown>\n#5 0x55f51ddd85cd <unknown>\n#6 0x55f51ddf6c19 <unknown>\n#7 0x55f51ddd8343 <unknown>\n#8 0x55f51dda9593 <unknown>\n#9 0x55f51dda9f5e <unknown>\n#10 0x55f51e03984b <unknown>\n#11 0x55f51e03d7a5 <unknown>\n#12 0x55f51e027571 <unknown>\n#13 0x55f51e03e332 <unknown>\n#14 0x55f51e00c87f <unknown>\n#15 0x55f51e064728 <unknown>\n#16 0x55f51e0648fb <unknown>\n#17 0x55f51e0749b4 <unknown>\n#18 0x7f07a3294ac3 <unknown>",
+        "time" : {
+          "start" : 1713876623453,
+          "stop" : 1713876677888,
+          "duration" : 54435
+        }
+      }, {
+        "uid" : "d64021f5cd286c6d",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55fc811bd863 <unknown>\n#1 0x55fc80eb38c6 <unknown>\n#2 0x55fc80efe618 <unknown>\n#3 0x55fc80efe6d1 <unknown>\n#4 0x55fc80f41744 <unknown>\n#5 0x55fc80f205cd <unknown>\n#6 0x55fc80f3ec19 <unknown>\n#7 0x55fc80f20343 <unknown>\n#8 0x55fc80ef1593 <unknown>\n#9 0x55fc80ef1f5e <unknown>\n#10 0x55fc8118184b <unknown>\n#11 0x55fc811857a5 <unknown>\n#12 0x55fc8116f571 <unknown>\n#13 0x55fc81186332 <unknown>\n#14 0x55fc8115487f <unknown>\n#15 0x55fc811ac728 <unknown>\n#16 0x55fc811ac8fb <unknown>\n#17 0x55fc811bc9b4 <unknown>\n#18 0x7f06e5694ac3 <unknown>",
+        "time" : {
+          "start" : 1713873702209,
+          "stop" : 1713873754301,
+          "duration" : 52092
+        }
+      }, {
+        "uid" : "352db2a11ade045e",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55b7a53db863 <unknown>\n#1 0x55b7a50d18c6 <unknown>\n#2 0x55b7a511c618 <unknown>\n#3 0x55b7a511c6d1 <unknown>\n#4 0x55b7a515f744 <unknown>\n#5 0x55b7a513e5cd <unknown>\n#6 0x55b7a515cc19 <unknown>\n#7 0x55b7a513e343 <unknown>\n#8 0x55b7a510f593 <unknown>\n#9 0x55b7a510ff5e <unknown>\n#10 0x55b7a539f84b <unknown>\n#11 0x55b7a53a37a5 <unknown>\n#12 0x55b7a538d571 <unknown>\n#13 0x55b7a53a4332 <unknown>\n#14 0x55b7a537287f <unknown>\n#15 0x55b7a53ca728 <unknown>\n#16 0x55b7a53ca8fb <unknown>\n#17 0x55b7a53da9b4 <unknown>\n#18 0x7f1ce9e94ac3 <unknown>",
+        "time" : {
+          "start" : 1713870822868,
+          "stop" : 1713870873096,
+          "duration" : 50228
+        }
+      }, {
+        "uid" : "62e09f1cf5eb3107",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x5564d5193863 <unknown>\n#1 0x5564d4e898c6 <unknown>\n#2 0x5564d4ed4618 <unknown>\n#3 0x5564d4ed46d1 <unknown>\n#4 0x5564d4f17744 <unknown>\n#5 0x5564d4ef65cd <unknown>\n#6 0x5564d4f14c19 <unknown>\n#7 0x5564d4ef6343 <unknown>\n#8 0x5564d4ec7593 <unknown>\n#9 0x5564d4ec7f5e <unknown>\n#10 0x5564d515784b <unknown>\n#11 0x5564d515b7a5 <unknown>\n#12 0x5564d5145571 <unknown>\n#13 0x5564d515c332 <unknown>\n#14 0x5564d512a87f <unknown>\n#15 0x5564d5182728 <unknown>\n#16 0x5564d51828fb <unknown>\n#17 0x5564d51929b4 <unknown>\n#18 0x7f00ffc94ac3 <unknown>",
+        "time" : {
+          "start" : 1713784870969,
+          "stop" : 1713784930388,
+          "duration" : 59419
+        }
+      }, {
+        "uid" : "f266e6be5c76715",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55db1bb5a863 <unknown>\n#1 0x55db1b8508c6 <unknown>\n#2 0x55db1b89b618 <unknown>\n#3 0x55db1b89b6d1 <unknown>\n#4 0x55db1b8de744 <unknown>\n#5 0x55db1b8bd5cd <unknown>\n#6 0x55db1b8dbc19 <unknown>\n#7 0x55db1b8bd343 <unknown>\n#8 0x55db1b88e593 <unknown>\n#9 0x55db1b88ef5e <unknown>\n#10 0x55db1bb1e84b <unknown>\n#11 0x55db1bb227a5 <unknown>\n#12 0x55db1bb0c571 <unknown>\n#13 0x55db1bb23332 <unknown>\n#14 0x55db1baf187f <unknown>\n#15 0x55db1bb49728 <unknown>\n#16 0x55db1bb498fb <unknown>\n#17 0x55db1bb599b4 <unknown>\n#18 0x7f65b6c94ac3 <unknown>",
+        "time" : {
+          "start" : 1713782209909,
+          "stop" : 1713782261946,
+          "duration" : 52037
+        }
+      }, {
+        "uid" : "2034ea95242b3dbe",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55e413f8f863 <unknown>\n#1 0x55e413c858c6 <unknown>\n#2 0x55e413cd0618 <unknown>\n#3 0x55e413cd06d1 <unknown>\n#4 0x55e413d13744 <unknown>\n#5 0x55e413cf25cd <unknown>\n#6 0x55e413d10c19 <unknown>\n#7 0x55e413cf2343 <unknown>\n#8 0x55e413cc3593 <unknown>\n#9 0x55e413cc3f5e <unknown>\n#10 0x55e413f5384b <unknown>\n#11 0x55e413f577a5 <unknown>\n#12 0x55e413f41571 <unknown>\n#13 0x55e413f58332 <unknown>\n#14 0x55e413f2687f <unknown>\n#15 0x55e413f7e728 <unknown>\n#16 0x55e413f7e8fb <unknown>\n#17 0x55e413f8e9b4 <unknown>\n#18 0x7f2abc294ac3 <unknown>",
+        "time" : {
+          "start" : 1713699415733,
+          "stop" : 1713699468218,
+          "duration" : 52485
+        }
+      }, {
+        "uid" : "43b2e693548646b",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x562f78f41863 <unknown>\n#1 0x562f78c378c6 <unknown>\n#2 0x562f78c82618 <unknown>\n#3 0x562f78c826d1 <unknown>\n#4 0x562f78cc5744 <unknown>\n#5 0x562f78ca45cd <unknown>\n#6 0x562f78cc2c19 <unknown>\n#7 0x562f78ca4343 <unknown>\n#8 0x562f78c75593 <unknown>\n#9 0x562f78c75f5e <unknown>\n#10 0x562f78f0584b <unknown>\n#11 0x562f78f097a5 <unknown>\n#12 0x562f78ef3571 <unknown>\n#13 0x562f78f0a332 <unknown>\n#14 0x562f78ed887f <unknown>\n#15 0x562f78f30728 <unknown>\n#16 0x562f78f308fb <unknown>\n#17 0x562f78f409b4 <unknown>\n#18 0x7fd25be94ac3 <unknown>",
+        "time" : {
+          "start" : 1713697557966,
+          "stop" : 1713697610610,
+          "duration" : 52644
+        }
+      }, {
+        "uid" : "aa96bd9474dfb9a0",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x556f7fbf5863 <unknown>\n#1 0x556f7f8eb8c6 <unknown>\n#2 0x556f7f936618 <unknown>\n#3 0x556f7f9366d1 <unknown>\n#4 0x556f7f979744 <unknown>\n#5 0x556f7f9585cd <unknown>\n#6 0x556f7f976c19 <unknown>\n#7 0x556f7f958343 <unknown>\n#8 0x556f7f929593 <unknown>\n#9 0x556f7f929f5e <unknown>\n#10 0x556f7fbb984b <unknown>\n#11 0x556f7fbbd7a5 <unknown>\n#12 0x556f7fba7571 <unknown>\n#13 0x556f7fbbe332 <unknown>\n#14 0x556f7fb8c87f <unknown>\n#15 0x556f7fbe4728 <unknown>\n#16 0x556f7fbe48fb <unknown>\n#17 0x556f7fbf49b4 <unknown>\n#18 0x7ffa3b694ac3 <unknown>",
+        "time" : {
+          "start" : 1713608408568,
+          "stop" : 1713608460448,
+          "duration" : 51880
+        }
+      }, {
+        "uid" : "8ba7519b47403ee7",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55c393cc8863 <unknown>\n#1 0x55c3939be8c6 <unknown>\n#2 0x55c393a09618 <unknown>\n#3 0x55c393a096d1 <unknown>\n#4 0x55c393a4c744 <unknown>\n#5 0x55c393a2b5cd <unknown>\n#6 0x55c393a49c19 <unknown>\n#7 0x55c393a2b343 <unknown>\n#8 0x55c3939fc593 <unknown>\n#9 0x55c3939fcf5e <unknown>\n#10 0x55c393c8c84b <unknown>\n#11 0x55c393c907a5 <unknown>\n#12 0x55c393c7a571 <unknown>\n#13 0x55c393c91332 <unknown>\n#14 0x55c393c5f87f <unknown>\n#15 0x55c393cb7728 <unknown>\n#16 0x55c393cb78fb <unknown>\n#17 0x55c393cc79b4 <unknown>\n#18 0x7fdcd0894ac3 <unknown>",
+        "time" : {
+          "start" : 1713605926894,
+          "stop" : 1713605978388,
+          "duration" : 51494
+        }
+      }, {
+        "uid" : "a074957de354de46",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55b0edd92863 <unknown>\n#1 0x55b0eda888c6 <unknown>\n#2 0x55b0edad3618 <unknown>\n#3 0x55b0edad36d1 <unknown>\n#4 0x55b0edb16744 <unknown>\n#5 0x55b0edaf55cd <unknown>\n#6 0x55b0edb13c19 <unknown>\n#7 0x55b0edaf5343 <unknown>\n#8 0x55b0edac6593 <unknown>\n#9 0x55b0edac6f5e <unknown>\n#10 0x55b0edd5684b <unknown>\n#11 0x55b0edd5a7a5 <unknown>\n#12 0x55b0edd44571 <unknown>\n#13 0x55b0edd5b332 <unknown>\n#14 0x55b0edd2987f <unknown>\n#15 0x55b0edd81728 <unknown>\n#16 0x55b0edd818fb <unknown>\n#17 0x55b0edd919b4 <unknown>\n#18 0x7fc0b7894ac3 <unknown>",
+        "time" : {
+          "start" : 1713528392046,
+          "stop" : 1713528443568,
+          "duration" : 51522
+        }
+      }, {
+        "uid" : "3307174bc674ade0",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55dceea6e863 <unknown>\n#1 0x55dcee7648c6 <unknown>\n#2 0x55dcee7af618 <unknown>\n#3 0x55dcee7af6d1 <unknown>\n#4 0x55dcee7f2744 <unknown>\n#5 0x55dcee7d15cd <unknown>\n#6 0x55dcee7efc19 <unknown>\n#7 0x55dcee7d1343 <unknown>\n#8 0x55dcee7a2593 <unknown>\n#9 0x55dcee7a2f5e <unknown>\n#10 0x55dceea3284b <unknown>\n#11 0x55dceea367a5 <unknown>\n#12 0x55dceea20571 <unknown>\n#13 0x55dceea37332 <unknown>\n#14 0x55dceea0587f <unknown>\n#15 0x55dceea5d728 <unknown>\n#16 0x55dceea5d8fb <unknown>\n#17 0x55dceea6d9b4 <unknown>\n#18 0x7f9fe7894ac3 <unknown>",
+        "time" : {
+          "start" : 1713526017418,
+          "stop" : 1713526072190,
+          "duration" : 54772
+        }
+      }, {
+        "uid" : "895565b972ea7f00",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x558cb37e8863 <unknown>\n#1 0x558cb34de8c6 <unknown>\n#2 0x558cb3529618 <unknown>\n#3 0x558cb35296d1 <unknown>\n#4 0x558cb356c744 <unknown>\n#5 0x558cb354b5cd <unknown>\n#6 0x558cb3569c19 <unknown>\n#7 0x558cb354b343 <unknown>\n#8 0x558cb351c593 <unknown>\n#9 0x558cb351cf5e <unknown>\n#10 0x558cb37ac84b <unknown>\n#11 0x558cb37b07a5 <unknown>\n#12 0x558cb379a571 <unknown>\n#13 0x558cb37b1332 <unknown>\n#14 0x558cb377f87f <unknown>\n#15 0x558cb37d7728 <unknown>\n#16 0x558cb37d78fb <unknown>\n#17 0x558cb37e79b4 <unknown>\n#18 0x7f2ecba94ac3 <unknown>",
+        "time" : {
+          "start" : 1713525816190,
+          "stop" : 1713525878616,
+          "duration" : 62426
+        }
+      }, {
+        "uid" : "3588a2d8e579c7d9",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55987daa3863 <unknown>\n#1 0x55987d7998c6 <unknown>\n#2 0x55987d7e4618 <unknown>\n#3 0x55987d7e46d1 <unknown>\n#4 0x55987d827744 <unknown>\n#5 0x55987d8065cd <unknown>\n#6 0x55987d824c19 <unknown>\n#7 0x55987d806343 <unknown>\n#8 0x55987d7d7593 <unknown>\n#9 0x55987d7d7f5e <unknown>\n#10 0x55987da6784b <unknown>\n#11 0x55987da6b7a5 <unknown>\n#12 0x55987da55571 <unknown>\n#13 0x55987da6c332 <unknown>\n#14 0x55987da3a87f <unknown>\n#15 0x55987da92728 <unknown>\n#16 0x55987da928fb <unknown>\n#17 0x55987daa29b4 <unknown>\n#18 0x7fde31694ac3 <unknown>",
+        "time" : {
+          "start" : 1713521411517,
+          "stop" : 1713521467118,
+          "duration" : 55601
+        }
+      }, {
+        "uid" : "d09be5c579d5df63",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x557aa501f863 <unknown>\n#1 0x557aa4d158c6 <unknown>\n#2 0x557aa4d60618 <unknown>\n#3 0x557aa4d606d1 <unknown>\n#4 0x557aa4da3744 <unknown>\n#5 0x557aa4d825cd <unknown>\n#6 0x557aa4da0c19 <unknown>\n#7 0x557aa4d82343 <unknown>\n#8 0x557aa4d53593 <unknown>\n#9 0x557aa4d53f5e <unknown>\n#10 0x557aa4fe384b <unknown>\n#11 0x557aa4fe77a5 <unknown>\n#12 0x557aa4fd1571 <unknown>\n#13 0x557aa4fe8332 <unknown>\n#14 0x557aa4fb687f <unknown>\n#15 0x557aa500e728 <unknown>\n#16 0x557aa500e8fb <unknown>\n#17 0x557aa501e9b4 <unknown>\n#18 0x7f8e58094ac3 <unknown>",
+        "time" : {
+          "start" : 1713519708279,
+          "stop" : 1713519760689,
+          "duration" : 52410
+        }
+      }, {
+        "uid" : "5ce5beb6bdf7fa44",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55f9a1629863 <unknown>\n#1 0x55f9a131f8c6 <unknown>\n#2 0x55f9a136a618 <unknown>\n#3 0x55f9a136a6d1 <unknown>\n#4 0x55f9a13ad744 <unknown>\n#5 0x55f9a138c5cd <unknown>\n#6 0x55f9a13aac19 <unknown>\n#7 0x55f9a138c343 <unknown>\n#8 0x55f9a135d593 <unknown>\n#9 0x55f9a135df5e <unknown>\n#10 0x55f9a15ed84b <unknown>\n#11 0x55f9a15f17a5 <unknown>\n#12 0x55f9a15db571 <unknown>\n#13 0x55f9a15f2332 <unknown>\n#14 0x55f9a15c087f <unknown>\n#15 0x55f9a1618728 <unknown>\n#16 0x55f9a16188fb <unknown>\n#17 0x55f9a16289b4 <unknown>\n#18 0x7fb1f8294ac3 <unknown>",
+        "time" : {
+          "start" : 1713519664672,
+          "stop" : 1713519715549,
+          "duration" : 50877
+        }
+      }, {
+        "uid" : "d6337fd13d38ed60",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55a4b52f3863 <unknown>\n#1 0x55a4b4fe98c6 <unknown>\n#2 0x55a4b5034618 <unknown>\n#3 0x55a4b50346d1 <unknown>\n#4 0x55a4b5077744 <unknown>\n#5 0x55a4b50565cd <unknown>\n#6 0x55a4b5074c19 <unknown>\n#7 0x55a4b5056343 <unknown>\n#8 0x55a4b5027593 <unknown>\n#9 0x55a4b5027f5e <unknown>\n#10 0x55a4b52b784b <unknown>\n#11 0x55a4b52bb7a5 <unknown>\n#12 0x55a4b52a5571 <unknown>\n#13 0x55a4b52bc332 <unknown>\n#14 0x55a4b528a87f <unknown>\n#15 0x55a4b52e2728 <unknown>\n#16 0x55a4b52e28fb <unknown>\n#17 0x55a4b52f29b4 <unknown>\n#18 0x7fab9a294ac3 <unknown>",
+        "time" : {
+          "start" : 1713436503727,
+          "stop" : 1713436555974,
+          "duration" : 52247
+        }
+      }, {
+        "uid" : "db32ebdd80f2b3a8",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55ca4cc3e863 <unknown>\n#1 0x55ca4c9348c6 <unknown>\n#2 0x55ca4c97f618 <unknown>\n#3 0x55ca4c97f6d1 <unknown>\n#4 0x55ca4c9c2744 <unknown>\n#5 0x55ca4c9a15cd <unknown>\n#6 0x55ca4c9bfc19 <unknown>\n#7 0x55ca4c9a1343 <unknown>\n#8 0x55ca4c972593 <unknown>\n#9 0x55ca4c972f5e <unknown>\n#10 0x55ca4cc0284b <unknown>\n#11 0x55ca4cc067a5 <unknown>\n#12 0x55ca4cbf0571 <unknown>\n#13 0x55ca4cc07332 <unknown>\n#14 0x55ca4cbd587f <unknown>\n#15 0x55ca4cc2d728 <unknown>\n#16 0x55ca4cc2d8fb <unknown>\n#17 0x55ca4cc3d9b4 <unknown>\n#18 0x7fb55c494ac3 <unknown>",
+        "time" : {
+          "start" : 1713433172489,
+          "stop" : 1713433229756,
+          "duration" : 57267
+        }
+      }, {
+        "uid" : "34d931f41c54adc2",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55851a9c8863 <unknown>\n#1 0x55851a6be8c6 <unknown>\n#2 0x55851a709618 <unknown>\n#3 0x55851a7096d1 <unknown>\n#4 0x55851a74c744 <unknown>\n#5 0x55851a72b5cd <unknown>\n#6 0x55851a749c19 <unknown>\n#7 0x55851a72b343 <unknown>\n#8 0x55851a6fc593 <unknown>\n#9 0x55851a6fcf5e <unknown>\n#10 0x55851a98c84b <unknown>\n#11 0x55851a9907a5 <unknown>\n#12 0x55851a97a571 <unknown>\n#13 0x55851a991332 <unknown>\n#14 0x55851a95f87f <unknown>\n#15 0x55851a9b7728 <unknown>\n#16 0x55851a9b78fb <unknown>\n#17 0x55851a9c79b4 <unknown>\n#18 0x7f630e094ac3 <unknown>",
+        "time" : {
+          "start" : 1713360790975,
+          "stop" : 1713360844311,
+          "duration" : 53336
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail" ]
+  },
+  "source" : "7eec260f0ef1b504.json",
+  "parameterValues" : [ ]
+}
