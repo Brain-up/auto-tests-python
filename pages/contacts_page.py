@@ -26,3 +26,17 @@ class ContactsPage(BasePage):
         sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
         for section in sections:
             return section.is_displayed()
+
+    @allure.step("Get structure of section 1 with content on the page")
+    def get_structure_of_section_1(self):
+        elements = self.elements_are_present(self.locators.SECTION_1_FIRST_LEVEL_ELEMENTS)
+        print(f"Amount of elements on the 1st level of nesting in the section 1 is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of elements on the 1st level of nesting in the section 1 are: {tags}")
+        return tags
+
+    @allure.step("Check if elements of the 1st level are visible in the section 1")
+    def check_visibility_of_elements_in_section_1(self):
+        elements = self.elements_are_present(self.locators.SECTION_1_FIRST_LEVEL_ELEMENTS)
+        for element in elements:
+            return element.is_displayed()
