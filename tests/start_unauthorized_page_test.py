@@ -54,8 +54,8 @@ class TestStartUnauthorizedPage:
             structure_of_2nd_level_subsection = page.get_structure_of_subsection_in_section_2()
             visibility_of_subsections_in_2nd_level_subsection = (
                 page.check_visibility_of_elements_in_subsection_in_section_2())
-            structure_of_3rd_level_subsections = page.get_structure_of_3th_level_in_section_2()
-            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3th_level_in_section_2()
+            structure_of_3rd_level_subsections = page.get_structure_of_3rd_level_in_section_2()
+            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section_2()
             assert structure_of_section_2, "The section 2 is empty"
             assert visibility_of_subsections_on_the_1st_level, "1th-level subsections are invisible on the page"
             assert structure_of_2nd_level_subsection, "Subsections on the 2nd level in the section 2 are empty"

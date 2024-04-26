@@ -40,3 +40,73 @@ class ContactsPage(BasePage):
         elements = self.elements_are_present(self.locators.SECTION_1_FIRST_LEVEL_ELEMENTS)
         for element in elements:
             return element.is_displayed()
+
+    @allure.step("Get structure of section 2 with content on the page")
+    def get_structure_of_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_FIRST_LEVEL_ELEMENTS)
+        print(f"Amount of elements on the 1st level of nesting in the section 2 is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of elements on the 1st level of nesting in the section 2 are: {tags}")
+        return tags
+
+    @allure.step("Check if elements of the 1st level are visible in the section 2")
+    def check_visibility_of_elements_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_FIRST_LEVEL_ELEMENTS)
+        for element in elements:
+            return element.is_displayed()
+
+    @allure.step("Get structure of subsections in section 2 with content on the page")
+    def get_structure_of_2nd_level_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_SECOND_LEVEL_ELEMENTS)
+        print(f"Amount of elements on the 2nd level of nesting in the section 2 is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of elements on the 2nd level of nesting in the section 2 are: {tags}")
+        return tags
+
+    @allure.step("Check if elements of the 2nd level of nesting are visible in the section 2")
+    def check_visibility_of_elements_in_subsection_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_SECOND_LEVEL_ELEMENTS)
+        for element in elements:
+            return element.is_displayed()
+
+    @allure.step("Get structure of sub-subsections in section 2 with content on the page")
+    def get_structure_of_3rd_level_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_THIRD_LEVEL_ELEMENTS)
+        print(f"Amount of elements on the 3rd level of nesting in the section 2 is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of elements on the 3rd level of nesting in the section 2 are: {tags}")
+        return tags
+
+    @allure.step("Check if elements of the 3rd level of nesting are visible in the section 2")
+    def check_visibility_of_elements_on_3rd_level_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_THIRD_LEVEL_ELEMENTS)
+        for element in elements:
+            return element.is_displayed()
+
+    @allure.step("Get structure of sub-sub-subsections in section 2 with content on the page")
+    def get_structure_of_4th_level_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_FOURTH_LEVEL_ELEMENTS)
+        print(f"Amount of elements on the 4th level of nesting in the section 2 is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of elements on the 4th level of nesting in the section 2 are: {tags}")
+        return tags
+
+    @allure.step("Check if elements of the 4th level of nesting are visible in the section 2")
+    def check_visibility_of_elements_on_4th_level_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_FOURTH_LEVEL_ELEMENTS)
+        for element in elements:
+            return element.is_displayed()
+
+    @allure.step("Get structure of sub-sub-sub-subsections in section 2 with content on the page")
+    def get_structure_of_5th_level_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_FIFTH_LEVEL_ELEMENTS)
+        print(f"Amount of elements on the 5th level of nesting in the section 2 is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of elements on the 5th level of nesting in the section 2 are: {tags}")
+        return tags
+
+    @allure.step("Check if elements of the 5th level of nesting are visible in the section 2")
+    def check_visibility_of_elements_on_5th_level_in_section_2(self):
+        elements = self.elements_are_present(self.locators.SECTION_2_FIFTH_LEVEL_ELEMENTS)
+        for element in elements:
+            return element.is_displayed()
