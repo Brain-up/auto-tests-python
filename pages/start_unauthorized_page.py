@@ -100,15 +100,15 @@ class StartUnauthorizedPage(BasePage):
             return element.is_displayed()
 
     @allure.step("Get structure of sub-subsections in section 2 with content on the page")
-    def get_structure_of_3th_level_in_section_2(self):
+    def get_structure_of_3rd_level_in_section_2(self):
         elements = self.elements_are_present(self.locators.SECTION_2_THIRD_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 3rd level of nesting in the section 2 is: {len(elements)}")
+        print(f"Amount of elements on the 3rd level of nesting in the section 2 is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 3rd level of nesting in the section 2 are: {tags}")
+        print(f"Tags of elements on the 3rd level of nesting in the section 2 are: {tags}")
         return tags
 
     @allure.step("Check if elements of the 3rd level of nesting are visible in the section 2")
-    def check_visibility_of_elements_on_3th_level_in_section_2(self):
+    def check_visibility_of_elements_on_3rd_level_in_section_2(self):
         elements = self.elements_are_present(self.locators.SECTION_2_THIRD_LEVEL_ELEMENTS)
         for element in elements:
             return element.is_displayed()
