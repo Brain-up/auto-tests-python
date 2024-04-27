@@ -15,6 +15,20 @@ class ContactsPage(BasePage):
     def check_visibility_of_page_content(self):
         return self.element_is_visible(self.locators.PAGE_CONTENT)
 
+    @allure.step("Get structure of the page")
+    def get_structure_of_page(self):
+        elements = self.elements_are_present(self.locators.PAGE_STRUCTURE)
+        print(f"Amount of elements on the 1st level of nesting on the page is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of elements on the 1st level of nesting on the page are: {tags}")
+        return tags
+
+    @allure.step("Check if elements of the 1st level are visible on the page")
+    def check_visibility_of_elements_on_page(self):
+        elements = self.elements_are_present(self.locators.PAGE_STRUCTURE)
+        for element in elements:
+            return element.is_displayed()
+
     @allure.step("Get amount of sections with content on the page")
     def get_amount_of_sections_on_page(self):
         sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
