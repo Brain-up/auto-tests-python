@@ -8,7 +8,7 @@ from test_data.contacts_page_data import ContactsPageData
 class TestContactsPage:
     class TestContactsPageStructure:
 
-        @allure.title("Verify presence and visibility of content on the page")
+        @allure.title("Verify presence, visibility and structure of content on the page")
         def test_cp_01_01_verify_page_presence_and_visibility(self, driver, contacts_page_open):
             page = ContactsPage(driver)
             print(driver.current_url)
@@ -63,3 +63,11 @@ class TestContactsPage:
             assert visibility_of_elements_on_4th_level, "4th-level elements are invisible on the page"
             assert structure_of_5th_level_subsections, "Elements on the 5th level in the section 2 are empty"
             assert visibility_of_elements_on_5th_level, "5th-level elements are invisible on the page"
+
+        @allure.title("Verify presence and visibility of the dividing line on the page")
+        def test_cp_01_05_verify_presence_and_visibility_of_dividing_line(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            dividing_line_presence = page.check_presence_of_dividing_line()
+            dividing_line_visibility = page.check_visibility_of_dividing_line()
+            assert dividing_line_presence is not None, "The dividing line is absent in DOM"
+            assert dividing_line_visibility, "The dividing line is invisible on the page"

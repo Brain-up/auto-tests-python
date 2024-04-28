@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 
 class UsedResourcesPageLocators:
-    PAGE_TITLE = (By.XPATH, "//h1")
+    PAGE_TITLE = (By.TAG_NAME, "h1")
     PAGE_TEXT = (By.XPATH, "//section/p")
     LINKS_SECTION = (By.XPATH, "//section/ul")
     FLORA_LINK = (By.XPATH, "(//section//li)[3]/a")
@@ -19,7 +19,7 @@ class UsedResourcesPageLocators:
 
 class RelatedPagesElementsLocators:
     # on 'Flora' web page
-    FLORA_TEXT = (By.XPATH, "//h2")
+    FLORA_TEXT = (By.TAG_NAME, "h2")
     # on freepik.com web page
     FREEPIK_COM_TEXT = (By.XPATH, "//main//h1")
     # on 'Plants' web page

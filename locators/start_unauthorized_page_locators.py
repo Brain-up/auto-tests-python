@@ -5,8 +5,8 @@ from selenium.webdriver.common.by import By
 class StartUnauthorizedPageLocators:
     PAGE_CONTENT = (By.TAG_NAME, "main")
     PAGE_SECTIONS = (By.TAG_NAME, "section")
-    PAGE_SUBTITLES = (By.XPATH, "//h4")
-    PAGE_TITLES = (By.XPATH, "//h2")
+    PAGE_SUBTITLES = (By.TAG_NAME, "h4")
+    PAGE_TITLES = (By.TAG_NAME, "h2")
     SECTION_1_FIRST_LEVEL_ELEMENTS = (By.XPATH, "(//section)[1]/*")
     SECTION_1_IMAGE = (By.XPATH, "//section/img")
     SECTION_1_LINK = (By.XPATH, "//section//a")
