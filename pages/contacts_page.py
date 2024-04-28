@@ -124,3 +124,11 @@ class ContactsPage(BasePage):
         elements = self.elements_are_present(self.locators.SECTION_2_FIFTH_LEVEL_ELEMENTS)
         for element in elements:
             return element.is_displayed()
+
+    @allure.step("Check if the dividing line is present in DOM")
+    def check_presence_of_dividing_line(self):
+        return self.element_is_present(self.locators.PAGE_DIVIDING_LINE)
+
+    @allure.step("Check if the dividing line is visible on the page")
+    def check_visibility_of_dividing_line(self):
+        return self.element_is_visible(self.locators.PAGE_DIVIDING_LINE)
