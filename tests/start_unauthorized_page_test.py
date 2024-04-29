@@ -69,7 +69,7 @@ class TestStartUnauthorizedPage:
         def test_su_02_01_verify_titles_on_the_page(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             title_values = page.get_values_of_titles()
-            assert title_values, "Title values on ghe page are empty"
+            assert title_values, "Title values on the page are empty"
             assert title_values in StartUnauthorizedPageData.titles_on_start_unauthorized_page, \
                 "The titles on start unauthorized page do not match the valid values"
 
@@ -77,7 +77,7 @@ class TestStartUnauthorizedPage:
         def test_su_02_02_verify_subtitles_on_the_page(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             subtitle_values = page.get_values_of_subtitles()
-            assert subtitle_values, "Subtitle values on ghe page are empty"
+            assert subtitle_values, "Subtitle values on the page are empty"
             assert subtitle_values in StartUnauthorizedPageData.subtitles_on_start_unauthorized_page, \
                 "The subtitles on start unauthorized page do not match the valid values"
 

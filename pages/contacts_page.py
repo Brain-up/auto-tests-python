@@ -55,6 +55,12 @@ class ContactsPage(BasePage):
         for element in elements:
             return element.is_displayed()
 
+    @allure.step("Get value of the title in the section 1 on the page")
+    def get_value_of_title_on_the_page(self):
+        title_value = self.get_text(self.locators.SECTION_1_TITLE)
+        print(f"The title value on the page is: {title_value}")
+        return title_value
+
     @allure.step("Get structure of section 2 with content on the page")
     def get_structure_of_section_2(self):
         elements = self.elements_are_present(self.locators.SECTION_2_FIRST_LEVEL_ELEMENTS)
