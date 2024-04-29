@@ -71,3 +71,12 @@ class TestContactsPage:
             dividing_line_visibility = page.check_visibility_of_dividing_line()
             assert dividing_line_presence is not None, "The dividing line is absent in DOM"
             assert dividing_line_visibility, "The dividing line is invisible on the page"
+
+    class TestContactsPageText:
+
+        @allure.title("Verify value of title with tag 'h1' on the page")
+        def test_cp_02_01_verify_title_on_the_page(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            title_value = page.get_value_of_title_on_the_page()
+            assert title_value, "The title value on the page is empty"
+            assert title_value in ContactsPageData.page_title, "The title on the page doesn't match the valid value"
