@@ -6,3 +6,8 @@ class ContactsPageData:
 
     page_title = ["Контакты", "Contacts"]
 
+    page_subtitles = [
+        ["Для пользователей:", "Для разработчиков:"],
+        ["For users:", "For developers:"]
+    ]
+
