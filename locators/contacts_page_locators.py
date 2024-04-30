@@ -9,6 +9,7 @@ class ContactsPageLocators:
     PAGE_SECTIONS = (By.TAG_NAME, "section")
     SECTION_1_FIRST_LEVEL_ELEMENTS = (By.XPATH, "(//section)[1]/*")
     SECTION_1_TITLE = (By.TAG_NAME, "h1")
+    SECTION_2_SUBTITLES = (By.TAG_NAME, "h2")
     SECTION_2_FIRST_LEVEL_ELEMENTS = (By.XPATH, "(//section)[2]/*")
     SECTION_2_SECOND_LEVEL_ELEMENTS = (By.XPATH, "(//section)[2]/*/*")
     SECTION_2_THIRD_LEVEL_ELEMENTS = (By.XPATH, "(//section)[2]/*/*/*")

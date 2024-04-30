@@ -89,6 +89,19 @@ class ContactsPage(BasePage):
         for element in elements:
             return element.is_displayed()
 
+    @allure.step("Get the list of subtitles on the page")
+    def get_list_of_subtitles_on_page(self):
+        subtitles = self.elements_are_present(self.locators.SECTION_2_SUBTITLES)
+        print(f"\nAmount of subtitles on the page is: {len(subtitles)}")
+        return subtitles
+
+    @allure.step("Get the list of subtitle values on the page")
+    def get_values_of_subtitles(self):
+        subtitles = self.get_list_of_subtitles_on_page()
+        subtitle_values = [subtitle.text for subtitle in subtitles]
+        print(f"The subtitle values on the page are:", *subtitle_values, sep='\n')
+        return subtitle_values
+
     @allure.step("Get structure of sub-subsections in section 2 with content on the page")
     def get_structure_of_3rd_level_in_section_2(self):
         elements = self.elements_are_present(self.locators.SECTION_2_THIRD_LEVEL_ELEMENTS)

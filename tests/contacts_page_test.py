@@ -80,3 +80,11 @@ class TestContactsPage:
             title_value = page.get_value_of_title_on_the_page()
             assert title_value, "The title value on the page is empty"
             assert title_value in ContactsPageData.page_title, "The title on the page doesn't match the valid value"
+
+        @allure.title("Verify values of subtitles with tag 'h2' on the page")
+        def test_cp_02_02_verify_subtitles_on_the_page(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            subtitle_values = page.get_values_of_subtitles()
+            assert subtitle_values, "Subtitle values on the page are empty"
+            assert subtitle_values in ContactsPageData.page_subtitles, \
+                "The subtitles on the 'Contacts' page do not match the valid values"
