@@ -88,3 +88,11 @@ class TestContactsPage:
             assert subtitle_values, "Subtitle values on the page are empty"
             assert subtitle_values in ContactsPageData.page_subtitles, \
                 "The subtitles on the 'Contacts' page do not match the valid values"
+
+        @allure.title("Verify values of the text in the sections 1, 2 on the page")
+        def test_cp_02_03_verify_text_in_sections(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            text_value_in_sections = page.get_values_of_text_in_sections()
+            assert text_value_in_sections in ContactsPageData.text_on_page, \
+                "The text in sections does not match the valid options"
+

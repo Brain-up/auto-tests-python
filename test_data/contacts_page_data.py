@@ -11,3 +11,11 @@ class ContactsPageData:
         ["For users:", "For developers:"]
     ]
 
+    text_on_page = [
+        ["Telegram чат для пользователей https://t.me/BrainUpUsers",
+         "По любым вопросам, идеям, пожалуйста, пишите на электронную почту проекта brainupproject@yandex.ru",
+         "Основатель проекта и технический руководитель Telegram Елена Мошникова https://t.me/ElenaLovesSpb"],
+        ["Telegram chat for users https://t.me/BrainUpUsers",
+         "In any questions, ideas please write to project email brainupproject@yandex.ru",
+         "project founder and tech lead in Telegram Elena Moshnikova https://t.me/ElenaLovesSpb"]
+    ]
