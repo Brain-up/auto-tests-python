@@ -164,5 +164,29 @@ class ContactsPage(BasePage):
         element_values = [element.text for element in elements_with_text]
         print(f"The content of the text in the sections 1, 2 is:", *element_values, sep='\n\n')
         return element_values
+    # ----------------------------------------------------------------------------------------------
 
+    @allure.step("Get the list of links in sections 1, 2 on the page")
+    def get_list_of_links_in_sections(self):
+        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
+        print(f"\nAmount of links in sections 1, 2 is: {len(links)}")
+        return links
 
+    @allure.step("Check if links are visible on the page")
+    def check_visibility_of_links_in_sections(self):
+        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
+        for link in links:
+            return link.is_displayed()
+
+    @allure.step("Check if links are clickable")
+    def check_links_clickability(self):
+        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
+        for link in links:
+            return link.is_enabled()
+
+    @allure.step("Get attribute 'href' of links on the page")
+    def get_links_href(self):
+        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
+        links_href = [element.get_attribute("href") for element in links]
+        print(f"The links href in the sections 1, 2 are:", *links_href, sep='\n\n')
+        return links_href

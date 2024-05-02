@@ -1,5 +1,7 @@
 """Auto tests for verifying web elements on the 'Contacts' page"""
 import allure
+import requests
+
 from pages.contacts_page import ContactsPage
 from test_data.contacts_page_data import ContactsPageData
 
@@ -89,10 +91,23 @@ class TestContactsPage:
             assert subtitle_values in ContactsPageData.page_subtitles, \
                 "The subtitles on the 'Contacts' page do not match the valid values"
 
-        @allure.title("Verify values of the text in the sections 1, 2 on the page")
+        @allure.title("Verify values of the text in sections 1, 2 on the page")
         def test_cp_02_03_verify_text_in_sections(self, driver, contacts_page_open):
             page = ContactsPage(driver)
             text_value_in_sections = page.get_values_of_text_in_sections()
             assert text_value_in_sections in ContactsPageData.text_on_page, \
                 "The text in sections does not match the valid options"
 
+    class TestContactsPageLinks:
+
+        @allure.title("""Verify presence, visibility, clickability, href of links in sections 1, 2 on the page""")
+        def test_cp_03_01_verify_links_in_sections(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            links_presence = page.get_list_of_links_in_sections()
+            links_visibility = page.check_visibility_of_links_in_sections()
+            links_clickability = page.check_links_clickability()
+            links_href = page.get_links_href()
+            assert links_presence is not None, "The 'Contacts' link are absent in DOM"
+            assert links_visibility, "Links are invisible on the page"
+            assert links_clickability, "Links are unclickable"
+            assert links_href, "Links href are empty"
