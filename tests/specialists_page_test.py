@@ -151,13 +151,10 @@ class TestSpecialistsPage:
         def test_sp_04_02_verify_all_specialists_link_leads_unauthorized_user_to_the_correct_page(self,
                                                                                         driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            print(driver.current_url)
             page.click_all_specialists_link()
             page.switch_to_new_window()
             time.sleep(5)
-            print(driver.current_url)
             text_on_opened_tab = page.get_element_text_on_opened_tab_with_start_unauthorized_page()
-            print(text_on_opened_tab)
             assert text_on_opened_tab in \
                    StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_1"], \
                    "The 'All Specialists' link leads to an incorrect page after clicking " \
@@ -169,13 +166,10 @@ class TestSpecialistsPage:
                                                                                     driver, auto_test_user_authorized):
             page = SpecialistsPage(driver)
             page.open_specialists_page()
-            print(driver.current_url)
             page.click_all_specialists_link()
             page.switch_to_new_window()
             time.sleep(5)
-            print(driver.current_url)
             text_on_opened_tab = page.get_specialists_page_title_content()
-            print(text_on_opened_tab)
             assert text_on_opened_tab in SpecialistsPageData.specialists_page_elements_content["page_title_content"], \
                    "The 'All Specialists' link leads to an incorrect page after clicking " \
                    "or opened page does not load correctly"

@@ -55,14 +55,14 @@ class SpecialistsPage(BasePage):
     @allure.step("Check the card of each specialist is visible on the page")
     def check_visibility_of_specialist_cards(self):
         cards = self.elements_are_present(self.locators.PAGE_GRID_CONTENT)
-        print(len(cards))
+        # print(len(cards))
         for card in cards:
             return card.is_displayed()
 
     @allure.step("Get the list of images in specialist cards on the page")
     def get_list_of_card_images(self):
         card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        print(f"\nAmount of images in cards is: {len(card_images)}")
+        # print(f"\nAmount of images in cards is: {len(card_images)}")
         return card_images
 
     @allure.step("Check the image in each specialist card is present and visible on the page")
@@ -92,25 +92,25 @@ class SpecialistsPage(BasePage):
         image_sizes_before = [image.size for image in card_images]
         self.driver.set_window_size(1200, 800)
         image_sizes_after = [image.size for image in card_images]
-        print("The results of checking changes of image sizes in cards after resizing are:")
+        # print("The results of checking changes of image sizes in cards after resizing are:")
         changed, lost, unchanged = 0, 0, 0
         for i in range(len(image_sizes_after)):
             if image_sizes_before[i] != image_sizes_after[i]:
                 changed += 1
                 if image_sizes_after[i] == {'height': 0, 'width': 0}:
                     lost += 1
-                    print(f"\n   The image #{i + 1} has become invisible because has sizes that changed: "
-                          f"\nfrom {image_sizes_before[i]} before resizing \nto {image_sizes_after[i]} after resizing")
-                else:
-                    print(f"\n   The image #{i + 1} has sizes that changed: \nfrom {image_sizes_before[i]} before "
-                          f"resizing \nto {image_sizes_after[i]} after resizing")
+                    # print(f"\n   The image #{i + 1} has become invisible because has sizes that changed: "
+                    #       f"\nfrom {image_sizes_before[i]} before resizing \nto {image_sizes_after[i]} after resizing")
+                # else:
+                #     print(f"\n   The image #{i + 1} has sizes that changed: \nfrom {image_sizes_before[i]} before "
+                #           f"resizing \nto {image_sizes_after[i]} after resizing")
             else:
                 unchanged += 1
-                print(f"\n   The image #{i + 1} has sizes that remain: \nthe same {image_sizes_before[i]} before resizing "
-                      f"\nand {image_sizes_after[i]} after resizing")
-        print(f"\nSummary of image size checks\n   Amount of images with changed sizes after resizing is: {changed}, "
-              f"\nincluding images that have become invisible on the page: {lost}")
-        print(f"   Amount of images with unchanged sizes after resizing is: {unchanged}")
+                # print(f"\n   The image #{i + 1} has sizes that remain: \nthe same {image_sizes_before[i]} before resizing "
+                #       f"\nand {image_sizes_after[i]} after resizing")
+        # print(f"\nSummary of image size checks\n   Amount of images with changed sizes after resizing is: {changed}, "
+        #       f"\nincluding images that have become invisible on the page: {lost}")
+        # print(f"   Amount of images with unchanged sizes after resizing is: {unchanged}")
         return changed, lost, unchanged
 
     @allure.step("Check the image is present in the 1th card")
@@ -137,7 +137,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Get the list of sections with text in specialist cards on the page")
     def get_list_of_text_sections_in_cards(self):
         card_text_sections = self.elements_are_present(self.locators.GRID_CARD_TEXT_SECTIONS)
-        print(f"\nAmount of text sections in cards is: {len(card_text_sections)}")
+        # print(f"\nAmount of text sections in cards is: {len(card_text_sections)}")
         return card_text_sections
 
     @allure.step("Check the section with text in each specialist card is present and visible on the page")
@@ -149,7 +149,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Get the list of names in specialist cards on the page")
     def get_list_of_specialist_names_in_cards(self):
         specialist_names = self.elements_are_present(self.locators.SPECIALIST_NAMES)
-        print(f"\nAmount of specialist names in cards is: {len(specialist_names)}")
+        # print(f"\nAmount of specialist names in cards is: {len(specialist_names)}")
         return specialist_names
 
     @allure.step("Check the name in each specialist card is visible on the page")
@@ -161,7 +161,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Get the list of sections with profession in specialist cards on the page")
     def get_list_of_specialist_professions_in_cards(self):
         specialist_profession_sections = self.elements_are_present(self.locators.SPECIALIST_PROFESSION_SECTIONS)
-        print(f"\nAmount of specialist profession descriptions in cards is: {len(specialist_profession_sections)}")
+        # print(f"\nAmount of specialist profession descriptions in cards is: {len(specialist_profession_sections)}")
         return specialist_profession_sections
 
     @allure.step("Check the section with profession in each specialist card is visible on the page")
