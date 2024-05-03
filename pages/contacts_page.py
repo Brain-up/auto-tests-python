@@ -1,5 +1,7 @@
 """Methods for verifying web elements on the 'Contacts' page"""
 import allure
+import requests
+
 from pages.base_page import BasePage
 from locators.contacts_page_locators import ContactsPageLocators
 
@@ -164,7 +166,13 @@ class ContactsPage(BasePage):
         element_values = [element.text for element in elements_with_text]
         print(f"The content of the text in the sections 1, 2 is:", *element_values, sep='\n\n')
         return element_values
-    # ----------------------------------------------------------------------------------------------
+
+    @allure.step("Get the list of text content in sections 1, 2 on the page")
+    def get_text_in_links_in_sections(self):
+        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
+        links_text = [link.text for link in links]
+        print(f"Text of links in the sections 1, 2 is:", *links_text, sep='\n\n')
+        return links_text
 
     @allure.step("Get the list of links in sections 1, 2 on the page")
     def get_list_of_links_in_sections(self):

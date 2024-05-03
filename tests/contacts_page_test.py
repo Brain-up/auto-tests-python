@@ -98,6 +98,12 @@ class TestContactsPage:
             assert text_value_in_sections in ContactsPageData.text_on_page, \
                 "The text in sections does not match the valid options"
 
+        @allure.title("Verify values of the text in links in sections 1, 2 on the page")
+        def test_cp_02_04_verify_text_in_links(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            links_text = page.get_text_in_links_in_sections()
+            assert links_text == ContactsPageData.links_text, "Text in links do not match the valid values"
+
     class TestContactsPageLinks:
 
         @allure.title("""Verify presence, visibility, clickability, href of links in sections 1, 2 on the page""")
@@ -107,7 +113,8 @@ class TestContactsPage:
             links_visibility = page.check_visibility_of_links_in_sections()
             links_clickability = page.check_links_clickability()
             links_href = page.get_links_href()
-            assert links_presence is not None, "The 'Contacts' link are absent in DOM"
+            assert links_presence is not None, "The 'Contacts' links are absent in DOM"
             assert links_visibility, "Links are invisible on the page"
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
+            assert links_href == ContactsPageData.links_href, "Attributes 'href' of links do not match the valid values"
