@@ -203,10 +203,10 @@ class StartUnauthorizedPage(BasePage):
     @allure.step("Click on the 'Login' link and thereby open the corresponding web page in the same tab")
     def click_login_link(self):
         self.element_is_present_and_clickable(self.locators.SECTION_1_LINK).click()
-        print(self.driver.current_url)
+        # print(self.driver.current_url)
 
     @allure.step("Get text of the element on the 'Login' page")
     def get_element_text_on_opened_login_page(self):
         text_on_opened_page = self.get_text(self.locators1.SIGN_IN_TAB)
-        print(text_on_opened_page)
+        # print(text_on_opened_page)
         return text_on_opened_page
