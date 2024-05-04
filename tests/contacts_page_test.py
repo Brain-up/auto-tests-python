@@ -121,4 +121,4 @@ class TestContactsPage:
             assert links_href, "Links href are empty"
             assert links_href == ContactsPageData.links_href, "Attributes 'href' of links do not match the valid values"
             assert links_status_codes == ContactsPageData.links_status_codes, \
-                "Links status code does not match the expected value"
+                "Links status codes do not match the expected values"
