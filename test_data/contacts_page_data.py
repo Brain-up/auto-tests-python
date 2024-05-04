@@ -31,3 +31,5 @@ class ContactsPageData:
         "brainupproject@yandex.ru",
         "https://t.me/ElenaLovesSpb"
     ]
+
+    links_status_codes = [200, 200]
