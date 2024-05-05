@@ -106,7 +106,7 @@ class TestContactsPage:
 
     class TestContactsPageLinks:
 
-        @allure.title("""Verify presence, visibility, clickability, href, status code 
+        @allure.title("""Verify presence, visibility, clickability, href, prefix, status code 
         of links in sections 1, 2 on the page""")
         def test_cp_03_01_verify_links_in_sections(self, driver, contacts_page_open):
             page = ContactsPage(driver)
@@ -114,11 +114,13 @@ class TestContactsPage:
             links_visibility = page.check_visibility_of_links_in_sections()
             links_clickability = page.check_links_clickability()
             links_href = page.get_links_href()
+            link_prefix = page.check_email_link_href()
             links_status_codes = page.get_links_status_codes()
             assert links_presence is not None, "The 'Contacts' links are absent in DOM"
             assert links_visibility, "Links are invisible on the page"
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
             assert links_href == ContactsPageData.links_href, "Attributes 'href' of links do not match the valid values"
+            assert link_prefix, "The attribute 'href' of the email link does not contain the proper prefix"
             assert links_status_codes == ContactsPageData.links_status_codes, \
                 "Links status codes do not match the expected values"

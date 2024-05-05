@@ -196,13 +196,18 @@ class ContactsPage(BasePage):
     def get_links_href(self):
         links = self.elements_are_present(self.locators.SECTION_2_LINKS)
         links_href = [element.get_attribute("href") for element in links]
-        print(f"The links href in the sections 1, 2 are:", *links_href, sep='\n\n')
+        print(f"Links href in sections 1, 2 are:", *links_href, sep='\n')
         return links_href
+
+    @allure.step("Check the prefix in the attribute 'href' of the email link")
+    def check_email_link_href(self):
+        link_href = self.get_link_href(self.locators.SECTION_2_LINK_EMAIL)
+        return "mailto" in link_href
 
     @allure.step("Get status code of links on the page")
     def get_links_status_codes(self):
         links = self.elements_are_present(self.locators.SECTION_2_LINKS_TM)
         links_href = [element.get_attribute("href") for element in links]
         links_status_codes = [requests.head(link_href).status_code for link_href in links_href]
-        print(f"The links status code in the sections 1, 2 are:", *links_status_codes, sep='\n')
+        print(f"Links status codes in sections 1, 2 are:", *links_status_codes, sep='\n')
         return links_status_codes
