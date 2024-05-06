@@ -26,6 +26,11 @@ class ContactsPageData:
         "https://t.me/ElenaLovesSpb"
     ]
 
+    links_tm_href = [
+        "https://t.me/BrainUpUsers",
+        "https://t.me/ElenaLovesSpb"
+    ]
+
     links_text = [
         "https://t.me/BrainUpUsers",
         "brainupproject@yandex.ru",
