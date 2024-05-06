@@ -20,9 +20,14 @@ class ContactsPageData:
          "project founder and tech lead in Telegram Elena Moshnikova https://t.me/ElenaLovesSpb"]
     ]
 
-    links_href = [
+    links_href = (
         "https://t.me/BrainUpUsers",
         "mailto:brainupproject@yandex.ru",
+        "https://t.me/ElenaLovesSpb"
+    )
+
+    links_tm_href = [
+        "https://t.me/BrainUpUsers",
         "https://t.me/ElenaLovesSpb"
     ]
 

@@ -1,4 +1,6 @@
 """Methods for verifying web elements on the 'Contacts' page"""
+import time
+
 import allure
 import requests
 
@@ -211,3 +213,15 @@ class ContactsPage(BasePage):
         links_status_codes = [requests.head(link_href).status_code for link_href in links_href]
         print(f"Links status codes in sections 1, 2 are:", *links_status_codes, sep='\n')
         return links_status_codes
+
+    @allure.step("Click on links on Telegram and thereby open corresponding web pages in new tabs")
+    def click_on_links(self):
+        new_tabs = []
+        self.element_is_present_and_clickable(self.locators.SECTION_2_LINKS_TM_2).click()
+        self.element_is_present_and_clickable(self.locators.SECTION_2_LINKS_TM_1).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        new_tabs.append(self.driver.current_url)
+        self.driver.switch_to.window(self.driver.window_handles[2])
+        new_tabs.append(self.driver.current_url)
+        print('\n',*new_tabs, sep='\n')
+        return new_tabs

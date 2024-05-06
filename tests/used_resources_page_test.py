@@ -109,7 +109,7 @@ class TestUsedResourcesPage:
             page.open_used_resources_page()
             icon_width = page.get_width_of_icon_in_freepik_com_section()
             icon_height = page.get_height_of_icon_in_freepik_com_section()
-            print(f"The icon sizes are: {icon_width}x{icon_height} px")
+            # print(f"The icon sizes are: {icon_width}x{icon_height} px")
             assert icon_width != 0, "The icon in the freepik.com link's section hasn't width"
             assert icon_height != 0, "The icon in the freepik.com link's section hasn't height"
 
@@ -176,7 +176,7 @@ class TestUsedResourcesPage:
             page.open_used_resources_page()
             icon_width = page.get_width_of_icon_in_plants_section()
             icon_height = page.get_height_of_icon_in_plants_section()
-            print(f"The icon sizes are: {icon_width}x{icon_height} px")
+            # print(f"The icon sizes are: {icon_width}x{icon_height} px")
             assert icon_width != 0, "The icon in the 'Plants' link's section hasn't width"
             assert icon_height != 0, "The icon in the 'Plants' link's section hasn't height"
 
@@ -243,6 +243,6 @@ class TestUsedResourcesPage:
             page.open_used_resources_page()
             icon_width = page.get_width_of_icon_in_flora_section()
             icon_height = page.get_height_of_icon_in_flora_section()
-            print(f"The icon sizes are: {icon_width}x{icon_height} px")
+            # print(f"The icon sizes are: {icon_width}x{icon_height} px")
             assert icon_width != 0, "The icon in the 'Flora' link's section hasn't width"
             assert icon_height != 0, "The icon in the 'Flora' link's section hasn't height"

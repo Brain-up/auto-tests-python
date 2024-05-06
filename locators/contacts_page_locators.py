@@ -19,3 +19,5 @@ class ContactsPageLocators:
     SECTION_2_LINKS = (By.XPATH, "//section//a")
     SECTION_2_LINK_EMAIL = (By.PARTIAL_LINK_TEXT, "@")
     SECTION_2_LINKS_TM = (By.PARTIAL_LINK_TEXT, "https")
+    SECTION_2_LINKS_TM_1 = (By.XPATH, "(//section//a)[1]")
+    SECTION_2_LINKS_TM_2 = (By.XPATH, "(//section//a)[3]")

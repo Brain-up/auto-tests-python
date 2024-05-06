@@ -124,3 +124,10 @@ class TestContactsPage:
             assert link_prefix, "The attribute 'href' of the email link does not contain the proper prefix"
             assert links_status_codes == ContactsPageData.links_status_codes, \
                 "Links status codes do not match the expected values"
+
+        @allure.title("Verify that links in sections 1, 2 lead to the correct pages after click")
+        def test_cp_03_02_verify_links_lead_to_the_correct_pages(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            new_tabs = page.click_on_links()
+            assert new_tabs == ContactsPageData.links_tm_href, \
+                "Links in sections 1, 2 lead to incorrect pages after click"

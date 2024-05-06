@@ -100,10 +100,6 @@ class FooterPage(BasePage):
     def click_epam_link(self):
         self.element_is_present_and_clickable(self.locators.EPAM_LINK).click()
 
-    # @allure.step("Get text of the element on the EPAM page")
-    # def get_element_text_on_opened_epam_tab(self):
-    #     return self.get_text(self.locators1.EPAM_START_PAGE_TEXT)
-
     @allure.step("Get attribute 'href' of the EPAM link")
     def get_epam_link_href(self):
         return self.get_link_href(self.locators.EPAM_LINK)
