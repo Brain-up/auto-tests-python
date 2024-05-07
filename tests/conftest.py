@@ -21,6 +21,12 @@ def main_page_open(driver):
 
 
 @pytest.fixture()
+@allure.step(f'Open page: {MainPageLinks.URL_CONTRIBUTORS_PAGE}')
+def contributors_page_open(driver):
+    driver.get(MainPageLinks.URL_CONTRIBUTORS_PAGE)
+
+
+@pytest.fixture()
 @allure.step(f'Open page: {MainPageLinks.URL_CONTACTS_PAGE}')
 def contacts_page_open(driver, main_page_open):
     page = BasePage(driver)
