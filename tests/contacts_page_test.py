@@ -1,7 +1,5 @@
 """Auto tests for verifying web elements on the 'Contacts' page"""
 import allure
-import requests
-
 from pages.contacts_page import ContactsPage
 from test_data.contacts_page_data import ContactsPageData
 
@@ -13,7 +11,6 @@ class TestContactsPage:
         @allure.title("Verify presence, visibility and structure of content on the page")
         def test_cp_01_01_verify_page_presence_and_visibility(self, driver, contacts_page_open):
             page = ContactsPage(driver)
-            print(driver.current_url)
             page_content_presence = page.check_presence_of_page_content()
             page_content_visibility = page.check_visibility_of_page_content()
             structure_of_page = page.get_structure_of_page()
