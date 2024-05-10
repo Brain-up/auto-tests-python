@@ -159,7 +159,6 @@ class TestFooter:
             page.click_epam_link()
             page.switch_to_new_window()
             time.sleep(5)
-            print(driver.current_url)
             assert page.driver.current_url in FooterLinks.EPAM_LINK, \
                 "The EPAM link in Footer leads to an incorrect page after click"
 
@@ -169,7 +168,6 @@ class TestFooter:
             page.click_jetbrains_link()
             page.switch_to_new_window()
             time.sleep(5)
-            print(driver.current_url)
             assert page.driver.current_url in FooterLinks.JETBRAINS_LINK, \
                 "The JETBRAINS link in Footer leads to an incorrect page after click"
 
@@ -220,8 +218,8 @@ class TestFooter:
             link_href = page.get_arasaac_link_href()
             image_width = page.get_visible_width_of_arasaac_image()
             image_height = page.get_visible_height_of_arasaac_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             assert image_width != 0, \
                 f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
             assert image_height != 0, \
@@ -233,13 +231,13 @@ class TestFooter:
             link_href = page.get_arasaac_link_href()
             image_width = page.get_visible_width_of_arasaac_image()
             image_height = page.get_visible_height_of_arasaac_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             driver.set_window_size(504, 638)
             image_width_new = page.get_visible_width_of_arasaac_image()
             image_height_new = page.get_visible_height_of_arasaac_image()
-            print(f"The new visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width_new}x{image_height_new} px")
+            # print(f"The new visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width_new}x{image_height_new} px")
             assert image_width != image_width_new, \
                 f"The image width in the {link_href} link in Footer has not changed due to resizing"
             assert image_height == image_height_new, \
@@ -267,8 +265,8 @@ class TestFooter:
             link_href = page.get_epam_link_href()
             image_width = page.get_visible_width_of_epam_image()
             image_height = page.get_visible_height_of_epam_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             assert image_width != 0, \
                 f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
             assert image_height != 0, \
@@ -280,13 +278,13 @@ class TestFooter:
             link_href = page.get_epam_link_href()
             image_width = page.get_visible_width_of_epam_image()
             image_height = page.get_visible_height_of_epam_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             driver.set_window_size(504, 638)
             image_width_new = page.get_visible_width_of_epam_image()
             image_height_new = page.get_visible_height_of_epam_image()
-            print(f"The new visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width_new}x{image_height_new} px")
+            # print(f"The new visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width_new}x{image_height_new} px")
             assert image_width != image_width_new, \
                 f"The image width in the {link_href} link in Footer has not changed due to resizing"
             assert image_height == image_height_new, \
@@ -313,8 +311,8 @@ class TestFooter:
             link_href = page.get_jetbrains_link_href()
             image_width = page.get_visible_width_of_jetbrains_image()
             image_height = page.get_visible_height_of_jetbrains_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             assert image_width != 0, \
                 f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
             assert image_height != 0, \
@@ -326,13 +324,13 @@ class TestFooter:
             link_href = page.get_jetbrains_link_href()
             image_width = page.get_visible_width_of_jetbrains_image()
             image_height = page.get_visible_height_of_jetbrains_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             driver.set_window_size(504, 638)
             image_width_new = page.get_visible_width_of_jetbrains_image()
             image_height_new = page.get_visible_height_of_jetbrains_image()
-            print(f"The new visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width_new}x{image_height_new} px")
+            # print(f"The new visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width_new}x{image_height_new} px")
             assert image_width != image_width_new, \
                 f"The image width in the {link_href} link in Footer has not changed due to resizing"
             assert image_height == image_height_new, \
@@ -358,8 +356,8 @@ class TestFooter:
             link_href = page.get_reg_link_href()
             image_width = page.get_visible_width_of_reg_image()
             image_height = page.get_visible_height_of_reg_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             assert image_width != 0, \
                 f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
             assert image_height != 0, \
@@ -371,13 +369,13 @@ class TestFooter:
             link_href = page.get_reg_link_href()
             image_width = page.get_visible_width_of_reg_image()
             image_height = page.get_visible_height_of_reg_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             driver.set_window_size(504, 638)
             image_width_new = page.get_visible_width_of_reg_image()
             image_height_new = page.get_visible_height_of_reg_image()
-            print(f"The new visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width_new}x{image_height_new} px")
+            # print(f"The new visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width_new}x{image_height_new} px")
             assert image_width != image_width_new, \
                 f"The image width in the {link_href} link in Footer has not changed due to resizing"
             assert image_height == image_height_new, \
@@ -404,8 +402,8 @@ class TestFooter:
             link_href = page.get_selectel_link_href()
             image_width = page.get_visible_width_of_selectel_image()
             image_height = page.get_visible_height_of_selectel_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             assert image_width != 0, \
                 f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
             assert image_height != 0, \
@@ -417,13 +415,13 @@ class TestFooter:
             link_href = page.get_selectel_link_href()
             image_width = page.get_visible_width_of_selectel_image()
             image_height = page.get_visible_height_of_selectel_image()
-            print(f"The current visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width}x{image_height} px")
+            # print(f"The current visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width}x{image_height} px")
             driver.set_window_size(504, 638)
             image_width_new = page.get_visible_width_of_selectel_image()
             image_height_new = page.get_visible_height_of_selectel_image()
-            print(f"The new visible sizes of the picture in the {link_href} link are: "
-                  f"{image_width_new}x{image_height_new} px")
+            # print(f"The new visible sizes of the picture in the {link_href} link are: "
+            #       f"{image_width_new}x{image_height_new} px")
             assert image_width != image_width_new, \
                 f"The image width in the {link_href} link in Footer has not changed due to resizing"
             assert image_height == image_height_new, \

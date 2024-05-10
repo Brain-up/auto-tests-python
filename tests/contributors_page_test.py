@@ -33,7 +33,11 @@ class TestContributorsPage:
         @allure.title("Verify the composition and visibility of elements on the 1st level of nesting in the section")
         def test_cnp_01_03_verify_section_structure_and_visibility(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            structure_of_section_1 = page.get_structure_of_section()
+            structure_of_section = page.get_structure_of_section()
             visibility_of_elements_on_the_1st_level = page.check_visibility_of_elements_in_section()
-            assert structure_of_section_1, "The section 1 is empty"
+            subsections = page.get_list_of_subsections_in_section()
+            subsections_visibility = page.check_visibility_of_subsections()
+            assert structure_of_section, "The section is empty"
             assert visibility_of_elements_on_the_1st_level, "1th-level elements are invisible on the page"
+            assert subsections, "Subsections on the 1st level of nesting in the section are empty"
+            assert subsections_visibility, "Subsections are invisible on the page"
