@@ -55,4 +55,19 @@ class ContributorsPage(BasePage):
         for element in elements:
             return element.is_displayed()
 
+    @allure.step("Get structure of subsections in the section")
+    def get_list_of_subsections_in_section(self):
+        elements = self.elements_are_present(self.locators.PAGE_SUBSECTIONS)
+        print(f"Amount of subsections on the 1st level of nesting in the section is: {len(elements)}")
+        tags = [element.tag_name for element in elements]
+        print(f"Tags of subsections on the 1st level of nesting in the section are: {tags}")
+        return tags
+
+    @allure.step("Check subsections are visible in the section")
+    def check_visibility_of_subsections(self):
+        subsections = self.elements_are_present(self.locators.PAGE_SUBSECTIONS)
+        for subsection in subsections:
+            return subsection.is_displayed()
+
+
 
