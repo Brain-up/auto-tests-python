@@ -30,14 +30,19 @@ class TestContributorsPage:
                 "The amount of sections with content does not match the expected value"
             assert sections_visibility, "Sections with content are invisible on the page"
 
-        @allure.title("Verify the composition and visibility of elements on the 1st level of nesting in the section")
+        @allure.title("Verify the composition and visibility of elements "
+                      "on the 1st, 2nd, 3rd levels of nesting in the section")
         def test_cnp_01_03_verify_section_structure_and_visibility(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             structure_of_section = page.get_structure_of_section()
-            visibility_of_elements_on_the_1st_level = page.check_visibility_of_elements_in_section()
-            subsections = page.get_list_of_subsections_in_section()
-            subsections_visibility = page.check_visibility_of_subsections()
+            visibility_of_subsections_on_the_1st_level = page.check_visibility_of_elements_in_section()
+            structure_of_2nd_level_subsection = page.get_structure_of_2nd_level_in_section()
+            visibility_of_subsections_on_2nd_level = page.check_visibility_of_elements_in_subsections()
+            structure_of_3rd_level_subsections = page.get_structure_of_3rd_level_in_section()
+            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section()
             assert structure_of_section, "The section is empty"
-            assert visibility_of_elements_on_the_1st_level, "1th-level elements are invisible on the page"
-            assert subsections, "Subsections on the 1st level of nesting in the section are empty"
-            assert subsections_visibility, "Subsections are invisible on the page"
+            assert visibility_of_subsections_on_the_1st_level, "1th-level subsections are invisible on the page"
+            assert structure_of_2nd_level_subsection, "Subsections on the 2nd level in the section are empty"
+            assert visibility_of_subsections_on_2nd_level, "2nd-level subsections are invisible on the page"
+            assert structure_of_3rd_level_subsections, "Elements on the 3rd level in the section are empty"
+            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible on the page"

@@ -283,4 +283,5 @@ class FooterPage(BasePage):
     @allure.step("Check the prefix and the subject in the attribute 'href' of the Contact us link")
     def check_contact_us_link_href(self):
         link_href = self.get_contact_us_link_href()
-        return "mailto" in link_href, "subject=BrainUp" in link_href
+        # print(link_href.startswith('mailto'), link_href.endswith('subject=BrainUp'))
+        return link_href.startswith('mailto'), link_href.endswith('subject=BrainUp')
