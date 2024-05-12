@@ -9,3 +9,4 @@ class ContributorsPageLocators:
     PAGE_SUBSECTIONS = (By.XPATH, "//section/div")
     SECTION_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//section/*")
     SECTION_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//section/*/*")
+    SECTION_THIRD_LEVEL_ELEMENTS = (By.XPATH, "//section/*/*/*")
