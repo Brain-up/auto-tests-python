@@ -9,7 +9,7 @@ class StartUnauthorizedPageLocators:
     PAGE_TITLES = (By.TAG_NAME, "h2")
     SECTION_1_FIRST_LEVEL_ELEMENTS = (By.XPATH, "(//section)[1]/*")
     SECTION_1_IMAGE = (By.XPATH, "//section/img")
-    SECTION_1_LINK = (By.XPATH, "//section//a")
+    SECTION_1_LINK_LOGIN = (By.XPATH, "//section//a")
     SECTION_1_SECOND_LEVEL_ELEMENTS = (By.XPATH, "(//section)[1]/*/*")
     SECTION_1_TEXT = (By.XPATH, "//p[contains(@class, 'text')]")
     SECTION_1_THIRD_LEVEL_ELEMENTS = (By.XPATH, "(//section)[1]/*/*/*")

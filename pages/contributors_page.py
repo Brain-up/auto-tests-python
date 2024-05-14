@@ -116,3 +116,27 @@ class ContributorsPage(BasePage):
         elements = self.elements_are_present(self.locators.SECTION_FOURTH_LEVEL_ELEMENTS)
         for element in elements:
             return element.is_displayed()
+
+    @allure.step("Get amount of contributor's cards in the section grid")
+    def get_amount_of_cards_in_the_grid(self):
+        contributor_cards = self.elements_are_present(self.locators.GRID_CONTRIBUTOR_CARDS)
+        print(f"Amount of contributor cards in the grid is: {len(contributor_cards)}")
+        return len(contributor_cards)
+
+    @allure.step("Get amount of contributor's images in the section grid")
+    def get_amount_of_images_in_the_grid(self):
+        images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        print(f"Amount of images in the grid is: {len(images)}")
+        return len(images)
+
+    @allure.step("Get amount of contributor's links in the section grid")
+    def get_amount_of_links_in_the_grid(self):
+        links = self.elements_are_present(self.locators.GRID_CARD_LINKS)
+        print(f"Amount of links in the grid is: {len(links)}")
+        return len(links)
+
+    @allure.step("Get amount of contributor's descriptions in the section grid")
+    def get_amount_of_descriptions_in_the_grid(self):
+        descriptions = self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS)
+        print(f"Amount of descriptions in the grid is: {len(descriptions)}")
+        return len(descriptions)

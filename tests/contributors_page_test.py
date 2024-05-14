@@ -54,3 +54,19 @@ class TestContributorsPage:
             assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible on the page"
             assert structure_of_4th_level_subsections, "Elements on the 4th level in the section are empty"
             assert visibility_of_elements_on_4th_level, "4th-level elements are invisible on the page"
+
+        @allure.title("Verify amount of contributor cards with images, links and descriptions in the section grid")
+        def test_cnp_01_04_verify_structure_of_grid_in_section(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            amount_of_cards = page.get_amount_of_cards_in_the_grid()
+            amount_of_images = page.get_amount_of_images_in_the_grid()
+            amount_of_links = page.get_amount_of_links_in_the_grid()
+            amount_of_descriptions = page.get_amount_of_descriptions_in_the_grid()
+            assert amount_of_cards == ContributorsPageData.amount_of_cards_in_grid, \
+                "The amount of contributor cards in the grid does not match the expected value"
+            assert amount_of_images == ContributorsPageData.amount_of_images_in_section, \
+                "The amount of images in the grid does not match the expected value"
+            assert amount_of_links == ContributorsPageData.amount_of_links_in_section, \
+                "The amount of links in the grid does not match the expected value"
+            assert amount_of_descriptions == ContributorsPageData.amount_of_descriptions_in_grid, \
+                "The amount of descriptions in the grid does not match the expected value"

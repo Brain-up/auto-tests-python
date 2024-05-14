@@ -77,16 +77,16 @@ class TestSpecialistsPage:
         @allure.title("Verify presence, visibility and accuracy of the 1th card's image in the grid")
         def test_sp_02_03_verify_1th_card_image(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            print(driver.current_url)
+            # print(driver.current_url)
             image_presence = page.check_the_1th_card_image_presence()
             image_visibility = page.check_the_1th_card_image_visibility()
             image_src = page.get_the_1th_card_image_src()
             image_alt = page.get_the_1th_card_image_alt()
             image_size = page.get_visible_size_of_the_1th_card_image()
-            print(f"The visible sizes of the 1th card image are: {image_size}")
+            # print(f"The visible sizes of the 1th card image are: {image_size}")
             driver.set_window_size(820, 1180)
             image_size_new = page.get_visible_size_of_the_1th_card_image()
-            print(f"The new visible sizes of the 1th card image are: {image_size_new}")
+            # print(f"The new visible sizes of the 1th card image are: {image_size_new}")
             assert image_presence is not None, "The image in the 1th card is absent"
             assert image_visibility, "The 1th card image is invisible"
             assert image_src, "The 'src' attribute value of the 1th card image is empty"

@@ -182,27 +182,27 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Check the 'Login' link is present in DOM")
     def check_login_link_presence(self):
-        return self.element_is_present(self.locators.SECTION_1_LINK)
+        return self.element_is_present(self.locators.SECTION_1_LINK_LOGIN)
 
     @allure.step("Check the 'Login' link is visible on the page")
     def check_login_link_visibility(self):
-        return self.element_is_visible(self.locators.SECTION_1_LINK)
+        return self.element_is_visible(self.locators.SECTION_1_LINK_LOGIN)
 
     @allure.step("Check the 'Login' link is clickable")
     def check_login_link_clickability(self):
-        return self.element_is_clickable(self.locators.SECTION_1_LINK)
+        return self.element_is_clickable(self.locators.SECTION_1_LINK_LOGIN)
 
     @allure.step("Get attribute 'href' of the 'Login' link")
     def get_login_link_href(self):
-        return self.get_link_href(self.locators.SECTION_1_LINK)
+        return self.get_link_href(self.locators.SECTION_1_LINK_LOGIN)
 
     @allure.step("Get text in the 'Login' link")
     def get_text_in_login_link(self):
-        return self.get_text(self.locators.SECTION_1_LINK)
+        return self.get_text(self.locators.SECTION_1_LINK_LOGIN)
 
     @allure.step("Click on the 'Login' link and thereby open the corresponding web page in the same tab")
     def click_login_link(self):
-        self.element_is_present_and_clickable(self.locators.SECTION_1_LINK).click()
+        self.element_is_present_and_clickable(self.locators.SECTION_1_LINK_LOGIN).click()
         # print(self.driver.current_url)
 
     @allure.step("Get text of the element on the 'Login' page")
