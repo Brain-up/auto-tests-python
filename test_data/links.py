@@ -4,7 +4,7 @@ class MainPageLinks:
     URL_DESCRIPTION_PAGE = f"{URL_MAIN_PAGE}description"
     URL_TELEGRAM_PAGE = "https://t.me/BrainUpUsers"
     URL_DONATE_PAGE = "https://opencollective.com/brainup"
-    URL_CONTACTS = f"{URL_MAIN_PAGE}contact"
+    URL_CONTACTS_PAGE = f"{URL_MAIN_PAGE}contact"
     URL_SPECIALISTS_PAGE = f"{URL_MAIN_PAGE}specialists"
     URL_GITHUB = "https://github.com/Brain-up/brn"
     URL_CONTRIBUTORS_PAGE = f"{URL_MAIN_PAGE}contributors"
@@ -25,9 +25,8 @@ class SpecificExercisesUrls:
 class FooterLinks:
     ARASAAC_LINK = "https://arasaac.org/"
     CONTACT_US_LINK = "mailto:brainupproject@yandex.ru?subject=BrainUp"
-    EPAM_LINK = "https://epam.com/"
+    EPAM_LINK = ["https://www.epam.com/", "https://epam.com/"]
     JETBRAINS_LINK = "https://www.jetbrains.com/"
-    # REG_LINK = "https://www.reg.ru/"
     REG_LINK = ["https://www.reg.ru/", "https://reg.ru/"]
     SELECTEL_LINK = "https://selectel.ru/"
 

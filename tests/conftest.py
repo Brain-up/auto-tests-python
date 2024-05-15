@@ -1,4 +1,5 @@
 import os
+import time
 
 import allure
 import pytest
@@ -6,6 +7,8 @@ from dotenv import load_dotenv
 
 from locators.login_page_locators import LoginPageLocators
 from locators.main_page_locators import MainPageLocators
+from locators.header_page_locators import HeaderPageLocators
+from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 
@@ -19,9 +22,41 @@ def main_page_open(driver):
 
 
 @pytest.fixture()
+@allure.step(f'Open page: {MainPageLinks.URL_CONTRIBUTORS_PAGE}')
+def contributors_page_open(driver):
+    driver.get(MainPageLinks.URL_CONTRIBUTORS_PAGE)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {MainPageLinks.URL_CONTACTS_PAGE}')
+def contacts_page_open(driver, main_page_open):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(HeaderPageLocators.MORE_MENU).click()
+    page.element_is_present_and_clickable(HeaderPageLocators.CONTACTS_LINK_IN_MORE_MENU).click()
+    time.sleep(1)
+
+
+@pytest.fixture()
 @allure.step(f'Open page: {MainPageLinks.URL_DESCRIPTION_PAGE}')
 def description_page_open(driver):
     driver.get(MainPageLinks.URL_DESCRIPTION_PAGE)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {MainPageLinks.URL_LOGIN_PAGE}')
+def login_page_open(driver, main_page_open):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(StartUnauthorizedPageLocators.SECTION_1_LINK_LOGIN).click()
+    time.sleep(1)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {MainPageLinks.URL_SPECIALISTS_PAGE}')
+def specialists_page_open(driver, main_page_open):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(HeaderPageLocators.MORE_MENU).click()
+    page.element_is_present_and_clickable(HeaderPageLocators.SPECIALISTS_LINK_IN_MORE_MENU).click()
+    time.sleep(1)
 
 
 @pytest.fixture()
@@ -33,7 +68,7 @@ def auto_test_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
-    return page
+    # return page
 
 
 @pytest.fixture()
@@ -45,7 +80,7 @@ def specialist_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
-    return page
+    # return page
 
 
 @pytest.fixture()
@@ -57,4 +92,4 @@ def default_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
-    return page
+    # return page
