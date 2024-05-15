@@ -70,3 +70,13 @@ class TestContributorsPage:
                 "The amount of links in the grid does not match the expected value"
             assert amount_of_descriptions == ContributorsPageData.amount_of_descriptions_in_grid, \
                 "The amount of descriptions in the grid does not match the expected value"
+
+    class TestContributorsPageText:
+
+        @allure.title("Verify value of title with tag 'h2' on the page")
+        def test_cnp_02_01_verify_title_on_the_page(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            title_value = page.get_value_of_title_on_the_page()
+            assert title_value, "The title value on the page is empty"
+            assert title_value in ContributorsPageData.page_title, "The title on the page doesn't match the valid value"
+
