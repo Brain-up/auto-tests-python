@@ -31,6 +31,8 @@ class SpeechExercisesAPI(BasePage):
         list_cards_id = requests.get(f'https://brainup.site/api/subgroups?seriesId={seria_id}',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
+        with allure.step(f'Status code is: {list_cards_id.status_code}'):
+            pass
         with allure.step(
                 f'Send GET request with params: '
                 f'https://brainup.site/api/subgroups?seriesId={seria_id} '
@@ -52,7 +54,8 @@ class SpeechExercisesAPI(BasePage):
         result_get = requests.get(f'https://brainup.site/api/tasks/{str(card_id)}',
                                   headers={'Content-Type': 'application/json',
                                            'Authorization': 'Bearer {}'.format(id_token)})
-        # word = json.loads(result_get.text)['data']["answerOptions"][0]['word']
+        with allure.step(f'Status code is: {result_get.status_code}'):
+            pass
         amount_words = len(json.loads(result_get.text)['data']["answerOptions"])
         words = [json.loads(result_get.text)['data']["answerOptions"][i]['word'] for i in range(amount_words)]
         with allure.step(f'Getting a list of exercise words from the backend: {words}.'):
@@ -67,6 +70,8 @@ class SpeechExercisesAPI(BasePage):
         result_get = requests.get(f'https://brainup.site/api/tasks/{str(card_id)}',
                                   headers={'Content-Type': 'application/json',
                                            'Authorization': 'Bearer {}'.format(id_token)})
+        with allure.step(f'Status code is: {result_get.status_code}'):
+            pass
         dict_list = json.loads(result_get.text)['data']["answerOptions"]
         words = []
         for k, v in dict_list.items():
@@ -120,6 +125,8 @@ class SpeechExercisesAPI(BasePage):
         list_cards_id = requests.get(f'https://brainup.site/api/subgroups?seriesId={seria_id}',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token_default)})
+        with allure.step(f'Status code is: {list_cards_id.status_code}'):
+            pass
         with allure.step(
                 f'Send GET request with params: '
                 f'https://brainup.site/api/subgroups?seriesId={seria_id}'
@@ -128,7 +135,6 @@ class SpeechExercisesAPI(BasePage):
         with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
             pass
         result_get = json.loads(list_cards_id.text)
-        # print('IDS', result_get['data'][card_id]['exercises'])
         payloads = {}
         payloads.setdefault('ids', result_get['data'][card_id]['exercises'])
         print('payloads', payloads)
@@ -142,11 +148,13 @@ class SpeechExercisesAPI(BasePage):
     @staticmethod
     @allure.step('get_list_of_words_from_card_default')
     def get_list_of_words_from_card_default(card_id):
-        result_get = requests.post(f'https://brainup.site/api/tasks/{str(card_id)}',
-                                   headers={'Content-Type': 'application/json',
-                                            'Authorization': 'Bearer {}'.format(id_token_default)})
-        amount_words = len(json.loads(result_get.text)['data']["answerOptions"])
-        words = [json.loads(result_get.text)['data']["answerOptions"][i]['word'] for i in range(amount_words)]
+        result_post = requests.post(f'https://brainup.site/api/tasks/{str(card_id)}',
+                                    headers={'Content-Type': 'application/json',
+                                             'Authorization': 'Bearer {}'.format(id_token_default)})
+        with allure.step(f'Status code is: {result_post.status_code}'):
+            pass
+        amount_words = len(json.loads(result_post.text)['data']["answerOptions"])
+        words = [json.loads(result_post.text)['data']["answerOptions"][i]['word'] for i in range(amount_words)]
         with allure.step(f'Getting a list of exercise words from the backend: {words}.'):
             print('\nBACKEND LIST: ', words)
             ref_list = [i.lower() for i in words]

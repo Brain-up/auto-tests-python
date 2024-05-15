@@ -1,0 +1,99 @@
+name: Test-All-Daily
+
+on:
+#  push:
+  schedule:
+    - cron: '0 0 * * *'
+
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Lint with flake8
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Run tests
+        env:
+          LOGIN: ${{ secrets.LOGIN }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          CHANGE_PASSWORD_EMAIL: ${{ secrets.CHANGE_PASSWORD_EMAIL }}
+          CHANGE_PASSWORD: ${{ secrets.CHANGE_PASSWORD }}
+          PASSWORD_EMAIL: ${{ secrets.PASSWORD_EMAIL }}
+          PASSWORD_LINK: ${{ secrets.PASSWORD_LINK }}
+          SPECIALIST_LOGIN: ${{ secrets.SPECIALIST_LOGIN }}
+          DEFAULT_LOGIN: ${{ secrets.DEFAULT_LOGIN }}
+        run: |
+          pytest -s -v --alluredir=allure-results
+        continue-on-error: true
+
+
+      - name: Add allure information
+        working-directory: allure-results
+        if: always()
+        run: |
+          echo GIT_BRANCH=${{ github.head_ref || github.ref_name }}  >> environment.properties
+          echo GIT_COMMIT_ID=${{ github.sha }} >> environment.properties
+          echo GIT_COMMIT_MESSAGE=$(git show -s --format=%s HEAD) >> environment.properties
+          echo GIT_COMMIT_AUTHOR_NAME=$(git show -s --format='%ae' HEAD) >> environment.properties
+          echo GIT_COMMIT_TIME=$(git show -s --format=%ci HEAD) >> environment.properties
+          echo CHROME_VERSION=$(google-chrome --product-version) >> environment.properties
+        continue-on-error: true
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        with:
+          ref: gh-pages
+          path: gh-pages
+        continue-on-error: true
+
+      - name: Allure Report action
+        uses: simple-elf/allure-report-action@v1.6
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 100
+        continue-on-error: true
+
+      - name: Commit Allure report
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.CI_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
+        continue-on-error: true
+
+
+  messsage:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Send message to Telegram
+        uses: "appleboy/telegram-action@master"
+        with:
+          to: ${{secrets.CHAT_ID}}
+          token: ${{secrets.TELEGRAM_TOKEN}}
+          args: Daily full report https://brain-up.github.io/auto-tests-python/
+        continue-on-error: true

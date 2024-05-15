@@ -9,17 +9,16 @@ from pages.speech_exercises_page_en import SpeechExercisesPage
 @allure.epic("Speech exercises.")
 class TestCardsEN:
     @pytest.mark.xfail
-    @allure.suite('Words.')
+    @allure.suite("Speech exercises EN.")
     @allure.title('Select random card from "Word" group and compare UI vs BACKEND data')
     def test_random_word_cards_en(self, driver, specialist_user_authorized):
         page = SpeechExercisesPage(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.SIMILAR_PHRASES_EN)
+        page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_EN)
+        seria_id = page.set_url_to_get_id_words_group()
         card_id = page.click_random_card_in_words()
-        page.wait_changed_url(driver.current_url)
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
@@ -28,17 +27,16 @@ class TestCardsEN:
         assert sorted(list_words_ui) == sorted(list_words_back)
 
     @pytest.mark.xfail
-    @allure.suite('Check progres-bar and buttons.')
-    @allure.title('test_progress_bar_is_present_en')
+    @allure.suite("Speech exercises EN.")
+    @allure.title('Check progres-bar and buttons.')
     def test_progress_bar_is_present_en(self, driver, specialist_user_authorized):
         page = SpeechExercisesPage(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_EN)
+        page.select_group(SpeechExercisesPageLocators.WORDS_BUTTON_EN)
+        seria_id = page.set_url_to_get_id_words_group()
         card_id = page.click_random_card_in_words()
-        page.wait_changed_url(driver.current_url)
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         page.click_start_and_get_list_words_en()
@@ -52,17 +50,16 @@ class TestCardsEN:
         assert bool(progress_bar) is True
 
     @pytest.mark.xfail
-    @allure.suite('Similar phrases')
+    @allure.suite("Speech exercises EN.")
     @allure.title('Select a random card from "Similar phrases" group and compare UI vs BACKEND data')
     def test_random_cards_in_similar_phrases_en(self, driver, specialist_user_authorized):
         page = SpeechExercisesPage(driver)
-        seria_id = page.select_group(SpeechExercisesPageLocators.SIMILAR_PHRASES_EN)
+        page.select_group(SpeechExercisesPageLocators.SIMILAR_PHRASES_EN)
+        seria_id = page.set_url_to_get_id_similar_phrase_group()
         card_id = page.click_random_sub_group_in_similar_phrases()
-        page.wait_changed_url(driver.current_url)
 
         page = SpeechExercisesAPI(driver)
-        random_id = page.get_random_id_from_list_sub_group(
-            card_id, seria_id)  # getting random ID from exercises group
+        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)
         driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID
         page.wait_changed_url(driver.current_url)
         id_for_back = str(driver.current_url).split('/')[-1]
