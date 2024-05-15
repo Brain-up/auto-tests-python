@@ -140,3 +140,9 @@ class ContributorsPage(BasePage):
         descriptions = self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS)
         print(f"Amount of descriptions in the grid is: {len(descriptions)}")
         return len(descriptions)
+
+    @allure.step("Get value of the title in the section on the page")
+    def get_value_of_title_on_the_page(self):
+        title_value = self.get_text(self.locators.SECTION_TITLE)
+        print(f"The title value on the page is: {title_value}")
+        return title_value

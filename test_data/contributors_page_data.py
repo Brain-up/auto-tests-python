@@ -7,3 +7,5 @@ class ContributorsPageData:
     amount_of_descriptions_in_grid = 67
     amount_of_images_in_section = 67
     amount_of_links_in_section = 66
+
+    page_title = ["Наша команда", "Our Team"]
