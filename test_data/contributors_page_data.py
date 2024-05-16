@@ -9,3 +9,8 @@ class ContributorsPageData:
     amount_of_links_in_section = 66
 
     page_title = ["Наша команда", "Our Team"]
+
+    page_subtitles = [
+        ["Разработчики", "Тестировщики автоматизаторы", "Тестировщики"],
+        ["Developers", "Developers in test", "Quality Assurance"]
+    ]

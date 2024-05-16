@@ -11,6 +11,7 @@ class ContributorsPageLocators:
     PAGE_STRUCTURE = (By.XPATH, "//main/*")
     PAGE_SECTIONS = (By.TAG_NAME, "section")
     PAGE_SUBSECTIONS = (By.XPATH, "//section/div")
+    SECTION_SUBTITLES = (By.TAG_NAME, "h3")
     SECTION_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//section/*")
     SECTION_FOURTH_LEVEL_ELEMENTS = (By.XPATH, "//section/*/*/*/*")
     SECTION_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//section/*/*")
