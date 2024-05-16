@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from locators.main_page_locators import MainPageLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.authotised_user_home_page_locators import AuthorizedUserHomePageLocators
+from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 from locators.profile_page_locators import ProfilePageLocators
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
@@ -41,7 +42,8 @@ class ProfilePage(BasePage):
 
     @allure.step("Open login page")
     def open_login_page(self):
-        self.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
+        # self.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
+        self.element_is_present_and_clickable(StartUnauthorizedPageLocators.SECTION_1_LINK_LOGIN).click()
 
     @allure.step("Go to the Profile page")
     def go_to_profile_page(self):

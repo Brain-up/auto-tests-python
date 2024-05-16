@@ -80,3 +80,10 @@ class TestContributorsPage:
             assert title_value, "The title value on the page is empty"
             assert title_value in ContributorsPageData.page_title, "The title on the page doesn't match the valid value"
 
+        @allure.title("Verify values of subtitles with tag 'h3' on the page")
+        def test_cnp_02_02_verify_subtitles_on_the_page(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            title_value = page.get_values_of_subtitles()
+            assert title_value, "Subtitle values on the page are empty"
+            assert title_value in ContributorsPageData.page_subtitles, \
+                "The subtitles on the 'Contributors' page do match the valid values"
