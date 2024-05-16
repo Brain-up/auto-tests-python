@@ -27,7 +27,7 @@ class UsedResourcesPageData:
 
     used_resources_page_links_status_codes = {
         "flora_link_status_code": 200,
-        "freepik_com_link_status_code": 403,
+        "freepik_com_link_status_code": 301,
         "plants_link_status_code": 200
     }
 
