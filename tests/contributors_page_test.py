@@ -87,3 +87,10 @@ class TestContributorsPage:
             assert title_value, "Subtitle values on the page are empty"
             assert title_value in ContributorsPageData.page_subtitles, \
                 "The subtitles on the 'Contributors' page do match the valid values"
+
+        @allure.title("Verify values of the text in the slogan on the page")
+        def test_cnp_02_03_verify_text_of_slogan(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            slogan = page.get_value_of_slogan()
+            assert slogan in ContributorsPageData.slogan_text, \
+                "The text of slogan does not match the valid options"

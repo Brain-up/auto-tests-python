@@ -14,3 +14,6 @@ class ContributorsPageData:
         ["Разработчики", "Тестировщики автоматизаторы", "Тестировщики"],
         ["Developers", "Developers in test", "Quality Assurance"]
     ]
+
+    slogan_text = ["Мы собрались все вместе, чтобы сделать вашу жизнь проще!",
+                   "We are all here to make your life easier!"]
