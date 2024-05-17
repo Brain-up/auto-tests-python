@@ -2,6 +2,7 @@
 import allure
 from pages.base_page import BasePage
 from locators.contributors_page_locators import ContributorsPageLocators
+from test_data.contributors_page_data import ContributorsPageData
 
 
 class ContributorsPage(BasePage):
@@ -141,12 +142,6 @@ class ContributorsPage(BasePage):
         print(f"Amount of descriptions in the grid is: {len(descriptions)}")
         return len(descriptions)
 
-    @allure.step("Get value of the title in the section on the page")
-    def get_value_of_title_on_the_page(self):
-        title_value = self.get_text(self.locators.SECTION_TITLE)
-        print(f"The title value on the page is: {title_value}")
-        return title_value
-
     @allure.step("Get value of the subtitle in the section on the page")
     def get_value_of_title_on_the_page(self):
         title_value = self.get_text(self.locators.SECTION_TITLE)
@@ -159,3 +154,9 @@ class ContributorsPage(BasePage):
         subtitle_values = [subtitle.text for subtitle in subtitles]
         print(f"The subtitle values on the page are:", *subtitle_values, sep='\n')
         return subtitle_values
+
+    @allure.step("Get the list of text content in the slogan on the page")
+    def get_value_of_slogan(self):
+        slogan = self.element_is_present(self.locators.SLOGAN).text
+        print(slogan)
+        return slogan
