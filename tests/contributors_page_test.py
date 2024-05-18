@@ -94,3 +94,9 @@ class TestContributorsPage:
             slogan = page.get_value_of_slogan()
             assert slogan in ContributorsPageData.slogan_text, \
                 "The text of slogan does not match the valid options"
+
+        @allure.title("Verify values of the text in card descriptions")
+        def test_cnp_02_04_verify_text_of_card_descriptions(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            description_values = page.check_values_of_card_descriptions()
+            assert description_values, "The text in descriptions do not match the valid options"
