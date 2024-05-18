@@ -155,8 +155,22 @@ class ContributorsPage(BasePage):
         print(f"The subtitle values on the page are:", *subtitle_values, sep='\n')
         return subtitle_values
 
-    @allure.step("Get the list of text content in the slogan on the page")
+    @allure.step("Get text in the slogan on the page")
     def get_value_of_slogan(self):
         slogan = self.element_is_present(self.locators.SLOGAN).text
-        print(slogan)
         return slogan
+
+    @allure.step("Check the content of descriptions in cards")
+    def check_values_of_card_descriptions(self):
+        elements_with_text = self.elements_are_present(self.locators.CARD_DESCRIPTIONS)
+        element_values = [element.text for element in elements_with_text]
+        valid_count, invalid_count = 0, 0
+        for i in range(len(element_values)):
+            if element_values[i] in ContributorsPageData.card_descriptions_text:
+                valid_count += 1
+                # print(f"Valid description #{i + 1} is: \n{element_values[i]}")
+            else:
+                invalid_count += 1
+                # print(f"Invalid description #{i + 1} is: \n{element_values[i]}")
+        print(f'Amount of valid descriptions is: {valid_count}\nAmount of invalid descriptions is: {invalid_count}')
+        return element_values

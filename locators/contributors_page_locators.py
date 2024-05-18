@@ -19,3 +19,4 @@ class ContributorsPageLocators:
     SECTION_THIRD_LEVEL_CONTAINERS = (By.XPATH, "//section/*/*/div")
     SECTION_TITLE = (By.TAG_NAME, "h2")
     SLOGAN = (By.CSS_SELECTOR, ".mb-16")
+    CARD_DESCRIPTIONS = (By.CSS_SELECTOR, ".leading-5")
