@@ -164,9 +164,13 @@ class ContributorsPage(BasePage):
     def check_values_of_card_descriptions(self):
         elements_with_text = self.elements_are_present(self.locators.CARD_DESCRIPTIONS)
         element_values = [element.text for element in elements_with_text]
+        valid_count, invalid_count = 0, 0
         for i in range(len(element_values)):
             if element_values[i] in ContributorsPageData.card_descriptions_text:
-                print(f"Valid description #{i + 1} is: \n{element_values[i]}")
+                valid_count += 1
+                # print(f"Valid description #{i + 1} is: \n{element_values[i]}")
             else:
-                print(f"Invalid description #{i + 1} is: \n{element_values[i]}")
+                invalid_count += 1
+                # print(f"Invalid description #{i + 1} is: \n{element_values[i]}")
+        print(f'Amount of valid descriptions is: {valid_count}\nAmount of invalid descriptions is: {invalid_count}')
         return element_values
