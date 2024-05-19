@@ -162,7 +162,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Check the content of descriptions in cards")
     def check_values_of_card_descriptions(self):
-        elements_with_text = self.elements_are_present(self.locators.CARD_DESCRIPTIONS)
+        elements_with_text = self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS)
         element_values = [element.text for element in elements_with_text]
         valid_count, invalid_count = 0, 0
         for i in range(len(element_values)):
@@ -174,3 +174,9 @@ class ContributorsPage(BasePage):
                 # print(f"Invalid description #{i + 1} is: \n{element_values[i]}")
         print(f'Amount of valid descriptions is: {valid_count}\nAmount of invalid descriptions is: {invalid_count}')
         return element_values
+
+    @allure.step("Get the list of text in links in cards")
+    def get_text_in_card_links(self):
+        links = self.elements_are_present(self.locators.GRID_CARD_LINKS)
+        links_text = [link.text for link in links]
+        return links_text
