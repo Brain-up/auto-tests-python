@@ -3,10 +3,10 @@ from selenium.webdriver.common.by import By
 
 
 class ContributorsPageLocators:
-    GRID_CARD_DESCRIPTIONS = (By.XPATH, "//div[contains(@class, 'team')]/div[contains(@class, 'Sans')]")
-    GRID_CARD_IMAGES = (By.XPATH, "//div[contains(@class, 'team-member')]//img")
-    GRID_CARD_LINKS = (By.XPATH, "//div[contains(@class, 'team-member')]//a")
-    GRID_CONTRIBUTOR_CARDS = (By.XPATH, "//div[contains(@class, 'team-member')]")
+    GRID_CARD_DESCRIPTIONS = (By.CSS_SELECTOR, ".leading-5")
+    GRID_CARD_IMAGES = (By.CSS_SELECTOR, ".team-member img")
+    GRID_CARD_LINKS = (By.CSS_SELECTOR, "a.mb-1")
+    GRID_CONTRIBUTOR_CARDS = (By.CSS_SELECTOR, ".team-member")
     PAGE_CONTENT = (By.TAG_NAME, "main")
     PAGE_STRUCTURE = (By.XPATH, "//main/*")
     PAGE_SECTIONS = (By.TAG_NAME, "section")
@@ -19,4 +19,3 @@ class ContributorsPageLocators:
     SECTION_THIRD_LEVEL_CONTAINERS = (By.XPATH, "//section/*/*/div")
     SECTION_TITLE = (By.TAG_NAME, "h2")
     SLOGAN = (By.CSS_SELECTOR, ".mb-16")
-    CARD_DESCRIPTIONS = (By.CSS_SELECTOR, ".leading-5")

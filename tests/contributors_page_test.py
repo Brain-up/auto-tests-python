@@ -100,3 +100,9 @@ class TestContributorsPage:
             page = ContributorsPage(driver)
             description_values = page.check_values_of_card_descriptions()
             assert description_values, "The text in descriptions do not match the valid options"
+
+        @allure.title("Verify text in links in card links")
+        def test_cnp_02_05_verify_text_in_card_links(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            links_text = page.get_text_in_card_links()
+            assert links_text, "Text in card links is absent"
