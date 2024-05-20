@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v3
@@ -84,4 +84,18 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.CI_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
+        continue-on-error: true
+
+
+  messsage:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Send message to Telegram
+        uses: "appleboy/telegram-action@master"
+        with:
+          to: ${{secrets.CHAT_ID}}
+          token: ${{secrets.TELEGRAM_TOKEN}}
+          args: Daily full report https://lambotik.github.io/auto-tests-python/
         continue-on-error: true
