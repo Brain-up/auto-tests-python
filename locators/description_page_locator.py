@@ -9,7 +9,7 @@ class DescriptionPageLocators:
     TELEGRAM_PAGE = (By.XPATH, "//*[contains(text(),'Telegram')]")
     MORE_MENU = (By.CSS_SELECTOR, "#other-menu")
     DONATE_PAGE = (By.XPATH, "//div[@id='other-menu']//a[1]")
-    CONTACTS = (By.ID, "ember6")
+    CONTACTS = (By.CSS_SELECTOR, "a[href='/contact']")
     SPECIALISTS_PAGE = (By.ID, "ember7")
     GITHUB = (By.XPATH, "//div[@id='other-menu']//a[2]")
     CONTRIBUTORS_PAGE = (By.XPATH, '//a[@id="ember8"]')
