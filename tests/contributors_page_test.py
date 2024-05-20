@@ -26,7 +26,7 @@ class TestContributorsPage:
             page = ContributorsPage(driver)
             sections_amount = page.get_amount_of_sections_on_page()
             sections_visibility = page.check_visibility_of_sections()
-            assert sections_amount == ContributorsPageData.amount_of_sections_with_content_on_page, \
+            assert sections_amount == ContributorsPageData.amount_of_sections_on_page, \
                 "The amount of sections with content does not match the expected value"
             assert sections_visibility, "Sections with content are invisible on the page"
 
@@ -62,13 +62,13 @@ class TestContributorsPage:
             amount_of_images = page.get_amount_of_images_in_the_grid()
             amount_of_links = page.get_amount_of_links_in_the_grid()
             amount_of_descriptions = page.get_amount_of_descriptions_in_the_grid()
-            assert amount_of_cards == ContributorsPageData.amount_of_cards_in_grid, \
+            assert amount_of_cards == ContributorsPageData.amount_of_grid_cards, \
                 "The amount of contributor cards in the grid does not match the expected value"
-            assert amount_of_images == ContributorsPageData.amount_of_images_in_section, \
+            assert amount_of_images == ContributorsPageData.amount_of_grid_images, \
                 "The amount of images in the grid does not match the expected value"
-            assert amount_of_links == ContributorsPageData.amount_of_links_in_section, \
+            assert amount_of_links == ContributorsPageData.amount_of_grid_links, \
                 "The amount of links in the grid does not match the expected value"
-            assert amount_of_descriptions == ContributorsPageData.amount_of_descriptions_in_grid, \
+            assert amount_of_descriptions == ContributorsPageData.amount_of_grid_descriptions, \
                 "The amount of descriptions in the grid does not match the expected value"
 
     class TestContributorsPageText:
@@ -99,10 +99,26 @@ class TestContributorsPage:
         def test_cnp_02_04_verify_text_of_card_descriptions(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             description_values = page.check_values_of_card_descriptions()
-            assert description_values, "The text in descriptions do not match the valid options"
+            assert description_values == ContributorsPageData.amount_of_grid_descriptions, \
+                "The text in descriptions is absent or do not match the valid count"
 
         @allure.title("Verify text in links in card links")
         def test_cnp_02_05_verify_text_in_card_links(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            links_text = page.get_text_in_card_links()
-            assert links_text, "Text in card links is absent"
+            links_text = page.check_text_in_card_links()
+            assert links_text == ContributorsPageData.amount_of_grid_links, \
+                "Text in card links is absent or do not match the valid count"
+
+    class TestContributorsPageLinks:
+
+        @allure.title("Verify presence, visibility, clickability, href of links in the section")
+        def test_cnp_03_01_verify_links_in_section(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            links_presence = page.get_list_of_links_in_section()
+            links_visibility = page.check_visibility_of_links_in_section()
+            links_clickability = page.check_links_clickability()
+            links_href = page.get_links_href()
+            assert links_presence is not None, "Links are absent in DOM"
+            assert links_visibility, "Links are invisible on the page"
+            assert links_clickability, "Links are unclickable"
+            assert links_href, "Links href are empty"
