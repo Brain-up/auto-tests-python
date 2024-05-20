@@ -1,6 +1,6 @@
 FROM python:alpine
 
-WORKDIR ./usr/Oblache
+WORKDIR ./usr/auto-tests-python
 
 RUN apk update && apk upgrade && apk add bash
 
