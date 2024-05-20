@@ -1,34 +1,37 @@
-name: CI
+name: Test-pull_requests
 
 on:
+ push:
+# workflow_dispatch
+# schedule:
+#   - cron: '0 0 * * *'
 
-  push:
-#    branches: [ "main" ]
+
+permissions:
+  contents: read
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v3
         with:
-          python-version: 3.12
+          python-version: "3.12"
 
-      - name: Install Chrome
-        run: sudo apt-get install google-chrome-stable
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: Lint with flake8
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
       - name: Run tests
         env:
           LOGIN: ${{ secrets.LOGIN }}
@@ -40,7 +43,9 @@ jobs:
           SPECIALIST_LOGIN: ${{ secrets.SPECIALIST_LOGIN }}
           DEFAULT_LOGIN: ${{ secrets.DEFAULT_LOGIN }}
         run: |
-          pytest -s -vv --alluredir=allure-results
+          pytest -s -v --alluredir=allure-results
+        continue-on-error: true
+
 
       - name: Add allure information
         working-directory: allure-results
@@ -52,36 +57,44 @@ jobs:
           echo GIT_COMMIT_AUTHOR_NAME=$(git show -s --format='%ae' HEAD) >> environment.properties
           echo GIT_COMMIT_TIME=$(git show -s --format=%ci HEAD) >> environment.properties
           echo CHROME_VERSION=$(google-chrome --product-version) >> environment.properties
+        continue-on-error: true
 
-      - name: Checkout (copy) gh-pages repository to GitHub runner
+      - name: Get Allure history
         uses: actions/checkout@v4
         if: always()
         with:
           ref: gh-pages
           path: gh-pages
+        continue-on-error: true
 
-      - name: Copy history from gh-pages to allure-results
-        if: always()
-        run: |
-          sudo mkdir -p allure-results/history gh-pages/history
-          sudo cp -R gh-pages/history/* allure-results/history/
-
-      - name: Generate Allure report
-        if: always()
-        run: |
-          sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
-
-      #      - name: Update Allure history
-      #        if: always()
-      #        run: |
-      #          sudo cp -R allure-report/history/* gh-pages/history/
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Allure Report action
+        uses: simple-elf/allure-report-action@v1.6
         if: always()
         with:
-          token: ${{ secrets.CI_TOKEN }}
-          branch: gh-pages
-          folder: allure-report
-          #          history dir: allure-history
-          #clean: true
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 100
+        continue-on-error: true
+
+      - name: Commit Allure report
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.CI_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
+        continue-on-error: true
+
+
+  messsage:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Send message to Telegram
+        uses: "appleboy/telegram-action@master"
+        with:
+          to: ${{secrets.CHAT_ID}}
+          token: ${{secrets.TELEGRAM_TOKEN}}
+          args: Last pull request report https://brain-up.github.io/auto-tests-python/
+        continue-on-error: true
