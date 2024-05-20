@@ -2,10 +2,18 @@
 
 
 class ContributorsPageData:
-    amount_of_sections_with_content_on_page = 1
-    amount_of_cards_in_grid = 67
-    amount_of_descriptions_in_grid = 67
-    amount_of_images_in_section = 67
-    amount_of_links_in_section = 66
+    amount_of_sections_on_page = 1
+    amount_of_grid_cards = 67
+    amount_of_grid_descriptions = 67
+    amount_of_grid_images = 67
+    amount_of_grid_links = 66
 
     page_title = ["Наша команда", "Our Team"]
+
+    page_subtitles = [
+        ["Разработчики", "Тестировщики автоматизаторы", "Тестировщики"],
+        ["Developers", "Developers in test", "Quality Assurance"]
+    ]
+
+    slogan_text = ["Мы собрались все вместе, чтобы сделать вашу жизнь проще!",
+                   "We are all here to make your life easier!"]
