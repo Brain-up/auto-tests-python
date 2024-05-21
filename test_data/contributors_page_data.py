@@ -17,3 +17,7 @@ class ContributorsPageData:
 
     slogan_text = ["Мы собрались все вместе, чтобы сделать вашу жизнь проще!",
                    "We are all here to make your life easier!"]
+
+    all_team_link_href = "https://brainup.site/contributors#"
+    all_team_link_status_code = 200
+    all_team_link_text = ["Вся Команда", "All Team"]

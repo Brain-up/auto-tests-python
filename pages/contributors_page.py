@@ -1,5 +1,6 @@
 """Methods for verifying web elements on the 'Contributors' page"""
 import allure
+import requests
 
 from pages.base_page import BasePage
 from locators.contributors_page_locators import ContributorsPageLocators
@@ -203,3 +204,17 @@ class ContributorsPage(BasePage):
         links = self.elements_are_present(self.locators.SECTION_LINKS)
         links_href = [element.get_attribute("href") for element in links]
         return links_href
+
+    @allure.step("Get attribute 'href' of the 'All Team' link")
+    def get_all_team_link_href(self):
+        return self.get_link_href(self.locators.ALL_TEAM_LINK)
+
+    @allure.step("Get status code of 'All Team' link")
+    def get_all_team_link_status_code(self):
+        link_href = self.get_link_href(self.locators.ALL_TEAM_LINK)
+        link_status_code = requests.head(link_href).status_code
+        return link_status_code
+
+    @allure.step("Get text in the 'All Team' link")
+    def get_text_in_all_team_link(self):
+        return self.get_text(self.locators.ALL_TEAM_LINK)

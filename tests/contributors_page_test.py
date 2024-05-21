@@ -122,3 +122,16 @@ class TestContributorsPage:
             assert links_visibility, "Links are invisible on the page"
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
+
+        @allure.title("Verify href, status code, text of the 'All Team' link on the page")
+        def test_cnp_03_02_verify_all_team_link(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            link_href = page.get_all_team_link_href()
+            link_status_code = page.get_all_team_link_status_code()
+            actual_link_text = page.get_text_in_all_team_link()
+            assert link_href == ContributorsPageData.all_team_link_href, \
+                f"The attribute 'href' of the {link_href} link does not match the valid value"
+            assert link_status_code == ContributorsPageData.all_team_link_status_code, \
+                f"The {link_href} link status code does not match the valid value"
+            assert actual_link_text in ContributorsPageData.all_team_link_text, \
+                f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
