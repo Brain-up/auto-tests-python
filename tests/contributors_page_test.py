@@ -135,3 +135,11 @@ class TestContributorsPage:
                 f"The {link_href} link status code does not match the valid value"
             assert actual_link_text in ContributorsPageData.all_team_link_text, \
                 f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
+
+    class TestContributorCardImages:
+
+        @allure.title("Verify presence and visibility of images in contributors cards in the grid")
+        def test_cnp_04_01_verify_images_in_cards_are_present_and_visible(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            images_visibility = page.check_image_presence_and_visibility_in_the_grid()
+            assert images_visibility, "Images in contributor cards are invisible in the grid"

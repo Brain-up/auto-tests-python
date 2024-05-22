@@ -218,3 +218,9 @@ class ContributorsPage(BasePage):
     @allure.step("Get text in the 'All Team' link")
     def get_text_in_all_team_link(self):
         return self.get_text(self.locators.ALL_TEAM_LINK)
+
+    @allure.step("Check the image in each contributor card is present and visible on the page")
+    def check_image_presence_and_visibility_in_the_grid(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        all_images_displayed = all(image.is_displayed() for image in card_images)
+        return all_images_displayed
