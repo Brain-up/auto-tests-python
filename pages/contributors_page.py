@@ -4,6 +4,7 @@ import requests
 
 from pages.base_page import BasePage
 from locators.contributors_page_locators import ContributorsPageLocators
+from test_data.contributors_page_data import ContributorsPageData
 
 
 class ContributorsPage(BasePage):
@@ -224,3 +225,16 @@ class ContributorsPage(BasePage):
         card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
         all_images_displayed = all(image.is_displayed() for image in card_images)
         return all_images_displayed
+
+    @allure.step("Check attribute 'src' of images in contributor cards on the page")
+    def check_images_src_in_contributor_cards(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        src_list = [image.get_attribute('src') for image in card_images]
+        image_src = [image_src.startswith(ContributorsPageData.images_src_start) for image_src in src_list]
+        return image_src
+
+    @allure.step("Get the list of attribute 'alt' values of images in contributor cards on the page")
+    def get_images_alt_in_contributor_cards(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        alt_list = [image.get_attribute('alt') for image in card_images]
+        return alt_list
