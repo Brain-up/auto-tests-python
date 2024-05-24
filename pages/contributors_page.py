@@ -238,3 +238,32 @@ class ContributorsPage(BasePage):
         card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
         alt_list = [image.get_attribute('alt') for image in card_images]
         return alt_list
+
+    @allure.step("""Get the list of size values of images in contributor cards on the page 
+                    and check their changes after resizing""")
+    def check_size_changes_of_card_images(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        image_sizes_before = [image.size for image in card_images]
+        self.driver.set_window_size(1200, 800)
+        image_sizes_after = [image.size for image in card_images]
+        # print("The results of checking changes of image sizes in cards after resizing are:")
+        changed, lost, unchanged = 0, 0, 0
+        for i in range(len(image_sizes_after)):
+            if image_sizes_before[i] != image_sizes_after[i]:
+                changed += 1
+                if image_sizes_after[i] == {'height': 0, 'width': 0}:
+                    lost += 1
+                    # print(f"\n   The image #{i + 1} has become invisible because has sizes that changed: "
+                    #       f"\nfrom {image_sizes_before[i]} before resizing \nto {image_sizes_after[i]} after resizing")
+                # else:
+                    # print(f"\n   The image #{i + 1} has sizes that changed: \nfrom {image_sizes_before[i]} before "
+                    #       f"resizing \nto {image_sizes_after[i]} after resizing")
+            else:
+                unchanged += 1
+                # print(f"\n   The image #{i + 1} has sizes that remain: \nthe same {image_sizes_before[i]} before resizing "
+                #       f"\nand {image_sizes_after[i]} after resizing")
+        # print(f"\nSummary of image size checks\n   Amount of images with changed sizes after resizing is: {changed}, "
+        #       f"\nincluding images that have become invisible on the page: {lost}")
+        # print(f"   Amount of images with unchanged sizes after resizing is: {unchanged}")
+        return changed, lost, unchanged
+

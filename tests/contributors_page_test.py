@@ -144,12 +144,14 @@ class TestContributorsPage:
             images_visibility = page.check_image_presence_and_visibility_in_the_grid()
             assert images_visibility, "Images in contributor cards are invisible in the grid"
 
-        @allure.title("Verify attribute values of images in contributors cards in the grid")
+        @allure.title("Verify attribute values and sizes of images in contributors cards in the grid")
         def test_cnp_04_02_verify_image_attributes_in_cards(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             images_src = page.check_images_src_in_contributor_cards()
             images_alt = page.get_images_alt_in_contributor_cards()
+            images_size_changes = page.check_size_changes_of_card_images()
             assert images_src, "The 'src' attribute value of some card images is empty or unaccurate"
             assert images_alt, "The 'alt' attribute value of some card images is empty"
             assert all(image_alt == ContributorsPageData.images_alt for image_alt in images_alt), \
                 "The 'alt' attribute value of some card images is empty or unaccurate"
+            assert images_size_changes, "Checks of changes in image sizes have not carried out"
