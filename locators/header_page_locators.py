@@ -11,6 +11,7 @@ class HeaderPageLocators:
     HEADER_FOURTH_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*/*/*")
     HEADER_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*/*/*/*")
     HEADER_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*/*/*/*/*")
+    LOGO_LINK = (By.XPATH, "//a[@data-test-logo]")
     MORE_MENU = (By.ID, "other-menu")
     CONTACTS_LINK_IN_MORE_MENU = (By.ID, "ember6")
     SPECIALISTS_LINK_IN_MORE_MENU = (By.ID, "ember7")
