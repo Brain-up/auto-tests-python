@@ -1,6 +1,7 @@
 """Auto tests for verifying web elements in the Header of the site"""
 import allure
 from pages.header_page import HeaderPage
+from test_data.header_data import HeaderData
 
 
 @allure.epic("Test Header")
@@ -42,3 +43,22 @@ class TestHeaderPage:
             assert visibility_of_elements_on_5th_level, "5th-level elements are invisible on the page"
             assert structure_of_6th_level, "Elements on the 6th level in the Header are absent"
             assert invisibility_of_elements_on_6th_level, "6th-level elements are visible on the page"
+
+    class TestHeaderPageSection1:
+
+        @allure.title("""Verify presence, visibility, clickability, href, status code  
+                         of the 'Logo' link in the section 1 in the Header""")
+        def test_hp_02_01_verify_logo_link(self, driver, main_page_open):
+            page = HeaderPage(driver)
+            link_presence = page.check_logo_link_presence()
+            link_visibility = page.check_logo_link_visibility()
+            link_clickability = page.check_logo_link_clickability()
+            link_href = page.get_logo_link_href()
+            link_status_code = page.get_logo_link_status_code()
+            assert link_presence, "The 'Logo' link is absent in DOM"
+            assert link_visibility, "The 'Logo' link is invisible on the page"
+            assert link_clickability, "The 'Logo' link is unclickable"
+            assert link_href in HeaderData.links_href, \
+                f"The attribute 'href' of the {link_href} link does not match the valid value"
+            assert link_status_code in HeaderData.links_status_codes, \
+                f"The status code of the {link_href} does not match the valid value"
