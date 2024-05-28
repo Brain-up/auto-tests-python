@@ -62,3 +62,19 @@ class TestHeaderPage:
                 f"The attribute 'href' of the {link_href} link does not match the valid value"
             assert link_status_code in HeaderData.links_status_codes, \
                 f"The status code of the {link_href} does not match the valid value"
+
+        @allure.title("""Verify that the 'Logo' link on the Start Unauthorized Page 
+                         doesn't refresh the current page or lead to other pages after clicking""")
+        def test_hp_02_02_verify_clicking_on_logo_link_on_start_unauthorized_page(self, driver, main_page_open):
+            page = HeaderPage(driver)
+            handles_before = driver.window_handles
+            initial_page_source = page.driver.page_source
+            initial_page_url = page.driver.current_url
+            current_page_url = page.click_logo_link()
+            handles_after = driver.window_handles
+            current_page_source = page.driver.page_source
+            assert len(handles_before) == len(handles_after), "The number of open tabs changed after clicking"
+            assert initial_page_source == current_page_source, \
+                "'Logo' link in the sections 1 refreshes the page after clicking"
+            assert initial_page_url == current_page_url, \
+                "'Logo' link in the sections 1 leads to some page after clicking"
