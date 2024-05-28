@@ -125,3 +125,7 @@ class HeaderPage(BasePage):
         # print(f"Logo link status code is: ", link_status_code)
         return link_status_code
 
+    @allure.step("Click on the 'Logo' link")
+    def click_logo_link(self):
+        self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
+        return self.driver.current_url
