@@ -3,6 +3,8 @@
 
 class HeaderData:
 
-    links_href = ["https://brainup.site/"]
+    links_href = {
+        "logo_link_href": "https://brainup.site/"
+    }
 
     links_status_codes = [200]
