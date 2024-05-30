@@ -1,4 +1,6 @@
 """Methods for verifying web elements in the Header on the site"""
+import time
+
 import allure
 import requests
 
@@ -20,9 +22,9 @@ class HeaderPage(BasePage):
     @allure.step("Get structure of the 1st level of nesting in the Header")
     def get_structure_of_1st_level_in_header(self):
         elements = self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
-        print(f"Amount of elements on the 1st level of nesting in the Header is: {len(elements)}")
+        # print(f"Amount of elements on the 1st level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        print(f"Tags of elements on the 1st level of nesting in the Header are: {tags}")
+        # print(f"Tags of elements on the 1st level of nesting in the Header are: {tags}")
         return tags
 
     @allure.step("Check if elements of the 1st level of nesting are visible in the Header")
@@ -34,9 +36,9 @@ class HeaderPage(BasePage):
     @allure.step("Get structure of the 2nd level of nesting the Header")
     def get_structure_of_2nd_level_in_header(self):
         elements = self.elements_are_present(self.locators.HEADER_SECOND_LEVEL_ELEMENTS)
-        print(f"Amount of elements on the 2nd level of nesting in the Header is: {len(elements)}")
+        # print(f"Amount of elements on the 2nd level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        print(f"Tags of elements on the 2nd level of nesting in the Header are: {tags}")
+        # print(f"Tags of elements on the 2nd level of nesting in the Header are: {tags}")
         return tags
 
     @allure.step("Check if elements of the 2nd level of nesting are visible in the Header")
@@ -48,9 +50,9 @@ class HeaderPage(BasePage):
     @allure.step("Get structure of the 3rd level of nesting the Header")
     def get_structure_of_3rd_level_in_header(self):
         elements = self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
-        print(f"Amount of elements on the 3rd level of nesting in the Header is: {len(elements)}")
+        # print(f"Amount of elements on the 3rd level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        print(f"Tags of elements on the 3rd level of nesting in the Header are: {tags}")
+        # print(f"Tags of elements on the 3rd level of nesting in the Header are: {tags}")
         return tags
 
     @allure.step("Check if elements on the 3rd level of nesting are visible in the Header")
@@ -62,9 +64,9 @@ class HeaderPage(BasePage):
     @allure.step("Get structure of the 4th level of nesting the Header")
     def get_structure_of_4th_level_in_header(self):
         elements = self.elements_are_present(self.locators.HEADER_FOURTH_LEVEL_ELEMENTS)
-        print(f"Amount of elements on the 4th level of nesting in the Header is: {len(elements)}")
+        # print(f"Amount of elements on the 4th level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        print(f"Tags of elements on the 4th level of nesting in the Header are: {tags}")
+        # print(f"Tags of elements on the 4th level of nesting in the Header are: {tags}")
         return tags
 
     @allure.step("Check if elements on the 4th level of nesting are visible in the Header")
@@ -76,9 +78,9 @@ class HeaderPage(BasePage):
     @allure.step("Get structure of the 5th level of nesting the Header")
     def get_structure_of_5th_level_in_header(self):
         elements = self.elements_are_present(self.locators.HEADER_FIFTH_LEVEL_ELEMENTS)
-        print(f"Amount of elements on the 5th level of nesting in the Header is: {len(elements)}")
+        # print(f"Amount of elements on the 5th level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        print(f"Tags of elements on the 5th level of nesting in the Header are: {tags}")
+        # print(f"Tags of elements on the 5th level of nesting in the Header are: {tags}")
         return tags
 
     @allure.step("Check if elements on the 5th level of nesting are visible in the Header")
@@ -90,9 +92,9 @@ class HeaderPage(BasePage):
     @allure.step("Get structure of the 6th level of nesting the Header")
     def get_structure_of_6th_level_in_header(self):
         elements = self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
-        print(f"Amount of elements on the 6th level of nesting in the Header is: {len(elements)}")
+        # print(f"Amount of elements on the 6th level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        print(f"Tags of elements on the 6th level of nesting in the Header are: {tags}")
+        # print(f"Tags of elements on the 6th level of nesting in the Header are: {tags}")
         return tags
 
     @allure.step("Check if elements on the 6th level of nesting are invisible in the Header")
@@ -129,3 +131,34 @@ class HeaderPage(BasePage):
     def click_logo_link(self):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
+
+    @allure.step("Check if the 'Logo' image is present")
+    def check_logo_image_presence(self):
+        return self.element_is_present(self.locators.LOGO_IMAGE)
+
+    @allure.step("Check if the 'Logo' image is visible")
+    def check_logo_image_visibility(self):
+        return self.element_is_visible(self.locators.LOGO_IMAGE)
+
+    @allure.step("Get attribute 'xmlns' of the 'Logo' image")
+    def get_xmlns_of_logo_image(self):
+        return self.element_is_present(self.locators.LOGO_IMAGE).get_attribute("xmlns")
+
+    @allure.step("Get size values of the 'Logo' image")
+    def get_sizes_of_logo_image(self):
+        logo_image_sizes = self.get_image_size(self.locators.LOGO_IMAGE)
+        # print(f"The sizes of the 'Logo' image are: {logo_image_sizes}")
+        return logo_image_sizes
+
+    @allure.step("""Get size of the 'Logo' image and check its changes after resizing""")
+    def check_size_changes_of_logo_section(self):
+        section_size_before = self.get_image_size(self.locators.LOGO_SECTION)
+        # print(f"The sizes of the 'Logo' section are: {section_size_before}")
+        self.driver.set_window_size(220, 1100)
+        section_size_after = self.get_image_size(self.locators.LOGO_LINK)
+        # print(f"The sizes of the 'Logo' section are: {section_size_after}")
+        if section_size_before != section_size_after:
+            print(f"\nThe 'Logo' section has sizes that changed: \nfrom {section_size_before} before "
+                  f"resizing \nto {section_size_after} after resizing")
+        else:
+            print("\nThe 'Logo' section has sizes that didn't change after resizing")

@@ -1,4 +1,6 @@
 """Auto tests for verifying web elements in the Header of the site"""
+import time
+
 import allure
 from pages.header_page import HeaderPage
 from test_data.header_data import HeaderData
@@ -82,7 +84,7 @@ class TestHeaderPage:
 
             @allure.title("""Verify that the 'Logo' link on the 'Contacts' page leads an unauthorized user 
                              to the Start Unauthorized Page after clicking""")
-            def test_hp_02_03_verify_clicking_on_logo_link_on_start_unauthorized_page(self, driver, contacts_page_open):
+            def test_hp_02_03_verify_clicking_on_logo_link_on_contacts_page(self, driver, contacts_page_open):
                 page = HeaderPage(driver)
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
@@ -97,3 +99,18 @@ class TestHeaderPage:
                     "'Logo' link in the sections 1 leads to some page after clicking"
                 assert current_page_url == HeaderData.links_href["logo_link_href"], \
                     "'Logo' link in sections 1 leads to incorrect page after clicking"
+
+            @allure.title("Verify presence, visibility and attributes of the 'Logo' image")
+            def test_hp_02_04_verify_logo_image(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                image_presence = page.check_logo_image_presence()
+                image_visibility = page.check_logo_image_visibility()
+                image_xmlns = page.get_xmlns_of_logo_image()
+                image_sizes = page.get_sizes_of_logo_image()
+                page.check_size_changes_of_logo_section()
+                assert image_presence, "Image in the 'Logo' link is absent"
+                assert image_visibility, "The 'Logo' image is invisible"
+                assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
+                assert image_xmlns == HeaderData.logo_image_xmlns, \
+                    "The 'xmlns' attribute value of the 'Logo' image is unaccurate"
+                assert image_sizes != 0, f"The 'Logo' image is invisible due its size = 0, 0"
