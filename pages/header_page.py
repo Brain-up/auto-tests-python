@@ -103,7 +103,7 @@ class HeaderPage(BasePage):
         non_display_of_all_elements = all(self.element_is_not_visible(element) for element in elements)
         return non_display_of_all_elements
 
-# Checks of Logo in the Header
+# Checks of Logo in the Section 1 in the Header
     @allure.step("Check the 'Logo' link is present in DOM")
     def check_logo_link_presence(self):
         return self.element_is_present(self.locators.LOGO_LINK)
@@ -158,7 +158,41 @@ class HeaderPage(BasePage):
         section_size_after = self.get_image_size(self.locators.LOGO_LINK)
         # print(f"The sizes of the 'Logo' section are: {section_size_after}")
         if section_size_before != section_size_after:
-            print(f"\nThe 'Logo' section has sizes that changed: \nfrom {section_size_before} before "
-                  f"resizing \nto {section_size_after} after resizing")
+            changes = 1
+            # print(f"\nThe 'Logo' section has sizes that changed: \nfrom {section_size_before} before "
+            #       f"resizing \nto {section_size_after} after resizing")
         else:
-            print("\nThe 'Logo' section has sizes that didn't change after resizing")
+            changes = 0
+            # print("\nThe 'Logo' section has sizes that didn't change after resizing")
+        return changes
+
+    # Checks of the 'About' and the 'Telegram' links in the Section 2 in the Header
+    @allure.step("Get the list of links in the Section 2 in the Header")
+    def get_list_of_links_in_section_2(self):
+        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
+        # print(f"\nAmount of links in the Section 2 is: {len(links)}")
+        return links
+
+    @allure.step("Check the 'About' and the 'Telegram' links are present and visible in the Section 2 in the Header")
+    def check_links_visibility_in_section_2(self):
+        links = self.get_list_of_links_in_section_2()
+        all_links_are_displayed = all(link.is_displayed() for link in links)
+        return all_links_are_displayed
+
+    @allure.step("Check the 'About' and the 'Telegram' links are clickable in the Section 2 in the Header")
+    def check_links_clickability_in_section_2(self):
+        links = self.get_list_of_links_in_section_2()
+        all_links_are_enabled = all(link.is_enabled() for link in links)
+        return all_links_are_enabled
+
+    @allure.step("Get attribute 'href' of the 'About' and the 'Telegram' links in the Section 2 in the Header")
+    def get_links_href_in_section_2(self):
+        links = self.get_list_of_links_in_section_2()
+        links_href = [element.get_attribute("href") for element in links]
+        return links_href
+
+    @allure.step("Get status codes of the 'About' and the 'Telegram' links in the Section 2 in the Header")
+    def get_links_status_code_in_section_2(self):
+        links_href = self.get_links_href_in_section_2()
+        links_status_code = [requests.head(link_href).status_code for link_href in links_href]
+        return links_status_code

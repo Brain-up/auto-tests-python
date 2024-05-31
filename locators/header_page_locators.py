@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 
 class HeaderPageLocators:
+    CONTACTS_LINK_IN_MORE_MENU = (By.ID, "ember6")
     HEADER_CONTENT = (By.XPATH, "//div[contains(@class, 'header')]")
     HEADER_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*")
     HEADER_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*")
@@ -15,5 +16,5 @@ class HeaderPageLocators:
     LOGO_LINK = (By.XPATH, "//a[@data-test-logo]")
     LOGO_SECTION = (By.XPATH, "//nav/div")
     MORE_MENU = (By.ID, "other-menu")
-    CONTACTS_LINK_IN_MORE_MENU = (By.ID, "ember6")
+    SECTION_2_LINKS = (By.XPATH, "(//div)[4]/div/a")
     SPECIALISTS_LINK_IN_MORE_MENU = (By.ID, "ember7")

@@ -63,7 +63,7 @@ class TestHeaderPage:
                 assert link_clickability, "The 'Logo' link is unclickable"
                 assert link_href == HeaderData.links_href["logo_link_href"], \
                     f"The attribute 'href' of the {link_href} link does not match the valid value"
-                assert link_status_code in HeaderData.links_status_codes, \
+                assert link_status_code == HeaderData.links_status_code, \
                     f"The status code of the {link_href} does not match the valid value"
 
             @allure.title("""Verify that the 'Logo' link on the Start Unauthorized Page 
@@ -100,17 +100,38 @@ class TestHeaderPage:
                 assert current_page_url == HeaderData.links_href["logo_link_href"], \
                     "'Logo' link in sections 1 leads to incorrect page after clicking"
 
-            @allure.title("Verify presence, visibility and attributes of the 'Logo' image")
+            @allure.title("Verify presence, visibility, attributes and sizes of the 'Logo' image")
             def test_hp_02_04_verify_logo_image(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 image_presence = page.check_logo_image_presence()
                 image_visibility = page.check_logo_image_visibility()
                 image_xmlns = page.get_xmlns_of_logo_image()
                 image_sizes = page.get_sizes_of_logo_image()
-                page.check_size_changes_of_logo_section()
+                image_sizes_change = page.check_size_changes_of_logo_section()
                 assert image_presence, "Image in the 'Logo' link is absent"
                 assert image_visibility, "The 'Logo' image is invisible"
                 assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
                 assert image_xmlns == HeaderData.logo_image_xmlns, \
                     "The 'xmlns' attribute value of the 'Logo' image is unaccurate"
                 assert image_sizes != 0, f"The 'Logo' image is invisible due its size = 0, 0"
+                assert image_sizes_change, "Checks of changes in image sizes have not carried out"
+
+        class TestHeaderPageSection2:
+
+            @allure.title("Verify presence, visibility, clickability, href, status code "
+                          "of the 'About' and the 'Telegram' links in the Section 2 in the Header")
+            def test_hp_03_01_verify_links_in_section_2(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                links_presence = page.get_list_of_links_in_section_2()
+                links_visibility = page.check_links_visibility_in_section_2()
+                links_clickability = page.check_links_clickability_in_section_2()
+                links_href = page.get_links_href_in_section_2()
+                links_status_code = page.get_links_status_code_in_section_2()
+                assert links_presence, "Links are absent in DOM"
+                assert links_visibility, "Links are invisible in the page"
+                assert links_clickability, "Links are unclickable"
+                assert links_href, "Links href are empty"
+                assert links_href == HeaderData.links_href["section 2 links href"], \
+                    "The attribute 'href' of the links do not match the valid values"
+                assert all(link_status_code == HeaderData.links_status_code for link_status_code in links_status_code), \
+                    "The status code of the links do not match the valid value"
