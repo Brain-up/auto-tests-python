@@ -196,3 +196,19 @@ class HeaderPage(BasePage):
         links_href = self.get_links_href_in_section_2()
         links_status_code = [requests.head(link_href).status_code for link_href in links_href]
         return links_status_code
+
+    @allure.step("""Click on the 'About' and the 'Telegram' links in the Section 2 in the Header 
+    and thereby open corresponding web pages in the same or new tab""")
+    def click_on_links_and_return_back(self):
+        opened_pages = []
+        self.element_is_present_and_clickable(self.locators.SECTION_2_LINK_ABOUT).click()
+        opened_pages.append(self.driver.current_url)
+        self.driver.back()
+        opened_pages.append(self.driver.current_url)
+        self.element_is_present_and_clickable(self.locators.SECTION_2_LINK_TELEGRAM).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        opened_pages.append(self.driver.current_url)
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        opened_pages.append(self.driver.current_url)
+        # print('\n', *opened_pages, sep='\n')
+        return opened_pages
