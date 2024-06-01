@@ -1,0 +1,1723 @@
+{
+  "uid" : "15d70c3564fc223a",
+  "name" : "Change the password by receiving an email link",
+  "fullName" : "tests.profile_page_test.TestProfilePage#test_change_password",
+  "historyId" : "9957e716460bffae2f2d96bf28fa1581",
+  "time" : {
+    "start" : 1717230032337,
+    "stop" : 1717230081707,
+    "duration" : 49370
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x55904a88ce8a <unknown>\n#1 0x55904a57645c <unknown>\n#2 0x55904a5c25b5 <unknown>\n#3 0x55904a5c2671 <unknown>\n#4 0x55904a606f14 <unknown>\n#5 0x55904a5e54dd <unknown>\n#6 0x55904a6042cc <unknown>\n#7 0x55904a5e5253 <unknown>\n#8 0x55904a5b51c7 <unknown>\n#9 0x55904a5b5b3e <unknown>\n#10 0x55904a8532cb <unknown>\n#11 0x55904a857377 <unknown>\n#12 0x55904a83fdfe <unknown>\n#13 0x55904a857e42 <unknown>\n#14 0x55904a82479f <unknown>\n#15 0x55904a87c178 <unknown>\n#16 0x55904a87c34b <unknown>\n#17 0x55904a88bfbc <unknown>\n#18 0x7fe463c94ac3 <unknown>",
+  "statusTrace" : "self = <tests.profile_page_test.TestProfilePage object at 0x7f12b152cf80>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\")>\nmain_page_open = None\n\n    @allure.title(\"Change the password by receiving an email link\")\n    def test_change_password(self, driver, main_page_open):\n        page = ProfilePage(driver)\n        page.open_login_page()\n        page.user_has_authorised()\n        page.go_to_profile_page()\n        page.click_change_password_link()\n        page.field_recovery_email()\n        page.click_send_recovery_email_link()\n        link = page.get_link_change_password_by_email()\n        assert link, \"The link to change the password was not received\"\n        driver.get(link)\n        page.enter_new_password_field()\n        page.click_save_button()\n        page.get_successful_message()\n        assert page.get_successful_message(), \"The password hasn't changed\"\n        driver.back()\n        # Return the password by receiving an email link\n        page = ProfilePage(driver)\n        page.open_login_page()\n        page.user_has_authorised_with_new_password()\n        page.go_to_profile_page()\n        page.click_change_password_link()\n        page.field_recovery_email()\n        page.click_send_recovery_email_link()\n        link = page.get_link_change_password_by_email()\n        assert link, \"The link to change the password was not received\"\n        driver.get(link)\n>       page.enter_old_password_field()\n\ntests/profile_page_test.py:39: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/profile_page.py:87: in enter_old_password_field\n    self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.environ[\"CHANGE_PASSWORD\"])\npages/base_page.py:38: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:55: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7f12b1607380>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//input[@name=\"newPassword\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nE       Stacktrace:\nE       #0 0x55904a88ce8a <unknown>\nE       #1 0x55904a57645c <unknown>\nE       #2 0x55904a5c25b5 <unknown>\nE       #3 0x55904a5c2671 <unknown>\nE       #4 0x55904a606f14 <unknown>\nE       #5 0x55904a5e54dd <unknown>\nE       #6 0x55904a6042cc <unknown>\nE       #7 0x55904a5e5253 <unknown>\nE       #8 0x55904a5b51c7 <unknown>\nE       #9 0x55904a5b5b3e <unknown>\nE       #10 0x55904a8532cb <unknown>\nE       #11 0x55904a857377 <unknown>\nE       #12 0x55904a83fdfe <unknown>\nE       #13 0x55904a857e42 <unknown>\nE       #14 0x55904a82479f <unknown>\nE       #15 0x55904a87c178 <unknown>\nE       #16 0x55904a87c34b <unknown>\nE       #17 0x55904a88bfbc <unknown>\nE       #18 0x7fe463c94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1717230028958,
+      "stop" : 1717230029645,
+      "duration" : 687
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1717230029645,
+      "stop" : 1717230032336,
+      "duration" : 2691
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1717230029645,
+        "stop" : 1717230032336,
+        "duration" : 2691
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1717229581519,
+      "stop" : 1717229581519,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x55904a88ce8a <unknown>\n#1 0x55904a57645c <unknown>\n#2 0x55904a5c25b5 <unknown>\n#3 0x55904a5c2671 <unknown>\n#4 0x55904a606f14 <unknown>\n#5 0x55904a5e54dd <unknown>\n#6 0x55904a6042cc <unknown>\n#7 0x55904a5e5253 <unknown>\n#8 0x55904a5b51c7 <unknown>\n#9 0x55904a5b5b3e <unknown>\n#10 0x55904a8532cb <unknown>\n#11 0x55904a857377 <unknown>\n#12 0x55904a83fdfe <unknown>\n#13 0x55904a857e42 <unknown>\n#14 0x55904a82479f <unknown>\n#15 0x55904a87c178 <unknown>\n#16 0x55904a87c34b <unknown>\n#17 0x55904a88bfbc <unknown>\n#18 0x7fe463c94ac3 <unknown>",
+    "statusTrace" : "self = <tests.profile_page_test.TestProfilePage object at 0x7f12b152cf80>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\")>\nmain_page_open = None\n\n    @allure.title(\"Change the password by receiving an email link\")\n    def test_change_password(self, driver, main_page_open):\n        page = ProfilePage(driver)\n        page.open_login_page()\n        page.user_has_authorised()\n        page.go_to_profile_page()\n        page.click_change_password_link()\n        page.field_recovery_email()\n        page.click_send_recovery_email_link()\n        link = page.get_link_change_password_by_email()\n        assert link, \"The link to change the password was not received\"\n        driver.get(link)\n        page.enter_new_password_field()\n        page.click_save_button()\n        page.get_successful_message()\n        assert page.get_successful_message(), \"The password hasn't changed\"\n        driver.back()\n        # Return the password by receiving an email link\n        page = ProfilePage(driver)\n        page.open_login_page()\n        page.user_has_authorised_with_new_password()\n        page.go_to_profile_page()\n        page.click_change_password_link()\n        page.field_recovery_email()\n        page.click_send_recovery_email_link()\n        link = page.get_link_change_password_by_email()\n        assert link, \"The link to change the password was not received\"\n        driver.get(link)\n>       page.enter_old_password_field()\n\ntests/profile_page_test.py:39: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/profile_page.py:87: in enter_old_password_field\n    self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.environ[\"CHANGE_PASSWORD\"])\npages/base_page.py:38: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:55: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7f12b1607380>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//input[@name=\"newPassword\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nE       Stacktrace:\nE       #0 0x55904a88ce8a <unknown>\nE       #1 0x55904a57645c <unknown>\nE       #2 0x55904a5c25b5 <unknown>\nE       #3 0x55904a5c2671 <unknown>\nE       #4 0x55904a606f14 <unknown>\nE       #5 0x55904a5e54dd <unknown>\nE       #6 0x55904a6042cc <unknown>\nE       #7 0x55904a5e5253 <unknown>\nE       #8 0x55904a5b51c7 <unknown>\nE       #9 0x55904a5b5b3e <unknown>\nE       #10 0x55904a8532cb <unknown>\nE       #11 0x55904a857377 <unknown>\nE       #12 0x55904a83fdfe <unknown>\nE       #13 0x55904a857e42 <unknown>\nE       #14 0x55904a82479f <unknown>\nE       #15 0x55904a87c178 <unknown>\nE       #16 0x55904a87c34b <unknown>\nE       #17 0x55904a88bfbc <unknown>\nE       #18 0x7fe463c94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+    "steps" : [ {
+      "name" : "Open login page",
+      "time" : {
+        "start" : 1717230032337,
+        "stop" : 1717230032422,
+        "duration" : 85
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//section//a')",
+        "time" : {
+          "start" : 1717230032337,
+          "stop" : 1717230032374,
+          "duration" : 37
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230032355,
+            "stop" : 1717230032374,
+            "duration" : 19
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//section//a')",
+            "time" : {
+              "start" : 1717230032355,
+              "stop" : 1717230032374,
+              "duration" : 19
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//section//a')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "The user has authorised",
+      "time" : {
+        "start" : 1717230032422,
+        "stop" : 1717230032648,
+        "duration" : 226
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"login\"]')",
+        "time" : {
+          "start" : 1717230032423,
+          "stop" : 1717230032448,
+          "duration" : 25
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"login\"]')",
+          "time" : {
+            "start" : 1717230032423,
+            "stop" : 1717230032433,
+            "duration" : 10
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.56C4EEAEBD1E9901E863B1FC02A8843A.e.27\")>",
+          "time" : {
+            "start" : 1717230032433,
+            "stop" : 1717230032437,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"password\"]')",
+        "time" : {
+          "start" : 1717230032504,
+          "stop" : 1717230032529,
+          "duration" : 25
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"password\"]')",
+          "time" : {
+            "start" : 1717230032504,
+            "stop" : 1717230032513,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.56C4EEAEBD1E9901E863B1FC02A8843A.e.30\")>",
+          "time" : {
+            "start" : 1717230032513,
+            "stop" : 1717230032518,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//*[@type=\"submit\"]')",
+        "time" : {
+          "start" : 1717230032569,
+          "stop" : 1717230032599,
+          "duration" : 30
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230032583,
+            "stop" : 1717230032599,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//*[@type=\"submit\"]')",
+            "time" : {
+              "start" : 1717230032583,
+              "stop" : 1717230032599,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//*[@type=\"submit\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Wait until url: https://brainup.site/profile will be changed.",
+        "time" : {
+          "start" : 1717230032636,
+          "stop" : 1717230032648,
+          "duration" : 12
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 10,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Go to the Profile page",
+      "time" : {
+        "start" : 1717230032648,
+        "stop" : 1717230033224,
+        "duration" : 576
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[@href=\"/profile\"]')",
+        "time" : {
+          "start" : 1717230032648,
+          "stop" : 1717230033194,
+          "duration" : 546
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230033178,
+            "stop" : 1717230033194,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[@href=\"/profile\"]')",
+            "time" : {
+              "start" : 1717230033178,
+              "stop" : 1717230033194,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[@href=\"/profile\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Click the button 'Change password'",
+      "time" : {
+        "start" : 1717230033225,
+        "stop" : 1717230033803,
+        "duration" : 578
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[@href=\"/password-recovery\"]')",
+        "time" : {
+          "start" : 1717230033225,
+          "stop" : 1717230033767,
+          "duration" : 542
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230033752,
+            "stop" : 1717230033767,
+            "duration" : 15
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[@href=\"/password-recovery\"]')",
+            "time" : {
+              "start" : 1717230033752,
+              "stop" : 1717230033767,
+              "duration" : 15
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[@href=\"/password-recovery\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Clear field the email and enter data",
+      "time" : {
+        "start" : 1717230033803,
+        "stop" : 1717230033917,
+        "duration" : 114
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible: ('id', 'email-input')",
+        "time" : {
+          "start" : 1717230033803,
+          "stop" : 1717230033828,
+          "duration" : 25
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('id', 'email-input')",
+          "time" : {
+            "start" : 1717230033803,
+            "stop" : 1717230033812,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.56C4EEAEBD1E9901E863B1FC02A8843A.e.48\")>",
+          "time" : {
+            "start" : 1717230033812,
+            "stop" : 1717230033816,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('id', 'email-input')",
+        "time" : {
+          "start" : 1717230033851,
+          "stop" : 1717230033870,
+          "duration" : 19
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('id', 'email-input')",
+          "time" : {
+            "start" : 1717230033851,
+            "stop" : 1717230033856,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.56C4EEAEBD1E9901E863B1FC02A8843A.e.48\")>",
+          "time" : {
+            "start" : 1717230033856,
+            "stop" : 1717230033859,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 6,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Click the button 'Send recovery email'",
+      "time" : {
+        "start" : 1717230033917,
+        "stop" : 1717230043971,
+        "duration" : 10054
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('css selector', 'form [type=\"button\"]')",
+        "time" : {
+          "start" : 1717230033917,
+          "stop" : 1717230033947,
+          "duration" : 30
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230033931,
+            "stop" : 1717230033947,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('css selector', 'form [type=\"button\"]')",
+            "time" : {
+              "start" : 1717230033931,
+              "stop" : 1717230033947,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('css selector', 'form [type=\"button\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Get a link to change the password by email",
+      "time" : {
+        "start" : 1717230043971,
+        "stop" : 1717230046184,
+        "duration" : 2213
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Enter the data in the email field",
+      "time" : {
+        "start" : 1717230046436,
+        "stop" : 1717230047005,
+        "duration" : 569
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible: ('xpath', '//input[@name=\"newPassword\"]')",
+        "time" : {
+          "start" : 1717230046436,
+          "stop" : 1717230046980,
+          "duration" : 544
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@name=\"newPassword\"]')",
+          "time" : {
+            "start" : 1717230046436,
+            "stop" : 1717230046963,
+            "duration" : 527
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.0CCD31C6496BC4785C85C4F960B56884.e.3\")>",
+          "time" : {
+            "start" : 1717230046963,
+            "stop" : 1717230046967,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Click the button 'SAVE'",
+      "time" : {
+        "start" : 1717230047005,
+        "stop" : 1717230047064,
+        "duration" : 59
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//button[@type=\"submit\"]')",
+        "time" : {
+          "start" : 1717230047005,
+          "stop" : 1717230047038,
+          "duration" : 33
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230047021,
+            "stop" : 1717230047038,
+            "duration" : 17
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//button[@type=\"submit\"]')",
+            "time" : {
+              "start" : 1717230047021,
+              "stop" : 1717230047037,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//button[@type=\"submit\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Receive a successful message",
+      "time" : {
+        "start" : 1717230047064,
+        "stop" : 1717230047086,
+        "duration" : 22
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible: ('xpath', '//p[@class=\"firebaseui-text\"]')",
+        "time" : {
+          "start" : 1717230047064,
+          "stop" : 1717230047086,
+          "duration" : 22
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//p[@class=\"firebaseui-text\"]')",
+          "time" : {
+            "start" : 1717230047064,
+            "stop" : 1717230047072,
+            "duration" : 8
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.0CCD31C6496BC4785C85C4F960B56884.e.10\")>",
+          "time" : {
+            "start" : 1717230047072,
+            "stop" : 1717230047075,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Receive a successful message",
+      "time" : {
+        "start" : 1717230047086,
+        "stop" : 1717230047105,
+        "duration" : 19
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible: ('xpath', '//p[@class=\"firebaseui-text\"]')",
+        "time" : {
+          "start" : 1717230047086,
+          "stop" : 1717230047105,
+          "duration" : 19
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//p[@class=\"firebaseui-text\"]')",
+          "time" : {
+            "start" : 1717230047086,
+            "stop" : 1717230047091,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.0CCD31C6496BC4785C85C4F960B56884.e.10\")>",
+          "time" : {
+            "start" : 1717230047091,
+            "stop" : 1717230047094,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Open login page",
+      "time" : {
+        "start" : 1717230047485,
+        "stop" : 1717230048096,
+        "duration" : 611
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//section//a')",
+        "time" : {
+          "start" : 1717230047485,
+          "stop" : 1717230048037,
+          "duration" : 552
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230048018,
+            "stop" : 1717230048037,
+            "duration" : 19
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//section//a')",
+            "time" : {
+              "start" : 1717230048018,
+              "stop" : 1717230048037,
+              "duration" : 19
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//section//a')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "The user has authorised with new password",
+      "time" : {
+        "start" : 1717230048096,
+        "stop" : 1717230048315,
+        "duration" : 219
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"login\"]')",
+        "time" : {
+          "start" : 1717230048096,
+          "stop" : 1717230048123,
+          "duration" : 27
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"login\"]')",
+          "time" : {
+            "start" : 1717230048096,
+            "stop" : 1717230048108,
+            "duration" : 12
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.79DB78983754AA55CBB8DAD2E00D57D1.e.26\")>",
+          "time" : {
+            "start" : 1717230048108,
+            "stop" : 1717230048112,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('xpath', '//input[@id=\"password\"]')",
+        "time" : {
+          "start" : 1717230048188,
+          "stop" : 1717230048212,
+          "duration" : 24
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@id=\"password\"]')",
+          "time" : {
+            "start" : 1717230048188,
+            "stop" : 1717230048198,
+            "duration" : 10
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.79DB78983754AA55CBB8DAD2E00D57D1.e.29\")>",
+          "time" : {
+            "start" : 1717230048198,
+            "stop" : 1717230048201,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible and clickable: ('xpath', '//*[@type=\"submit\"]')",
+        "time" : {
+          "start" : 1717230048253,
+          "stop" : 1717230048283,
+          "duration" : 30
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230048268,
+            "stop" : 1717230048283,
+            "duration" : 15
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//*[@type=\"submit\"]')",
+            "time" : {
+              "start" : 1717230048268,
+              "stop" : 1717230048283,
+              "duration" : 15
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//*[@type=\"submit\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 9,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Go to the Profile page",
+      "time" : {
+        "start" : 1717230048315,
+        "stop" : 1717230048889,
+        "duration" : 574
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[@href=\"/profile\"]')",
+        "time" : {
+          "start" : 1717230048315,
+          "stop" : 1717230048860,
+          "duration" : 545
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230048844,
+            "stop" : 1717230048860,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[@href=\"/profile\"]')",
+            "time" : {
+              "start" : 1717230048844,
+              "stop" : 1717230048860,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[@href=\"/profile\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Click the button 'Change password'",
+      "time" : {
+        "start" : 1717230048889,
+        "stop" : 1717230049467,
+        "duration" : 578
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('xpath', '//a[@href=\"/password-recovery\"]')",
+        "time" : {
+          "start" : 1717230048889,
+          "stop" : 1717230049433,
+          "duration" : 544
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230049418,
+            "stop" : 1717230049433,
+            "duration" : 15
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('xpath', '//a[@href=\"/password-recovery\"]')",
+            "time" : {
+              "start" : 1717230049418,
+              "stop" : 1717230049433,
+              "duration" : 15
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//a[@href=\"/password-recovery\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Clear field the email and enter data",
+      "time" : {
+        "start" : 1717230049467,
+        "stop" : 1717230049580,
+        "duration" : 113
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible: ('id', 'email-input')",
+        "time" : {
+          "start" : 1717230049467,
+          "stop" : 1717230049492,
+          "duration" : 25
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('id', 'email-input')",
+          "time" : {
+            "start" : 1717230049467,
+            "stop" : 1717230049477,
+            "duration" : 10
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.79DB78983754AA55CBB8DAD2E00D57D1.e.47\")>",
+          "time" : {
+            "start" : 1717230049477,
+            "stop" : 1717230049480,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Check element is visible: ('id', 'email-input')",
+        "time" : {
+          "start" : 1717230049515,
+          "stop" : 1717230049534,
+          "duration" : 19
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is present: ('id', 'email-input')",
+          "time" : {
+            "start" : 1717230049515,
+            "stop" : 1717230049520,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Go to element: <selenium.webdriver.remote.webelement.WebElement (session=\"99d77fc2bd9264be2faa1fccf3b7bf3b\", element=\"f.7359B7D90F3335DEE73DD5DD3D1EC09F.d.79DB78983754AA55CBB8DAD2E00D57D1.e.47\")>",
+          "time" : {
+            "start" : 1717230049520,
+            "stop" : 1717230049523,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 6,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Click the button 'Send recovery email'",
+      "time" : {
+        "start" : 1717230049580,
+        "stop" : 1717230059636,
+        "duration" : 10056
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check element is visible and clickable: ('css selector', 'form [type=\"button\"]')",
+        "time" : {
+          "start" : 1717230049580,
+          "stop" : 1717230049611,
+          "duration" : 31
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Check element is clickable",
+          "time" : {
+            "start" : 1717230049595,
+            "stop" : 1717230049611,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Check element is clickable: ('css selector', 'form [type=\"button\"]')",
+            "time" : {
+              "start" : 1717230049595,
+              "stop" : 1717230049611,
+              "duration" : 16
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('css selector', 'form [type=\"button\"]')"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Get a link to change the password by email",
+      "time" : {
+        "start" : 1717230059636,
+        "stop" : 1717230061642,
+        "duration" : 2006
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Enter old password in the email field",
+      "time" : {
+        "start" : 1717230061702,
+        "stop" : 1717230081707,
+        "duration" : 20005
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x55904a88ce8a <unknown>\n#1 0x55904a57645c <unknown>\n#2 0x55904a5c25b5 <unknown>\n#3 0x55904a5c2671 <unknown>\n#4 0x55904a606f14 <unknown>\n#5 0x55904a5e54dd <unknown>\n#6 0x55904a6042cc <unknown>\n#7 0x55904a5e5253 <unknown>\n#8 0x55904a5b51c7 <unknown>\n#9 0x55904a5b5b3e <unknown>\n#10 0x55904a8532cb <unknown>\n#11 0x55904a857377 <unknown>\n#12 0x55904a83fdfe <unknown>\n#13 0x55904a857e42 <unknown>\n#14 0x55904a82479f <unknown>\n#15 0x55904a87c178 <unknown>\n#16 0x55904a87c34b <unknown>\n#17 0x55904a88bfbc <unknown>\n#18 0x7fe463c94ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/profile_page.py\", line 87, in enter_old_password_field\n    self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(os.environ[\"CHANGE_PASSWORD\"])\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 38, in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 55, in element_is_present\n    return Wait(self.driver, self.timeout).until(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ {
+        "name" : "Check element is visible: ('xpath', '//input[@name=\"newPassword\"]')",
+        "time" : {
+          "start" : 1717230061702,
+          "stop" : 1717230081706,
+          "duration" : 20004
+        },
+        "status" : "broken",
+        "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x55904a88ce8a <unknown>\n#1 0x55904a57645c <unknown>\n#2 0x55904a5c25b5 <unknown>\n#3 0x55904a5c2671 <unknown>\n#4 0x55904a606f14 <unknown>\n#5 0x55904a5e54dd <unknown>\n#6 0x55904a6042cc <unknown>\n#7 0x55904a5e5253 <unknown>\n#8 0x55904a5b51c7 <unknown>\n#9 0x55904a5b5b3e <unknown>\n#10 0x55904a8532cb <unknown>\n#11 0x55904a857377 <unknown>\n#12 0x55904a83fdfe <unknown>\n#13 0x55904a857e42 <unknown>\n#14 0x55904a82479f <unknown>\n#15 0x55904a87c178 <unknown>\n#16 0x55904a87c34b <unknown>\n#17 0x55904a88bfbc <unknown>\n#18 0x7fe463c94ac3 <unknown>\n\n",
+        "statusTrace" : "  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 38, in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 55, in element_is_present\n    return Wait(self.driver, self.timeout).until(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+        "steps" : [ {
+          "name" : "Check element is present: ('xpath', '//input[@name=\"newPassword\"]')",
+          "time" : {
+            "start" : 1717230061702,
+            "stop" : 1717230081706,
+            "duration" : 20004
+          },
+          "status" : "broken",
+          "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x55904a88ce8a <unknown>\n#1 0x55904a57645c <unknown>\n#2 0x55904a5c25b5 <unknown>\n#3 0x55904a5c2671 <unknown>\n#4 0x55904a606f14 <unknown>\n#5 0x55904a5e54dd <unknown>\n#6 0x55904a6042cc <unknown>\n#7 0x55904a5e5253 <unknown>\n#8 0x55904a5b51c7 <unknown>\n#9 0x55904a5b5b3e <unknown>\n#10 0x55904a8532cb <unknown>\n#11 0x55904a857377 <unknown>\n#12 0x55904a83fdfe <unknown>\n#13 0x55904a857e42 <unknown>\n#14 0x55904a82479f <unknown>\n#15 0x55904a87c178 <unknown>\n#16 0x55904a87c34b <unknown>\n#17 0x55904a88bfbc <unknown>\n#18 0x7fe463c94ac3 <unknown>\n\n",
+          "statusTrace" : "  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 55, in element_is_present\n    return Wait(self.driver, self.timeout).until(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "ae6e68fa481b9772",
+      "name" : "Screenshot",
+      "source" : "ae6e68fa481b9772.png",
+      "type" : "image/png",
+      "size" : 18806
+    }, {
+      "uid" : "b1712798d3a3af7e",
+      "name" : "HTML source",
+      "source" : "b1712798d3a3af7e.html",
+      "type" : "text/html",
+      "size" : 48531
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 88,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1717230081849,
+      "stop" : 1717230081998,
+      "duration" : 149
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "188574e6df63617c",
+      "name" : "Screenshot 2024-06-01 08:21:21.935337",
+      "source" : "188574e6df63617c.png",
+      "type" : "image/png",
+      "size" : 18806
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Test Profile Page"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "profile_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestProfilePage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1984-224"
+  }, {
+    "name" : "thread",
+    "value" : "2367-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.profile_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 37,
+        "unknown" : 0,
+        "total" : 40
+      },
+      "items" : [ {
+        "uid" : "a63f309130e4c99f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/17//#testresult/a63f309130e4c99f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1717203471466,
+          "stop" : 1717203502978,
+          "duration" : 31512
+        }
+      }, {
+        "uid" : "d39b79e5f2adce05",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/25//#testresult/d39b79e5f2adce05",
+        "status" : "passed",
+        "time" : {
+          "start" : 1717150911516,
+          "stop" : 1717150943352,
+          "duration" : 31836
+        }
+      }, {
+        "uid" : "e59530135d91abed",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/24//#testresult/e59530135d91abed",
+        "status" : "passed",
+        "time" : {
+          "start" : 1717149259618,
+          "stop" : 1717149290237,
+          "duration" : 30619
+        }
+      }, {
+        "uid" : "2f868fa5d1575445",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/16//#testresult/2f868fa5d1575445",
+        "status" : "passed",
+        "time" : {
+          "start" : 1717116869635,
+          "stop" : 1717116900252,
+          "duration" : 30617
+        }
+      }, {
+        "uid" : "359c99721eae3eb4",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/23//#testresult/359c99721eae3eb4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1717060314039,
+          "stop" : 1717060344760,
+          "duration" : 30721
+        }
+      }, {
+        "uid" : "759cee3670a5d5e7",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/22//#testresult/759cee3670a5d5e7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1717058580130,
+          "stop" : 1717058613624,
+          "duration" : 33494
+        }
+      }, {
+        "uid" : "cdc4158ca908810f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/15//#testresult/cdc4158ca908810f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1717030312199,
+          "stop" : 1717030342414,
+          "duration" : 30215
+        }
+      }, {
+        "uid" : "94554f2e2e5bd56a",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/21//#testresult/94554f2e2e5bd56a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716975013348,
+          "stop" : 1716975043625,
+          "duration" : 30277
+        }
+      }, {
+        "uid" : "8ff573a59cd6c794",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/20//#testresult/8ff573a59cd6c794",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716972161489,
+          "stop" : 1716972193744,
+          "duration" : 32255
+        }
+      }, {
+        "uid" : "765a5df0d92feb2c",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/14//#testresult/765a5df0d92feb2c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716944224463,
+          "stop" : 1716944255483,
+          "duration" : 31020
+        }
+      }, {
+        "uid" : "11469f867307c2fe",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/19//#testresult/11469f867307c2fe",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716904669434,
+          "stop" : 1716904702174,
+          "duration" : 32740
+        }
+      }, {
+        "uid" : "e45738dd45fa4346",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/18//#testresult/e45738dd45fa4346",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716888656004,
+          "stop" : 1716888688413,
+          "duration" : 32409
+        }
+      }, {
+        "uid" : "1044073d839bc4e3",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/13//#testresult/1044073d839bc4e3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716857548564,
+          "stop" : 1716857579299,
+          "duration" : 30735
+        }
+      }, {
+        "uid" : "7a2a174b6807b8a7",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/17//#testresult/7a2a174b6807b8a7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716801741595,
+          "stop" : 1716801773639,
+          "duration" : 32044
+        }
+      }, {
+        "uid" : "2eba13520b6eb215",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/16//#testresult/2eba13520b6eb215",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716799905472,
+          "stop" : 1716799936328,
+          "duration" : 30856
+        }
+      }, {
+        "uid" : "61b12e84839f253b",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/12//#testresult/61b12e84839f253b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716771131299,
+          "stop" : 1716771161726,
+          "duration" : 30427
+        }
+      }, {
+        "uid" : "519d9208a93838a8",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/15//#testresult/519d9208a93838a8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716716147445,
+          "stop" : 1716716178238,
+          "duration" : 30793
+        }
+      }, {
+        "uid" : "ad66f05b10a57ace",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/14//#testresult/ad66f05b10a57ace",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716714957560,
+          "stop" : 1716714988472,
+          "duration" : 30912
+        }
+      }, {
+        "uid" : "bca38eed41ce664d",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/14//#testresult/bca38eed41ce664d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716712384590,
+          "stop" : 1716712417743,
+          "duration" : 33153
+        }
+      }, {
+        "uid" : "66138699ff528052",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/11//#testresult/66138699ff528052",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716685100552,
+          "stop" : 1716685132751,
+          "duration" : 32199
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "15d70c3564fc223a.json",
+  "parameterValues" : [ ]
+}
