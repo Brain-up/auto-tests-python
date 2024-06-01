@@ -135,3 +135,11 @@ class TestHeaderPage:
                     "The attribute 'href' of the links do not match the valid values"
                 assert all(link_status_code == HeaderData.links_status_code for link_status_code in links_status_code), \
                     "The status code of the links do not match the valid value"
+
+            @allure.title("""Verify if the 'About' and the 'Telegram' links in the Section 2 
+                          lead to the correct pages after click""")
+            def test_hp_03_02_verify_links_lead_to_the_correct_pages(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                opened_pages = page.click_on_links_and_return_back()
+                assert opened_pages == HeaderData.pages_url_for_navigation_by_links_in_section_2, \
+                    "The 'About' and the 'Telegram' links in the Sections 2 lead to incorrect pages after click"
