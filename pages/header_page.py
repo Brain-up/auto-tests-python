@@ -212,3 +212,10 @@ class HeaderPage(BasePage):
         opened_pages.append(self.driver.current_url)
         # print('\n', *opened_pages, sep='\n')
         return opened_pages
+
+    @allure.step("Get the list of text in the 'About' and the 'Telegram' links in the Sections 2 in the Header")
+    def get_text_in_links_in_section_2(self):
+        links = self.get_list_of_links_in_section_2()
+        links_text = [link.text for link in links]
+        # print(f"Text of links in the Section 2 is:", *links_text, sep='\n')
+        return links_text

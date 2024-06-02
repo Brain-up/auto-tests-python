@@ -143,3 +143,10 @@ class TestHeaderPage:
                 opened_pages = page.click_on_links_and_return_back()
                 assert opened_pages == HeaderData.pages_url_for_navigation_by_links_in_section_2, \
                     "The 'About' and the 'Telegram' links in the Sections 2 lead to incorrect pages after click"
+
+            @allure.title("""Verify values of the text in the 'About' and the 'Telegram' links 
+                          in the Section 2 in the Header""")
+            def test_hp_03_03_verify_text_in_links(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                links_text = page.get_text_in_links_in_section_2()
+                assert links_text in HeaderData.links_text, "Text in links do not match the valid values"

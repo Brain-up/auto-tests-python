@@ -10,6 +10,10 @@ class HeaderData:
 
     links_status_code = 200
 
+    links_text = [
+        ["ОПИСАНИЕ", "TELEGRAM"], ["ABOUT", "TELEGRAM"]
+    ]
+
     logo_image_xmlns = "http://www.w3.org/2000/svg"
 
     pages_url_for_navigation_by_links_in_section_2 = [
