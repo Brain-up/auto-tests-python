@@ -10,3 +10,4 @@ class LoginPageLocators:
     INPUT_PASSWORD = (By.XPATH, '//input[@id="password"]')
     SIGN_IN_BUTTON = (By.XPATH, '//*[@type="submit"]')
     SIGN_IN_TAB = (By.XPATH, '//div[contains(@class, "tracking")]')
+    PASSWORD_RECOVERY = (By.CSS_SELECTOR, 'a[href="/password-recovery"]')
