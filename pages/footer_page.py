@@ -1,5 +1,4 @@
 import allure
-import time
 from locators.footer_page_locators import FooterLocators, RelatedPagesElementsLocators
 from pages.base_page import BasePage
 

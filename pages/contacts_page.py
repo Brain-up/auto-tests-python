@@ -1,9 +1,6 @@
 """Methods for verifying web elements on the 'Contacts' page"""
-import time
-
 import allure
 import requests
-
 from pages.base_page import BasePage
 from locators.contacts_page_locators import ContactsPageLocators
 

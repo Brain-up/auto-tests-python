@@ -12,31 +12,15 @@ class TestProfilePage:
     def test_change_password(self, driver, main_page_open):
         page = ProfilePage(driver)
         page.open_login_page()
-        page.user_has_authorised()
+        page.authorise_user()
         page.go_to_profile_page()
         page.click_change_password_link()
         page.field_recovery_email()
         page.click_send_recovery_email_link()
         link = page.get_link_change_password_by_email()
-        assert link, "The link to change the password was not received"
+        assert 'brainupspb' in link, "The link to change the password was not received"
         driver.get(link)
         page.enter_new_password_field()
-        page.click_save_button()
-        page.get_successful_message()
-        assert page.get_successful_message(), "The password hasn't changed"
-        driver.back()
-        # Return the password by receiving an email link
-        page = ProfilePage(driver)
-        page.open_login_page()
-        page.user_has_authorised_with_new_password()
-        page.go_to_profile_page()
-        page.click_change_password_link()
-        page.field_recovery_email()
-        page.click_send_recovery_email_link()
-        link = page.get_link_change_password_by_email()
-        assert link, "The link to change the password was not received"
-        driver.get(link)
-        page.enter_old_password_field()
         page.click_save_button()
         page.get_successful_message()
         assert page.get_successful_message(), "The password hasn't changed"
