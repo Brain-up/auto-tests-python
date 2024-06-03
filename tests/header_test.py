@@ -47,6 +47,14 @@ class TestHeaderPage:
                 assert structure_of_6th_level, "Elements on the 6th level in the Header are absent"
                 assert invisibility_of_elements_on_6th_level, "6th-level elements are visible on the page"
 
+            @allure.title("Verify the section with the 'ru' and 'en' buttons in the Header")
+            def test_hp_01_03_verify_structure_and_visibility_of_ru_en_section(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                ru_en_section_structure = page.get_structure_of_ru_en_section()
+                ru_en_buttons_visibility = page.check_elements_visibility_in_ru_en_section()
+                assert ru_en_section_structure, "The 'ru' and 'en' buttons are absent in DOM"
+                assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible in the Header"
+
         class TestHeaderPageSection1:
 
             @allure.title("""Verify presence, visibility, clickability, href, status code  
