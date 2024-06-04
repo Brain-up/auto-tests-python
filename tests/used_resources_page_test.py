@@ -22,7 +22,8 @@ class TestUsedResourcesPage:
             page_title_text = page.get_used_resources_page_title_content()
             assert page_title_presence is not None, "The title is absent in DOM"
             assert page_title_visibility, "The title is invisible on the page"
-            assert page_title_text in UsedResourcesPageData.used_resources_page_elements_content["page_title_content"], \
+            assert (page_title_text
+                    in UsedResourcesPageData.used_resources_page_elements_content["page_title_content"]), \
                 "The title content does not match the any of the valid option"
 
         @allure.title("Verify presence, visibility and content accuracy of the text on the page")
@@ -34,7 +35,8 @@ class TestUsedResourcesPage:
             page_text_content = page.get_text_content_on_the_used_resources_page()
             assert page_text_presence is not None, "The text is absent in DOM"
             assert page_text_visibility, "The text is invisible on the page"
-            assert page_text_content in UsedResourcesPageData.used_resources_page_elements_content["page_text_content"], \
+            assert (page_text_content
+                    in UsedResourcesPageData.used_resources_page_elements_content["page_text_content"]), \
                 "The text content does not match the any of the valid option"
 
         @allure.title("Verify presence and visibility of the section with links on the page")
@@ -103,16 +105,6 @@ class TestUsedResourcesPage:
             assert icon_xmlns == UsedResourcesPageData.icons_xmlns["icons_xmlns_on_used_resources_page"], \
                 "The 'xmlns' attribute value of the icon in the freepik.com link's section is unaccurate"
 
-        @allure.title("Verify sizes of the icon in the freepik.com link's section")
-        def test_ur_01_08_verify_sizes_of_icon_in_freepik_com_section(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            icon_width = page.get_width_of_icon_in_freepik_com_section()
-            icon_height = page.get_height_of_icon_in_freepik_com_section()
-            # print(f"The icon sizes are: {icon_width}x{icon_height} px")
-            assert icon_width != 0, "The icon in the freepik.com link's section hasn't width"
-            assert icon_height != 0, "The icon in the freepik.com link's section hasn't height"
-
         @allure.title("Verify presence and visibility of the section with the 'Plants' link on the page")
         def test_ur_01_09_verify_section_of_plants_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
@@ -169,16 +161,6 @@ class TestUsedResourcesPage:
             assert icon_xmlns, "The 'xmlns' attribute value of the icon in the 'Plants' link's section is empty"
             assert icon_xmlns == UsedResourcesPageData.icons_xmlns["icons_xmlns_on_used_resources_page"], \
                 "The 'xmlns' attribute value of the icon in the 'Plants' link's section is unaccurate"
-
-        @allure.title("Verify sizes of the icon in the 'Plants' link's section")
-        def test_ur_01_13_verify_sizes_of_icon_in_plants_section(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            icon_width = page.get_width_of_icon_in_plants_section()
-            icon_height = page.get_height_of_icon_in_plants_section()
-            # print(f"The icon sizes are: {icon_width}x{icon_height} px")
-            assert icon_width != 0, "The icon in the 'Plants' link's section hasn't width"
-            assert icon_height != 0, "The icon in the 'Plants' link's section hasn't height"
 
         @allure.title("Verify presence and visibility of the section with the 'Flora' link on the page")
         def test_ur_01_14_verify_section_of_flora_link(self, driver, auto_test_user_authorized):
@@ -237,12 +219,13 @@ class TestUsedResourcesPage:
             assert icon_xmlns == UsedResourcesPageData.icons_xmlns["icons_xmlns_on_used_resources_page"], \
                 "The 'xmlns' attribute value of the icon in the 'Flora' link's section is unaccurate"
 
-        @allure.title("Verify sizes of the icon in the 'Flora' link's section")
-        def test_ur_01_18_verify_sizes_of_icon_in_flora_section(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            icon_width = page.get_width_of_icon_in_flora_section()
-            icon_height = page.get_height_of_icon_in_flora_section()
-            # print(f"The icon sizes are: {icon_width}x{icon_height} px")
-            assert icon_width != 0, "The icon in the 'Flora' link's section hasn't width"
-            assert icon_height != 0, "The icon in the 'Flora' link's section hasn't height"
+        class TestUsedResourcesPageForAuthorizedUserIcons:
+
+            @allure.title("Verify sizes of icons in the sections")
+            def test_ur_02_02_verify_icons_sizes(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                icons_size = page.get_icons_sizes()
+                icons_size_changes = page.check_size_changes_of_icons()
+                assert icons_size != 0, "The icons in the sections hasn't sizes"
+                assert icons_size_changes, "Checks of changes in icon sizes have not carried out"

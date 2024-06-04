@@ -161,14 +161,6 @@ class UsedResourcesPage(BasePage):
     def get_icon_xmlns_in_plants_section(self):
         return self.get_icon_xmlns(self.locators.PLANTS_SECTION_ICON)
 
-    @allure.step("Get attribute 'width' of the icon in 'Plants' link's section")
-    def get_width_of_icon_in_plants_section(self):
-        return self.get_icon_width(self.locators.PLANTS_SECTION_ICON)
-
-    @allure.step("Get attribute 'height' of the icon in 'Plants' link's section")
-    def get_height_of_icon_in_plants_section(self):
-        return self.get_icon_height(self.locators.PLANTS_SECTION_ICON)
-
     @allure.step("Check if the section with the 'Flora' link is present in DOM")
     def check_presence_of_flora_link_section(self):
         return self.element_is_present(self.locators.FLORA_LINK_SECTION)
@@ -217,10 +209,45 @@ class UsedResourcesPage(BasePage):
     def get_icon_xmlns_in_flora_section(self):
         return self.get_icon_xmlns(self.locators.FLORA_SECTION_ICON)
 
-    @allure.step("Get attribute 'width' of the icon in 'Flora' link's section")
-    def get_width_of_icon_in_flora_section(self):
-        return self.get_icon_width(self.locators.FLORA_SECTION_ICON)
+    # Checks of icons in sections with links
+    @allure.step("Get the list of images in specialist cards on the page")
+    def get_list_of_icons(self):
+        icons = self.elements_are_present(self.locators.SECTION_ICONS)
+        print(f"\nAmount of icons is: {len(icons)}")
+        return icons
 
-    @allure.step("Get attribute 'height' of the icon in 'Flora' link's section")
-    def get_height_of_icon_in_flora_section(self):
-        return self.get_icon_height(self.locators.FLORA_SECTION_ICON)
+    @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
+    def get_icons_sizes(self):
+        icons = self.get_list_of_icons()
+        # icons_sizes = [icon.get_attribute('size') for icon in icons]
+        icons_sizes = [icon.size for icon in icons]
+        print(f"The sizes of icons in sections are:", *icons_sizes, sep='\n')
+        return icons_sizes
+
+    @allure.step("""Check changes of icons sizes after resizing""")
+    def check_size_changes_of_icons(self):
+        icons = self.get_list_of_icons()
+        icons_sizes_before = [icon.size for icon in icons]
+        self.driver.set_window_size(1200, 800)
+        icons_sizes_after = [icon.size for icon in icons]
+        print("The results of checking changes of icon sizes after resizing are:")
+        changed, lost, unchanged = 0, 0, 0
+        for i in range(len(icons_sizes_after)):
+            if icons_sizes_before[i] != icons_sizes_after[i]:
+                changed += 1
+                if icons_sizes_after[i] == {'height': 0, 'width': 0}:
+                    lost += 1
+                    print(f"\n   The icon #{i + 1} has become invisible because has sizes that changed: "
+                          f"\nfrom {icons_sizes_before[i]} before resizing \nto {icons_sizes_after[i]} after resizing")
+                else:
+                    print(f"\n   The icon #{i + 1} has sizes that changed: \nfrom {icons_sizes_before[i]} before "
+                          f"resizing \nto {icons_sizes_after[i]} after resizing")
+            else:
+                unchanged += 1
+                print(
+                    f"\n   The icon #{i + 1} has sizes that remain: \nthe same {icons_sizes_before[i]} before resizing "
+                    f"\nand {icons_sizes_after[i]} after resizing")
+        print(f"\nSummary of icon size checks\n   Amount of icons with changed sizes after resizing is: {changed}, "
+              f"\nincluding icons that have become invisible on the page: {lost}")
+        print(f"   Amount of icons with unchanged sizes after resizing is: {unchanged}")
+        return changed, lost, unchanged

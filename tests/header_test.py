@@ -1,5 +1,5 @@
 """Auto tests for verifying web elements in the Header of the site"""
-import time
+
 
 import allure
 from pages.header_page import HeaderPage
@@ -141,7 +141,8 @@ class TestHeaderPage:
                 assert links_href, "Links href are empty"
                 assert links_href == HeaderData.links_href["section 2 links href"], \
                     "The attribute 'href' of the links do not match the valid values"
-                assert all(link_status_code == HeaderData.links_status_code for link_status_code in links_status_code), \
+                assert all(link_status_code ==
+                           HeaderData.links_status_code for link_status_code in links_status_code), \
                     "The status code of the links do not match the valid value"
 
             @allure.title("""Verify if the 'About' and the 'Telegram' links in the Section 2 
