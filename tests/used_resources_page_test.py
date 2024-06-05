@@ -92,19 +92,6 @@ class TestUsedResourcesPage:
                    "The freepik.com link leads to an incorrect page after click " \
                    "or opened page does not load correctly"
 
-        @allure.title("Verify presence, visibility and accuracy of the icon in the freepik.com link's section")
-        def test_ur_01_07_verify_icon_in_freepik_com_section(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            icon_presence = page.check_icon_presence_in_freepik_com_section()
-            icon_visibility = page.check_icon_visibility_in_freepik_com_section()
-            icon_xmlns = page.get_icon_xmlns_in_freepik_com_section()
-            assert icon_presence is not None, "The icon in the freepik.com link's section is absent"
-            assert icon_visibility, "The icon in the freepik.com link's section is invisible"
-            assert icon_xmlns, "The 'xmlns' attribute value of the icon in the freepik.com link's section is empty"
-            assert icon_xmlns == UsedResourcesPageData.icons_xmlns["icons_xmlns_on_used_resources_page"], \
-                "The 'xmlns' attribute value of the icon in the freepik.com link's section is unaccurate"
-
         @allure.title("Verify presence and visibility of the section with the 'Plants' link on the page")
         def test_ur_01_09_verify_section_of_plants_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
@@ -148,19 +135,6 @@ class TestUsedResourcesPage:
                    UsedResourcesPageData.used_resources_page_related_elements_text["plants_page_text"], \
                    "The 'Plants' link leads to an incorrect page after click " \
                    "or opened page does not load correctly"
-
-        @allure.title("Verify presence, visibility and accuracy of the icon in the 'Plants' link's section")
-        def test_ur_01_12_verify_icon_in_plants_section(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            icon_presence = page.check_icon_presence_in_plants_section()
-            icon_visibility = page.check_icon_visibility_in_plants_section()
-            icon_xmlns = page.get_icon_xmlns_in_plants_section()
-            assert icon_presence is not None, "The icon in the 'Plants' link's section is absent"
-            assert icon_visibility, "The icon in the 'Plants' link's section is invisible"
-            assert icon_xmlns, "The 'xmlns' attribute value of the icon in the 'Plants' link's section is empty"
-            assert icon_xmlns == UsedResourcesPageData.icons_xmlns["icons_xmlns_on_used_resources_page"], \
-                "The 'xmlns' attribute value of the icon in the 'Plants' link's section is unaccurate"
 
         @allure.title("Verify presence and visibility of the section with the 'Flora' link on the page")
         def test_ur_01_14_verify_section_of_flora_link(self, driver, auto_test_user_authorized):
@@ -206,20 +180,19 @@ class TestUsedResourcesPage:
                    "The 'Flora' link leads to an incorrect page after click " \
                    "or opened page does not load correctly"
 
-        @allure.title("Verify presence, visibility and accuracy of the icon in the 'Flora' link's section")
-        def test_ur_01_17_verify_icon_in_flora_section(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            icon_presence = page.check_icon_presence_in_flora_section()
-            icon_visibility = page.check_icon_visibility_in_flora_section()
-            icon_xmlns = page.get_icon_xmlns_in_flora_section()
-            assert icon_presence is not None, "The icon in the 'Flora' link's section is absent"
-            assert icon_visibility, "The icon in the 'Flora' link's section is invisible"
-            assert icon_xmlns, "The 'xmlns' attribute value of the icon in the 'Flora' link's section is empty"
-            assert icon_xmlns == UsedResourcesPageData.icons_xmlns["icons_xmlns_on_used_resources_page"], \
-                "The 'xmlns' attribute value of the icon in the 'Flora' link's section is unaccurate"
-
         class TestUsedResourcesPageForAuthorizedUserIcons:
+            @allure.title("Verify presence, visibility and attributes of icons in the sections")
+            def test_ur_02_01_verify_icons_in_sections(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                icons_presence = page.get_list_of_icons()
+                icons_visibility = page.check_icons_visibility()
+                icons_xmlns = page.get_icons_xmlns_in_sections()
+                assert icons_presence, "The icons in the sections are absent"
+                assert icons_visibility, "The icons in the sections are invisible"
+                assert icons_xmlns, "The 'xmlns' attribute value of the icons in the sections is empty"
+                assert all(icon_xmlns == UsedResourcesPageData.icons_xmlns for icon_xmlns in icons_xmlns), \
+                    "The 'xmlns' attribute value of some icons is empty or non-accurate"
 
             @allure.title("Verify sizes of icons in the sections")
             def test_ur_02_02_verify_icons_sizes(self, driver, auto_test_user_authorized):

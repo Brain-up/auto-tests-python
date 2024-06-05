@@ -38,6 +38,4 @@ class UsedResourcesPageData:
         "plants_page_text": "Список растений, иллюстрации к которым размещены в справочнике Köhler’s Medizinal-Pflanzen"
     }
 
-    icons_xmlns = {
-        "icons_xmlns_on_used_resources_page": "http://www.w3.org/2000/svg"
-    }
+    icons_xmlns = "http://www.w3.org/2000/svg"
