@@ -16,6 +16,7 @@ class UsedResourcesPageLocators:
     PLANTS_LINK_SECTION = (By.XPATH, "(//section//li)[2]")
     PLANTS_SECTION_ICON = (By.XPATH, "(//*[name()='svg'][@class])[2]")
     SECTION_ICONS = (By.XPATH, "(//*[name()='svg'][@class])")
+    SECTION_LINKS = (By.XPATH, "//section//a")
 
 
 class RelatedPagesElementsLocators:

@@ -1,5 +1,6 @@
 """Methods for verifying web elements on the 'Used Resources' page"""
 import allure
+import requests
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 from locators.used_resources_page_locators import UsedResourcesPageLocators, RelatedPagesElementsLocators
@@ -53,18 +54,6 @@ class UsedResourcesPage(BasePage):
     def check_visibility_of_freepik_com_link_section(self):
         return self.element_is_visible(self.locators.FREEPIK_COM_LINK_SECTION)
 
-    @allure.step("Check the freepik.com link is present in DOM")
-    def check_freepik_com_link_presence(self):
-        return self.element_is_present(self.locators.FREEPIK_COM_LINK)
-
-    @allure.step("Check the freepik.com link is visible on the page")
-    def check_freepik_com_link_visibility(self):
-        return self.element_is_visible(self.locators.FREEPIK_COM_LINK)
-
-    @allure.step("Check the freepik.com link is clickable")
-    def check_freepik_com_link_clickability(self):
-        return self.element_is_clickable(self.locators.FREEPIK_COM_LINK)
-
     @allure.step("Click on the freepik.com link and thereby open the corresponding web page in a new tab")
     def click_freepik_com_link(self):
         self.element_is_present_and_clickable(self.locators.FREEPIK_COM_LINK).click()
@@ -72,10 +61,6 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get text of the element on the freepik.com page")
     def get_element_text_on_opened_freepik_com_tab(self):
         return self.get_text(self.locators1.FREEPIK_COM_TEXT)
-
-    @allure.step("Get attribute 'href' of the freepik.com link")
-    def get_freepik_com_link_href(self):
-        return self.get_link_href(self.locators.FREEPIK_COM_LINK)
 
     @allure.step("Get content of the text in the freepik.com link")
     def get_text_in_freepik_com_link(self):
@@ -89,18 +74,6 @@ class UsedResourcesPage(BasePage):
     def check_visibility_of_plants_link_section(self):
         return self.element_is_visible(self.locators.PLANTS_LINK_SECTION)
 
-    @allure.step("Check the 'Plants' link is present in DOM")
-    def check_plants_link_presence(self):
-        return self.element_is_present(self.locators.PLANTS_LINK)
-
-    @allure.step("Check the 'Plants' link is visible on the page")
-    def check_plants_link_visibility(self):
-        return self.element_is_visible(self.locators.PLANTS_LINK)
-
-    @allure.step("Check the 'Plants' link is clickable")
-    def check_plants_link_clickability(self):
-        return self.element_is_clickable(self.locators.PLANTS_LINK)
-
     @allure.step("Click on the 'Plants' link and thereby open the corresponding web page in a new tab")
     def click_plants_link(self):
         self.element_is_present_and_clickable(self.locators.PLANTS_LINK).click()
@@ -108,10 +81,6 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get text of the element on the 'Plants' page")
     def get_element_text_on_opened_plants_tab(self):
         return self.get_text(self.locators1.PLANTS_TEXT)
-
-    @allure.step("Get attribute 'href' of the 'Plants' link")
-    def get_plants_link_href(self):
-        return self.get_link_href(self.locators.PLANTS_LINK)
 
     @allure.step("Get content of the text in the 'Plants' link")
     def get_text_in_plants_link(self):
@@ -125,18 +94,6 @@ class UsedResourcesPage(BasePage):
     def check_visibility_of_flora_link_section(self):
         return self.element_is_visible(self.locators.FLORA_LINK_SECTION)
 
-    @allure.step("Check the 'Flora' link is present in DOM")
-    def check_flora_link_presence(self):
-        return self.element_is_present(self.locators.FLORA_LINK)
-
-    @allure.step("Check the 'Flora' link is visible on the page")
-    def check_flora_link_visibility(self):
-        return self.element_is_visible(self.locators.FLORA_LINK)
-
-    @allure.step("Check the 'Flora' link is clickable")
-    def check_flora_link_clickability(self):
-        return self.element_is_clickable(self.locators.FLORA_LINK)
-
     @allure.step("Click on the 'Flora' link and thereby open the corresponding web page in a new tab")
     def click_flora_link(self):
         self.element_is_present_and_clickable(self.locators.FLORA_LINK).click()
@@ -145,16 +102,39 @@ class UsedResourcesPage(BasePage):
     def get_element_text_on_opened_flora_tab(self):
         return self.get_text(self.locators1.FLORA_TEXT)
 
-    @allure.step("Get attribute 'href' of the 'Flora' link")
-    def get_flora_link_href(self):
-        return self.get_link_href(self.locators.FLORA_LINK)
-
     @allure.step("Get content of the text in the 'Flora' link")
     def get_text_in_flora_link(self):
         return self.element_is_present(self.locators.FLORA_LINK).text
 
-    # Checks of icons in sections with links
-    @allure.step("Get the list of icons in sections")
+    # Checks of links in the sections
+    @allure.step("Get the list of links in the sections on the page")
+    def get_list_of_links(self):
+        links = self.elements_are_present(self.locators.SECTION_LINKS)
+        # print(f"\nAmount of links is: {len(links)}")
+        return links
+
+    @allure.step("Check all links in the sections are visible")
+    def check_links_visibility(self):
+        return all(link.is_displayed() for link in self.get_list_of_links())
+
+    @allure.step("Check all links in the sections are clickable")
+    def check_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list_of_links())
+
+    @allure.step("Get attribute 'href' of links in the sections")
+    def get_links_href(self):
+        links_href = [link.get_attribute("href") for link in self.get_list_of_links()]
+        # print(f"Links href in the sections are:", *links_href, sep='\n')
+        return links_href
+
+    @allure.step("Get status code of links in the sections")
+    def get_links_status_codes(self):
+        links_status_codes = [requests.head(link_href).status_code for link_href in self.get_links_href()]
+        # print(f"Links status codes in the sections are:", *links_status_codes, sep='\n')
+        return links_status_codes
+
+    # Checks of icons in the sections with links
+    @allure.step("Get the list of icons in the sections")
     def get_list_of_icons(self):
         icons = self.elements_are_present(self.locators.SECTION_ICONS)
         # print(f"\nAmount of icons is: {len(icons)}")
