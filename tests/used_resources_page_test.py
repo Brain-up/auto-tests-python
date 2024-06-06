@@ -1,6 +1,5 @@
 """Auto tests for verifying web elements on the 'Used Resources' page"""
 import allure
-import requests
 from pages.used_resources_page import UsedResourcesPage
 from locators.used_resources_page_locators import UsedResourcesPageLocators
 from test_data.used_resources_page_data import UsedResourcesPageData
@@ -57,28 +56,14 @@ class TestUsedResourcesPage:
             assert section_presence is not None, "The section with the freepik.com link is absent"
             assert section_visibility, "The section with the freepik.com link is invisible"
 
-        @allure.title("Verify presence, visibility, clickability, href, status code, text of the freepik.com link")
+        @allure.title("Verify text of the freepik.com link")
         def test_ur_01_05_verify_freepik_com_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
             page.open_used_resources_page()
-            link_presence = page.check_freepik_com_link_presence()
-            link_visibility = page.check_freepik_com_link_visibility()
-            link_clickability = page.check_freepik_com_link_clickability()
-            link_href = page.get_freepik_com_link_href()
-            link_status_code = requests.head(link_href).status_code
             actual_link_text = page.get_text_in_freepik_com_link()
-            assert link_presence is not None, f"The {link_href} link is absent"
-            assert link_visibility, f"The {link_href} link is invisible"
-            assert link_clickability, f"The {link_href} link is unclickable"
-            assert link_href == UsedResourcesPageData.used_resources_page_links_href["freepik_com_link_href"], \
-                f"The attribute 'href' of the {link_href} link does not match the expected value"
-            assert link_status_code == \
-                   UsedResourcesPageData.used_resources_page_links_status_codes["freepik_com_link_status_code"], \
-                   f"The {link_href} link status code does not match the expected value"
             assert actual_link_text == \
                    UsedResourcesPageData.used_resources_page_elements_content["freepik_com_link_content"], \
-                   f"The actual text '{actual_link_text}' of the {link_href} link does not match the valid option" \
-                   f"on the page {link_href}"
+                   f"The actual text of the link does not match the valid option"
 
         @allure.title("Verify that the freepik.com link leads to the correct page after click")
         def test_ur_01_06_verify_freepik_com_link_leads_to_the_correct_page(self, driver, auto_test_user_authorized):
@@ -101,28 +86,14 @@ class TestUsedResourcesPage:
             assert section_presence is not None, "The section with the 'Plants' link is absent"
             assert section_visibility, "The section with the 'Plants' link is invisible"
 
-        @allure.title("Verify presence, visibility, clickability, href, status code, text of the 'Plants' link")
+        @allure.title("Verify text of the 'Plants' link")
         def test_ur_01_10_verify_plants_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
             page.open_used_resources_page()
-            link_presence = page.check_plants_link_presence()
-            link_visibility = page.check_plants_link_visibility()
-            link_clickability = page.check_plants_link_clickability()
-            link_href = page.get_plants_link_href()
-            link_status_code = requests.head(link_href).status_code
             actual_link_text = page.get_text_in_plants_link()
-            assert link_presence is not None, f"The {link_href} link is absent"
-            assert link_visibility, f"The {link_href} link is invisible"
-            assert link_clickability, f"The {link_href} link is unclickable"
-            assert link_href == UsedResourcesPageData.used_resources_page_links_href["plants_link_href"], \
-                f"The attribute 'href' of the {link_href} link does not match the expected value"
-            assert link_status_code == \
-                   UsedResourcesPageData.used_resources_page_links_status_codes["plants_link_status_code"], \
-                   f"The {link_href} link status code does not match the expected value"
             assert actual_link_text == \
                    UsedResourcesPageData.used_resources_page_elements_content["plants_link_content"], \
-                   f"The actual text '{actual_link_text}' of the {link_href} link does not match the valid option" \
-                   f"on the page {link_href}"
+                   f"The actual text of the link does not match the valid option"
 
         @allure.title("Verify that the 'Plants' link leads to the correct page after click")
         def test_ur_01_11_verify_plants_link_leads_to_the_correct_page(self, driver, auto_test_user_authorized):
@@ -145,28 +116,14 @@ class TestUsedResourcesPage:
             assert section_presence is not None, "The section with the 'Flora' link is absent"
             assert section_visibility, "The section with the 'Flora' link is invisible"
 
-        @allure.title("Verify presence, visibility, clickability, href, status code, text of the 'Flora' link")
+        @allure.title("Verify text of the 'Flora' link")
         def test_ur_01_15_verify_flora_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
             page.open_used_resources_page()
-            link_presence = page.check_flora_link_presence()
-            link_visibility = page.check_flora_link_visibility()
-            link_clickability = page.check_flora_link_clickability()
-            link_href = page.get_flora_link_href()
-            link_status_code = requests.head(link_href).status_code
             actual_link_text = page.get_text_in_flora_link()
-            assert link_presence is not None, f"The {link_href} link is absent"
-            assert link_visibility, f"The {link_href} link is invisible"
-            assert link_clickability, f"The {link_href} link is unclickable"
-            assert link_href == UsedResourcesPageData.used_resources_page_links_href["flora_link_href"], \
-                   f"The attribute 'href' of the {link_href} link does not match the expected value"
-            assert link_status_code == \
-                   UsedResourcesPageData.used_resources_page_links_status_codes["flora_link_status_code"], \
-                   f"The {link_href} link status code does not match the expected value"
             assert actual_link_text == \
                    UsedResourcesPageData.used_resources_page_elements_content["flora_link_content"], \
-                   f"The actual text '{actual_link_text}' of the {link_href} link does not match the valid option" \
-                   f"on the page {link_href}"
+                   f"The actual text of the link does not match the valid option"
 
         @allure.title("Verify that the 'Flora' link leads to the correct page after click")
         def test_ur_01_16_verify_flora_link_leads_to_the_correct_page(self, driver, auto_test_user_authorized):
@@ -180,9 +137,29 @@ class TestUsedResourcesPage:
                    "The 'Flora' link leads to an incorrect page after click " \
                    "or opened page does not load correctly"
 
+        class TestUsedResourcesPageForAuthorizedUserLinks:
+            @allure.title("""Verify presence, visibility, clickability, href, status code of links in the sections""")
+            def test_ur_03_01_verify_links_in_sections(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                links_presence = page.get_list_of_links()
+                links_visibility = page.check_links_visibility()
+                links_clickability = page.check_links_clickability()
+                links_href = page.get_links_href()
+                links_status_codes = page.get_links_status_codes()
+                assert links_presence is not None, "The 'Contacts' links are absent in DOM"
+                assert links_visibility, "Links are invisible on the page"
+                assert links_clickability, "Links are unclickable"
+                assert links_href, "Links href are empty"
+                assert all(link_href in UsedResourcesPageData.links_href for link_href in links_href), \
+                    "Attributes 'href' of links do not match the valid values"
+                assert all(link_status_code in UsedResourcesPageData.links_status_codes
+                           for link_status_code in links_status_codes), \
+                    "Status codes of links do not match the expected values"
+
         class TestUsedResourcesPageForAuthorizedUserIcons:
             @allure.title("Verify presence, visibility and attributes of icons in the sections")
-            def test_ur_02_01_verify_icons_in_sections(self, driver, auto_test_user_authorized):
+            def test_ur_04_01_verify_icons_in_sections(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
                 icons_presence = page.get_list_of_icons()
@@ -195,7 +172,7 @@ class TestUsedResourcesPage:
                     "The 'xmlns' attribute value of some icons is empty or non-accurate"
 
             @allure.title("Verify sizes of icons in the sections")
-            def test_ur_02_02_verify_icons_sizes(self, driver, auto_test_user_authorized):
+            def test_ur_04_02_verify_icons_sizes(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
                 icons_size = page.get_icons_sizes()
