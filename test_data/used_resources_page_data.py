@@ -26,11 +26,15 @@ class UsedResourcesPageData:
 
     links_status_codes = [200, 301]
 
-    # Related web pages elements text
-    used_resources_page_related_elements_text = {
-        "flora_page_text": "Gera-Untermhaus",
-        "freepik_com_start_page_text": "Create great designs, faster",
-        "plants_page_text": "Список растений, иллюстрации к которым размещены в справочнике Köhler’s Medizinal-Pflanzen"
-    }
+    # Related web pages url
+    pages_url = ["https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA"
+                 "_%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD%D0%B8%D0%B9,"
+                 "_%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%B8_%D0%BA"
+                 "_%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%BC_%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D1%8B"
+                 "_%D0%B2_%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B5_K%C3%B6hler%E2%80%99s"
+                 "_Medizinal-Pflanzen",
+                 "https://www.freepik.com/",
+                 "http://caliban.mpiz-koeln.mpg.de/~stueber/thome/Alphabetical_list.html"
+                 ]
 
     icons_xmlns = "http://www.w3.org/2000/svg"

@@ -3,12 +3,11 @@ import allure
 import requests
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
-from locators.used_resources_page_locators import UsedResourcesPageLocators, RelatedPagesElementsLocators
+from locators.used_resources_page_locators import UsedResourcesPageLocators
 
 
 class UsedResourcesPage(BasePage):
     locators = UsedResourcesPageLocators
-    locators1 = RelatedPagesElementsLocators
 
     @allure.step("Open the 'Used resources' page")
     def open_used_resources_page(self):
@@ -54,14 +53,6 @@ class UsedResourcesPage(BasePage):
     def check_visibility_of_freepik_com_link_section(self):
         return self.element_is_visible(self.locators.FREEPIK_COM_LINK_SECTION)
 
-    @allure.step("Click on the freepik.com link and thereby open the corresponding web page in a new tab")
-    def click_freepik_com_link(self):
-        self.element_is_present_and_clickable(self.locators.FREEPIK_COM_LINK).click()
-
-    @allure.step("Get text of the element on the freepik.com page")
-    def get_element_text_on_opened_freepik_com_tab(self):
-        return self.get_text(self.locators1.FREEPIK_COM_TEXT)
-
     @allure.step("Get content of the text in the freepik.com link")
     def get_text_in_freepik_com_link(self):
         return self.element_is_present(self.locators.FREEPIK_COM_LINK).text
@@ -73,14 +64,6 @@ class UsedResourcesPage(BasePage):
     @allure.step("Check if the section with the 'Plants' link is visible on the page")
     def check_visibility_of_plants_link_section(self):
         return self.element_is_visible(self.locators.PLANTS_LINK_SECTION)
-
-    @allure.step("Click on the 'Plants' link and thereby open the corresponding web page in a new tab")
-    def click_plants_link(self):
-        self.element_is_present_and_clickable(self.locators.PLANTS_LINK).click()
-
-    @allure.step("Get text of the element on the 'Plants' page")
-    def get_element_text_on_opened_plants_tab(self):
-        return self.get_text(self.locators1.PLANTS_TEXT)
 
     @allure.step("Get content of the text in the 'Plants' link")
     def get_text_in_plants_link(self):
@@ -94,19 +77,11 @@ class UsedResourcesPage(BasePage):
     def check_visibility_of_flora_link_section(self):
         return self.element_is_visible(self.locators.FLORA_LINK_SECTION)
 
-    @allure.step("Click on the 'Flora' link and thereby open the corresponding web page in a new tab")
-    def click_flora_link(self):
-        self.element_is_present_and_clickable(self.locators.FLORA_LINK).click()
-
-    @allure.step("Get text of the element on the 'Flora' page")
-    def get_element_text_on_opened_flora_tab(self):
-        return self.get_text(self.locators1.FLORA_TEXT)
-
     @allure.step("Get content of the text in the 'Flora' link")
     def get_text_in_flora_link(self):
         return self.element_is_present(self.locators.FLORA_LINK).text
 
-    # Checks of links in the sections
+    # Checking links in the sections
     @allure.step("Get the list of links in the sections on the page")
     def get_list_of_links(self):
         links = self.elements_are_present(self.locators.SECTION_LINKS)
@@ -133,7 +108,17 @@ class UsedResourcesPage(BasePage):
         # print(f"Links status codes in the sections are:", *links_status_codes, sep='\n')
         return links_status_codes
 
-    # Checks of icons in the sections with links
+    @allure.step("Click on links in the sections and thereby open corresponding web pages on new tabs")
+    def click_on_links(self):
+        new_tabs = [link.click() for link in self.get_list_of_links()]
+        new_tabs_url = []
+        for i in range(1, len(new_tabs) + 1):
+            self.driver.switch_to.window(self.driver.window_handles[i])
+            new_tabs_url.append(self.driver.current_url)
+        # print('\n', *new_tabs_url, sep='\n')
+        return new_tabs_url
+
+    # Checking icons in the sections with links
     @allure.step("Get the list of icons in the sections")
     def get_list_of_icons(self):
         icons = self.elements_are_present(self.locators.SECTION_ICONS)

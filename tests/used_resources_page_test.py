@@ -1,7 +1,6 @@
 """Auto tests for verifying web elements on the 'Used Resources' page"""
 import allure
 from pages.used_resources_page import UsedResourcesPage
-from locators.used_resources_page_locators import UsedResourcesPageLocators
 from test_data.used_resources_page_data import UsedResourcesPageData
 
 
@@ -10,7 +9,6 @@ class TestUsedResourcesPage:
     data = UsedResourcesPageData
 
     class TestUsedResourcesPageForAuthorizedUser:
-        locators = UsedResourcesPageLocators()
 
         @allure.title("Verify presence, visibility and text accuracy of the title on the page")
         def test_ur_01_01_verify_used_resources_page_title(self, driver, auto_test_user_authorized):
@@ -65,18 +63,6 @@ class TestUsedResourcesPage:
                    UsedResourcesPageData.used_resources_page_elements_content["freepik_com_link_content"], \
                    f"The actual text of the link does not match the valid option"
 
-        @allure.title("Verify that the freepik.com link leads to the correct page after click")
-        def test_ur_01_06_verify_freepik_com_link_leads_to_the_correct_page(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            page.click_freepik_com_link()
-            page.switch_to_new_window()
-            text_on_opened_tab = page.get_element_text_on_opened_freepik_com_tab()
-            assert text_on_opened_tab == \
-                   UsedResourcesPageData.used_resources_page_related_elements_text["freepik_com_start_page_text"], \
-                   "The freepik.com link leads to an incorrect page after click " \
-                   "or opened page does not load correctly"
-
         @allure.title("Verify presence and visibility of the section with the 'Plants' link on the page")
         def test_ur_01_09_verify_section_of_plants_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
@@ -95,18 +81,6 @@ class TestUsedResourcesPage:
                    UsedResourcesPageData.used_resources_page_elements_content["plants_link_content"], \
                    f"The actual text of the link does not match the valid option"
 
-        @allure.title("Verify that the 'Plants' link leads to the correct page after click")
-        def test_ur_01_11_verify_plants_link_leads_to_the_correct_page(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            page.click_plants_link()
-            page.switch_to_new_window()
-            text_on_opened_tab = page.get_element_text_on_opened_plants_tab()
-            assert text_on_opened_tab == \
-                   UsedResourcesPageData.used_resources_page_related_elements_text["plants_page_text"], \
-                   "The 'Plants' link leads to an incorrect page after click " \
-                   "or opened page does not load correctly"
-
         @allure.title("Verify presence and visibility of the section with the 'Flora' link on the page")
         def test_ur_01_14_verify_section_of_flora_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
@@ -124,18 +98,6 @@ class TestUsedResourcesPage:
             assert actual_link_text == \
                    UsedResourcesPageData.used_resources_page_elements_content["flora_link_content"], \
                    f"The actual text of the link does not match the valid option"
-
-        @allure.title("Verify that the 'Flora' link leads to the correct page after click")
-        def test_ur_01_16_verify_flora_link_leads_to_the_correct_page(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            page.click_flora_link()
-            page.switch_to_new_window()
-            text_on_opened_tab = page.get_element_text_on_opened_flora_tab()
-            assert text_on_opened_tab == \
-                   UsedResourcesPageData.used_resources_page_related_elements_text["flora_page_text"], \
-                   "The 'Flora' link leads to an incorrect page after click " \
-                   "or opened page does not load correctly"
 
         class TestUsedResourcesPageForAuthorizedUserLinks:
             @allure.title("""Verify presence, visibility, clickability, href, status code of links in the sections""")
@@ -156,6 +118,14 @@ class TestUsedResourcesPage:
                 assert all(link_status_code in UsedResourcesPageData.links_status_codes
                            for link_status_code in links_status_codes), \
                     "Status codes of links do not match the expected values"
+
+            @allure.title("Verify that links in the sections lead to the correct pages after clicking")
+            def test_ur_03_02_verify_links_lead_to_the_correct_pages(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                new_tabs_url = page.click_on_links()
+                assert all(new_tab_url in UsedResourcesPageData.pages_url for new_tab_url in new_tabs_url), \
+                    "Links in the sections lead to incorrect pages after clicking"
 
         class TestUsedResourcesPageForAuthorizedUserIcons:
             @allure.title("Verify presence, visibility and attributes of icons in the sections")

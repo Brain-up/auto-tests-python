@@ -17,12 +17,3 @@ class UsedResourcesPageLocators:
     PLANTS_SECTION_ICON = (By.XPATH, "(//*[name()='svg'][@class])[2]")
     SECTION_ICONS = (By.XPATH, "(//*[name()='svg'][@class])")
     SECTION_LINKS = (By.XPATH, "//section//a")
-
-
-class RelatedPagesElementsLocators:
-    # on 'Flora' web page
-    FLORA_TEXT = (By.TAG_NAME, "h2")
-    # on freepik.com web page
-    FREEPIK_COM_TEXT = (By.XPATH, "//main//h1")
-    # on 'Plants' web page
-    PLANTS_TEXT = (By.XPATH, "//h1/span")
