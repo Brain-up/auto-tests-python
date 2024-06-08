@@ -99,6 +99,16 @@ class TestUsedResourcesPage:
                    UsedResourcesPageData.used_resources_page_elements_content["flora_link_content"], \
                    f"The actual text of the link does not match the valid option"
 
+        class TestUsedResourcesPageForAuthorizedText:
+            @allure.title("Verify value of the title of the page")
+            def test_ur_02_01_verify_page_title(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                title_value = page.get_value_of_page_title()
+                assert title_value, "The title value of the page is empty"
+                assert title_value == UsedResourcesPageData.page_title_current, \
+                    "The title value of the page doesn't match the valid value"
+
         class TestUsedResourcesPageForAuthorizedUserLinks:
             @allure.title("""Verify presence, visibility, clickability, href, status code of links in the sections""")
             def test_ur_03_01_verify_links_in_sections(self, driver, auto_test_user_authorized):
@@ -123,8 +133,8 @@ class TestUsedResourcesPage:
             def test_ur_03_02_verify_links_lead_to_the_correct_pages(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
-                new_tabs_url = page.click_on_links()
-                assert all(new_tab_url in UsedResourcesPageData.pages_url for new_tab_url in new_tabs_url), \
+                new_tabs_titles = page.click_on_links()
+                assert all(new_tab_title in UsedResourcesPageData.pages_titles for new_tab_title in new_tabs_titles), \
                     "Links in the sections lead to incorrect pages after clicking"
 
         class TestUsedResourcesPageForAuthorizedUserIcons:

@@ -81,6 +81,11 @@ class UsedResourcesPage(BasePage):
     def get_text_in_flora_link(self):
         return self.element_is_present(self.locators.FLORA_LINK).text
 
+    # Checking text on the page
+    @allure.step("Get value of the title of the page")
+    def get_value_of_page_title(self):
+        return self.get_current_page_title()
+
     # Checking links in the sections
     @allure.step("Get the list of links in the sections on the page")
     def get_list_of_links(self):
@@ -111,12 +116,11 @@ class UsedResourcesPage(BasePage):
     @allure.step("Click on links in the sections and thereby open corresponding web pages on new tabs")
     def click_on_links(self):
         new_tabs = [link.click() for link in self.get_list_of_links()]
-        new_tabs_url = []
+        new_tabs_titles = []
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
-            new_tabs_url.append(self.driver.current_url)
-        # print('\n', *new_tabs_url, sep='\n')
-        return new_tabs_url
+            new_tabs_titles.append(self.get_current_page_title())
+        return new_tabs_titles
 
     # Checking icons in the sections with links
     @allure.step("Get the list of icons in the sections")
