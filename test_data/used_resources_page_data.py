@@ -38,9 +38,3 @@ class UsedResourcesPageData:
     ]
 
     icons_xmlns = "http://www.w3.org/2000/svg"
-
-    # pages_url = ["https://ru.wikipedia.org/wiki/Список_растений,_иллюстрации_к_которым_размещены_в_справочнике_"
-    #              "Köhler’s_Medizinal-Pflanzen",
-    #              "https://www.freepik.com/",
-    #              "http://caliban.mpiz-koeln.mpg.de/~stueber/thome/Alphabetical_list.html"
-    #              ]
