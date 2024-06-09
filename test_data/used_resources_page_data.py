@@ -2,11 +2,12 @@
 
 
 class UsedResourcesPageData:
-    page_title_current = "Brn"
-    page_title_expected = ["Используемые ресурсы | BrainUp", "Used Resources | BrainUp"]
+    tab_title_current = "Brn"
+    tab_title_expected = ["Используемые ресурсы | BrainUp", "Used Resources | BrainUp"]
+
+    title_h1 = ["Используемые ресурсы", "Used Resources"]
 
     used_resources_page_elements_content = {
-        "page_title_content": ["Используемые ресурсы", "Used Resources"],
         "page_text_content": ["Фотографии упражнений в приложении взяты со следующих платформ:",
                               "Exercise pictures in the application are taken from the following platforms:"],
         "flora_link_content": "Flora («Flora von Deutschland, Österreich und der Schweiz in Wort und Bild für "

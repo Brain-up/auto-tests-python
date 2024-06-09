@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 
 
 class UsedResourcesPageLocators:
-    PAGE_TITLE = (By.TAG_NAME, "h1")
     PAGE_TEXT = (By.XPATH, "//section/p")
     LINKS_SECTION = (By.XPATH, "//section/ul")
     FLORA_LINK = (By.XPATH, "(//section//li)[3]/a")
@@ -17,3 +16,4 @@ class UsedResourcesPageLocators:
     PLANTS_SECTION_ICON = (By.XPATH, "(//*[name()='svg'][@class])[2]")
     SECTION_ICONS = (By.XPATH, "(//*[name()='svg'][@class])")
     SECTION_LINKS = (By.XPATH, "//section//a")
+    TITLE_H1 = (By.TAG_NAME, "h1")

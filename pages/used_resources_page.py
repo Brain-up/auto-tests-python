@@ -15,15 +15,11 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Check the page title is present in DOM")
     def check_used_resources_page_title_presence(self):
-        return self.element_is_present(self.locators.PAGE_TITLE)
+        return self.element_is_present(self.locators.TITLE_H1)
 
     @allure.step("Check the page title is visible on the page")
     def check_used_resources_page_title_visibility(self):
-        return self.element_is_visible(self.locators.PAGE_TITLE)
-
-    @allure.step("Get content of the title on the page")
-    def get_used_resources_page_title_content(self):
-        return self.element_is_visible(self.locators.PAGE_TITLE).text
+        return self.element_is_visible(self.locators.TITLE_H1)
 
     @allure.step("Check the page text is present in DOM")
     def check_used_resources_page_text_presence(self):
@@ -82,9 +78,15 @@ class UsedResourcesPage(BasePage):
         return self.element_is_present(self.locators.FLORA_LINK).text
 
     # Checking text on the page
-    @allure.step("Get value of the title of the page")
-    def get_value_of_page_title(self):
-        return self.get_current_page_title()
+    @allure.step("Get value of the title of the tab")
+    def get_value_of_tab_title(self):
+        current_tab_title = self.get_current_tab_title()
+        print('The title of the current tab is: ', current_tab_title)
+        return current_tab_title
+
+    @allure.step("Get value of the title with tag 'h1' on the page")
+    def get_value_of_title_h1(self):
+        return self.get_text(self.locators.TITLE_H1)
 
     # Checking links in the sections
     @allure.step("Get the list of links in the sections on the page")
@@ -119,7 +121,8 @@ class UsedResourcesPage(BasePage):
         new_tabs_titles = []
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
-            new_tabs_titles.append(self.get_current_page_title())
+            new_tabs_titles.append(self.get_current_tab_title())
+        print(f"New tabs titles are:", *new_tabs_titles, sep='\n')
         return new_tabs_titles
 
     # Checking icons in the sections with links

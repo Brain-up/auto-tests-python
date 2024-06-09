@@ -16,12 +16,8 @@ class TestUsedResourcesPage:
             page.open_used_resources_page()
             page_title_presence = page.check_used_resources_page_title_presence()
             page_title_visibility = page.check_used_resources_page_title_visibility()
-            page_title_text = page.get_used_resources_page_title_content()
             assert page_title_presence is not None, "The title is absent in DOM"
             assert page_title_visibility, "The title is invisible on the page"
-            assert (page_title_text
-                    in UsedResourcesPageData.used_resources_page_elements_content["page_title_content"]), \
-                "The title content does not match the any of the valid option"
 
         @allure.title("Verify presence, visibility and content accuracy of the text on the page")
         def test_ur_01_02_verify_used_resources_page_text(self, driver, auto_test_user_authorized):
@@ -100,14 +96,23 @@ class TestUsedResourcesPage:
                    f"The actual text of the link does not match the valid option"
 
         class TestUsedResourcesPageForAuthorizedText:
-            @allure.title("Verify value of the title of the page")
-            def test_ur_02_01_verify_page_title(self, driver, auto_test_user_authorized):
+            @allure.title("Verify value of the title of the tab")
+            def test_ur_02_01_verify_tab_title(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
-                title_value = page.get_value_of_page_title()
-                assert title_value, "The title value of the page is empty"
-                assert title_value == UsedResourcesPageData.page_title_current, \
-                    "The title value of the page doesn't match the valid value"
+                tab_title_value = page.get_value_of_tab_title()
+                assert tab_title_value, "The title value of the tab is empty"
+                assert tab_title_value == UsedResourcesPageData.tab_title_current, \
+                    "The title value of the tab doesn't match the valid value"
+
+            @allure.title("Verify value of title with tag 'h1' on the page")
+            def test_ur_02_02_verify_title_on_the_page(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                title_value = page.get_value_of_title_h1()
+                assert title_value, "The title value on the page is empty"
+                assert title_value in UsedResourcesPageData.title_h1, \
+                    "The title on the page doesn't match the valid value"
 
         class TestUsedResourcesPageForAuthorizedUserLinks:
             @allure.title("""Verify presence, visibility, clickability, href, status code of links in the sections""")
