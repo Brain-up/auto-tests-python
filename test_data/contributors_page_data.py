@@ -11,8 +11,8 @@ class ContributorsPageData:
     page_title = ["Наша команда", "Our Team"]
 
     page_subtitles = [
-        ["Разработчики", "Тестировщики автоматизаторы", "Тестировщики"],
-        ["Developers", "Developers in test", "Quality Assurance"]
+        "Разработчики", "Тестировщики автоматизаторы", "Тестировщики",
+        "Developers", "Developers in test", "Quality Assurance"
     ]
 
     slogan_text = ["Мы собрались все вместе, чтобы сделать вашу жизнь проще!",

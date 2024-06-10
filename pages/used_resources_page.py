@@ -1,4 +1,6 @@
 """Methods for verifying web elements on the 'Used Resources' page"""
+import time
+
 import allure
 import requests
 from pages.base_page import BasePage
@@ -121,6 +123,7 @@ class UsedResourcesPage(BasePage):
         new_tabs_titles = []
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
+            time.sleep(10)
             new_tabs_titles.append(self.get_current_tab_title())
         print(f"New tabs titles are:", *new_tabs_titles, sep='\n')
         return new_tabs_titles
