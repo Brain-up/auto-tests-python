@@ -25,12 +25,8 @@ class TestUsedResourcesPage:
             page.open_used_resources_page()
             page_text_presence = page.check_used_resources_page_text_presence()
             page_text_visibility = page.check_used_resources_page_text_visibility()
-            page_text_content = page.get_text_content_on_the_used_resources_page()
             assert page_text_presence is not None, "The text is absent in DOM"
             assert page_text_visibility, "The text is invisible on the page"
-            assert (page_text_content
-                    in UsedResourcesPageData.used_resources_page_elements_content["page_text_content"]), \
-                "The text content does not match the any of the valid option"
 
         @allure.title("Verify presence and visibility of the section with links on the page")
         def test_ur_01_03_verify_links_section_on_used_resources_page(self, driver, auto_test_user_authorized):

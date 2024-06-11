@@ -122,7 +122,9 @@ class UsedResourcesPage(BasePage):
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
             time.sleep(10)
-            new_tabs_urls.append(self.get_current_tab_url())
+            url = self.get_current_tab_url()
+            if 'caliban' not in url:
+                new_tabs_urls.append(self.get_current_tab_url())
         print(f"New tabs url are:", *new_tabs_urls, sep='\n')
         return new_tabs_urls
 
