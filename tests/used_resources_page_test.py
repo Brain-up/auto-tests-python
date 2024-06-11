@@ -106,13 +106,22 @@ class TestUsedResourcesPage:
                     "The title value of the tab doesn't match the valid value"
 
             @allure.title("Verify value of title with tag 'h1' on the page")
-            def test_ur_02_02_verify_title_on_the_page(self, driver, auto_test_user_authorized):
+            def test_ur_02_02_verify_page_title(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
                 title_value = page.get_value_of_title_h1()
                 assert title_value, "The title value on the page is empty"
                 assert title_value in UsedResourcesPageData.title_h1, \
                     "The title on the page doesn't match the valid value"
+
+            @allure.title("Verify content of the text on the page")
+            def test_ur_02_03_verify_page_text(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                text_content = page.get_text_content_on_page()
+                assert text_content, "The text content on the page is empty"
+                assert text_content in UsedResourcesPageData.text_on_page, \
+                    "The text content does not match the valid value"
 
         class TestUsedResourcesPageForAuthorizedUserLinks:
             @allure.title("""Verify presence, visibility, clickability, href, status code of links in the sections""")
@@ -138,8 +147,8 @@ class TestUsedResourcesPage:
             def test_ur_03_02_verify_links_lead_to_the_correct_pages(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
-                new_tabs_titles = page.click_on_links()
-                assert all(new_tab_title in UsedResourcesPageData.pages_titles for new_tab_title in new_tabs_titles), \
+                new_tabs_urls = page.click_on_links()
+                assert all(new_tab_url in UsedResourcesPageData.pages_urls for new_tab_url in new_tabs_urls), \
                     "Links in the sections lead to incorrect pages after clicking"
 
         class TestUsedResourcesPageForAuthorizedUserIcons:

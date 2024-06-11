@@ -104,12 +104,6 @@ class BasePage:
     def get_image_alt(self, locator):
         return self.driver.find_element(*locator).get_attribute("alt")
 
-    def get_image_width(self, locator):
-        return self.driver.find_element(*locator).get_attribute("width")
-
-    def get_image_height(self, locator):
-        return self.driver.find_element(*locator).get_attribute("height")
-
     def get_image_size(self, locator):
         return self.driver.find_element(*locator).size
 
@@ -117,6 +111,13 @@ class BasePage:
         try:
             Wait(self.driver, 30).until(ec.presence_of_element_located((By.TAG_NAME, "title")))
             return self.driver.title
+        except TimeoutException:
+            return False
+
+    def get_current_tab_url(self):
+        try:
+            Wait(self.driver, 30).until(ec.presence_of_element_located((By.TAG_NAME, "title")))
+            return self.driver.current_url
         except TimeoutException:
             return False
 
