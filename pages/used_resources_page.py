@@ -31,10 +31,6 @@ class UsedResourcesPage(BasePage):
     def check_used_resources_page_text_visibility(self):
         return self.element_is_visible(self.locators.PAGE_TEXT)
 
-    @allure.step("Get content of the text on the page")
-    def get_text_content_on_the_used_resources_page(self):
-        return self.element_is_visible(self.locators.PAGE_TEXT).text
-
     @allure.step("Check if the section with links is present in DOM")
     def check_presence_of_links_section_on_used_resources_page(self):
         return self.element_is_present(self.locators.LINKS_SECTION)
@@ -79,16 +75,18 @@ class UsedResourcesPage(BasePage):
     def get_text_in_flora_link(self):
         return self.element_is_present(self.locators.FLORA_LINK).text
 
-    # Checking text on the page
+    # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
-        current_tab_title = self.get_current_tab_title()
-        print('The title of the current tab is: ', current_tab_title)
-        return current_tab_title
+        return self.get_current_tab_title()
 
     @allure.step("Get value of the title with tag 'h1' on the page")
     def get_value_of_title_h1(self):
         return self.get_text(self.locators.TITLE_H1)
+
+    @allure.step("Get content of the text on the page")
+    def get_text_content_on_page(self):
+        return self.get_text(self.locators.PAGE_TEXT)
 
     # Checking links in the sections
     @allure.step("Get the list of links in the sections on the page")
@@ -108,7 +106,7 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get attribute 'href' of links in the sections")
     def get_links_href(self):
         links_href = [link.get_attribute("href") for link in self.get_list_of_links()]
-        # print(f"Links href in the sections are:", *links_href, sep='\n')
+        print(f"Links href in the sections are:", *links_href, sep='\n')
         return links_href
 
     @allure.step("Get status code of links in the sections")
@@ -120,13 +118,15 @@ class UsedResourcesPage(BasePage):
     @allure.step("Click on links in the sections and thereby open corresponding web pages on new tabs")
     def click_on_links(self):
         new_tabs = [link.click() for link in self.get_list_of_links()]
-        new_tabs_titles = []
+        new_tabs_urls = []
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
             time.sleep(10)
-            new_tabs_titles.append(self.get_current_tab_title())
-        print(f"New tabs titles are:", *new_tabs_titles, sep='\n')
-        return new_tabs_titles
+            url = self.get_current_tab_url()
+            if 'caliban' not in url:
+                new_tabs_urls.append(self.get_current_tab_url())
+        print(f"New tabs url are:", *new_tabs_urls, sep='\n')
+        return new_tabs_urls
 
     # Checking icons in the sections with links
     @allure.step("Get the list of icons in the sections")
