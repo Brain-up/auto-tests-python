@@ -46,15 +46,6 @@ class TestUsedResourcesPage:
             assert section_presence is not None, "The section with the freepik.com link is absent"
             assert section_visibility, "The section with the freepik.com link is invisible"
 
-        @allure.title("Verify text of the freepik.com link")
-        def test_ur_01_05_verify_freepik_com_link(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            actual_link_text = page.get_text_in_freepik_com_link()
-            assert actual_link_text == \
-                   UsedResourcesPageData.used_resources_page_elements_content["freepik_com_link_content"], \
-                   f"The actual text of the link does not match the valid option"
-
         @allure.title("Verify presence and visibility of the section with the 'Plants' link on the page")
         def test_ur_01_09_verify_section_of_plants_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
@@ -64,15 +55,6 @@ class TestUsedResourcesPage:
             assert section_presence is not None, "The section with the 'Plants' link is absent"
             assert section_visibility, "The section with the 'Plants' link is invisible"
 
-        @allure.title("Verify text of the 'Plants' link")
-        def test_ur_01_10_verify_plants_link(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            actual_link_text = page.get_text_in_plants_link()
-            assert actual_link_text == \
-                   UsedResourcesPageData.used_resources_page_elements_content["plants_link_content"], \
-                   f"The actual text of the link does not match the valid option"
-
         @allure.title("Verify presence and visibility of the section with the 'Flora' link on the page")
         def test_ur_01_14_verify_section_of_flora_link(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
@@ -81,15 +63,6 @@ class TestUsedResourcesPage:
             section_visibility = page.check_visibility_of_flora_link_section()
             assert section_presence is not None, "The section with the 'Flora' link is absent"
             assert section_visibility, "The section with the 'Flora' link is invisible"
-
-        @allure.title("Verify text of the 'Flora' link")
-        def test_ur_01_15_verify_flora_link(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            actual_link_text = page.get_text_in_flora_link()
-            assert actual_link_text == \
-                   UsedResourcesPageData.used_resources_page_elements_content["flora_link_content"], \
-                   f"The actual text of the link does not match the valid option"
 
         class TestUsedResourcesPageForAuthorizedText:
             @allure.title("Verify value of the title of the tab")
@@ -118,6 +91,15 @@ class TestUsedResourcesPage:
                 assert text_content, "The text content on the page is empty"
                 assert text_content in UsedResourcesPageData.text_on_page, \
                     "The text content does not match the valid value"
+
+            @allure.title("Verify values of the text in links in the sections")
+            def test_ur_02_04_verify_text_in_links(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                links_text = page.get_text_in_links()
+                assert links_text, "Text in links is empty"
+                assert all(link_text in UsedResourcesPageData.links_text for link_text in links_text), \
+                    "Text in links does not match the valid values"
 
         class TestUsedResourcesPageForAuthorizedUserLinks:
             @allure.title("""Verify presence, visibility, clickability, href, status code of links in the sections""")
