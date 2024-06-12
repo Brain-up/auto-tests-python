@@ -47,10 +47,6 @@ class UsedResourcesPage(BasePage):
     def check_visibility_of_freepik_com_link_section(self):
         return self.element_is_visible(self.locators.FREEPIK_COM_LINK_SECTION)
 
-    @allure.step("Get content of the text in the freepik.com link")
-    def get_text_in_freepik_com_link(self):
-        return self.element_is_present(self.locators.FREEPIK_COM_LINK).text
-
     @allure.step("Check if the section with the 'Plants' link is present in DOM")
     def check_presence_of_plants_link_section(self):
         return self.element_is_present(self.locators.PLANTS_LINK_SECTION)
@@ -59,10 +55,6 @@ class UsedResourcesPage(BasePage):
     def check_visibility_of_plants_link_section(self):
         return self.element_is_visible(self.locators.PLANTS_LINK_SECTION)
 
-    @allure.step("Get content of the text in the 'Plants' link")
-    def get_text_in_plants_link(self):
-        return self.element_is_present(self.locators.PLANTS_LINK).text
-
     @allure.step("Check if the section with the 'Flora' link is present in DOM")
     def check_presence_of_flora_link_section(self):
         return self.element_is_present(self.locators.FLORA_LINK_SECTION)
@@ -70,10 +62,6 @@ class UsedResourcesPage(BasePage):
     @allure.step("Check if the section with the 'Flora' link is visible on the page")
     def check_visibility_of_flora_link_section(self):
         return self.element_is_visible(self.locators.FLORA_LINK_SECTION)
-
-    @allure.step("Get content of the text in the 'Flora' link")
-    def get_text_in_flora_link(self):
-        return self.element_is_present(self.locators.FLORA_LINK).text
 
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
@@ -87,6 +75,13 @@ class UsedResourcesPage(BasePage):
     @allure.step("Get content of the text on the page")
     def get_text_content_on_page(self):
         return self.get_text(self.locators.PAGE_TEXT)
+
+    @allure.step("Get the list of text content in the links on the page")
+    def get_text_in_links(self):
+        links = self.elements_are_present(self.locators.SECTION_LINKS)
+        links_text = [link.text for link in links]
+        print(f"Text in the links is:", *links_text, sep='\n\n')
+        return links_text
 
     # Checking links in the sections
     @allure.step("Get the list of links in the sections on the page")
@@ -121,7 +116,7 @@ class UsedResourcesPage(BasePage):
         new_tabs_urls = []
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
-            time.sleep(10)
+            time.sleep(5)
             url = self.get_current_tab_url()
             if 'caliban' not in url:
                 new_tabs_urls.append(self.get_current_tab_url())
