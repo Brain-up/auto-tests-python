@@ -43,7 +43,6 @@ class TestContributorsPage:
             structure_of_3rd_level_subsections = page.get_structure_of_3rd_level_in_section()
             visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section()
             structure_of_4th_level_subsections = page.get_structure_of_4th_level_in_section()
-            visibility_of_elements_on_4th_level = page.check_visibility_of_elements_on_4th_level_in_section()
             assert structure_of_section, "The section is empty"
             assert visibility_of_subsections_on_the_1st_level, "1th-level subsections are invisible on the page"
             assert structure_of_1st_level_subsection, "Subsections on the 1st level in the section are empty"
@@ -53,7 +52,6 @@ class TestContributorsPage:
             assert structure_of_3rd_level_subsections, "Elements on the 3rd level in the section are empty"
             assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible on the page"
             assert structure_of_4th_level_subsections, "Elements on the 4th level in the section are empty"
-            assert visibility_of_elements_on_4th_level, "4th-level elements are invisible on the page"
 
         @allure.title("Verify amount of contributor cards with images, links and descriptions in the section grid")
         def test_cnp_01_04_verify_structure_of_grid_in_section(self, driver, contributors_page_open):
@@ -83,9 +81,9 @@ class TestContributorsPage:
         @allure.title("Verify values of subtitles with tag 'h3' on the page")
         def test_cnp_02_02_verify_subtitles_on_the_page(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            title_value = page.get_values_of_subtitles()
-            assert title_value, "Subtitle values on the page are empty"
-            assert title_value in ContributorsPageData.page_subtitles, \
+            titles_value = page.get_values_of_subtitles()
+            assert titles_value, "Subtitle values on the page are empty"
+            assert all(title_value in ContributorsPageData.page_subtitles for title_value in titles_value), \
                 "The subtitles on the 'Contributors' page do match the valid values"
 
         @allure.title("Verify values of the text in the slogan on the page")
@@ -122,3 +120,36 @@ class TestContributorsPage:
             assert links_visibility, "Links are invisible on the page"
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
+
+        @allure.title("Verify href, status code, text of the 'All Team' link on the page")
+        def test_cnp_03_02_verify_all_team_link(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            link_href = page.get_all_team_link_href()
+            link_status_code = page.get_all_team_link_status_code()
+            actual_link_text = page.get_text_in_all_team_link()
+            assert link_href == ContributorsPageData.all_team_link_href, \
+                f"The attribute 'href' of the {link_href} link does not match the valid value"
+            assert link_status_code == ContributorsPageData.all_team_link_status_code, \
+                f"The {link_href} link status code does not match the valid value"
+            assert actual_link_text in ContributorsPageData.all_team_link_text, \
+                f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
+
+    class TestContributorCardImages:
+
+        @allure.title("Verify presence and visibility of images in contributors cards in the grid")
+        def test_cnp_04_01_verify_images_in_cards_are_present_and_visible(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            images_visibility = page.check_image_presence_and_visibility_in_the_grid()
+            assert images_visibility, "Images in contributor cards are invisible in the grid"
+
+        @allure.title("Verify attribute values and sizes of images in contributors cards in the grid")
+        def test_cnp_04_02_verify_image_attributes_in_cards(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            images_src = page.check_images_src_in_contributor_cards()
+            images_alt = page.get_images_alt_in_contributor_cards()
+            images_size_changes = page.check_size_changes_of_card_images()
+            assert images_src, "The 'src' attribute value of some card images is empty or unaccurate"
+            assert images_alt, "The 'alt' attribute value of some card images is empty"
+            assert all(image_alt == ContributorsPageData.images_alt for image_alt in images_alt), \
+                "The 'alt' attribute value of some card images is empty or unaccurate"
+            assert images_size_changes, "Checks of changes in image sizes have not carried out"

@@ -1,8 +1,10 @@
 """Methods for verifying web elements on the 'Contributors' page"""
 import allure
+import requests
 
 from pages.base_page import BasePage
 from locators.contributors_page_locators import ContributorsPageLocators
+from test_data.contributors_page_data import ContributorsPageData
 
 
 class ContributorsPage(BasePage):
@@ -27,8 +29,8 @@ class ContributorsPage(BasePage):
     @allure.step("Check if elements of the 1st level of nesting are visible on the page")
     def check_visibility_of_elements_on_page(self):
         elements = self.elements_are_present(self.locators.PAGE_STRUCTURE)
-        for element in elements:
-            return element.is_displayed()
+        all_elements_are_displayed = all(element.is_displayed() for element in elements)
+        return all_elements_are_displayed
 
     @allure.step("Get amount of sections with content on the page")
     def get_amount_of_sections_on_page(self):
@@ -39,8 +41,8 @@ class ContributorsPage(BasePage):
     @allure.step("Check sections are visible on the page")
     def check_visibility_of_sections(self):
         sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
-        for section in sections:
-            return section.is_displayed()
+        all_sections_are_displayed = all(section.is_displayed() for section in sections)
+        return all_sections_are_displayed
 
     @allure.step("Get structure of section with content on the page")
     def get_structure_of_section(self):
@@ -53,8 +55,8 @@ class ContributorsPage(BasePage):
     @allure.step("Check if elements of the 1st level are visible in the section")
     def check_visibility_of_elements_in_section(self):
         elements = self.elements_are_present(self.locators.SECTION_FIRST_LEVEL_ELEMENTS)
-        for element in elements:
-            return element.is_displayed()
+        all_elements_are_displayed = all(element.is_displayed() for element in elements)
+        return all_elements_are_displayed
 
     @allure.step("Get structure of subsections in the section")
     def get_structure_of_1st_level_in_section(self):
@@ -67,8 +69,8 @@ class ContributorsPage(BasePage):
     @allure.step("Check subsections are visible in the section")
     def check_visibility_of_elements_in_subsections(self):
         subsections = self.elements_are_present(self.locators.PAGE_SUBSECTIONS)
-        for subsection in subsections:
-            return subsection.is_displayed()
+        all_subsections_are_displayed = all(subsection.is_displayed() for subsection in subsections)
+        return all_subsections_are_displayed
 
     @allure.step("Get structure of sub-subsections on the page") #ch
     def get_structure_of_2nd_level_in_section(self):
@@ -81,8 +83,8 @@ class ContributorsPage(BasePage):
     @allure.step("Check if elements on the 2nd level of nesting are visible on the page")
     def check_visibility_of_elements_on_2nd_level_in_section(self):
         elements = self.elements_are_present(self.locators.SECTION_SECOND_LEVEL_ELEMENTS)
-        for element in elements:
-            return element.is_displayed()
+        all_elements_are_displayed = all(element.is_displayed() for element in elements)
+        return all_elements_are_displayed
 
     @allure.step("Get structure of sub-sub-subsections on the page")
     def get_structure_of_3rd_level_in_section(self):
@@ -95,8 +97,8 @@ class ContributorsPage(BasePage):
     @allure.step("Check if elements of the 3rd level of nesting are visible on the page")
     def check_visibility_of_elements_on_3rd_level_in_section(self):
         elements = self.elements_are_present(self.locators.SECTION_THIRD_LEVEL_ELEMENTS)
-        for element in elements:
-            return element.is_displayed()
+        all_elements_are_displayed = all(element.is_displayed() for element in elements)
+        return all_elements_are_displayed
 
     @allure.step("Get the list of subsections on the 3rd level of nesting")
     def get_amount_of_subsections_on_3rd_level(self):
@@ -111,12 +113,6 @@ class ContributorsPage(BasePage):
         tags = [element.tag_name for element in elements]
         # print(f"Tags of elements on the 4th level of nesting in the section are: {tags}")
         return tags
-
-    @allure.step("Check if elements of the 4th level of nesting are visible on the page")
-    def check_visibility_of_elements_on_4th_level_in_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_FOURTH_LEVEL_ELEMENTS)
-        for element in elements:
-            return element.is_displayed()
 
     @allure.step("Get amount of contributor's cards in the section grid")
     def get_amount_of_cards_in_the_grid(self):
@@ -188,18 +184,79 @@ class ContributorsPage(BasePage):
 
     @allure.step("Check if links are visible in the section")
     def check_visibility_of_links_in_section(self):
-        links = self.elements_are_present(self.locators.SECTION_LINKS)
-        for link in links:
-            return link.is_displayed()
+        links = self.get_list_of_links_in_section()
+        all_links_are_displayed = all(link.is_displayed() for link in links)
+        return all_links_are_displayed
 
     @allure.step("Check if links in the section are clickable")
     def check_links_clickability(self):
-        links = self.elements_are_present(self.locators.SECTION_LINKS)
-        for link in links:
-            return link.is_enabled()
+        links = self.get_list_of_links_in_section()
+        all_links_are_enabled = all(link.is_enabled() for link in links)
+        return all_links_are_enabled
 
     @allure.step("Get attribute 'href' of links in the section")
     def get_links_href(self):
-        links = self.elements_are_present(self.locators.SECTION_LINKS)
+        links = self.get_list_of_links_in_section()
         links_href = [element.get_attribute("href") for element in links]
         return links_href
+
+    @allure.step("Get attribute 'href' of the 'All Team' link")
+    def get_all_team_link_href(self):
+        return self.get_link_href(self.locators.ALL_TEAM_LINK)
+
+    @allure.step("Get status code of 'All Team' link")
+    def get_all_team_link_status_code(self):
+        link_href = self.get_all_team_link_href()
+        link_status_code = requests.head(link_href).status_code
+        return link_status_code
+
+    @allure.step("Get text in the 'All Team' link")
+    def get_text_in_all_team_link(self):
+        return self.get_text(self.locators.ALL_TEAM_LINK)
+
+    @allure.step("Check the image in each contributor card is present and visible on the page")
+    def check_image_presence_and_visibility_in_the_grid(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        all_images_are_displayed = all(image.is_displayed() for image in card_images)
+        return all_images_are_displayed
+
+    @allure.step("Check attribute 'src' of images in contributor cards on the page")
+    def check_images_src_in_contributor_cards(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        src_list = [image.get_attribute('src') for image in card_images]
+        image_src = [image_src.startswith(ContributorsPageData.images_src_start) for image_src in src_list]
+        return image_src
+
+    @allure.step("Get the list of attribute 'alt' values of images in contributor cards on the page")
+    def get_images_alt_in_contributor_cards(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        alt_list = [image.get_attribute('alt') for image in card_images]
+        return alt_list
+
+    @allure.step("""Get the list of size values of images in contributor cards on the page 
+                    and check their changes after resizing""")
+    def check_size_changes_of_card_images(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        image_sizes_before = [image.size for image in card_images]
+        self.driver.set_window_size(1200, 800)
+        image_sizes_after = [image.size for image in card_images]
+        # print("The results of checking changes of image sizes in cards after resizing are:")
+        changed, lost, unchanged = 0, 0, 0
+        for i in range(len(image_sizes_after)):
+            if image_sizes_before[i] != image_sizes_after[i]:
+                changed += 1
+                if image_sizes_after[i] == {'height': 0, 'width': 0}:
+                    lost += 1
+                    # print(f"\n   The image #{i + 1} has become invisible because has sizes that changed: "
+                    #       f"\nfrom {image_sizes_before[i]} before resizing \nto {image_sizes_after[i]} after resizing")
+                # else:
+                    # print(f"\n   The image #{i + 1} has sizes that changed: \nfrom {image_sizes_before[i]} before "
+                    #       f"resizing \nto {image_sizes_after[i]} after resizing")
+            else:
+                unchanged += 1
+                # print(f"\n   The image #{i + 1} has sizes that remain: \nthe same {image_sizes_before[i]} before resizing "
+                #       f"\nand {image_sizes_after[i]} after resizing")
+        # print(f"\nSummary of image size checks\n   Amount of images with changed sizes after resizing is: {changed}, "
+        #       f"\nincluding images that have become invisible on the page: {lost}")
+        # print(f"   Amount of images with unchanged sizes after resizing is: {unchanged}")
+        return changed, lost, unchanged

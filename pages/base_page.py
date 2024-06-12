@@ -1,6 +1,7 @@
 import allure
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
@@ -103,19 +104,22 @@ class BasePage:
     def get_image_alt(self, locator):
         return self.driver.find_element(*locator).get_attribute("alt")
 
-    def get_image_width(self, locator):
-        return self.driver.find_element(*locator).get_attribute("width")
-
-    def get_image_height(self, locator):
-        return self.driver.find_element(*locator).get_attribute("height")
-
     def get_image_size(self, locator):
         return self.driver.find_element(*locator).size
 
-    def get_current_page_title(self):
-        current_page_title = self.driver.title
-        print('The title of the current page is: ', current_page_title)
-        return current_page_title
+    def get_current_tab_title(self):
+        try:
+            Wait(self.driver, 30).until(ec.presence_of_element_located((By.TAG_NAME, "title")))
+            return self.driver.title
+        except TimeoutException:
+            return False
+
+    def get_current_tab_url(self):
+        try:
+            Wait(self.driver, 30).until(ec.presence_of_element_located((By.TAG_NAME, "title")))
+            return self.driver.current_url
+        except TimeoutException:
+            return False
 
     def element_is_not_clickable(self, locator):
         self.timeout = 5
