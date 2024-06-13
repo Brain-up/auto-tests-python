@@ -10,6 +10,8 @@ class UsedResourcesPageLocators:
     FREEPIK_COM_LINK = (By.XPATH, "(//section//li)[1]/a")
     FREEPIK_COM_LINK_SECTION = (By.XPATH, "(//section//li)[1]")
     FREEPIK_COM_SECTION_ICON = (By.XPATH, "(//*[name()='svg'][@class])[1]")
+    PAGE_CONTENT = (By.TAG_NAME, "main")
+    PAGE_STRUCTURE = (By.XPATH, "//main/*")
     PAGE_TEXT = (By.XPATH, "//section/p")
     PLANTS_LINK = (By.XPATH, "(//section//li)[2]/a")
     PLANTS_LINK_SECTION = (By.XPATH, "(//section//li)[2]")
