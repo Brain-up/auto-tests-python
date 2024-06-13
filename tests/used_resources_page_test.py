@@ -11,7 +11,7 @@ class TestUsedResourcesPage:
     class TestUsedResourcesPageForAuthorizedUser:
         class TestUsedResourcesPageStructure:
 
-            @allure.title("Verify presence, visibility and structure of content on the page")
+            @allure.title("Verify presence and visibility of content on the page")
             def test_ur_01_01_verify_page_presence_and_visibility(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
