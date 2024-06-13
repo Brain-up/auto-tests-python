@@ -15,6 +15,14 @@ class UsedResourcesPage(BasePage):
     def open_used_resources_page(self):
         self.driver.get(MainPageLinks.URL_USED_RESOURCES_PAGE)
 
+    @allure.step("Check if some content is present in DOM")
+    def check_presence_of_page_content(self):
+        return self.element_is_present(self.locators.PAGE_CONTENT)
+
+    @allure.step("Check if page content is visible on the page")
+    def check_visibility_of_page_content(self):
+        return self.element_is_visible(self.locators.PAGE_CONTENT)
+
     @allure.step("Check the page title is present in DOM")
     def check_used_resources_page_title_presence(self):
         return self.element_is_present(self.locators.TITLE_H1)
@@ -116,10 +124,8 @@ class UsedResourcesPage(BasePage):
         new_tabs_urls = []
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
-            time.sleep(5)
-            url = self.get_current_tab_url()
-            if 'caliban' not in url:
-                new_tabs_urls.append(self.get_current_tab_url())
+            time.sleep(3)
+            new_tabs_urls.append(self.get_current_tab_url())
         print(f"New tabs url are:", *new_tabs_urls, sep='\n')
         return new_tabs_urls
 

@@ -9,9 +9,19 @@ class TestUsedResourcesPage:
     data = UsedResourcesPageData
 
     class TestUsedResourcesPageForAuthorizedUser:
+        class TestUsedResourcesPageStructure:
+
+            @allure.title("Verify presence and visibility of content on the page")
+            def test_ur_01_01_verify_page_presence_and_visibility(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                page_content_presence = page.check_presence_of_page_content()
+                page_content_visibility = page.check_visibility_of_page_content()
+                assert page_content_presence is not None, "The page content is absent in DOM"
+                assert page_content_visibility, "The page content is invisible on the page"
 
         @allure.title("Verify presence, visibility and text accuracy of the title on the page")
-        def test_ur_01_01_verify_used_resources_page_title(self, driver, auto_test_user_authorized):
+        def test_ur_01_01_1_verify_used_resources_page_title(self, driver, auto_test_user_authorized):
             page = UsedResourcesPage(driver)
             page.open_used_resources_page()
             page_title_presence = page.check_used_resources_page_title_presence()
