@@ -9,7 +9,7 @@ class TestUsedResourcesPage:
     data = UsedResourcesPageData
 
     class TestUsedResourcesPageForAuthorizedUser:
-        class TestUsedResourcesPageStructure:
+        class TestUsedResourcesPageForAuthorizedUserStructure:
 
             @allure.title("Verify presence and visibility of content on the page")
             def test_ur_01_01_verify_page_presence_and_visibility(self, driver, auto_test_user_authorized):
@@ -20,59 +20,26 @@ class TestUsedResourcesPage:
                 assert page_content_presence is not None, "The page content is absent in DOM"
                 assert page_content_visibility, "The page content is invisible on the page"
 
-        @allure.title("Verify presence, visibility and text accuracy of the title on the page")
-        def test_ur_01_01_1_verify_used_resources_page_title(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            page_title_presence = page.check_used_resources_page_title_presence()
-            page_title_visibility = page.check_used_resources_page_title_visibility()
-            assert page_title_presence is not None, "The title is absent in DOM"
-            assert page_title_visibility, "The title is invisible on the page"
-
-        @allure.title("Verify presence, visibility and content accuracy of the text on the page")
-        def test_ur_01_02_verify_used_resources_page_text(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            page_text_presence = page.check_used_resources_page_text_presence()
-            page_text_visibility = page.check_used_resources_page_text_visibility()
-            assert page_text_presence is not None, "The text is absent in DOM"
-            assert page_text_visibility, "The text is invisible on the page"
-
-        @allure.title("Verify presence and visibility of the section with links on the page")
-        def test_ur_01_03_verify_links_section_on_used_resources_page(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            links_section_presence = page.check_presence_of_links_section_on_used_resources_page()
-            links_section_visibility = page.check_visibility_of_links_section_on_used_resources_page()
-            assert links_section_presence is not None, "The section with links is absent in DOM"
-            assert links_section_visibility, "The section with links is invisible on the page"
-
-        @allure.title("Verify presence and visibility of the section with the freepik.com link on the page")
-        def test_ur_01_04_verify_section_of_freepik_com_link(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            section_presence = page.check_presence_of_freepik_com_link_section()
-            section_visibility = page.check_visibility_of_freepik_com_link_section()
-            assert section_presence is not None, "The section with the freepik.com link is absent"
-            assert section_visibility, "The section with the freepik.com link is invisible"
-
-        @allure.title("Verify presence and visibility of the section with the 'Plants' link on the page")
-        def test_ur_01_09_verify_section_of_plants_link(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            section_presence = page.check_presence_of_plants_link_section()
-            section_visibility = page.check_visibility_of_plants_link_section()
-            assert section_presence is not None, "The section with the 'Plants' link is absent"
-            assert section_visibility, "The section with the 'Plants' link is invisible"
-
-        @allure.title("Verify presence and visibility of the section with the 'Flora' link on the page")
-        def test_ur_01_14_verify_section_of_flora_link(self, driver, auto_test_user_authorized):
-            page = UsedResourcesPage(driver)
-            page.open_used_resources_page()
-            section_presence = page.check_presence_of_flora_link_section()
-            section_visibility = page.check_visibility_of_flora_link_section()
-            assert section_presence is not None, "The section with the 'Flora' link is absent"
-            assert section_visibility, "The section with the 'Flora' link is invisible"
+            @allure.title("Verify the composition and visibility of elements on the 1-4th levels on the page")
+            def test_ur_01_02_verify_page_structure_and_visibility(self, driver, auto_test_user_authorized):
+                page = UsedResourcesPage(driver)
+                page.open_used_resources_page()
+                structure_of_header = page.get_structure_of_1st_level_on_page()
+                visibility_of_elements_on_the_1st_level = page.check_elements_visibility_on_1st_level_on_page()
+                structure_of_2nd_level = page.get_structure_of_2nd_level_on_page()
+                visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_on_page()
+                structure_of_3rd_level = page.get_structure_of_3rd_level_on_page()
+                visibility_of_elements_on_3rd_level = page.check_elements_visibility_on_3rd_level_on_page()
+                structure_of_4th_level = page.get_structure_of_4th_level_on_page()
+                visibility_of_elements_on_4th_level = page.check_elements_visibility_on_4th_level_on_page()
+                assert structure_of_header, "The page is empty"
+                assert visibility_of_elements_on_the_1st_level, "1th-level elements are invisible on the page"
+                assert structure_of_2nd_level, "Elements on the 2nd level are absent on the page"
+                assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible on the page"
+                assert structure_of_3rd_level, "Elements on the 3rd level are absent on the page"
+                assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible on the page"
+                assert structure_of_4th_level, "Elements on the 4th level are absent on the page"
+                assert visibility_of_elements_on_4th_level, "4th-level elements are invisible on the page"
 
         class TestUsedResourcesPageForAuthorizedText:
             @allure.title("Verify value of the title of the tab")
