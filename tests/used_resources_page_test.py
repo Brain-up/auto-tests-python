@@ -24,16 +24,16 @@ class TestUsedResourcesPage:
             def test_ur_01_02_verify_page_structure_and_visibility(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
-                structure_of_header = page.get_structure_of_1st_level_on_page()
-                visibility_of_elements_on_the_1st_level = page.check_elements_visibility_on_1st_level_on_page()
-                structure_of_2nd_level = page.get_structure_of_2nd_level_on_page()
+                structure_of_1st_level = page.get_structure_of_1st_level()
+                visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_on_page()
+                structure_of_2nd_level = page.get_structure_of_2nd_level()
                 visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_on_page()
-                structure_of_3rd_level = page.get_structure_of_3rd_level_on_page()
+                structure_of_3rd_level = page.get_structure_of_3rd_level()
                 visibility_of_elements_on_3rd_level = page.check_elements_visibility_on_3rd_level_on_page()
-                structure_of_4th_level = page.get_structure_of_4th_level_on_page()
+                structure_of_4th_level = page.get_structure_of_4th_level()
                 visibility_of_elements_on_4th_level = page.check_elements_visibility_on_4th_level_on_page()
-                assert structure_of_header, "The page is empty"
-                assert visibility_of_elements_on_the_1st_level, "1th-level elements are invisible on the page"
+                assert structure_of_1st_level, "The page is empty"
+                assert visibility_of_elements_on_1st_level, "1th-level elements are invisible on the page"
                 assert structure_of_2nd_level, "Elements on the 2nd level are absent on the page"
                 assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible on the page"
                 assert structure_of_3rd_level, "Elements on the 3rd level are absent on the page"
