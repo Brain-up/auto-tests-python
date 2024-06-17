@@ -4,6 +4,8 @@
 class StartUnauthorizedPageData:
     amount_of_sections_with_content_on_page = 2
 
+    tab_title_expected = "BrainUp"
+
     titles_on_start_unauthorized_page = [
         ["BrainUP - онлайн занятия для детей и взрослых", "Преимущества"],
         ["BrainUP - online classes for children and adults", "Advantages"]
