@@ -89,6 +89,10 @@ class StartUnauthorizedPage(BasePage):
         return all(element.is_displayed() for element in self.get_structure_of_3rd_level_in_section_2())
 
     # Checking text on the tab&page
+    @allure.step("Get value of the title of the tab")
+    def get_value_of_tab_title(self):
+        return self.get_current_tab_title()
+
     @allure.step("Get the list of titles on the page")
     def get_list_of_titles_on_page(self):
         return self.elements_are_present(self.locators.PAGE_TITLES)

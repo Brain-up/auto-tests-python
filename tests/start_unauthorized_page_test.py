@@ -62,35 +62,34 @@ class TestStartUnauthorizedPage:
             assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible in the section 2"
 
     class TestStartUnauthorizedPageText:
+        @allure.title("Verify value of the title of the tab")
+        def test_su_02_01_verify_tab_title(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            tab_title_value = page.get_value_of_tab_title()
+            assert tab_title_value, "The title value of the tab is empty"
+            assert tab_title_value == StartUnauthorizedPageData.tab_title_expected, \
+                "The title value of the tab doesn't match the valid value"
 
-        @allure.title("Verify values of titles with tag 'h2' on the page")
-        def test_su_02_01_verify_titles_on_the_page(self, driver, main_page_open):
+        @allure.title("Verify values of titles with tags h2 and subtitles with tags h4 on the page")
+        def test_su_02_02_verify_page_titles_and_subtitles(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             title_values = page.get_values_of_titles()
+            subtitle_values = page.get_values_of_subtitles()
             assert title_values, "Title values on the page are empty"
             assert title_values in StartUnauthorizedPageData.titles_on_start_unauthorized_page, \
                 "The titles on start unauthorized page do not match the valid values"
-
-        @allure.title("Verify values of subtitles with tag 'h4' on the page")
-        def test_su_02_02_verify_subtitles_on_the_page(self, driver, main_page_open):
-            page = StartUnauthorizedPage(driver)
-            subtitle_values = page.get_values_of_subtitles()
             assert subtitle_values, "Subtitle values on the page are empty"
             assert subtitle_values in StartUnauthorizedPageData.subtitles_on_start_unauthorized_page, \
                 "The subtitles on start unauthorized page do not match the valid values"
 
-        @allure.title("Verify values of the text in the section 1 on the page")
-        def test_su_02_03_verify_text_in_section_1(self, driver, main_page_open):
+        @allure.title("Verify values of the text in the sections 1, 2 on the page")
+        def test_su_02_03_verify_page_text(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             text_value_in_section_1 = page.get_values_of_text_in_section_1()
+            text_value_in_section_2 = page.get_values_of_text_in_section_2()
             assert (text_value_in_section_1 in
                     StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_1"]), \
                 "The text in section 1 does not match the any of the valid option"
-
-        @allure.title("Verify values of the text in the section 2 on the page")
-        def test_su_02_04_verify_text_in_section_2(self, driver, main_page_open):
-            page = StartUnauthorizedPage(driver)
-            text_value_in_section_2 = page.get_values_of_text_in_section_2()
             assert (text_value_in_section_2 ==
                     StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_2"]), \
                 "The text in section 2 does not match the valid options"
