@@ -29,14 +29,14 @@ class TestStartUnauthorizedPage:
 
         @allure.title("""Verify the composition and visibility of elements 
         on the 1st-3rd levels of nesting in the section 1""")
-        def test_su_01_03_verify_section_1_structure_and_visibility(self, driver, main_page_open):
+        def test_su_01_03_verify_section1_structure_and_visibility(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
-            structure_of_1st_level = page.get_structure_of_1st_level_in_section_1()
-            visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_in_section_1()
-            structure_of_2nd_level = page.get_structure_of_2nd_level_in_section_1()
-            visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_in_section_1()
-            structure_of_3rd_level = page.get_structure_of_3rd_level_in_section_1()
-            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section_1()
+            structure_of_1st_level = page.get_structure_of_1st_level_in_section1()
+            visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_in_section1()
+            structure_of_2nd_level = page.get_structure_of_2nd_level_in_section1()
+            visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_in_section1()
+            structure_of_3rd_level = page.get_structure_of_3rd_level_in_section1()
+            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section1()
             assert structure_of_1st_level, "The section 1 is empty"
             assert visibility_of_elements_on_1st_level, "1st-level elements are invisible in the section 1"
             assert structure_of_2nd_level, "Elements on the 2nd level are absent in the section 1"
@@ -46,14 +46,14 @@ class TestStartUnauthorizedPage:
 
         @allure.title("""Verify the composition and visibility of elements 
         on the 1st-3rd levels of nesting in the section 2""")
-        def test_su_01_04_verify_section_2_structure_and_visibility(self, driver, main_page_open):
+        def test_su_01_04_verify_section2_structure_and_visibility(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
-            structure_of_1st_level = page.get_structure_of_1st_level_in_section_2()
-            visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_in_section_2()
-            structure_of_2nd_level = page.get_structure_of_2nd_level_in_section_2()
-            visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_in_section_2()
-            structure_of_3rd_level = page.get_structure_of_3rd_level_in_section_2()
-            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section_2()
+            structure_of_1st_level = page.get_structure_of_1st_level_in_section2()
+            visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_in_section2()
+            structure_of_2nd_level = page.get_structure_of_2nd_level_in_section2()
+            visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_in_section2()
+            structure_of_3rd_level = page.get_structure_of_3rd_level_in_section2()
+            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section2()
             assert structure_of_1st_level, "The section 2 is empty"
             assert visibility_of_elements_on_1st_level, "1st-level elements are invisible in the section 2"
             assert structure_of_2nd_level, "Elements on the 2nd level are absent in the section 2"
@@ -70,29 +70,29 @@ class TestStartUnauthorizedPage:
             assert tab_title_value == StartUnauthorizedPageData.tab_title_expected, \
                 "The title value of the tab doesn't match the valid value"
 
-        @allure.title("Verify values of titles with tags h2 and subtitles with tags h4 on the page")
+        @allure.title("Verify values of titles and subtitles with tags h2, h4")
         def test_su_02_02_verify_page_titles_and_subtitles(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             title_values = page.get_values_of_titles()
             subtitle_values = page.get_values_of_subtitles()
             assert title_values, "Title values on the page are empty"
-            assert title_values in StartUnauthorizedPageData.titles_on_start_unauthorized_page, \
-                "The titles on start unauthorized page do not match the valid values"
+            assert all(title_value in StartUnauthorizedPageData.titles_h2 for title_value in title_values), \
+                "The titles on the page do not match the valid values"
             assert subtitle_values, "Subtitle values on the page are empty"
-            assert subtitle_values in StartUnauthorizedPageData.subtitles_on_start_unauthorized_page, \
-                "The subtitles on start unauthorized page do not match the valid values"
+            assert all(subtitle_value in StartUnauthorizedPageData.subtitles_h4 for subtitle_value
+                       in subtitle_values), "The subtitles do not match the valid values"
 
-        @allure.title("Verify values of the text in the sections 1, 2 on the page")
+        @allure.title("Verify content of the text in the sections 1, 2")
         def test_su_02_03_verify_page_text(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
-            text_value_in_section_1 = page.get_values_of_text_in_section_1()
-            text_value_in_section_2 = page.get_values_of_text_in_section_2()
-            assert (text_value_in_section_1 in
-                    StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_1"]), \
-                "The text in section 1 does not match the any of the valid option"
-            assert (text_value_in_section_2 ==
-                    StartUnauthorizedPageData.text_on_start_unauthorized_page["text_in_section_2"]), \
-                "The text in section 2 does not match the valid options"
+            text_content_section1 = page.get_text_content_in_section1()
+            text_content_section2 = page.get_text_content_in_section2()
+            assert text_content_section1, "The text content in the section 1 is empty"
+            assert (text_content_section1 in StartUnauthorizedPageData.text_on_page["text_in_section1"]), \
+                "The text in the section 1 does not match the any of the valid values"
+            assert text_content_section2, "The text content in the section 2 is empty"
+            assert (text_content_section2 == StartUnauthorizedPageData.text_on_page["text_in_section2"]), \
+                "The text in the section 2 does not match the valid values"
 
     class TestStartUnauthorizedPageImage:
 
