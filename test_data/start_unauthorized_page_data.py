@@ -6,23 +6,21 @@ class StartUnauthorizedPageData:
 
     tab_title_expected = "BrainUp"
 
-    titles_on_start_unauthorized_page = [
-        ["BrainUP - онлайн занятия для детей и взрослых", "Преимущества"],
-        ["BrainUP - online classes for children and adults", "Advantages"]
+    titles_h2 = [
+        "BrainUP - онлайн занятия для детей и взрослых", "Преимущества",
+        "BrainUP - online classes for children and adults", "Advantages"
     ]
 
-    subtitles_on_start_unauthorized_page = [
-        ["BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ"]
-    ]
+    subtitles_h4 = ["BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ"]
 
-    text_on_start_unauthorized_page = {
-        "text_in_section_1": [
+    text_on_page = {
+        "text_in_section1": [
             "Наш сайт - это платформа интерактивных упражнений для взрослых и детей от семи лет с когнитивными "
             "проблемами восприятия речи, которая помогает тренировать способности слушать и понимать",
             "Our site is a platform of interactive exercises for adults and children from the age of seven with "
             "cognitive speech perception problems, which helps to train the ability to listen and understand."],
 
-        "text_in_section_2": [
+        "text_in_section2": [
             "Тренируйтесь всего от 30 минут в день для развития и получения результата",
 
             "Первая бесплатная онлайн программа для взрослых и детей с когнитивными проблемами восприятия речи. "

@@ -14,7 +14,7 @@ class StartUnauthorizedPage(BasePage):
     def check_presence_of_page_content(self):
         return self.element_is_present(self.locators.PAGE_CONTENT)
 
-    @allure.step("Check if page content is visible on the page")
+    @allure.step("Check if page content is visible")
     def check_visibility_of_page_content(self):
         return self.element_is_visible(self.locators.PAGE_CONTENT)
 
@@ -23,70 +23,70 @@ class StartUnauthorizedPage(BasePage):
         sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
         return len(sections)
 
-    @allure.step("Check sections are visible on the page")
+    @allure.step("Check sections are visible")
     def check_visibility_of_sections(self):
         sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
         return all(section.is_displayed() for section in sections)
 
     @allure.step("Get structure of the 1st level of nesting in the section 1")
-    def get_structure_of_1st_level_in_section_1(self):
+    def get_structure_of_1st_level_in_section1(self):
         elements = self.elements_are_present(self.locators.SECTION_1_FIRST_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 1st level of nesting are visible in the section 1")
-    def check_elements_visibility_on_1st_level_in_section_1(self):
-        return all(element.is_displayed() for element in self.get_structure_of_1st_level_in_section_1())
+    def check_elements_visibility_on_1st_level_in_section1(self):
+        return all(element.is_displayed() for element in self.get_structure_of_1st_level_in_section1())
 
     @allure.step("Get structure of the 2nd level of nesting in the section 1")
-    def get_structure_of_2nd_level_in_section_1(self):
+    def get_structure_of_2nd_level_in_section1(self):
         elements = self.elements_are_present(self.locators.SECTION_1_SECOND_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible in the section 1")
-    def check_elements_visibility_on_2nd_level_in_section_1(self):
-        return all(element.is_displayed() for element in self.get_structure_of_2nd_level_in_section_1())
+    def check_elements_visibility_on_2nd_level_in_section1(self):
+        return all(element.is_displayed() for element in self.get_structure_of_2nd_level_in_section1())
 
     @allure.step("Get structure of the 3rd level of nesting in the section 1")
-    def get_structure_of_3rd_level_in_section_1(self):
+    def get_structure_of_3rd_level_in_section1(self):
         elements = self.elements_are_present(self.locators.SECTION_1_THIRD_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 3rd level of nesting are visible in the section 1")
-    def check_visibility_of_elements_on_3rd_level_in_section_1(self):
-        return all(element.is_displayed() for element in self.get_structure_of_3rd_level_in_section_1())
+    def check_visibility_of_elements_on_3rd_level_in_section1(self):
+        return all(element.is_displayed() for element in self.get_structure_of_3rd_level_in_section1())
 
     @allure.step("Get structure of the 1st level of nesting in the section 2")
-    def get_structure_of_1st_level_in_section_2(self):
+    def get_structure_of_1st_level_in_section2(self):
         elements = self.elements_are_present(self.locators.SECTION_2_FIRST_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 1st level of nesting are visible in the section 2")
-    def check_elements_visibility_on_1st_level_in_section_2(self):
-        return all(element.is_displayed() for element in self.get_structure_of_1st_level_in_section_2())
+    def check_elements_visibility_on_1st_level_in_section2(self):
+        return all(element.is_displayed() for element in self.get_structure_of_1st_level_in_section2())
 
     @allure.step("Get structure of the 2nd level of nesting in the section 2")
-    def get_structure_of_2nd_level_in_section_2(self):
+    def get_structure_of_2nd_level_in_section2(self):
         elements = self.elements_are_present(self.locators.SECTION_2_SECOND_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible in the section 2")
-    def check_elements_visibility_on_2nd_level_in_section_2(self):
-        return all(element.is_displayed() for element in self.get_structure_of_2nd_level_in_section_2())
+    def check_elements_visibility_on_2nd_level_in_section2(self):
+        return all(element.is_displayed() for element in self.get_structure_of_2nd_level_in_section2())
 
     @allure.step("Get structure of the 3rd level of nesting in the section 2")
-    def get_structure_of_3rd_level_in_section_2(self):
+    def get_structure_of_3rd_level_in_section2(self):
         elements = self.elements_are_present(self.locators.SECTION_2_THIRD_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 3rd level of nesting are visible in the section 2")
-    def check_visibility_of_elements_on_3rd_level_in_section_2(self):
-        return all(element.is_displayed() for element in self.get_structure_of_3rd_level_in_section_2())
+    def check_visibility_of_elements_on_3rd_level_in_section2(self):
+        return all(element.is_displayed() for element in self.get_structure_of_3rd_level_in_section2())
 
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
@@ -97,44 +97,44 @@ class StartUnauthorizedPage(BasePage):
     def get_list_of_titles_on_page(self):
         return self.elements_are_present(self.locators.PAGE_TITLES)
 
-    @allure.step("Get the list of title values on the page")
+    @allure.step("Get the list of title values")
     def get_values_of_titles(self):
         return [title.text for title in self.get_list_of_titles_on_page()]
 
-    @allure.step("Get the list of subtitles on the page")
-    def get_list_of_subtitles_on_page(self):
+    @allure.step("Get the list of subtitles")
+    def get_list_of_subtitles(self):
         return self.elements_are_present(self.locators.PAGE_SUBTITLES)
 
-    @allure.step("Get the list of subtitle values on the page")
+    @allure.step("Get the list of subtitle values")
     def get_values_of_subtitles(self):
-        return [subtitle.text for subtitle in self.get_list_of_subtitles_on_page()]
+        return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
-    @allure.step("Get content of the text in the section 1 on the page")
-    def get_values_of_text_in_section_1(self):
+    @allure.step("Get content of the text in the section 1")
+    def get_text_content_in_section1(self):
         return self.get_text(self.locators.SECTION_1_TEXT)
 
-    @allure.step("Get the list of elements with text in the section 2 on the page")
-    def get_list_of_elements_with_text_in_section_2(self):
+    @allure.step("Get the list of elements with text in the section 2")
+    def get_list_of_elements_with_text_in_section2(self):
         return self.elements_are_present(self.locators.SECTION_2_TEXT)
 
-    @allure.step("Get the list of text content in the section 2 on the page")
-    def get_values_of_text_in_section_2(self):
-        return [element.text for element in self.get_list_of_elements_with_text_in_section_2()]
+    @allure.step("Get the list of text content in the section 2")
+    def get_text_content_in_section2(self):
+        return [element.text for element in self.get_list_of_elements_with_text_in_section2()]
 
     # Checking images in the sections
-    @allure.step("Get attribute 'src' of the image in the section 1 on the page")
+    @allure.step("Get attribute 'src' of the image in the section 1")
     def get_src_of_image(self):
         return self.get_image_src(self.locators.SECTION_1_IMAGE)
 
-    @allure.step("Get attribute 'alt' of the image in the section 1 on the page")
+    @allure.step("Get attribute 'alt' of the image in the section 1")
     def get_alt_of_image(self):
         return self.get_image_alt(self.locators.SECTION_1_IMAGE)
 
-    @allure.step("Get size values of the image in the section 1 on the page")
+    @allure.step("Get size values of the image in the section 1")
     def get_visible_size_of_image(self):
         return self.get_image_size(self.locators.SECTION_1_IMAGE)
 
-    @allure.step("Get size values of image in the section 1 on the page and check its changes after resizing")
+    @allure.step("Get size values of image in the section 1 and check its changes after resizing")
     def check_size_changes_of_image(self):
         image_size_before = self.get_visible_size_of_image()
         self.driver.set_window_size(1200, 800)
@@ -146,7 +146,7 @@ class StartUnauthorizedPage(BasePage):
     def check_login_link_presence(self):
         return self.element_is_present(self.locators.SECTION_1_LINK_LOGIN)
 
-    @allure.step("Check the 'Login' link is visible on the page")
+    @allure.step("Check the 'Login' link is visible")
     def check_login_link_visibility(self):
         return self.element_is_visible(self.locators.SECTION_1_LINK_LOGIN)
 
