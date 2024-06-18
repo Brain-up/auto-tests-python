@@ -156,7 +156,7 @@ class TestSpecialistsPage:
             time.sleep(5)
             text_on_opened_tab = page.get_element_text_on_opened_tab_with_start_unauthorized_page()
             assert text_on_opened_tab in \
-                   StartUnauthorizedPageData.text_on_page["text_in_section_1"], \
+                   StartUnauthorizedPageData.text_on_page["text_in_section1"], \
                    "The 'All Specialists' link leads to an incorrect page after clicking " \
                    "or opened page does not load correctly"
 
