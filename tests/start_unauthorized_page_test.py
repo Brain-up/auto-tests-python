@@ -77,10 +77,10 @@ class TestStartUnauthorizedPage:
             subtitle_values = page.get_values_of_subtitles()
             assert title_values, "Title values on the page are empty"
             assert all(title_value in StartUnauthorizedPageData.titles_h2 for title_value in title_values), \
-                "The titles on the page do not match the valid values"
+                "The titles on the page do not match any valid values"
             assert subtitle_values, "Subtitle values on the page are empty"
             assert all(subtitle_value in StartUnauthorizedPageData.subtitles_h4 for subtitle_value
-                       in subtitle_values), "The subtitles do not match the valid values"
+                       in subtitle_values), "The subtitles do not match any valid values"
 
         @allure.title("Verify content of the text in the sections 1, 2")
         def test_su_02_03_verify_page_text(self, driver, main_page_open):
@@ -89,15 +89,48 @@ class TestStartUnauthorizedPage:
             text_content_section2 = page.get_text_content_in_section2()
             assert text_content_section1, "The text content in the section 1 is empty"
             assert (text_content_section1 in StartUnauthorizedPageData.text_on_page["text_in_section1"]), \
-                "The text in the section 1 does not match the any of the valid values"
+                "The text in the section 1 does not match any valid values"
             assert text_content_section2, "The text content in the section 2 is empty"
             assert (text_content_section2 == StartUnauthorizedPageData.text_on_page["text_in_section2"]), \
                 "The text in the section 2 does not match the valid values"
 
-    class TestStartUnauthorizedPageImage:
+        @allure.title("Verify text in the 'Login' link in the section 1")
+        def test_su_02_04_verify_text_in_links(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            link_text = page.get_text_in_login_link()
+            assert link_text, "Text in the link is empty"
+            assert link_text in StartUnauthorizedPageData.login_link_text, \
+                f"The text in the 'Login' link does not match any valid values"
 
-        @allure.title("Verify attribute values and size of the image in the section 1 on the page")
-        def test_su_03_01_verify_image_attributs_and_changed_sizes_in_section_1(self, driver, main_page_open):
+    class TestStartUnauthorizedPageLinks:
+        @allure.title("""Verify presence, visibility, clickability, href, status code 
+                         of the 'Login' link in the section 1""")
+        def test_su_03_01_verify_login_link(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            link_presence = page.check_login_link_presence()
+            link_visibility = page.check_login_link_visibility()
+            link_clickability = page.check_login_link_clickability()
+            link_href = page.get_login_link_href()
+            link_status_code = requests.head(link_href).status_code
+            assert link_presence is not None, "The 'Login' link is absent in DOM"
+            assert link_visibility, "The 'Login' link is invisible on the page"
+            assert link_clickability, "The 'Login' link is unclickable"
+            assert link_href == StartUnauthorizedPageData.login_link_href, \
+                f"The attribute 'href' of the {link_href} link does not match the valid value"
+            assert link_status_code == StartUnauthorizedPageData.login_link_status_code, \
+                f"The {link_href} link status code does not match the valid value"
+
+        @allure.title("Verify that the 'Login' link leads to the correct page after clicking")
+        def test_su_03_02_verify_login_link_leads_to_the_correct_page(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            page.click_login_link()
+            text_on_opened_page = page.get_element_text_on_opened_login_page()
+            assert text_on_opened_page in LoginPageData.sign_in_tab, \
+                "The 'Login' link leads to an incorrect page after clicking or opened page does not load correctly"
+
+    class TestStartUnauthorizedPageImage:
+        @allure.title("Verify attribute values and size of the image in the section 1")
+        def test_su_04_01_verify_image_attributs_and_changed_sizes_in_section_1(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             image_src = page.get_src_of_image()
             image_alt = page.get_alt_of_image()
@@ -110,33 +143,3 @@ class TestStartUnauthorizedPage:
             assert image_alt == StartUnauthorizedPageData.image_alt_in_section_1, \
                 "The 'alt' attribute value of the image in the section 1 does not match the valid value"
             assert image_size != 0, f"The image in the section 1 is invisible due its size = 0, 0"
-
-    class TestStartUnauthorizedPageLinks:
-
-        @allure.title("""Verify presence, visibility, clickability, href, status code, text 
-                         of the 'Login' link in the section 1 on the page""")
-        def test_su_04_01_verify_login_link(self, driver, main_page_open):
-            page = StartUnauthorizedPage(driver)
-            link_presence = page.check_login_link_presence()
-            link_visibility = page.check_login_link_visibility()
-            link_clickability = page.check_login_link_clickability()
-            link_href = page.get_login_link_href()
-            link_status_code = requests.head(link_href).status_code
-            actual_link_text = page.get_text_in_login_link()
-            assert link_presence is not None, "The 'Login' link is absent in DOM"
-            assert link_visibility, "The 'Login' link is invisible on the page"
-            assert link_clickability, "The 'Login' link is unclickable"
-            assert link_href == StartUnauthorizedPageData.login_link_href, \
-                f"The attribute 'href' of the {link_href} link does not match the valid value"
-            assert link_status_code == StartUnauthorizedPageData.login_link_status_code, \
-                f"The {link_href} link status code does not match the valid value"
-            assert actual_link_text in StartUnauthorizedPageData.login_link_text, \
-                f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
-
-        @allure.title("Verify that the 'Login' link leads to the correct page after clicking")
-        def test_su_04_02_verify_login_link_leads_to_the_correct_page(self, driver, main_page_open):
-            page = StartUnauthorizedPage(driver)
-            page.click_login_link()
-            text_on_opened_page = page.get_element_text_on_opened_login_page()
-            assert text_on_opened_page in LoginPageData.sign_in_tab, \
-                "The 'Login' link leads to an incorrect page after clicking or opened page does not load correctly"
