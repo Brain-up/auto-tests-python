@@ -121,7 +121,36 @@ class StartUnauthorizedPage(BasePage):
     def get_text_content_in_section2(self):
         return [element.text for element in self.get_list_of_elements_with_text_in_section2()]
 
-    # Checking images in the sections
+    @allure.step("Get text in the 'Login' link in the section 1")
+    def get_text_in_login_link(self):
+        return self.get_text(self.locators.SECTION_1_LINK_LOGIN)
+
+    # Checking the 'Login' link in the section 1
+    @allure.step("Check the 'Login' link is present in DOM")
+    def check_login_link_presence(self):
+        return self.element_is_present(self.locators.SECTION_1_LINK_LOGIN)
+
+    @allure.step("Check the 'Login' link is visible")
+    def check_login_link_visibility(self):
+        return self.element_is_visible(self.locators.SECTION_1_LINK_LOGIN)
+
+    @allure.step("Check the 'Login' link is clickable")
+    def check_login_link_clickability(self):
+        return self.element_is_clickable(self.locators.SECTION_1_LINK_LOGIN)
+
+    @allure.step("Get attribute 'href' of the 'Login' link")
+    def get_login_link_href(self):
+        return self.get_link_href(self.locators.SECTION_1_LINK_LOGIN)
+
+    @allure.step("Click on the 'Login' link and thereby open the corresponding web page in the same tab")
+    def click_login_link(self):
+        self.element_is_present_and_clickable(self.locators.SECTION_1_LINK_LOGIN).click()
+
+    @allure.step("Get text of the element on the 'Login' page")
+    def get_element_text_on_opened_login_page(self):
+        return self.get_text(self.locators1.SIGN_IN_TAB)
+
+# Checking the image in the section 1
     @allure.step("Get attribute 'src' of the image in the section 1")
     def get_src_of_image(self):
         return self.get_image_src(self.locators.SECTION_1_IMAGE)
@@ -140,32 +169,3 @@ class StartUnauthorizedPage(BasePage):
         self.driver.set_window_size(1200, 800)
         image_size_after = self.get_visible_size_of_image()
         print("The image sizes are changed") if image_size_before != image_size_after else print("No changes of sizes")
-
-    # Checking the link on the page
-    @allure.step("Check the 'Login' link is present in DOM")
-    def check_login_link_presence(self):
-        return self.element_is_present(self.locators.SECTION_1_LINK_LOGIN)
-
-    @allure.step("Check the 'Login' link is visible")
-    def check_login_link_visibility(self):
-        return self.element_is_visible(self.locators.SECTION_1_LINK_LOGIN)
-
-    @allure.step("Check the 'Login' link is clickable")
-    def check_login_link_clickability(self):
-        return self.element_is_clickable(self.locators.SECTION_1_LINK_LOGIN)
-
-    @allure.step("Get attribute 'href' of the 'Login' link")
-    def get_login_link_href(self):
-        return self.get_link_href(self.locators.SECTION_1_LINK_LOGIN)
-
-    @allure.step("Get text in the 'Login' link")
-    def get_text_in_login_link(self):
-        return self.get_text(self.locators.SECTION_1_LINK_LOGIN)
-
-    @allure.step("Click on the 'Login' link and thereby open the corresponding web page in the same tab")
-    def click_login_link(self):
-        self.element_is_present_and_clickable(self.locators.SECTION_1_LINK_LOGIN).click()
-
-    @allure.step("Get text of the element on the 'Login' page")
-    def get_element_text_on_opened_login_page(self):
-        return self.get_text(self.locators1.SIGN_IN_TAB)
