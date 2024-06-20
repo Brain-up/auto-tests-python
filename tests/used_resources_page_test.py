@@ -89,7 +89,7 @@ class TestUsedResourcesPage:
                 links_clickability = page.check_links_clickability()
                 links_href = page.get_links_href()
                 links_status_codes = page.get_links_status_codes()
-                assert links_presence is not None, "The 'Contacts' links are absent in DOM"
+                assert links_presence is not None, "Links are absent in DOM"
                 assert links_visibility, "Links are invisible on the page"
                 assert links_clickability, "Links are unclickable"
                 assert links_href, "Links href are empty"

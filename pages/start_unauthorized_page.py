@@ -1,5 +1,6 @@
 """Methods for verifying web elements on the starting page for unauthorized users"""
 import allure
+import requests
 from pages.base_page import BasePage
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 from locators.login_page_locators import LoginPageLocators
@@ -141,6 +142,10 @@ class StartUnauthorizedPage(BasePage):
     @allure.step("Get attribute 'href' of the 'Login' link")
     def get_login_link_href(self):
         return self.get_link_href(self.locators.SECTION_1_LINK_LOGIN)
+
+    @allure.step("Get status code of the 'Login' link")
+    def get_login_link_status_code(self):
+        return requests.head(self.get_login_link_href()).status_code
 
     @allure.step("Click on the 'Login' link and thereby open the corresponding web page in the same tab")
     def click_login_link(self):
