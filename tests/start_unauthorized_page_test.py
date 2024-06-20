@@ -1,6 +1,5 @@
 """Auto tests for verifying web elements on the starting page for unauthorized users"""
 import allure
-import requests
 from pages.start_unauthorized_page import StartUnauthorizedPage
 from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 from test_data.login_page_data import LoginPageData
@@ -111,14 +110,15 @@ class TestStartUnauthorizedPage:
             link_visibility = page.check_login_link_visibility()
             link_clickability = page.check_login_link_clickability()
             link_href = page.get_login_link_href()
-            link_status_code = requests.head(link_href).status_code
-            assert link_presence is not None, "The 'Login' link is absent in DOM"
+            link_status_code = page.get_login_link_status_code()
+            assert link_presence, "The 'Login' link is absent in DOM"
             assert link_visibility, "The 'Login' link is invisible on the page"
             assert link_clickability, "The 'Login' link is unclickable"
+            assert link_href, "Link href is empty"
             assert link_href == StartUnauthorizedPageData.login_link_href, \
-                f"The attribute 'href' of the {link_href} link does not match the valid value"
+                "The attribute 'href' of the link does not match the valid value"
             assert link_status_code == StartUnauthorizedPageData.login_link_status_code, \
-                f"The {link_href} link status code does not match the valid value"
+                "The status code of the link does not match the valid value"
 
         @allure.title("Verify that the 'Login' link leads to the correct page after clicking")
         def test_su_03_02_verify_login_link_leads_to_the_correct_page(self, driver, main_page_open):
