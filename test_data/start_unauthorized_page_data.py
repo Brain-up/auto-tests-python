@@ -44,6 +44,6 @@ class StartUnauthorizedPageData:
 
     login_link_status_code = 200
 
-    image_src_in_section_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAGICAYAAAC5"
+    image_src_in_section1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAGICAYAAAC5"
 
-    image_alt_in_section_1 = "girl with book"
+    image_alt_in_section1 = "girl with book"

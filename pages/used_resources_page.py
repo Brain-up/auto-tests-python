@@ -119,10 +119,10 @@ class UsedResourcesPage(BasePage):
         return all(icon.is_displayed() for icon in self.get_list_of_icons())
 
     @allure.step("Get attribute 'xmlns' of the icons in sections")
-    def get_icons_xmlns_in_sections(self):
+    def get_icons_xmlns(self):
         return [icon.get_attribute('xmlns') for icon in self.get_list_of_icons()]
 
-    @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
+    @allure.step("Get the list of attribute 'src' values of the icons")
     def get_icons_sizes(self):
         return [icon.size for icon in self.get_list_of_icons()]
 

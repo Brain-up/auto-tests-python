@@ -156,21 +156,31 @@ class StartUnauthorizedPage(BasePage):
         return self.get_text(self.locators1.SIGN_IN_TAB)
 
 # Checking the image in the section 1
-    @allure.step("Get attribute 'src' of the image in the section 1")
+    @allure.step("Check the image is present in the section 1")
+    def check_image_presence(self):
+        return self.element_is_present(self.locators.SECTION_1_IMAGE)
+
+    @allure.step("Check the image is visible")
+    def check_image_visibility(self):
+        return self.element_is_visible(self.locators.SECTION_1_IMAGE)
+
+    @allure.step("Get attribute 'src' of the image")
     def get_src_of_image(self):
         return self.get_image_src(self.locators.SECTION_1_IMAGE)
 
-    @allure.step("Get attribute 'alt' of the image in the section 1")
+    @allure.step("Get attribute 'alt' of the image")
     def get_alt_of_image(self):
         return self.get_image_alt(self.locators.SECTION_1_IMAGE)
 
-    @allure.step("Get size values of the image in the section 1")
-    def get_visible_size_of_image(self):
+    @allure.step("Get size values of the image")
+    def get_size_of_image(self):
         return self.get_image_size(self.locators.SECTION_1_IMAGE)
 
-    @allure.step("Get size values of image in the section 1 and check its changes after resizing")
+    @allure.step("Check changes of image size values after resizing")
     def check_size_changes_of_image(self):
-        image_size_before = self.get_visible_size_of_image()
+        image_size_before = self.get_size_of_image()
         self.driver.set_window_size(1200, 800)
-        image_size_after = self.get_visible_size_of_image()
+        image_size_after = self.get_size_of_image()
         print("The image sizes are changed") if image_size_before != image_size_after else print("No changes of sizes")
+        print("The image sizes became zero after resizing") if image_size_before == {'height': 0, 'width': 0} else None
+        return image_size_after
