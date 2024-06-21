@@ -129,17 +129,26 @@ class TestStartUnauthorizedPage:
                 "The 'Login' link leads to an incorrect page after clicking or opened page does not load correctly"
 
     class TestStartUnauthorizedPageImage:
-        @allure.title("Verify attribute values and size of the image in the section 1")
-        def test_su_04_01_verify_image_attributs_and_changed_sizes_in_section_1(self, driver, main_page_open):
+        @allure.title("Verify presence, visibility and attributes of the image in the section 1")
+        def test_su_04_01_verify_image_in_section1(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
+            image_presence = page.check_image_presence()
+            image_visibility = page.check_image_visibility()
             image_src = page.get_src_of_image()
             image_alt = page.get_alt_of_image()
-            image_size = page.get_visible_size_of_image()
-            page.check_size_changes_of_image()
+            assert image_presence, "The image is absent in the section 1"
+            assert image_visibility, "The image is invisible in the section 1"
             assert image_src, "The 'src' attribute value of the image is empty"
-            assert StartUnauthorizedPageData.image_src_in_section_1 in image_src, \
+            assert StartUnauthorizedPageData.image_src_in_section1 in image_src, \
                 "The 'src' attribute value of the image in the section 1 does not match the valid value"
             assert image_alt, "The 'alt' attribute value of the image is empty"
-            assert image_alt == StartUnauthorizedPageData.image_alt_in_section_1, \
+            assert image_alt == StartUnauthorizedPageData.image_alt_in_section1, \
                 "The 'alt' attribute value of the image in the section 1 does not match the valid value"
-            assert image_size != 0, f"The image in the section 1 is invisible due its size = 0, 0"
+
+        @allure.title("Verify size of the image in the section 1")
+        def test_su_04_02_verify_image_size_in_section1(self, driver, main_page_open):
+            page = StartUnauthorizedPage(driver)
+            image_size = page.get_size_of_image()
+            image_size_changes = page.check_size_changes_of_image()
+            assert image_size != 0, "The image in the section 1 hasn't sizes"
+            assert image_size_changes, "Checks of changes of image sizes have not carried out"

@@ -114,7 +114,7 @@ class TestUsedResourcesPage:
                 page.open_used_resources_page()
                 icons_presence = page.get_list_of_icons()
                 icons_visibility = page.check_icons_visibility()
-                icons_xmlns = page.get_icons_xmlns_in_sections()
+                icons_xmlns = page.get_icons_xmlns()
                 assert icons_presence, "The icons in the sections are absent"
                 assert icons_visibility, "The icons in the sections are invisible"
                 assert icons_xmlns, "The 'xmlns' attribute value of the icons in the sections is empty"
@@ -128,4 +128,4 @@ class TestUsedResourcesPage:
                 icons_size = page.get_icons_sizes()
                 icons_size_changes = page.check_size_changes_of_icons()
                 assert icons_size != 0, "The icons in the sections hasn't sizes"
-                assert icons_size_changes, "Checks of changes in icon sizes have not carried out"
+                assert icons_size_changes, "Checks of changes of icons sizes have not carried out"
