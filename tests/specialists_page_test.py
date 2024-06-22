@@ -10,9 +10,18 @@ from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 
 @allure.epic("Test Specialists Page")
 class TestSpecialistsPage:
+    class TestSpecialistsPageStructure:
+
+        @allure.title("Verify presence and visibility of content on the page")
+        def test_sp_01_01_verify_page_presence_and_visibility(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            page_content_presence = page.check_presence_of_page_content()
+            page_content_visibility = page.check_visibility_of_page_content()
+            assert page_content_presence is not None, "The page content is absent in DOM"
+            assert page_content_visibility, "The page content is invisible on the page"
 
     @allure.title("Verify presence, visibility and text accuracy of the title on the Specialists page")
-    def test_sp_01_01_verify_specialists_page_title(self, driver, specialists_page_open):
+    def test_sp_01_01_01_verify_specialists_page_title(self, driver, specialists_page_open):
         page = SpecialistsPage(driver)
         page_title_presence = page.check_specialists_page_title_presence()
         page_title_visibility = page.check_specialists_page_title_visibility()

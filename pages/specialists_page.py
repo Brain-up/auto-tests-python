@@ -15,6 +15,14 @@ class SpecialistsPage(BasePage):
     def open_specialists_page(self):
         self.driver.get(MainPageLinks.URL_SPECIALISTS_PAGE)
 
+    @allure.step("Check if some content is present in DOM")
+    def check_presence_of_page_content(self):
+        return self.element_is_present(self.locators.PAGE_CONTENT)
+
+    @allure.step("Check if page content is visible")
+    def check_visibility_of_page_content(self):
+        return self.element_is_visible(self.locators.PAGE_CONTENT)
+
     @allure.step("Check the page title is present in DOM")
     def check_specialists_page_title_presence(self):
         return self.element_is_present(self.locators.PAGE_TITLE)
