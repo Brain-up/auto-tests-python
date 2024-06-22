@@ -11,6 +11,7 @@ class SpecialistsPageLocators:
     GRID_CARD_01_IMAGE = (By.XPATH, "(//img[@class='rounded-full'])[1]")
     PAGE_GRID = (By.XPATH, "//div[contains(@class, 'grid')]")
     PAGE_GRID_CONTENT = (By.XPATH, "//div[contains(@class, 'rounded-lg')]")
+    PAGE_CONTENT = (By.TAG_NAME, "main")
     PAGE_TEXT = (By.XPATH, "//div[contains(@class, 'text-lg')]")
     PAGE_TITLE = (By.TAG_NAME, "h2")
     SPECIALIST_NAMES = (By.XPATH, "//div[contains(@class, 'mb-4')]")
