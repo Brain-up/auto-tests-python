@@ -20,6 +20,35 @@ class TestSpecialistsPage:
             assert page_content_presence is not None, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible on the page"
 
+        @allure.title("""Verify the composition and visibility of elements 
+        on the 1st-6th levels of nesting on the page""")
+        def test_sp_01_02_verify_page_structure_and_visibility(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            structure_of_1st_level = page.get_structure_of_1st_level()
+            visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_on_page()
+            structure_of_2nd_level = page.get_structure_of_2nd_level()
+            visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_on_page()
+            structure_of_3rd_level = page.get_structure_of_3rd_level()
+            visibility_of_elements_on_3rd_level = page.check_elements_visibility_on_3rd_level_on_page()
+            structure_of_4th_level = page.get_structure_of_4th_level()
+            visibility_of_elements_on_4th_level = page.check_elements_visibility_on_4th_level_on_page()
+            structure_of_5th_level = page.get_structure_of_5th_level()
+            visibility_of_elements_on_5th_level = page.check_elements_visibility_on_5th_level_on_page()
+            structure_of_6th_level = page.get_structure_of_6th_level()
+            visibility_of_elements_on_6th_level = page.check_elements_visibility_on_6th_level_on_page()
+            assert structure_of_1st_level, "The page is empty"
+            assert visibility_of_elements_on_1st_level, "1st-level elements are invisible on the page"
+            assert structure_of_2nd_level, "Elements on the 2nd level are absent on the page"
+            assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible on the page"
+            assert structure_of_3rd_level, "Elements on the 3rd level are absent on the page"
+            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible on the page"
+            assert structure_of_4th_level, "Elements on the 4th level are absent on the page"
+            assert visibility_of_elements_on_4th_level, "4th-level elements are invisible on the page"
+            assert structure_of_5th_level, "Elements on the 5th level are absent on the page"
+            assert visibility_of_elements_on_5th_level, "5th-level elements are invisible on the page"
+            assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
+            assert visibility_of_elements_on_6th_level, "6th-level elements are invisible on the page"
+
     @allure.title("Verify presence, visibility and text accuracy of the title on the Specialists page")
     def test_sp_01_01_01_verify_specialists_page_title(self, driver, specialists_page_open):
         page = SpecialistsPage(driver)
@@ -32,7 +61,7 @@ class TestSpecialistsPage:
                "The title content does not match the any of the valid option"
 
     @allure.title("Verify presence, visibility and content accuracy of the text on the Specialists page")
-    def test_sp_01_02_verify_specialists_page_text(self, driver, specialists_page_open):
+    def test_sp_01_02_01_verify_specialists_page_text(self, driver, specialists_page_open):
         page = SpecialistsPage(driver)
         page_text_presence = page.check_specialists_page_text_presence()
         page_text_visibility = page.check_specialists_page_text_visibility()
