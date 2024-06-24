@@ -4,7 +4,7 @@
 class StartUnauthorizedPageData:
     amount_of_sections_with_content_on_page = 2
 
-    tab_title_expected = "BrainUp"
+    tab_title = "BrainUp"
 
     titles_h2 = [
         "BrainUP - онлайн занятия для детей и взрослых", "Преимущества",
