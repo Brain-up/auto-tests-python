@@ -66,7 +66,7 @@ class TestStartUnauthorizedPage:
             page = StartUnauthorizedPage(driver)
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
-            assert tab_title_value == StartUnauthorizedPageData.tab_title_expected, \
+            assert tab_title_value == StartUnauthorizedPageData.tab_title, \
                 "The title value of the tab doesn't match the valid value"
 
         @allure.title("Verify values of titles and subtitles with tags h2, h4")

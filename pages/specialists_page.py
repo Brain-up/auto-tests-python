@@ -11,6 +11,7 @@ class SpecialistsPage(BasePage):
     locators = SpecialistsPageLocators
     locators1 = StartUnauthorizedPageLocators
 
+    # Checking the structure and display of elements on the page
     @allure.step("Open the 'Specialists' page")
     def open_specialists_page(self):
         self.driver.get(MainPageLinks.URL_SPECIALISTS_PAGE)
@@ -82,6 +83,11 @@ class SpecialistsPage(BasePage):
     @allure.step("Check if elements of the 6th level of nesting are visible on the page")
     def check_elements_visibility_on_6th_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_6th_level())
+
+    # Checking text on the tab&page
+    @allure.step("Get value of the title of the tab")
+    def get_value_of_tab_title(self):
+        return self.get_current_tab_title()
 
     @allure.step("Check the page title is present in DOM")
     def check_specialists_page_title_presence(self):

@@ -2,6 +2,8 @@
 
 
 class SpecialistsPageData:
+    tab_title = ["Специалисты | BrainUp", "Specialists | BrainUp"]
+
     specialists_page_elements_content = {
         "page_text_content": ["Обучающая программа BrainUp разработана совместно с лучшими специалистами "
                               "в области сурдопедагогики из России и Беларуси",
