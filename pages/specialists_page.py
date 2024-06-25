@@ -30,7 +30,7 @@ class SpecialistsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
-    @allure.step("Check if elements of the 1st level of nesting are visible on the page")
+    @allure.step("Check if elements of the 1st level of nesting are visible")
     def check_elements_visibility_on_1st_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_1st_level())
 
@@ -40,7 +40,7 @@ class SpecialistsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
-    @allure.step("Check if elements of the 2nd level of nesting are visible on the page")
+    @allure.step("Check if elements of the 2nd level of nesting are visible")
     def check_elements_visibility_on_2nd_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_2nd_level())
 
@@ -50,7 +50,7 @@ class SpecialistsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
-    @allure.step("Check if elements of the 3rd level of nesting are visible on the page")
+    @allure.step("Check if elements of the 3rd level of nesting are visible")
     def check_elements_visibility_on_3rd_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_3rd_level())
 
@@ -60,7 +60,7 @@ class SpecialistsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
-    @allure.step("Check if elements of the 4th level of nesting are visible on the page")
+    @allure.step("Check if elements of the 4th level of nesting are visible")
     def check_elements_visibility_on_4th_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_4th_level())
 
@@ -70,9 +70,20 @@ class SpecialistsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
-    @allure.step("Check if elements of the 5th level of nesting are visible on the page")
+    @allure.step("Check if elements of the 5th level of nesting are visible")
     def check_elements_visibility_on_5th_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_5th_level())
+
+    @allure.step("Get the list of images in specialist cards on the 5th level of nesting on the page")
+    def get_list_of_card_images(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        # print(f"\nAmount of images in cards is: {len(card_images)}")
+        return card_images
+
+    @allure.step("Check the image in each specialist card is visiblee")
+    def check_image_visibility_in_specialist_cards(self):
+        card_images = self.get_list_of_card_images()
+        return all(element.is_displayed() for element in card_images)
 
     @allure.step("Get structure of the 6th level of nesting on the page")
     def get_structure_of_6th_level(self):
@@ -80,7 +91,7 @@ class SpecialistsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
-    @allure.step("Check if elements of the 6th level of nesting are visible on the page")
+    @allure.step("Check if elements of the 6th level of nesting are visible")
     def check_elements_visibility_on_6th_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_6th_level())
 
@@ -132,18 +143,6 @@ class SpecialistsPage(BasePage):
         # print(len(cards))
         for card in cards:
             return card.is_displayed()
-
-    @allure.step("Get the list of images in specialist cards on the page")
-    def get_list_of_card_images(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        # print(f"\nAmount of images in cards is: {len(card_images)}")
-        return card_images
-
-    @allure.step("Check the image in each specialist card is present and visible on the page")
-    def check_image_presence_and_visibility_in_specialist_cards(self):
-        card_images = self.get_list_of_card_images()
-        for image in card_images:
-            return image.is_displayed()
 
     @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
     def get_images_src_in_specialist_cards(self):
