@@ -33,7 +33,8 @@ class TestSpecialistsPage:
             structure_of_4th_level = page.get_structure_of_4th_level()
             visibility_of_elements_on_4th_level = page.check_elements_visibility_on_4th_level_on_page()
             structure_of_5th_level = page.get_structure_of_5th_level()
-            visibility_of_elements_on_5th_level = page.check_elements_visibility_on_5th_level_on_page()
+            images_on_5th_level = page.get_list_of_card_images()
+            visibility_of_images_on_5th_level = page.check_image_visibility_in_specialist_cards()
             structure_of_6th_level = page.get_structure_of_6th_level()
             visibility_of_elements_on_6th_level = page.check_elements_visibility_on_6th_level_on_page()
             assert structure_of_1st_level, "The page is empty"
@@ -45,7 +46,8 @@ class TestSpecialistsPage:
             assert structure_of_4th_level, "Elements on the 4th level are absent on the page"
             assert visibility_of_elements_on_4th_level, "4th-level elements are invisible on the page"
             assert structure_of_5th_level, "Elements on the 5th level are absent on the page"
-            assert visibility_of_elements_on_5th_level, "5th-level elements are invisible on the page"
+            assert images_on_5th_level, "Images on the 5th level are absent on the page"
+            assert visibility_of_images_on_5th_level, "Images on the 5th level are invisible on the page"
             assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible on the page"
 
@@ -175,13 +177,6 @@ class TestSpecialistsPage:
                    "or opened page does not load correctly"
 
     class TestSpecialistCardImages:
-
-        @allure.title("Verify presence and visibility of images in specialist cards in the grid")
-        def test_sp_04_01_verify_images_in_cards_are_present_and_visible(self, driver, specialists_page_open):
-            page = SpecialistsPage(driver)
-            time.sleep(1)
-            images_visibility = page.check_image_presence_and_visibility_in_specialist_cards()
-            assert images_visibility, "Images in specialist cards are invisible in the grid"
 
         @allure.title("Verify attribute values and sizes of images in specialist cards in the grid")
         def test_sp_04_02_verify_images_attributes_and_changed_sizes_in_cards(self, driver, specialists_page_open):
