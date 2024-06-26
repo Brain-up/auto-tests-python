@@ -74,17 +74,6 @@ class SpecialistsPage(BasePage):
     def check_elements_visibility_on_5th_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_5th_level())
 
-    @allure.step("Get the list of images in specialist cards on the 5th level of nesting on the page")
-    def get_list_of_card_images(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        # print(f"\nAmount of images in cards is: {len(card_images)}")
-        return card_images
-
-    @allure.step("Check the image in each specialist card is visiblee")
-    def check_image_visibility_in_specialist_cards(self):
-        card_images = self.get_list_of_card_images()
-        return all(element.is_displayed() for element in card_images)
-
     @allure.step("Get structure of the 6th level of nesting on the page")
     def get_structure_of_6th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
@@ -95,22 +84,32 @@ class SpecialistsPage(BasePage):
     def check_elements_visibility_on_6th_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_6th_level())
 
+    @allure.step("Check the title on the 2nd level of nesting is present on the page")
+    def check_title_h2_presence(self):
+        return self.element_is_present(self.locators.TITLE_H2)
+
+    @allure.step("Check the title on the 2nd level of nesting is visible")
+    def check_title_h2_visibility(self):
+        return self.element_is_visible(self.locators.TITLE_H2)
+
+    @allure.step("Get the list of images in specialist cards on the 5th level of nesting on the page")
+    def get_list_of_card_images(self):
+        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        # print(f"\nAmount of images in cards is: {len(card_images)}")
+        return card_images
+
+    @allure.step("Check the image in each specialist card is visible")
+    def check_image_visibility_in_specialist_cards(self):
+        return all(element.is_displayed() for element in self.get_list_of_card_images())
+
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
         return self.get_current_tab_title()
 
-    @allure.step("Check the page title is present in DOM")
-    def check_specialists_page_title_presence(self):
-        return self.element_is_present(self.locators.PAGE_TITLE)
-
-    @allure.step("Check the page title is visible on the page")
-    def check_specialists_page_title_visibility(self):
-        return self.element_is_visible(self.locators.PAGE_TITLE)
-
-    @allure.step("Get content of the title on the page")
-    def get_specialists_page_title_content(self):
-        return self.get_text(self.locators.PAGE_TITLE)
+    @allure.step("Get value of the title with tag 'h2' on the page")
+    def get_value_of_title_h2(self):
+        return self.get_text(self.locators.TITLE_H2)
 
     @allure.step("Check the page text is present in DOM")
     def check_specialists_page_text_presence(self):
