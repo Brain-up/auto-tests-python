@@ -37,8 +37,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Get structure of the 2nd level of nesting on the page")
     def get_structure_of_2nd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(tags)
+        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
@@ -48,8 +47,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Get structure of the 3rd level of nesting on the page")
     def get_structure_of_3rd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(tags)
+        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 3rd level of nesting are visible")
@@ -102,7 +100,6 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Check the image in each specialist card is visible")
     def check_image_visibility_in_specialist_cards(self):
-        # card_images = self.get_list_of_card_images()
         return all(element.is_displayed() for element in self.get_list_of_card_images())
 
     # Checking text on the tab&page
