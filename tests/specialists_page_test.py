@@ -33,8 +33,6 @@ class TestSpecialistsPage:
             structure_of_4th_level = page.get_structure_of_4th_level()
             visibility_of_elements_on_4th_level = page.check_elements_visibility_on_4th_level_on_page()
             structure_of_5th_level = page.get_structure_of_5th_level()
-            images_on_5th_level = page.get_list_of_card_images()
-            visibility_of_images_on_5th_level = page.check_image_visibility_in_specialist_cards()
             structure_of_6th_level = page.get_structure_of_6th_level()
             visibility_of_elements_on_6th_level = page.check_elements_visibility_on_6th_level_on_page()
             assert structure_of_1st_level, "The page is empty"
@@ -46,21 +44,20 @@ class TestSpecialistsPage:
             assert structure_of_4th_level, "Elements on the 4th level are absent on the page"
             assert visibility_of_elements_on_4th_level, "4th-level elements are invisible on the page"
             assert structure_of_5th_level, "Elements on the 5th level are absent on the page"
-            assert images_on_5th_level, "Images on the 5th level are absent on the page"
-            assert visibility_of_images_on_5th_level, "Images on the 5th level are invisible on the page"
             assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible on the page"
 
-    @allure.title("Verify presence, visibility and text accuracy of the title on the Specialists page")
-    def test_sp_01_01_01_verify_specialists_page_title(self, driver, specialists_page_open):
-        page = SpecialistsPage(driver)
-        page_title_presence = page.check_specialists_page_title_presence()
-        page_title_visibility = page.check_specialists_page_title_visibility()
-        page_title_text = page.get_specialists_page_title_content()
-        assert page_title_presence is not None, "The title is absent in DOM"
-        assert page_title_visibility, "The title is invisible on the page"
-        assert page_title_text in SpecialistsPageData.specialists_page_elements_content["page_title_content"], \
-               "The title content does not match the any of the valid option"
+        @allure.title("Verify presence, visibility of the title, images on the page")
+        def test_sp_01_03_verify_page_structural_elements(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            title_on_2nd_level = page.check_title_h2_presence()
+            title_visibility = page.check_title_h2_visibility()
+            images_on_5th_level = page.get_list_of_card_images()
+            visibility_of_images_on_5th_level = page.check_image_visibility_in_specialist_cards()
+            assert title_on_2nd_level, "The title is absent on the page"
+            assert title_visibility, "The title is invisible on the page"
+            assert images_on_5th_level, "Images on the 5th level are absent on the page"
+            assert visibility_of_images_on_5th_level, "Images on the 5th level are invisible on the page"
 
     @allure.title("Verify presence, visibility and content accuracy of the text on the Specialists page")
     def test_sp_01_02_01_verify_specialists_page_text(self, driver, specialists_page_open):
@@ -74,7 +71,7 @@ class TestSpecialistsPage:
             "The text content does not match the any of the valid option"
 
     @allure.title("Verify presence, visibility and size of the grid on the Specialists page")
-    def test_sp_01_03_verify_specialists_page_grid(self, driver, specialists_page_open):
+    def test_sp_01_03_01_verify_specialists_page_grid(self, driver, specialists_page_open):
         page = SpecialistsPage(driver)
         page_grid_presence = page.check_specialists_page_grid_presence()
         page_grid_visibility = page.check_specialists_page_grid_visibility()
@@ -99,6 +96,14 @@ class TestSpecialistsPage:
             assert tab_title_value in SpecialistsPageData.tab_title, \
                 "The title value of the tab doesn't match the valid value"
 
+        @allure.title("Verify value of title with tag 'h2' on the page")
+        def test_sp_02_02_verify_page_title(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            title_value = page.get_value_of_title_h2()
+            assert title_value, "The title value on the page is empty"
+            assert title_value in SpecialistsPageData.title_h2, \
+                "The title on the page doesn't match the valid value"
+
         @allure.title("""Verify presence and visibility of text sections (including names and professions) 
          in specialist cards in the grid""")
         def test_sp_02_01_01_verify_text_in_cards_is_present_and_visible(self, driver, specialists_page_open):
@@ -111,7 +116,7 @@ class TestSpecialistsPage:
             assert specialist_professions, "Professions in specialist cards are invisible in the grid"
 
         @allure.title("Verify values of names in specialist cards in the grid")
-        def test_sp_02_02_verify_name_values_in_cards(self, driver, specialists_page_open):
+        def test_sp_02_02_01_verify_name_values_in_cards(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             name_values = page.get_name_values_in_specialist_cards()
             assert name_values, "Name values in cards are empty"
@@ -171,10 +176,10 @@ class TestSpecialistsPage:
             page.click_all_specialists_link()
             page.switch_to_new_window()
             time.sleep(5)
-            text_on_opened_tab = page.get_specialists_page_title_content()
-            assert text_on_opened_tab in SpecialistsPageData.specialists_page_elements_content["page_title_content"], \
-                   "The 'All Specialists' link leads to an incorrect page after clicking " \
-                   "or opened page does not load correctly"
+            text_on_opened_tab = page.get_value_of_title_h2()
+            assert text_on_opened_tab in SpecialistsPageData.title_h2, \
+                ("The 'All Specialists' link leads to an incorrect page after clicking "
+                 "or opened page does not load correctly")
 
     class TestSpecialistCardImages:
 
