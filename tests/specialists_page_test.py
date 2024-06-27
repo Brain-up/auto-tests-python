@@ -47,15 +47,22 @@ class TestSpecialistsPage:
             assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible on the page"
 
-        @allure.title("Verify presence, visibility of the title, images on the page")
+        @allure.title("Verify presence, visibility of the title, the grid of specialists, images on the page")
         def test_sp_01_03_verify_page_structural_elements(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             title_on_2nd_level = page.check_title_h2_presence()
             title_visibility = page.check_title_h2_visibility()
+            grid_on_2nd_level = page.check_specialists_grid_presence()
+            grid_visibility = page.check_specialists_grid_visibility()
+            grid_size = page.get_specialists_grid_size()
             images_on_5th_level = page.get_list_of_card_images()
             visibility_of_images_on_5th_level = page.check_image_visibility_in_specialist_cards()
             assert title_on_2nd_level, "The title is absent on the page"
             assert title_visibility, "The title is invisible on the page"
+            assert grid_on_2nd_level, "The grid on the 2nd level is absent on the page"
+            assert grid_visibility, "The grid on the 2nd level is invisible on the page"
+            assert grid_size == SpecialistsPageData.specialists_grid_size, \
+                "The grid size does not match the expected value"
             assert images_on_5th_level, "Images on the 5th level are absent on the page"
             assert visibility_of_images_on_5th_level, "Images on the 5th level are invisible on the page"
 
@@ -69,17 +76,6 @@ class TestSpecialistsPage:
         assert page_text_visibility, "The text is invisible on the page"
         assert page_text_content in SpecialistsPageData.specialists_page_elements_content["page_text_content"], \
             "The text content does not match the any of the valid option"
-
-    @allure.title("Verify presence, visibility and size of the grid on the Specialists page")
-    def test_sp_01_03_01_verify_specialists_page_grid(self, driver, specialists_page_open):
-        page = SpecialistsPage(driver)
-        page_grid_presence = page.check_specialists_page_grid_presence()
-        page_grid_visibility = page.check_specialists_page_grid_visibility()
-        page_grid_size = page.get_specialists_page_grid_size()
-        assert page_grid_presence is not None, "The grid is absent in DOM"
-        assert page_grid_visibility, "The grid is invisible on the page"
-        assert page_grid_size == SpecialistsPageData.specialists_page_grid_size, \
-               "The grid size does not match the expected value"
 
     @allure.title("Verify visibility of cards in the grid on the Specialists page")
     def test_sp_01_04_verify_specialist_cards_visibility(self, driver, specialists_page_open):

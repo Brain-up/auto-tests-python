@@ -19,6 +19,6 @@ class SpecialistsPageLocators:
     PAGE_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*")
     PAGE_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*")
     PAGE_TEXT = (By.XPATH, "//div[contains(@class, 'text-lg')]")
-    TITLE_H2 = (By.TAG_NAME, "h2")
     SPECIALIST_NAMES = (By.XPATH, "//div[contains(@class, 'mb-4')]")
     SPECIALIST_PROFESSION_SECTIONS = (By.XPATH, "//div[@class='font-openSans']")
+    TITLE_H2 = (By.TAG_NAME, "h2")
