@@ -1,6 +1,5 @@
 """Methods for verifying web elements on the 'Specialists' page"""
 import allure
-
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 from locators.specialists_page_locators import SpecialistsPageLocators
@@ -92,15 +91,27 @@ class SpecialistsPage(BasePage):
     def check_title_h2_visibility(self):
         return self.element_is_visible(self.locators.TITLE_H2)
 
+    @allure.step("Check the grid of specialists is present on the page")
+    def check_specialists_grid_presence(self):
+        return self.element_is_present(self.locators.PAGE_GRID)
+
+    @allure.step("Check the grid of specialists is visible on the page")
+    def check_specialists_grid_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_GRID)
+
+    @allure.step("Get the grid size on the page")
+    def get_specialists_grid_size(self):
+        return len(self.elements_are_present(self.locators.PAGE_GRID_CONTENT))
+
     @allure.step("Get the list of images in specialist cards on the 5th level of nesting on the page")
     def get_list_of_card_images(self):
         card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        # print(f"\nAmount of images in cards is: {len(card_images)}")
         return card_images
 
     @allure.step("Check the image in each specialist card is visible")
     def check_image_visibility_in_specialist_cards(self):
-        return all(element.is_displayed() for element in self.get_list_of_card_images())
+        card_images = self.get_list_of_card_images()
+        return all(element.is_displayed() for element in card_images)
 
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
@@ -122,19 +133,6 @@ class SpecialistsPage(BasePage):
     @allure.step("Get content of the text on the page")
     def get_text_content_on_the_specialists_page(self):
         return self.get_text(self.locators.PAGE_TEXT)
-
-    @allure.step("Check the page grid is present in DOM")
-    def check_specialists_page_grid_presence(self):
-        return self.element_is_present(self.locators.PAGE_GRID)
-
-    @allure.step("Check the page grid is visible on the page")
-    def check_specialists_page_grid_visibility(self):
-        return self.element_is_visible(self.locators.PAGE_GRID)
-
-    @allure.step("Get the grid size on the page")
-    def get_specialists_page_grid_size(self):
-        grid = self.elements_are_present(self.locators.PAGE_GRID_CONTENT)
-        return len(grid)
 
     @allure.step("Check the card of each specialist is visible on the page")
     def check_visibility_of_specialist_cards(self):
