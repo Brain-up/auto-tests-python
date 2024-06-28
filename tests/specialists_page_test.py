@@ -47,7 +47,8 @@ class TestSpecialistsPage:
             assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible on the page"
 
-        @allure.title("Verify presence, visibility of the title, the grid of specialists, images on the page")
+        @allure.title("""Verify presence, visibility of the title, the grid of specialists, 
+        cards of specialists and their images on the 2nd, 3rd, 5th levels of nesting on the page""")
         def test_sp_01_03_verify_page_structural_elements(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             title_on_2nd_level = page.check_title_h2_presence()
@@ -55,6 +56,7 @@ class TestSpecialistsPage:
             grid_on_2nd_level = page.check_specialists_grid_presence()
             grid_visibility = page.check_specialists_grid_visibility()
             grid_size = page.get_specialists_grid_size()
+            visibility_of_cards_on_3rd_level = page.check_specialist_cards_visibility()
             images_on_5th_level = page.get_list_of_card_images()
             visibility_of_images_on_5th_level = page.check_image_visibility_in_specialist_cards()
             assert title_on_2nd_level, "The title is absent on the page"
@@ -63,6 +65,7 @@ class TestSpecialistsPage:
             assert grid_visibility, "The grid on the 2nd level is invisible on the page"
             assert grid_size == SpecialistsPageData.specialists_grid_size, \
                 "The grid size does not match the expected value"
+            assert visibility_of_cards_on_3rd_level, "Specialist cards on 3rd level are invisible in the grid"
             assert images_on_5th_level, "Images on the 5th level are absent on the page"
             assert visibility_of_images_on_5th_level, "Images on the 5th level are invisible on the page"
 
@@ -76,12 +79,6 @@ class TestSpecialistsPage:
         assert page_text_visibility, "The text is invisible on the page"
         assert page_text_content in SpecialistsPageData.specialists_page_elements_content["page_text_content"], \
             "The text content does not match the any of the valid option"
-
-    @allure.title("Verify visibility of cards in the grid on the Specialists page")
-    def test_sp_01_04_verify_specialist_cards_visibility(self, driver, specialists_page_open):
-        page = SpecialistsPage(driver)
-        cards_visibility = page.check_visibility_of_specialist_cards()
-        assert cards_visibility, "Specialist cards are invisible in the grid"
 
     class TestSpecialistPageText:
         @allure.title("Verify value of the title of the tab")

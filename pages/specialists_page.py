@@ -101,7 +101,12 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Get the grid size on the page")
     def get_specialists_grid_size(self):
-        return len(self.elements_are_present(self.locators.PAGE_GRID_CONTENT))
+        return len(self.elements_are_present(self.locators.SPECIALIST_CARDS))
+
+    @allure.step("Check cards of specialists are visible on the page")
+    def check_specialist_cards_visibility(self):
+        cards = self.elements_are_present(self.locators.SPECIALIST_CARDS)
+        return all(element.is_displayed() for element in cards)
 
     @allure.step("Get the list of images in specialist cards on the 5th level of nesting on the page")
     def get_list_of_card_images(self):
@@ -133,13 +138,6 @@ class SpecialistsPage(BasePage):
     @allure.step("Get content of the text on the page")
     def get_text_content_on_the_specialists_page(self):
         return self.get_text(self.locators.PAGE_TEXT)
-
-    @allure.step("Check the card of each specialist is visible on the page")
-    def check_visibility_of_specialist_cards(self):
-        cards = self.elements_are_present(self.locators.PAGE_GRID_CONTENT)
-        # print(len(cards))
-        for card in cards:
-            return card.is_displayed()
 
     @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
     def get_images_src_in_specialist_cards(self):
