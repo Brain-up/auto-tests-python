@@ -91,6 +91,14 @@ class SpecialistsPage(BasePage):
     def check_title_h2_visibility(self):
         return self.element_is_visible(self.locators.TITLE_H2)
 
+    @allure.step("Check the page text on the 2nd level of nesting is present on the page")
+    def check_text_presence(self):
+        return self.element_is_present(self.locators.PAGE_TEXT)
+
+    @allure.step("Check the text on the 2nd level of nesting is visible")
+    def check_text_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_TEXT)
+
     @allure.step("Check the grid of specialists is present on the page")
     def check_specialists_grid_presence(self):
         return self.element_is_present(self.locators.PAGE_GRID)
@@ -127,16 +135,8 @@ class SpecialistsPage(BasePage):
     def get_value_of_title_h2(self):
         return self.get_text(self.locators.TITLE_H2)
 
-    @allure.step("Check the page text is present in DOM")
-    def check_specialists_page_text_presence(self):
-        return self.element_is_present(self.locators.PAGE_TEXT)
-
-    @allure.step("Check the text is visible on the page")
-    def check_specialists_page_text_visibility(self):
-        return self.element_is_visible(self.locators.PAGE_TEXT)
-
     @allure.step("Get content of the text on the page")
-    def get_text_content_on_the_specialists_page(self):
+    def get_text_content_on_page(self):
         return self.get_text(self.locators.PAGE_TEXT)
 
     @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
