@@ -220,18 +220,6 @@ class SpecialistsPage(BasePage):
         image_size = self.get_image_size(self.locators.GRID_CARD_01_IMAGE)
         return image_size
 
-    # @allure.step("Get the list of sections with text in specialist cards on the page")
-    # def get_list_of_text_sections_in_cards(self):
-    #     card_text_sections = self.elements_are_present(self.locators.GRID_CARD_TEXT_SECTIONS)
-    #     # print(f"\nAmount of text sections in cards is: {len(card_text_sections)}")
-    #     return card_text_sections
-
-    # @allure.step("Check the section with text in each specialist card is present and visible on the page")
-    # def check_presence_and_visibility_of_text_sections_in_specialist_cards(self):
-    #     card_text_sections = self.get_list_of_text_sections_in_cards()
-    #     for text_section in card_text_sections:
-    #         return text_section.is_displayed()
-
     @allure.step("Get the list of name values in specialist cards on the page")
     def get_name_values_in_specialist_cards(self):
         specialist_names = self.get_list_of_names_in_cards()
