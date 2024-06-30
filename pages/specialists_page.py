@@ -126,6 +126,24 @@ class SpecialistsPage(BasePage):
         card_images = self.get_list_of_card_images()
         return all(element.is_displayed() for element in card_images)
 
+    @allure.step("Get the list of names in specialist cards on the 5th level of nesting on the page")
+    def get_list_of_names_in_cards(self):
+        return self.elements_are_present(self.locators.SPECIALIST_NAMES)
+
+    @allure.step("Check a name in each specialist card is visible")
+    def check_visibility_of_names_in_cards(self):
+        names = self.get_list_of_names_in_cards()
+        return all(element.is_displayed() for element in names)
+
+    @allure.step("Get the list of professions in specialist cards on the 6th level of nesting on the page")
+    def get_list_of_professions_in_cards(self):
+        return self.elements_are_present(self.locators.SPECIALIST_PROFESSIONS)
+
+    @allure.step("Check a profession in each specialist card is visible")
+    def check_visibility_of_professions_in_cards(self):
+        professions = self.get_list_of_professions_in_cards()
+        return all(element.is_displayed() for element in professions)
+
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
@@ -202,52 +220,28 @@ class SpecialistsPage(BasePage):
         image_size = self.get_image_size(self.locators.GRID_CARD_01_IMAGE)
         return image_size
 
-    @allure.step("Get the list of sections with text in specialist cards on the page")
-    def get_list_of_text_sections_in_cards(self):
-        card_text_sections = self.elements_are_present(self.locators.GRID_CARD_TEXT_SECTIONS)
-        # print(f"\nAmount of text sections in cards is: {len(card_text_sections)}")
-        return card_text_sections
+    # @allure.step("Get the list of sections with text in specialist cards on the page")
+    # def get_list_of_text_sections_in_cards(self):
+    #     card_text_sections = self.elements_are_present(self.locators.GRID_CARD_TEXT_SECTIONS)
+    #     # print(f"\nAmount of text sections in cards is: {len(card_text_sections)}")
+    #     return card_text_sections
 
-    @allure.step("Check the section with text in each specialist card is present and visible on the page")
-    def check_presence_and_visibility_of_text_sections_in_specialist_cards(self):
-        card_text_sections = self.get_list_of_text_sections_in_cards()
-        for text_section in card_text_sections:
-            return text_section.is_displayed()
-
-    @allure.step("Get the list of names in specialist cards on the page")
-    def get_list_of_specialist_names_in_cards(self):
-        specialist_names = self.elements_are_present(self.locators.SPECIALIST_NAMES)
-        # print(f"\nAmount of specialist names in cards is: {len(specialist_names)}")
-        return specialist_names
-
-    @allure.step("Check the name in each specialist card is visible on the page")
-    def check_presence_and_visibility_of_names_in_specialist_cards(self):
-        specialist_names = self.get_list_of_specialist_names_in_cards()
-        for specialist_name in specialist_names:
-            return specialist_name.is_displayed()
-
-    @allure.step("Get the list of sections with profession in specialist cards on the page")
-    def get_list_of_specialist_professions_in_cards(self):
-        specialist_profession_sections = self.elements_are_present(self.locators.SPECIALIST_PROFESSION_SECTIONS)
-        # print(f"\nAmount of specialist profession descriptions in cards is: {len(specialist_profession_sections)}")
-        return specialist_profession_sections
-
-    @allure.step("Check the section with profession in each specialist card is visible on the page")
-    def check_presence_and_visibility_of_professions_in_specialist_cards(self):
-        specialist_profession_sections = self.get_list_of_specialist_professions_in_cards()
-        for specialist_profession_section in specialist_profession_sections:
-            return specialist_profession_section.is_displayed()
+    # @allure.step("Check the section with text in each specialist card is present and visible on the page")
+    # def check_presence_and_visibility_of_text_sections_in_specialist_cards(self):
+    #     card_text_sections = self.get_list_of_text_sections_in_cards()
+    #     for text_section in card_text_sections:
+    #         return text_section.is_displayed()
 
     @allure.step("Get the list of name values in specialist cards on the page")
     def get_name_values_in_specialist_cards(self):
-        specialist_names = self.get_list_of_specialist_names_in_cards()
+        specialist_names = self.get_list_of_names_in_cards()
         name_values = [name.text for name in specialist_names]
         # print(f"The name values in cards on the page are:", *name_values, sep='\n')
         return name_values
 
     @allure.step("Get the list of profession values in specialist cards on the page")
     def get_profession_values_in_specialist_cards(self):
-        specialist_professions = self.get_list_of_specialist_professions_in_cards()
+        specialist_professions = self.get_list_of_professions_in_cards()
         profession_values = [profession.text for profession in specialist_professions]
         # print(f"The profession values in cards on the page are:", *profession_values, sep='\n')
         return profession_values

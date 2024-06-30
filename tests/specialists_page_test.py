@@ -47,8 +47,8 @@ class TestSpecialistsPage:
             assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible on the page"
 
-        @allure.title("""Verify presence, visibility of the title, text, the grid of specialists, 
-        cards of specialists and their images on the 2nd, 3rd, 5th levels of nesting on the page""")
+        @allure.title("""Verify presence, visibility of the title, text on the page, the grid and cards of specialists, 
+        their names, professions and images on the 2nd, 3rd, 5th, 6th levels of nesting on the page""")
         def test_sp_01_03_verify_page_structural_elements(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             title_on_2nd_level = page.check_title_h2_presence()
@@ -61,6 +61,10 @@ class TestSpecialistsPage:
             visibility_of_cards_on_3rd_level = page.check_specialist_cards_visibility()
             images_on_5th_level = page.get_list_of_card_images()
             visibility_of_images_on_5th_level = page.check_image_visibility_in_specialist_cards()
+            names_on_5th_level = page.get_list_of_names_in_cards()
+            visibility_of_names_on_5th_level = page.check_visibility_of_names_in_cards()
+            professions_on_6th_level = page.get_list_of_professions_in_cards()
+            visibility_of_professions_on_6th_level = page.check_visibility_of_professions_in_cards()
             assert title_on_2nd_level, "The title on the 2nd level is absent on the page"
             assert title_visibility, "The title on the 2nd level is invisible on the page"
             assert text_on_2nd_level, "The text on the 2nd level is absent in DOM"
@@ -72,6 +76,10 @@ class TestSpecialistsPage:
             assert visibility_of_cards_on_3rd_level, "Specialist cards on 3rd level are invisible in the grid"
             assert images_on_5th_level, "Images on the 5th level are absent on the page"
             assert visibility_of_images_on_5th_level, "Images on the 5th level are invisible on the page"
+            assert names_on_5th_level, "Names in specialist cards on the 5th level are absent on the page"
+            assert visibility_of_names_on_5th_level, "Names in specialist cards on the 5th level are invisible"
+            assert professions_on_6th_level, "Professions on 6th level in specialist cards are invisible"
+            assert visibility_of_professions_on_6th_level, "Professions on 6th level in specialist cards are invisible"
 
     class TestSpecialistPageText:
         @allure.title("Verify value of the title of the tab")
@@ -96,17 +104,6 @@ class TestSpecialistsPage:
             assert text_content, "The text content on the page is empty"
             assert text_content in SpecialistsPageData.text_on_page, \
                 "The text content does not match the valid value"
-
-        @allure.title("""Verify presence and visibility of text sections (including names and professions) 
-         in specialist cards in the grid""")
-        def test_sp_02_01_01_verify_text_in_cards_is_present_and_visible(self, driver, specialists_page_open):
-            page = SpecialistsPage(driver)
-            text_sections = page.check_presence_and_visibility_of_text_sections_in_specialist_cards()
-            specialist_names = page.check_presence_and_visibility_of_names_in_specialist_cards()
-            specialist_professions = page.check_presence_and_visibility_of_professions_in_specialist_cards()
-            assert text_sections, "Sections with text in specialist cards are invisible in the grid"
-            assert specialist_names, "Names in specialist cards are invisible in the grid"
-            assert specialist_professions, "Professions in specialist cards are invisible in the grid"
 
         @allure.title("Verify values of names in specialist cards in the grid")
         def test_sp_02_02_01_verify_name_values_in_cards(self, driver, specialists_page_open):
