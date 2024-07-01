@@ -98,6 +98,7 @@ class TestSpecialistsPage:
             assert title_value in SpecialistsPageData.title_h2, \
                 "The title on the page doesn't match the valid value"
 
+        @allure.title("Verify value of text on the page")
         def test_sp_02_03_verify_page_text(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             text_content = page.get_text_content_on_page()
@@ -105,18 +106,14 @@ class TestSpecialistsPage:
             assert text_content in SpecialistsPageData.text_on_page, \
                 "The text content does not match the valid value"
 
-        @allure.title("Verify values of names in specialist cards in the grid")
-        def test_sp_02_02_01_verify_name_values_in_cards(self, driver, specialists_page_open):
+        @allure.title("Verify values of names and professions in specialist cards in the grid")
+        def test_sp_02_04_verify_name_and_profession_in_cards(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            name_values = page.get_name_values_in_specialist_cards()
+            name_values = page.get_name_values_in_cards()
+            profession_values = page.get_profession_values_in_cards()
             assert name_values, "Name values in cards are empty"
             assert name_values in SpecialistsPageData.specialists_names, \
                 "The names in specialist cards do not match the valid values"
-
-        @allure.title("Verify values of profession in specialist cards in the grid")
-        def test_sp_02_03_01_verify_profession_values_in_cards(self, driver, specialists_page_open):
-            page = SpecialistsPage(driver)
-            profession_values = page.get_profession_values_in_specialist_cards()
             assert profession_values, "Profession values in cards are empty"
             assert profession_values in SpecialistsPageData.specialists_professions, \
                 "The professions in specialist cards do not match the valid values"

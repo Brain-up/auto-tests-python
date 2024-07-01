@@ -157,6 +157,16 @@ class SpecialistsPage(BasePage):
     def get_text_content_on_page(self):
         return self.get_text(self.locators.PAGE_TEXT)
 
+    @allure.step("Get the list of name values in specialist cards on the page")
+    def get_name_values_in_cards(self):
+        specialist_names = self.get_list_of_names_in_cards()
+        return [name.text for name in specialist_names]
+
+    @allure.step("Get the list of profession values in specialist cards on the page")
+    def get_profession_values_in_cards(self):
+        specialist_professions = self.get_list_of_professions_in_cards()
+        return [profession.text for profession in specialist_professions]
+
     @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
     def get_images_src_in_specialist_cards(self):
         card_images = self.get_list_of_card_images()
@@ -219,20 +229,6 @@ class SpecialistsPage(BasePage):
     def get_visible_size_of_the_1th_card_image(self):
         image_size = self.get_image_size(self.locators.GRID_CARD_01_IMAGE)
         return image_size
-
-    @allure.step("Get the list of name values in specialist cards on the page")
-    def get_name_values_in_specialist_cards(self):
-        specialist_names = self.get_list_of_names_in_cards()
-        name_values = [name.text for name in specialist_names]
-        # print(f"The name values in cards on the page are:", *name_values, sep='\n')
-        return name_values
-
-    @allure.step("Get the list of profession values in specialist cards on the page")
-    def get_profession_values_in_specialist_cards(self):
-        specialist_professions = self.get_list_of_professions_in_cards()
-        profession_values = [profession.text for profession in specialist_professions]
-        # print(f"The profession values in cards on the page are:", *profession_values, sep='\n')
-        return profession_values
 
     @allure.step("Check the 'All Specialists' link is present in DOM")
     def check_all_specialists_link_presence(self):

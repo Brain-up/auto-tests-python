@@ -2,6 +2,8 @@
 
 
 class SpecialistsPageData:
+    specialists_grid_size = 8
+
     tab_title = ["Специалисты | BrainUp", "Specialists | BrainUp"]
 
     title_h2 = ["Специалисты", "Specialists"]
@@ -11,31 +13,12 @@ class SpecialistsPageData:
                     "The BrainUp training program was developed jointly with the best specialists "
                     "in the field of deaf education from Russia and Belarus"]
 
-    specialists_grid_size = 8
-
-    specialists_page_images_src = {
-        "1th_card_img_src": "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png"
-    }
-
-    specialists_images_alt = "user avatar"
-
-    specialists_images_src = [
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/proshina.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/berezkina.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/metelskaya.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/koroleva.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/kibalova.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/platonenko.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/sivenkova.png"
-    ]
-
     specialists_names = [
         ["Гарбарук Екатерина Сергеевна", "Прошина Любовь Александровна", "Березкина Ксения Сергеевна",
          "Метельская Наталья Николаевна", "Королева Инна Васильевна", "Юлия Кибалова", "Платоненко Дарья Сергеевна",
          "Сивенкова Кристина Александровна"],
         ["Ekaterina Garbaruk", "Lubov Proshina", "Ksenia Berezkina", "Natalia Metelskaya", "Inna Koroleva",
-        "Yulia Kibalova", "Daria Platonenko", "Kristina Sivenkova"]
+         "Yulia Kibalova", "Daria Platonenko", "Kristina Sivenkova"]
     ]
 
     specialists_professions = [
@@ -64,8 +47,25 @@ class SpecialistsPageData:
          "Teacher of the deaf, Saint Petersburg Center of Otorhinolaryngology, young professional"]
     ]
 
+    all_specialists_link_text = ["Все Специалисты", "All Specialists"]
+
     all_specialists_link_href = "https://brainup.site/specialists#"
 
     all_specialists_link_status_code = 200
 
-    all_specialists_link_text = ["Все Специалисты", "All Specialists"]
+    specialists_images_src = [
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/proshina.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/berezkina.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/metelskaya.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/koroleva.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/kibalova.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/platonenko.png",
+        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/sivenkova.png"
+    ]
+
+    specialists_page_images_src = {
+        "1th_card_img_src": "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png"
+    }
+
+    specialists_images_alt = "user avatar"
