@@ -4,6 +4,9 @@ from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 from locators.specialists_page_locators import SpecialistsPageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.ui import WebDriverWait as Wait
+from selenium.common import TimeoutException
 
 
 class SpecialistsPage(BasePage):
@@ -99,20 +102,20 @@ class SpecialistsPage(BasePage):
     def check_text_visibility(self):
         return self.element_is_visible(self.locators.PAGE_TEXT)
 
-    @allure.step("Check the grid of specialists is present on the page")
-    def check_specialists_grid_presence(self):
+    @allure.step("Check the grid of specialist cards on the 2nd level of nesting is present on the page")
+    def check_grid_presence(self):
         return self.element_is_present(self.locators.PAGE_GRID)
 
-    @allure.step("Check the grid of specialists is visible on the page")
-    def check_specialists_grid_visibility(self):
+    @allure.step("Check the grid of specialists cards on the 2nd level of nesting is visible on the page")
+    def check_grid_visibility(self):
         return self.element_is_visible(self.locators.PAGE_GRID)
 
-    @allure.step("Get the grid size on the page")
-    def get_specialists_grid_size(self):
+    @allure.step("Get the list of specialist cards on the 3rd level of nesting on the page")
+    def get_list_of_cards(self):
         return len(self.elements_are_present(self.locators.SPECIALIST_CARDS))
 
-    @allure.step("Check cards of specialists are visible on the page")
-    def check_specialist_cards_visibility(self):
+    @allure.step("Check specialists cards on the 3rd level of nesting are visible on the page")
+    def check_cards_visibility(self):
         cards = self.elements_are_present(self.locators.SPECIALIST_CARDS)
         return all(element.is_displayed() for element in cards)
 
@@ -122,9 +125,13 @@ class SpecialistsPage(BasePage):
         return card_images
 
     @allure.step("Check the image in each specialist card is visible")
-    def check_image_visibility_in_specialist_cards(self):
-        card_images = self.get_list_of_card_images()
-        return all(element.is_displayed() for element in card_images)
+    def check_image_visibility_in_cards(self):
+        try:
+            card_images = (Wait(self.driver, 30).
+                           until(ec.presence_of_all_elements_located(self.locators.GRID_CARD_IMAGES)))
+            return all(element.is_displayed() for element in card_images)
+        except TimeoutException:
+            return False
 
     @allure.step("Get the list of names in specialist cards on the 5th level of nesting on the page")
     def get_list_of_names_in_cards(self):

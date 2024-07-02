@@ -55,31 +55,31 @@ class TestSpecialistsPage:
             title_visibility = page.check_title_h2_visibility()
             text_on_2nd_level = page.check_text_presence()
             text_visibility = page.check_text_visibility()
-            grid_on_2nd_level = page.check_specialists_grid_presence()
-            grid_visibility = page.check_specialists_grid_visibility()
-            grid_size = page.get_specialists_grid_size()
-            visibility_of_cards_on_3rd_level = page.check_specialist_cards_visibility()
+            grid_on_2nd_level = page.check_grid_presence()
+            grid_visibility = page.check_grid_visibility()
+            cards_on_3rd_level = page.get_list_of_cards()
+            cards_visibility = page.check_cards_visibility()
             images_on_5th_level = page.get_list_of_card_images()
-            visibility_of_images_on_5th_level = page.check_image_visibility_in_specialist_cards()
+            images_visibility = page.check_image_visibility_in_cards()
             names_on_5th_level = page.get_list_of_names_in_cards()
-            visibility_of_names_on_5th_level = page.check_visibility_of_names_in_cards()
+            names_visibility = page.check_visibility_of_names_in_cards()
             professions_on_6th_level = page.get_list_of_professions_in_cards()
-            visibility_of_professions_on_6th_level = page.check_visibility_of_professions_in_cards()
+            professions_visibility = page.check_visibility_of_professions_in_cards()
             assert title_on_2nd_level, "The title on the 2nd level is absent on the page"
             assert title_visibility, "The title on the 2nd level is invisible on the page"
             assert text_on_2nd_level, "The text on the 2nd level is absent in DOM"
             assert text_visibility, "The text on the 2nd level is invisible on the page"
             assert grid_on_2nd_level, "The grid on the 2nd level is absent on the page"
             assert grid_visibility, "The grid on the 2nd level is invisible on the page"
-            assert grid_size == SpecialistsPageData.specialists_grid_size, \
+            assert cards_on_3rd_level == SpecialistsPageData.specialists_grid_size, \
                 "The grid size does not match the expected value"
-            assert visibility_of_cards_on_3rd_level, "Specialist cards on 3rd level are invisible in the grid"
+            assert cards_visibility, "Specialist cards on 3rd level are invisible in the grid"
             assert images_on_5th_level, "Images on the 5th level are absent on the page"
-            assert visibility_of_images_on_5th_level, "Images on the 5th level are invisible on the page"
+            assert images_visibility, "Images on the 5th level are invisible on the page"
             assert names_on_5th_level, "Names in specialist cards on the 5th level are absent on the page"
-            assert visibility_of_names_on_5th_level, "Names in specialist cards on the 5th level are invisible"
-            assert professions_on_6th_level, "Professions on 6th level in specialist cards are invisible"
-            assert visibility_of_professions_on_6th_level, "Professions on 6th level in specialist cards are invisible"
+            assert names_visibility, "Names in specialist cards on the 5th level are invisible"
+            assert professions_on_6th_level, "Professions in specialist cards on 6th level are absent on the page"
+            assert professions_visibility, "Professions in specialist cards on 6th level are invisible"
 
     class TestSpecialistPageText:
         @allure.title("Verify value of the title of the tab")
