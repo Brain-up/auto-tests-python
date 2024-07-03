@@ -110,6 +110,14 @@ class SpecialistsPage(BasePage):
     def check_grid_visibility(self):
         return self.element_is_visible(self.locators.PAGE_GRID)
 
+    @allure.step("Check the 'All Specialists' link on the 3rd level of nesting is present on the page")
+    def check_all_specialists_link_presence(self):
+        return self.element_is_present(self.locators.ALL_SPECIALISTS_LINK)
+
+    @allure.step("Check the 'All Specialists' link on the 3rd level of nesting is visible")
+    def check_all_specialists_link_visibility(self):
+        return self.element_is_visible(self.locators.ALL_SPECIALISTS_LINK)
+
     @allure.step("Get the list of specialist cards on the 3rd level of nesting on the page")
     def get_list_of_cards(self):
         return len(self.elements_are_present(self.locators.SPECIALIST_CARDS))
@@ -174,6 +182,10 @@ class SpecialistsPage(BasePage):
         specialist_professions = self.get_list_of_professions_in_cards()
         return [profession.text for profession in specialist_professions]
 
+    @allure.step("Get text in the 'All Specialists' link")
+    def get_text_in_all_specialists_link(self):
+        return self.get_text(self.locators.ALL_SPECIALISTS_LINK)
+
     @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
     def get_images_src_in_specialist_cards(self):
         card_images = self.get_list_of_card_images()
@@ -237,14 +249,6 @@ class SpecialistsPage(BasePage):
         image_size = self.get_image_size(self.locators.GRID_CARD_01_IMAGE)
         return image_size
 
-    @allure.step("Check the 'All Specialists' link is present in DOM")
-    def check_all_specialists_link_presence(self):
-        return self.element_is_present(self.locators.ALL_SPECIALISTS_LINK)
-
-    @allure.step("Check the 'All Specialists' link is visible on the page")
-    def check_all_specialists_link_visibility(self):
-        return self.element_is_visible(self.locators.ALL_SPECIALISTS_LINK)
-
     @allure.step("Check the 'All Specialists' link is clickable")
     def check_all_specialists_link_clickability(self):
         return self.element_is_clickable(self.locators.ALL_SPECIALISTS_LINK)
@@ -260,7 +264,3 @@ class SpecialistsPage(BasePage):
     @allure.step("Get attribute 'href' of the 'All Specialists' link")
     def get_all_specialists_link_href(self):
         return self.get_link_href(self.locators.ALL_SPECIALISTS_LINK)
-
-    @allure.step("Get text in the 'All Specialists' link")
-    def get_text_in_all_specialists_link(self):
-        return self.get_text(self.locators.ALL_SPECIALISTS_LINK)
