@@ -47,8 +47,8 @@ class TestSpecialistsPage:
             assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible on the page"
 
-        @allure.title("""Verify presence, visibility of the title, text on the page, the grid and cards of specialists, 
-        their names, professions and images on the 2nd, 3rd, 5th, 6th levels of nesting on the page""")
+        @allure.title("""Verify presence, visibility of the title, text, link, grid, cards and images  
+        on the 2nd, 3rd, 5th, 6th levels of nesting on the page""")
         def test_sp_01_03_verify_page_structural_elements(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             title_on_2nd_level = page.check_title_h2_presence()
@@ -57,6 +57,8 @@ class TestSpecialistsPage:
             text_visibility = page.check_text_visibility()
             grid_on_2nd_level = page.check_grid_presence()
             grid_visibility = page.check_grid_visibility()
+            link_on_3rd_level = page.check_all_specialists_link_presence()
+            link_visibility = page.check_all_specialists_link_visibility()
             cards_on_3rd_level = page.get_list_of_cards()
             cards_visibility = page.check_cards_visibility()
             images_on_5th_level = page.get_list_of_card_images()
@@ -66,16 +68,18 @@ class TestSpecialistsPage:
             professions_on_6th_level = page.get_list_of_professions_in_cards()
             professions_visibility = page.check_visibility_of_professions_in_cards()
             assert title_on_2nd_level, "The title on the 2nd level is absent on the page"
-            assert title_visibility, "The title on the 2nd level is invisible on the page"
+            assert title_visibility, "The title on the 2nd level is invisible"
             assert text_on_2nd_level, "The text on the 2nd level is absent in DOM"
-            assert text_visibility, "The text on the 2nd level is invisible on the page"
+            assert text_visibility, "The text on the 2nd level is invisible"
             assert grid_on_2nd_level, "The grid on the 2nd level is absent on the page"
-            assert grid_visibility, "The grid on the 2nd level is invisible on the page"
+            assert grid_visibility, "The grid on the 2nd level is invisible"
+            assert link_on_3rd_level, "The 'All Specialists' link on 3rd level is absent on the page"
+            assert link_visibility, "The 'All Specialists' link is invisible"
             assert cards_on_3rd_level == SpecialistsPageData.specialists_grid_size, \
                 "The grid size does not match the expected value"
             assert cards_visibility, "Specialist cards on 3rd level are invisible in the grid"
             assert images_on_5th_level, "Images on the 5th level are absent on the page"
-            assert images_visibility, "Images on the 5th level are invisible on the page"
+            assert images_visibility, "Images on the 5th level are invisible"
             assert names_on_5th_level, "Names in specialist cards on the 5th level are absent on the page"
             assert names_visibility, "Names in specialist cards on the 5th level are invisible"
             assert professions_on_6th_level, "Professions in specialist cards on 6th level are absent on the page"
@@ -118,27 +122,27 @@ class TestSpecialistsPage:
             assert profession_values in SpecialistsPageData.specialists_professions, \
                 "The professions in specialist cards do not match the valid values"
 
+        @allure.title("Verify text in the 'All Specialists' link")
+        def test_sp_02_05_verify_text_in_link(self, driver, specialists_page_open):
+            page = SpecialistsPage(driver)
+            link_text = page.get_text_in_all_specialists_link()
+            assert link_text, "Text in the 'All Specialists' link is empty"
+            assert link_text in SpecialistsPageData.all_specialists_link_text, \
+                f"Text in the 'All Specialists' link does not match any valid values"
+
     class TestSpecialistPageLinks:
 
-        @allure.title("""Verify presence, visibility, clickability, href, status code, text 
-                         of the 'All Specialists' link on the Specialists page""")
+        @allure.title("Verify clickability, href, status code of the 'All Specialists' link")
         def test_sp_03_01_verify_all_specialists_link(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            link_presence = page.check_all_specialists_link_presence()
-            link_visibility = page.check_all_specialists_link_visibility()
             link_clickability = page.check_all_specialists_link_clickability()
             link_href = page.get_all_specialists_link_href()
             link_status_code = requests.head(link_href).status_code
-            actual_link_text = page.get_text_in_all_specialists_link()
-            assert link_presence is not None, "The 'All Specialists' link is absent in DOM"
-            assert link_visibility, "The 'All Specialists' link is invisible on the page"
             assert link_clickability, f"The {link_href} link is unclickable"
             assert link_href == SpecialistsPageData.all_specialists_link_href, \
                 f"The attribute 'href' of the {link_href} link does not match the valid value"
             assert link_status_code == SpecialistsPageData.all_specialists_link_status_code, \
                 f"The {link_href} link status code does not match the valid value"
-            assert actual_link_text in SpecialistsPageData.all_specialists_link_text, \
-                f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
 
         @allure.title("""Verify that the 'All Specialists' link leads an unauthorized user 
                          to the correct page after clicking""")
