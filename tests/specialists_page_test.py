@@ -1,8 +1,6 @@
 """Auto tests for verifying web elements on the 'Specialists' page"""
 import time
 import allure
-import requests
-
 from pages.specialists_page import SpecialistsPage
 from test_data.specialists_page_data import SpecialistsPageData
 from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
@@ -131,18 +129,18 @@ class TestSpecialistsPage:
                 f"Text in the 'All Specialists' link does not match any valid values"
 
     class TestSpecialistPageLinks:
-
         @allure.title("Verify clickability, href, status code of the 'All Specialists' link")
         def test_sp_03_01_verify_all_specialists_link(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             link_clickability = page.check_all_specialists_link_clickability()
             link_href = page.get_all_specialists_link_href()
-            link_status_code = requests.head(link_href).status_code
-            assert link_clickability, f"The {link_href} link is unclickable"
+            link_status_code = page.get_all_specialists_link_status_code()
+            assert link_clickability, f"The 'All Specialists' link is unclickable"
+            assert link_href, "Link href is empty"
             assert link_href == SpecialistsPageData.all_specialists_link_href, \
-                f"The attribute 'href' of the {link_href} link does not match the valid value"
+                f"The attribute 'href' of the link does not match the valid value"
             assert link_status_code == SpecialistsPageData.all_specialists_link_status_code, \
-                f"The {link_href} link status code does not match the valid value"
+                f"The status code of the link does not match the valid value"
 
         @allure.title("""Verify that the 'All Specialists' link leads an unauthorized user 
                          to the correct page after clicking""")

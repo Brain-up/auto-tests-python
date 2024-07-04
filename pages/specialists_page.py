@@ -1,5 +1,6 @@
 """Methods for verifying web elements on the 'Specialists' page"""
 import allure
+import requests
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 from locators.specialists_page_locators import SpecialistsPageLocators
@@ -186,6 +187,28 @@ class SpecialistsPage(BasePage):
     def get_text_in_all_specialists_link(self):
         return self.get_text(self.locators.ALL_SPECIALISTS_LINK)
 
+    # Checking the 'All Specialists' link
+    @allure.step("Check the 'All Specialists' link is clickable")
+    def check_all_specialists_link_clickability(self):
+        return self.element_is_clickable(self.locators.ALL_SPECIALISTS_LINK)
+
+    @allure.step("Get attribute 'href' of the 'All Specialists' link")
+    def get_all_specialists_link_href(self):
+        return self.get_link_href(self.locators.ALL_SPECIALISTS_LINK)
+
+    @allure.step("Get status code of the 'All Specialists' link")
+    def get_all_specialists_link_status_code(self):
+        return requests.head(self.get_all_specialists_link_href()).status_code
+
+    @allure.step("Click on the 'All Specialists' link and thereby open the corresponding web page in a new tab")
+    def click_all_specialists_link(self):
+        self.element_is_present_and_clickable(self.locators.ALL_SPECIALISTS_LINK).click()
+
+    @allure.step("Get text of the element on the Start Unauthorized page")
+    def get_element_text_on_opened_tab_with_start_unauthorized_page(self):
+        return self.get_text(self.locators1.SECTION_1_TEXT)
+
+    # Checking images in the grid
     @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
     def get_images_src_in_specialist_cards(self):
         card_images = self.get_list_of_card_images()
@@ -248,19 +271,3 @@ class SpecialistsPage(BasePage):
     def get_visible_size_of_the_1th_card_image(self):
         image_size = self.get_image_size(self.locators.GRID_CARD_01_IMAGE)
         return image_size
-
-    @allure.step("Check the 'All Specialists' link is clickable")
-    def check_all_specialists_link_clickability(self):
-        return self.element_is_clickable(self.locators.ALL_SPECIALISTS_LINK)
-
-    @allure.step("Click on the 'All Specialists' link and thereby open the corresponding web page in a new tab")
-    def click_all_specialists_link(self):
-        self.element_is_present_and_clickable(self.locators.ALL_SPECIALISTS_LINK).click()
-
-    @allure.step("Get text of the element on the Start Unauthorized page")
-    def get_element_text_on_opened_tab_with_start_unauthorized_page(self):
-        return self.get_text(self.locators1.SECTION_1_TEXT)
-
-    @allure.step("Get attribute 'href' of the 'All Specialists' link")
-    def get_all_specialists_link_href(self):
-        return self.get_link_href(self.locators.ALL_SPECIALISTS_LINK)
