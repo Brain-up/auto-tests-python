@@ -136,7 +136,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Check the image in each specialist card is visible")
     def check_image_visibility_in_cards(self):
         try:
-            card_images = (Wait(self.driver, 30).
+            card_images = (Wait(self.driver, 35).
                            until(ec.presence_of_all_elements_located(self.locators.GRID_CARD_IMAGES)))
             return all(element.is_displayed() for element in card_images)
         except TimeoutException:
@@ -203,6 +203,8 @@ class SpecialistsPage(BasePage):
     @allure.step("Click on the 'All Specialists' link and thereby open the corresponding web page in a new tab")
     def click_all_specialists_link(self):
         self.element_is_present_and_clickable(self.locators.ALL_SPECIALISTS_LINK).click()
+        self.switch_to_new_window()
+        return self.get_current_tab_url()
 
     @allure.step("Get text of the element on the Start Unauthorized page")
     def get_element_text_on_opened_tab_with_start_unauthorized_page(self):

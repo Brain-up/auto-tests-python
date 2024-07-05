@@ -144,17 +144,15 @@ class TestSpecialistsPage:
 
         @allure.title("""Verify that the 'All Specialists' link leads an unauthorized user 
                          to the correct page after clicking""")
-        def test_sp_03_02_verify_all_specialists_link_leads_unauthorized_user_to_the_correct_page(self,
-                                                                                        driver, specialists_page_open):
+        def test_sp_03_02_verify_all_specialists_link_leads_unauthorized_user_to_the_correct_page(
+                self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            page.click_all_specialists_link()
-            page.switch_to_new_window()
-            time.sleep(5)
+            new_tab_url = page.click_all_specialists_link()
             text_on_opened_tab = page.get_element_text_on_opened_tab_with_start_unauthorized_page()
-            assert text_on_opened_tab in \
-                   StartUnauthorizedPageData.text_on_page["text_in_section1"], \
-                   "The 'All Specialists' link leads to an incorrect page after clicking " \
-                   "or opened page does not load correctly"
+            assert new_tab_url == StartUnauthorizedPageData.page_url, \
+                "The 'All Specialists' link leads to an incorrect page after clicking"
+            assert text_on_opened_tab in StartUnauthorizedPageData.text_on_page["text_in_section1"], \
+                "The opened page does not load correctly after clicking on the 'All Specialists' link"
 
         @allure.title("""Verify that the 'All Specialists' link leads an authorized user 
                          to the correct page after clicking""")
