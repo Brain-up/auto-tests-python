@@ -207,7 +207,7 @@ class SpecialistsPage(BasePage):
         return self.get_current_tab_url()
 
     @allure.step("Get text of the element on the Start Unauthorized page")
-    def get_element_text_on_opened_tab_with_start_unauthorized_page(self):
+    def get_element_text_on_new_tab(self):
         return self.get_text(self.locators1.SECTION_1_TEXT)
 
     # Checking images in the grid

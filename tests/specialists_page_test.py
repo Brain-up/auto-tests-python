@@ -148,10 +148,10 @@ class TestSpecialistsPage:
                 self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             new_tab_url = page.click_all_specialists_link()
-            text_on_opened_tab = page.get_element_text_on_opened_tab_with_start_unauthorized_page()
+            text_on_new_tab = page.get_element_text_on_new_tab()
             assert new_tab_url == StartUnauthorizedPageData.page_url, \
                 "The 'All Specialists' link leads to an incorrect page after clicking"
-            assert text_on_opened_tab in StartUnauthorizedPageData.text_on_page["text_in_section1"], \
+            assert text_on_new_tab in StartUnauthorizedPageData.text_on_page["text_in_section1"], \
                 "The opened page does not load correctly after clicking on the 'All Specialists' link"
 
         @allure.title("""Verify that the 'All Specialists' link leads an authorized user 
