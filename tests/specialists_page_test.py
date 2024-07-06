@@ -1,5 +1,4 @@
 """Auto tests for verifying web elements on the 'Specialists' page"""
-import time
 import allure
 from pages.specialists_page import SpecialistsPage
 from test_data.specialists_page_data import SpecialistsPageData
@@ -156,17 +155,16 @@ class TestSpecialistsPage:
 
         @allure.title("""Verify that the 'All Specialists' link leads an authorized user 
                          to the correct page after clicking""")
-        def test_sp_03_03_verify_all_specialists_link_leads_authorized_user_to_the_correct_page(self,
-                                                                                    driver, auto_test_user_authorized):
+        def test_sp_03_03_verify_all_specialists_link_leads_authorized_user_to_the_correct_page(
+                self, driver, auto_test_user_authorized):
             page = SpecialistsPage(driver)
             page.open_specialists_page()
-            page.click_all_specialists_link()
-            page.switch_to_new_window()
-            time.sleep(5)
-            text_on_opened_tab = page.get_value_of_title_h2()
-            assert text_on_opened_tab in SpecialistsPageData.title_h2, \
-                ("The 'All Specialists' link leads to an incorrect page after clicking "
-                 "or opened page does not load correctly")
+            new_tab_url = page.click_all_specialists_link()
+            text_on_new_tab = page.get_value_of_title_h2()
+            assert new_tab_url == SpecialistsPageData.page_url, \
+                "The 'All Specialists' link leads to an incorrect page after clicking"
+            assert text_on_new_tab in SpecialistsPageData.title_h2, \
+                "The opened page does not load correctly after clicking on the 'All Specialists' link"
 
     class TestSpecialistCardImages:
 
