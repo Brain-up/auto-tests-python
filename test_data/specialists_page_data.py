@@ -69,3 +69,5 @@ class SpecialistsPageData:
     }
 
     specialists_images_alt = "user avatar"
+
+    page_url = "https://brainup.site/specialists"
