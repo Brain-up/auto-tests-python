@@ -96,16 +96,14 @@ class TestSpecialistsPage:
             page = SpecialistsPage(driver)
             title_value = page.get_value_of_title_h2()
             assert title_value, "The title value on the page is empty"
-            assert title_value in SpecialistsPageData.title_h2, \
-                "The title on the page doesn't match the valid value"
+            assert title_value in SpecialistsPageData.title_h2, "The title on the page doesn't match the valid value"
 
         @allure.title("Verify value of text on the page")
         def test_sp_02_03_verify_page_text(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             text_content = page.get_text_content_on_page()
             assert text_content, "The text content on the page is empty"
-            assert text_content in SpecialistsPageData.text_on_page, \
-                "The text content does not match the valid value"
+            assert text_content in SpecialistsPageData.text_on_page, "The text content does not match the valid value"
 
         @allure.title("Verify values of names and professions in specialist cards in the grid")
         def test_sp_02_04_verify_name_and_profession_in_cards(self, driver, specialists_page_open):
@@ -114,10 +112,10 @@ class TestSpecialistsPage:
             profession_values = page.get_profession_values_in_cards()
             assert name_values, "Name values in cards are empty"
             assert name_values in SpecialistsPageData.specialists_names, \
-                "The names in specialist cards do not match the valid values"
+                "Names in specialist cards do not match the valid values"
             assert profession_values, "Profession values in cards are empty"
             assert profession_values in SpecialistsPageData.specialists_professions, \
-                "The professions in specialist cards do not match the valid values"
+                "Professions in specialist cards do not match the valid values"
 
         @allure.title("Verify text in the 'All Specialists' link")
         def test_sp_02_05_verify_text_in_link(self, driver, specialists_page_open):
@@ -167,41 +165,21 @@ class TestSpecialistsPage:
                 "The opened page does not load correctly after clicking on the 'All Specialists' link"
 
     class TestSpecialistCardImages:
-
-        @allure.title("Verify attribute values and sizes of images in specialist cards in the grid")
-        def test_sp_04_02_verify_images_attributes_and_changed_sizes_in_cards(self, driver, specialists_page_open):
+        @allure.title("Verify attributes of images in specialist cards in the grid")
+        def test_sp_04_01_verify_images_attributes_in_cards(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            images_src = page.get_images_src_in_specialist_cards()
-            images_alt = page.get_images_alt_in_specialist_cards()
-            images_size_changes = page.check_size_changes_of_card_images()
+            images_src = page.get_images_src()
+            images_alt = page.get_images_alt()
             assert images_src, "The 'src' attribute value of some card images is empty"
-            assert images_src == SpecialistsPageData.specialists_images_src, \
-                "The 'src' attribute values of the card images are unaccurate"
+            assert images_src == SpecialistsPageData.images_src, "The 'src' attribute of the card images are unaccurate"
             assert images_alt, "The 'alt' attribute value of some card images is empty"
-            for item in images_alt:
-                assert item == SpecialistsPageData.specialists_images_alt, \
-                    f"The attribute 'alt' '{item}' in the list does not match expected value"
-            assert images_size_changes, "Checks of changes in image sizes have not carried out"
+            assert all(image_alt == SpecialistsPageData.images_alt for image_alt in images_alt), \
+                "The 'alt' attribute value of some icons is empty or non-accurate"
 
-        @allure.title("Verify presence, visibility and accuracy of the 1th card's image in the grid")
-        def test_sp_04_03_verify_1th_card_image(self, driver, specialists_page_open):
+        @allure.title("Verify sizes of images in specialist cards in the grid")
+        def test_sp_04_02_verify_images_sizes_in_cards(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            # print(driver.current_url)
-            image_presence = page.check_the_1th_card_image_presence()
-            image_visibility = page.check_the_1th_card_image_visibility()
-            image_src = page.get_the_1th_card_image_src()
-            image_alt = page.get_the_1th_card_image_alt()
-            image_size = page.get_visible_size_of_the_1th_card_image()
-            # print(f"The visible sizes of the 1th card image are: {image_size}")
-            driver.set_window_size(820, 1180)
-            image_size_new = page.get_visible_size_of_the_1th_card_image()
-            # print(f"The new visible sizes of the 1th card image are: {image_size_new}")
-            assert image_presence is not None, "The image in the 1th card is absent"
-            assert image_visibility, "The 1th card image is invisible"
-            assert image_src, "The 'src' attribute value of the 1th card image is empty"
-            assert image_src == SpecialistsPageData.specialists_page_images_src["1th_card_img_src"], \
-                "The 'src' attribute value of the 1th card image is unaccurate"
-            assert image_alt, "The 'alt' attribute value of the 1th card image is empty"
-            assert image_alt == SpecialistsPageData.specialists_images_alt, "The 1th card image is unaccurate"
-
-
+            images_size = page.get_images_sizes()
+            images_size_changes = page.check_size_changes_of_images()
+            assert images_size != 0, "Images in specialist cards hasn't sizes"
+            assert images_size_changes, "Checks of changes in image sizes have not carried out"

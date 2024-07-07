@@ -53,7 +53,7 @@ class SpecialistsPageData:
 
     all_specialists_link_status_code = 200
 
-    specialists_images_src = [
+    images_src = [
         "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png",
         "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/proshina.png",
         "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/berezkina.png",
@@ -64,10 +64,6 @@ class SpecialistsPageData:
         "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/sivenkova.png"
     ]
 
-    specialists_page_images_src = {
-        "1th_card_img_src": "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png"
-    }
-
-    specialists_images_alt = "user avatar"
+    images_alt = "user avatar"
 
     page_url = "https://brainup.site/specialists"
