@@ -136,7 +136,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Check the image in each specialist card is visible")
     def check_image_visibility_in_cards(self):
         try:
-            card_images = (Wait(self.driver, 35).
+            card_images = (Wait(self.driver, 40).
                            until(ec.presence_of_all_elements_located(self.locators.GRID_CARD_IMAGES)))
             return all(element.is_displayed() for element in card_images)
         except TimeoutException:
@@ -211,65 +211,26 @@ class SpecialistsPage(BasePage):
         return self.get_text(self.locators1.SECTION_1_TEXT)
 
     # Checking images in the grid
-    @allure.step("Get the list of attribute 'src' values of images in specialist cards on the page")
-    def get_images_src_in_specialist_cards(self):
-        card_images = self.get_list_of_card_images()
-        src_list = [image.get_attribute('src') for image in card_images]
-        # print(f"The attribute 'src' values of images in cards on the page are:", *src_list, sep='\n')
-        return src_list
+    @allure.step("Get the list of attribute 'src' values of images in specialist cards")
+    def get_images_src(self):
+        return [image.get_attribute('src') for image in self.get_list_of_card_images()]
 
-    @allure.step("Get the list of attribute 'alt' values of images in specialist cards on the page")
-    def get_images_alt_in_specialist_cards(self):
-        card_images = self.get_list_of_card_images()
-        alt_list = [image.get_attribute('alt') for image in card_images]
-        # print(f"The attribute 'alt' values of images in cards on the page are:", *alt_list, sep='\n')
-        return alt_list
+    @allure.step("Get the list of attribute 'alt' values of images in specialist cards")
+    def get_images_alt(self):
+        return [image.get_attribute('alt') for image in self.get_list_of_card_images()]
 
-    @allure.step("""Get the list of size values of images in specialist cards on the page 
-                    and check their changes after resizing""")
-    def check_size_changes_of_card_images(self):
-        card_images = self.get_list_of_card_images()
-        image_sizes_before = [image.size for image in card_images]
+    @allure.step("Get the list of sizes of the images in the specialist cards")
+    def get_images_sizes(self):
+        return [image.size for image in self.get_list_of_card_images()]
+
+    @allure.step("Check changes of images sizes after resizing")
+    def check_size_changes_of_images(self):
+        images = self.get_list_of_card_images()
+        images_sizes_before = [image.size for image in images]
         self.driver.set_window_size(1200, 800)
-        image_sizes_after = [image.size for image in card_images]
-        # print("The results of checking changes of image sizes in cards after resizing are:")
-        changed, lost, unchanged = 0, 0, 0
-        for i in range(len(image_sizes_after)):
-            if image_sizes_before[i] != image_sizes_after[i]:
-                changed += 1
-                if image_sizes_after[i] == {'height': 0, 'width': 0}:
-                    lost += 1
-                    # print(f"\n   The image #{i + 1} has become invisible because has sizes that changed: "
-                    #       f"\nfrom {image_sizes_before[i]} before resizing \nto {image_sizes_after[i]} after resizing")
-                # else:
-                #     print(f"\n   The image #{i + 1} has sizes that changed: \nfrom {image_sizes_before[i]} before "
-                #           f"resizing \nto {image_sizes_after[i]} after resizing")
-            else:
-                unchanged += 1
-                # print(f"\n   The image #{i + 1} has sizes that remain: \nthe same {image_sizes_before[i]} before resizing "
-                #       f"\nand {image_sizes_after[i]} after resizing")
-        # print(f"\nSummary of image size checks\n   Amount of images with changed sizes after resizing is: {changed}, "
-        #       f"\nincluding images that have become invisible on the page: {lost}")
-        # print(f"   Amount of images with unchanged sizes after resizing is: {unchanged}")
+        images_sizes_after = [image.size for image in images]
+        changed, lost, unchanged = [], [], []
+        for i in range(len(images)):
+            changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
+            lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
         return changed, lost, unchanged
-
-    @allure.step("Check the image is present in the 1th card")
-    def check_the_1th_card_image_presence(self):
-        return self.element_is_present(self.locators.GRID_CARD_01_IMAGE)
-
-    @allure.step("Check the image is visible in the 1th card")
-    def check_the_1th_card_image_visibility(self):
-        return self.element_is_visible(self.locators.GRID_CARD_01_IMAGE)
-
-    @allure.step("Get attribute 'src' of the image in the 1th card")
-    def get_the_1th_card_image_src(self):
-        return self.get_image_src(self.locators.GRID_CARD_01_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the image in the 1th card")
-    def get_the_1th_card_image_alt(self):
-        return self.get_image_alt(self.locators.GRID_CARD_01_IMAGE)
-
-    @allure.step("Get size of the image in the 1th card")
-    def get_visible_size_of_the_1th_card_image(self):
-        image_size = self.get_image_size(self.locators.GRID_CARD_01_IMAGE)
-        return image_size

@@ -122,7 +122,7 @@ class UsedResourcesPage(BasePage):
     def get_icons_xmlns(self):
         return [icon.get_attribute('xmlns') for icon in self.get_list_of_icons()]
 
-    @allure.step("Get the list of attribute 'src' values of the icons")
+    @allure.step("Get the list of sizes of the icons")
     def get_icons_sizes(self):
         return [icon.size for icon in self.get_list_of_icons()]
 
