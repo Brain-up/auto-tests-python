@@ -8,7 +8,6 @@ from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 @allure.epic("Test Specialists Page")
 class TestSpecialistsPage:
     class TestSpecialistsPageStructure:
-
         @allure.title("Verify presence and visibility of content on the page")
         def test_sp_01_01_verify_page_presence_and_visibility(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
@@ -66,7 +65,7 @@ class TestSpecialistsPage:
             professions_visibility = page.check_visibility_of_professions_in_cards()
             assert title_on_2nd_level, "The title on the 2nd level is absent on the page"
             assert title_visibility, "The title on the 2nd level is invisible"
-            assert text_on_2nd_level, "The text on the 2nd level is absent in DOM"
+            assert text_on_2nd_level, "The text on the 2nd level is absent on the page"
             assert text_visibility, "The text on the 2nd level is invisible"
             assert grid_on_2nd_level, "The grid on the 2nd level is absent on the page"
             assert grid_visibility, "The grid on the 2nd level is invisible"
