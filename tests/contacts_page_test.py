@@ -15,8 +15,41 @@ class TestContactsPage:
             assert page_content_presence is not None, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible"
 
+        @allure.title("Verify the composition and visibility of elements on the 1st level of nesting in the section 1")
+        def test_cp_01_02_verify_section1_structure_and_visibility(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            structure_of_1st_level = page.get_structure_of_1st_level_in_section1()
+            visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_in_section1()
+            assert structure_of_1st_level, "The section 1 is empty"
+            assert visibility_of_elements_on_1st_level, "1th-level elements are invisible"
+
+        @allure.title("""Verify the composition and visibility of elements 
+        on the 1st-5th levels of nesting in the section 2""")
+        def test_cp_01_03_verify_section2_structure_and_visibility(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            structure_of_1st_level = page.get_structure_of_1st_level_in_section2()
+            visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_in_section2()
+            structure_of_2nd_level = page.get_structure_of_2nd_level_in_section2()
+            visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_in_section2()
+            structure_of_3rd_level = page.get_structure_of_3rd_level_in_section2()
+            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section2()
+            structure_of_4th_level = page.get_structure_of_4th_level_in_section2()
+            visibility_of_elements_on_4th_level = page.check_visibility_of_elements_on_4th_level_in_section2()
+            structure_of_5th_level = page.get_structure_of_5th_level_in_section2()
+            visibility_of_elements_on_5th_level = page.check_visibility_of_elements_on_5th_level_in_section2()
+            assert structure_of_1st_level, "The section 2 is empty"
+            assert visibility_of_elements_on_1st_level, "1st-level elements are invisible"
+            assert structure_of_2nd_level, "Subsections on the 2nd level in the section 2 are empty"
+            assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible"
+            assert structure_of_3rd_level, "Elements on the 3rd level in the section 2 are empty"
+            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible"
+            assert structure_of_4th_level, "Elements on the 4th level in the section 2 are empty"
+            assert visibility_of_elements_on_4th_level, "4th-level elements are invisible"
+            assert structure_of_5th_level, "Elements on the 5th level in the section 2 are empty"
+            assert visibility_of_elements_on_5th_level, "5th-level elements are invisible"
+
         @allure.title("Verify presence and visibility of sections and the dividing line on the page")
-        def test_cp_01_02_verify_page_structural_elements(self, driver, contacts_page_open):
+        def test_cp_01_04_verify_page_structural_elements(self, driver, contacts_page_open):
             page = ContactsPage(driver)
             structure_of_page = page.get_page_structure()
             structural_elements_visibility = page.check_visibility_of_structural_elements()
@@ -25,46 +58,12 @@ class TestContactsPage:
             dividing_line = page.check_presence_of_dividing_line()
             dividing_line_visibility = page.check_visibility_of_dividing_line()
             assert structure_of_page, "The page is empty"
-            assert structural_elements_visibility, "1st-level elements are invisible"
+            assert structural_elements_visibility, "Structural elements of the page are invisible"
             assert sections_amount == ContactsPageData.amount_of_sections, \
                 "The amount of sections with content does not match the expected value"
             assert sections_visibility, "Sections with content are invisible"
             assert dividing_line, "The dividing line is absent on the page"
             assert dividing_line_visibility, "The dividing line is invisible"
-
-        @allure.title("Verify the composition and visibility of elements on the 1st level of nesting in the section 1")
-        def test_cp_01_03_verify_section_1_structure_and_visibility(self, driver, contacts_page_open):
-            page = ContactsPage(driver)
-            structure_of_section_1 = page.get_structure_of_section_1()
-            visibility_of_elements_on_the_1st_level = page.check_visibility_of_elements_in_section_1()
-            assert structure_of_section_1, "The section 1 is empty"
-            assert visibility_of_elements_on_the_1st_level, "1th-level elements are invisible on the page"
-
-        @allure.title("""Verify the composition and visibility of elements 
-        on the 1st, 2nd, 3rd, 4th, 5th levels of nesting in the section 2""")
-        def test_cp_01_04_verify_section_2_structure_and_visibility(self, driver, contacts_page_open):
-            page = ContactsPage(driver)
-            structure_of_section_2 = page.get_structure_of_section_2()
-            visibility_of_subsections_on_the_1st_level = page.check_visibility_of_elements_in_section_2()
-            structure_of_2nd_level_subsection = page.get_structure_of_2nd_level_in_section_2()
-            visibility_of_subsections_on_2nd_level = (
-                page.check_visibility_of_elements_in_subsection_in_section_2())
-            structure_of_3rd_level_subsections = page.get_structure_of_3rd_level_in_section_2()
-            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section_2()
-            structure_of_4th_level_subsections = page.get_structure_of_4th_level_in_section_2()
-            visibility_of_elements_on_4th_level = page.check_visibility_of_elements_on_4th_level_in_section_2()
-            structure_of_5th_level_subsections = page.get_structure_of_5th_level_in_section_2()
-            visibility_of_elements_on_5th_level = page.check_visibility_of_elements_on_5th_level_in_section_2()
-            assert structure_of_section_2, "The section 2 is empty"
-            assert visibility_of_subsections_on_the_1st_level, "1th-level subsections are invisible on the page"
-            assert structure_of_2nd_level_subsection, "Subsections on the 2nd level in the section 2 are empty"
-            assert visibility_of_subsections_on_2nd_level, "2nd-level subsections are invisible on the page"
-            assert structure_of_3rd_level_subsections, "Elements on the 3rd level in the section 2 are empty"
-            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible on the page"
-            assert structure_of_4th_level_subsections, "Elements on the 4th level in the section 2 are empty"
-            assert visibility_of_elements_on_4th_level, "4th-level elements are invisible on the page"
-            assert structure_of_5th_level_subsections, "Elements on the 5th level in the section 2 are empty"
-            assert visibility_of_elements_on_5th_level, "5th-level elements are invisible on the page"
 
     class TestContactsPageText:
         @allure.title("Verify value of title with tag 'h1' on the page")
