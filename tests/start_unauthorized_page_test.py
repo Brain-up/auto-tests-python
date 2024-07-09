@@ -24,7 +24,7 @@ class TestStartUnauthorizedPage:
             sections_visibility = page.check_visibility_of_sections()
             assert sections_amount == StartUnauthorizedPageData.amount_of_sections_with_content_on_page, \
                 "The amount of sections with content does not match the expected value"
-            assert sections_visibility, "Sections with content are invisible on the page"
+            assert sections_visibility, "Sections with content are invisible"
 
         @allure.title("""Verify the composition and visibility of elements 
         on the 1st-3rd levels of nesting in the section 1""")
@@ -37,11 +37,11 @@ class TestStartUnauthorizedPage:
             structure_of_3rd_level = page.get_structure_of_3rd_level_in_section1()
             visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section1()
             assert structure_of_1st_level, "The section 1 is empty"
-            assert visibility_of_elements_on_1st_level, "1st-level elements are invisible in the section 1"
+            assert visibility_of_elements_on_1st_level, "1st-level elements are invisible"
             assert structure_of_2nd_level, "Elements on the 2nd level are absent in the section 1"
-            assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible in the section 1"
+            assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible"
             assert structure_of_3rd_level, "Elements on the 3rd level are absent in the section 1"
-            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible in the section 1"
+            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible"
 
         @allure.title("""Verify the composition and visibility of elements 
         on the 1st-3rd levels of nesting in the section 2""")
@@ -54,11 +54,11 @@ class TestStartUnauthorizedPage:
             structure_of_3rd_level = page.get_structure_of_3rd_level_in_section2()
             visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section2()
             assert structure_of_1st_level, "The section 2 is empty"
-            assert visibility_of_elements_on_1st_level, "1st-level elements are invisible in the section 2"
+            assert visibility_of_elements_on_1st_level, "1st-level elements are invisible"
             assert structure_of_2nd_level, "Elements on the 2nd level are absent in the section 2"
-            assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible in the section 2"
+            assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible"
             assert structure_of_3rd_level, "Elements on the 3rd level are absent in the section 2"
-            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible in the section 2"
+            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible"
 
     class TestStartUnauthorizedPageText:
         @allure.title("Verify value of the title of the tab")
