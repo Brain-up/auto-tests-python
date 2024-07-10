@@ -74,7 +74,7 @@ class TestContactsPage:
             assert tab_title_value in ContactsPageData.tab_title, "The title on the tab doesn't match the valid value"
 
         @allure.title("Verify values of the title and subtitles with tags h1, h2 on the page")
-        def test_cp_02_02_verify_verify_page_title_and_subtitles(self, driver, contacts_page_open):
+        def test_cp_02_02_verify_page_title_and_subtitles(self, driver, contacts_page_open):
             page = ContactsPage(driver)
             title_value = page.get_value_of_title_h1()
             subtitle_values = page.get_values_of_subtitles_h2()
