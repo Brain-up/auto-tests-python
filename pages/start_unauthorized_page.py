@@ -94,21 +94,21 @@ class StartUnauthorizedPage(BasePage):
     def get_value_of_tab_title(self):
         return self.get_current_tab_title()
 
-    @allure.step("Get the list of titles on the page")
-    def get_list_of_titles_on_page(self):
+    @allure.step("Get the list of titles h2 on the page")
+    def get_list_of_titles_h2(self):
         return self.elements_are_present(self.locators.PAGE_TITLES)
 
     @allure.step("Get the list of title values")
-    def get_values_of_titles(self):
-        return [title.text for title in self.get_list_of_titles_on_page()]
+    def get_values_of_titles_h2(self):
+        return [title.text for title in self.get_list_of_titles_h2()]
 
-    @allure.step("Get the list of subtitles")
-    def get_list_of_subtitles(self):
+    @allure.step("Get the list of subtitles h4 on the page")
+    def get_list_of_subtitles_h4(self):
         return self.elements_are_present(self.locators.PAGE_SUBTITLES)
 
     @allure.step("Get the list of subtitle values")
-    def get_values_of_subtitles(self):
-        return [subtitle.text for subtitle in self.get_list_of_subtitles()]
+    def get_values_of_subtitles_h4(self):
+        return [subtitle.text for subtitle in self.get_list_of_subtitles_h4()]
 
     @allure.step("Get content of the text in the section 1")
     def get_text_content_in_section1(self):

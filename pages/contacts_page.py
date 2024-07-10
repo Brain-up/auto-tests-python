@@ -27,12 +27,6 @@ class ContactsPage(BasePage):
     def check_elements_visibility_on_1st_level_in_section1(self):
         return all(element.is_displayed() for element in self.get_structure_of_1st_level_in_section1())
 
-    @allure.step("Get value of the title in the section 1 on the page")
-    def get_value_of_title_on_the_page(self):
-        title_value = self.get_text(self.locators.SECTION_1_TITLE)
-        # print(f"The title value on the page is: {title_value}")
-        return title_value
-
     @allure.step("Get structure of the 1st level of nesting in the section 2")
     def get_structure_of_1st_level_in_section2(self):
         elements = self.elements_are_present(self.locators.SECTION_2_FIRST_LEVEL_ELEMENTS)
@@ -111,18 +105,23 @@ class ContactsPage(BasePage):
     def check_visibility_of_dividing_line(self):
         return self.element_is_visible(self.locators.PAGE_DIVIDING_LINE)
 
-    @allure.step("Get the list of subtitles on the page")
-    def get_list_of_subtitles_on_page(self):
-        subtitles = self.elements_are_present(self.locators.SECTION_2_SUBTITLES)
-        # print(f"\nAmount of subtitles on the page is: {len(subtitles)}")
-        return subtitles
+    # Checking text on the tab&page
+    @allure.step("Get value of the title of the tab")
+    def get_value_of_tab_title(self):
+        return self.get_current_tab_title()
 
-    @allure.step("Get the list of subtitle values on the page")
-    def get_values_of_subtitles(self):
-        subtitles = self.get_list_of_subtitles_on_page()
-        subtitle_values = [subtitle.text for subtitle in subtitles]
-        # print(f"The subtitle values on the page are:", *subtitle_values, sep='\n')
-        return subtitle_values
+    @allure.step("Get value of the title h1 on the page")
+    def get_value_of_title_h1(self):
+        return self.get_text(self.locators.PAGE_TITLE)
+
+    @allure.step("Get the list of subtitles h2 on the page")
+    def get_list_of_subtitles_h2(self):
+        return self.elements_are_present(self.locators.PAGE_SUBTITLES)
+
+    @allure.step("Get the list of subtitle values")
+    def get_values_of_subtitles_h2(self):
+        subtitles = self.get_list_of_subtitles_h2()
+        return [subtitle.text for subtitle in subtitles]
 
     @allure.step("Get the list of elements with text in sections 1, 2 on the page")
     def get_list_of_elements_with_text_in_sections(self):
@@ -144,6 +143,7 @@ class ContactsPage(BasePage):
         # print(f"Text of links in the sections 1, 2 is:", *links_text, sep='\n\n')
         return links_text
 
+    # Checking links in the sections
     @allure.step("Get the list of links in sections 1, 2 on the page")
     def get_list_of_links_in_sections(self):
         links = self.elements_are_present(self.locators.SECTION_2_LINKS)
@@ -152,21 +152,16 @@ class ContactsPage(BasePage):
 
     @allure.step("Check if links are visible on the page")
     def check_visibility_of_links_in_sections(self):
-        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
-        for link in links:
-            return link.is_displayed()
+        return all(link.is_displayed() for link in self.get_list_of_links_in_sections())
 
     @allure.step("Check if links are clickable")
     def check_links_clickability(self):
-        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
-        for link in links:
-            return link.is_enabled()
+        return all(link.is_enabled() for link in self.get_list_of_links_in_sections())
 
     @allure.step("Get attribute 'href' of links on the page")
     def get_links_href(self):
         links = self.elements_are_present(self.locators.SECTION_2_LINKS)
         links_href = [element.get_attribute("href") for element in links]
-        # print(f"Links href in sections 1, 2 are:", *links_href, sep='\n')
         return links_href
 
     @allure.step("Check the prefix in the attribute 'href' of the email link")
@@ -179,7 +174,6 @@ class ContactsPage(BasePage):
         links = self.elements_are_present(self.locators.SECTION_2_LINKS_TM)
         links_href = [element.get_attribute("href") for element in links]
         links_status_codes = [requests.head(link_href).status_code for link_href in links_href]
-        # print(f"Links status codes in sections 1, 2 are:", *links_status_codes, sep='\n')
         return links_status_codes
 
     @allure.step("Click on links on Telegram and thereby open corresponding web pages in new tabs")
@@ -191,5 +185,4 @@ class ContactsPage(BasePage):
         new_tabs.append(self.driver.current_url)
         self.driver.switch_to.window(self.driver.window_handles[2])
         new_tabs.append(self.driver.current_url)
-        # print('\n',*new_tabs, sep='\n')
         return new_tabs

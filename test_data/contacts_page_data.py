@@ -4,9 +4,11 @@
 class ContactsPageData:
     amount_of_sections = 2
 
-    page_title = ["Контакты", "Contacts"]
+    tab_title = ["Контакты | BrainUp", "Contacts | BrainUp"]
 
-    page_subtitles = [
+    title_h1 = ["Контакты", "Contacts"]
+
+    subtitles_h2 = [
         ["Для пользователей:", "Для разработчиков:"],
         ["For users:", "For developers:"]
     ]

@@ -66,20 +66,23 @@ class TestContactsPage:
             assert dividing_line_visibility, "The dividing line is invisible"
 
     class TestContactsPageText:
-        @allure.title("Verify value of title with tag 'h1' on the page")
-        def test_cp_02_01_verify_title_on_the_page(self, driver, contacts_page_open):
+        @allure.title("Verify value of the title of the tab")
+        def test_cp_02_01_verify_tab_title(self, driver, contacts_page_open):
             page = ContactsPage(driver)
-            title_value = page.get_value_of_title_on_the_page()
-            assert title_value, "The title value on the page is empty"
-            assert title_value in ContactsPageData.page_title, "The title on the page doesn't match the valid value"
+            tab_title_value = page.get_value_of_tab_title()
+            assert tab_title_value, "The title value of the tab is empty"
+            assert tab_title_value in ContactsPageData.tab_title, "The title on the tab doesn't match the valid value"
 
-        @allure.title("Verify values of subtitles with tag 'h2' on the page")
-        def test_cp_02_02_verify_subtitles_on_the_page(self, driver, contacts_page_open):
+        @allure.title("Verify values of the title and subtitles with tags h1, h2 on the page")
+        def test_cp_02_02_verify_verify_page_title_and_subtitles(self, driver, contacts_page_open):
             page = ContactsPage(driver)
-            subtitle_values = page.get_values_of_subtitles()
+            title_value = page.get_value_of_title_h1()
+            subtitle_values = page.get_values_of_subtitles_h2()
+            assert title_value, "The title value on the page is empty"
+            assert title_value in ContactsPageData.title_h1, "The title on the page doesn't match the valid value"
             assert subtitle_values, "Subtitle values on the page are empty"
-            assert subtitle_values in ContactsPageData.page_subtitles, \
-                "The subtitles on the 'Contacts' page do not match the valid values"
+            assert subtitle_values in ContactsPageData.subtitles_h2, \
+                "The subtitles on the page do not match the valid values"
 
         @allure.title("Verify values of the text in sections 1, 2 on the page")
         def test_cp_02_03_verify_text_in_sections(self, driver, contacts_page_open):
