@@ -47,8 +47,8 @@ class TestSpecialistsPage:
         on the 2nd, 3rd, 5th, 6th levels of nesting on the page""")
         def test_sp_01_03_verify_page_structural_elements(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            title_on_2nd_level = page.check_title_h2_presence()
-            title_visibility = page.check_title_h2_visibility()
+            title_on_2nd_level = page.check_title_presence()
+            title_visibility = page.check_title_visibility()
             text_on_2nd_level = page.check_text_presence()
             text_visibility = page.check_text_visibility()
             grid_on_2nd_level = page.check_grid_presence()
@@ -93,9 +93,9 @@ class TestSpecialistsPage:
         @allure.title("Verify value of title with tag 'h2' on the page")
         def test_sp_02_02_verify_page_title(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
-            title_value = page.get_value_of_title_h2()
+            title_value = page.get_value_of_page_title()
             assert title_value, "The title value on the page is empty"
-            assert title_value in SpecialistsPageData.title_h2, "The title on the page doesn't match the valid value"
+            assert title_value in SpecialistsPageData.page_title, "The title on the page doesn't match the valid value"
 
         @allure.title("Verify value of text on the page")
         def test_sp_02_03_verify_page_text(self, driver, specialists_page_open):
@@ -157,10 +157,10 @@ class TestSpecialistsPage:
             page = SpecialistsPage(driver)
             page.open_specialists_page()
             new_tab_url = page.click_all_specialists_link()
-            text_on_new_tab = page.get_value_of_title_h2()
+            text_on_new_tab = page.get_value_of_page_title()
             assert new_tab_url == SpecialistsPageData.page_url, \
                 "The 'All Specialists' link leads to an incorrect page after clicking"
-            assert text_on_new_tab in SpecialistsPageData.title_h2, \
+            assert text_on_new_tab in SpecialistsPageData.page_title, \
                 "The opened page does not load correctly after clicking on the 'All Specialists' link"
 
     class TestSpecialistCardImages:

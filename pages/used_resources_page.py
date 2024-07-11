@@ -68,7 +68,7 @@ class UsedResourcesPage(BasePage):
         return self.get_current_tab_title()
 
     @allure.step("Get value of the title with tag 'h1' on the page")
-    def get_value_of_title_h1(self):
+    def get_value_of_page_title(self):
         return self.get_text(self.locators.TITLE_H1)
 
     @allure.step("Get content of the text on the page")

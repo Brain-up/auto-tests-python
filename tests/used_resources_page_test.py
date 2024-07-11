@@ -56,9 +56,9 @@ class TestUsedResourcesPage:
             def test_ur_02_02_verify_page_title(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
-                title_value = page.get_value_of_title_h1()
+                title_value = page.get_value_of_page_title()
                 assert title_value, "The title value on the page is empty"
-                assert title_value in UsedResourcesPageData.title_h1, \
+                assert title_value in UsedResourcesPageData.page_title, \
                     "The title on the page doesn't match the valid value"
 
             @allure.title("Verify content of the text on the page")

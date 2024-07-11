@@ -57,6 +57,12 @@ class TestContactsPage:
             sections_visibility = page.check_visibility_of_sections()
             dividing_line = page.check_presence_of_dividing_line()
             dividing_line_visibility = page.check_visibility_of_dividing_line()
+            title = page.check_title_presence()
+            title_visibility = page.check_title_visibility()
+            subtitles = page.get_list_of_subtitles()
+            subtitles_visibility = page.check_visibility_of_subtitles()
+            elements_with_text = page.get_list_of_elements_with_text()
+            elements_with_text_visibility = page.check_visibility_of_elements_with_text()
             assert structure_of_page, "The page is empty"
             assert structural_elements_visibility, "Structural elements of the page are invisible"
             assert sections_amount == ContactsPageData.amount_of_sections, \
@@ -64,6 +70,12 @@ class TestContactsPage:
             assert sections_visibility, "Sections with content are invisible"
             assert dividing_line, "The dividing line is absent on the page"
             assert dividing_line_visibility, "The dividing line is invisible"
+            assert title, "The title is absent on the page"
+            assert title_visibility, "The title is invisible"
+            assert subtitles, "Subtitles are absent on the page"
+            assert subtitles_visibility, "Subtitles are invisible"
+            assert elements_with_text, "Elements with text are absent on the page"
+            assert elements_with_text_visibility, "Elements with text are invisible"
 
     class TestContactsPageText:
         @allure.title("Verify value of the title of the tab")
@@ -76,22 +88,23 @@ class TestContactsPage:
         @allure.title("Verify values of the title and subtitles with tags h1, h2 on the page")
         def test_cp_02_02_verify_page_title_and_subtitles(self, driver, contacts_page_open):
             page = ContactsPage(driver)
-            title_value = page.get_value_of_title_h1()
-            subtitle_values = page.get_values_of_subtitles_h2()
+            title_value = page.get_value_of_title()
+            subtitle_values = page.get_values_of_subtitles()
             assert title_value, "The title value on the page is empty"
-            assert title_value in ContactsPageData.title_h1, "The title on the page doesn't match the valid value"
+            assert title_value in ContactsPageData.page_title, "The title on the page doesn't match the valid value"
             assert subtitle_values, "Subtitle values on the page are empty"
-            assert subtitle_values in ContactsPageData.subtitles_h2, \
+            assert subtitle_values in ContactsPageData.page_subtitles, \
                 "The subtitles on the page do not match the valid values"
 
-        @allure.title("Verify values of the text in sections 1, 2 on the page")
-        def test_cp_02_03_verify_text_in_sections(self, driver, contacts_page_open):
+        @allure.title("Verify content of the text in the section 2")
+        def test_cp_02_03_verify_page_text(self, driver, contacts_page_open):
             page = ContactsPage(driver)
-            text_value_in_sections = page.get_values_of_text_in_sections()
-            assert text_value_in_sections in ContactsPageData.text_on_page, \
-                "The text in sections does not match the valid options"
+            text_content = page.get_text_content_on_page()
+            assert text_content, "The text content in the section 2 is empty"
+            assert text_content in ContactsPageData.text_on_page, \
+                "The text in the section 2 does not match the valid values"
 
-        @allure.title("Verify values of the text in links in sections 1, 2 on the page")
+        @allure.title("Verify values of the text in links in the section 2")
         def test_cp_02_04_verify_text_in_links(self, driver, contacts_page_open):
             page = ContactsPage(driver)
             links_text = page.get_text_in_links_in_sections()
