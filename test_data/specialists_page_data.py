@@ -6,7 +6,7 @@ class SpecialistsPageData:
 
     tab_title = ["Специалисты | BrainUp", "Specialists | BrainUp"]
 
-    title_h2 = ["Специалисты", "Specialists"]
+    page_title = ["Специалисты", "Specialists"]
 
     text_on_page = ["Обучающая программа BrainUp разработана совместно с лучшими специалистами "
                     "в области сурдопедагогики из России и Беларуси",

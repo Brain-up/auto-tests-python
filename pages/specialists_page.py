@@ -88,11 +88,11 @@ class SpecialistsPage(BasePage):
         return all(element.is_displayed() for element in self.get_structure_of_6th_level())
 
     @allure.step("Check the title on the 2nd level of nesting is present on the page")
-    def check_title_h2_presence(self):
+    def check_title_presence(self):
         return self.element_is_present(self.locators.TITLE_H2)
 
     @allure.step("Check the title on the 2nd level of nesting is visible")
-    def check_title_h2_visibility(self):
+    def check_title_visibility(self):
         return self.element_is_visible(self.locators.TITLE_H2)
 
     @allure.step("Check the page text on the 2nd level of nesting is present on the page")
@@ -166,7 +166,7 @@ class SpecialistsPage(BasePage):
         return self.get_current_tab_title()
 
     @allure.step("Get value of the title with tag 'h2' on the page")
-    def get_value_of_title_h2(self):
+    def get_value_of_page_title(self):
         return self.get_text(self.locators.TITLE_H2)
 
     @allure.step("Get content of the text on the page")

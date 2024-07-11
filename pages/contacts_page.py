@@ -105,38 +105,49 @@ class ContactsPage(BasePage):
     def check_visibility_of_dividing_line(self):
         return self.element_is_visible(self.locators.PAGE_DIVIDING_LINE)
 
+    @allure.step("Check the title is present on the page")
+    def check_title_presence(self):
+        return self.element_is_present(self.locators.PAGE_TITLE)
+
+    @allure.step("Check the title is visible")
+    def check_title_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_TITLE)
+
+    @allure.step("Get the list of subtitles h2 on the page")
+    def get_list_of_subtitles(self):
+        return self.elements_are_present(self.locators.PAGE_SUBTITLES)
+
+    @allure.step("Check if subtitles h2 are visible")
+    def check_visibility_of_subtitles(self):
+        return all(element.is_displayed() for element in self.get_list_of_subtitles())
+
+    @allure.step("Get the list of elements with text in the section 2")
+    def get_list_of_elements_with_text(self):
+        return self.elements_are_present(self.locators.SECTION_2_TEXT_PAR)
+
+    @allure.step("Check if elements with text are visible")
+    def check_visibility_of_elements_with_text(self):
+        return all(element.is_displayed() for element in self.get_list_of_elements_with_text())
+
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
         return self.get_current_tab_title()
 
     @allure.step("Get value of the title h1 on the page")
-    def get_value_of_title_h1(self):
+    def get_value_of_title(self):
         return self.get_text(self.locators.PAGE_TITLE)
 
-    @allure.step("Get the list of subtitles h2 on the page")
-    def get_list_of_subtitles_h2(self):
-        return self.elements_are_present(self.locators.PAGE_SUBTITLES)
-
     @allure.step("Get the list of subtitle values")
-    def get_values_of_subtitles_h2(self):
-        subtitles = self.get_list_of_subtitles_h2()
+    def get_values_of_subtitles(self):
+        subtitles = self.get_list_of_subtitles()
         return [subtitle.text for subtitle in subtitles]
 
-    @allure.step("Get the list of elements with text in sections 1, 2 on the page")
-    def get_list_of_elements_with_text_in_sections(self):
-        elements_with_text = self.elements_are_present(self.locators.SECTION_2_TEXT_PAR)
-        # print(f"\nAmount of elements with text in sections 1, 2 is: {len(elements_with_text)}")
-        return elements_with_text
+    @allure.step("Get the list of text content in the section 2")
+    def get_text_content_on_page(self):
+        return [element.text for element in self.get_list_of_elements_with_text()]
 
-    @allure.step("Get the list of text content in sections 1, 2 on the page")
-    def get_values_of_text_in_sections(self):
-        elements_with_text = self.get_list_of_elements_with_text_in_sections()
-        element_values = [element.text for element in elements_with_text]
-        # print(f"The content of the text in the sections 1, 2 is:", *element_values, sep='\n\n')
-        return element_values
-
-    @allure.step("Get the list of text content in sections 1, 2 on the page")
+    @allure.step("Get the list of text content in the links in the section 2")
     def get_text_in_links_in_sections(self):
         links = self.elements_are_present(self.locators.SECTION_2_LINKS)
         links_text = [link.text for link in links]

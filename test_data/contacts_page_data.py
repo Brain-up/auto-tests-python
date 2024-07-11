@@ -6,9 +6,9 @@ class ContactsPageData:
 
     tab_title = ["Контакты | BrainUp", "Contacts | BrainUp"]
 
-    title_h1 = ["Контакты", "Contacts"]
+    page_title = ["Контакты", "Contacts"]
 
-    subtitles_h2 = [
+    page_subtitles = [
         ["Для пользователей:", "Для разработчиков:"],
         ["For users:", "For developers:"]
     ]
@@ -22,6 +22,12 @@ class ContactsPageData:
          "project founder and tech lead in Telegram Elena Moshnikova https://t.me/ElenaLovesSpb"]
     ]
 
+    links_text = [
+        "https://t.me/BrainUpUsers",
+        "brainupproject@yandex.ru",
+        "https://t.me/ElenaLovesSpb"
+    ]
+
     links_href = [
         "https://t.me/BrainUpUsers",
         "mailto:brainupproject@yandex.ru",
@@ -30,12 +36,6 @@ class ContactsPageData:
 
     links_tm_href = [
         "https://t.me/BrainUpUsers",
-        "https://t.me/ElenaLovesSpb"
-    ]
-
-    links_text = [
-        "https://t.me/BrainUpUsers",
-        "brainupproject@yandex.ru",
         "https://t.me/ElenaLovesSpb"
     ]
 
