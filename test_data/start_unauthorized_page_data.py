@@ -6,12 +6,12 @@ class StartUnauthorizedPageData:
 
     tab_title = "BrainUp"
 
-    titles_h2 = [
+    page_titles = [
         "BrainUP - онлайн занятия для детей и взрослых", "Преимущества",
         "BrainUP - online classes for children and adults", "Advantages"
     ]
 
-    subtitles_h4 = ["BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ"]
+    page_subtitles = ["BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ"]
 
     text_on_page = {
         "text_in_section1": [

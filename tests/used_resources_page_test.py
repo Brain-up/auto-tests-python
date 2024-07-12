@@ -70,7 +70,7 @@ class TestUsedResourcesPage:
                 assert text_content in UsedResourcesPageData.text_on_page, \
                     "The text content does not match the valid value"
 
-            @allure.title("Verify values of the text in links in the sections")
+            @allure.title("Verify text in links in the sections")
             def test_ur_02_04_verify_text_in_links(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
@@ -89,15 +89,15 @@ class TestUsedResourcesPage:
                 links_clickability = page.check_links_clickability()
                 links_href = page.get_links_href()
                 links_status_codes = page.get_links_status_codes()
-                assert links_presence is not None, "Links are absent in DOM"
-                assert links_visibility, "Links are invisible on the page"
+                assert links_presence, "Links are absent on the page"
+                assert links_visibility, "Links are invisible"
                 assert links_clickability, "Links are unclickable"
                 assert links_href, "Links href are empty"
                 assert all(link_href in UsedResourcesPageData.links_href for link_href in links_href), \
                     "Attributes 'href' of links do not match the valid values"
                 assert all(link_status_code in UsedResourcesPageData.links_status_codes
                            for link_status_code in links_status_codes), \
-                    "Status codes of links do not match the expected values"
+                    "Status codes of links do not match the valid values"
 
             @allure.title("Verify that links in the sections lead to the correct pages after clicking")
             def test_ur_03_02_verify_links_lead_to_the_correct_pages(self, driver, auto_test_user_authorized):

@@ -134,60 +134,51 @@ class ContactsPage(BasePage):
     def get_value_of_tab_title(self):
         return self.get_current_tab_title()
 
-    @allure.step("Get value of the title h1 on the page")
+    @allure.step("Get value of the title h1 in the section 1")
     def get_value_of_title(self):
         return self.get_text(self.locators.PAGE_TITLE)
 
-    @allure.step("Get the list of subtitle values")
+    @allure.step("Get the list of values of subtitles h2 in the section 2")
     def get_values_of_subtitles(self):
-        subtitles = self.get_list_of_subtitles()
-        return [subtitle.text for subtitle in subtitles]
+        return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
     @allure.step("Get the list of text content in the section 2")
     def get_text_content_on_page(self):
         return [element.text for element in self.get_list_of_elements_with_text()]
 
-    @allure.step("Get the list of text content in the links in the section 2")
-    def get_text_in_links_in_sections(self):
-        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
-        links_text = [link.text for link in links]
-        # print(f"Text of links in the sections 1, 2 is:", *links_text, sep='\n\n')
-        return links_text
+    @allure.step("Get the list of text content in links in the section 2")
+    def get_text_in_links(self):
+        return [link.text for link in self.get_list_of_links()]
 
     # Checking links in the sections
-    @allure.step("Get the list of links in sections 1, 2 on the page")
-    def get_list_of_links_in_sections(self):
-        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
-        # print(f"\nAmount of links in sections 1, 2 is: {len(links)}")
-        return links
+    @allure.step("Get the list of links in the section 2")
+    def get_list_of_links(self):
+        return self.elements_are_present(self.locators.SECTION_2_LINKS)
 
-    @allure.step("Check if links are visible on the page")
-    def check_visibility_of_links_in_sections(self):
-        return all(link.is_displayed() for link in self.get_list_of_links_in_sections())
+    @allure.step("Check if links are visible")
+    def check_visibility_of_links(self):
+        return all(link.is_displayed() for link in self.get_list_of_links())
 
     @allure.step("Check if links are clickable")
     def check_links_clickability(self):
-        return all(link.is_enabled() for link in self.get_list_of_links_in_sections())
+        return all(link.is_enabled() for link in self.get_list_of_links())
 
-    @allure.step("Get attribute 'href' of links on the page")
+    @allure.step("Get attribute 'href' of links")
     def get_links_href(self):
-        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
-        links_href = [element.get_attribute("href") for element in links]
-        return links_href
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
 
     @allure.step("Check the prefix in the attribute 'href' of the email link")
     def check_email_link_href(self):
         link_href = self.get_link_href(self.locators.SECTION_2_LINK_EMAIL)
         return link_href.startswith('mailto')
 
-    @allure.step("Get status code of links on the page")
+    @allure.step("Get status code of links to Telegram")
     def get_links_status_codes(self):
         links = self.elements_are_present(self.locators.SECTION_2_LINKS_TM)
         links_href = [element.get_attribute("href") for element in links]
-        links_status_codes = [requests.head(link_href).status_code for link_href in links_href]
-        return links_status_codes
+        return [requests.head(link_href).status_code for link_href in links_href]
 
-    @allure.step("Click on links on Telegram and thereby open corresponding web pages in new tabs")
+    @allure.step("Click on links to Telegram and thereby open corresponding web pages in new tabs")
     def click_on_links(self):
         new_tabs = []
         self.element_is_present_and_clickable(self.locators.SECTION_2_LINKS_TM_2).click()
