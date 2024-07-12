@@ -131,12 +131,12 @@ class TestSpecialistsPage:
             link_clickability = page.check_all_specialists_link_clickability()
             link_href = page.get_all_specialists_link_href()
             link_status_code = page.get_all_specialists_link_status_code()
-            assert link_clickability, f"The 'All Specialists' link is unclickable"
+            assert link_clickability, "The 'All Specialists' link is unclickable"
             assert link_href, "Link href is empty"
             assert link_href == SpecialistsPageData.all_specialists_link_href, \
-                f"The attribute 'href' of the link does not match the valid value"
+                "The attribute 'href' of the link does not match the valid value"
             assert link_status_code == SpecialistsPageData.all_specialists_link_status_code, \
-                f"The status code of the link does not match the valid value"
+                "The status code of the link does not match the valid value"
 
         @allure.title("""Verify that the 'All Specialists' link leads an unauthorized user 
                          to the correct page after clicking""")
