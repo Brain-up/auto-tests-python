@@ -104,7 +104,7 @@ class TestUsedResourcesPage:
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
                 new_tabs_urls = page.click_on_links()
-                assert all(new_tab_url in UsedResourcesPageData.pages_urls for new_tab_url in new_tabs_urls), \
+                assert all(tab_url in UsedResourcesPageData.pages_urls for tab_url in new_tabs_urls), \
                     "Links in the sections lead to incorrect pages after clicking"
 
         class TestUsedResourcesPageForAuthorizedUserIcons:
