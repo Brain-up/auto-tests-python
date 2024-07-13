@@ -48,7 +48,7 @@ class TestContactsPage:
             assert structure_of_5th_level, "Elements on the 5th level in the section 2 are empty"
             assert visibility_of_elements_on_5th_level, "5th-level elements are invisible"
 
-        @allure.title("Verify presence and visibility of sections and the dividing line on the page")
+        @allure.title("Verify presence, visibility of sections, the dividing line and elements with text on the page")
         def test_cp_01_04_verify_page_structural_elements(self, driver, contacts_page_open):
             page = ContactsPage(driver)
             structure_of_page = page.get_page_structure()
@@ -93,16 +93,14 @@ class TestContactsPage:
             assert title_value, "The title value on the page is empty"
             assert title_value in ContactsPageData.page_title, "The title on the page doesn't match the valid value"
             assert subtitle_values, "Subtitle values on the page are empty"
-            assert subtitle_values in ContactsPageData.page_subtitles, \
-                "The subtitles on the page do not match the valid values"
+            assert subtitle_values in ContactsPageData.page_subtitles, "Subtitles do not match the valid values"
 
         @allure.title("Verify content of the text in the section 2")
         def test_cp_02_03_verify_page_text(self, driver, contacts_page_open):
             page = ContactsPage(driver)
             text_content = page.get_text_content_on_page()
             assert text_content, "The text content in the section 2 is empty"
-            assert text_content in ContactsPageData.text_on_page, \
-                "The text in the section 2 does not match the valid values"
+            assert text_content in ContactsPageData.text_on_page, "Text in the section 2 doesn't match the valid values"
 
         @allure.title("Verify text in links in the section 2")
         def test_cp_02_04_verify_text_in_links(self, driver, contacts_page_open):
@@ -116,23 +114,23 @@ class TestContactsPage:
         def test_cp_03_01_verify_links_in_section2(self, driver, contacts_page_open):
             page = ContactsPage(driver)
             links_presence = page.get_list_of_links()
-            links_visibility = page.check_visibility_of_links()
+            links_visibility = page.check_links_visibility()
             links_clickability = page.check_links_clickability()
             links_href = page.get_links_href()
             link_prefix = page.check_email_link_href()
-            links_status_codes = page.get_links_status_codes()
+            links_status_codes = page.get_tm_links_status_codes()
             assert links_presence, "Links are absent on the page"
             assert links_visibility, "Links are invisible"
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
             assert links_href == ContactsPageData.links_href, "Attributes 'href' of links do not match the valid values"
             assert link_prefix, "The attribute 'href' of the email link does not contain the proper prefix"
-            assert links_status_codes == ContactsPageData.links_status_codes, \
-                "Links status codes do not match the valid values"
+            assert all(status_code == ContactsPageData.links_status_code for status_code in links_status_codes), \
+                "Status codes of links do not match the valid values"
 
-        @allure.title("Verify that links in the section 2 lead to the correct pages after click")
+        @allure.title("Verify if links in the section 2 lead to the correct pages after clicking")
         def test_cp_03_02_verify_links_lead_to_the_correct_pages(self, driver, contacts_page_open):
             page = ContactsPage(driver)
-            new_tabs = page.click_on_links()
-            assert new_tabs == ContactsPageData.links_tm_href, \
-                "Links in the section 2 lead to incorrect pages after click"
+            new_tabs_urls = page.click_on_links()
+            assert all(tab_url in ContactsPageData.pages_urls for tab_url in new_tabs_urls), \
+                "Links in the section 2 lead to incorrect pages after clicking"

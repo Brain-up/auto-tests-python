@@ -89,8 +89,7 @@ class ContactsPage(BasePage):
 
     @allure.step("Get amount of sections with content on the page")
     def get_amount_of_sections(self):
-        sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
-        return len(sections)
+        return len(self.elements_are_present(self.locators.PAGE_SECTIONS))
 
     @allure.step("Check if sections are visible")
     def check_visibility_of_sections(self):
@@ -155,8 +154,12 @@ class ContactsPage(BasePage):
     def get_list_of_links(self):
         return self.elements_are_present(self.locators.SECTION_2_LINKS)
 
+    @allure.step("Get the list of links to Telegram")
+    def get_list_of_tm_links(self):
+        return self.elements_are_present(self.locators.SECTION_2_LINKS_TM)
+
     @allure.step("Check if links are visible")
-    def check_visibility_of_links(self):
+    def check_links_visibility(self):
         return all(link.is_displayed() for link in self.get_list_of_links())
 
     @allure.step("Check if links are clickable")
@@ -173,18 +176,15 @@ class ContactsPage(BasePage):
         return link_href.startswith('mailto')
 
     @allure.step("Get status code of links to Telegram")
-    def get_links_status_codes(self):
-        links = self.elements_are_present(self.locators.SECTION_2_LINKS_TM)
-        links_href = [element.get_attribute("href") for element in links]
+    def get_tm_links_status_codes(self):
+        links_href = [element.get_attribute("href") for element in self.get_list_of_tm_links()]
         return [requests.head(link_href).status_code for link_href in links_href]
 
     @allure.step("Click on links to Telegram and thereby open corresponding web pages in new tabs")
     def click_on_links(self):
-        new_tabs = []
-        self.element_is_present_and_clickable(self.locators.SECTION_2_LINKS_TM_2).click()
-        self.element_is_present_and_clickable(self.locators.SECTION_2_LINKS_TM_1).click()
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        new_tabs.append(self.driver.current_url)
-        self.driver.switch_to.window(self.driver.window_handles[2])
-        new_tabs.append(self.driver.current_url)
-        return new_tabs
+        new_tabs = [link.click() for link in self.get_list_of_tm_links()]
+        new_tabs_urls = []
+        for i in range(1, len(new_tabs) + 1):
+            self.driver.switch_to.window(self.driver.window_handles[i])
+            new_tabs_urls.append(self.get_current_tab_url())
+        return new_tabs_urls

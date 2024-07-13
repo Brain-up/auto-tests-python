@@ -34,9 +34,10 @@ class ContactsPageData:
         "https://t.me/ElenaLovesSpb"
     ]
 
-    links_tm_href = [
+    links_status_code = 200
+
+    # Related web pages urls
+    pages_urls = [
         "https://t.me/BrainUpUsers",
         "https://t.me/ElenaLovesSpb"
     ]
-
-    links_status_codes = [200, 200]
