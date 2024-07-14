@@ -1,7 +1,6 @@
 """Methods for verifying web elements on the 'Contributors' page"""
 import allure
 import requests
-
 from pages.base_page import BasePage
 from locators.contributors_page_locators import ContributorsPageLocators
 from test_data.contributors_page_data import ContributorsPageData
@@ -14,35 +13,23 @@ class ContributorsPage(BasePage):
     def check_presence_of_page_content(self):
         return self.element_is_present(self.locators.PAGE_CONTENT)
 
-    @allure.step("Check if page content is visible on the page")
+    @allure.step("Check if page content is visible")
     def check_visibility_of_page_content(self):
         return self.element_is_visible(self.locators.PAGE_CONTENT)
 
-    @allure.step("Get structure of the page")
-    def get_structure_of_page(self):
+    @allure.step("Get structure of the 1st level of nesting on the page")
+    def get_structure_of_1st_level(self):
         elements = self.elements_are_present(self.locators.PAGE_STRUCTURE)
-        # print(f"Amount of elements on the 1st level of nesting on the page is: {len(elements)}")
-        tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 1st level of nesting on the page are: {tags}")
-        return tags
+        # tags = [element.tag_name for element in elements]
+        return elements
 
-    @allure.step("Check if elements of the 1st level of nesting are visible on the page")
-    def check_visibility_of_elements_on_page(self):
-        elements = self.elements_are_present(self.locators.PAGE_STRUCTURE)
-        all_elements_are_displayed = all(element.is_displayed() for element in elements)
-        return all_elements_are_displayed
+    @allure.step("Check if elements of the 1st level of nesting are visible")
+    def check_elements_visibility_on_1st_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_1st_level())
 
     @allure.step("Get amount of sections with content on the page")
     def get_amount_of_sections_on_page(self):
-        sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
-        # print(len(sections))
-        return len(sections)
-
-    @allure.step("Check sections are visible on the page")
-    def check_visibility_of_sections(self):
-        sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
-        all_sections_are_displayed = all(section.is_displayed() for section in sections)
-        return all_sections_are_displayed
+        return len(self.elements_are_present(self.locators.PAGE_SECTIONS))
 
     @allure.step("Get structure of section with content on the page")
     def get_structure_of_section(self):
@@ -69,10 +56,9 @@ class ContributorsPage(BasePage):
     @allure.step("Check subsections are visible in the section")
     def check_visibility_of_elements_in_subsections(self):
         subsections = self.elements_are_present(self.locators.PAGE_SUBSECTIONS)
-        all_subsections_are_displayed = all(subsection.is_displayed() for subsection in subsections)
-        return all_subsections_are_displayed
+        return all(subsection.is_displayed() for subsection in subsections)
 
-    @allure.step("Get structure of sub-subsections on the page") #ch
+    @allure.step("Get structure of sub-subsections on the page")
     def get_structure_of_2nd_level_in_section(self):
         elements = self.elements_are_present(self.locators.SECTION_SECOND_LEVEL_ELEMENTS)
         # print(f"Amount of elements on the 2nd level of nesting in the section is: {len(elements)}")
@@ -83,8 +69,7 @@ class ContributorsPage(BasePage):
     @allure.step("Check if elements on the 2nd level of nesting are visible on the page")
     def check_visibility_of_elements_on_2nd_level_in_section(self):
         elements = self.elements_are_present(self.locators.SECTION_SECOND_LEVEL_ELEMENTS)
-        all_elements_are_displayed = all(element.is_displayed() for element in elements)
-        return all_elements_are_displayed
+        return all(element.is_displayed() for element in elements)
 
     @allure.step("Get structure of sub-sub-subsections on the page")
     def get_structure_of_3rd_level_in_section(self):
@@ -97,8 +82,7 @@ class ContributorsPage(BasePage):
     @allure.step("Check if elements of the 3rd level of nesting are visible on the page")
     def check_visibility_of_elements_on_3rd_level_in_section(self):
         elements = self.elements_are_present(self.locators.SECTION_THIRD_LEVEL_ELEMENTS)
-        all_elements_are_displayed = all(element.is_displayed() for element in elements)
-        return all_elements_are_displayed
+        return all(element.is_displayed() for element in elements)
 
     @allure.step("Get the list of subsections on the 3rd level of nesting")
     def get_amount_of_subsections_on_3rd_level(self):
