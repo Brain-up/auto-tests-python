@@ -23,28 +23,28 @@ class TestContributorsPage:
             structure_of_1st_level = page.get_structure_of_1st_level()
             visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_on_page()
             sections_amount = page.get_amount_of_sections_on_page()
-            structure_of_section = page.get_structure_of_section()
-            visibility_of_subsections_on_the_1st_level = page.check_visibility_of_elements_in_section()
-            structure_of_1st_level_subsection = page.get_structure_of_1st_level_in_section()
-            visibility_of_subsections_on_1st_level = page.check_visibility_of_elements_in_subsections()
-            structure_of_2nd_level_subsections = page.get_structure_of_2nd_level_in_section()
-            visibility_of_elements_on_2nd_level = page.check_visibility_of_elements_on_2nd_level_in_section()
-            structure_of_3rd_level_subsections = page.get_structure_of_3rd_level_in_section()
-            visibility_of_elements_on_3rd_level = page.check_visibility_of_elements_on_3rd_level_in_section()
-            structure_of_4th_level_subsections = page.get_structure_of_4th_level_in_section()
+            structure_of_2nd_level = page.get_structure_of_2nd_level()
+            visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_on_page()
+            subsections_on_2nd_level = page.get_list_of_subsections_on_2nd_level_on_page()
+            visibility_of_subsections_on_2nd_level = page.check_visibility_of_subsections_on_2nd_level_on_page()
+            structure_of_3rd_level = page.get_structure_of_3rd_level()
+            visibility_of_elements_on_3rd_level = page.check_elements_visibility_on_3rd_level_on_page()
+            structure_of_4th_level = page.get_structure_of_4th_level()
+            visibility_of_elements_on_4th_level = page.check_elements_visibility_on_4th_level_on_page()
+            structure_of_5th_level = page.get_structure_of_5th_level()
             assert structure_of_1st_level, "The page is empty"
             assert visibility_of_elements_on_1st_level, "1th-level elements are invisible"
             assert sections_amount == ContributorsPageData.amount_of_sections_on_page, \
                 "The amount of sections with content does not match the valid value"
-            assert structure_of_section, "The section is empty"
-            assert visibility_of_subsections_on_the_1st_level, "1th-level subsections are invisible"
-            assert structure_of_1st_level_subsection, "Subsections on the 1st level in the section are empty"
-            assert visibility_of_subsections_on_1st_level, "1st-level subsections are invisible"
-            assert structure_of_2nd_level_subsections, "Elements on the 2nd level in the section are empty"
+            assert structure_of_2nd_level, "Elements on the 2nd level are absent on the page"
             assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible"
-            assert structure_of_3rd_level_subsections, "Elements on the 3rd level in the section are empty"
+            assert subsections_on_2nd_level, "Subsections on the 2nd level are empty"
+            assert visibility_of_subsections_on_2nd_level, "2nd-level subsections are invisible"
+            assert structure_of_3rd_level, "Elements on the 3rd level are absent on the page"
             assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible"
-            assert structure_of_4th_level_subsections, "Elements on the 4th level in the section are empty"
+            assert structure_of_4th_level, "Elements on the 4th level are absent on the page"
+            assert visibility_of_elements_on_4th_level, "4th-level elements are invisible"
+            assert structure_of_5th_level, "Elements on the 5th level are absent on the page"
 
         @allure.title("Verify amount of contributor cards with images, links and descriptions in the section grid")
         def test_cnp_01_03_verify_structure_of_grid_in_section(self, driver, contributors_page_open):
