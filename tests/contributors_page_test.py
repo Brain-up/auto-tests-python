@@ -46,21 +46,18 @@ class TestContributorsPage:
             assert visibility_of_elements_on_4th_level, "4th-level elements are invisible"
             assert structure_of_5th_level, "Elements on the 5th level are absent on the page"
 
-        @allure.title("Verify amount of contributor cards with images, links and descriptions in the section grid")
-        def test_cnp_01_03_verify_structure_of_grid_in_section(self, driver, contributors_page_open):
+        @allure.title("Verify number of contributor cards with images, links and descriptions in the grid")
+        def test_cnp_01_03_verify_structure_of_grid(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            amount_of_cards = page.get_amount_of_cards_in_the_grid()
-            amount_of_images = page.get_amount_of_images_in_the_grid()
-            amount_of_links = page.get_amount_of_links_in_the_grid()
-            amount_of_descriptions = page.get_amount_of_descriptions_in_the_grid()
-            assert amount_of_cards == ContributorsPageData.amount_of_grid_cards, \
-                "The amount of contributor cards in the grid does not match the expected value"
-            assert amount_of_images == ContributorsPageData.amount_of_grid_images, \
-                "The amount of images in the grid does not match the expected value"
-            assert amount_of_links == ContributorsPageData.amount_of_grid_links, \
-                "The amount of links in the grid does not match the expected value"
-            assert amount_of_descriptions == ContributorsPageData.amount_of_grid_descriptions, \
-                "The amount of descriptions in the grid does not match the expected value"
+            card_count = page.count_cards_in_grid()
+            image_count = page.count_images_in_cards()
+            link_count = page.count_links_in_cards()
+            description_count = page.count_descriptions_in_cards()
+            assert card_count == ContributorsPageData.card_count, "The number of cards does not match the valid value"
+            assert image_count == ContributorsPageData.image_count, "The number of images doesn't match the valid value"
+            assert link_count == ContributorsPageData.link_count, "The number of links does not match the valid value"
+            assert description_count == ContributorsPageData.description_count, \
+                "The number of descriptions does not match the valid value"
 
     class TestContributorsPageText:
 

@@ -82,27 +82,23 @@ class ContributorsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
-    @allure.step("Get amount of contributor's cards in the section grid")
-    def get_amount_of_cards_in_the_grid(self):
-        contributor_cards = self.elements_are_present(self.locators.GRID_CONTRIBUTOR_CARDS)
-        return len(contributor_cards)
+    @allure.step("Get number of contributor's cards in the grid")
+    def count_cards_in_grid(self):
+        return len(self.elements_are_present(self.locators.GRID_CONTRIBUTOR_CARDS))
 
-    @allure.step("Get amount of contributor's images in the section grid")
-    def get_amount_of_images_in_the_grid(self):
-        images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        return len(images)
+    @allure.step("Get number of contributor's images in cards")
+    def count_images_in_cards(self):
+        return len(self.elements_are_present(self.locators.GRID_CARD_IMAGES))
 
-    @allure.step("Get amount of contributor's links in the section grid")
-    def get_amount_of_links_in_the_grid(self):
-        links = self.elements_are_present(self.locators.GRID_CARD_LINKS)
-        return len(links)
+    @allure.step("Get number of contributor's links in cards")
+    def count_links_in_cards(self):
+        return len(self.elements_are_present(self.locators.GRID_CARD_LINKS))
 
-    @allure.step("Get amount of contributor's descriptions in the section grid")
-    def get_amount_of_descriptions_in_the_grid(self):
-        descriptions = self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS)
-        return len(descriptions)
+    @allure.step("Get number of contributor's descriptions in cards")
+    def count_descriptions_in_cards(self):
+        return len(self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS))
 
-    @allure.step("Get value of the subtitle in the section on the page")
+    @allure.step("Get value of the title on the page")
     def get_value_of_title_on_the_page(self):
         title_value = self.get_text(self.locators.SECTION_TITLE)
         return title_value

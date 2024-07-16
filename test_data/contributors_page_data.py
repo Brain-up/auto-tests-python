@@ -3,10 +3,10 @@
 
 class ContributorsPageData:
     amount_of_sections_on_page = 1
-    amount_of_grid_cards = 67
-    amount_of_grid_descriptions = 67
-    amount_of_grid_images = 67
-    amount_of_grid_links = 66
+    card_count = 67
+    description_count = 67
+    image_count = 67
+    link_count = 66
 
     page_title = ["Наша команда", "Our Team"]
 
