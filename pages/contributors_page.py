@@ -84,19 +84,19 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get number of contributor's cards in the grid")
     def count_cards_in_grid(self):
-        return len(self.elements_are_present(self.locators.GRID_CONTRIBUTOR_CARDS))
+        return len(self.elements_are_present(self.locators.CONTRIBUTOR_CARDS))
 
     @allure.step("Get number of contributor's images in cards")
     def count_images_in_cards(self):
-        return len(self.elements_are_present(self.locators.GRID_CARD_IMAGES))
+        return len(self.elements_are_present(self.locators.CARD_IMAGES))
 
     @allure.step("Get number of contributor's links in cards")
     def count_links_in_cards(self):
-        return len(self.elements_are_present(self.locators.GRID_CARD_LINKS))
+        return len(self.elements_are_present(self.locators.CARD_LINKS))
 
     @allure.step("Get number of contributor's descriptions in cards")
     def count_descriptions_in_cards(self):
-        return len(self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS))
+        return len(self.elements_are_present(self.locators.CARD_DESCRIPTIONS))
 
     @allure.step("Get value of the title on the page")
     def get_value_of_title_on_the_page(self):
