@@ -4,10 +4,10 @@ from selenium.webdriver.common.by import By
 
 class ContributorsPageLocators:
     ALL_TEAM_LINK = (By.XPATH, "(//section//a)[67]")
-    GRID_CARD_DESCRIPTIONS = (By.CSS_SELECTOR, ".leading-5")
-    GRID_CARD_IMAGES = (By.CSS_SELECTOR, ".team-member img")
-    GRID_CARD_LINKS = (By.CSS_SELECTOR, "a.mb-1")
-    GRID_CONTRIBUTOR_CARDS = (By.CSS_SELECTOR, ".team-member")
+    CARD_DESCRIPTIONS = (By.CSS_SELECTOR, ".leading-5")
+    CARD_IMAGES = (By.CSS_SELECTOR, ".team-member img")
+    CARD_LINKS = (By.CSS_SELECTOR, "a.mb-1")
+    CONTRIBUTOR_CARDS = (By.CSS_SELECTOR, ".team-member")
     PAGE_CONTENT = (By.TAG_NAME, "main")
     PAGE_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//main/*")
     PAGE_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//section/*")

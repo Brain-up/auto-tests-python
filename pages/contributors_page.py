@@ -82,27 +82,24 @@ class ContributorsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
-    @allure.step("Get amount of contributor's cards in the section grid")
-    def get_amount_of_cards_in_the_grid(self):
-        contributor_cards = self.elements_are_present(self.locators.GRID_CONTRIBUTOR_CARDS)
-        return len(contributor_cards)
+    @allure.step("Get number of contributor's cards in the grid")
+    def count_cards_in_grid(self):
+        return len(self.elements_are_present(self.locators.CONTRIBUTOR_CARDS))
 
-    @allure.step("Get amount of contributor's images in the section grid")
-    def get_amount_of_images_in_the_grid(self):
-        images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        return len(images)
+    @allure.step("Get number of contributor's images in cards")
+    def count_images_in_cards(self):
+        return len(self.elements_are_present(self.locators.CARD_IMAGES))
 
-    @allure.step("Get amount of contributor's links in the section grid")
-    def get_amount_of_links_in_the_grid(self):
-        links = self.elements_are_present(self.locators.GRID_CARD_LINKS)
-        return len(links)
+    @allure.step("Get number of contributor's links in cards")
+    def count_links_in_cards(self):
+        return len(self.elements_are_present(self.locators.CARD_LINKS))
 
-    @allure.step("Get amount of contributor's descriptions in the section grid")
-    def get_amount_of_descriptions_in_the_grid(self):
-        descriptions = self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS)
-        return len(descriptions)
+    @allure.step("Get number of contributor's descriptions in cards")
+    def count_descriptions_in_cards(self):
+        return len(self.elements_are_present(self.locators.CARD_DESCRIPTIONS))
 
-    @allure.step("Get value of the subtitle in the section on the page")
+    # Checking text on the tab&page
+    @allure.step("Get value of the title on the page")
     def get_value_of_title_on_the_page(self):
         title_value = self.get_text(self.locators.SECTION_TITLE)
         return title_value
@@ -120,7 +117,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Check the content of descriptions in cards")
     def check_values_of_card_descriptions(self):
-        elements_with_text = self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS)
+        elements_with_text = self.elements_are_present(self.locators.CARD_DESCRIPTIONS)
         element_values = [element.text for element in elements_with_text]
         filled_count, empty_count = 0, 0
         for i in range(len(element_values)):
@@ -133,7 +130,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Check text in links in cards")
     def check_text_in_card_links(self):
-        links = self.elements_are_present(self.locators.GRID_CARD_LINKS)
+        links = self.elements_are_present(self.locators.CARD_LINKS)
         element_values = [link.text for link in links]
         filled_count, empty_count = 0, 0
         for i in range(len(element_values)):
@@ -184,27 +181,27 @@ class ContributorsPage(BasePage):
 
     @allure.step("Check the image in each contributor card is present and visible on the page")
     def check_image_presence_and_visibility_in_the_grid(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        card_images = self.elements_are_present(self.locators.CARD_IMAGES)
         all_images_are_displayed = all(image.is_displayed() for image in card_images)
         return all_images_are_displayed
 
     @allure.step("Check attribute 'src' of images in contributor cards on the page")
     def check_images_src_in_contributor_cards(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        card_images = self.elements_are_present(self.locators.CARD_IMAGES)
         src_list = [image.get_attribute('src') for image in card_images]
         image_src = [image_src.startswith(ContributorsPageData.images_src_start) for image_src in src_list]
         return image_src
 
     @allure.step("Get the list of attribute 'alt' values of images in contributor cards on the page")
     def get_images_alt_in_contributor_cards(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        card_images = self.elements_are_present(self.locators.CARD_IMAGES)
         alt_list = [image.get_attribute('alt') for image in card_images]
         return alt_list
 
     @allure.step("""Get the list of size values of images in contributor cards on the page 
                     and check their changes after resizing""")
     def check_size_changes_of_card_images(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
+        card_images = self.elements_are_present(self.locators.CARD_IMAGES)
         image_sizes_before = [image.size for image in card_images]
         self.driver.set_window_size(1200, 800)
         image_sizes_after = [image.size for image in card_images]
