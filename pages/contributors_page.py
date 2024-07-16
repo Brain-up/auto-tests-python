@@ -98,6 +98,7 @@ class ContributorsPage(BasePage):
     def count_descriptions_in_cards(self):
         return len(self.elements_are_present(self.locators.CARD_DESCRIPTIONS))
 
+    # Checking text on the tab&page
     @allure.step("Get value of the title on the page")
     def get_value_of_title_on_the_page(self):
         title_value = self.get_text(self.locators.SECTION_TITLE)
