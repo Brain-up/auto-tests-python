@@ -7,6 +7,7 @@ class ContributorsPageData:
     description_count = 67
     image_count = 67
     link_count = 66
+    subsection_count = 5
 
     page_title = ["Наша команда", "Our Team"]
 

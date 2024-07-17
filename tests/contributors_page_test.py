@@ -46,13 +46,33 @@ class TestContributorsPage:
             assert visibility_of_elements_on_4th_level, "4th-level elements are invisible"
             assert structure_of_5th_level, "Elements on the 5th level are absent on the page"
 
-        @allure.title("Verify number of contributor cards with images, links and descriptions in the grid")
-        def test_cnp_01_03_verify_structure_of_grid(self, driver, contributors_page_open):
+        @allure.title("""Verify presence, visibility, number of the title, subtitles, subsections, cards, images, links,  
+        descriptions on the 2nd-5th levels of nesting on the page""")
+        def test_cnp_01_03_verify_page_structural_elements(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
+            title_on_2nd_level = page.check_title_presence()
+            title_visibility = page.check_title_visibility()
+            subtitles_on_2nd_level = page.get_list_of_subtitles()
+            subtitles_visibility = page.check_visibility_of_subtitles()
+            subsections_on_2nd_level = page.get_list_of_subsections()
+            subsections_visibility = page.check_subsections_visibility()
+            subsection_count = page.count_subsections()
+            cards_on_3rd_level = page.get_list_of_cards()
+            cards_visibility = page.check_cards_visibility()
             card_count = page.count_cards_in_grid()
             image_count = page.count_images_in_cards()
             link_count = page.count_links_in_cards()
             description_count = page.count_descriptions_in_cards()
+            assert title_on_2nd_level, "The title on the 2nd level is absent on the page"
+            assert title_visibility, "The title on the 2nd level is invisible"
+            assert subtitles_on_2nd_level, "Subtitles on the 2nd level are absent on the page"
+            assert subtitles_visibility, "Subtitles on the 2nd level are invisible"
+            assert subsections_on_2nd_level, "Subsections on the 2nd level are absent on the page"
+            assert subsections_visibility, "Subsections on the 2nd level are invisible"
+            assert subsection_count == ContributorsPageData.subsection_count, \
+                "The number of subsections does not match the valid value"
+            assert cards_on_3rd_level, "Cards on the 3rd level are absent on the page"
+            assert cards_visibility, "Cards on the 3rd level are invisible"
             assert card_count == ContributorsPageData.card_count, "The number of cards does not match the valid value"
             assert image_count == ContributorsPageData.image_count, "The number of images doesn't match the valid value"
             assert link_count == ContributorsPageData.link_count, "The number of links does not match the valid value"

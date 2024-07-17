@@ -89,11 +89,11 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Check the title on the 2nd level of nesting is present on the page")
     def check_title_presence(self):
-        return self.element_is_present(self.locators.TITLE_H2)
+        return self.element_is_present(self.locators.PAGE_TITLE)
 
     @allure.step("Check the title on the 2nd level of nesting is visible")
     def check_title_visibility(self):
-        return self.element_is_visible(self.locators.TITLE_H2)
+        return self.element_is_visible(self.locators.PAGE_TITLE)
 
     @allure.step("Check the page text on the 2nd level of nesting is present on the page")
     def check_text_presence(self):
@@ -107,7 +107,7 @@ class SpecialistsPage(BasePage):
     def check_grid_presence(self):
         return self.element_is_present(self.locators.PAGE_GRID)
 
-    @allure.step("Check the grid of specialists cards on the 2nd level of nesting is visible on the page")
+    @allure.step("Check the grid of specialists cards on the 2nd level of nesting is visible")
     def check_grid_visibility(self):
         return self.element_is_visible(self.locators.PAGE_GRID)
 
@@ -123,7 +123,7 @@ class SpecialistsPage(BasePage):
     def get_list_of_cards(self):
         return len(self.elements_are_present(self.locators.SPECIALIST_CARDS))
 
-    @allure.step("Check specialists cards on the 3rd level of nesting are visible on the page")
+    @allure.step("Check specialists cards on the 3rd level of nesting are visible")
     def check_cards_visibility(self):
         cards = self.elements_are_present(self.locators.SPECIALIST_CARDS)
         return all(element.is_displayed() for element in cards)
@@ -167,7 +167,7 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Get value of the title with tag 'h2' on the page")
     def get_value_of_page_title(self):
-        return self.get_text(self.locators.TITLE_H2)
+        return self.get_text(self.locators.PAGE_TITLE)
 
     @allure.step("Get content of the text on the page")
     def get_text_content_on_page(self):

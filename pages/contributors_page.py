@@ -82,9 +82,45 @@ class ContributorsPage(BasePage):
         # tags = [element.tag_name for element in elements]
         return elements
 
+    @allure.step("Check the title on the 2nd level of nesting is present on the page")
+    def check_title_presence(self):
+        return self.element_is_present(self.locators.PAGE_TITLE)
+
+    @allure.step("Check the title on the 2nd level of nesting is visible")
+    def check_title_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_TITLE)
+
+    @allure.step("Get the list of subtitles h3 on the 2nd level of nesting on the page")
+    def get_list_of_subtitles(self):
+        return self.elements_are_present(self.locators.PAGE_SUBTITLES)
+
+    @allure.step("Check if subtitles h3 on the 2nd level of nesting are visible")
+    def check_visibility_of_subtitles(self):
+        return all(element.is_displayed() for element in self.get_list_of_subtitles())
+
+    @allure.step("Get the list of subsections on the 2nd level of nesting on the page")
+    def get_list_of_subsections(self):
+        return self.elements_are_present(self.locators.PAGE_SUBSECTIONS)
+
+    @allure.step("Check subsections on the 2nd level of nesting are visible")
+    def check_subsections_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_subsections())
+
+    @allure.step("Get number of subsections on the page")
+    def count_subsections(self):
+        return len(self.get_list_of_subsections())
+
+    @allure.step("Get the list of cards on the 3rd level of nesting on the page")
+    def get_list_of_cards(self):
+        return self.elements_are_present(self.locators.CONTRIBUTOR_CARDS)
+
+    @allure.step("Check cards on the 3rd level of nesting are visible")
+    def check_cards_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_cards())
+
     @allure.step("Get number of contributor's cards in the grid")
     def count_cards_in_grid(self):
-        return len(self.elements_are_present(self.locators.CONTRIBUTOR_CARDS))
+        return len(self.get_list_of_cards())
 
     @allure.step("Get number of contributor's images in cards")
     def count_images_in_cards(self):
@@ -101,12 +137,12 @@ class ContributorsPage(BasePage):
     # Checking text on the tab&page
     @allure.step("Get value of the title on the page")
     def get_value_of_title_on_the_page(self):
-        title_value = self.get_text(self.locators.SECTION_TITLE)
+        title_value = self.get_text(self.locators.PAGE_TITLE)
         return title_value
 
     @allure.step("Get the list of subtitle values on the page")
     def get_values_of_subtitles(self):
-        subtitles = self.elements_are_present(self.locators.SECTION_SUBTITLES)
+        subtitles = self.elements_are_present(self.locators.PAGE_SUBTITLES)
         subtitle_values = [subtitle.text for subtitle in subtitles]
         return subtitle_values
 
