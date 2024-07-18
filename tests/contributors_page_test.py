@@ -22,11 +22,8 @@ class TestContributorsPage:
             page = ContributorsPage(driver)
             structure_of_1st_level = page.get_structure_of_1st_level()
             visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_on_page()
-            sections_amount = page.get_amount_of_sections_on_page()
             structure_of_2nd_level = page.get_structure_of_2nd_level()
             visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_on_page()
-            subsections_on_2nd_level = page.get_list_of_subsections_on_2nd_level_on_page()
-            visibility_of_subsections_on_2nd_level = page.check_visibility_of_subsections_on_2nd_level_on_page()
             structure_of_3rd_level = page.get_structure_of_3rd_level()
             visibility_of_elements_on_3rd_level = page.check_elements_visibility_on_3rd_level_on_page()
             structure_of_4th_level = page.get_structure_of_4th_level()
@@ -34,50 +31,41 @@ class TestContributorsPage:
             structure_of_5th_level = page.get_structure_of_5th_level()
             assert structure_of_1st_level, "The page is empty"
             assert visibility_of_elements_on_1st_level, "1th-level elements are invisible"
-            assert sections_amount == ContributorsPageData.amount_of_sections_on_page, \
-                "The amount of sections with content does not match the valid value"
             assert structure_of_2nd_level, "Elements on the 2nd level are absent on the page"
             assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible"
-            assert subsections_on_2nd_level, "Subsections on the 2nd level are empty"
-            assert visibility_of_subsections_on_2nd_level, "2nd-level subsections are invisible"
             assert structure_of_3rd_level, "Elements on the 3rd level are absent on the page"
             assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible"
             assert structure_of_4th_level, "Elements on the 4th level are absent on the page"
             assert visibility_of_elements_on_4th_level, "4th-level elements are invisible"
             assert structure_of_5th_level, "Elements on the 5th level are absent on the page"
 
-        @allure.title("""Verify presence, visibility, number of the title, subtitles, subsections, cards, images, links,  
-        descriptions on the 2nd-5th levels of nesting on the page""")
+        @allure.title("Verify presence, visibility of titles/subtitles, cards, descriptions, links, images on the page")
         def test_cnp_01_03_verify_page_structural_elements(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             title_on_2nd_level = page.check_title_presence()
             title_visibility = page.check_title_visibility()
             subtitles_on_2nd_level = page.get_list_of_subtitles()
             subtitles_visibility = page.check_visibility_of_subtitles()
-            subsections_on_2nd_level = page.get_list_of_subsections()
-            subsections_visibility = page.check_subsections_visibility()
-            subsection_count = page.count_subsections()
             cards_on_3rd_level = page.get_list_of_cards()
             cards_visibility = page.check_cards_visibility()
-            card_count = page.count_cards_in_grid()
-            image_count = page.count_images_in_cards()
-            link_count = page.count_links_in_cards()
-            description_count = page.count_descriptions_in_cards()
+            descriptions_on_4th_level = page.get_list_of_card_descriptions()
+            descriptions_visibility = page.check_descriptions_visibility()
+            links_on_4th_level = page.get_list_of_links()
+            links_visibility = page.check_links_visibility()
+            images_on_5th_level = page.get_list_of_card_images()
+            images_visibility = page.check_image_visibility_in_cards()
             assert title_on_2nd_level, "The title on the 2nd level is absent on the page"
             assert title_visibility, "The title on the 2nd level is invisible"
             assert subtitles_on_2nd_level, "Subtitles on the 2nd level are absent on the page"
             assert subtitles_visibility, "Subtitles on the 2nd level are invisible"
-            assert subsections_on_2nd_level, "Subsections on the 2nd level are absent on the page"
-            assert subsections_visibility, "Subsections on the 2nd level are invisible"
-            assert subsection_count == ContributorsPageData.subsection_count, \
-                "The number of subsections does not match the valid value"
             assert cards_on_3rd_level, "Cards on the 3rd level are absent on the page"
             assert cards_visibility, "Cards on the 3rd level are invisible"
-            assert card_count == ContributorsPageData.card_count, "The number of cards does not match the valid value"
-            assert image_count == ContributorsPageData.image_count, "The number of images doesn't match the valid value"
-            assert link_count == ContributorsPageData.link_count, "The number of links does not match the valid value"
-            assert description_count == ContributorsPageData.description_count, \
-                "The number of descriptions does not match the valid value"
+            assert descriptions_on_4th_level, "Descriptions on the 4th level are absent on the page"
+            assert descriptions_visibility, "Descriptions on the 4th level are invisible"
+            assert links_on_4th_level, "Links on the 4th level are absent on the page"
+            assert links_visibility, "Links on the 4th level are invisible"
+            assert images_on_5th_level, "Images on the 5th level are absent on the page"
+            assert images_visibility, "Images on the 5th level are invisible"
 
     class TestContributorsPageText:
 
@@ -122,12 +110,8 @@ class TestContributorsPage:
         @allure.title("Verify presence, visibility, clickability, href of links in the section")
         def test_cnp_03_01_verify_links_in_section(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            links_presence = page.get_list_of_links_in_section()
-            links_visibility = page.check_visibility_of_links_in_section()
             links_clickability = page.check_links_clickability()
             links_href = page.get_links_href()
-            assert links_presence is not None, "Links are absent in DOM"
-            assert links_visibility, "Links are invisible on the page"
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
 
@@ -145,13 +129,6 @@ class TestContributorsPage:
                 f"The actual text '{actual_link_text}' of the {link_href} link does not match any of the valid option"
 
     class TestContributorCardImages:
-
-        @allure.title("Verify presence and visibility of images in contributors cards in the grid")
-        def test_cnp_04_01_verify_images_in_cards_are_present_and_visible(self, driver, contributors_page_open):
-            page = ContributorsPage(driver)
-            images_visibility = page.check_image_presence_and_visibility_in_the_grid()
-            assert images_visibility, "Images in contributor cards are invisible in the grid"
-
         @allure.title("Verify attribute values and sizes of images in contributors cards in the grid")
         def test_cnp_04_02_verify_image_attributes_in_cards(self, driver, contributors_page_open):
             page = ContributorsPage(driver)

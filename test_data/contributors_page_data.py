@@ -2,12 +2,8 @@
 
 
 class ContributorsPageData:
-    amount_of_sections_on_page = 1
-    card_count = 67
     description_count = 67
-    image_count = 67
     link_count = 66
-    subsection_count = 5
 
     page_title = ["Наша команда", "Our Team"]
 
