@@ -5,6 +5,8 @@ class ContributorsPageData:
     description_count = 67
     link_count = 66
 
+    tab_title = ["Наша команда | BrainUp", "Contributors | BrainUp"]
+
     page_title = ["Наша команда", "Our Team"]
 
     page_subtitles = [

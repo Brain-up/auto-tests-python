@@ -68,9 +68,16 @@ class TestContributorsPage:
             assert images_visibility, "Images on the 5th level are invisible"
 
     class TestContributorsPageText:
+        @allure.title("Verify value of the title of the tab")
+        def test_cnp_02_01_verify_tab_title(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            tab_title_value = page.get_value_of_tab_title()
+            assert tab_title_value, "The title value of the tab is empty"
+            assert tab_title_value in ContributorsPageData.tab_title, \
+                "The title value of the tab doesn't match the valid value"
 
         @allure.title("Verify value of title with tag 'h2' on the page")
-        def test_cnp_02_01_verify_title_on_the_page(self, driver, contributors_page_open):
+        def test_cnp_02_01_01_verify_title_on_the_page(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             title_value = page.get_value_of_title_on_the_page()
             assert title_value, "The title value on the page is empty"

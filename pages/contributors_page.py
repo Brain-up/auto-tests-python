@@ -112,6 +112,10 @@ class ContributorsPage(BasePage):
         return all(element.is_displayed() for element in self.get_list_of_card_images())
 
     # Checking text on the tab&page
+    @allure.step("Get value of the title of the tab")
+    def get_value_of_tab_title(self):
+        return self.get_current_tab_title()
+
     @allure.step("Get value of the title on the page")
     def get_value_of_title_on_the_page(self):
         title_value = self.get_text(self.locators.PAGE_TITLE)
