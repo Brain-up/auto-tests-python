@@ -116,16 +116,13 @@ class ContributorsPage(BasePage):
     def get_value_of_tab_title(self):
         return self.get_current_tab_title()
 
-    @allure.step("Get value of the title on the page")
-    def get_value_of_title_on_the_page(self):
-        title_value = self.get_text(self.locators.PAGE_TITLE)
-        return title_value
+    @allure.step("Get value of the title h2 on the page")
+    def get_value_of_title(self):
+        return self.check_title_presence().text
 
-    @allure.step("Get the list of subtitle values on the page")
+    @allure.step("Get the list of subtitle h3 values on the page")
     def get_values_of_subtitles(self):
-        subtitles = self.elements_are_present(self.locators.PAGE_SUBTITLES)
-        subtitle_values = [subtitle.text for subtitle in subtitles]
-        return subtitle_values
+        return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
     @allure.step("Get text in the slogan on the page")
     def get_value_of_slogan(self):

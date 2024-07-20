@@ -76,20 +76,16 @@ class TestContributorsPage:
             assert tab_title_value in ContributorsPageData.tab_title, \
                 "The title value of the tab doesn't match the valid value"
 
-        @allure.title("Verify value of title with tag 'h2' on the page")
-        def test_cnp_02_01_01_verify_title_on_the_page(self, driver, contributors_page_open):
+        @allure.title("Verify values of title and subtitles with tags hw, h3 on the page")
+        def test_cnp_02_02_verify_page_title_and_subtitles(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            title_value = page.get_value_of_title_on_the_page()
+            title_value = page.get_value_of_title()
+            subtitle_values = page.get_values_of_subtitles()
             assert title_value, "The title value on the page is empty"
             assert title_value in ContributorsPageData.page_title, "The title on the page doesn't match the valid value"
-
-        @allure.title("Verify values of subtitles with tag 'h3' on the page")
-        def test_cnp_02_02_verify_subtitles_on_the_page(self, driver, contributors_page_open):
-            page = ContributorsPage(driver)
-            titles_value = page.get_values_of_subtitles()
-            assert titles_value, "Subtitle values on the page are empty"
-            assert all(title_value in ContributorsPageData.page_subtitles for title_value in titles_value), \
-                "The subtitles on the 'Contributors' page do match the valid values"
+            assert subtitle_values, "Subtitle values on the page are empty"
+            assert all(subtitle_value in ContributorsPageData.page_subtitles for subtitle_value in subtitle_values), \
+                "Subtitles do not match any valid values"
 
         @allure.title("Verify values of the text in the slogan on the page")
         def test_cnp_02_03_verify_text_of_slogan(self, driver, contributors_page_open):
