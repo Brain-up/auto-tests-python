@@ -79,7 +79,7 @@ class TestStartUnauthorizedPage:
                 "The titles on the page do not match any valid values"
             assert subtitle_values, "Subtitle values on the page are empty"
             assert all(subtitle_value in StartUnauthorizedPageData.page_subtitles for subtitle_value
-                       in subtitle_values), "The subtitles do not match any valid values"
+                       in subtitle_values), "Subtitles do not match any valid values"
 
         @allure.title("Verify content of the text in sections 1, 2")
         def test_su_02_03_verify_page_text(self, driver, main_page_open):
