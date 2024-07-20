@@ -76,7 +76,7 @@ class TestStartUnauthorizedPage:
             subtitle_values = page.get_values_of_subtitles()
             assert title_values, "Title values on the page are empty"
             assert all(title_value in StartUnauthorizedPageData.page_titles for title_value in title_values), \
-                "The titles on the page do not match any valid values"
+                "Titles on the page do not match any valid values"
             assert subtitle_values, "Subtitle values on the page are empty"
             assert all(subtitle_value in StartUnauthorizedPageData.page_subtitles for subtitle_value
                        in subtitle_values), "Subtitles do not match any valid values"
