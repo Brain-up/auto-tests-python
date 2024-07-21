@@ -91,7 +91,7 @@ class TestContributorsPage:
         def test_cnp_02_03_verify_page_text(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             text_content = page.get_text_content_on_page()
-            assert text_content in ContributorsPageData.text_on_page, "TThe text content does not match the valid value"
+            assert text_content in ContributorsPageData.text_on_page, "The text content does not match the valid value"
 
         @allure.title("Verify values of the text in card descriptions")
         def test_cnp_02_04_verify_text_of_card_descriptions(self, driver, contributors_page_open):
