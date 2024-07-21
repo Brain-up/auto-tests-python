@@ -19,5 +19,5 @@ class ContributorsPageLocators:
     PAGE_SECTIONS = (By.TAG_NAME, "section")
     PAGE_SUBSECTIONS = (By.XPATH, "//section/div")
     PAGE_SUBTITLES = (By.TAG_NAME, "h3")
+    PAGE_TEXT = (By.CSS_SELECTOR, ".mb-16")
     PAGE_TITLE = (By.TAG_NAME, "h2")
-    SLOGAN = (By.CSS_SELECTOR, ".mb-16")

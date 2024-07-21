@@ -14,8 +14,10 @@ class ContributorsPageData:
         "Developers", "Developers in test", "Quality Assurance"
     ]
 
-    slogan_text = ["Мы собрались все вместе, чтобы сделать вашу жизнь проще!",
-                   "We are all here to make your life easier!"]
+    text_on_page = [
+        "Мы собрались все вместе, чтобы сделать вашу жизнь проще!",
+        "We are all here to make your life easier!"
+    ]
 
     all_team_link_href = "https://brainup.site/contributors#"
     all_team_link_status_code = 200

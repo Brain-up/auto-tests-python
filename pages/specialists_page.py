@@ -121,23 +121,21 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Get the list of specialist cards on the 3rd level of nesting on the page")
     def get_list_of_cards(self):
-        return len(self.elements_are_present(self.locators.SPECIALIST_CARDS))
+        return self.elements_are_present(self.locators.SPECIALIST_CARDS)
 
     @allure.step("Check specialists cards on the 3rd level of nesting are visible")
     def check_cards_visibility(self):
-        cards = self.elements_are_present(self.locators.SPECIALIST_CARDS)
-        return all(element.is_displayed() for element in cards)
+        return all(element.is_displayed() for element in self.get_list_of_cards())
 
     @allure.step("Get the list of images in specialist cards on the 5th level of nesting on the page")
     def get_list_of_card_images(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        return card_images
+        return self.elements_are_present(self.locators.CARD_IMAGES)
 
     @allure.step("Check the image in each specialist card is visible")
     def check_image_visibility_in_cards(self):
         try:
             card_images = (Wait(self.driver, 45).
-                           until(ec.presence_of_all_elements_located(self.locators.GRID_CARD_IMAGES)))
+                           until(ec.presence_of_all_elements_located(self.locators.CARD_IMAGES)))
             return all(element.is_displayed() for element in card_images)
         except TimeoutException:
             return False
@@ -148,8 +146,7 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Check a name in each specialist card is visible")
     def check_visibility_of_names_in_cards(self):
-        names = self.get_list_of_names_in_cards()
-        return all(element.is_displayed() for element in names)
+        return all(element.is_displayed() for element in self.get_list_of_names_in_cards())
 
     @allure.step("Get the list of professions in specialist cards on the 6th level of nesting on the page")
     def get_list_of_professions_in_cards(self):
@@ -157,8 +154,7 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Check a profession in each specialist card is visible")
     def check_visibility_of_professions_in_cards(self):
-        professions = self.get_list_of_professions_in_cards()
-        return all(element.is_displayed() for element in professions)
+        return all(element.is_displayed() for element in self.get_list_of_professions_in_cards())
 
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
@@ -175,13 +171,11 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Get the list of name values in specialist cards on the page")
     def get_name_values_in_cards(self):
-        specialist_names = self.get_list_of_names_in_cards()
-        return [name.text for name in specialist_names]
+        return [name.text for name in self.get_list_of_names_in_cards()]
 
     @allure.step("Get the list of profession values in specialist cards on the page")
     def get_profession_values_in_cards(self):
-        specialist_professions = self.get_list_of_professions_in_cards()
-        return [profession.text for profession in specialist_professions]
+        return [profession.text for profession in self.get_list_of_professions_in_cards()]
 
     @allure.step("Get text in the 'All Specialists' link")
     def get_text_in_all_specialists_link(self):

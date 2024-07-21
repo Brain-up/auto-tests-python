@@ -2,8 +2,6 @@
 
 
 class SpecialistsPageData:
-    specialists_grid_size = 8
-
     tab_title = ["Специалисты | BrainUp", "Specialists | BrainUp"]
 
     page_title = ["Специалисты", "Specialists"]
