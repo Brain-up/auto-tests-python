@@ -5,10 +5,10 @@ from selenium.webdriver.common.by import By
 
 class SpecialistsPageLocators:
     ALL_SPECIALISTS_LINK = (By.XPATH, "//div[contains(@class, 'mt-20')]/a")
-    # GRID_CARD_IMAGES = (By.XPATH, "//img[@class='rounded-full']")
-    GRID_CARD_IMAGES = (By.XPATH, "//section//img")
-    GRID_CARD_TEXT_SECTIONS = (By.XPATH, "//div[@class='flex-1']")
-    GRID_CARD_01_IMAGE = (By.XPATH, "(//img[@class='rounded-full'])[1]")
+    CARD_IMAGES = (By.XPATH, "//img[@class='rounded-full']")
+    # CARD_IMAGES = (By.XPATH, "//section//img")
+    CARD_TEXT_SECTIONS = (By.XPATH, "//div[@class='flex-1']")
+    CARD_01_IMAGE = (By.XPATH, "(//img[@class='rounded-full'])[1]")
     PAGE_GRID = (By.XPATH, "//div[contains(@class, 'grid')]")
     PAGE_CONTENT = (By.TAG_NAME, "main")
     PAGE_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//main/*")

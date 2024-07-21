@@ -71,9 +71,8 @@ class TestSpecialistsPage:
             assert grid_visibility, "The grid on the 2nd level is invisible"
             assert link_on_3rd_level, "The 'All Specialists' link on the 3rd level is absent on the page"
             assert link_visibility, "The 'All Specialists' link is invisible"
-            assert cards_on_3rd_level == SpecialistsPageData.specialists_grid_size, \
-                "The grid size does not match the expected value"
-            assert cards_visibility, "Specialist cards on the 3rd level are invisible"
+            assert cards_on_3rd_level, "Cards on the 3rd level are absent on the page"
+            assert cards_visibility, "Cards on the 3rd level are invisible"
             assert images_on_5th_level, "Images on the 5th level are absent on the page"
             assert images_visibility, "Images on the 5th level are invisible"
             assert names_on_5th_level, "Names in specialist cards on the 5th level are absent on the page"

@@ -124,10 +124,10 @@ class ContributorsPage(BasePage):
     def get_values_of_subtitles(self):
         return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
-    @allure.step("Get text in the slogan on the page")
-    def get_value_of_slogan(self):
-        slogan = self.element_is_present(self.locators.SLOGAN).text
-        return slogan
+    @allure.step("Get content of the text on the page")
+    def get_text_content_on_page(self):
+        # slogan = self.element_is_present(self.locators.PAGE_TEXT).text
+        return self.element_is_present(self.locators.PAGE_TEXT).text
 
     @allure.step("Check the content of descriptions in cards")
     def check_values_of_card_descriptions(self):

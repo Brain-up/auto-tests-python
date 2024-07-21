@@ -87,12 +87,11 @@ class TestContributorsPage:
             assert all(subtitle_value in ContributorsPageData.page_subtitles for subtitle_value in subtitle_values), \
                 "Subtitles do not match any valid values"
 
-        @allure.title("Verify values of the text in the slogan on the page")
-        def test_cnp_02_03_verify_text_of_slogan(self, driver, contributors_page_open):
+        @allure.title("Verify content of the text on the page")
+        def test_cnp_02_03_verify_page_text(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            slogan = page.get_value_of_slogan()
-            assert slogan in ContributorsPageData.slogan_text, \
-                "The text of slogan does not match the valid options"
+            text_content = page.get_text_content_on_page()
+            assert text_content in ContributorsPageData.text_on_page, "TThe text content does not match the valid value"
 
         @allure.title("Verify values of the text in card descriptions")
         def test_cnp_02_04_verify_text_of_card_descriptions(self, driver, contributors_page_open):
