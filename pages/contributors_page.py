@@ -126,21 +126,15 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get content of the text on the page")
     def get_text_content_on_page(self):
-        # slogan = self.element_is_present(self.locators.PAGE_TEXT).text
         return self.element_is_present(self.locators.PAGE_TEXT).text
 
     @allure.step("Check the content of descriptions in cards")
     def check_values_of_card_descriptions(self):
-        elements_with_text = self.elements_are_present(self.locators.CARD_DESCRIPTIONS)
-        element_values = [element.text for element in elements_with_text]
-        filled_count, empty_count = 0, 0
-        for i in range(len(element_values)):
-            if element_values[i]:
-                filled_count += 1
-            else:
-                empty_count += 1
-        common_count = filled_count + empty_count
-        return common_count
+        values = [element.text for element in self.get_list_of_card_descriptions()]
+        full, empty = [], []
+        for i in range(len(values)):
+            full.append(values[i]) if values[i] else empty.append(values[i])
+        return len(full) + len(empty)
 
     @allure.step("Check text in links in cards")
     def check_text_in_card_links(self):
