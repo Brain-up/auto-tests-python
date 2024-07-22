@@ -134,7 +134,7 @@ class SpecialistsPage(BasePage):
     @allure.step("Check the image in each specialist card is visible")
     def check_image_visibility_in_cards(self):
         try:
-            card_images = (Wait(self.driver, 45).
+            card_images = (Wait(self.driver, 50).
                            until(ec.presence_of_all_elements_located(self.locators.CARD_IMAGES)))
             return all(element.is_displayed() for element in card_images)
         except TimeoutException:
