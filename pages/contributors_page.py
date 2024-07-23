@@ -138,16 +138,11 @@ class ContributorsPage(BasePage):
 
     @allure.step("Check text in links in cards")
     def check_text_in_card_links(self):
-        links = self.elements_are_present(self.locators.CARD_LINKS)
-        element_values = [link.text for link in links]
-        filled_count, empty_count = 0, 0
-        for i in range(len(element_values)):
-            if element_values[i]:
-                filled_count += 1
-            else:
-                empty_count += 1
-        common_count = filled_count + empty_count
-        return common_count
+        values = [link.text for link in self.elements_are_present(self.locators.CARD_LINKS)]
+        full, empty = [], []
+        for i in range(len(values)):
+            full.append(values[i]) if values[i] else empty.append(values[i])
+        return len(full) + len(empty)
 
     @allure.step("Check if links in the section are clickable")
     def check_links_clickability(self):

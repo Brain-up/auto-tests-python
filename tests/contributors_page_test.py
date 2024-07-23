@@ -100,12 +100,16 @@ class TestContributorsPage:
             assert description_values == ContributorsPageData.description_count, \
                 "The text in descriptions is absent or do not match the valid count"
 
-        @allure.title("Verify text in links in card links")
+        @allure.title("Verify text in card links and the 'All Team' link")
         def test_cnp_02_05_verify_text_in_card_links(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            links_text = page.check_text_in_card_links()
-            assert links_text == ContributorsPageData.link_count, \
+            card_links_text = page.check_text_in_card_links()
+            link_text = page.get_text_in_all_team_link()
+            assert card_links_text == ContributorsPageData.link_count, \
                 "Text in card links is absent or do not match the valid count"
+            assert link_text, "Text in the 'All Team' link is absent"
+            assert link_text in ContributorsPageData.all_team_link_text, \
+                f"The text in the 'All Team' link does not match any valid values"
 
     class TestContributorsPageLinks:
 
