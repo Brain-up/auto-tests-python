@@ -138,7 +138,7 @@ class SpecialistsPage(BasePage):
                            until(ec.presence_of_all_elements_located(self.locators.CARD_IMAGES)))
             return all(element.is_displayed() for element in card_images)
         except TimeoutException:
-            return False
+            print("The entire set of images has not been loaded during the allotted time")
 
     @allure.step("Get the list of names in specialist cards on the 5th level of nesting on the page")
     def get_list_of_names_in_cards(self):
