@@ -113,7 +113,7 @@ class TestContributorsPage:
 
     class TestContributorsPageLinks:
 
-        @allure.title("Verify presence, visibility, clickability, href of links in the section")
+        @allure.title("Verify clickability, href of links in the section")
         def test_cnp_03_01_verify_links_in_section(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             links_clickability = page.check_links_clickability()

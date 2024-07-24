@@ -144,17 +144,14 @@ class ContributorsPage(BasePage):
             full.append(values[i]) if values[i] else empty.append(values[i])
         return len(full) + len(empty)
 
-    @allure.step("Check if links in the section are clickable")
+    # Checking links on the page
+    @allure.step("Check if links on the page are clickable")
     def check_links_clickability(self):
-        links = self.get_list_of_links()
-        all_links_are_enabled = all(link.is_enabled() for link in links)
-        return all_links_are_enabled
+        return all(link.is_enabled() for link in self.get_list_of_links())
 
-    @allure.step("Get attribute 'href' of links in the section")
+    @allure.step("Get attribute 'href' of links on the page")
     def get_links_href(self):
-        links = self.get_list_of_links()
-        links_href = [element.get_attribute("href") for element in links]
-        return links_href
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
 
     @allure.step("Get attribute 'href' of the 'All Team' link")
     def get_all_team_link_href(self):
