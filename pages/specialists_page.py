@@ -1,4 +1,5 @@
 """Methods for verifying web elements on the 'Specialists' page"""
+import time
 import allure
 import requests
 from pages.base_page import BasePage
@@ -133,6 +134,7 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Check the image in each specialist card is visible")
     def check_image_visibility_in_cards(self):
+        time.sleep(5)
         try:
             card_images_visibility = all(element.is_displayed() for element in self.get_list_of_card_images())
             return card_images_visibility
