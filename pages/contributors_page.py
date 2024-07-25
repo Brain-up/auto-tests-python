@@ -144,6 +144,10 @@ class ContributorsPage(BasePage):
             full.append(values[i]) if values[i] else empty.append(values[i])
         return len(full) + len(empty)
 
+    @allure.step("Get text in the 'All Team' link")
+    def get_text_in_all_team_link(self):
+        return self.get_text(self.locators.ALL_TEAM_LINK)
+
     # Checking links on the page
     @allure.step("Check if links on the page are clickable")
     def check_links_clickability(self):
@@ -159,13 +163,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get status code of 'All Team' link")
     def get_all_team_link_status_code(self):
-        link_href = self.get_all_team_link_href()
-        link_status_code = requests.head(link_href).status_code
-        return link_status_code
-
-    @allure.step("Get text in the 'All Team' link")
-    def get_text_in_all_team_link(self):
-        return self.get_text(self.locators.ALL_TEAM_LINK)
+        return requests.head(self.get_all_team_link_href()).status_code
 
     @allure.step("Check attribute 'src' of images in contributor cards on the page")
     def check_images_src_in_contributor_cards(self):
