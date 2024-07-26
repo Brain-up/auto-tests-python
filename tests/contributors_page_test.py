@@ -76,7 +76,7 @@ class TestContributorsPage:
             assert tab_title_value in ContributorsPageData.tab_title, \
                 "The title value of the tab doesn't match the valid value"
 
-        @allure.title("Verify values of title and subtitles with tags hw, h3 on the page")
+        @allure.title("Verify values of title and subtitles with tags h2, h3 on the page")
         def test_cnp_02_02_verify_page_title_and_subtitles(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             title_value = page.get_value_of_title()
@@ -131,14 +131,20 @@ class TestContributorsPage:
                 "The status code of the link does not match the valid value"
 
     class TestContributorCardImages:
-        @allure.title("Verify attribute values and sizes of images in contributors cards in the grid")
-        def test_cnp_04_02_verify_image_attributes_in_cards(self, driver, contributors_page_open):
+        @allure.title("Verify attribute values of images in contributors cards in grids")
+        def test_cnp_04_01_verify_image_attributes_in_cards(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
-            images_src = page.check_images_src_in_contributor_cards()
-            images_alt = page.get_images_alt_in_contributor_cards()
-            images_size_changes = page.check_size_changes_of_card_images()
-            assert images_src, "The 'src' attribute value of some card images is empty or unaccurate"
+            images_src = page.get_images_src()
+            images_alt = page.get_images_alt()
+            assert images_src, "The 'src' attribute value of some card images is empty"
+            assert all(src.startswith(ContributorsPageData.images_src_start) for src in images_src), \
+                "The 'src' attribute value of some card images does not match the valid value"
             assert images_alt, "The 'alt' attribute value of some card images is empty"
             assert all(image_alt == ContributorsPageData.images_alt for image_alt in images_alt), \
-                "The 'alt' attribute value of some card images is empty or unaccurate"
+                "The 'alt' attribute value of some card images does not match the valid value"
+
+        @allure.title("Verify sizes of images in contributor cards in grids")
+        def test_cnp_04_02_verify_images_sizes_in_cards(self, driver, contributors_page_open):
+            page = ContributorsPage(driver)
+            images_size_changes = page.check_size_changes_of_card_images()
             assert images_size_changes, "Checks of changes in image sizes have not carried out"
