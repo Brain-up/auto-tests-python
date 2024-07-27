@@ -179,5 +179,5 @@ class TestSpecialistsPage:
             page = SpecialistsPage(driver)
             images_size = page.get_images_sizes()
             images_size_changes = page.check_size_changes_of_images()
-            assert images_size != 0, "Images in specialist cards hasn't sizes"
+            assert images_size != 0, "Images in specialist cards have not sizes"
             assert images_size_changes, "Checks of changes in image sizes have not carried out"

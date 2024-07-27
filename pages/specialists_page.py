@@ -6,8 +6,6 @@ from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 from locators.specialists_page_locators import SpecialistsPageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 from selenium.common import TimeoutException
 
 
@@ -215,7 +213,7 @@ class SpecialistsPage(BasePage):
     def get_images_alt(self):
         return [image.get_attribute('alt') for image in self.get_list_of_card_images()]
 
-    @allure.step("Get the list of sizes of the images in the specialist cards")
+    @allure.step("Get the list of sizes of images in specialist cards")
     def get_images_sizes(self):
         return [image.size for image in self.get_list_of_card_images()]
 
