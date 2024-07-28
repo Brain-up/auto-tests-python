@@ -7,6 +7,18 @@ class FooterPage(BasePage):
     locators = FooterLocators
     locators1 = RelatedPagesElementsLocators
 
+    @allure.step("Check Footer is present in the DOM tree on the page")
+    def check_footer_presence(self):
+        return self.element_is_present(self.locators.FOOTER)
+
+    @allure.step("Check if Footer is visible on the page")
+    def check_footer_visibility(self):
+        return self.element_is_visible(self.locators.FOOTER)
+
+    @allure.step("Check Footer is invisible")
+    def check_footer_invisibility(self):
+        return self.element_is_not_visible(self.locators.FOOTER)
+
     @allure.step("Find the element on the page")
     def find_element(self, locator):
         return self.driver.find_element(*locator)
@@ -26,14 +38,6 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'height' of an element's image")
     def get_image_height(self, locator):
         return self.driver.find_element(*locator).get_attribute("height")
-
-    @allure.step("Check Footer is present in the DOM tree on the page")
-    def check_footer_presence(self):
-        return self.element_is_present(self.locators.FOOTER_SECTION)
-
-    @allure.step("Check Footer is invisible")
-    def check_footer_invisibility(self):
-        return self.element_is_not_visible(self.locators.FOOTER_SECTION)
 
     @allure.step("Check the ARASAAC link is present in Footer")
     def check_arasaac_link_presence(self):

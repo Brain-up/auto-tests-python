@@ -12,6 +12,15 @@ from test_data.footer_data import FooterData
 
 @allure.epic("Test Footer")
 class TestFooter:
+    class TestFooterStructure:
+        @allure.title("Verify presence and visibility of Footer")
+        def test_fp_01_01_verify_footer_presence_and_visibility(self, driver, main_page_open):
+            page = FooterPage(driver)
+            footer_presence = page.check_footer_presence()
+            footer_visibility = page.check_footer_visibility()
+            assert footer_presence is not None, "Footer is absent in DOM"
+            assert footer_visibility, "Footer is invisible"
+
     class TestFooterCommon:
         locators = FooterLocators()
         urls = PagesUrls
@@ -19,8 +28,7 @@ class TestFooter:
         @allure.title("Verify presence and visibility of Footer on each page specified in the kit")
         @pytest.mark.parametrize("element_locator", locators.FOOTER_ELEMENTS_LOCATORS.values())
         @pytest.mark.parametrize("url", urls.pages_urls)
-        def test_fp_01_01_verify_presence_and_visibility_of_footer_elements_on_pages(self, driver, element_locator,
-                                                                                     url):
+        def test_fp_01_01_01_verify_presence_and_visibility_of_footer_elements(self, driver, element_locator, url):
             page = FooterPage(driver, url)
             page.open()
             assert page.element_is_visible(element_locator), \
