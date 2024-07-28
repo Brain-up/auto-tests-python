@@ -18,8 +18,8 @@ class TestFooter:
             page = FooterPage(driver)
             footer_presence = page.check_footer_presence()
             footer_visibility = page.check_footer_visibility()
-            assert footer_presence is not None, "Footer content is absent in DOM"
-            assert footer_visibility, "Footer content is invisible"
+            assert footer_presence is not None, "Footer is absent in DOM"
+            assert footer_visibility, "Footer is invisible"
 
     class TestFooterCommon:
         locators = FooterLocators()
