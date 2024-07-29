@@ -13,13 +13,45 @@ from test_data.footer_data import FooterData
 @allure.epic("Test Footer")
 class TestFooter:
     class TestFooterStructure:
-        @allure.title("Verify presence and visibility of Footer")
+        @allure.title("Verify presence and visibility of the Footer")
         def test_fp_01_01_verify_footer_presence_and_visibility(self, driver, main_page_open):
             page = FooterPage(driver)
             footer_presence = page.check_footer_presence()
             footer_visibility = page.check_footer_visibility()
-            assert footer_presence is not None, "Footer is absent in DOM"
-            assert footer_visibility, "Footer is invisible"
+            assert footer_presence is not None, "The Footer is absent in DOM"
+            assert footer_visibility, "The Footer is invisible"
+
+        @allure.title("Verify composition and visibility of elements on the 1st-7th levels of nesting in the Footer")
+        def test_fp_01_02_verify_footer_structure_and_visibility(self, driver, main_page_open):
+            page = FooterPage(driver)
+            structure_of_1st_level = page.get_structure_of_1st_level()
+            visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_on_page()
+            structure_of_2nd_level = page.get_structure_of_2nd_level()
+            visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level_on_page()
+            structure_of_3rd_level = page.get_structure_of_3rd_level()
+            visibility_of_elements_on_3rd_level = page.check_elements_visibility_on_3rd_level_on_page()
+            structure_of_4th_level = page.get_structure_of_4th_level()
+            visibility_of_elements_on_4th_level = page.check_elements_visibility_on_4th_level_on_page()
+            structure_of_5th_level = page.get_structure_of_5th_level()
+            visibility_of_elements_on_5th_level = page.check_elements_visibility_on_5th_level_on_page()
+            structure_of_6th_level = page.get_structure_of_6th_level()
+            visibility_of_elements_on_6th_level = page.check_elements_visibility_on_6th_level_on_page()
+            structure_of_7th_level = page.get_structure_of_7th_level()
+            visibility_of_elements_on_7th_level = page.check_elements_visibility_on_7th_level_on_page()
+            assert structure_of_1st_level, "The Footer is empty"
+            assert visibility_of_elements_on_1st_level, "1st-level elements are invisible"
+            assert structure_of_2nd_level, "Elements on the 2nd level are absent on the page"
+            assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible"
+            assert structure_of_3rd_level, "Elements on the 3rd level are absent on the page"
+            assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible"
+            assert structure_of_4th_level, "Elements on the 4th level are absent on the page"
+            assert visibility_of_elements_on_4th_level, "4th-level elements are invisible"
+            assert structure_of_5th_level, "Elements on the 5th level are absent on the page"
+            assert visibility_of_elements_on_5th_level, "5th-level elements are invisible"
+            assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
+            assert visibility_of_elements_on_6th_level, "6th-level elements are invisible"
+            assert structure_of_7th_level, "Elements on the 7th level are absent on the page"
+            assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
 
     class TestFooterCommon:
         locators = FooterLocators()
@@ -40,7 +72,7 @@ class TestFooter:
                                      FooterData.footer_elements_text.values())
                                  )
         @pytest.mark.parametrize("url", urls.pages_urls)
-        def test_fp_01_02_verify_text_in_elements_in_footer_on_pages(self, driver, element_locator, expected_text, url):
+        def test_fp_01_02_02_verify_text_in_elements_in_footer_on_pages(self, driver, element_locator, expected_text, url):
             page = FooterPage(driver, url)
             page.open()
             actual_text = page.get_text(element_locator)

@@ -19,6 +19,76 @@ class FooterPage(BasePage):
     def check_footer_invisibility(self):
         return self.element_is_not_visible(self.locators.FOOTER)
 
+    @allure.step("Get structure of the 1st level of nesting in the Footer")
+    def get_structure_of_1st_level(self):
+        elements = self.elements_are_present(self.locators.FOOTER_FIRST_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
+
+    @allure.step("Check if elements of the 1st level of nesting are visible")
+    def check_elements_visibility_on_1st_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_1st_level())
+
+    @allure.step("Get structure of the 2nd level of nesting in the Footer")
+    def get_structure_of_2nd_level(self):
+        elements = self.elements_are_present(self.locators.FOOTER_SECOND_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
+
+    @allure.step("Check if elements of the 2nd level of nesting are visible")
+    def check_elements_visibility_on_2nd_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_2nd_level())
+
+    @allure.step("Get structure of the 3rd level of nesting in the Footer")
+    def get_structure_of_3rd_level(self):
+        elements = self.elements_are_present(self.locators.FOOTER_THIRD_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
+
+    @allure.step("Check if elements of the 3rd level of nesting are visible")
+    def check_elements_visibility_on_3rd_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_3rd_level())
+
+    @allure.step("Get structure of the 4th level of nesting in the Footer")
+    def get_structure_of_4th_level(self):
+        elements = self.elements_are_present(self.locators.FOOTER_FOURTH_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
+
+    @allure.step("Check if elements of the 4th level of nesting are visible")
+    def check_elements_visibility_on_4th_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_4th_level())
+
+    @allure.step("Get structure of the 5th level of nesting in the Footer")
+    def get_structure_of_5th_level(self):
+        elements = self.elements_are_present(self.locators.FOOTER_FIFTH_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
+
+    @allure.step("Check if elements of the 5th level of nesting are visible")
+    def check_elements_visibility_on_5th_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_5th_level())
+
+    @allure.step("Get structure of the 6th level of nesting in the Footer")
+    def get_structure_of_6th_level(self):
+        elements = self.elements_are_present(self.locators.FOOTER_SIXTH_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
+
+    @allure.step("Check if elements of the 6th level of nesting are visible")
+    def check_elements_visibility_on_6th_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_6th_level())
+
+    @allure.step("Get structure of the 7th level of nesting in the Footer")
+    def get_structure_of_7th_level(self):
+        elements = self.elements_are_present(self.locators.FOOTER_SEVENTH_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
+
+    @allure.step("Check if elements of the 7th level of nesting are visible")
+    def check_elements_visibility_on_7th_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_7th_level())
+
     @allure.step("Find the element on the page")
     def find_element(self, locator):
         return self.driver.find_element(*locator)
