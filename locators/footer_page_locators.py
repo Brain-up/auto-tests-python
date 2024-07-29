@@ -3,6 +3,13 @@ from selenium.webdriver.common.by import By
 
 class FooterLocators:
     FOOTER = (By.TAG_NAME, "footer")
+    FOOTER_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//footer/*")
+    FOOTER_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*")
+    FOOTER_THIRD_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*/*")
+    FOOTER_FOURTH_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*/*/*")
+    FOOTER_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*/*/*/*")
+    FOOTER_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*/*/*/*/*")
+    FOOTER_SEVENTH_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*/*/*/*/*/*")
 
     ARASAAC_LINK = (By.XPATH, "(//footer//li)[3]/a")
     CONTACT_US_LINK = (By.XPATH, "//footer//a[@title]")
