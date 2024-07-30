@@ -54,7 +54,7 @@ class TestFooter:
             assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
 
         @allure.title("Verify presence, visibility of text, links, images in the Footer")
-        def test_fp_01_03_verify_page_structural_elements(self, driver, contributors_page_open):
+        def test_fp_01_03_verify_footer_structural_elements(self, driver, main_page_open):
             page = FooterPage(driver)
             text_on_4th_level = page.check_text_presence()
             text_visibility = page.check_text_visibility()
