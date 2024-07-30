@@ -10,6 +10,9 @@ class FooterLocators:
     FOOTER_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*/*/*/*")
     FOOTER_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*/*/*/*/*")
     FOOTER_SEVENTH_LEVEL_ELEMENTS = (By.XPATH, "//footer/*/*/*/*/*/*/*")
+    FOOTER_IMAGES = (By.XPATH, "//footer//img")
+    FOOTER_LINKS = (By.XPATH, "//footer//a")
+    FOOTER_TEXT = (By.XPATH, "//span[@data-test-support-message]")
 
     ARASAAC_LINK = (By.XPATH, "(//footer//li)[3]/a")
     CONTACT_US_LINK = (By.XPATH, "//footer//a[@title]")
