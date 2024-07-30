@@ -89,6 +89,30 @@ class FooterPage(BasePage):
     def check_elements_visibility_on_7th_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_7th_level())
 
+    @allure.step("Check the text on the 4th level of nesting is present in the Footer")
+    def check_text_presence(self):
+        return self.element_is_present(self.locators.FOOTER_TEXT)
+
+    @allure.step("Check the text in the Footer is visible")
+    def check_text_visibility(self):
+        return self.element_is_visible(self.locators.FOOTER_TEXT)
+
+    @allure.step("Get the list of links on the 6th level of nesting in the Footer")
+    def get_list_of_links(self):
+        return self.elements_are_present(self.locators.FOOTER_LINKS)
+
+    @allure.step("Check links in the Footer are visible")
+    def check_links_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_links())
+
+    @allure.step("Get the list of images on the 7th level of nesting in the Footer")
+    def get_list_of_images(self):
+        return self.elements_are_present(self.locators.FOOTER_IMAGES)
+
+    @allure.step("Check images in the Footer are visible")
+    def check_images_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_images())
+
     @allure.step("Find the element on the page")
     def find_element(self, locator):
         return self.driver.find_element(*locator)

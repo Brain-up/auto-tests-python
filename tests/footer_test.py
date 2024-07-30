@@ -53,18 +53,25 @@ class TestFooter:
             assert structure_of_7th_level, "Elements on the 7th level are absent on the page"
             assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
 
+        @allure.title("Verify presence, visibility of text, links, images in the Footer")
+        def test_fp_01_03_verify_page_structural_elements(self, driver, contributors_page_open):
+            page = FooterPage(driver)
+            text_on_4th_level = page.check_text_presence()
+            text_visibility = page.check_text_visibility()
+            links_on_3rd_and_6th_levels = page.get_list_of_links()
+            links_visibility = page.check_links_visibility()
+            images_on_7th_level = page.get_list_of_images()
+            images_visibility = page.check_images_visibility()
+            assert text_on_4th_level, "The text on the 4th level is absent in the Footer"
+            assert text_visibility, "The text on the 4th level is invisible"
+            assert links_on_3rd_and_6th_levels, "Links on the 3rd and 6th levels are absent in the Footer"
+            assert links_visibility, "Links on the 3rd and 6th levels are invisible"
+            assert images_on_7th_level, "Images on the 7th level are absent in the Footer"
+            assert images_visibility, "Images on the 7th level are invisible"
+
     class TestFooterCommon:
         locators = FooterLocators()
         urls = PagesUrls
-
-        @allure.title("Verify presence and visibility of Footer on each page specified in the kit")
-        @pytest.mark.parametrize("element_locator", locators.FOOTER_ELEMENTS_LOCATORS.values())
-        @pytest.mark.parametrize("url", urls.pages_urls)
-        def test_fp_01_01_01_verify_presence_and_visibility_of_footer_elements(self, driver, element_locator, url):
-            page = FooterPage(driver, url)
-            page.open()
-            assert page.element_is_visible(element_locator), \
-                f"Element in Footer is absent or invisible on the page {url}"
 
         @allure.title("Verify accuracy of texts in Footer on each page specified in the kit")
         @pytest.mark.parametrize("element_locator, expected_text",
@@ -72,7 +79,7 @@ class TestFooter:
                                      FooterData.footer_elements_text.values())
                                  )
         @pytest.mark.parametrize("url", urls.pages_urls)
-        def test_fp_01_02_02_verify_text_in_elements_in_footer_on_pages(self, driver, element_locator, expected_text, url):
+        def test_fp_01_02_02_verify_text_in_elements_in_footer(self, driver, element_locator, expected_text, url):
             page = FooterPage(driver, url)
             page.open()
             actual_text = page.get_text(element_locator)
@@ -80,90 +87,70 @@ class TestFooter:
                 f"The actual text '{actual_text}' of the element does not match any of the valid options" \
                 f"'{' | '.join(expected_text)}' on the page {url}"
 
-        @allure.title("Verify presence, visibility, clickability, href, status code of the ARASAAC link in Footer")
-        def test_fp_01_03_verify_arasaac_link(self, driver, main_page_open):
+        @allure.title("Verify clickability, href, status code of the ARASAAC link in Footer")
+        def test_fp_01_03_01_verify_arasaac_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_presence = page.check_arasaac_link_presence()
-            link_visibility = page.check_arasaac_link_visibility()
             link_clickability = page.check_arasaac_link_clickability()
             link_href = page.get_arasaac_link_href()
             link_status_code = requests.head(link_href).status_code
-            assert link_presence is not None, f"The {link_href} link is absent"
-            assert link_visibility, f"The {link_href} link is invisible"
             assert link_clickability, f"The {link_href} link is unclickable"
             assert link_href == FooterData.footer_links_href["arasaac_link_href"], \
                 f"The attribute 'href' of the {link_href} link does not match the expected value"
             assert link_status_code == FooterData.footer_links_status_codes["arasaac_link_status_code"], \
                 f"The {link_href} link status code does not match the expected value"
 
-        @allure.title("Verify presence, visibility, clickability, href, status code of the EPAM link in Footer")
+        @allure.title("Verify clickability, href, status code of the EPAM link in Footer")
         def test_fp_01_04_verify_epam_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_presence = page.check_epam_link_presence()
-            link_visibility = page.check_epam_link_visibility()
             link_clickability = page.check_epam_link_clickability()
             link_href = page.get_epam_link_href()
             link_status_code = requests.head(link_href).status_code
-            assert link_presence is not None, f"The {link_href} link is absent"
-            assert link_visibility, f"The {link_href} link is invisible"
             assert link_clickability, f"The {link_href} link is unclickable"
             assert link_href == FooterData.footer_links_href["epam_link_href"], \
                 f"The attribute 'href' of the {link_href} link does not match the expected value"
             assert link_status_code == FooterData.footer_links_status_codes["epam_link_status_code"], \
                 f"The {link_href} link status code does not match the expected value"
 
-        @allure.title("Verify presence, visibility, clickability, href, status code of the JETBRAINS link in Footer")
+        @allure.title("Verify clickability, href, status code of the JETBRAINS link in Footer")
         def test_fp_01_05_verify_jetbrains_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_presence = page.check_jetbrains_link_presence()
-            link_visibility = page.check_jetbrains_link_visibility()
             link_clickability = page.check_jetbrains_link_clickability()
             link_href = page.get_jetbrains_link_href()
             link_status_code = requests.head(link_href).status_code
-            assert link_presence is not None, f"The {link_href} link is absent"
-            assert link_visibility, f"The {link_href} link is invisible"
             assert link_clickability, f"The {link_href} link is unclickable"
             assert link_href == FooterData.footer_links_href["jetbrains_link_href"], \
                 f"The attribute 'href' of the {link_href} link does not match the expected value"
             assert link_status_code == FooterData.footer_links_status_codes["jetbrains_link_status_code"], \
                 f"The {link_href} link status code does not match the expected value"
 
-        @allure.title("Verify presence, visibility, clickability, href, status code of the REG.RU link in Footer")
+        @allure.title("Verify clickability, href, status code of the REG.RU link in Footer")
         def test_fp_01_06_verify_reg_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_presence_and_visibility = page.check_reg_link_presence_and_visibility()
             link_clickability = page.check_reg_link_clickability()
             link_href = page.get_reg_link_href()
             link_status_code = requests.head(link_href).status_code
-            assert link_presence_and_visibility is not None, "The REG.RU link is absent or invisible"
             assert link_clickability is not None, "The REG.RU link is unclickable"
             assert link_href == FooterData.footer_links_href["reg_link_href"], \
                 "The attribute 'href' of the REG.RU link does not match the expected value"
             assert link_status_code in FooterData.footer_links_status_codes["reg_link_status_code"], \
                 "The REG.RU link status code does not match any of the expected values"
 
-        @allure.title("Verify presence, visibility, clickability, href, status code of the Selectel link in Footer")
+        @allure.title("Verify clickability, href, status code of the Selectel link in Footer")
         def test_fp_01_07_verify_selectel_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_presence_and_visibility = page.check_selectel_link_presence_and_visibility()
-            link_clickability = page.check_selectel_link_clickability()
             link_href = page.get_selectel_link_href()
             link_status_code = requests.head(link_href).status_code
-            assert link_presence_and_visibility is not None, "The Selectel link is absent or invisible"
-            assert link_clickability is not None, "The Selectel link is unclickable"
             assert link_href == FooterData.footer_links_href["selectel_link_href"], \
                 "The attribute 'href' of the Selectel link does not match the expected value"
             assert link_status_code == FooterData.footer_links_status_codes["selectel_link_status_code"], \
                 "The Selectel link status code does not match the expected value"
 
-        @allure.title("Verify presence, visibility and accuracy of the Contact us link in Footer")
+        @allure.title("Verify accuracy of the Contact us link in Footer")
         def test_fp_01_08_verify_contact_us_link(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_presence_and_visibility = page.check_contact_us_link_presence_and_visibility()
             link_clickability = page.check_contact_us_link_clickability()
             link_href = page.get_contact_us_link_href()
             link_prefix_and_subject = page.check_contact_us_link_href()
-            assert link_presence_and_visibility is not None, "The Contact us link is absent or invisible"
             assert link_clickability is not None, "The Contact us link is unclickable"
             assert link_href == FooterData.footer_links_href["contact_us_link_href"], \
                 "The attribute 'href' of the Contact us link does not match the expected value"
@@ -236,15 +223,11 @@ class TestFooter:
             assert True, "the Contact us link in Footer does not call an email client"
 
     class TestFooterImages:
-        @allure.title("Verify presence, visibility and accuracy of the ARASAAC link's image in Footer")
+        @allure.title("Verify accuracy of the ARASAAC link's image in Footer")
         def test_fp_04_01_verify_arasaac_link_image(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_image_presence = page.check_arasaac_image_presence()
-            link_image_visibility = page.check_arasaac_image_visibility()
             link_image_src = page.get_arasaac_image_src()
             link_image_alt = page.get_arasaac_image_alt()
-            assert link_image_presence is not None, "The image in the ARASAAC link is absent"
-            assert link_image_visibility, "The ARASAAC link image is invisible"
             assert link_image_src, "The 'src' attribute value of the ARASAAC link's image is empty"
             assert link_image_src == FooterData.footer_images_src["arasaac_img_src"], \
                 "The 'src' attribute value of the ARASAAC link image is unaccurate"
@@ -283,15 +266,11 @@ class TestFooter:
             assert image_height == image_height_new, \
                 f"The image height in the {link_href} link in Footer has changed due to resizing"
 
-        @allure.title("Verify presence, visibility and accuracy of the EPAM link's image in Footer")
+        @allure.title("Verify accuracy of the EPAM link's image in Footer")
         def test_fp_04_04_verify_epam_link_image(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_image_presence = page.check_epam_image_presence()
-            link_image_visibility = page.check_epam_image_visibility()
             link_image_src = page.get_epam_image_src()
             link_image_alt = page.get_epam_image_alt()
-            assert link_image_presence is not None, "The image in the EPAM link is absent"
-            assert link_image_visibility, "The EPAM link image is invisible"
             assert link_image_src, "The 'src' attribute value of the EPAM link's image is empty"
             assert link_image_src == FooterData.footer_images_src["epam_img_src"], \
                 "The 'src' attribute value of the EPAM link image is unaccurate"
@@ -330,15 +309,11 @@ class TestFooter:
             assert image_height == image_height_new, \
                 f"The image height in the {link_href} link in Footer has changed due to resizing"
 
-        @allure.title("Verify presence, visibility and accuracy of the JETBRAINS link's image in Footer")
+        @allure.title("Verify accuracy of the JETBRAINS link's image in Footer")
         def test_fp_04_07_verify_jetbrains_link_image(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_image_presence = page.check_jetbrains_image_presence()
-            link_image_visibility = page.check_jetbrains_image_visibility()
             link_image_src = page.get_jetbrains_image_src()
             link_image_alt = page.get_jetbrains_image_alt()
-            assert link_image_presence is not None, "The image in the JETBRAINS link is absent"
-            assert link_image_visibility, "The image in the JETBRAINS link is invisible"
             assert link_image_src == FooterData.footer_images_src["jetbrains_img_src"], \
                 "The 'src' attribute value of the JETBRAINS link image is unaccurate"
             assert link_image_alt, "The 'alt' attribute value of the JETBRAINS link image is empty"
@@ -376,15 +351,11 @@ class TestFooter:
             assert image_height == image_height_new, \
                 f"The image height in the {link_href} link in Footer has changed due to resizing"
 
-        @allure.title("Verify presence, visibility and accuracy of the REG.RU link's image in Footer")
+        @allure.title("Verify accuracy of the REG.RU link's image in Footer")
         def test_fp_04_10_verify_reg_link_image(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_image_presence = page.check_reg_image_presence()
-            link_image_visibility = page.check_reg_image_visibility()
             link_image_src = page.get_reg_image_src()
             link_image_alt = page.get_reg_image_alt()
-            assert link_image_presence is not None, "The image in the REG.RU link is absent"
-            assert link_image_visibility, "The image in the REG.RU link is invisible"
             assert link_image_src == FooterData.footer_images_src["reg_img_src"], \
                 "The 'src' attribute value of the REG.RU link image is unaccurate"
             assert link_image_alt, "The 'alt' attribute value of the REG.RU link image is empty"
@@ -421,15 +392,11 @@ class TestFooter:
             assert image_height == image_height_new, \
                 f"The image height in the {link_href} link in Footer has changed due to resizing"
 
-        @allure.title("Verify presence, visibility and accuracy of the Selectel link's image in Footer")
+        @allure.title("Verify accuracy of the Selectel link's image in Footer")
         def test_fp_04_13_verify_selectel_link_image(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_image_presence = page.check_selectel_image_presence()
-            link_image_visibility = page.check_selectel_image_visibility()
             link_image_src = page.get_selectel_image_src()
             link_image_alt = page.get_selectel_image_alt()
-            assert link_image_presence is not None, "The image in the Selectel link is absent"
-            assert link_image_visibility, "The image in the Selectel link is invisible"
             assert link_image_src == FooterData.footer_images_src["selectel_img_src"], \
                 "The 'src' attribute value of the Selectel link image is unaccurate"
             assert link_image_alt, "The 'alt' attribute value of the Selectel link image is empty"
