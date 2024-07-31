@@ -13,6 +13,7 @@ class FooterLocators:
     FOOTER_IMAGES = (By.XPATH, "//footer//img")
     FOOTER_LINKS = (By.XPATH, "//footer//a")
     FOOTER_TEXT = (By.XPATH, "//span[@data-test-support-message]")
+    WITH_THE_SUPPORT_TEXT = (By.XPATH, "//span[@data-test-support-message]")
 
     ARASAAC_LINK = (By.XPATH, "(//footer//li)[3]/a")
     CONTACT_US_LINK = (By.XPATH, "//footer//a[@title]")
@@ -20,7 +21,6 @@ class FooterLocators:
     JETBRAINS_LINK = (By.XPATH, "(//footer//li)[1]/a")
     REG_LINK = (By.XPATH, "(//footer//li)[2]/a")
     SELECTEL_LINK = (By.XPATH, "(//footer//li)[4]/a")
-    WITH_THE_SUPPORT_PHRASE_TEXT = (By.XPATH, "//span[@data-test-support-message]")
 
     FOOTER_ELEMENTS_LOCATORS = {
         "FOOTER_SECTION": (By.TAG_NAME, "footer"),

@@ -113,6 +113,11 @@ class FooterPage(BasePage):
     def check_images_visibility(self):
         return all(element.is_displayed() for element in self.get_list_of_images())
 
+    # Checking text on the tab&page
+    @allure.step("Get content of text in the Footer")
+    def get_footer_text(self):
+        return self.get_text(self.locators.WITH_THE_SUPPORT_TEXT)
+
     @allure.step("Find the element on the page")
     def find_element(self, locator):
         return self.driver.find_element(*locator)

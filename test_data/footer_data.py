@@ -1,6 +1,9 @@
+"""Data for verifying web elements in the Footer"""
 
 
 class FooterData:
+    with_the_support_text = ["При поддержке", "With the support"]
+
     footer_elements_text = {
         "contact_us_link_text": ["Обратная связь", "Contact us"],
         "with_the_support_phrase_text": ["При поддержке", "With the support"]
@@ -42,7 +45,7 @@ class FooterData:
     # Related web pages elements text
     footer_related_elements_text = {
         "arasaac_start_page_text": ["Центр альтернативной и аументативной коммуникации Арагона",
-                                "Aragonese Center of Augmentative and Alternative Communication"],
+                                    "Aragonese Center of Augmentative and Alternative Communication"],
         "epam_start_page_text": "We can help you",
         "jetbrains_start_page_text": "The complete\ndeveloper toolkit",
         "reg_start_page_text": "Вход",
