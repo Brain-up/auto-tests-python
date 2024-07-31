@@ -69,6 +69,14 @@ class TestFooter:
             assert images_on_7th_level, "Images on the 7th level are absent in the Footer"
             assert images_visibility, "Images on the 7th level are invisible"
 
+    class TestFooterText:
+        @allure.title("Verify content of the text in the Footer")
+        def test_fp_02_01_verify_footer_text(self, driver, main_page_open):
+            page = FooterPage(driver)
+            text_content = page.get_footer_text()
+            assert text_content, "The text content in the Footer is empty"
+            assert text_content in FooterData.with_the_support_text, "Text in the Footer doesn't match the valid value"
+
     class TestFooterCommon:
         locators = FooterLocators()
         urls = PagesUrls
@@ -160,7 +168,7 @@ class TestFooter:
     class TestFooterForAuthorizedUserOnly:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")
-        def test_fp_02_01_verify_footer_invisibility_through_the_modal_window(self, driver, auto_test_user_authorized):
+        def test_fp_02_01_01_verify_footer_invisibility_through_the_modal_window(self, driver, auto_test_user_authorized):
             modal_window_page = FooterPage(driver, SpecificExercisesUrls.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
             assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()), \
