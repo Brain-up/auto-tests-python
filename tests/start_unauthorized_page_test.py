@@ -67,7 +67,7 @@ class TestStartUnauthorizedPage:
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
             assert tab_title_value == StartUnauthorizedPageData.tab_title, \
-                "The title value of the tab doesn't match the valid value"
+                "The title value of the tab mismatches the valid value"
 
         @allure.title("Verify values of titles and subtitles with tags h2, h4 on the page")
         def test_su_02_02_verify_page_titles_and_subtitles(self, driver, main_page_open):
@@ -76,30 +76,29 @@ class TestStartUnauthorizedPage:
             subtitle_values = page.get_values_of_subtitles()
             assert title_values, "Title values on the page are empty"
             assert all(title_value in StartUnauthorizedPageData.page_titles for title_value in title_values), \
-                "Titles on the page do not match any valid values"
+                "Titles on the page mismatch any valid values"
             assert subtitle_values, "Subtitle values on the page are empty"
             assert all(subtitle_value in StartUnauthorizedPageData.page_subtitles for subtitle_value
-                       in subtitle_values), "Subtitles do not match any valid values"
+                       in subtitle_values), "Subtitles mismatch any valid values"
 
         @allure.title("Verify content of the text in sections 1, 2")
         def test_su_02_03_verify_page_text(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             text_content_section1 = page.get_text_content_in_section1()
             text_content_section2 = page.get_text_content_in_section2()
-            assert text_content_section1, "The text content in the section 1 is empty"
+            assert text_content_section1, "Text content in the section 1 is empty"
             assert text_content_section1 in StartUnauthorizedPageData.text_on_page["text_in_section1"], \
-                "The text in the section 1 does not match any valid values"
+                "Text in the section 1 mismatches any valid values"
             assert text_content_section2, "The text content in the section 2 is empty"
             assert text_content_section2 == StartUnauthorizedPageData.text_on_page["text_in_section2"], \
-                "The text in the section 2 does not match the valid values"
+                "Text in the section 2 mismatches the valid values"
 
         @allure.title("Verify text in the 'Login' link in the section 1")
         def test_su_02_04_verify_text_in_links(self, driver, main_page_open):
             page = StartUnauthorizedPage(driver)
             link_text = page.get_text_in_login_link()
             assert link_text, "Text in the link is empty"
-            assert link_text in StartUnauthorizedPageData.login_link_text, \
-                f"The text in the 'Login' link does not match any valid values"
+            assert link_text in StartUnauthorizedPageData.login_link_text, "Text in the link mismatches the valid value"
 
     class TestStartUnauthorizedPageLinks:
         @allure.title("""Verify presence, visibility, clickability, href, status code 
@@ -116,9 +115,9 @@ class TestStartUnauthorizedPage:
             assert link_clickability, "The 'Login' link is unclickable"
             assert link_href, "Link href is empty"
             assert link_href == StartUnauthorizedPageData.login_link_href, \
-                "The attribute 'href' of the link does not match the valid value"
+                "The attribute 'href' of the link mismatches the valid value"
             assert link_status_code == StartUnauthorizedPageData.login_link_status_code, \
-                "The status code of the link does not match the valid value"
+                "The status code of the link mismatches the valid value"
 
         @allure.title("Verify that the 'Login' link leads to the correct page after clicking")
         def test_su_03_02_verify_login_link_leads_to_the_correct_page(self, driver, main_page_open):
@@ -140,10 +139,10 @@ class TestStartUnauthorizedPage:
             assert image_visibility, "The image is invisible in the section 1"
             assert image_src, "The 'src' attribute value of the image is empty"
             assert StartUnauthorizedPageData.image_src_in_section1 in image_src, \
-                "The 'src' attribute value of the image in the section 1 does not match the valid value"
+                "The 'src' attribute value of the image in the section 1 mismatches the valid value"
             assert image_alt, "The 'alt' attribute value of the image is empty"
             assert image_alt == StartUnauthorizedPageData.image_alt_in_section1, \
-                "The 'alt' attribute value of the image in the section 1 does not match the valid value"
+                "The 'alt' attribute value of the image in the section 1 mismatches the valid value"
 
         @allure.title("Verify size of the image in the section 1")
         def test_su_04_02_verify_image_size_in_section1(self, driver, main_page_open):

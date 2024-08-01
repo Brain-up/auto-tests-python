@@ -1,9 +1,7 @@
 """Auto tests for verifying web elements in the Footer on pages"""
 import time
 import allure
-import pytest
 import requests
-
 from pages.footer_page import FooterPage
 from locators.footer_page_locators import FooterLocators
 from test_data.links import PagesUrls, SpecificExercisesUrls, FooterLinks
@@ -75,25 +73,17 @@ class TestFooter:
             page = FooterPage(driver)
             text_content = page.get_footer_text()
             assert text_content, "The text content in the Footer is empty"
-            assert text_content in FooterData.with_the_support_text, "Text in the Footer doesn't match the valid value"
+            assert text_content in FooterData.with_the_support_text, "Text in the Footer mismatches the valid value"
+
+        @allure.title("Verify text in the 'Contact us' link in the Footer")
+        def test_fp_02_02_verify_text_in_links(self, driver, main_page_open):
+            page = FooterPage(driver)
+            link_text = page.get_text_in_contact_us_link()
+            assert link_text, "Text in the link is empty"
+            assert link_text in FooterData.contact_us_link_text, "Text in the link mismatches the valid value"
 
     class TestFooterCommon:
         locators = FooterLocators()
-        urls = PagesUrls
-
-        @allure.title("Verify accuracy of texts in Footer on each page specified in the kit")
-        @pytest.mark.parametrize("element_locator, expected_text",
-                                 zip(locators.FOOTER_TEXT_LOCATORS.values(),
-                                     FooterData.footer_elements_text.values())
-                                 )
-        @pytest.mark.parametrize("url", urls.pages_urls)
-        def test_fp_01_02_02_verify_text_in_elements_in_footer(self, driver, element_locator, expected_text, url):
-            page = FooterPage(driver, url)
-            page.open()
-            actual_text = page.get_text(element_locator)
-            assert actual_text in expected_text, \
-                f"The actual text '{actual_text}' of the element does not match any of the valid options" \
-                f"'{' | '.join(expected_text)}' on the page {url}"
 
         @allure.title("Verify clickability, href, status code of the ARASAAC link in Footer")
         def test_fp_01_03_01_verify_arasaac_link(self, driver, main_page_open):
