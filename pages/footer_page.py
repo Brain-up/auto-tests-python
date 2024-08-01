@@ -7,6 +7,7 @@ class FooterPage(BasePage):
     locators = FooterLocators
     locators1 = RelatedPagesElementsLocators
 
+    # Checking the structure and display of elements in the Footer
     @allure.step("Check Footer is present in the DOM tree on the page")
     def check_footer_presence(self):
         return self.element_is_present(self.locators.FOOTER)
@@ -89,11 +90,11 @@ class FooterPage(BasePage):
     def check_elements_visibility_on_7th_level_on_page(self):
         return all(element.is_displayed() for element in self.get_structure_of_7th_level())
 
-    @allure.step("Check the text on the 4th level of nesting is present in the Footer")
+    @allure.step("Check text on the 4th level of nesting is present in the Footer")
     def check_text_presence(self):
         return self.element_is_present(self.locators.FOOTER_TEXT)
 
-    @allure.step("Check the text in the Footer is visible")
+    @allure.step("Check text in the Footer is visible")
     def check_text_visibility(self):
         return self.element_is_visible(self.locators.FOOTER_TEXT)
 
@@ -113,10 +114,14 @@ class FooterPage(BasePage):
     def check_images_visibility(self):
         return all(element.is_displayed() for element in self.get_list_of_images())
 
-    # Checking text on the tab&page
+    # Checking text in the Footer
     @allure.step("Get content of text in the Footer")
     def get_footer_text(self):
         return self.get_text(self.locators.WITH_THE_SUPPORT_TEXT)
+
+    @allure.step("Get text in the 'Contact us' link in the Footer")
+    def get_text_in_contact_us_link(self):
+        return self.get_text(self.locators.CONTACT_US_LINK)
 
     @allure.step("Find the element on the page")
     def find_element(self, locator):

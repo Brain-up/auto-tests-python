@@ -3,11 +3,7 @@
 
 class FooterData:
     with_the_support_text = ["При поддержке", "With the support"]
-
-    footer_elements_text = {
-        "contact_us_link_text": ["Обратная связь", "Contact us"],
-        "with_the_support_phrase_text": ["При поддержке", "With the support"]
-    }
+    contact_us_link_text = ["Обратная связь", "Contact us"]
 
     footer_images_src = {
         "arasaac_img_src": "https://brainup.site/logos/logo_ARASAAC_black-6aced95542b919137b28bced5be83596.png",
