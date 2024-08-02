@@ -1,4 +1,5 @@
 import allure
+import requests
 from locators.footer_page_locators import FooterLocators, RelatedPagesElementsLocators
 from pages.base_page import BasePage
 
@@ -102,6 +103,10 @@ class FooterPage(BasePage):
     def get_list_of_links(self):
         return self.elements_are_present(self.locators.FOOTER_LINKS)
 
+    @allure.step("Get the list of links to supporters")
+    def get_list_of_supporter_links(self):
+        return self.elements_are_present(self.locators.SUPPORTER_LINKS)
+
     @allure.step("Check links in the Footer are visible")
     def check_links_visibility(self):
         return all(element.is_displayed() for element in self.get_list_of_links())
@@ -123,6 +128,30 @@ class FooterPage(BasePage):
     def get_text_in_contact_us_link(self):
         return self.get_text(self.locators.CONTACT_US_LINK)
 
+    # Checking links in the Footer
+    @allure.step("Check if links are clickable in the Footer")
+    def check_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list_of_links())
+
+    @allure.step("Get attribute 'href' of in the Footer")
+    def get_links_href(self):
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
+
+    @allure.step("Get attribute 'href' of the 'Contact us' link")
+    def get_contact_us_link_href(self):
+        return self.get_link_href(self.locators.CONTACT_US_LINK)
+
+    @allure.step("Check the prefix and the subject in the attribute 'href' of the 'Contact us' link")
+    def check_contact_us_link_href(self):
+        link_href = self.get_contact_us_link_href()
+        # print(link_href.startswith('mailto'), link_href.endswith('subject=BrainUp'))
+        return link_href.startswith('mailto'), link_href.endswith('subject=BrainUp')
+
+    @allure.step("Get status code of links to supporters")
+    def get_supporter_links_status_codes(self):
+        links_href = [element.get_attribute("href") for element in self.get_list_of_supporter_links()]
+        return [requests.head(link_href).status_code for link_href in links_href]
+
     @allure.step("Find the element on the page")
     def find_element(self, locator):
         return self.driver.find_element(*locator)
@@ -142,18 +171,6 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'height' of an element's image")
     def get_image_height(self, locator):
         return self.driver.find_element(*locator).get_attribute("height")
-
-    @allure.step("Check the ARASAAC link is present in Footer")
-    def check_arasaac_link_presence(self):
-        return self.element_is_present(self.locators.ARASAAC_LINK)
-
-    @allure.step("Check the ARASAAC link is visible in Footer")
-    def check_arasaac_link_visibility(self):
-        return self.element_is_visible(self.locators.ARASAAC_LINK)
-
-    @allure.step("Check the ARASAAC link is clickable in Footer")
-    def check_arasaac_link_clickability(self):
-        return self.element_is_clickable(self.locators.ARASAAC_LINK)
 
     @allure.step("Click on the ARASAAC link in Footer and thereby open the corresponding web page in a new tab")
     def click_arasaac_link(self):
@@ -191,18 +208,6 @@ class FooterPage(BasePage):
     def get_visible_height_of_arasaac_image(self):
         return self.get_image_height(self.locators.ARASAAC_IMAGE)
 
-    @allure.step("Check the EPAM link is present in Footer")
-    def check_epam_link_presence(self):
-        return self.element_is_present(self.locators.EPAM_LINK)
-
-    @allure.step("Check the EPAM link is visible in Footer")
-    def check_epam_link_visibility(self):
-        return self.element_is_visible(self.locators.EPAM_LINK)
-
-    @allure.step("Check the EPAM link is clickable in Footer")
-    def check_epam_link_clickability(self):
-        return self.element_is_clickable(self.locators.EPAM_LINK)
-
     @allure.step("Click on the EPAM link in Footer and thereby open the corresponding web page in a new tab")
     def click_epam_link(self):
         self.element_is_present_and_clickable(self.locators.EPAM_LINK).click()
@@ -235,25 +240,13 @@ class FooterPage(BasePage):
     def get_visible_height_of_epam_image(self):
         return self.get_image_height(self.locators.EPAM_IMAGE)
 
-    @allure.step("Check the Jetbrains link is present in Footer")
-    def check_jetbrains_link_presence(self):
-        return self.element_is_present(self.locators.JETBRAINS_LINK)
-
-    @allure.step("Check the Jetbrains link is visible in Footer")
-    def check_jetbrains_link_visibility(self):
-        return self.element_is_visible(self.locators.JETBRAINS_LINK)
-
-    @allure.step("Check the Jetbrains link is clickable in Footer")
-    def check_jetbrains_link_clickability(self):
-        return self.element_is_clickable(self.locators.JETBRAINS_LINK)
-
     @allure.step("Click on the JETBRAINS link in Footer and thereby open the corresponding web page in a new tab")
     def click_jetbrains_link(self):
         self.element_is_present_and_clickable(self.locators.JETBRAINS_LINK).click()
 
-    # @allure.step("Get text of the element on the JETBRAINS page")
-    # def get_element_text_on_opened_jetbrains_tab(self):
-    #     return self.get_text(self.locators1.JETBRAINS_START_PAGE_TEXT)
+    @allure.step("Get text of the element on the JETBRAINS page")
+    def get_element_text_on_opened_jetbrains_tab(self):
+        return self.get_text(self.locators1.JETBRAINS_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the Jetbrains link")
     def get_jetbrains_link_href(self):
@@ -287,14 +280,6 @@ class FooterPage(BasePage):
     def get_visible_height_of_jetbrains_image(self):
         return self.get_image_height(self.locators.JETBRAINS_IMAGE)
 
-    @allure.step("Check the REG.RU link is present and visible in Footer")
-    def check_reg_link_presence_and_visibility(self):
-        return self.element_is_visible(self.locators.REG_LINK)
-
-    @allure.step("Check the REG.RU link is clickable in Footer")
-    def check_reg_link_clickability(self):
-        return self.element_is_clickable(self.locators.REG_LINK)
-
     @allure.step("Click on the REG.RU link in Footer and thereby open the corresponding web page in a new tab")
     def click_reg_link(self):
         return self.element_is_present_and_clickable(self.locators.REG_LINK).click()
@@ -326,14 +311,6 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'height' of the REG.RU image in Footer")
     def get_visible_height_of_reg_image(self):
         return self.get_image_height(self.locators.REG_IMAGE)
-
-    @allure.step("Check the Selectel link is present and visible in Footer")
-    def check_selectel_link_presence_and_visibility(self):
-        return self.element_is_visible(self.locators.SELECTEL_LINK)
-
-    @allure.step("Check the Selectel link is clickable in Footer")
-    def check_selectel_link_clickability(self):
-        return self.element_is_clickable(self.locators.SELECTEL_LINK)
 
     @allure.step("Click on the Selectel link in Footer and thereby open the corresponding web page in a new tab")
     def click_selectel_link(self):
@@ -371,24 +348,6 @@ class FooterPage(BasePage):
     def get_visible_height_of_selectel_image(self):
         return self.get_image_height(self.locators.SELECTEL_IMAGE)
 
-    @allure.step("Check the Contact us link is present and visible in Footer")
-    def check_contact_us_link_presence_and_visibility(self):
-        return self.element_is_visible(self.locators.CONTACT_US_LINK)
-
-    @allure.step("Check the Contact us link is clickable in Footer")
-    def check_contact_us_link_clickability(self):
-        return self.element_is_clickable(self.locators.CONTACT_US_LINK)
-
     @allure.step("Click on the Contact us link in Footer and thereby open an email client")
     def click_contact_us_link(self):
         self.element_is_present_and_clickable(self.locators.CONTACT_US_LINK).click()
-
-    @allure.step("Get attribute 'href' of the Contact us link")
-    def get_contact_us_link_href(self):
-        return self.get_link_href(self.locators.CONTACT_US_LINK)
-
-    @allure.step("Check the prefix and the subject in the attribute 'href' of the Contact us link")
-    def check_contact_us_link_href(self):
-        link_href = self.get_contact_us_link_href()
-        # print(link_href.startswith('mailto'), link_href.endswith('subject=BrainUp'))
-        return link_href.startswith('mailto'), link_href.endswith('subject=BrainUp')

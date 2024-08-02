@@ -5,6 +5,17 @@ class FooterData:
     with_the_support_text = ["При поддержке", "With the support"]
     contact_us_link_text = ["Обратная связь", "Contact us"]
 
+    links_href = [
+        "https://arasaac.org/",
+        "mailto:brainupproject@yandex.ru?subject=BrainUp",
+        "https://epam.com/",
+        "https://www.jetbrains.com/",
+        "https://reg.ru/",
+        "https://selectel.ru/"
+    ]
+
+    links_status_codes = [200, 301]
+
     footer_images_src = {
         "arasaac_img_src": "https://brainup.site/logos/logo_ARASAAC_black-6aced95542b919137b28bced5be83596.png",
         "epam_img_src": "https://brainup.site/logos/epam-cd401151c8ee5f14afbba10b72cd5fea.png",
@@ -19,23 +30,6 @@ class FooterData:
         "jetbrains_img_alt": "JetBrains",
         "reg_img_alt": "Регистратор доменных имен РЕГ.РУ",
         "selectel_img_alt": "Selectel"
-    }
-
-    footer_links_href = {
-        "arasaac_link_href": "https://arasaac.org/",
-        "contact_us_link_href": "mailto:brainupproject@yandex.ru?subject=BrainUp",
-        "epam_link_href": "https://epam.com/",
-        "jetbrains_link_href": "https://www.jetbrains.com/",
-        "reg_link_href": "https://reg.ru/",
-        "selectel_link_href": "https://selectel.ru/"
-    }
-
-    footer_links_status_codes = {
-        "arasaac_link_status_code": 200,
-        "epam_link_status_code": 301,
-        "jetbrains_link_status_code": 200,
-        "reg_link_status_code": [200, 301, 302],
-        "selectel_link_status_code": 200
     }
 
     # Related web pages elements text

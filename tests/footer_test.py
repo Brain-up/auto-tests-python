@@ -1,10 +1,9 @@
 """Auto tests for verifying web elements in the Footer on pages"""
 import time
 import allure
-import requests
 from pages.footer_page import FooterPage
 from locators.footer_page_locators import FooterLocators
-from test_data.links import PagesUrls, SpecificExercisesUrls, FooterLinks
+from test_data.links import SpecificExercisesUrls, FooterLinks
 from test_data.footer_data import FooterData
 
 
@@ -68,7 +67,7 @@ class TestFooter:
             assert images_visibility, "Images on the 7th level are invisible"
 
     class TestFooterText:
-        @allure.title("Verify content of the text in the Footer")
+        @allure.title("Verify content of text in the Footer")
         def test_fp_02_01_verify_footer_text(self, driver, main_page_open):
             page = FooterPage(driver)
             text_content = page.get_footer_text()
@@ -82,78 +81,22 @@ class TestFooter:
             assert link_text, "Text in the link is empty"
             assert link_text in FooterData.contact_us_link_text, "Text in the link mismatches the valid value"
 
-    class TestFooterCommon:
-        locators = FooterLocators()
-
-        @allure.title("Verify clickability, href, status code of the ARASAAC link in Footer")
-        def test_fp_01_03_01_verify_arasaac_link(self, driver, main_page_open):
+    class TestFooterLinks:
+        @allure.title("Verify clickability, href, prefix and subject, status code of links in the Footer")
+        def test_fp_03_01_verify_footer_links(self, driver, main_page_open):
             page = FooterPage(driver)
-            link_clickability = page.check_arasaac_link_clickability()
-            link_href = page.get_arasaac_link_href()
-            link_status_code = requests.head(link_href).status_code
-            assert link_clickability, f"The {link_href} link is unclickable"
-            assert link_href == FooterData.footer_links_href["arasaac_link_href"], \
-                f"The attribute 'href' of the {link_href} link does not match the expected value"
-            assert link_status_code == FooterData.footer_links_status_codes["arasaac_link_status_code"], \
-                f"The {link_href} link status code does not match the expected value"
-
-        @allure.title("Verify clickability, href, status code of the EPAM link in Footer")
-        def test_fp_01_04_verify_epam_link(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_clickability = page.check_epam_link_clickability()
-            link_href = page.get_epam_link_href()
-            link_status_code = requests.head(link_href).status_code
-            assert link_clickability, f"The {link_href} link is unclickable"
-            assert link_href == FooterData.footer_links_href["epam_link_href"], \
-                f"The attribute 'href' of the {link_href} link does not match the expected value"
-            assert link_status_code == FooterData.footer_links_status_codes["epam_link_status_code"], \
-                f"The {link_href} link status code does not match the expected value"
-
-        @allure.title("Verify clickability, href, status code of the JETBRAINS link in Footer")
-        def test_fp_01_05_verify_jetbrains_link(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_clickability = page.check_jetbrains_link_clickability()
-            link_href = page.get_jetbrains_link_href()
-            link_status_code = requests.head(link_href).status_code
-            assert link_clickability, f"The {link_href} link is unclickable"
-            assert link_href == FooterData.footer_links_href["jetbrains_link_href"], \
-                f"The attribute 'href' of the {link_href} link does not match the expected value"
-            assert link_status_code == FooterData.footer_links_status_codes["jetbrains_link_status_code"], \
-                f"The {link_href} link status code does not match the expected value"
-
-        @allure.title("Verify clickability, href, status code of the REG.RU link in Footer")
-        def test_fp_01_06_verify_reg_link(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_clickability = page.check_reg_link_clickability()
-            link_href = page.get_reg_link_href()
-            link_status_code = requests.head(link_href).status_code
-            assert link_clickability is not None, "The REG.RU link is unclickable"
-            assert link_href == FooterData.footer_links_href["reg_link_href"], \
-                "The attribute 'href' of the REG.RU link does not match the expected value"
-            assert link_status_code in FooterData.footer_links_status_codes["reg_link_status_code"], \
-                "The REG.RU link status code does not match any of the expected values"
-
-        @allure.title("Verify clickability, href, status code of the Selectel link in Footer")
-        def test_fp_01_07_verify_selectel_link(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_selectel_link_href()
-            link_status_code = requests.head(link_href).status_code
-            assert link_href == FooterData.footer_links_href["selectel_link_href"], \
-                "The attribute 'href' of the Selectel link does not match the expected value"
-            assert link_status_code == FooterData.footer_links_status_codes["selectel_link_status_code"], \
-                "The Selectel link status code does not match the expected value"
-
-        @allure.title("Verify accuracy of the Contact us link in Footer")
-        def test_fp_01_08_verify_contact_us_link(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_clickability = page.check_contact_us_link_clickability()
-            link_href = page.get_contact_us_link_href()
+            links_clickability = page.check_links_clickability()
+            links_href = page.get_links_href()
             link_prefix_and_subject = page.check_contact_us_link_href()
-            assert link_clickability is not None, "The Contact us link is unclickable"
-            assert link_href == FooterData.footer_links_href["contact_us_link_href"], \
-                "The attribute 'href' of the Contact us link does not match the expected value"
+            links_status_codes = page.get_supporter_links_status_codes()
+            assert links_clickability, "Links are unclickable"
+            assert links_href, "Links href are empty"
+            assert all(link_href in FooterData.links_href for link_href in links_href), \
+                "Attributes 'href' of links mismatch valid values"
             assert link_prefix_and_subject, \
-                "The attribute 'href' of the Contact us link does not contain the proper prefix and/or subject"
+                "The attribute 'href' of the 'Contact us' link does not contain the proper prefix and/or subject"
+            assert all(status_code in FooterData.links_status_codes for status_code in links_status_codes), \
+                "Status codes of links mismatch valid values"
 
     class TestFooterForAuthorizedUserOnly:
 
@@ -169,7 +112,7 @@ class TestFooter:
 
     class TestFooterNavigation:
         @allure.title("Verify that the ARASAAC link in Footer leads to the correct page after click")
-        def test_fp_03_01_verify_arasaac_link_leads_to_the_correct_page(self, driver, main_page_open):
+        def test_fp_03_01_01_verify_arasaac_link_leads_to_the_correct_page(self, driver, main_page_open):
             page = FooterPage(driver)
             page.click_arasaac_link()
             page.switch_to_new_window()
