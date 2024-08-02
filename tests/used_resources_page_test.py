@@ -50,7 +50,7 @@ class TestUsedResourcesPage:
                 tab_title_value = page.get_value_of_tab_title()
                 assert tab_title_value, "The title value of the tab is empty"
                 assert tab_title_value == UsedResourcesPageData.tab_title_current, \
-                    "The title value of the tab doesn't match the valid value"
+                    "The title value of the tab mismatches the valid value"
 
             @allure.title("Verify value of title with tag 'h1' on the page")
             def test_ur_02_02_verify_page_title(self, driver, auto_test_user_authorized):
@@ -59,16 +59,15 @@ class TestUsedResourcesPage:
                 title_value = page.get_value_of_page_title()
                 assert title_value, "The title value on the page is empty"
                 assert title_value in UsedResourcesPageData.page_title, \
-                    "The title on the page doesn't match the valid value"
+                    "The title on the page mismatches the valid value"
 
             @allure.title("Verify content of the text on the page")
             def test_ur_02_03_verify_page_text(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
                 text_content = page.get_text_content_on_page()
-                assert text_content, "The text content on the page is empty"
-                assert text_content in UsedResourcesPageData.text_on_page, \
-                    "The text content does not match the valid value"
+                assert text_content, "Text content on the page is empty"
+                assert text_content in UsedResourcesPageData.text_on_page, "Text content mismatches the valid value"
 
             @allure.title("Verify text in links in the sections")
             def test_ur_02_04_verify_text_in_links(self, driver, auto_test_user_authorized):
@@ -76,8 +75,8 @@ class TestUsedResourcesPage:
                 page.open_used_resources_page()
                 links_text = page.get_text_in_links()
                 assert links_text, "Text in links is empty"
-                assert all(link_text in UsedResourcesPageData.links_text for link_text in links_text), \
-                    "Text in links does not match the valid values"
+                assert all(links_text in UsedResourcesPageData.links_text for links_text in links_text), \
+                    "Text in links mismatch valid values"
 
         class TestUsedResourcesPageForAuthorizedUserLinks:
             @allure.title("""Verify presence, visibility, clickability, href, status code of links in the sections""")
@@ -88,16 +87,15 @@ class TestUsedResourcesPage:
                 links_visibility = page.check_links_visibility()
                 links_clickability = page.check_links_clickability()
                 links_href = page.get_links_href()
-                links_status_codes = page.get_links_status_codes()
+                link_status_codes = page.get_links_status_codes()
                 assert links_presence, "Links are absent on the page"
                 assert links_visibility, "Links are invisible"
                 assert links_clickability, "Links are unclickable"
                 assert links_href, "Links href are empty"
                 assert all(link_href in UsedResourcesPageData.links_href for link_href in links_href), \
-                    "Attributes 'href' of links do not match the valid values"
-                assert all(link_status_code in UsedResourcesPageData.links_status_codes
-                           for link_status_code in links_status_codes), \
-                    "Status codes of links do not match the valid values"
+                    "Attributes 'href' of links mismatch valid values"
+                assert all(element in UsedResourcesPageData.link_status_codes for element in link_status_codes), \
+                    "Status codes of links mismatch valid values"
 
             @allure.title("Verify that links in the sections lead to the correct pages after clicking")
             def test_ur_03_02_verify_links_lead_to_the_correct_pages(self, driver, auto_test_user_authorized):
@@ -115,9 +113,9 @@ class TestUsedResourcesPage:
                 icons_presence = page.get_list_of_icons()
                 icons_visibility = page.check_icons_visibility()
                 icons_xmlns = page.get_icons_xmlns()
-                assert icons_presence, "The icons in the sections are absent"
-                assert icons_visibility, "The icons in the sections are invisible"
-                assert icons_xmlns, "The 'xmlns' attribute value of the icons in the sections is empty"
+                assert icons_presence, "Icons in sections are absent"
+                assert icons_visibility, "Icons in sections are invisible"
+                assert icons_xmlns, "The 'xmlns' attribute value of icons in sections are empty"
                 assert all(icon_xmlns == UsedResourcesPageData.icons_xmlns for icon_xmlns in icons_xmlns), \
                     "The 'xmlns' attribute value of some icons is empty or non-accurate"
 
@@ -127,5 +125,5 @@ class TestUsedResourcesPage:
                 page.open_used_resources_page()
                 icons_size = page.get_icons_sizes()
                 icons_size_changes = page.check_size_changes_of_icons()
-                assert icons_size != 0, "The icons in the sections hasn't sizes"
+                assert icons_size != 0, "Icons in sections haven't sizes"
                 assert icons_size_changes, "Checks of changes of icons sizes have not carried out"

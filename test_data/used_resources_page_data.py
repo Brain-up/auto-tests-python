@@ -31,7 +31,7 @@ class UsedResourcesPageData:
         "thome/Alphabetical_list.html"
     ]
 
-    links_status_codes = [200, 301]
+    link_status_codes = [200, 301]
 
     icons_xmlns = "http://www.w3.org/2000/svg"
 
