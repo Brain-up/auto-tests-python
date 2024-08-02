@@ -14,7 +14,7 @@ class FooterData:
         "https://selectel.ru/"
     ]
 
-    links_status_codes = [200, 301]
+    link_status_codes = [200, 301]
 
     footer_images_src = {
         "arasaac_img_src": "https://brainup.site/logos/logo_ARASAAC_black-6aced95542b919137b28bced5be83596.png",

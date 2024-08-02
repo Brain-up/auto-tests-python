@@ -88,14 +88,14 @@ class TestFooter:
             links_clickability = page.check_links_clickability()
             links_href = page.get_links_href()
             link_prefix_and_subject = page.check_contact_us_link_href()
-            links_status_codes = page.get_supporter_links_status_codes()
+            link_status_codes = page.get_supporter_links_status_codes()
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
             assert all(link_href in FooterData.links_href for link_href in links_href), \
                 "Attributes 'href' of links mismatch valid values"
             assert link_prefix_and_subject, \
                 "The attribute 'href' of the 'Contact us' link does not contain the proper prefix and/or subject"
-            assert all(status_code in FooterData.links_status_codes for status_code in links_status_codes), \
+            assert all(status_code in FooterData.link_status_codes for status_code in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
     class TestFooterForAuthorizedUserOnly:
