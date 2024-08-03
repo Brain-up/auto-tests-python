@@ -144,13 +144,25 @@ class FooterPage(BasePage):
     @allure.step("Check the prefix and the subject in the attribute 'href' of the 'Contact us' link")
     def check_contact_us_link_href(self):
         link_href = self.get_contact_us_link_href()
-        # print(link_href.startswith('mailto'), link_href.endswith('subject=BrainUp'))
         return link_href.startswith('mailto'), link_href.endswith('subject=BrainUp')
 
     @allure.step("Get status code of links to supporters")
     def get_supporter_links_status_codes(self):
         links_href = [element.get_attribute("href") for element in self.get_list_of_supporter_links()]
         return [requests.head(link_href).status_code for link_href in links_href]
+
+    @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
+    def click_on_links(self):
+        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
+        new_tabs_urls = []
+        for i in range(1, len(new_tabs) + 1):
+            self.driver.switch_to.window(self.driver.window_handles[i])
+            new_tabs_urls.append(self.get_current_tab_url())
+        return new_tabs_urls
+
+    @allure.step("Click on the 'Contact us' link in the Footer and thereby open an email client")
+    def click_contact_us_link(self):
+        self.element_is_present_and_clickable(self.locators.CONTACT_US_LINK).click()
 
     @allure.step("Find the element on the page")
     def find_element(self, locator):
@@ -171,14 +183,6 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'height' of an element's image")
     def get_image_height(self, locator):
         return self.driver.find_element(*locator).get_attribute("height")
-
-    @allure.step("Click on the ARASAAC link in Footer and thereby open the corresponding web page in a new tab")
-    def click_arasaac_link(self):
-        self.element_is_present_and_clickable(self.locators.ARASAAC_LINK).click()
-
-    @allure.step("Get text of the element on the ARASAAC page")
-    def get_element_text_on_opened_arasaac_tab(self):
-        return self.get_text(self.locators1.ARASAAC_OWNER_TITLE)
 
     @allure.step("Get attribute 'href' of the ARASAAC link")
     def get_arasaac_link_href(self):
@@ -208,10 +212,6 @@ class FooterPage(BasePage):
     def get_visible_height_of_arasaac_image(self):
         return self.get_image_height(self.locators.ARASAAC_IMAGE)
 
-    @allure.step("Click on the EPAM link in Footer and thereby open the corresponding web page in a new tab")
-    def click_epam_link(self):
-        self.element_is_present_and_clickable(self.locators.EPAM_LINK).click()
-
     @allure.step("Get attribute 'href' of the EPAM link")
     def get_epam_link_href(self):
         return self.get_link_href(self.locators.EPAM_LINK)
@@ -239,14 +239,6 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'height' of the EPAM image in Footer")
     def get_visible_height_of_epam_image(self):
         return self.get_image_height(self.locators.EPAM_IMAGE)
-
-    @allure.step("Click on the JETBRAINS link in Footer and thereby open the corresponding web page in a new tab")
-    def click_jetbrains_link(self):
-        self.element_is_present_and_clickable(self.locators.JETBRAINS_LINK).click()
-
-    @allure.step("Get text of the element on the JETBRAINS page")
-    def get_element_text_on_opened_jetbrains_tab(self):
-        return self.get_text(self.locators1.JETBRAINS_START_PAGE_TEXT)
 
     @allure.step("Get attribute 'href' of the Jetbrains link")
     def get_jetbrains_link_href(self):
@@ -280,10 +272,6 @@ class FooterPage(BasePage):
     def get_visible_height_of_jetbrains_image(self):
         return self.get_image_height(self.locators.JETBRAINS_IMAGE)
 
-    @allure.step("Click on the REG.RU link in Footer and thereby open the corresponding web page in a new tab")
-    def click_reg_link(self):
-        return self.element_is_present_and_clickable(self.locators.REG_LINK).click()
-
     @allure.step("Get attribute 'href' of the REG.RU link")
     def get_reg_link_href(self):
         return self.get_link_href(self.locators.REG_LINK)
@@ -312,14 +300,6 @@ class FooterPage(BasePage):
     def get_visible_height_of_reg_image(self):
         return self.get_image_height(self.locators.REG_IMAGE)
 
-    @allure.step("Click on the Selectel link in Footer and thereby open the corresponding web page in a new tab")
-    def click_selectel_link(self):
-        self.element_is_present_and_clickable(self.locators.SELECTEL_LINK).click()
-
-    @allure.step("Get text of the element on the Selectel page")
-    def get_element_text_on_opened_selectel_tab(self):
-        return self.get_text(self.locators1.SELECTEL_START_PAGE_TEXT)
-
     @allure.step("Get attribute 'href' of the Selectel link")
     def get_selectel_link_href(self):
         return self.get_link_href(self.locators.SELECTEL_LINK)
@@ -347,7 +327,3 @@ class FooterPage(BasePage):
     @allure.step("Get attribute 'height' of the Selectel image in Footer")
     def get_visible_height_of_selectel_image(self):
         return self.get_image_height(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Click on the Contact us link in Footer and thereby open an email client")
-    def click_contact_us_link(self):
-        self.element_is_present_and_clickable(self.locators.CONTACT_US_LINK).click()
