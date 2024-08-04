@@ -2,7 +2,9 @@
 
 
 class ContactsPageData:
-    amount_of_sections_with_content_on_page = 2
+    amount_of_sections = 2
+
+    tab_title = ["Контакты | BrainUp", "Contacts | BrainUp"]
 
     page_title = ["Контакты", "Contacts"]
 
@@ -20,21 +22,22 @@ class ContactsPageData:
          "project founder and tech lead in Telegram Elena Moshnikova https://t.me/ElenaLovesSpb"]
     ]
 
-    links_href = [
-        "https://t.me/BrainUpUsers",
-        "mailto:brainupproject@yandex.ru",
-        "https://t.me/ElenaLovesSpb"
-    ]
-
-    links_tm_href = [
-        "https://t.me/BrainUpUsers",
-        "https://t.me/ElenaLovesSpb"
-    ]
-
     links_text = [
         "https://t.me/BrainUpUsers",
         "brainupproject@yandex.ru",
         "https://t.me/ElenaLovesSpb"
     ]
 
-    links_status_codes = [200, 200]
+    links_href = [
+        "https://t.me/BrainUpUsers",
+        "mailto:brainupproject@yandex.ru",
+        "https://t.me/ElenaLovesSpb"
+    ]
+
+    links_status_code = 200
+
+    # Related web pages urls
+    pages_urls = [
+        "https://t.me/BrainUpUsers",
+        "https://t.me/ElenaLovesSpb"
+    ]

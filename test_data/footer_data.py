@@ -1,10 +1,20 @@
+"""Data for verifying web elements in the Footer"""
 
 
 class FooterData:
-    footer_elements_text = {
-        "contact_us_link_text": ["Обратная связь", "Contact us"],
-        "with_the_support_phrase_text": ["При поддержке", "With the support"]
-    }
+    with_the_support_text = ["При поддержке", "With the support"]
+    contact_us_link_text = ["Обратная связь", "Contact us"]
+
+    links_href = [
+        "https://arasaac.org/",
+        "mailto:brainupproject@yandex.ru?subject=BrainUp",
+        "https://epam.com/",
+        "https://www.jetbrains.com/",
+        "https://reg.ru/",
+        "https://selectel.ru/"
+    ]
+
+    link_status_codes = [200, 301]
 
     footer_images_src = {
         "arasaac_img_src": "https://brainup.site/logos/logo_ARASAAC_black-6aced95542b919137b28bced5be83596.png",
@@ -22,29 +32,11 @@ class FooterData:
         "selectel_img_alt": "Selectel"
     }
 
-    footer_links_href = {
-        "arasaac_link_href": "https://arasaac.org/",
-        "contact_us_link_href": "mailto:brainupproject@yandex.ru?subject=BrainUp",
-        "epam_link_href": "https://epam.com/",
-        "jetbrains_link_href": "https://www.jetbrains.com/",
-        "reg_link_href": "https://reg.ru/",
-        "selectel_link_href": "https://selectel.ru/"
-    }
-
-    footer_links_status_codes = {
-        "arasaac_link_status_code": 200,
-        "epam_link_status_code": 301,
-        "jetbrains_link_status_code": 200,
-        "reg_link_status_code": [200, 301, 302],
-        "selectel_link_status_code": 200
-    }
-
-    # Related web pages elements text
-    footer_related_elements_text = {
-        "arasaac_start_page_text": ["Центр альтернативной и аументативной коммуникации Арагона",
-                                "Aragonese Center of Augmentative and Alternative Communication"],
-        "epam_start_page_text": "We can help you",
-        "jetbrains_start_page_text": "The complete\ndeveloper toolkit",
-        "reg_start_page_text": "Вход",
-        "selectel_start_page_text": "Продукты и предложения"
-    }
+    # Related web pages urls
+    pages_urls = [
+        "https://arasaac.org/",
+        "https://www.epam.com/", "https://epam.com/",
+        "https://www.jetbrains.com/",
+        "https://www.reg.ru/", "https://reg.ru/",
+        "https://selectel.ru/"
+    ]
