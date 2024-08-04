@@ -1,9 +1,7 @@
 """Auto tests for verifying web elements in the Footer on pages"""
-import time
 import allure
 from pages.footer_page import FooterPage
-from locators.footer_page_locators import FooterLocators
-from test_data.links import SpecificExercisesUrls, FooterLinks
+from test_data.links import SpecificExercisesUrls
 from test_data.footer_data import FooterData
 
 
@@ -98,6 +96,19 @@ class TestFooter:
             assert all(status_code in FooterData.link_status_codes for status_code in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
+        @allure.title("Verify that links in the Footer lead to correct pages after clicking")
+        def test_fp_03_02_verify_links_lead_to_the_correct_pages(self, driver, main_page_open):
+            page = FooterPage(driver)
+            new_tabs_urls = page.click_on_links()
+            assert all(tab_url in FooterData.pages_urls for tab_url in new_tabs_urls), \
+                "Links in the Footer lead to incorrect pages after clicking or did not loaded during the allotted time"
+
+        @allure.title("Verify that the 'Contact us' link in the Footer calls an email client")
+        def test_fp_03_03_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
+            page = FooterPage(driver)
+            page.click_contact_us_link()
+            assert True, "the 'Contact us' link in the Footer does not call an email client"
+
     class TestFooterForAuthorizedUserOnly:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")
@@ -109,59 +120,6 @@ class TestFooter:
             assert (modal_window_page.check_footer_invisibility()
                     and modal_window_page.check_jetbrains_image_invisibility()), \
                 "Footer (including the Jetbrains image) is visible through the modal window"
-
-    class TestFooterNavigation:
-        @allure.title("Verify that the ARASAAC link in Footer leads to the correct page after click")
-        def test_fp_03_01_01_verify_arasaac_link_leads_to_the_correct_page(self, driver, main_page_open):
-            page = FooterPage(driver)
-            page.click_arasaac_link()
-            page.switch_to_new_window()
-            text_on_opened_tab = page.get_element_text_on_opened_arasaac_tab()
-            assert text_on_opened_tab in FooterData.footer_related_elements_text["arasaac_start_page_text"], \
-                "The ARASAAC link in Footer leads to an incorrect page after click " \
-                "or opened page does not load correctly"
-
-        @allure.title("Verify that the EPAM link in Footer leads to the correct page after click")
-        def test_fp_03_02_verify_epam_link_leads_to_the_correct_page(self, driver, main_page_open):
-            page = FooterPage(driver)
-            page.click_epam_link()
-            page.switch_to_new_window()
-            time.sleep(5)
-            assert page.driver.current_url in FooterLinks.EPAM_LINK, \
-                "The EPAM link in Footer leads to an incorrect page after click"
-
-        @allure.title("Verify that the JETBRAINS link in Footer leads to the correct page after click")
-        def test_fp_03_03_verify_jetbrains_link_leads_to_the_correct_page(self, driver, main_page_open):
-            page = FooterPage(driver)
-            page.click_jetbrains_link()
-            page.switch_to_new_window()
-            time.sleep(5)
-            assert page.driver.current_url in FooterLinks.JETBRAINS_LINK, \
-                "The JETBRAINS link in Footer leads to an incorrect page after click"
-
-        @allure.title("Verify that the REG.RU link in Footer leads to the correct page after click")
-        def test_fp_03_04_verify_reg_link_leads_to_the_correct_page(self, driver, main_page_open):
-            page = FooterPage(driver)
-            page.click_reg_link()
-            page.switch_to_new_window()
-            assert page.driver.current_url in FooterLinks.REG_LINK, \
-                "The REG.RU link in Footer leads to an incorrect page after click"
-
-        @allure.title("Verify that the SELECTEL link in Footer leads to the correct page after click")
-        def test_fp_03_05_verify_selectel_link_leads_to_the_correct_page(self, driver, main_page_open):
-            page = FooterPage(driver)
-            page.click_selectel_link()
-            page.switch_to_new_window()
-            text_on_opened_tab = page.get_element_text_on_opened_selectel_tab()
-            assert text_on_opened_tab == FooterData.footer_related_elements_text["selectel_start_page_text"], \
-                "The SELECTEL link in Footer leads to an incorrect page after click " \
-                "or opened page does not load correctly"
-
-        @allure.title("Verify that the Contact us link in Footer calls an email client")
-        def test_fp_03_06_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
-            page = FooterPage(driver)
-            page.click_contact_us_link()
-            assert True, "the Contact us link in Footer does not call an email client"
 
     class TestFooterImages:
         @allure.title("Verify accuracy of the ARASAAC link's image in Footer")

@@ -32,12 +32,11 @@ class FooterData:
         "selectel_img_alt": "Selectel"
     }
 
-    # Related web pages elements text
-    footer_related_elements_text = {
-        "arasaac_start_page_text": ["Центр альтернативной и аументативной коммуникации Арагона",
-                                    "Aragonese Center of Augmentative and Alternative Communication"],
-        "epam_start_page_text": "We can help you",
-        "jetbrains_start_page_text": "The complete\ndeveloper toolkit",
-        "reg_start_page_text": "Вход",
-        "selectel_start_page_text": "Продукты и предложения"
-    }
+    # Related web pages urls
+    pages_urls = [
+        "https://arasaac.org/",
+        "https://www.epam.com/", "https://epam.com/",
+        "https://www.jetbrains.com/",
+        "https://www.reg.ru/", "https://reg.ru/",
+        "https://selectel.ru/"
+    ]
