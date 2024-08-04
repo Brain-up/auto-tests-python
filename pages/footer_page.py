@@ -4,6 +4,7 @@ import requests
 from selenium.common import TimeoutException
 from locators.footer_page_locators import FooterLocators, RelatedPagesElementsLocators
 from pages.base_page import BasePage
+from test_data.footer_data import FooterData
 
 
 class FooterPage(BasePage):
@@ -164,7 +165,7 @@ class FooterPage(BasePage):
         return new_tabs_urls
 
     @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
-    def click_on_links(self):
+    def click_on_links2(self):
         new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
         print(len(new_tabs))
         new_tabs_urls = []
@@ -173,6 +174,22 @@ class FooterPage(BasePage):
             time.sleep(5)
             try:
                 new_tabs_urls.append(self.get_current_tab_url())
+            except TimeoutException:
+                print(f"The tab {i} has not been loaded during the allotted time")
+        print(new_tabs_urls)
+        return new_tabs_urls
+
+    @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
+    def click_on_links(self):
+        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
+        print(len(new_tabs))
+        new_tabs_urls = []
+        for i in range(1, len(new_tabs) + 1):
+            self.driver.switch_to.window(self.driver.window_handles[i])
+            time.sleep(5)
+            try:
+                if self.get_current_tab_url() in FooterData.pages_urls:
+                    new_tabs_urls.append(self.get_current_tab_url())
             except TimeoutException:
                 print(f"The tab {i} has not been loaded during the allotted time")
         print(new_tabs_urls)
