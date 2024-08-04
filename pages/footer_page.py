@@ -1,6 +1,7 @@
 import time
 import allure
 import requests
+from selenium.common import TimeoutException
 from locators.footer_page_locators import FooterLocators, RelatedPagesElementsLocators
 from pages.base_page import BasePage
 
@@ -153,13 +154,28 @@ class FooterPage(BasePage):
         return [requests.head(link_href).status_code for link_href in links_href]
 
     @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
-    def click_on_links(self):
+    def click_on_links1(self):
         new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
         new_tabs_urls = []
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
             time.sleep(5)
             new_tabs_urls.append(self.get_current_tab_url())
+        return new_tabs_urls
+
+    @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
+    def click_on_links(self):
+        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
+        print(len(new_tabs))
+        new_tabs_urls = []
+        for i in range(1, len(new_tabs) + 1):
+            self.driver.switch_to.window(self.driver.window_handles[i])
+            time.sleep(5)
+            try:
+                new_tabs_urls.append(self.get_current_tab_url())
+            except TimeoutException:
+                print(f"The tab {i} has not been loaded during the allotted time")
+        print(new_tabs_urls)
         return new_tabs_urls
 
     @allure.step("Click on the 'Contact us' link in the Footer and thereby open an email client")

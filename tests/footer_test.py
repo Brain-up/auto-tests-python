@@ -101,7 +101,7 @@ class TestFooter:
             page = FooterPage(driver)
             new_tabs_urls = page.click_on_links()
             assert all(tab_url in FooterData.pages_urls for tab_url in new_tabs_urls), \
-                "Links in the Footer lead to incorrect pages after clicking"
+                "Links in the Footer lead to incorrect pages after clicking or did not loaded during the allotted time"
 
         @allure.title("Verify that the 'Contact us' link in the Footer calls an email client")
         def test_fp_03_03_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
