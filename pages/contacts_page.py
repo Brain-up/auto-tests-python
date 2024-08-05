@@ -188,3 +188,7 @@ class ContactsPage(BasePage):
             self.driver.switch_to.window(self.driver.window_handles[i])
             new_tabs_urls.append(self.get_current_tab_url())
         return new_tabs_urls
+
+    @allure.step("Click on the email link and thereby open an email client")
+    def click_email_link(self):
+        self.element_is_present_and_clickable(self.locators.SECTION_2_LINK_EMAIL).click()

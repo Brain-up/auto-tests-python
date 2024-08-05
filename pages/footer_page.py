@@ -186,7 +186,7 @@ class FooterPage(BasePage):
         new_tabs_urls = []
         for i in range(1, len(new_tabs) + 1):
             self.driver.switch_to.window(self.driver.window_handles[i])
-            time.sleep(5)
+            time.sleep(4)
             try:
                 if self.get_current_tab_url() in FooterData.pages_urls:
                     new_tabs_urls.append(self.get_current_tab_url())
