@@ -107,7 +107,7 @@ class TestFooter:
         def test_fp_03_03_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
             page = FooterPage(driver)
             page.click_contact_us_link()
-            assert True, "the 'Contact us' link in the Footer does not call an email client"
+            assert True, "The 'Contact us' link in the Footer does not call an email client"
 
     class TestFooterForAuthorizedUserOnly:
 
