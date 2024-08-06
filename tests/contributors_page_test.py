@@ -74,7 +74,7 @@ class TestContributorsPage:
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
             assert tab_title_value in ContributorsPageData.tab_title, \
-                "The title value of the tab doesn't match the valid value"
+                "The title value of the tab mismatches the valid value"
 
         @allure.title("Verify values of title and subtitles with tags h2, h3 on the page")
         def test_cnp_02_02_verify_page_title_and_subtitles(self, driver, contributors_page_open):
@@ -82,23 +82,23 @@ class TestContributorsPage:
             title_value = page.get_value_of_title()
             subtitle_values = page.get_values_of_subtitles()
             assert title_value, "The title value on the page is empty"
-            assert title_value in ContributorsPageData.page_title, "The title on the page doesn't match the valid value"
+            assert title_value in ContributorsPageData.page_title, "The title on the page mismatches the valid value"
             assert subtitle_values, "Subtitle values on the page are empty"
             assert all(subtitle_value in ContributorsPageData.page_subtitles for subtitle_value in subtitle_values), \
-                "Subtitles do not match any valid values"
+                "Subtitles mismatch any valid values"
 
         @allure.title("Verify content of the text on the page")
         def test_cnp_02_03_verify_page_text(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             text_content = page.get_text_content_on_page()
-            assert text_content in ContributorsPageData.text_on_page, "The text content does not match the valid value"
+            assert text_content in ContributorsPageData.text_on_page, "Text content mismatches the valid value"
 
         @allure.title("Verify values of the text in card descriptions")
         def test_cnp_02_04_verify_text_of_card_descriptions(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             description_values = page.check_values_of_card_descriptions()
             assert description_values == ContributorsPageData.description_count, \
-                "The text in descriptions is absent or do not match the valid count"
+                "Text in descriptions is absent or mismatches valid count"
 
         @allure.title("Verify text in card links and the 'All Team' link")
         def test_cnp_02_05_verify_text_in_card_links(self, driver, contributors_page_open):
@@ -106,10 +106,10 @@ class TestContributorsPage:
             card_links_text = page.check_text_in_card_links()
             link_text = page.get_text_in_all_team_link()
             assert card_links_text == ContributorsPageData.link_count, \
-                "Text in card links is absent or do not match the valid count"
+                "Text in card links is absent or mismatch valid count"
             assert link_text, "Text in the 'All Team' link is absent"
             assert link_text in ContributorsPageData.all_team_link_text, \
-                "The text in the 'All Team' link does not match any valid values"
+                "Text in the 'All Team' link mismatches any valid values"
 
     class TestContributorsPageLinks:
         @allure.title("Verify clickability, href of links on the page")
@@ -126,9 +126,9 @@ class TestContributorsPage:
             link_href = page.get_all_team_link_href()
             link_status_code = page.get_all_team_link_status_code()
             assert link_href == ContributorsPageData.all_team_link_href, \
-                "The attribute 'href' of the link does not match the valid value"
+                "The attribute 'href' of the link mismatches the valid value"
             assert link_status_code == ContributorsPageData.all_team_link_status_code, \
-                "The status code of the link does not match the valid value"
+                "The status code of the link mismatches the valid value"
 
     class TestContributorCardImages:
         @allure.title("Verify attribute values of images in contributors cards in grids")
@@ -138,10 +138,10 @@ class TestContributorsPage:
             images_alt = page.get_images_alt()
             assert images_src, "The 'src' attribute value of some card images is empty"
             assert all(src.startswith(ContributorsPageData.images_src_start) for src in images_src), \
-                "The 'src' attribute value of some card images does not match the valid value"
+                "The 'src' attribute value of some card images mismatches the valid value"
             assert images_alt, "The 'alt' attribute value of some card images is empty"
             assert all(image_alt == ContributorsPageData.images_alt for image_alt in images_alt), \
-                "The 'alt' attribute value of some card images does not match the valid value"
+                "The 'alt' attribute value of some card images mismatches the valid value"
 
         @allure.title("Verify sizes of images in contributor cards in grids")
         def test_cnp_04_02_verify_images_sizes_in_cards(self, driver, contributors_page_open):

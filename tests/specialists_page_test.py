@@ -87,21 +87,21 @@ class TestSpecialistsPage:
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
             assert tab_title_value in SpecialistsPageData.tab_title, \
-                "The title value of the tab doesn't match the valid value"
+                "The title value of the tab mismatches the valid value"
 
         @allure.title("Verify value of title with tag 'h2' on the page")
         def test_sp_02_02_verify_page_title(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             title_value = page.get_value_of_page_title()
             assert title_value, "The title value on the page is empty"
-            assert title_value in SpecialistsPageData.page_title, "The title on the page doesn't match the valid value"
+            assert title_value in SpecialistsPageData.page_title, "The title on the page mismatches the valid value"
 
         @allure.title("Verify value of text on the page")
         def test_sp_02_03_verify_page_text(self, driver, specialists_page_open):
             page = SpecialistsPage(driver)
             text_content = page.get_text_content_on_page()
-            assert text_content, "The text content on the page is empty"
-            assert text_content in SpecialistsPageData.text_on_page, "The text content does not match the valid value"
+            assert text_content, "Text content on the page is empty"
+            assert text_content in SpecialistsPageData.text_on_page, "Text content mismatches the valid value"
 
         @allure.title("Verify values of names and professions in specialist cards in the grid")
         def test_sp_02_04_verify_name_and_profession_in_cards(self, driver, specialists_page_open):
@@ -110,10 +110,10 @@ class TestSpecialistsPage:
             profession_values = page.get_profession_values_in_cards()
             assert name_values, "Name values in cards are empty"
             assert name_values in SpecialistsPageData.specialists_names, \
-                "Names in specialist cards do not match the valid values"
+                "Names in specialist cards mismatch the valid values"
             assert profession_values, "Profession values in cards are empty"
             assert profession_values in SpecialistsPageData.specialists_professions, \
-                "Professions in specialist cards do not match the valid values"
+                "Professions in specialist cards mismatch valid values"
 
         @allure.title("Verify text in the 'All Specialists' link")
         def test_sp_02_05_verify_text_in_link(self, driver, specialists_page_open):
@@ -121,7 +121,7 @@ class TestSpecialistsPage:
             link_text = page.get_text_in_all_specialists_link()
             assert link_text, "Text in the 'All Specialists' link is empty"
             assert link_text in SpecialistsPageData.all_specialists_link_text, \
-                f"Text in the 'All Specialists' link does not match any valid values"
+                f"Text in the 'All Specialists' link mismatches any valid values"
 
     class TestSpecialistPageLinks:
         @allure.title("Verify clickability, href, status code of the 'All Specialists' link")
@@ -133,9 +133,9 @@ class TestSpecialistsPage:
             assert link_clickability, "The 'All Specialists' link is unclickable"
             assert link_href, "Link href is empty"
             assert link_href == SpecialistsPageData.all_specialists_link_href, \
-                "The attribute 'href' of the link does not match the valid value"
+                "The attribute 'href' of the link mismatches the valid value"
             assert link_status_code == SpecialistsPageData.all_specialists_link_status_code, \
-                "The status code of the link does not match the valid value"
+                "The status code of the link mismatches the valid value"
 
         @allure.title("""Verify that the 'All Specialists' link leads an unauthorized user 
                          to the correct page after clicking""")
@@ -169,10 +169,11 @@ class TestSpecialistsPage:
             images_src = page.get_images_src()
             images_alt = page.get_images_alt()
             assert images_src, "The 'src' attribute value of some card images is empty"
-            assert images_src == SpecialistsPageData.images_src, "The 'src' attribute of the card images are unaccurate"
+            assert images_src == SpecialistsPageData.images_src, \
+                "The 'src' attribute of the card images mismatches valid values"
             assert images_alt, "The 'alt' attribute value of some card images is empty"
             assert all(image_alt == SpecialistsPageData.images_alt for image_alt in images_alt), \
-                "The 'alt' attribute value of some icons is empty or non-accurate"
+                "The 'alt' attribute value of some icons is empty or mismatches valid values"
 
         @allure.title("Verify sizes of images in specialist cards in the grid")
         def test_sp_04_02_verify_images_sizes_in_cards(self, driver, specialists_page_open):
