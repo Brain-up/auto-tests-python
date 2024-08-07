@@ -189,6 +189,7 @@ class FooterPage(BasePage):
             try:
                 if self.get_current_tab_url() is not None:
                     new_tabs_urls.append(self.get_current_tab_url())
+                    time.sleep(2)
                     count1 += 1
             except TimeoutException:
                 print(f"The tab {i} has not been loaded during the allotted time")
@@ -199,6 +200,15 @@ class FooterPage(BasePage):
     @allure.step("Click on the 'Contact us' link in the Footer and thereby open an email client")
     def click_contact_us_link(self):
         self.element_is_present_and_clickable(self.locators.CONTACT_US_LINK).click()
+
+    # Checking images in the Footer
+    @allure.step("Get the list of attribute 'src' values of images in links")
+    def get_images_src(self):
+        return [image.get_attribute('src') for image in self.get_list_of_images()]
+
+    @allure.step("Get the list of attribute 'alt' values of images in links")
+    def get_images_alt(self):
+        return [image.get_attribute('alt') for image in self.get_list_of_images()]
 
     @allure.step("Find the element on the page")
     def find_element(self, locator):
@@ -232,14 +242,6 @@ class FooterPage(BasePage):
     def check_arasaac_image_visibility(self):
         return self.element_is_visible(self.locators.ARASAAC_IMAGE)
 
-    @allure.step("Get attribute 'src' of the ARASAAC image in Footer")
-    def get_arasaac_image_src(self):
-        return self.get_image_src(self.locators.ARASAAC_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the ARASAAC image in Footer")
-    def get_arasaac_image_alt(self):
-        return self.get_image_alt(self.locators.ARASAAC_IMAGE)
-
     @allure.step("Get attribute 'width' of the ARASAAC image in Footer")
     def get_visible_width_of_arasaac_image(self):
         return self.get_image_width(self.locators.ARASAAC_IMAGE)
@@ -259,14 +261,6 @@ class FooterPage(BasePage):
     @allure.step("Check the EPAM image is present and visible in Footer")
     def check_epam_image_visibility(self):
         return self.element_is_visible(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'src' of the EPAM image in Footer")
-    def get_epam_image_src(self):
-        return self.get_image_src(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the EPAM image in Footer")
-    def get_epam_image_alt(self):
-        return self.get_image_alt(self.locators.EPAM_IMAGE)
 
     @allure.step("Get attribute 'width' of the EPAM image in Footer")
     def get_visible_width_of_epam_image(self):
@@ -292,14 +286,6 @@ class FooterPage(BasePage):
     def check_jetbrains_image_invisibility(self):
         return self.element_is_not_visible(self.locators.JETBRAINS_IMAGE)
 
-    @allure.step("Get attribute 'src' of the Jetbrains image in Footer")
-    def get_jetbrains_image_src(self):
-        return self.get_image_src(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the Jetbrains image in Footer")
-    def get_jetbrains_image_alt(self):
-        return self.get_image_alt(self.locators.JETBRAINS_IMAGE)
-
     @allure.step("Get attribute 'width' of the Jetbrains image in Footer")
     def get_visible_width_of_jetbrains_image(self):
         return self.get_image_width(self.locators.JETBRAINS_IMAGE)
@@ -320,14 +306,6 @@ class FooterPage(BasePage):
     def check_reg_image_visibility(self):
         return self.element_is_visible(self.locators.REG_IMAGE)
 
-    @allure.step("Get attribute 'src' of the REG.RU image in Footer")
-    def get_reg_image_src(self):
-        return self.get_image_src(self.locators.REG_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the REG.RU image in Footer")
-    def get_reg_image_alt(self):
-        return self.get_image_alt(self.locators.REG_IMAGE)
-
     @allure.step("Get attribute 'width' of the REG.RU image in Footer")
     def get_visible_width_of_reg_image(self):
         return self.get_image_width(self.locators.REG_IMAGE)
@@ -347,14 +325,6 @@ class FooterPage(BasePage):
     @allure.step("Check the Selectel image is visible in Footer")
     def check_selectel_image_visibility(self):
         return self.element_is_visible(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Get attribute 'src' of the Selectel image in Footer")
-    def get_selectel_image_src(self):
-        return self.get_image_src(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the Selectel image in Footer")
-    def get_selectel_image_alt(self):
-        return self.get_image_alt(self.locators.SELECTEL_IMAGE)
 
     @allure.step("Get attribute 'width' of the Selectel image in Footer")
     def get_visible_width_of_selectel_image(self):

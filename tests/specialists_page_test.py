@@ -173,7 +173,7 @@ class TestSpecialistsPage:
                 "The 'src' attribute of the card images mismatches valid values"
             assert images_alt, "The 'alt' attribute value of some card images is empty"
             assert all(image_alt == SpecialistsPageData.images_alt for image_alt in images_alt), \
-                "The 'alt' attribute value of some icons is empty or mismatches valid values"
+                "The 'alt' attribute value of some card images is empty or mismatches valid values"
 
         @allure.title("Verify sizes of images in specialist cards in the grid")
         def test_sp_04_02_verify_images_sizes_in_cards(self, driver, specialists_page_open):
