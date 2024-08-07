@@ -179,7 +179,7 @@ class FooterPage(BasePage):
         return new_tabs_urls
 
     @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
-    def click_on_links(self):
+    def click_on_links3(self):
         new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
         print(len(new_tabs))
         new_tabs_urls, count1, count2 = [], 0, 0
@@ -189,6 +189,7 @@ class FooterPage(BasePage):
             try:
                 if self.get_current_tab_url() is not None:
                     new_tabs_urls.append(self.get_current_tab_url())
+                    time.sleep(2)
                     count1 += 1
             except TimeoutException:
                 print(f"The tab {i} has not been loaded during the allotted time")
@@ -196,9 +197,59 @@ class FooterPage(BasePage):
         print(f'{new_tabs_urls}\nLoaded tabs: {count1}\nUnloaded tabs: {count2}')
         return new_tabs_urls
 
+    @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
+    def click_on_links4(self):
+        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
+        print(len(new_tabs))
+        new_tabs_urls, count1, count2, count3 = [], 0, 0, 0
+        for i in range(1, len(new_tabs) + 1):
+            try:
+                self.driver.switch_to.window(self.driver.window_handles[i])
+                try:
+                    new_tabs_urls.append(self.get_current_tab_url())
+                    count1 += 1
+                except TimeoutException:
+                    print(f"The tab url {i} has not been defined during the allotted time")
+                    count2 += 1
+            except TimeoutException:
+                print(f"The tab {i} has not been loaded during the allotted time")
+                count3 += 1
+        print(f'{new_tabs_urls}\nLoaded tabs: {count1}\nUndefined urls: {count2}\nUnloaded tabs: {count3}')
+        return new_tabs_urls
+
+    @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
+    def click_on_links(self):
+        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
+        print(len(new_tabs))
+        new_tabs_urls, count1, count2, count3 = [], 0, 0, 0
+        for i in range(1, len(new_tabs) + 1):
+            try:
+                self.driver.switch_to.window(self.driver.window_handles[i])
+                new_tab_url = self.get_current_tab_url()
+                if new_tab_url:
+                    new_tabs_urls.append(new_tab_url)
+                    count1 += 1
+                else:
+                    print(f"The tab url {i} has not been defined during the allotted time")
+                    count2 += 1
+            except TimeoutException:
+                print(f"The tab {i} has not been loaded during the allotted time")
+                count3 += 1
+        print(f'{new_tabs_urls}\nLoaded tabs: {count1}\nUndefined urls: {count2}\nUnloaded tabs: {count3}')
+        return new_tabs_urls
+
     @allure.step("Click on the 'Contact us' link in the Footer and thereby open an email client")
     def click_contact_us_link(self):
         self.element_is_present_and_clickable(self.locators.CONTACT_US_LINK).click()
+
+    # Checking images in the Footer
+    @allure.step("Get the list of attribute 'src' values of images in links")
+    def get_images_src(self):
+        return [image.get_attribute('src') for image in self.get_list_of_images()]
+
+    @allure.step("Get the list of attribute 'alt' values of images in links")
+    def get_images_alt(self):
+        return [image.get_attribute('alt') for image in self.get_list_of_images()]
 
     @allure.step("Find the element on the page")
     def find_element(self, locator):
@@ -232,14 +283,6 @@ class FooterPage(BasePage):
     def check_arasaac_image_visibility(self):
         return self.element_is_visible(self.locators.ARASAAC_IMAGE)
 
-    @allure.step("Get attribute 'src' of the ARASAAC image in Footer")
-    def get_arasaac_image_src(self):
-        return self.get_image_src(self.locators.ARASAAC_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the ARASAAC image in Footer")
-    def get_arasaac_image_alt(self):
-        return self.get_image_alt(self.locators.ARASAAC_IMAGE)
-
     @allure.step("Get attribute 'width' of the ARASAAC image in Footer")
     def get_visible_width_of_arasaac_image(self):
         return self.get_image_width(self.locators.ARASAAC_IMAGE)
@@ -259,14 +302,6 @@ class FooterPage(BasePage):
     @allure.step("Check the EPAM image is present and visible in Footer")
     def check_epam_image_visibility(self):
         return self.element_is_visible(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'src' of the EPAM image in Footer")
-    def get_epam_image_src(self):
-        return self.get_image_src(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the EPAM image in Footer")
-    def get_epam_image_alt(self):
-        return self.get_image_alt(self.locators.EPAM_IMAGE)
 
     @allure.step("Get attribute 'width' of the EPAM image in Footer")
     def get_visible_width_of_epam_image(self):
@@ -292,14 +327,6 @@ class FooterPage(BasePage):
     def check_jetbrains_image_invisibility(self):
         return self.element_is_not_visible(self.locators.JETBRAINS_IMAGE)
 
-    @allure.step("Get attribute 'src' of the Jetbrains image in Footer")
-    def get_jetbrains_image_src(self):
-        return self.get_image_src(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the Jetbrains image in Footer")
-    def get_jetbrains_image_alt(self):
-        return self.get_image_alt(self.locators.JETBRAINS_IMAGE)
-
     @allure.step("Get attribute 'width' of the Jetbrains image in Footer")
     def get_visible_width_of_jetbrains_image(self):
         return self.get_image_width(self.locators.JETBRAINS_IMAGE)
@@ -320,14 +347,6 @@ class FooterPage(BasePage):
     def check_reg_image_visibility(self):
         return self.element_is_visible(self.locators.REG_IMAGE)
 
-    @allure.step("Get attribute 'src' of the REG.RU image in Footer")
-    def get_reg_image_src(self):
-        return self.get_image_src(self.locators.REG_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the REG.RU image in Footer")
-    def get_reg_image_alt(self):
-        return self.get_image_alt(self.locators.REG_IMAGE)
-
     @allure.step("Get attribute 'width' of the REG.RU image in Footer")
     def get_visible_width_of_reg_image(self):
         return self.get_image_width(self.locators.REG_IMAGE)
@@ -347,14 +366,6 @@ class FooterPage(BasePage):
     @allure.step("Check the Selectel image is visible in Footer")
     def check_selectel_image_visibility(self):
         return self.element_is_visible(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Get attribute 'src' of the Selectel image in Footer")
-    def get_selectel_image_src(self):
-        return self.get_image_src(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the Selectel image in Footer")
-    def get_selectel_image_alt(self):
-        return self.get_image_alt(self.locators.SELECTEL_IMAGE)
 
     @allure.step("Get attribute 'width' of the Selectel image in Footer")
     def get_visible_width_of_selectel_image(self):
