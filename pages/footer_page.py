@@ -179,7 +179,7 @@ class FooterPage(BasePage):
         return new_tabs_urls
 
     @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
-    def click_on_links(self):
+    def click_on_links3(self):
         new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
         print(len(new_tabs))
         new_tabs_urls, count1, count2 = [], 0, 0
@@ -195,6 +195,26 @@ class FooterPage(BasePage):
                 print(f"The tab {i} has not been loaded during the allotted time")
                 count2 += 1
         print(f'{new_tabs_urls}\nLoaded tabs: {count1}\nUnloaded tabs: {count2}')
+        return new_tabs_urls
+
+    @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
+    def click_on_links(self):
+        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
+        print(len(new_tabs))
+        new_tabs_urls, count1, count2, count3 = [], 0, 0, 0
+        for i in range(1, len(new_tabs) + 1):
+            try:
+                self.driver.switch_to.window(self.driver.window_handles[i])
+                try:
+                    new_tabs_urls.append(self.get_current_tab_url())
+                    count1 += 1
+                except TimeoutException:
+                    print(f"The tab url {i} has not been defined during the allotted time")
+                    count2 += 1
+            except TimeoutException:
+                print(f"The tab {i} has not been loaded during the allotted time")
+                count3 += 1
+        print(f'{new_tabs_urls}\nLoaded tabs: {count1}\nUndefined urls: {count2}\nUnloaded tabs: {count3}')
         return new_tabs_urls
 
     @allure.step("Click on the 'Contact us' link in the Footer and thereby open an email client")
