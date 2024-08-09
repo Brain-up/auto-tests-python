@@ -1,24 +1,23 @@
 import allure
 import requests
 from selenium.common import TimeoutException
-from locators.footer_page_locators import FooterLocators, RelatedPagesElementsLocators
+from locators.footer_page_locators import FooterLocators
 from pages.base_page import BasePage
 
 
 class FooterPage(BasePage):
     locators = FooterLocators
-    locators1 = RelatedPagesElementsLocators
 
     # Checking the structure and display of elements in the Footer
-    @allure.step("Check Footer is present in the DOM tree on the page")
+    @allure.step("Check the Footer is present in the DOM tree on the page")
     def check_footer_presence(self):
         return self.element_is_present(self.locators.FOOTER)
 
-    @allure.step("Check if Footer is visible on the page")
+    @allure.step("Check if the Footer is visible on the page")
     def check_footer_visibility(self):
         return self.element_is_visible(self.locators.FOOTER)
 
-    @allure.step("Check Footer is invisible")
+    @allure.step("Check the Footer is invisible")
     def check_footer_invisibility(self):
         return self.element_is_not_visible(self.locators.FOOTER)
 
@@ -120,6 +119,14 @@ class FooterPage(BasePage):
     def check_images_visibility(self):
         return all(element.is_displayed() for element in self.get_list_of_images())
 
+    @allure.step("Check the Jetbrains image is present in the DOM tree")
+    def check_jetbrains_image_presence(self):
+        return self.element_is_present(self.locators.JETBRAINS_IMAGE)
+
+    @allure.step("Check the Jetbrains image is invisible in the Footer")
+    def check_jetbrains_image_invisibility(self):
+        return self.element_is_not_visible(self.locators.JETBRAINS_IMAGE)
+
     # Checking text in the Footer
     @allure.step("Get content of text in the Footer")
     def get_footer_text(self):
@@ -155,7 +162,7 @@ class FooterPage(BasePage):
     @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
     def click_on_links(self):
         new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
-        print(f'Opened tabs: {len(new_tabs)}')
+        # print(f'Opened tabs: {len(new_tabs)}')
         new_tabs_urls, count1, count2, count3 = [], 0, 0, 0
         for i in range(1, len(new_tabs) + 1):
             try:
@@ -200,33 +207,5 @@ class FooterPage(BasePage):
         for i in range(len(images)):
             changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
             lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-        print('\nAll images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
+        # print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
         return changed
-
-    @allure.step("Find the element on the page")
-    def find_element(self, locator):
-        return self.driver.find_element(*locator)
-
-    @allure.step("Get attribute 'src' of an element's image")
-    def get_image_src(self, locator):
-        return self.driver.find_element(*locator).get_attribute("src")
-
-    @allure.step("Get attribute 'alt' of an element's image")
-    def get_image_alt(self, locator):
-        return self.driver.find_element(*locator).get_attribute("alt")
-
-    @allure.step("Get attribute 'width' of an element's image")
-    def get_image_width(self, locator):
-        return self.driver.find_element(*locator).get_attribute("width")
-
-    @allure.step("Get attribute 'height' of an element's image")
-    def get_image_height(self, locator):
-        return self.driver.find_element(*locator).get_attribute("height")
-
-    @allure.step("Check the Jetbrains image is present in the DOM tree on the page")
-    def check_jetbrains_image_presence(self):
-        return self.element_is_present(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Check the Jetbrains image is invisible in Footer")
-    def check_jetbrains_image_invisibility(self):
-        return self.element_is_not_visible(self.locators.JETBRAINS_IMAGE)

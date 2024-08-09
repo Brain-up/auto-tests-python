@@ -130,10 +130,10 @@ class TestFooter:
             assert images_size != 0, "Images in links have not sizes"
             assert len(images_size_changed) == len(FooterData.images_src), "Not all images in links have changed sizes"
 
-    class TestFooterForAuthorizedUserOnly:
+    class TestFooterAuthorized:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")
-        def test_fp_02_01_01_verify_footer_invisibility_through_the_modal_window(self, driver, auto_test_user_authorized):
+        def test_fp_05_01_verify_footer_invisibility_through_modal_window(self, driver, auto_test_user_authorized):
             modal_window_page = FooterPage(driver, SpecificExercisesUrls.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
             assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()), \
