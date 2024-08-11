@@ -130,10 +130,11 @@ class UsedResourcesPage(BasePage):
     def check_size_changes_of_icons(self):
         icons = self.get_list_of_icons()
         icons_sizes_before = [icon.size for icon in icons]
-        self.driver.set_window_size(1200, 800)
+        self.driver.set_window_size(200, 700)
         icons_sizes_after = [icon.size for icon in icons]
         changed, lost, unchanged = [], [], []
         for i in range(len(icons)):
             changed.append(i) if icons_sizes_before[i] != icons_sizes_after[i] else unchanged.append(i)
             lost.append(i) if icons_sizes_after[i] == {'height': 0, 'width': 0} else None
+        print(f'\nChanged: {len(changed)}, Lost: {len(lost)}, Unchanged: {len(unchanged)}')
         return changed, lost, unchanged
