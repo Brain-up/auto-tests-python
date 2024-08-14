@@ -102,18 +102,17 @@ class HeaderPage(BasePage):
         # print(f"Tags of elements in the 'ru-en' section in the Header are: {tags}")
         return elements
 
-    @allure.step("Check if elements in the 'ru-en' section are visible in the Header")
+    @allure.step("Check if elements in the 'ru-en' section are visible")
     def check_elements_visibility_in_ru_en_section(self):
         elements = self.elements_are_present(self.locators.SECTION_WITH_BUTTONS_RU_EN)
         display_of_all_elements = all(element.is_displayed() for element in elements)
         return display_of_all_elements
 
-# Checks of Logo in the Section 1 in the Header
     @allure.step("Check the 'Logo' link is present in DOM")
     def check_logo_link_presence(self):
         return self.element_is_present(self.locators.LOGO_LINK)
 
-    @allure.step("Check the 'Logo' link is visible on the page")
+    @allure.step("Check the 'Logo' link is visible")
     def check_logo_link_visibility(self):
         return self.element_is_visible(self.locators.LOGO_LINK)
 
