@@ -1,7 +1,6 @@
 import imaplib
 import time
 from random import choice
-
 import allure
 import os
 from dotenv import load_dotenv
@@ -100,3 +99,8 @@ class ProfilePage(BasePage):
             self.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
         with allure.step('Wait changing url'):
             self.wait_changed_url(MainPageLinks.URL_PROFILE_PAGE)
+
+    @allure.step("Loader checking")
+    def loader_checking(self):
+        self.timeout = 50
+        return self.element_is_visible(ProfilePageLocators.TITLE)
