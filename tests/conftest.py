@@ -10,6 +10,7 @@ from locators.main_page_locators import MainPageLocators
 from locators.header_page_locators import HeaderPageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 from pages.base_page import BasePage
+from pages.profile_page import ProfilePage
 from test_data.links import MainPageLinks
 
 load_dotenv()
@@ -68,7 +69,8 @@ def auto_test_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
-    # return page
+    page = ProfilePage(driver)
+    page.loader_checking()
 
 
 @pytest.fixture()
@@ -80,7 +82,8 @@ def specialist_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
-    # return page
+    page = ProfilePage(driver)
+    page.loader_checking()
 
 
 @pytest.fixture()
@@ -92,4 +95,5 @@ def default_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
-    # return page
+    page = ProfilePage(driver)
+    page.loader_checking()
