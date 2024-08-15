@@ -45,32 +45,31 @@ class TestHeaderPage:
                 assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
                 assert invisibility_of_elements_on_6th_level, "6th-level elements are visible"
 
-            @allure.title("Verify the section with the 'ru' and 'en' buttons in the Header")
-            def test_hp_01_03_verify_structure_and_visibility_of_ru_en_section(self, driver, main_page_open):
+            @allure.title("Verify presence, visibility of 'Logo' link, 'ru' and 'en' buttons in the Header")
+            def test_hp_01_03_verify_header_structural_elements(self, driver, main_page_open):
                 page = HeaderPage(driver)
+                logo_link_presence = page.check_logo_link_presence()
+                logo_link_visibility = page.check_logo_link_visibility()
                 ru_en_section_structure = page.get_structure_of_ru_en_section()
                 ru_en_buttons_visibility = page.check_elements_visibility_in_ru_en_section()
+                assert logo_link_presence, "The 'Logo' link is absent in DOM"
+                assert logo_link_visibility, "The 'Logo' link is invisible"
                 assert ru_en_section_structure, "The 'ru' and 'en' buttons are absent in DOM"
-                assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible in the Header"
+                assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
 
         class TestHeaderPageSection1:
 
-            @allure.title("""Verify presence, visibility, clickability, href, status code  
-                             of the 'Logo' link in the section 1 in the Header""")
+            @allure.title("Verify clickability, href, status code of the 'Logo' link in the Header")
             def test_hp_02_01_verify_logo_link(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                link_presence = page.check_logo_link_presence()
-                link_visibility = page.check_logo_link_visibility()
                 link_clickability = page.check_logo_link_clickability()
                 link_href = page.get_logo_link_href()
                 link_status_code = page.get_logo_link_status_code()
-                assert link_presence, "The 'Logo' link is absent in DOM"
-                assert link_visibility, "The 'Logo' link is invisible on the page"
                 assert link_clickability, "The 'Logo' link is unclickable"
                 assert link_href == HeaderData.links_href["logo_link_href"], \
-                    f"The attribute 'href' of the {link_href} link does not match the valid value"
+                    "The attribute 'href' of the 'Logo' link mismatches the valid value"
                 assert link_status_code == HeaderData.links_status_code, \
-                    f"The status code of the {link_href} does not match the valid value"
+                    "The status code of the 'Logo' link mismatches the valid value"
 
             @allure.title("""Verify that the 'Logo' link on the Start Unauthorized Page 
                              doesn't refresh the current page or lead to other pages after clicking""")
