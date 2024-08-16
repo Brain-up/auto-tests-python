@@ -95,19 +95,6 @@ class HeaderPage(BasePage):
         non_display_of_all_elements = all(self.element_is_not_visible(element) for element in elements)
         return non_display_of_all_elements
 
-    @allure.step("Get structure of the 'ru-en' section in the Header")
-    def get_structure_of_ru_en_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_WITH_BUTTONS_RU_EN)
-        # tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements in the 'ru-en' section in the Header are: {tags}")
-        return elements
-
-    @allure.step("Check if elements in the 'ru-en' section are visible")
-    def check_elements_visibility_in_ru_en_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_WITH_BUTTONS_RU_EN)
-        display_of_all_elements = all(element.is_displayed() for element in elements)
-        return display_of_all_elements
-
     @allure.step("Check the 'Logo' link is present in DOM")
     def check_logo_link_presence(self):
         return self.element_is_present(self.locators.LOGO_LINK)
@@ -115,6 +102,25 @@ class HeaderPage(BasePage):
     @allure.step("Check the 'Logo' link is visible")
     def check_logo_link_visibility(self):
         return self.element_is_visible(self.locators.LOGO_LINK)
+
+    @allure.step("Get the list of links in the section 2 in the Header")
+    def get_list_of_links_in_section2(self):
+        return self.elements_are_present(self.locators.SECTION_2_LINKS)
+
+    @allure.step("Check the 'About' and the 'Telegram' links are visible")
+    def check_links_visibility_in_section2(self):
+        return all(link.is_displayed() for link in self.get_list_of_links_in_section2())
+
+    @allure.step("Get structure of the 'ru-en' section in the Header")
+    def get_structure_of_ru_en_section(self):
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.RU_EN_BUTTONS_SECTION)
+
+    @allure.step("Check if elements in the 'ru-en' section are visible")
+    def check_elements_visibility_in_ru_en_section(self):
+        elements = self.elements_are_present(self.locators.RU_EN_BUTTONS_SECTION)
+        display_of_all_elements = all(element.is_displayed() for element in elements)
+        return display_of_all_elements
 
     @allure.step("Check the 'Logo' link is clickable")
     def check_logo_link_clickability(self):
@@ -171,27 +177,15 @@ class HeaderPage(BasePage):
         return changes
 
     # Checks of the 'About' and the 'Telegram' links in the Section 2 in the Header
-    @allure.step("Get the list of links in the Section 2 in the Header")
-    def get_list_of_links_in_section_2(self):
-        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
-        # print(f"\nAmount of links in the Section 2 is: {len(links)}")
-        return links
-
-    @allure.step("Check the 'About' and the 'Telegram' links are present and visible in the Section 2 in the Header")
-    def check_links_visibility_in_section_2(self):
-        links = self.get_list_of_links_in_section_2()
-        all_links_are_displayed = all(link.is_displayed() for link in links)
-        return all_links_are_displayed
-
     @allure.step("Check the 'About' and the 'Telegram' links are clickable in the Section 2 in the Header")
     def check_links_clickability_in_section_2(self):
-        links = self.get_list_of_links_in_section_2()
+        links = self.get_list_of_links_in_section2()
         all_links_are_enabled = all(link.is_enabled() for link in links)
         return all_links_are_enabled
 
     @allure.step("Get attribute 'href' of the 'About' and the 'Telegram' links in the Section 2 in the Header")
     def get_links_href_in_section_2(self):
-        links = self.get_list_of_links_in_section_2()
+        links = self.get_list_of_links_in_section2()
         links_href = [element.get_attribute("href") for element in links]
         return links_href
 
@@ -219,7 +213,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Get the list of text in the 'About' and the 'Telegram' links in the Sections 2 in the Header")
     def get_text_in_links_in_section_2(self):
-        links = self.get_list_of_links_in_section_2()
+        links = self.get_list_of_links_in_section2()
         links_text = [link.text for link in links]
         # print(f"Text of links in the Section 2 is:", *links_text, sep='\n')
         return links_text

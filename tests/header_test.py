@@ -45,16 +45,20 @@ class TestHeaderPage:
                 assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
                 assert invisibility_of_elements_on_6th_level, "6th-level elements are visible"
 
-            @allure.title("Verify presence, visibility of 'Logo' link, 'ru' and 'en' buttons in the Header")
+            @allure.title("Verify presence, visibility of links, buttons in the Header")
             def test_hp_01_03_verify_header_structural_elements(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 logo_link_presence = page.check_logo_link_presence()
                 logo_link_visibility = page.check_logo_link_visibility()
+                links_presence = page.get_list_of_links_in_section2()
+                links_visibility = page.check_links_visibility_in_section2()
                 ru_en_section_structure = page.get_structure_of_ru_en_section()
                 ru_en_buttons_visibility = page.check_elements_visibility_in_ru_en_section()
-                assert logo_link_presence, "The 'Logo' link is absent in DOM"
+                assert logo_link_presence, "The 'Logo' link is absent on the page"
                 assert logo_link_visibility, "The 'Logo' link is invisible"
-                assert ru_en_section_structure, "The 'ru' and 'en' buttons are absent in DOM"
+                assert links_presence, "Links in section 2 are absent on the page"
+                assert links_visibility, "Links in section 2 are invisible"
+                assert ru_en_section_structure, "The 'ru' and 'en' buttons are absent on the page"
                 assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
 
         class TestHeaderPageSection1:
@@ -127,13 +131,13 @@ class TestHeaderPage:
                           "of the 'About' and the 'Telegram' links in the Section 2 in the Header")
             def test_hp_03_01_verify_links_in_section_2(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                links_presence = page.get_list_of_links_in_section_2()
-                links_visibility = page.check_links_visibility_in_section_2()
+                # links_presence = page.get_list_of_links_in_section_2()
+                # links_visibility = page.check_links_visibility_in_section_2()
                 links_clickability = page.check_links_clickability_in_section_2()
                 links_href = page.get_links_href_in_section_2()
                 links_status_code = page.get_links_status_code_in_section_2()
-                assert links_presence, "Links are absent in DOM"
-                assert links_visibility, "Links are invisible in the page"
+                # assert links_presence, "Links are absent in DOM"
+                # assert links_visibility, "Links are invisible in the page"
                 assert links_clickability, "Links are unclickable"
                 assert links_href, "Links href are empty"
                 assert links_href == HeaderData.links_href["section 2 links href"], \
