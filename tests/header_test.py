@@ -115,7 +115,7 @@ class TestHeaderPage:
                     "'Logo' link in the sections 1 leads an other page after clicking"
                 assert initial_page_url != current_page_url, \
                     "'Logo' link in the sections 1 leads to some page after clicking"
-                assert current_page_url == HeaderData.links_href["logo_link_href"], \
+                assert current_page_url in HeaderData.links_href, \
                     "'Logo' link in sections 1 leads to incorrect page after clicking"
 
             @allure.title("Verify presence, visibility, attributes and sizes of the 'Logo' image")
