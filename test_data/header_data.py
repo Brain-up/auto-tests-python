@@ -2,9 +2,11 @@
 
 
 class HeaderData:
+    links_href = [
+        "https://brainup.site/"
+    ]
 
-    links_href = {
-        "logo_link_href": "https://brainup.site/",
+    links_href1 = {
         "section 2 links href": ["https://brainup.site/description", "https://t.me/BrainUpUsers"]
     }
 
