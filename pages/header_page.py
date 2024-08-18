@@ -118,9 +118,15 @@ class HeaderPage(BasePage):
 
     @allure.step("Check if elements in the 'ru-en' section are visible")
     def check_elements_visibility_in_ru_en_section(self):
-        elements = self.elements_are_present(self.locators.RU_EN_BUTTONS_SECTION)
-        display_of_all_elements = all(element.is_displayed() for element in elements)
-        return display_of_all_elements
+        return all(element.is_displayed() for element in self.get_structure_of_ru_en_section())
+
+    @allure.step("Check if the 'Logo' image is present")
+    def check_logo_image_presence(self):
+        return self.element_is_present(self.locators.LOGO_IMAGE)
+
+    @allure.step("Check if the 'Logo' image is visible")
+    def check_logo_image_visibility(self):
+        return self.element_is_visible(self.locators.LOGO_IMAGE)
 
     @allure.step("Check the 'Logo' link is clickable")
     def check_logo_link_clickability(self):
@@ -142,14 +148,7 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
 
-    @allure.step("Check if the 'Logo' image is present")
-    def check_logo_image_presence(self):
-        return self.element_is_present(self.locators.LOGO_IMAGE)
-
-    @allure.step("Check if the 'Logo' image is visible")
-    def check_logo_image_visibility(self):
-        return self.element_is_visible(self.locators.LOGO_IMAGE)
-
+    # Checking images in the Header
     @allure.step("Get attribute 'xmlns' of the 'Logo' image")
     def get_xmlns_of_logo_image(self):
         return self.element_is_present(self.locators.LOGO_IMAGE).get_attribute("xmlns")
