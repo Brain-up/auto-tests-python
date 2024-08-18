@@ -45,7 +45,7 @@ class TestHeaderPage:
                 assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
                 assert invisibility_of_elements_on_6th_level, "6th-level elements are visible"
 
-            @allure.title("Verify presence, visibility of links, buttons in the Header")
+            @allure.title("Verify presence, visibility of links, buttons, images in the Header")
             def test_hp_01_03_verify_header_structural_elements(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 logo_link_presence = page.check_logo_link_presence()
@@ -54,12 +54,16 @@ class TestHeaderPage:
                 links_visibility = page.check_links_visibility_in_section2()
                 ru_en_section_structure = page.get_structure_of_ru_en_section()
                 ru_en_buttons_visibility = page.check_elements_visibility_in_ru_en_section()
+                logo_image_presence = page.check_logo_image_presence()
+                logo_image_visibility = page.check_logo_image_visibility()
                 assert logo_link_presence, "The 'Logo' link is absent on the page"
                 assert logo_link_visibility, "The 'Logo' link is invisible"
                 assert links_presence, "Links in section 2 are absent on the page"
                 assert links_visibility, "Links in section 2 are invisible"
                 assert ru_en_section_structure, "The 'ru' and 'en' buttons are absent on the page"
                 assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
+                assert logo_image_presence, "The image in the 'Logo' link is absent on the page"
+                assert logo_image_visibility, "The 'Logo' image is invisible"
 
         class TestHeaderPageText:
 
@@ -118,16 +122,13 @@ class TestHeaderPage:
                 assert current_page_url in HeaderData.links_href, \
                     "'Logo' link in sections 1 leads to incorrect page after clicking"
 
-            @allure.title("Verify presence, visibility, attributes and sizes of the 'Logo' image")
-            def test_hp_03_04_verify_logo_image(self, driver, main_page_open):
+        class TestHeaderPageImages:
+            @allure.title("Verify attributes of the image in the 'Logo' link")
+            def test_hp_04_01_verify_verify_logo_image_attributes(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                image_presence = page.check_logo_image_presence()
-                image_visibility = page.check_logo_image_visibility()
                 image_xmlns = page.get_xmlns_of_logo_image()
                 image_sizes = page.get_sizes_of_logo_image()
                 image_sizes_change = page.check_size_changes_of_logo_section()
-                assert image_presence, "Image in the 'Logo' link is absent"
-                assert image_visibility, "The 'Logo' image is invisible"
                 assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
                 assert image_xmlns == HeaderData.logo_image_xmlns, \
                     "The 'xmlns' attribute value of the 'Logo' image is unaccurate"
@@ -138,7 +139,7 @@ class TestHeaderPage:
 
             @allure.title("Verify presence, visibility, clickability, href, status code "
                           "of the 'About' and the 'Telegram' links in the Section 2 in the Header")
-            def test_hp_04_01_verify_links_in_section_2(self, driver, main_page_open):
+            def test_hp_04_01_1_verify_links_in_section_2(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 links_clickability = page.check_links_clickability_in_section_2()
                 links_href = page.get_links_href_in_section_2()
