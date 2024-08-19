@@ -48,18 +48,20 @@ class TestHeaderPage:
             @allure.title("Verify presence, visibility of links, buttons, images in the Header")
             def test_hp_01_03_verify_header_structural_elements(self, driver, main_page_open):
                 page = HeaderPage(driver)
+                header_links = page.get_list_of_links()
                 logo_link_presence = page.check_logo_link_presence()
                 logo_link_visibility = page.check_logo_link_visibility()
-                links_presence = page.get_list_of_links_in_section2()
-                links_visibility = page.check_links_visibility_in_section2()
+                links2_presence = page.get_list_of_links_in_section2()
+                links2_visibility = page.check_links_visibility_in_section2()
                 ru_en_section_structure = page.get_structure_of_ru_en_section()
                 ru_en_buttons_visibility = page.check_elements_visibility_in_ru_en_section()
                 logo_image_presence = page.check_logo_image_presence()
                 logo_image_visibility = page.check_logo_image_visibility()
+                assert header_links, "Links are absent in the Header"
                 assert logo_link_presence, "The 'Logo' link is absent on the page"
                 assert logo_link_visibility, "The 'Logo' link is invisible"
-                assert links_presence, "Links in section 2 are absent on the page"
-                assert links_visibility, "Links in section 2 are invisible"
+                assert links2_presence, "Links in section 2 are absent on the page"
+                assert links2_visibility, "Links in section 2 are invisible"
                 assert ru_en_section_structure, "The 'ru' and 'en' buttons are absent on the page"
                 assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
                 assert logo_image_presence, "The image in the 'Logo' link is absent on the page"
@@ -75,8 +77,14 @@ class TestHeaderPage:
 
         class TestHeaderPageLinks:
 
+            @allure.title("Verify clickability of links in the Header")
+            def test_hp_03_01_verify_header_links(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                links_clickability = page.check_links_clickability()
+                assert links_clickability, "Links are unclickable"
+
             @allure.title("Verify clickability, href, status code of the 'Logo' link in the Header")
-            def test_hp_03_01_verify_logo_link(self, driver, main_page_open):
+            def test_hp_03_02_verify_logo_link(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 logo_link_clickability = page.check_logo_link_clickability()
                 logo_link_href = page.get_logo_link_href()
@@ -122,24 +130,9 @@ class TestHeaderPage:
                 assert current_page_url in HeaderData.links_href, \
                     "'Logo' link in sections 1 leads to incorrect page after clicking"
 
-        class TestHeaderPageImages:
-            @allure.title("Verify attributes of the image in the 'Logo' link")
-            def test_hp_04_01_verify_verify_logo_image_attributes(self, driver, main_page_open):
-                page = HeaderPage(driver)
-                image_xmlns = page.get_xmlns_of_logo_image()
-                image_sizes = page.get_sizes_of_logo_image()
-                image_sizes_change = page.check_size_changes_of_logo_section()
-                assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
-                assert image_xmlns == HeaderData.logo_image_xmlns, \
-                    "The 'xmlns' attribute value of the 'Logo' image is unaccurate"
-                assert image_sizes != 0, f"The 'Logo' image is invisible due its size = 0, 0"
-                assert image_sizes_change, "Checks of changes in image sizes have not carried out"
-
-        class TestHeaderPageSection2:
-
-            @allure.title("Verify presence, visibility, clickability, href, status code "
-                          "of the 'About' and the 'Telegram' links in the Section 2 in the Header")
-            def test_hp_04_01_1_verify_links_in_section_2(self, driver, main_page_open):
+            @allure.title("Verify clickability, href, status code "
+                          "of the 'About' and the 'Telegram' links in the Header Section 2")
+            def test_hp_04_01_1_verify_links_in_section2(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 links_clickability = page.check_links_clickability_in_section_2()
                 links_href = page.get_links_href_in_section_2()
@@ -153,9 +146,22 @@ class TestHeaderPage:
                     "The status code of the links do not match the valid value"
 
             @allure.title("""Verify if the 'About' and the 'Telegram' links in the Section 2 
-                          lead to the correct pages after click""")
+                                 lead to the correct pages after click""")
             def test_hp_04_02_verify_links_lead_to_the_correct_pages(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 opened_pages = page.click_on_links_and_return_back()
                 assert opened_pages == HeaderData.pages_url_for_navigation_by_links_in_section_2, \
                     "The 'About' and the 'Telegram' links in the Sections 2 lead to incorrect pages after click"
+
+        class TestHeaderPageImages:
+            @allure.title("Verify attributes of the image in the 'Logo' link")
+            def test_hp_04_01_verify_verify_logo_image_attributes(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                image_xmlns = page.get_xmlns_of_logo_image()
+                image_sizes = page.get_sizes_of_logo_image()
+                image_sizes_change = page.check_size_changes_of_logo_section()
+                assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
+                assert image_xmlns == HeaderData.logo_image_xmlns, \
+                    "The 'xmlns' attribute value of the 'Logo' image is unaccurate"
+                assert image_sizes != 0, f"The 'Logo' image is invisible due its size = 0, 0"
+                assert image_sizes_change, "Checks of changes in image sizes have not carried out"

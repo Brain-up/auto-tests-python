@@ -92,10 +92,14 @@ class HeaderPage(BasePage):
     @allure.step("Check if elements on the 6th level of nesting are invisible")
     def check_elements_invisibility_on_6th_level_on_page(self):
         elements = self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
-        non_display_of_all_elements = all(self.element_is_not_visible(element) for element in elements)
-        return non_display_of_all_elements
+        # non_display_of_all_elements = all(self.element_is_not_visible(element) for element in elements)
+        return all(self.element_is_not_visible(element) for element in elements)
 
-    @allure.step("Check the 'Logo' link is present in DOM")
+    @allure.step("Get the list of links on different levels of nesting in the Header")
+    def get_list_of_links(self):
+        return self.elements_are_present(self.locators.HEADER_LINKS)
+
+    @allure.step("Check the 'Logo' link is present in the Header")
     def check_logo_link_presence(self):
         return self.element_is_present(self.locators.LOGO_LINK)
 
@@ -127,6 +131,15 @@ class HeaderPage(BasePage):
     @allure.step("Check if the 'Logo' image is visible")
     def check_logo_image_visibility(self):
         return self.element_is_visible(self.locators.LOGO_IMAGE)
+
+    # Checking links in the Header
+    @allure.step("Check if links are clickable in the Header")
+    def check_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list_of_links())
+
+    @allure.step("Get attribute 'href' of in the Footer")
+    def get_links_href(self):
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
 
     @allure.step("Check the 'Logo' link is clickable")
     def check_logo_link_clickability(self):
