@@ -141,7 +141,7 @@ class FooterPage(BasePage):
     def check_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list_of_links())
 
-    @allure.step("Get attribute 'href' of in the Footer")
+    @allure.step("Get attribute 'href' of links in the Footer")
     def get_links_href(self):
         return [element.get_attribute("href") for element in self.get_list_of_links()]
 
