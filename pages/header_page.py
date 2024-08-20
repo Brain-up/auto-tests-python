@@ -137,24 +137,13 @@ class HeaderPage(BasePage):
     def check_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list_of_links())
 
-    @allure.step("Get attribute 'href' of in the Footer")
+    @allure.step("Get attribute 'href' of links in the Header")
     def get_links_href(self):
         return [element.get_attribute("href") for element in self.get_list_of_links()]
 
-    @allure.step("Check the 'Logo' link is clickable")
-    def check_logo_link_clickability(self):
-        return self.element_is_clickable(self.locators.LOGO_LINK)
-
-    @allure.step("Get attribute 'href' of the 'Logo' link")
-    def get_logo_link_href(self):
-        return self.get_link_href(self.locators.LOGO_LINK)
-
-    @allure.step("Get status code of the 'Logo' link")
-    def get_logo_link_status_code(self):
-        link_href = self.get_logo_link_href()
-        link_status_code = requests.head(link_href).status_code
-        # print(f"Logo link status code is: ", link_status_code)
-        return link_status_code
+    @allure.step("Get status codes of links in the Header")
+    def get_links_status_codes(self):
+        return [requests.head(link_href).status_code for link_href in self.get_links_href()]
 
     @allure.step("Click on the 'Logo' link")
     def click_logo_link(self):
@@ -187,25 +176,6 @@ class HeaderPage(BasePage):
             changes = 0
             # print("\nThe 'Logo' section has sizes that didn't change after resizing")
         return changes
-
-    # Checks of the 'About' and the 'Telegram' links in the Section 2 in the Header
-    @allure.step("Check the 'About' and the 'Telegram' links are clickable in the Section 2 in the Header")
-    def check_links_clickability_in_section_2(self):
-        links = self.get_list_of_links_in_section2()
-        all_links_are_enabled = all(link.is_enabled() for link in links)
-        return all_links_are_enabled
-
-    @allure.step("Get attribute 'href' of the 'About' and the 'Telegram' links in the Section 2 in the Header")
-    def get_links_href_in_section_2(self):
-        links = self.get_list_of_links_in_section2()
-        links_href = [element.get_attribute("href") for element in links]
-        return links_href
-
-    @allure.step("Get status codes of the 'About' and the 'Telegram' links in the Section 2 in the Header")
-    def get_links_status_code_in_section_2(self):
-        links_href = self.get_links_href_in_section_2()
-        links_status_code = [requests.head(link_href).status_code for link_href in links_href]
-        return links_status_code
 
     @allure.step("""Click on the 'About' and the 'Telegram' links in the Section 2 in the Header 
     and thereby open corresponding web pages in the same or new tab""")

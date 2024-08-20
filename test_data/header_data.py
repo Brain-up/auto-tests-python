@@ -3,14 +3,19 @@
 
 class HeaderData:
     links_href = [
-        "https://brainup.site/"
+        "https://brainup.site/",
+        "https://brainup.site/description",
+        "https://t.me/BrainUpUsers",
+        "https://opencollective.com/brainup",
+        "https://github.com/Brain-up/brn",
+        "https://brainup.site/contact",
+        "https://brainup.site/specialists",
+        "https://brainup.site/contributors",
+        "https://brainup.site/used-resources",
+        "https://brainup.site/registration"
     ]
 
-    links_href1 = {
-        "section 2 links href": ["https://brainup.site/description", "https://t.me/BrainUpUsers"]
-    }
-
-    links_status_code = 200
+    link_status_codes = 200
 
     links_text = [
         ["ОПИСАНИЕ", "TELEGRAM"], ["ABOUT", "TELEGRAM"]
