@@ -8,7 +8,6 @@ from test_data.header_data import HeaderData
 class TestHeaderPage:
     class TestUnauthorizedHeaderPage:
         class TestHeaderPageStructure:
-
             @allure.title("Verify presence and visibility of the Header")
             def test_hp_01_01_verify_header_presence_and_visibility(self, driver, main_page_open):
                 page = HeaderPage(driver)
@@ -68,15 +67,13 @@ class TestHeaderPage:
                 assert logo_image_visibility, "The 'Logo' image is invisible"
 
         class TestHeaderPageText:
-
-            @allure.title("Verify values of the text in the 'About' and the 'Telegram' links in the Header")
-            def test_hp_02_01_verify_text_in_links(self, driver, main_page_open):
+            @allure.title("Verify values of the text in the 'About', 'Telegram' links in the Header")
+            def test_hp_02_01_verify_text_in_links2(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                links_text = page.get_text_in_links_in_section_2()
-                assert links_text in HeaderData.links_text, "Text in links do not match the valid values"
+                links2_text = page.get_text_in_links2()
+                assert links2_text in HeaderData.links_text, "Text in links 'About', 'Telegram' mismatches valid values"
 
         class TestHeaderPageLinks:
-
             @allure.title("Verify clickability, href, status code of links in the Header")
             def test_hp_03_01_verify_header_links(self, driver, main_page_open):
                 page = HeaderPage(driver)
