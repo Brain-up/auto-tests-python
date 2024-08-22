@@ -2,6 +2,10 @@
 
 
 class HeaderData:
+    links_text = [
+        ["ОПИСАНИЕ", "TELEGRAM"], ["ABOUT", "TELEGRAM"]
+    ]
+
     links_href = [
         "https://brainup.site/",
         "https://brainup.site/description",
@@ -16,10 +20,6 @@ class HeaderData:
     ]
 
     link_status_codes = 200
-
-    links_text = [
-        ["ОПИСАНИЕ", "TELEGRAM"], ["ABOUT", "TELEGRAM"]
-    ]
 
     logo_image_xmlns = "http://www.w3.org/2000/svg"
 

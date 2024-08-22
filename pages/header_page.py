@@ -120,6 +120,11 @@ class HeaderPage(BasePage):
     def check_logo_image_visibility(self):
         return self.element_is_visible(self.locators.LOGO_IMAGE)
 
+    # Checking text in the Header
+    @allure.step("Get the list of text in the 'About' and the 'Telegram' links in the Header")
+    def get_text_in_links2(self):
+        return [link.text for link in self.get_list_of_links_in_section2()]
+
     # Checking links in the Header
     @allure.step("Check if links are clickable in the Header")
     def check_links_clickability(self):
@@ -180,10 +185,3 @@ class HeaderPage(BasePage):
         opened_pages.append(self.driver.current_url)
         # print('\n', *opened_pages, sep='\n')
         return opened_pages
-
-    @allure.step("Get the list of text in the 'About' and the 'Telegram' links in the Sections 2 in the Header")
-    def get_text_in_links_in_section_2(self):
-        links = self.get_list_of_links_in_section2()
-        links_text = [link.text for link in links]
-        # print(f"Text of links in the Section 2 is:", *links_text, sep='\n')
-        return links_text
