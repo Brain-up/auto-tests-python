@@ -97,9 +97,9 @@ class HeaderPage(BasePage):
 
     @allure.step("Get the list of links in the section 2 in the Header")
     def get_list_of_links_in_section2(self):
-        return self.elements_are_present(self.locators.SECTION_2_LINKS)
+        return self.elements_are_present(self.locators.LINKS2)
 
-    @allure.step("Check the 'About' and the 'Telegram' links are visible")
+    @allure.step("Check the 'About' and the 'Telegram' links in the section 2 are visible")
     def check_links_visibility_in_section2(self):
         return all(link.is_displayed() for link in self.get_list_of_links_in_section2())
 
@@ -143,6 +143,22 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
 
+    @allure.step("""Click on the 'About' and the 'Telegram' links in the Header 
+    and thereby open corresponding web pages in the same or new tab""")
+    def click_on_links2_and_return_back(self):
+        opened_pages = []
+        self.element_is_present_and_clickable(self.locators.LINK_ABOUT).click()
+        opened_pages.append(self.driver.current_url)
+        self.driver.back()
+        opened_pages.append(self.driver.current_url)
+        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        opened_pages.append(self.driver.current_url)
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        opened_pages.append(self.driver.current_url)
+        # print('\n', *opened_pages, sep='\n')
+        return opened_pages
+
     # Checking images in the Header
     @allure.step("Get attribute 'xmlns' of the 'Logo' image")
     def get_xmlns_of_logo_image(self):
@@ -169,19 +185,3 @@ class HeaderPage(BasePage):
             changes = 0
             # print("\nThe 'Logo' section has sizes that didn't change after resizing")
         return changes
-
-    @allure.step("""Click on the 'About' and the 'Telegram' links in the Section 2 in the Header 
-    and thereby open corresponding web pages in the same or new tab""")
-    def click_on_links_and_return_back(self):
-        opened_pages = []
-        self.element_is_present_and_clickable(self.locators.SECTION_2_LINK_ABOUT).click()
-        opened_pages.append(self.driver.current_url)
-        self.driver.back()
-        opened_pages.append(self.driver.current_url)
-        self.element_is_present_and_clickable(self.locators.SECTION_2_LINK_TELEGRAM).click()
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        opened_pages.append(self.driver.current_url)
-        self.driver.switch_to.window(self.driver.window_handles[0])
-        opened_pages.append(self.driver.current_url)
-        # print('\n', *opened_pages, sep='\n')
-        return opened_pages
