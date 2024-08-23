@@ -21,11 +21,10 @@ class HeaderData:
 
     link_status_codes = 200
 
-    logo_image_xmlns = "http://www.w3.org/2000/svg"
-
-    pages_url_for_navigation_by_links_in_section_2 = [
+    pages_url_for_navigation_by_links2 = [
         "https://brainup.site/description",
-        "https://brainup.site/",
         "https://t.me/BrainUpUsers",
         "https://brainup.site/"
     ]
+
+    logo_image_xmlns = "http://www.w3.org/2000/svg"
