@@ -121,9 +121,13 @@ class HeaderPage(BasePage):
         return self.element_is_visible(self.locators.LOGO_IMAGE)
 
     # Checking text in the Header
-    @allure.step("Get the list of text in the 'About' and the 'Telegram' links in the Header")
+    @allure.step("Get text in the 'About' and the 'Telegram' links in the Header")
     def get_text_in_links2(self):
         return [link.text for link in self.get_list_of_links_in_section2()]
+
+    @allure.step("Get text in 'ru-en' buttons in the Header")
+    def get_text_in_ru_en_buttons(self):
+        return [button.text for button in self.get_structure_of_ru_en_section()]
 
     # Checking links in the Header
     @allure.step("Check if links are clickable in the Header")

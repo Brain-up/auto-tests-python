@@ -6,6 +6,8 @@ class HeaderData:
         ["ОПИСАНИЕ", "TELEGRAM"], ["ABOUT", "TELEGRAM"]
     ]
 
+    buttons_text = ['RU / EN']
+
     links_href = [
         "https://brainup.site/",
         "https://brainup.site/description",
