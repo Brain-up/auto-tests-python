@@ -56,6 +56,8 @@ class TestHeaderPage:
                 ru_en_buttons_visibility = page.check_elements_visibility_in_ru_en_section()
                 more_button_presence = page.check_more_button_presence()
                 more_button_visibility = page.check_more_button_visibility()
+                registration_link_presence = page.check_registration_link_presence()
+                registration_link_visibility = page.check_registration_link_visibility()
                 logo_image_presence = page.check_logo_image_presence()
                 logo_image_visibility = page.check_logo_image_visibility()
                 assert header_links, "Links are absent in the Header"
@@ -67,12 +69,14 @@ class TestHeaderPage:
                 assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
                 assert more_button_presence, "The 'More' button is absent on the page"
                 assert more_button_visibility, "The 'More' button is invisible"
+                assert registration_link_presence, "The 'Registration' link is absent on the page"
+                assert registration_link_visibility, "The 'Registration' link is invisible"
                 assert logo_image_presence, "The image in the 'Logo' link is absent on the page"
                 assert logo_image_visibility, "The 'Logo' image is invisible"
 
         class TestHeaderPageText:
             @allure.title("Verify values of the text in links, buttons in the Header")
-            def test_hp_02_01_verify_text_in_links2(self, driver, main_page_open):
+            def test_hp_02_01_verify_text_in_links2_and_buttons(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 links2_text = page.get_text_in_links2()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
