@@ -20,6 +20,7 @@ class HeaderPageLocators:
     LOGO_LINK = (By.XPATH, "//a[@data-test-logo]")
     LOGO_SECTION = (By.XPATH, "//nav/div")
     MORE_BUTTON = (By.ID, "other-menu")
+    REGISTRATION_LINK = (By.ID, "ember10")
     RU_EN_BUTTONS = (By.XPATH, "//nav//span/*")
     RU_EN_BUTTONS_SECTION = (By.XPATH, "//nav//span")
     SPECIALISTS_LINK = (By.ID, "ember7")

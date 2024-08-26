@@ -120,6 +120,14 @@ class HeaderPage(BasePage):
     def check_more_button_visibility(self):
         return self.element_is_visible(self.locators.MORE_BUTTON)
 
+    @allure.step("Check the 'Registration' link is present in the Header")
+    def check_registration_link_presence(self):
+        return self.element_is_present(self.locators.REGISTRATION_LINK)
+
+    @allure.step("Check the 'Registration' link is visible")
+    def check_registration_link_visibility(self):
+        return self.element_is_visible(self.locators.REGISTRATION_LINK)
+
     @allure.step("Check if the 'Logo' image is present")
     def check_logo_image_presence(self):
         return self.element_is_present(self.locators.LOGO_IMAGE)
