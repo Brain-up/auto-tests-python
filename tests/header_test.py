@@ -76,12 +76,17 @@ class TestHeaderPage:
 
         class TestHeaderPageText:
             @allure.title("Verify values of the text in links, buttons in the Header")
-            def test_hp_02_01_verify_text_in_links2_and_buttons(self, driver, main_page_open):
+            def test_hp_02_01_verify_text_in_links_and_buttons(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 links2_text = page.get_text_in_links2()
+                registration_link_text = page.get_text_in_registration_link()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
-                assert links2_text in HeaderData.links_text, "Text in links 'About', 'Telegram' mismatches valid values"
-                assert ru_en_buttons_text == HeaderData.buttons_text, "Text in 'ru-en' buttons mismatches valid values"
+                assert all(link_text in HeaderData.links_text for link_text in links2_text), \
+                    "Text in links 'About', 'Telegram' mismatches valid values"
+                assert registration_link_text in HeaderData.links_text, \
+                    "Text in the 'Registration' link mismatches the valid value"
+                assert all(button_text in HeaderData.buttons_text for button_text in ru_en_buttons_text), \
+                    "Text in 'ru-en' buttons mismatches valid values"
 
         class TestHeaderPageLinks:
             @allure.title("Verify clickability, href, status code of links in the Header")
