@@ -141,6 +141,10 @@ class HeaderPage(BasePage):
     def get_text_in_links2(self):
         return [link.text for link in self.get_list_of_links_in_section2()]
 
+    @allure.step("Get text in the 'Registration' link in the Header")
+    def get_text_in_registration_link(self):
+        return self.get_text(self.locators.REGISTRATION_LINK)
+
     @allure.step("Get text in 'ru-en' buttons in the Header")
     def get_text_in_ru_en_buttons(self):
         return [button.text for button in self.get_structure_of_ru_en_section()]

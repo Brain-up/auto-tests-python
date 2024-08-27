@@ -3,10 +3,11 @@
 
 class HeaderData:
     links_text = [
-        ["ОПИСАНИЕ", "TELEGRAM"], ["ABOUT", "TELEGRAM"]
+        "ОПИСАНИЕ", "TELEGRAM", "ABOUT", "TELEGRAM",
+        "Регистрация", "Registration"
     ]
 
-    buttons_text = ['RU / EN']
+    buttons_text = "RU / EN"
 
     links_href = [
         "https://brainup.site/",
