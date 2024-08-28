@@ -136,12 +136,13 @@ class TestHeaderPage:
                 assert current_page_url in HeaderData.links_href, \
                     "'Logo' link in sections 1 leads to incorrect page after clicking"
 
-            @allure.title("Verify if the 'About', 'Telegram' links in the Header lead to correct pages after click")
-            def test_hp_03_04_verify_links2_lead_to_correct_pages(self, driver, main_page_open):
+            @allure.title("""Verify if the 'About', 'Telegram', 'Registration' links in the Header 
+                             lead to correct pages after click""")
+            def test_hp_03_04_verify_links_lead_to_correct_pages(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                opened_pages = page.click_on_links2_and_return_back()
-                assert all(page in HeaderData.pages_url_for_navigation_by_links2 for page in opened_pages), \
-                    "The 'About' and the 'Telegram' links in the Header lead to incorrect pages after click"
+                opened_pages = page.click_on_links_and_return_back()
+                assert all(page in HeaderData.pages_url_for_navigation_by_links for page in opened_pages), \
+                    "Some of the links lead to an incorrect page after click"
 
         class TestHeaderPageImages:
             @allure.title("Verify attributes of the image in the 'Logo' link")
