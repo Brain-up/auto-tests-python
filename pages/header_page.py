@@ -167,18 +167,25 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
 
-    @allure.step("""Click on the 'About' and the 'Telegram' links in the Header 
+    @allure.step("""Click on the 'About', 'Telegram', 'Registration' links in the Header 
     and thereby open corresponding web pages in the same or new tab""")
-    def click_on_links2_and_return_back(self):
+    def click_on_links_and_return_back(self):
         opened_pages = []
+        # Click on the 'About' link and return back
         self.element_is_present_and_clickable(self.locators.LINK_ABOUT).click()
         opened_pages.append(self.driver.current_url)
         self.driver.back()
         opened_pages.append(self.driver.current_url)
+        # Click on the 'Telegram' link and return back
         self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
         opened_pages.append(self.driver.current_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
+        opened_pages.append(self.driver.current_url)
+        # Click on the 'Registration' link and return back
+        self.element_is_present_and_clickable(self.locators.REGISTRATION_LINK).click()
+        opened_pages.append(self.driver.current_url)
+        self.driver.back()
         opened_pages.append(self.driver.current_url)
         # print('\n', *opened_pages, sep='\n')
         return opened_pages
