@@ -52,8 +52,10 @@ class TestHeaderPage:
                 logo_link_visibility = page.check_logo_link_visibility()
                 links2_presence = page.get_list_of_links_in_section2()
                 links2_visibility = page.check_links_visibility_in_section2()
-                ru_en_section_structure = page.get_structure_of_ru_en_section()
-                ru_en_buttons_visibility = page.check_elements_visibility_in_ru_en_section()
+                buttons_presence = page.get_list_of_buttons()
+                buttons_visibility = page.check_buttons_visibility()
+                ru_en_buttons_presence = page.get_list_of_ru_en_buttons()
+                ru_en_buttons_visibility = page.check_ru_en_buttons_visibility()
                 more_button_presence = page.check_more_button_presence()
                 more_button_visibility = page.check_more_button_visibility()
                 registration_link_presence = page.check_registration_link_presence()
@@ -65,7 +67,9 @@ class TestHeaderPage:
                 assert logo_link_visibility, "The 'Logo' link is invisible"
                 assert links2_presence, "Links in section 2 are absent on the page"
                 assert links2_visibility, "Links in section 2 are invisible"
-                assert ru_en_section_structure, "The 'ru' and 'en' buttons are absent on the page"
+                assert buttons_presence, "Buttons are absent on the page"
+                assert buttons_visibility, "Buttons are invisible"
+                assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent on the page"
                 assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
                 assert more_button_presence, "The 'More' button is absent on the page"
                 assert more_button_visibility, "The 'More' button is invisible"
