@@ -103,14 +103,22 @@ class HeaderPage(BasePage):
     def check_links_visibility_in_section2(self):
         return all(link.is_displayed() for link in self.get_list_of_links_in_section2())
 
-    @allure.step("Get structure of the 'ru-en' section in the Header")
-    def get_structure_of_ru_en_section(self):
+    @allure.step("Get the list of buttons in the Header")
+    def get_list_of_buttons(self):
+        return self.elements_are_present(self.locators.HEADER_BUTTONS)
+
+    @allure.step("Check buttons are visible")
+    def check_buttons_visibility(self):
+        return all(button.is_displayed() for button in self.get_list_of_buttons())
+
+    @allure.step("Get the list of 'ru' and 'en' buttons in the Header")
+    def get_list_of_ru_en_buttons(self):
         # tags = [element.tag_name for element in elements]
         return self.elements_are_present(self.locators.RU_EN_BUTTONS_SECTION)
 
-    @allure.step("Check if elements in the 'ru-en' section are visible")
-    def check_elements_visibility_in_ru_en_section(self):
-        return all(element.is_displayed() for element in self.get_structure_of_ru_en_section())
+    @allure.step("Check if 'ru' and 'en' buttons are visible")
+    def check_ru_en_buttons_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_ru_en_buttons())
 
     @allure.step("Check the 'More' button is present in the Header")
     def check_more_button_presence(self):
@@ -145,9 +153,9 @@ class HeaderPage(BasePage):
     def get_text_in_registration_link(self):
         return self.get_text(self.locators.REGISTRATION_LINK)
 
-    @allure.step("Get text in 'ru-en' buttons in the Header")
+    @allure.step("Get text in 'ru' and 'en' buttons in the Header")
     def get_text_in_ru_en_buttons(self):
-        return [button.text for button in self.get_structure_of_ru_en_section()]
+        return [button.text for button in self.get_list_of_ru_en_buttons()]
 
     # Checking links in the Header
     @allure.step("Check if links are clickable in the Header")

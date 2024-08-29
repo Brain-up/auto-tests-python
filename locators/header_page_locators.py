@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 
 class HeaderPageLocators:
     CONTACTS_LINK = (By.ID, "ember6")
+    HEADER_BUTTONS = (By.XPATH, "//nav//button")
     HEADER_CONTENT = (By.XPATH, "//div[contains(@class, 'header')]")
     HEADER_LINKS = (By.XPATH, "//nav//a")
     HEADER_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*")
