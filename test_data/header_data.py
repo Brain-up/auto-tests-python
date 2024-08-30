@@ -7,7 +7,9 @@ class HeaderData:
         "Регистрация", "Registration"
     ]
 
-    buttons_text = "RU / EN"
+    buttons_text = ['RU', 'EN', 'ЕЩЕ...', 'MORE...']
+
+    ru_en_buttons_text = "RU / EN"
 
     links_href = [
         "https://brainup.site/",

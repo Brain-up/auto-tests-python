@@ -153,6 +153,10 @@ class HeaderPage(BasePage):
     def get_text_in_registration_link(self):
         return self.get_text(self.locators.REGISTRATION_LINK)
 
+    @allure.step("Get text in buttons in the Header")
+    def get_text_in_buttons(self):
+        return [button.text for button in self.get_list_of_buttons()]
+
     @allure.step("Get text in 'ru' and 'en' buttons in the Header")
     def get_text_in_ru_en_buttons(self):
         return [button.text for button in self.get_list_of_ru_en_buttons()]
