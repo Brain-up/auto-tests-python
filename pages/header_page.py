@@ -207,24 +207,15 @@ class HeaderPage(BasePage):
     def get_xmlns_of_logo_image(self):
         return self.element_is_present(self.locators.LOGO_IMAGE).get_attribute("xmlns")
 
-    @allure.step("Get size values of the 'Logo' image")
-    def get_sizes_of_logo_image(self):
-        logo_image_sizes = self.get_image_size(self.locators.LOGO_IMAGE)
-        # print(f"The sizes of the 'Logo' image are: {logo_image_sizes}")
-        return logo_image_sizes
+    @allure.step("Get size of the 'Logo' image")
+    def get_size_of_logo_image(self):
+        return self.get_image_size(self.locators.LOGO_IMAGE)
 
-    @allure.step("""Get size of the 'Logo' image and check its changes after resizing""")
-    def check_size_changes_of_logo_section(self):
-        section_size_before = self.get_image_size(self.locators.LOGO_SECTION)
-        # print(f"The sizes of the 'Logo' section are: {section_size_before}")
+    @allure.step("""Check if size of the 'Logo' image changes after resizing""")
+    def check_size_changes_of_logo_image(self):
+        image_size_before = self.get_size_of_logo_image()
         self.driver.set_window_size(220, 1100)
-        section_size_after = self.get_image_size(self.locators.LOGO_LINK)
-        # print(f"The sizes of the 'Logo' section are: {section_size_after}")
-        if section_size_before != section_size_after:
-            changes = 1
-            # print(f"\nThe 'Logo' section has sizes that changed: \nfrom {section_size_before} before "
-            #       f"resizing \nto {section_size_after} after resizing")
-        else:
-            changes = 0
-            # print("\nThe 'Logo' section has sizes that didn't change after resizing")
+        image_size_after = self.get_size_of_logo_image()
+        changes = 1 if image_size_before == image_size_after else 0
+        print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
         return changes
