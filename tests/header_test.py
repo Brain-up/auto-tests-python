@@ -153,13 +153,17 @@ class TestHeaderPage:
 
         class TestHeaderPageImages:
             @allure.title("Verify attributes of the image in the 'Logo' link")
-            def test_hp_04_01_verify_verify_logo_image_attributes(self, driver, main_page_open):
+            def test_hp_04_01_verify_logo_image_attributes(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 image_xmlns = page.get_xmlns_of_logo_image()
-                image_sizes = page.get_sizes_of_logo_image()
-                image_sizes_change = page.check_size_changes_of_logo_section()
                 assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
                 assert image_xmlns == HeaderData.logo_image_xmlns, \
-                    "The 'xmlns' attribute value of the 'Logo' image is unaccurate"
-                assert image_sizes != 0, f"The 'Logo' image is invisible due its size = 0, 0"
-                assert image_sizes_change, "Checks of changes in image sizes have not carried out"
+                    "The 'xmlns' attribute value of the 'Logo' image mismatches valid value"
+
+            @allure.title("Verify size of the image in the 'Logo' link")
+            def test_hp_04_02_verify_logo_image_size(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                image_size = page.get_size_of_logo_image()
+                image_size_change = page.check_size_changes_of_logo_image()
+                assert image_size != 0, f"The image in the 'Logo' image has not size"
+                assert image_size_change, "Checks of change of image size has not carried out"
