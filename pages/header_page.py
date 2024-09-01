@@ -103,6 +103,15 @@ class HeaderPage(BasePage):
     def check_links_visibility_in_section2(self):
         return all(link.is_displayed() for link in self.get_list_of_links_in_section2())
 
+    @allure.step("Get the list of links in the section 3 in the Header")
+    def get_list_of_links_in_section3(self):
+        return self.elements_are_present(self.locators.LINKS3)
+
+    @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
+    in the section 3 are invisible""")
+    def check_links_invisibility_in_section3(self):
+        return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_section3())
+
     @allure.step("Get the list of buttons in the Header")
     def get_list_of_buttons(self):
         return self.elements_are_present(self.locators.HEADER_BUTTONS)
