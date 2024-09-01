@@ -52,6 +52,8 @@ class TestHeaderPage:
                 logo_link_visibility = page.check_logo_link_visibility()
                 links2_presence = page.get_list_of_links_in_section2()
                 links2_visibility = page.check_links_visibility_in_section2()
+                links3_presence = page.get_list_of_links_in_section3()
+                links3_invisibility = page.check_links_invisibility_in_section3()
                 buttons_presence = page.get_list_of_buttons()
                 buttons_visibility = page.check_buttons_visibility()
                 ru_en_buttons_presence = page.get_list_of_ru_en_buttons()
@@ -67,6 +69,8 @@ class TestHeaderPage:
                 assert logo_link_visibility, "The 'Logo' link is invisible"
                 assert links2_presence, "Links in section 2 are absent on the page"
                 assert links2_visibility, "Links in section 2 are invisible"
+                assert links3_presence, "Links in section 3 are absent on the page"
+                assert links3_invisibility, "Links in section 3 are visible"
                 assert buttons_presence, "Buttons are absent on the page"
                 assert buttons_visibility, "Buttons are invisible"
                 assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent on the page"
@@ -166,4 +170,4 @@ class TestHeaderPage:
                 image_size = page.get_size_of_logo_image()
                 image_size_change = page.check_size_changes_of_logo_image()
                 assert image_size != 0, f"The image in the 'Logo' image has not size"
-                assert image_size_change, "Checks of change of image size has not carried out"
+                assert image_size_change, "The 'Logo' image size is changed"
