@@ -70,7 +70,7 @@ class TestHeaderPage:
                 assert links2_presence, "Links in section 2 are absent on the page"
                 assert links2_visibility, "Links in section 2 are invisible"
                 assert links3_presence, "Links in section 3 are absent on the page"
-                assert links3_invisibility, "Links in section 3 are invisible"
+                assert links3_invisibility, "Links in section 3 are visible"
                 assert buttons_presence, "Buttons are absent on the page"
                 assert buttons_visibility, "Buttons are invisible"
                 assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent on the page"
