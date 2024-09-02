@@ -87,11 +87,14 @@ class TestHeaderPage:
             def test_hp_02_01_verify_text_in_links_and_buttons(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 links2_text = page.get_text_in_links2()
+                links3_text = page.get_text_in_links3()
                 registration_link_text = page.get_text_in_registration_link()
                 buttons_text = page.get_text_in_buttons()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
                 assert all(link_text in HeaderData.links_text for link_text in links2_text), \
-                    "Text in links 'About', 'Telegram' mismatches valid values"
+                    "Text in links in section 2 mismatches valid values"
+                assert all(link_text in HeaderData.links_text for link_text in links3_text), \
+                    "Text in links in section 3 mismatches valid values"
                 assert registration_link_text in HeaderData.links_text, \
                     "Text in the 'Registration' link mismatches the valid value"
                 assert all(button_text in HeaderData.buttons_text for button_text in buttons_text), \
