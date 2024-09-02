@@ -158,6 +158,12 @@ class HeaderPage(BasePage):
     def get_text_in_links2(self):
         return [link.text for link in self.get_list_of_links_in_section2()]
 
+    @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
+    links in the Header""")
+    def get_text_in_links3(self):
+        self.click_more_button()
+        return [link.text for link in self.get_list_of_links_in_section3()]
+
     @allure.step("Get text in the 'Registration' link in the Header")
     def get_text_in_registration_link(self):
         return self.get_text(self.locators.REGISTRATION_LINK)
@@ -210,6 +216,12 @@ class HeaderPage(BasePage):
         opened_pages.append(self.driver.current_url)
         # print('\n', *opened_pages, sep='\n')
         return opened_pages
+
+    @allure.step("Click on the 'More' button")
+    def click_more_button(self):
+        # self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
+        # return self.driver.current_url
+        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
 
     # Checking images in the Header
     @allure.step("Get attribute 'xmlns' of the 'Logo' image")

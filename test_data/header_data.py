@@ -3,7 +3,14 @@
 
 class HeaderData:
     links_text = [
-        "ОПИСАНИЕ", "TELEGRAM", "ABOUT", "TELEGRAM",
+        "ОПИСАНИЕ", "ABOUT",
+        "TELEGRAM",
+        "Пожертвовать", "Donate",
+        "GitHub",
+        "Контакты", "Contacts",
+        "Специалисты", "Specialists",
+        "Наша команда", "Contributors",
+        "Используемые ресурсы", "Used Resources",
         "Регистрация", "Registration"
     ]
 
