@@ -112,6 +112,12 @@ class HeaderPage(BasePage):
     def check_links_invisibility_in_section3(self):
         return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_section3())
 
+    @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
+    in the section 3 are visible""")
+    def check_links_visibility_in_section3(self):
+        self.click_more_button()
+        return all(link.is_displayed() for link in self.get_list_of_links_in_section3())
+
     @allure.step("Get the list of buttons in the Header")
     def get_list_of_buttons(self):
         return self.elements_are_present(self.locators.HEADER_BUTTONS)
@@ -144,14 +150,6 @@ class HeaderPage(BasePage):
     @allure.step("Check the 'Registration' link is visible")
     def check_registration_link_visibility(self):
         return self.element_is_visible(self.locators.REGISTRATION_LINK)
-
-    @allure.step("Check if the 'Logo' image is present")
-    def check_logo_image_presence(self):
-        return self.element_is_present(self.locators.LOGO_IMAGE)
-
-    @allure.step("Check if the 'Logo' image is visible")
-    def check_logo_image_visibility(self):
-        return self.element_is_visible(self.locators.LOGO_IMAGE)
 
     # Checking text in the Header
     @allure.step("Get text in the 'About' and the 'Telegram' links in the Header")
@@ -224,6 +222,14 @@ class HeaderPage(BasePage):
         return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
 
     # Checking images in the Header
+    @allure.step("Check if the 'Logo' image is present")
+    def check_logo_image_presence(self):
+        return self.element_is_present(self.locators.LOGO_IMAGE)
+
+    @allure.step("Check if the 'Logo' image is visible")
+    def check_logo_image_visibility(self):
+        return self.element_is_visible(self.locators.LOGO_IMAGE)
+
     @allure.step("Get attribute 'xmlns' of the 'Logo' image")
     def get_xmlns_of_logo_image(self):
         return self.element_is_present(self.locators.LOGO_IMAGE).get_attribute("xmlns")
