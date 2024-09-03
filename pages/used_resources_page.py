@@ -24,9 +24,8 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting on the page")
     def get_structure_of_1st_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 1st level of nesting are visible")
     def check_elements_visibility_on_1st_level_on_page(self):
@@ -34,9 +33,8 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Get structure of the 2nd level of nesting on the page")
     def get_structure_of_2nd_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
     def check_elements_visibility_on_2nd_level_on_page(self):
@@ -44,9 +42,8 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Get structure of the 3rd level of nesting on the page")
     def get_structure_of_3rd_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 3rd level of nesting are visible")
     def check_elements_visibility_on_3rd_level_on_page(self):
@@ -54,9 +51,8 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Get structure of the 4th level of nesting on the page")
     def get_structure_of_4th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 4th level of nesting are visible")
     def check_elements_visibility_on_4th_level_on_page(self):
@@ -67,7 +63,7 @@ class UsedResourcesPage(BasePage):
     def get_value_of_tab_title(self):
         return self.get_current_tab_title()
 
-    @allure.step("Get value of the title with tag 'h1' on the page")
+    @allure.step("Get value of the title on the page")
     def get_value_of_page_title(self):
         return self.get_text(self.locators.TITLE_H1)
 
@@ -136,5 +132,4 @@ class UsedResourcesPage(BasePage):
         for i in range(len(icons)):
             changed.append(i) if icons_sizes_before[i] != icons_sizes_after[i] else unchanged.append(i)
             lost.append(i) if icons_sizes_after[i] == {'height': 0, 'width': 0} else None
-        print(f'\nChanged: {len(changed)}, Lost: {len(lost)}, Unchanged: {len(unchanged)}')
         return changed, lost, unchanged

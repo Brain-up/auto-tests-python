@@ -44,7 +44,7 @@ class TestHeaderPage:
                 assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
                 assert invisibility_of_elements_on_6th_level, "6th-level elements are visible"
 
-            @allure.title("Verify presence, visibility of links, buttons, images in the Header")
+            @allure.title("Verify presence, visibility of links, buttons in the Header")
             def test_hp_01_03_verify_header_structural_elements(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 header_links = page.get_list_of_links()
@@ -54,6 +54,7 @@ class TestHeaderPage:
                 links2_visibility = page.check_links_visibility_in_section2()
                 links3_presence = page.get_list_of_links_in_section3()
                 links3_invisibility = page.check_links_invisibility_in_section3()
+                links3_visibility = page.check_links_visibility_in_section3()
                 buttons_presence = page.get_list_of_buttons()
                 buttons_visibility = page.check_buttons_visibility()
                 ru_en_buttons_presence = page.get_list_of_ru_en_buttons()
@@ -62,8 +63,6 @@ class TestHeaderPage:
                 more_button_visibility = page.check_more_button_visibility()
                 registration_link_presence = page.check_registration_link_presence()
                 registration_link_visibility = page.check_registration_link_visibility()
-                logo_image_presence = page.check_logo_image_presence()
-                logo_image_visibility = page.check_logo_image_visibility()
                 assert header_links, "Links are absent in the Header"
                 assert logo_link_presence, "The 'Logo' link is absent on the page"
                 assert logo_link_visibility, "The 'Logo' link is invisible"
@@ -71,6 +70,7 @@ class TestHeaderPage:
                 assert links2_visibility, "Links in section 2 are invisible"
                 assert links3_presence, "Links in section 3 are absent on the page"
                 assert links3_invisibility, "Links in section 3 are visible"
+                assert links3_visibility, "Links in section 3 are invisible"
                 assert buttons_presence, "Buttons are absent on the page"
                 assert buttons_visibility, "Buttons are invisible"
                 assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent on the page"
@@ -79,8 +79,6 @@ class TestHeaderPage:
                 assert more_button_visibility, "The 'More' button is invisible"
                 assert registration_link_presence, "The 'Registration' link is absent on the page"
                 assert registration_link_visibility, "The 'Registration' link is invisible"
-                assert logo_image_presence, "The image in the 'Logo' link is absent on the page"
-                assert logo_image_visibility, "The 'Logo' image is invisible"
 
         class TestHeaderPageText:
             @allure.title("Verify values of the text in links, buttons in the Header")
@@ -159,10 +157,14 @@ class TestHeaderPage:
                     "Some of the links lead to an incorrect page after click"
 
         class TestHeaderPageImages:
-            @allure.title("Verify attributes of the image in the 'Logo' link")
-            def test_hp_04_01_verify_logo_image_attributes(self, driver, main_page_open):
+            @allure.title("Verify presence, visibility and attributes of the image in the 'Logo' link")
+            def test_hp_04_01_verify_logo_image(self, driver, main_page_open):
                 page = HeaderPage(driver)
+                logo_image_presence = page.check_logo_image_presence()
+                logo_image_visibility = page.check_logo_image_visibility()
                 image_xmlns = page.get_xmlns_of_logo_image()
+                assert logo_image_presence, "An image in the 'Logo' link is absent on the page"
+                assert logo_image_visibility, "The 'Logo' image is invisible"
                 assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
                 assert image_xmlns == HeaderData.logo_image_xmlns, \
                     "The 'xmlns' attribute value of the 'Logo' image mismatches valid value"
