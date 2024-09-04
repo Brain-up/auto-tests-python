@@ -1,4 +1,6 @@
 """Methods for verifying web elements in the Header of the site"""
+import time
+
 import allure
 import requests
 from pages.base_page import BasePage
@@ -212,14 +214,59 @@ class HeaderPage(BasePage):
         opened_pages.append(self.driver.current_url)
         self.driver.back()
         opened_pages.append(self.driver.current_url)
-        # print('\n', *opened_pages, sep='\n')
+        print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on the 'More' button")
     def click_more_button(self):
-        # self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
-        # return self.driver.current_url
         return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
+
+    @allure.step("""Click on the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links  
+    in the Header and thereby open corresponding web pages in the same or new tab""")
+    def click_on_links3_and_return_back(self):
+        opened_pages = []
+        # Click on the 'Contacts' link and return back
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators.LINK_CONTACTS).click()
+        opened_pages.append(self.driver.current_url)
+        self.driver.back()
+        opened_pages.append(self.driver.current_url)
+        # Click on the 'Specialists' link and return back
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators.LINK_SPECIALISTS).click()
+        time.sleep(3)
+        opened_pages.append(self.driver.current_url)
+        self.driver.back()
+        opened_pages.append(self.driver.current_url)
+        # Click on the 'Contributors' link and return back
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators.LINK_CONTRIBUTORS).click()
+        opened_pages.append(self.driver.current_url)
+        self.driver.back()
+        opened_pages.append(self.driver.current_url)
+        # Click on the 'Used Resources' link and return back
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators.LINK_USED_RESOURCES).click()
+        opened_pages.append(self.driver.current_url)
+        self.driver.back()
+        opened_pages.append(self.driver.current_url)
+
+        # Click on the 'Donate' link and return back
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators.LINK_DONATE).click()
+        self.driver.switch_to.window(self.driver.window_handles[2])
+        opened_pages.append(self.driver.current_url)
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        opened_pages.append(self.driver.current_url)
+        # Click on the 'GitHub' link and return back
+        self.element_is_present_and_clickable(self.locators.LINK_GITHUB).click()
+        time.sleep(3)
+        self.driver.switch_to.window(self.driver.window_handles[3])
+        opened_pages.append(self.driver.current_url)
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        opened_pages.append(self.driver.current_url)
+        print('\n', *opened_pages, sep='\n')
+        return opened_pages
 
     # Checking images in the Header
     @allure.step("Check if the 'Logo' image is present")
