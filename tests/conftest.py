@@ -33,7 +33,7 @@ def contributors_page_open(driver):
 def contacts_page_open(driver, main_page_open):
     page = BasePage(driver)
     page.element_is_present_and_clickable(HeaderPageLocators.MORE_BUTTON).click()
-    page.element_is_present_and_clickable(HeaderPageLocators.CONTACTS_LINK).click()
+    page.element_is_present_and_clickable(HeaderPageLocators.LINK_CONTACTS).click()
     time.sleep(1)
 
 
@@ -56,7 +56,7 @@ def login_page_open(driver, main_page_open):
 def specialists_page_open(driver, main_page_open):
     page = BasePage(driver)
     page.element_is_present_and_clickable(HeaderPageLocators.MORE_BUTTON).click()
-    page.element_is_present_and_clickable(HeaderPageLocators.SPECIALISTS_LINK).click()
+    page.element_is_present_and_clickable(HeaderPageLocators.LINK_SPECIALISTS).click()
     time.sleep(1)
 
 
