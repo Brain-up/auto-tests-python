@@ -147,11 +147,11 @@ class HeaderPage(BasePage):
 
     @allure.step("Check the 'Registration' link is present in the Header")
     def check_registration_link_presence(self):
-        return self.element_is_present(self.locators.REGISTRATION_LINK)
+        return self.element_is_present(self.locators.LINK_REGISTRATION)
 
     @allure.step("Check the 'Registration' link is visible")
     def check_registration_link_visibility(self):
-        return self.element_is_visible(self.locators.REGISTRATION_LINK)
+        return self.element_is_visible(self.locators.LINK_REGISTRATION)
 
     # Checking text in the Header
     @allure.step("Get text in the 'About' and the 'Telegram' links in the Header")
@@ -166,7 +166,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Get text in the 'Registration' link in the Header")
     def get_text_in_registration_link(self):
-        return self.get_text(self.locators.REGISTRATION_LINK)
+        return self.get_text(self.locators.LINK_REGISTRATION)
 
     @allure.step("Get text in buttons in the Header")
     def get_text_in_buttons(self):
@@ -210,7 +210,7 @@ class HeaderPage(BasePage):
         self.driver.switch_to.window(self.driver.window_handles[0])
         opened_pages.append(self.driver.current_url)
         # Click on the 'Registration' link and return back
-        self.element_is_present_and_clickable(self.locators.REGISTRATION_LINK).click()
+        self.element_is_present_and_clickable(self.locators.LINK_REGISTRATION).click()
         opened_pages.append(self.driver.current_url)
         self.driver.back()
         opened_pages.append(self.driver.current_url)
@@ -254,14 +254,14 @@ class HeaderPage(BasePage):
         # Click on the 'Donate' link and return back
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators.LINK_DONATE).click()
-        self.driver.switch_to.window(self.driver.window_handles[2])
+        self.driver.switch_to.window(self.driver.window_handles[1])
         opened_pages.append(self.driver.current_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
         opened_pages.append(self.driver.current_url)
         # Click on the 'GitHub' link and return back
         self.element_is_present_and_clickable(self.locators.LINK_GITHUB).click()
         time.sleep(3)
-        self.driver.switch_to.window(self.driver.window_handles[3])
+        self.driver.switch_to.window(self.driver.window_handles[2])
         opened_pages.append(self.driver.current_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
         opened_pages.append(self.driver.current_url)

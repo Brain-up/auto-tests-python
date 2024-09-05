@@ -148,13 +148,18 @@ class TestHeaderPage:
                 assert current_page_url in HeaderData.links_href, \
                     "'Logo' link in sections 1 leads to incorrect page after clicking"
 
-            @allure.title("Verify if links in the Header lead to correct pages after click")
+            @allure.title("""Verify if the 'About', 'Telegram', 'Registration' links in the Header 
+            lead to correct pages after click""")
             def test_hp_03_04_verify_links_lead_to_correct_pages(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 opened_pages = page.click_on_links_and_return_back()
-                opened_pages3 = page.click_on_links3_and_return_back()
                 assert all(page in HeaderData.pages_url_for_navigation_by_links for page in opened_pages), \
                     "Some of the links lead to an incorrect page after click"
+
+            @allure.title("Verify if links in the section 3 in the Header lead to correct pages after click")
+            def test_hp_03_05_verify_links3_lead_to_correct_pages(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                opened_pages3 = page.click_on_links3_and_return_back()
                 assert all(page in HeaderData.pages_url_for_navigation_by_links for page in opened_pages3), \
                     "Some of the links in the section 3 lead to an incorrect page after click"
 
