@@ -33,7 +33,7 @@ class HeaderData:
 
     link_status_codes = 200
 
-    pages_url_for_navigation_by_links = [
+    pages_urls = [
         "https://brainup.site/description",
         "https://t.me/BrainUpUsers",
         "https://brainup.site/registration",

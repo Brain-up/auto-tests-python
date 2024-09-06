@@ -268,6 +268,30 @@ class HeaderPage(BasePage):
         print('\n', *opened_pages, sep='\n')
         return opened_pages
 
+    @allure.step("Get the list of the 'Donate', 'GitHub', links (external links) in the 'More' dropdown")
+    def get_list_of_external_links_in_more(self):
+        links = self.elements_are_present(self.locators.HEADER_LINKS)
+        external_links = []
+        for i in range(3, 5):
+            external_links.append(links[i])
+        return external_links
+
+    @allure.step("""Click on the 'Telegram', 'Donate', 'GitHub', links in the Header 
+    and thereby open corresponding web pages on new tabs""")
+    def click_on_external_links_in_header(self):
+        opened_pages = []
+        # Click on the 'Telegram' link
+        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
+        # Click on the 'GitHub', 'Donate' links
+        self.click_more_button()
+        new_tabs = [link.click() for link in self.get_list_of_external_links_in_more()]
+        # Get the list of opened tabs urls
+        for i in range(1, len(new_tabs) + 2):
+            self.driver.switch_to.window(self.driver.window_handles[i])
+            opened_pages.append(self.get_current_tab_url())
+        print('\n', *opened_pages, sep='\n')
+        return opened_pages
+
     # Checking images in the Header
     @allure.step("Check if the 'Logo' image is present")
     def check_logo_image_presence(self):

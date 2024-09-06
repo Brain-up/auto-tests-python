@@ -153,15 +153,24 @@ class TestHeaderPage:
             def test_hp_03_04_verify_links_lead_to_correct_pages(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 opened_pages = page.click_on_links_and_return_back()
-                assert all(page in HeaderData.pages_url_for_navigation_by_links for page in opened_pages), \
+                assert all(page in HeaderData.pages_urls for page in opened_pages), \
                     "Some of the links lead to an incorrect page after click"
 
             @allure.title("Verify if links in the section 3 in the Header lead to correct pages after click")
             def test_hp_03_05_verify_links3_lead_to_correct_pages(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 opened_pages3 = page.click_on_links3_and_return_back()
-                assert all(page in HeaderData.pages_url_for_navigation_by_links for page in opened_pages3), \
+                assert all(page in HeaderData.pages_urls for page in opened_pages3), \
                     "Some of the links in the section 3 lead to an incorrect page after click"
+
+            @allure.title("Verify if external links in the Header lead to correct pages after click")
+            def test_hp_03_06_verify_external_links_lead_to_correct_pages(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                external_links_in_more = page.get_list_of_external_links_in_more()
+                opened_pages = page.click_on_external_links_in_header()
+                assert external_links_in_more, "External links are not collected in the list"
+                assert all(page in HeaderData.pages_urls for page in opened_pages), \
+                    "Some of external links lead to incorrect pages after clicking"
 
         class TestHeaderPageImages:
             @allure.title("Verify presence, visibility and attributes of the image in the 'Logo' link")
