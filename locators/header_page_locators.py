@@ -18,6 +18,7 @@ class HeaderPageLocators:
     LINK_CONTRIBUTORS = (By.XPATH, "(//nav//a)[8]")
     LINK_DONATE = (By.XPATH, "(//nav//a)[4]")
     LINK_GITHUB = (By.XPATH, "(//nav//a)[5]")
+    LINK_LOGO = (By.XPATH, "(//nav//a)[1]")
     LINK_REGISTRATION = (By.XPATH, "(//nav//a)[10]")
     LINK_SPECIALISTS = (By.XPATH, "(//nav//a)[7]")
     LINK_TELEGRAM = (By.XPATH, "(//nav//a)[3]")
