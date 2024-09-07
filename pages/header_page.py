@@ -1,6 +1,5 @@
 """Methods for verifying web elements in the Header of the site"""
 import time
-
 import allure
 import requests
 from pages.base_page import BasePage
@@ -189,11 +188,74 @@ class HeaderPage(BasePage):
     def get_links_status_codes(self):
         return [requests.head(link_href).status_code for link_href in self.get_links_href()]
 
+    # Checks on links navigation
     @allure.step("Click on the 'Logo' link")
     def click_logo_link(self):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
 
+    @allure.step("Click on the 'More' button")
+    def click_more_button(self):
+        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
+
+    @allure.step("""Get the list of the 'About', 'Registration', 'Logo' links
+                 (direct internal links) in the Header""")
+    def get_list_of_direct_internal_links(self):
+        links = self.get_list_of_links()
+        direct_internal_links = []
+        for i in [1, 9, 0]:
+            direct_internal_links.append(links[i])
+        return direct_internal_links
+
+    @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
+                 (internal links) in the 'More' dropdown""")
+    def get_list_of_internal_links_in_more(self):
+        links = self.get_list_of_links()
+        more_internal_links = []
+        for i in range(5, 9):
+            more_internal_links.append(links[i])
+        return more_internal_links
+
+    @allure.step("Get the list of the 'Donate', 'GitHub', links (external links) in the 'More' dropdown")
+    def get_list_of_external_links_in_more(self):
+        links = self.elements_are_present(self.locators.HEADER_LINKS)
+        external_links = []
+        for i in range(3, 5):
+            external_links.append(links[i])
+        return external_links
+
+    @allure.step("Click on internal links in the Header and thereby open corresponding web pages in the same tab")
+    def click_on_internal_links_in_header(self):
+        opened_pages = []
+        # Click on the 'About', 'Registration', 'Logo' links
+        for link in self.get_list_of_direct_internal_links():
+            link.click()
+            opened_pages.append(self.get_current_tab_url())
+        # Click on the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links
+        for link in self.get_list_of_internal_links_in_more():
+            self.click_more_button()
+            link.click()
+            time.sleep(1)
+            opened_pages.append(self.get_current_tab_url())
+        print('\n', *opened_pages, sep='\n')
+        return opened_pages
+
+    @allure.step("Click on external links in the Header and thereby open corresponding web pages on new tabs")
+    def click_on_external_links_in_header(self):
+        opened_pages = []
+        # Click on the 'Telegram' link
+        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
+        # Click on the 'GitHub', 'Donate' links
+        self.click_more_button()
+        new_tabs = [link.click() for link in self.get_list_of_external_links_in_more()]
+        # Get the list of opened tabs urls
+        for i in range(1, len(new_tabs) + 2):
+            self.driver.switch_to.window(self.driver.window_handles[i])
+            opened_pages.append(self.get_current_tab_url())
+        print('\n', *opened_pages, sep='\n')
+        return opened_pages
+
+    # Separated checks of links navigation
     @allure.step("""Click on the 'About', 'Telegram', 'Registration' links in the Header 
     and thereby open corresponding web pages in the same or new tab""")
     def click_on_links_and_return_back(self):
@@ -216,10 +278,6 @@ class HeaderPage(BasePage):
         opened_pages.append(self.driver.current_url)
         print('\n', *opened_pages, sep='\n')
         return opened_pages
-
-    @allure.step("Click on the 'More' button")
-    def click_more_button(self):
-        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
 
     @allure.step("""Click on the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links  
     in the Header and thereby open corresponding web pages in the same or new tab""")
@@ -265,30 +323,6 @@ class HeaderPage(BasePage):
         opened_pages.append(self.driver.current_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
         opened_pages.append(self.driver.current_url)
-        print('\n', *opened_pages, sep='\n')
-        return opened_pages
-
-    @allure.step("Get the list of the 'Donate', 'GitHub', links (external links) in the 'More' dropdown")
-    def get_list_of_external_links_in_more(self):
-        links = self.elements_are_present(self.locators.HEADER_LINKS)
-        external_links = []
-        for i in range(3, 5):
-            external_links.append(links[i])
-        return external_links
-
-    @allure.step("""Click on the 'Telegram', 'Donate', 'GitHub', links in the Header 
-    and thereby open corresponding web pages on new tabs""")
-    def click_on_external_links_in_header(self):
-        opened_pages = []
-        # Click on the 'Telegram' link
-        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
-        # Click on the 'GitHub', 'Donate' links
-        self.click_more_button()
-        new_tabs = [link.click() for link in self.get_list_of_external_links_in_more()]
-        # Get the list of opened tabs urls
-        for i in range(1, len(new_tabs) + 2):
-            self.driver.switch_to.window(self.driver.window_handles[i])
-            opened_pages.append(self.get_current_tab_url())
         print('\n', *opened_pages, sep='\n')
         return opened_pages
 
