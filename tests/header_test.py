@@ -52,9 +52,9 @@ class TestHeaderPage:
                 logo_link_visibility = page.check_logo_link_visibility()
                 links2_presence = page.get_list_of_links_in_section2()
                 links2_visibility = page.check_links_visibility_in_section2()
-                links3_presence = page.get_list_of_links_in_section3()
-                links3_invisibility = page.check_links_invisibility_in_section3()
-                links3_visibility = page.check_links_visibility_in_section3()
+                links_in_more_presence = page.get_list_of_links_in_more()
+                links_in_more_invisibility = page.check_links_invisibility_in_more()
+                links_in_more_visibility = page.check_links_visibility_in_more()
                 buttons_presence = page.get_list_of_buttons()
                 buttons_visibility = page.check_buttons_visibility()
                 ru_en_buttons_presence = page.get_list_of_ru_en_buttons()
@@ -68,9 +68,9 @@ class TestHeaderPage:
                 assert logo_link_visibility, "The 'Logo' link is invisible"
                 assert links2_presence, "Links in section 2 are absent on the page"
                 assert links2_visibility, "Links in section 2 are invisible"
-                assert links3_presence, "Links in section 3 are absent on the page"
-                assert links3_invisibility, "Links in section 3 are visible"
-                assert links3_visibility, "Links in section 3 are invisible"
+                assert links_in_more_presence, "Links in the dropdown 'More' are absent on the page"
+                assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
+                assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
                 assert buttons_presence, "Buttons are absent on the page"
                 assert buttons_visibility, "Buttons are invisible"
                 assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent on the page"

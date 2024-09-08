@@ -96,7 +96,7 @@ class HeaderPage(BasePage):
     def check_logo_link_visibility(self):
         return self.element_is_visible(self.locators.LOGO_LINK)
 
-    @allure.step("Get the list of links in the section 2 in the Header")
+    @allure.step("Get the list of visible links in the Header")
     def get_list_of_links_in_section2(self):
         return self.elements_are_present(self.locators.LINKS2)
 
@@ -104,20 +104,20 @@ class HeaderPage(BasePage):
     def check_links_visibility_in_section2(self):
         return all(link.is_displayed() for link in self.get_list_of_links_in_section2())
 
-    @allure.step("Get the list of links in the section 3 in the Header")
-    def get_list_of_links_in_section3(self):
-        return self.elements_are_present(self.locators.LINKS3)
+    @allure.step("Get the list of links (internal and external) in the 'More' dropdown in the Header")
+    def get_list_of_links_in_more(self):
+        return self.elements_are_present(self.locators.LINKS_IN_MORE)
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
     in the section 3 are invisible""")
-    def check_links_invisibility_in_section3(self):
-        return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_section3())
+    def check_links_invisibility_in_more(self):
+        return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_more())
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
     in the section 3 are visible""")
-    def check_links_visibility_in_section3(self):
+    def check_links_visibility_in_more(self):
         self.click_more_button()
-        return all(link.is_displayed() for link in self.get_list_of_links_in_section3())
+        return all(link.is_displayed() for link in self.get_list_of_links_in_more())
 
     @allure.step("Get the list of buttons in the Header")
     def get_list_of_buttons(self):
@@ -157,11 +157,15 @@ class HeaderPage(BasePage):
     def get_text_in_links2(self):
         return [link.text for link in self.get_list_of_links_in_section2()]
 
+    @allure.step("Get text in direct internal links in the Header")
+    def get_text_in_direct_internal_links(self):
+        return [link.text for link in self.get_list_of_direct_internal_links()[:2]]
+
     @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
     links in the Header""")
     def get_text_in_links3(self):
         self.click_more_button()
-        return [link.text for link in self.get_list_of_links_in_section3()]
+        return [link.text for link in self.get_list_of_links_in_more()]
 
     @allure.step("Get text in the 'Registration' link in the Header")
     def get_text_in_registration_link(self):
@@ -188,18 +192,24 @@ class HeaderPage(BasePage):
     def get_links_status_codes(self):
         return [requests.head(link_href).status_code for link_href in self.get_links_href()]
 
-    # Checks on links navigation
-    @allure.step("Click on the 'Logo' link")
-    def click_logo_link(self):
-        self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
-        return self.driver.current_url
+    # Lists of links
+    @allure.step("Get the general list of internal links in the Header""")
+    def get_list_of_internal_links(self):
+        links = self.get_list_of_links()
+        internal_links = []
+        for i in [0, 1, 5, 6, 7, 8, 9]:
+            internal_links.append(links[i])
+        return internal_links
 
-    @allure.step("Click on the 'More' button")
-    def click_more_button(self):
-        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
+    @allure.step("Get the general list of external links in the Header""")
+    def get_list_of_external_links(self):
+        links = self.get_list_of_links()
+        external_links = []
+        for i in [2, 3, 4]:
+            external_links.append(links[i])
+        return external_links
 
-    @allure.step("""Get the list of the 'About', 'Registration', 'Logo' links
-                 (direct internal links) in the Header""")
+    @allure.step("Get the list of the 'About', 'Registration', 'Logo' links (direct internal links) in the Header")
     def get_list_of_direct_internal_links(self):
         links = self.get_list_of_links()
         direct_internal_links = []
@@ -223,6 +233,11 @@ class HeaderPage(BasePage):
         for i in range(3, 5):
             external_links.append(links[i])
         return external_links
+
+    # Checks of links navigation
+    @allure.step("Click on the 'More' button")
+    def click_more_button(self):
+        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
 
     @allure.step("Click on internal links in the Header and thereby open corresponding web pages in the same tab")
     def click_on_internal_links_in_header(self):
@@ -256,6 +271,11 @@ class HeaderPage(BasePage):
         return opened_pages
 
     # Separated checks of links navigation
+    @allure.step("Click on the 'Logo' link")
+    def click_logo_link(self):
+        self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
+        return self.driver.current_url
+
     @allure.step("""Click on the 'About', 'Telegram', 'Registration' links in the Header 
     and thereby open corresponding web pages in the same or new tab""")
     def click_on_links_and_return_back(self):
