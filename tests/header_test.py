@@ -48,53 +48,50 @@ class TestHeaderPage:
             def test_hp_01_03_verify_header_structural_elements(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 header_links = page.get_list_of_links()
-                logo_link_presence = page.check_logo_link_presence()
-                logo_link_visibility = page.check_logo_link_visibility()
-                links2_presence = page.get_list_of_links_in_section2()
-                links2_visibility = page.check_links_visibility_in_section2()
+                header_direct_links = page.get_list_of_direct_links()
+                header_direct_links_visibility = page.check_direct_links_visibility()
                 links_in_more_presence = page.get_list_of_links_in_more()
                 links_in_more_invisibility = page.check_links_invisibility_in_more()
                 links_in_more_visibility = page.check_links_visibility_in_more()
+                logo_link_presence = page.check_logo_link_presence()
+                logo_link_visibility = page.check_logo_link_visibility()
+                registration_link_presence = page.check_registration_link_presence()
+                registration_link_visibility = page.check_registration_link_visibility()
                 buttons_presence = page.get_list_of_buttons()
                 buttons_visibility = page.check_buttons_visibility()
                 ru_en_buttons_presence = page.get_list_of_ru_en_buttons()
                 ru_en_buttons_visibility = page.check_ru_en_buttons_visibility()
                 more_button_presence = page.check_more_button_presence()
                 more_button_visibility = page.check_more_button_visibility()
-                registration_link_presence = page.check_registration_link_presence()
-                registration_link_visibility = page.check_registration_link_visibility()
                 assert header_links, "Links are absent in the Header"
-                assert logo_link_presence, "The 'Logo' link is absent on the page"
-                assert logo_link_visibility, "The 'Logo' link is invisible"
-                assert links2_presence, "Links in section 2 are absent on the page"
-                assert links2_visibility, "Links in section 2 are invisible"
+                assert header_direct_links, "Direct links are absent in the Header"
+                assert header_direct_links_visibility, "Direct links are invisible"
                 assert links_in_more_presence, "Links in the dropdown 'More' are absent on the page"
                 assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
                 assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
+                assert logo_link_presence, "The 'Logo' link is absent on the page"
+                assert logo_link_visibility, "The 'Logo' link is invisible"
+                assert registration_link_presence, "The 'Registration' link is absent on the page"
+                assert registration_link_visibility, "The 'Registration' link is invisible"
                 assert buttons_presence, "Buttons are absent on the page"
                 assert buttons_visibility, "Buttons are invisible"
                 assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent on the page"
                 assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
                 assert more_button_presence, "The 'More' button is absent on the page"
                 assert more_button_visibility, "The 'More' button is invisible"
-                assert registration_link_presence, "The 'Registration' link is absent on the page"
-                assert registration_link_visibility, "The 'Registration' link is invisible"
 
         class TestHeaderPageText:
             @allure.title("Verify values of the text in links, buttons in the Header")
             def test_hp_02_01_verify_text_in_links_and_buttons(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                links2_text = page.get_text_in_links2()
-                links3_text = page.get_text_in_links3()
-                registration_link_text = page.get_text_in_registration_link()
+                direct_links_text = page.get_text_in_direct_links()
+                links_in_more_text = page.get_text_of_links_in_more()
                 buttons_text = page.get_text_in_buttons()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
-                assert all(link_text in HeaderData.links_text for link_text in links2_text), \
+                assert all(link_text in HeaderData.links_text for link_text in direct_links_text), \
                     "Text in links in section 2 mismatches valid values"
-                assert all(link_text in HeaderData.links_text for link_text in links3_text), \
+                assert all(link_text in HeaderData.links_text for link_text in links_in_more_text), \
                     "Text in links in section 3 mismatches valid values"
-                assert registration_link_text in HeaderData.links_text, \
-                    "Text in the 'Registration' link mismatches the valid value"
                 assert all(button_text in HeaderData.buttons_text for button_text in buttons_text), \
                     "Text in buttons mismatches valid values"
                 assert all(button_text in HeaderData.ru_en_buttons_text for button_text in ru_en_buttons_text), \
