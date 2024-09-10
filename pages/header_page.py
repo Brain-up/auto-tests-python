@@ -140,7 +140,7 @@ class HeaderPage(BasePage):
     @allure.step("Get the list of 'ru' and 'en' buttons in the Header")
     def get_list_of_ru_en_buttons(self):
         # tags = [element.tag_name for element in elements]
-        return self.elements_are_present(self.locators.RU_EN_BUTTONS_SECTION)
+        return self.elements_are_present(self.locators.RU_EN_BUTTONS)
 
     @allure.step("Check if 'ru' and 'en' buttons are visible")
     def check_ru_en_buttons_visibility(self):
@@ -246,7 +246,7 @@ class HeaderPage(BasePage):
             link.click()
             time.sleep(1)
             opened_pages.append(self.get_current_tab_url())
-        print('\n', *opened_pages, sep='\n')
+        # print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on external links in the Header and thereby open corresponding web pages on new tabs")
@@ -261,7 +261,7 @@ class HeaderPage(BasePage):
         for i in range(1, len(new_tabs) + 2):
             self.driver.switch_to.window(self.driver.window_handles[i])
             opened_pages.append(self.get_current_tab_url())
-        print('\n', *opened_pages, sep='\n')
+        # print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on the 'Logo' link")
