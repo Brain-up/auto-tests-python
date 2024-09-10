@@ -136,7 +136,7 @@ class TestHeaderPage:
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
                 initial_page_url = page.driver.current_url
-                current_page_url = page.click_logo_link()
+                current_page_url = page.click_on_logo_link()
                 handles_after = driver.window_handles
                 current_page_source = page.driver.page_source
                 assert len(handles_before) == len(handles_after), "The number of open tabs changed after clicking"
@@ -145,15 +145,13 @@ class TestHeaderPage:
                 assert initial_page_url == current_page_url, \
                     "'Logo' link in the sections 1 leads to some page after clicking"
 
-            @allure.title("Verify links navigation in the Header separately")
-            def test_hp_03_05_verify_separately_links_lead_to_correct_pages(self, driver, main_page_open):
+            @allure.title("Verify switching of the 'ru' and 'en' buttons in the Header")
+            def test_hp_03_05_verify_ru_en_buttons_switching(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                opened_pages1 = page.click_on_links_and_return_back()
-                opened_pages2 = page.click_on_links3_and_return_back()
-                assert all(page in HeaderData.pages_urls for page in opened_pages1), \
-                    "Some of the links lead to an incorrect page after click"
-                assert all(page in HeaderData.pages_urls for page in opened_pages2), \
-                    "Some of the links in the section 3 lead to an incorrect page after click"
+                text_ru = page.check_language_change_ru()
+                text_en = page.check_language_change_en()
+                assert text_ru == HeaderData.title_text_ru, "RU language isn't enabled after clicking the 'ru' button"
+                assert text_en == HeaderData.title_text_en, "EN language isn't enabled after clicking the 'en' button"
 
         class TestHeaderPageImages:
             @allure.title("Verify presence, visibility and attributes of the image in the 'Logo' link")
