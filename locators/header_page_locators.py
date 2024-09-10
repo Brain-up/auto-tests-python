@@ -38,5 +38,11 @@ class HeaderPageLocators:
     LOGO_LINK = (By.XPATH, "//a[@data-test-logo]")
     LOGO_SECTION = (By.XPATH, "//nav/div")
     MORE_BUTTON = (By.ID, "other-menu")
+    EN_BUTTON = (By.XPATH, "(//span/button)[2]")
+    RU_BUTTON = (By.XPATH, "(//span/button)[1]")
     RU_EN_BUTTONS = (By.XPATH, "//span/button")
     RU_EN_BUTTONS_SECTION = (By.XPATH, "//nav//span")
+
+
+class StartUnauthorizedPageLocators:
+    START_UNAUTHORIZED_PAGE_TITLE = (By.XPATH, "(//h2)[2]")

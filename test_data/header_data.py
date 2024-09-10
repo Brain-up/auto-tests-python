@@ -18,6 +18,9 @@ class HeaderData:
 
     ru_en_buttons_text = "RU / EN"
 
+    title_text_ru = "Преимущества"
+    title_text_en = "Advantages"
+
     links_href = [
         "https://brainup.site/",
         "https://brainup.site/description",

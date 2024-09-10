@@ -3,11 +3,12 @@ import time
 import allure
 import requests
 from pages.base_page import BasePage
-from locators.header_page_locators import HeaderPageLocators
+from locators.header_page_locators import HeaderPageLocators, StartUnauthorizedPageLocators
 
 
 class HeaderPage(BasePage):
     locators = HeaderPageLocators
+    locators1 = StartUnauthorizedPageLocators
 
     # Checking the structure and display of elements in the Header
     @allure.step("Check the Header is present in the DOM tree on the page")
@@ -139,7 +140,7 @@ class HeaderPage(BasePage):
     @allure.step("Get the list of 'ru' and 'en' buttons in the Header")
     def get_list_of_ru_en_buttons(self):
         # tags = [element.tag_name for element in elements]
-        return self.elements_are_present(self.locators.RU_EN_BUTTONS_SECTION)
+        return self.elements_are_present(self.locators.RU_EN_BUTTONS)
 
     @allure.step("Check if 'ru' and 'en' buttons are visible")
     def check_ru_en_buttons_visibility(self):
@@ -245,7 +246,7 @@ class HeaderPage(BasePage):
             link.click()
             time.sleep(1)
             opened_pages.append(self.get_current_tab_url())
-        print('\n', *opened_pages, sep='\n')
+        # print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on external links in the Header and thereby open corresponding web pages on new tabs")
@@ -260,84 +261,32 @@ class HeaderPage(BasePage):
         for i in range(1, len(new_tabs) + 2):
             self.driver.switch_to.window(self.driver.window_handles[i])
             opened_pages.append(self.get_current_tab_url())
-        print('\n', *opened_pages, sep='\n')
+        # print('\n', *opened_pages, sep='\n')
         return opened_pages
 
-    # Separated checks of links navigation
     @allure.step("Click on the 'Logo' link")
-    def click_logo_link(self):
+    def click_on_logo_link(self):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
 
-    @allure.step("""Click on the 'About', 'Telegram', 'Registration' links in the Header 
-    and thereby open corresponding web pages in the same or new tab""")
-    def click_on_links_and_return_back(self):
-        opened_pages = []
-        # Click on the 'About' link and return back
-        self.element_is_present_and_clickable(self.locators.LINK_ABOUT).click()
-        opened_pages.append(self.driver.current_url)
-        self.driver.back()
-        opened_pages.append(self.driver.current_url)
-        # Click on the 'Telegram' link and return back
-        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        opened_pages.append(self.driver.current_url)
-        self.driver.switch_to.window(self.driver.window_handles[0])
-        opened_pages.append(self.driver.current_url)
-        # Click on the 'Registration' link and return back
-        self.element_is_present_and_clickable(self.locators.LINK_REGISTRATION).click()
-        opened_pages.append(self.driver.current_url)
-        self.driver.back()
-        opened_pages.append(self.driver.current_url)
-        print('\n', *opened_pages, sep='\n')
-        return opened_pages
+    # Checks of the 'ru' and 'en' buttons switching in the Header
+    @allure.step("Click on the 'ru' button")
+    def click_on_ru_button(self):
+        self.element_is_present_and_clickable(self.locators.RU_BUTTON).click()
 
-    @allure.step("""Click on the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links  
-    in the Header and thereby open corresponding web pages in the same or new tab""")
-    def click_on_links3_and_return_back(self):
-        opened_pages = []
-        # Click on the 'Contacts' link and return back
-        self.click_more_button()
-        self.element_is_present_and_clickable(self.locators.LINK_CONTACTS).click()
-        opened_pages.append(self.driver.current_url)
-        self.driver.back()
-        opened_pages.append(self.driver.current_url)
-        # Click on the 'Specialists' link and return back
-        self.click_more_button()
-        self.element_is_present_and_clickable(self.locators.LINK_SPECIALISTS).click()
-        time.sleep(3)
-        opened_pages.append(self.driver.current_url)
-        self.driver.back()
-        opened_pages.append(self.driver.current_url)
-        # Click on the 'Contributors' link and return back
-        self.click_more_button()
-        self.element_is_present_and_clickable(self.locators.LINK_CONTRIBUTORS).click()
-        opened_pages.append(self.driver.current_url)
-        self.driver.back()
-        opened_pages.append(self.driver.current_url)
-        # Click on the 'Used Resources' link and return back
-        self.click_more_button()
-        self.element_is_present_and_clickable(self.locators.LINK_USED_RESOURCES).click()
-        opened_pages.append(self.driver.current_url)
-        self.driver.back()
-        opened_pages.append(self.driver.current_url)
+    @allure.step("Click on the 'en' button")
+    def click_on_en_button(self):
+        self.element_is_present_and_clickable(self.locators.EN_BUTTON).click()
 
-        # Click on the 'Donate' link and return back
-        self.click_more_button()
-        self.element_is_present_and_clickable(self.locators.LINK_DONATE).click()
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        opened_pages.append(self.driver.current_url)
-        self.driver.switch_to.window(self.driver.window_handles[0])
-        opened_pages.append(self.driver.current_url)
-        # Click on the 'GitHub' link and return back
-        self.element_is_present_and_clickable(self.locators.LINK_GITHUB).click()
-        time.sleep(3)
-        self.driver.switch_to.window(self.driver.window_handles[2])
-        opened_pages.append(self.driver.current_url)
-        self.driver.switch_to.window(self.driver.window_handles[0])
-        opened_pages.append(self.driver.current_url)
-        print('\n', *opened_pages, sep='\n')
-        return opened_pages
+    @allure.step("Check for language change to RU on the page after clicking on the button 'ru'")
+    def check_language_change_ru(self):
+        self.click_on_ru_button()
+        return self.element_is_present(self.locators1.START_UNAUTHORIZED_PAGE_TITLE).text
+
+    @allure.step("Check for language change to EN on the page after clicking on the button 'en'")
+    def check_language_change_en(self):
+        self.click_on_en_button()
+        return self.element_is_present(self.locators1.START_UNAUTHORIZED_PAGE_TITLE).text
 
     # Checking images in the Header
     @allure.step("Check if the 'Logo' image is present")
