@@ -145,8 +145,14 @@ class TestHeaderPage:
                 assert initial_page_url == current_page_url, \
                     "'Logo' link in the sections 1 leads to some page after clicking"
 
+            @allure.title("Verify the dropdown opens/closes after clicking on the 'More' button in the Header")
+            def test_hp_03_05_verify_more_button_click(self, driver, main_page_open):
+                page = HeaderPage(driver)
+                button_click = page.check_dropdown_opens_and_closes()
+                assert button_click, "The dropdown isn't open/closed after clicking the 'More' button"
+
             @allure.title("Verify switching of the 'ru' and 'en' buttons in the Header")
-            def test_hp_03_05_verify_ru_en_buttons_switching(self, driver, main_page_open):
+            def test_hp_03_06_verify_ru_en_buttons_switching(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 text_ru = page.check_language_change_ru()
                 text_en = page.check_language_change_en()
