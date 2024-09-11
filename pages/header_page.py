@@ -103,88 +103,15 @@ class HeaderPage(BasePage):
         return self.elements_are_present(self.locators.LINKS_IN_MORE)
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-    in the section 3 are invisible""")
+                    in the 'More' dropdown are invisible""")
     def check_links_invisibility_in_more(self):
         return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_more())
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-    in the section 3 are visible""")
+                    in the 'More' dropdown are visible""")
     def check_links_visibility_in_more(self):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_list_of_links_in_more())
-
-    @allure.step("Check the 'Logo' link is present in the Header")
-    def check_logo_link_presence(self):
-        return self.element_is_present(self.locators.LOGO_LINK)
-
-    @allure.step("Check the 'Logo' link is visible")
-    def check_logo_link_visibility(self):
-        return self.element_is_visible(self.locators.LOGO_LINK)
-
-    @allure.step("Check the 'Registration' link is present in the Header")
-    def check_registration_link_presence(self):
-        return self.element_is_present(self.locators.LINK_REGISTRATION)
-
-    @allure.step("Check the 'Registration' link is visible")
-    def check_registration_link_visibility(self):
-        return self.element_is_visible(self.locators.LINK_REGISTRATION)
-
-    @allure.step("Get the list of buttons in the Header")
-    def get_list_of_buttons(self):
-        return self.elements_are_present(self.locators.HEADER_BUTTONS)
-
-    @allure.step("Check buttons are visible")
-    def check_buttons_visibility(self):
-        return all(button.is_displayed() for button in self.get_list_of_buttons())
-
-    @allure.step("Get the list of 'ru' and 'en' buttons in the Header")
-    def get_list_of_ru_en_buttons(self):
-        # tags = [element.tag_name for element in elements]
-        return self.elements_are_present(self.locators.RU_EN_BUTTONS)
-
-    @allure.step("Check if 'ru' and 'en' buttons are visible")
-    def check_ru_en_buttons_visibility(self):
-        return all(element.is_displayed() for element in self.get_list_of_ru_en_buttons())
-
-    @allure.step("Check the 'More' button is present in the Header")
-    def check_more_button_presence(self):
-        return self.element_is_present(self.locators.MORE_BUTTON)
-
-    @allure.step("Check the 'More' button is visible")
-    def check_more_button_visibility(self):
-        return self.element_is_visible(self.locators.MORE_BUTTON)
-
-    # Checking text in the Header
-    @allure.step("Get text in the 'About' and the 'Telegram' links in the Header")
-    def get_text_in_direct_links(self):
-        return [link.text for link in self.get_list_of_direct_links()[:3]]
-
-    @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
-    links in the Header""")
-    def get_text_of_links_in_more(self):
-        self.click_more_button()
-        return [link.text for link in self.get_list_of_links_in_more()]
-
-    @allure.step("Get text in buttons in the Header")
-    def get_text_in_buttons(self):
-        return [button.text for button in self.get_list_of_buttons()]
-
-    @allure.step("Get text in 'ru' and 'en' buttons in the Header")
-    def get_text_in_ru_en_buttons(self):
-        return [button.text for button in self.get_list_of_ru_en_buttons()]
-
-    # Checking links in the Header
-    @allure.step("Check if links are clickable in the Header")
-    def check_links_clickability(self):
-        return all(link.is_enabled() for link in self.get_list_of_links())
-
-    @allure.step("Get attribute 'href' of links in the Header")
-    def get_links_href(self):
-        return [element.get_attribute("href") for element in self.get_list_of_links()]
-
-    @allure.step("Get status codes of links in the Header")
-    def get_links_status_codes(self):
-        return [requests.head(link_href).status_code for link_href in self.get_links_href()]
 
     # Lists of links
     @allure.step("Get the general list of internal links in the Header""")
@@ -228,11 +155,80 @@ class HeaderPage(BasePage):
             external_links.append(links[i])
         return external_links
 
-    # Checks of links navigation
-    @allure.step("Click on the 'More' button")
-    def click_more_button(self):
-        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
+    @allure.step("Check the 'Logo' link is present in the Header")
+    def check_logo_link_presence(self):
+        return self.element_is_present(self.locators.LOGO_LINK)
 
+    @allure.step("Check the 'Logo' link is visible")
+    def check_logo_link_visibility(self):
+        return self.element_is_visible(self.locators.LOGO_LINK)
+
+    @allure.step("Check the 'Registration' link is present in the Header")
+    def check_registration_link_presence(self):
+        return self.element_is_present(self.locators.LINK_REGISTRATION)
+
+    @allure.step("Check the 'Registration' link is visible")
+    def check_registration_link_visibility(self):
+        return self.element_is_visible(self.locators.LINK_REGISTRATION)
+
+    @allure.step("Get the list of buttons in the Header")
+    def get_list_of_buttons(self):
+        return self.elements_are_present(self.locators.HEADER_BUTTONS)
+
+    @allure.step("Check buttons are visible")
+    def check_buttons_visibility(self):
+        return all(button.is_displayed() for button in self.get_list_of_buttons())
+
+    @allure.step("Get the list of 'ru' and 'en' buttons in the Header")
+    def get_list_of_ru_en_buttons(self):
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.RU_EN_BUTTONS)
+
+    @allure.step("Check if 'ru' and 'en' buttons are visible")
+    def check_ru_en_buttons_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_ru_en_buttons())
+
+    @allure.step("Check the 'More' button is present in the Header")
+    def check_more_button_presence(self):
+        return self.element_is_present(self.locators.MORE_BUTTON)
+
+    @allure.step("Check the 'More' button is visible")
+    def check_more_button_visibility(self):
+        return self.element_is_visible(self.locators.MORE_BUTTON)
+
+    # Checks of text in the Header
+    @allure.step("Get text in the 'About', 'Telegram', 'Registration' links in the Header")
+    def get_text_in_direct_links(self):
+        return [link.text for link in self.get_list_of_direct_links()[:3]]
+
+    @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
+    links in the Header""")
+    def get_text_of_links_in_more(self):
+        self.click_more_button()
+        return [link.text for link in self.get_list_of_links_in_more()]
+
+    @allure.step("Get text in buttons in the Header")
+    def get_text_in_buttons(self):
+        return [button.text for button in self.get_list_of_buttons()]
+
+    @allure.step("Get text in 'ru' and 'en' buttons in the Header")
+    def get_text_in_ru_en_buttons(self):
+        return [button.text for button in self.get_list_of_ru_en_buttons()]
+
+    # Checks of links in the Header
+    @allure.step("Check if links are clickable in the Header")
+    def check_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list_of_links())
+
+    @allure.step("Get attribute 'href' of links in the Header")
+    def get_links_href(self):
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
+
+    @allure.step("Get status codes of links in the Header")
+    def get_links_status_codes(self):
+        return [requests.head(link_href).status_code for link_href in self.get_links_href()]
+
+    # Checks of links navigation
     @allure.step("Click on internal links in the Header and thereby open corresponding web pages in the same tab")
     def click_on_internal_links_in_header(self):
         opened_pages = []
@@ -269,7 +265,24 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
 
-    # Checks of the 'ru' and 'en' buttons switching in the Header
+    # Checks of buttons clicking in the Header
+    @allure.step("Click on the 'More' button")
+    def click_more_button(self):
+        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
+
+    @allure.step("Check for dropdown is open/closed in the Header after clicking on the button 'More'")
+    def check_dropdown_opens_and_closes(self):
+        dropdown_state = 0
+        if self.check_links_invisibility_in_more():
+            dropdown_state = 1
+        if self.check_links_visibility_in_more():
+            dropdown_state = 2
+        self.click_more_button()
+        if self.check_links_invisibility_in_more():
+            dropdown_state = 3
+        if dropdown_state == 3:
+            return True
+
     @allure.step("Click on the 'ru' button")
     def click_on_ru_button(self):
         self.element_is_present_and_clickable(self.locators.RU_BUTTON).click()
