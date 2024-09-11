@@ -85,7 +85,6 @@ class TestHeaderPage:
             def test_hp_02_01_verify_text_in_links_and_buttons(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 direct_links_text = page.get_text_in_direct_links()
-                print(direct_links_text)
                 links_in_more_text = page.get_text_of_links_in_more()
                 buttons_text = page.get_text_in_buttons()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
