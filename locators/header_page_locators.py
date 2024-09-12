@@ -3,7 +3,7 @@
 from selenium.webdriver.common.by import By
 
 
-class HeaderPageLocators:
+class HeaderUnauthorizedPageLocators:
     HEADER_BUTTONS = (By.XPATH, "//button")
     HEADER_CONTENT = (By.XPATH, "//div[contains(@class, 'header')]")
     HEADER_LINKS = (By.XPATH, "//nav//a")

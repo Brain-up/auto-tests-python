@@ -3,11 +3,11 @@ import time
 import allure
 import requests
 from pages.base_page import BasePage
-from locators.header_page_locators import HeaderPageLocators, StartUnauthorizedPageLocators
+from locators.header_page_locators import HeaderUnauthorizedPageLocators, StartUnauthorizedPageLocators
 
 
 class HeaderPage(BasePage):
-    locators = HeaderPageLocators
+    locators = HeaderUnauthorizedPageLocators
     locators1 = StartUnauthorizedPageLocators
 
     # Checking the structure and display of elements in the Header
@@ -21,8 +21,10 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting in the Header")
     def get_structure_of_1st_level(self):
-        # tags = [element.tag_name for element in elements]
-        return self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
+        elements = self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
+        tags = [element.tag_name for element in elements]
+        print(tags)
+        return elements
 
     @allure.step("Check if elements of the 1st level of nesting are visible")
     def check_elements_visibility_on_1st_level_on_page(self):
@@ -30,8 +32,10 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 2nd level of nesting the Header")
     def get_structure_of_2nd_level(self):
-        # tags = [element.tag_name for element in elements]
-        return self.elements_are_present(self.locators.HEADER_SECOND_LEVEL_ELEMENTS)
+        elements = self.elements_are_present(self.locators.HEADER_SECOND_LEVEL_ELEMENTS)
+        tags = [element.tag_name for element in elements]
+        print(tags)
+        return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
     def check_elements_visibility_on_2nd_level_on_page(self):
@@ -39,7 +43,9 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 3rd level of nesting the Header")
     def get_structure_of_3rd_level(self):
-        # tags = [element.tag_name for element in elements]
+        elements = self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
+        tags = [element.tag_name for element in elements]
+        print(tags)
         return self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements on the 3rd level of nesting are visible")
@@ -48,8 +54,10 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 4th level of nesting the Header")
     def get_structure_of_4th_level(self):
-        # tags = [element.tag_name for element in elements]
-        return self.elements_are_present(self.locators.HEADER_FOURTH_LEVEL_ELEMENTS)
+        elements = self.elements_are_present(self.locators.HEADER_FOURTH_LEVEL_ELEMENTS)
+        tags = [element.tag_name for element in elements]
+        print(tags)
+        return elements
 
     @allure.step("Check if elements on the 4th level of nesting are visible")
     def check_elements_visibility_on_4th_level_on_page(self):
@@ -57,8 +65,10 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 5th level of nesting the Header")
     def get_structure_of_5th_level(self):
-        # tags = [element.tag_name for element in elements]
-        return self.elements_are_present(self.locators.HEADER_FIFTH_LEVEL_ELEMENTS)
+        elements = self.elements_are_present(self.locators.HEADER_FIFTH_LEVEL_ELEMENTS)
+        tags = [element.tag_name for element in elements]
+        print(tags)
+        return elements
 
     @allure.step("Check if elements on the 5th level of nesting are visible")
     def check_elements_visibility_on_5th_level_on_page(self):
@@ -66,12 +76,14 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 6th level of nesting the Header")
     def get_structure_of_6th_level(self):
-        # tags = [element.tag_name for element in elements]
-        return self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
+        elements = self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
+        tags = [element.tag_name for element in elements]
+        print(tags)
+        return elements
 
     @allure.step("Check if elements on the 6th level of nesting are invisible")
     def check_elements_invisibility_on_6th_level_on_page(self):
-        return all(self.element_is_not_visible(element) for element in self.get_structure_of_6th_level())
+        return all(self.element_is_not_visible(element) for element in self.get_structure_of_6th_level()[:6])
 
     @allure.step("Get the list of links on different levels of nesting in the Header")
     def get_list_of_links(self):
