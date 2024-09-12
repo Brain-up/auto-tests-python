@@ -16,8 +16,9 @@ class TestHeaderPage:
                 assert page_content_presence is not None, "The Header is absent in DOM"
                 assert page_content_visibility, "The Header is invisible"
 
-            @allure.title("Verify composition, visibility of elements on the 1st-6th levels of nesting in the Header")
-            def test_hp_01_02_01_verify_header_structure_and_visibility(self, driver, main_page_open):
+            @allure.title("""Verify composition, visibility of elements on the 1st-6th levels of nesting in the Header
+            for an unauthorized user""")
+            def test_hp_01_02_01_verify_unauth_header_structure_and_visibility(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 structure_of_1st_level = page.get_structure_of_1st_level()
                 visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_on_page()
