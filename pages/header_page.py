@@ -43,6 +43,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 3rd level of nesting the Header")
     def get_structure_of_3rd_level(self):
+        time.sleep(5)
         elements = self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
         print(tags)
