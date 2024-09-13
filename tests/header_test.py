@@ -66,15 +66,15 @@ class TestHeaderPage:
                 assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
                 assert invisibility_of_elements_on_6th_level, "6th-level elements are visible"
 
-            @allure.title("Verify presence, visibility of links, buttons in the Header")
-            def test_hp_01_03_verify_header_structural_elements(self, driver, main_page_open):
+            @allure.title("Verify presence, visibility of links, buttons in the Header for an unauthorized user")
+            def test_hp_01_03_01_verify_header_structural_elements_for_unauth(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                header_links = page.get_list_of_links()
-                header_direct_links = page.get_list_of_direct_links()
-                header_direct_links_visibility = page.check_direct_links_visibility()
-                links_in_more_presence = page.get_list_of_links_in_more()
-                links_in_more_invisibility = page.check_links_invisibility_in_more()
-                links_in_more_visibility = page.check_links_visibility_in_more()
+                header_links = page.get_list_of_links_unauth()
+                header_direct_links = page.get_list_of_direct_links_unauth()
+                header_direct_links_visibility = page.check_direct_links_visibility_unauth()
+                links_in_more_presence = page.get_list_of_links_in_more_unauth()
+                links_in_more_invisibility = page.check_links_invisibility_in_more_unauth()
+                links_in_more_visibility = page.check_links_visibility_in_more_unauth()
                 logo_link_presence = page.check_logo_link_presence()
                 logo_link_visibility = page.check_logo_link_visibility()
                 registration_link_presence = page.check_registration_link_presence()
@@ -101,6 +101,22 @@ class TestHeaderPage:
                 assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
                 assert more_button_presence, "The 'More' button is absent on the page"
                 assert more_button_visibility, "The 'More' button is invisible"
+
+            @allure.title("Verify presence, visibility of links, buttons in the Header for an authorized user")
+            def test_hp_01_03_02_verify_header_structural_elements_for_auth(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                header_links = page.get_list_of_links_auth()
+                header_direct_links = page.get_list_of_direct_links_auth()
+                header_direct_links_visibility = page.check_direct_links_visibility_auth()
+                links_in_more_presence = page.get_list_of_links_in_more_auth()
+                links_in_more_invisibility = page.check_links_invisibility_in_more_auth()
+                links_in_more_visibility = page.check_links_visibility_in_more_auth()
+                assert header_links, "Links are absent in the Header"
+                assert header_direct_links, "Direct links are absent in the Header"
+                assert header_direct_links_visibility, "Direct links are invisible"
+                assert links_in_more_presence, "Links in the dropdown 'More' are absent on the page"
+                assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
+                assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
 
         class TestHeaderPageText:
             @allure.title("Verify values of the text in links, buttons in the Header")

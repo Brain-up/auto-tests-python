@@ -6,7 +6,8 @@ from selenium.webdriver.common.by import By
 class HeaderUnauthorizedPageLocators:
     HEADER_BUTTONS = (By.XPATH, "//button")
     HEADER_CONTENT = (By.XPATH, "//div[contains(@class, 'header')]")
-    HEADER_LINKS = (By.XPATH, "//nav//a")
+    HEADER_LINKS_UNAUTH = (By.XPATH, "//nav//a")
+    HEADER_LINKS_AUTH = (By.XPATH, "//nav//a")
     HEADER_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*")
     HEADER_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*")
     HEADER_THIRD_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*/*")
