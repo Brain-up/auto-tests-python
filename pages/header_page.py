@@ -241,15 +241,15 @@ class HeaderPage(BasePage):
         return self.element_is_visible(self.locators.MORE_BUTTON)
 
     # Checks of text in the Header
-    @allure.step("Get text in the 'About', 'Telegram', 'Registration' links in the Header")
+    @allure.step("Get text in the 'About', 'Telegram', 'Registration' links in the Header for an unauthorized user")
     def get_text_in_direct_links(self):
-        return [link.text for link in self.get_list_of_direct_links()[:3]]
+        return [link.text for link in self.get_list_of_direct_links_unauth()[:3]]
 
     @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
     links in the Header""")
     def get_text_of_links_in_more(self):
         self.click_more_button()
-        return [link.text for link in self.get_list_of_links_in_more()]
+        return [link.text for link in self.get_list_of_links_in_more_unauth()]
 
     @allure.step("Get text in buttons in the Header")
     def get_text_in_buttons(self):
@@ -317,12 +317,12 @@ class HeaderPage(BasePage):
     @allure.step("Check for dropdown is open/closed in the Header after clicking on the button 'More'")
     def check_dropdown_opens_and_closes(self):
         dropdown_state = 0
-        if self.check_links_invisibility_in_more():
+        if self.check_links_invisibility_in_more_unauth():
             dropdown_state = 1
-        if self.check_links_visibility_in_more():
+        if self.check_links_visibility_in_more_unauth():
             dropdown_state = 2
         self.click_more_button()
-        if self.check_links_invisibility_in_more():
+        if self.check_links_invisibility_in_more_unauth():
             dropdown_state = 3
         if dropdown_state == 3:
             return True
