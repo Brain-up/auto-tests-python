@@ -235,7 +235,7 @@ class SpecialistsPage(BasePage):
     def check_size_changes_of_images(self):
         images = self.get_list_of_card_images()
         images_sizes_before = [image.size for image in images]
-        self.driver.set_window_size(200, 700)
+        self.driver.set_window_size(220, 1100)
         time.sleep(7)
         try:
             images_sizes_after = [image.size for image in images]
@@ -248,4 +248,3 @@ class SpecialistsPage(BasePage):
             return changed
         except TimeoutException:
             print("The entire set of images has not been loaded during the allotted time after resizing")
-            return None
