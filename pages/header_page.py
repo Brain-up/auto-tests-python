@@ -23,7 +23,7 @@ class HeaderPage(BasePage):
     def get_structure_of_1st_level(self):
         elements = self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 1st level of nesting are visible")
@@ -34,7 +34,7 @@ class HeaderPage(BasePage):
     def get_structure_of_2nd_level(self):
         elements = self.elements_are_present(self.locators.HEADER_SECOND_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
@@ -46,7 +46,7 @@ class HeaderPage(BasePage):
         time.sleep(5)
         elements = self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements on the 3rd level of nesting are visible")
@@ -57,7 +57,7 @@ class HeaderPage(BasePage):
     def get_structure_of_4th_level(self):
         elements = self.elements_are_present(self.locators.HEADER_FOURTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements on the 4th level of nesting are visible")
@@ -68,7 +68,7 @@ class HeaderPage(BasePage):
     def get_structure_of_5th_level(self):
         elements = self.elements_are_present(self.locators.HEADER_FIFTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements on the 5th level of nesting are visible")
@@ -79,7 +79,7 @@ class HeaderPage(BasePage):
     def get_structure_of_6th_level(self):
         elements = self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements on the 6th level of nesting are invisible")
@@ -94,7 +94,7 @@ class HeaderPage(BasePage):
     def get_list_of_links_auth(self):
         return self.elements_are_present(self.locators.HEADER_LINKS_AUTH)
 
-    @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header "
+    @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
                  for an unauthorized user""")
     def get_list_of_direct_links_unauth(self):
         links = self.get_list_of_links_unauth()
@@ -104,7 +104,7 @@ class HeaderPage(BasePage):
         return direct_links
 
     @allure.step("""Get the list of the 'Groups', 'Statistics', 'About', 'Telegram', 'Profile', 'Logo' links 
-    (direct links) in the Header for an authorized user""")
+                    (direct links) in the Header for an authorized user""")
     def get_list_of_direct_links_auth(self):
         links = self.get_list_of_links_auth()
         direct_links = []
@@ -147,7 +147,7 @@ class HeaderPage(BasePage):
         return all(link.is_displayed() for link in self.get_list_of_links_in_more())
 
     # Lists of links
-    @allure.step("Get the general list of internal links in the Header""")
+    @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
     def get_list_of_internal_links(self):
         links = self.get_list_of_links_unauth()
         internal_links = []
@@ -155,7 +155,7 @@ class HeaderPage(BasePage):
             internal_links.append(links[i])
         return internal_links
 
-    @allure.step("Get the general list of external links in the Header""")
+    @allure.step("Get the general list of external links in the Header for an unauthorized user""")
     def get_list_of_external_links(self):
         links = self.get_list_of_links()
         external_links = []
@@ -163,7 +163,8 @@ class HeaderPage(BasePage):
             external_links.append(links[i])
         return external_links
 
-    @allure.step("Get the list of the 'About', 'Registration', 'Logo' links (direct internal links) in the Header")
+    @allure.step("""Get the list of the 'About', 'Registration', 'Logo' links (direct internal links) in the Header
+                    for an unauthorized user""")
     def get_list_of_direct_internal_links(self):
         links = self.get_list_of_links_unauth()
         direct_internal_links = []
@@ -172,7 +173,7 @@ class HeaderPage(BasePage):
         return direct_internal_links
 
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
-                 (internal links) in the 'More' dropdown""")
+                 (internal links) in the 'More' dropdown for an unauthorized user""")
     def get_list_of_internal_links_in_more(self):
         links = self.get_list_of_links_unauth()
         more_internal_links = []
@@ -180,7 +181,8 @@ class HeaderPage(BasePage):
             more_internal_links.append(links[i])
         return more_internal_links
 
-    @allure.step("Get the list of the 'Donate', 'GitHub' links (external links) in the 'More' dropdown")
+    @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) in the 'More' dropdown 
+                    for an unauthorized user""")
     def get_list_of_external_links_in_more(self):
         links = self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
         external_links = []
@@ -188,19 +190,19 @@ class HeaderPage(BasePage):
             external_links.append(links[i])
         return external_links
 
-    @allure.step("Check the 'Logo' link is present in the Header")
+    @allure.step("Check the 'Logo' link is present in the Header for every user")
     def check_logo_link_presence(self):
         return self.element_is_present(self.locators.LOGO_LINK)
 
-    @allure.step("Check the 'Logo' link is visible")
+    @allure.step("Check the 'Logo' link is visible for every user")
     def check_logo_link_visibility(self):
         return self.element_is_visible(self.locators.LOGO_LINK)
 
-    @allure.step("Check the 'Registration' link is present in the Header")
+    @allure.step("Check the 'Registration' link is present in the Header for an unauthorized user")
     def check_registration_link_presence(self):
         return self.element_is_present(self.locators.LINK_REGISTRATION)
 
-    @allure.step("Check the 'Registration' link is visible")
+    @allure.step("Check the 'Registration' link is visible for an unauthorized user")
     def check_registration_link_visibility(self):
         return self.element_is_visible(self.locators.LINK_REGISTRATION)
 
