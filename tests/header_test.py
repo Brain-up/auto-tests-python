@@ -72,9 +72,9 @@ class TestHeaderPage:
                 header_links = page.get_list_of_links_unauth()
                 header_direct_links = page.get_list_of_direct_links_unauth()
                 header_direct_links_visibility = page.check_direct_links_visibility_unauth()
-                links_in_more_presence = page.get_list_of_links_in_more_unauth()
-                links_in_more_invisibility = page.check_links_invisibility_in_more_unauth()
-                links_in_more_visibility = page.check_links_visibility_in_more_unauth()
+                links_in_more_presence = page.get_list_of_links_in_more()
+                links_in_more_invisibility = page.check_links_invisibility_in_more()
+                links_in_more_visibility = page.check_links_visibility_in_more()
                 logo_link_presence = page.check_logo_link_presence()
                 logo_link_visibility = page.check_logo_link_visibility()
                 registration_link_presence = page.check_registration_link_presence()
@@ -108,15 +108,19 @@ class TestHeaderPage:
                 header_links = page.get_list_of_links_auth()
                 header_direct_links = page.get_list_of_direct_links_auth()
                 header_direct_links_visibility = page.check_direct_links_visibility_auth()
-                links_in_more_presence = page.get_list_of_links_in_more_auth()
-                links_in_more_invisibility = page.check_links_invisibility_in_more_auth()
-                links_in_more_visibility = page.check_links_visibility_in_more_auth()
+                links_in_more_presence = page.get_list_of_links_in_more()
+                links_in_more_invisibility = page.check_links_invisibility_in_more()
+                links_in_more_visibility = page.check_links_visibility_in_more()
+                logo_link_presence = page.check_logo_link_presence()
+                logo_link_visibility = page.check_logo_link_visibility()
                 assert header_links, "Links are absent in the Header"
                 assert header_direct_links, "Direct links are absent in the Header"
                 assert header_direct_links_visibility, "Direct links are invisible"
                 assert links_in_more_presence, "Links in the dropdown 'More' are absent on the page"
                 assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
                 assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
+                assert logo_link_presence, "The 'Logo' link is absent on the page"
+                assert logo_link_visibility, "The 'Logo' link is invisible"
 
         class TestHeaderPageText:
             @allure.title("Verify values of the text in links, buttons in the Header")

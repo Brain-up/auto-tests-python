@@ -222,7 +222,7 @@ class SpecialistsPage(BasePage):
         images = self.get_list_of_card_images()
         images_sizes_before = [image.size for image in images]
         # self.driver.set_window_size(1200, 800)
-        self.driver.set_window_size(400, 700)
+        self.driver.set_window_size(220, 700)
         images_sizes_after = [image.size for image in images]
         changed, lost, unchanged = [], [], []
         for i in range(len(images)):
@@ -233,9 +233,10 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Check changes of images sizes after resizing")
     def check_size_changes_of_images(self):
+        time.sleep(3)
         images = self.get_list_of_card_images()
         images_sizes_before = [image.size for image in images]
-        self.driver.set_window_size(220, 1100)
+        self.driver.set_window_size(400, 1100)
         time.sleep(7)
         try:
             images_sizes_after = [image.size for image in images]

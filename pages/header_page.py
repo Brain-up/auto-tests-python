@@ -122,8 +122,8 @@ class HeaderPage(BasePage):
         return all(link.is_displayed() for link in self.get_list_of_direct_links_auth())
 
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources', "
-                  'Donate', 'GitHub' links in the 'More' dropdown in the Header for an unauthorized user""")
-    def get_list_of_links_in_more_unauth(self):
+                  'Donate', 'GitHub' links in the 'More' dropdown in the Header for every user""")
+    def get_list_of_links_in_more1(self):
         links = self.get_list_of_links_unauth()
         more_links = []
         for i in range(3, 9):
@@ -131,31 +131,20 @@ class HeaderPage(BasePage):
         return more_links
 
     @allure.step("""Get the list of links (internal and external) in the 'More' dropdown in the Header
-                 for an authorized user""")
-    def get_list_of_links_in_more_auth(self):
+                 for every user""")
+    def get_list_of_links_in_more(self):
         return self.elements_are_present(self.locators.LINKS_IN_MORE)
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-                    in the 'More' dropdown are invisible for an unauthorized user""")
-    def check_links_invisibility_in_more_unauth(self):
-        return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_more_unauth())
+                    in the 'More' dropdown are invisible for every user""")
+    def check_links_invisibility_in_more(self):
+        return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_more())
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-                    in the 'More' dropdown are invisible for an authorized user""")
-    def check_links_invisibility_in_more_auth(self):
-        return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_more_auth())
-
-    @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-                    in the 'More' dropdown are visible for an unauthorized user""")
-    def check_links_visibility_in_more_unauth(self):
+                    in the 'More' dropdown are visible for every user""")
+    def check_links_visibility_in_more(self):
         self.click_more_button()
-        return all(link.is_displayed() for link in self.get_list_of_links_in_more_unauth())
-
-    @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-                    in the 'More' dropdown are visible for an authorized user""")
-    def check_links_visibility_in_more_auth(self):
-        self.click_more_button()
-        return all(link.is_displayed() for link in self.get_list_of_links_in_more_auth())
+        return all(link.is_displayed() for link in self.get_list_of_links_in_more())
 
     # Lists of links
     @allure.step("Get the general list of internal links in the Header""")
