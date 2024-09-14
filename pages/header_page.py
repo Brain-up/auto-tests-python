@@ -240,7 +240,7 @@ class HeaderPage(BasePage):
     links in the Header""")
     def get_text_of_links_in_more(self):
         self.click_more_button()
-        return [link.text for link in self.get_list_of_links_in_more_unauth()]
+        return [link.text for link in self.get_list_of_links_in_more()]
 
     @allure.step("Get text in buttons in the Header")
     def get_text_in_buttons(self):
@@ -308,12 +308,12 @@ class HeaderPage(BasePage):
     @allure.step("Check for dropdown is open/closed in the Header after clicking on the button 'More'")
     def check_dropdown_opens_and_closes(self):
         dropdown_state = 0
-        if self.check_links_invisibility_in_more_unauth():
+        if self.check_links_invisibility_in_more():
             dropdown_state = 1
-        if self.check_links_visibility_in_more_unauth():
+        if self.check_links_visibility_in_more():
             dropdown_state = 2
         self.click_more_button()
-        if self.check_links_invisibility_in_more_unauth():
+        if self.check_links_invisibility_in_more():
             dropdown_state = 3
         if dropdown_state == 3:
             return True

@@ -236,7 +236,7 @@ class SpecialistsPage(BasePage):
         time.sleep(3)
         images = self.get_list_of_card_images()
         images_sizes_before = [image.size for image in images]
-        self.driver.set_window_size(400, 1100)
+        self.driver.set_window_size(400, 1080)
         time.sleep(7)
         try:
             images_sizes_after = [image.size for image in images]
