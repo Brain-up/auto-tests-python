@@ -3,7 +3,7 @@
 from selenium.webdriver.common.by import By
 
 
-class HeaderUnauthorizedPageLocators:
+class HeaderUnauthorizedLocators:
     HEADER_BUTTONS = (By.XPATH, "//button")
     HEADER_CONTENT = (By.XPATH, "//div[contains(@class, 'header')]")
     HEADER_LINKS_UNAUTH = (By.XPATH, "//nav//a")
@@ -43,6 +43,10 @@ class HeaderUnauthorizedPageLocators:
     RU_BUTTON = (By.XPATH, "(//span/button)[1]")
     RU_EN_BUTTONS = (By.XPATH, "//span/button")
     RU_EN_BUTTONS_SECTION = (By.XPATH, "//nav//span")
+
+
+class HeaderAuthorizedLocators:
+    LINK_PROFILE = (By.XPATH, "(//nav//a)[12]")
 
 
 class StartUnauthorizedPageLocators:
