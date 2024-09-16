@@ -79,8 +79,8 @@ class TestHeaderPage:
                 logo_link_visibility = page.check_logo_link_visibility()
                 registration_link_presence = page.check_registration_link_presence()
                 registration_link_visibility = page.check_registration_link_visibility()
-                buttons_presence = page.get_list_of_buttons()
-                buttons_visibility = page.check_buttons_visibility()
+                buttons_presence = page.get_list_of_buttons_unauth()
+                buttons_visibility = page.check_buttons_unauth_visibility()
                 ru_en_buttons_presence = page.get_list_of_ru_en_buttons()
                 ru_en_buttons_visibility = page.check_ru_en_buttons_visibility()
                 more_button_presence = page.check_more_button_presence()
@@ -115,16 +115,20 @@ class TestHeaderPage:
                 logo_link_visibility = page.check_logo_link_visibility()
                 profile_link_presence = page.check_profile_link_presence()
                 profile_link_visibility = page.check_profile_link_visibility()
+                buttons_presence = page.get_list_of_buttons_auth()
+                buttons_visibility = page.check_buttons_auth_visibility()
                 assert header_links, "Links are absent in the Header"
                 assert header_direct_links, "Direct links are absent in the Header"
                 assert header_direct_links_visibility, "Direct links are invisible"
-                assert links_in_more_presence, "Links in the dropdown 'More' are absent on the page"
+                assert links_in_more_presence, "Links in the dropdown 'More' are absent in the Header"
                 assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
                 assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
-                assert logo_link_presence, "The 'Logo' link is absent on the page"
+                assert logo_link_presence, "The 'Logo' link is absent in the Header"
                 assert logo_link_visibility, "The 'Logo' link is invisible"
-                assert profile_link_presence, "The 'Profile' link is absent on the page"
+                assert profile_link_presence, "The 'Profile' link is absent in the Header"
                 assert profile_link_visibility, "The 'Profile' link is invisible"
+                assert buttons_presence, "Buttons are absent in the Header"
+                assert buttons_visibility, "Buttons are invisible"
 
         class TestHeaderPageText:
             @allure.title("Verify values of the text in links, buttons in the Header")
