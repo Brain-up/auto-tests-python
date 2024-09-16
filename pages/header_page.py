@@ -216,13 +216,21 @@ class HeaderPage(BasePage):
     def check_profile_link_visibility(self):
         return self.element_is_visible(self.locators1.LINK_PROFILE)
 
-    @allure.step("Get the list of buttons in the Header")
-    def get_list_of_buttons(self):
+    @allure.step("Get the list of buttons in the Header for an unauthorized user")
+    def get_list_of_buttons_unauth(self):
         return self.elements_are_present(self.locators.HEADER_BUTTONS)
 
-    @allure.step("Check buttons are visible")
-    def check_buttons_visibility(self):
-        return all(button.is_displayed() for button in self.get_list_of_buttons())
+    @allure.step("Check buttons are visible for an unauthorized user")
+    def check_buttons_unauth_visibility(self):
+        return all(button.is_displayed() for button in self.get_list_of_buttons_unauth())
+
+    @allure.step("Get the list of buttons in the Header for an authorized user")
+    def get_list_of_buttons_auth(self):
+        return self.elements_are_present(self.locators.HEADER_BUTTONS[:4])
+
+    @allure.step("Check buttons are visible are visible for an authorized user")
+    def check_buttons_auth_visibility(self):
+        return all(button.is_displayed() for button in self.get_list_of_buttons_auth())
 
     @allure.step("Get the list of 'ru' and 'en' buttons in the Header")
     def get_list_of_ru_en_buttons(self):
@@ -254,7 +262,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Get text in buttons in the Header")
     def get_text_in_buttons(self):
-        return [button.text for button in self.get_list_of_buttons()]
+        return [button.text for button in self.get_list_of_buttons_unauth()]
 
     @allure.step("Get text in 'ru' and 'en' buttons in the Header")
     def get_text_in_ru_en_buttons(self):
