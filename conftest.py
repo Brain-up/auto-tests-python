@@ -21,25 +21,8 @@ def driver():
         # chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(options=chrome_options)
     yield driver
-    attach = driver.get_screenshot_as_png()
-    allure.attach(attach, name=f"Screenshot {datetime.today()}", attachment_type=allure.attachment_type.PNG)
     print('\nquit browser...')
     driver.quit()
-
-
-# скриншот
-@allure.feature("Make a Screenshot")
-def pytest_runtest_makereport(item, call):
-    if call.when == 'call':
-        if call.excinfo is not None:
-            try:
-                driver = item.funcargs['driver']
-                driver.save_screenshot('allure-results/screenshot.png')
-                allure.attach.file('allure-results/screenshot.png', name='Screenshot',
-                                   attachment_type=allure.attachment_type.PNG)
-                allure.attach(driver.page_source, name="HTML source", attachment_type=allure.attachment_type.HTML)
-            except Exception as e:
-                print(f"Failed to take screenshot: {e}")
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -55,3 +38,13 @@ def clear_allure_results_folder():
                     shutil.rmtree(file_path)
             except Exception as e:
                 print(f"Failed to delete {file_path}. Reason: {e}")
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item):
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == 'call' and report.failed:
+        driver = item.funcargs['driver']
+        attach = driver.get_screenshot_as_png()
+        allure.attach(attach, name=f"Screenshot {datetime.today()}", attachment_type=allure.attachment_type.PNG)
