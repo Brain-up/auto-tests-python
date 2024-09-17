@@ -88,18 +88,18 @@ class TestHeaderPage:
                 assert header_links, "Links are absent in the Header"
                 assert header_direct_links, "Direct links are absent in the Header"
                 assert header_direct_links_visibility, "Direct links are invisible"
-                assert links_in_more_presence, "Links in the dropdown 'More' are absent on the page"
+                assert links_in_more_presence, "Links in the dropdown 'More' are absent in the Header"
                 assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
                 assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
-                assert logo_link_presence, "The 'Logo' link is absent on the page"
+                assert logo_link_presence, "The 'Logo' link is absent in the Header"
                 assert logo_link_visibility, "The 'Logo' link is invisible"
-                assert registration_link_presence, "The 'Registration' link is absent on the page"
+                assert registration_link_presence, "The 'Registration' link is in the Header"
                 assert registration_link_visibility, "The 'Registration' link is invisible"
-                assert buttons_presence, "Buttons are absent on the page"
+                assert buttons_presence, "Buttons are absent in the Header"
                 assert buttons_visibility, "Buttons are invisible"
-                assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent on the page"
+                assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent in the Header"
                 assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
-                assert more_button_presence, "The 'More' button is absent on the page"
+                assert more_button_presence, "The 'More' button is absent in the Header"
                 assert more_button_visibility, "The 'More' button is invisible"
 
             @allure.title("Verify presence, visibility of links, buttons in the Header for an authorized user")
@@ -117,6 +117,12 @@ class TestHeaderPage:
                 profile_link_visibility = page.check_profile_link_visibility()
                 buttons_presence = page.get_list_of_buttons_auth()
                 buttons_visibility = page.check_buttons_auth_visibility()
+                ru_en_buttons_presence = page.get_list_of_ru_en_buttons()
+                ru_en_buttons_visibility = page.check_ru_en_buttons_visibility()
+                more_button_presence = page.check_more_button_presence()
+                more_button_visibility = page.check_more_button_visibility()
+                logout_button_presence = page.check_logout_button_presence()
+                logout_button_visibility = page.check_logout_button_visibility()
                 assert header_links, "Links are absent in the Header"
                 assert header_direct_links, "Direct links are absent in the Header"
                 assert header_direct_links_visibility, "Direct links are invisible"
@@ -129,6 +135,12 @@ class TestHeaderPage:
                 assert profile_link_visibility, "The 'Profile' link is invisible"
                 assert buttons_presence, "Buttons are absent in the Header"
                 assert buttons_visibility, "Buttons are invisible"
+                assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent in the Header"
+                assert ru_en_buttons_visibility, "The 'ru' and 'en' buttons are invisible"
+                assert more_button_presence, "The 'More' button is absent in the Header"
+                assert more_button_visibility, "The 'More' button is invisible"
+                assert logout_button_presence, "The 'Logout' button is absent in the Header"
+                assert logout_button_visibility, "The 'Logout' button is invisible"
 
         class TestHeaderPageText:
             @allure.title("Verify values of the text in links, buttons in the Header")

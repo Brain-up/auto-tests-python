@@ -47,6 +47,7 @@ class HeaderUnauthorizedLocators:
 
 class HeaderAuthorizedLocators:
     LINK_PROFILE = (By.XPATH, "(//nav//a)[12]")
+    LOGOUT_BUTTON = (By.XPATH, "//button[@data-test-logout-button]")
 
 
 class StartUnauthorizedPageLocators:
