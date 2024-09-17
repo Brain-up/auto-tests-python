@@ -232,22 +232,30 @@ class HeaderPage(BasePage):
     def check_buttons_auth_visibility(self):
         return all(button.is_displayed() for button in self.get_list_of_buttons_auth())
 
-    @allure.step("Get the list of 'ru' and 'en' buttons in the Header")
+    @allure.step("Get the list of 'ru' and 'en' buttons in the Header for unauthorized and authorized users")
     def get_list_of_ru_en_buttons(self):
         # tags = [element.tag_name for element in elements]
         return self.elements_are_present(self.locators.RU_EN_BUTTONS)
 
-    @allure.step("Check if 'ru' and 'en' buttons are visible")
+    @allure.step("Check if 'ru' and 'en' buttons are visible for unauthorized and authorized users")
     def check_ru_en_buttons_visibility(self):
         return all(element.is_displayed() for element in self.get_list_of_ru_en_buttons())
 
-    @allure.step("Check the 'More' button is present in the Header")
+    @allure.step("Check the 'More' button is present in the Header for unauthorized and authorized users")
     def check_more_button_presence(self):
         return self.element_is_present(self.locators.MORE_BUTTON)
 
-    @allure.step("Check the 'More' button is visible")
+    @allure.step("Check the 'More' button is visible for unauthorized and authorized users")
     def check_more_button_visibility(self):
         return self.element_is_visible(self.locators.MORE_BUTTON)
+
+    @allure.step("Check the 'Logout' button is present in the Header for an authorized user")
+    def check_logout_button_presence(self):
+        return self.element_is_present(self.locators1.LOGOUT_BUTTON)
+
+    @allure.step("Check the 'Logout' button is visible for an authorized user")
+    def check_logout_button_visibility(self):
+        return self.element_is_visible(self.locators1.LOGOUT_BUTTON)
 
     # Checks of text in the Header
     @allure.step("Get text in the 'About', 'Telegram', 'Registration' links in the Header for an unauthorized user")
