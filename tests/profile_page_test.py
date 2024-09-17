@@ -13,6 +13,7 @@ class TestProfilePage:
         page = ProfilePage(driver)
         page.open_login_page()
         page.authorise_user()
+        page.loader_checking()
         page.go_to_profile_page()
         page.click_change_password_link()
         page.field_recovery_email()

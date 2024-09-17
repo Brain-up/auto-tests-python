@@ -2,11 +2,10 @@
 
 
 class ContributorsPageData:
-    amount_of_sections_on_page = 1
-    amount_of_grid_cards = 67
-    amount_of_grid_descriptions = 67
-    amount_of_grid_images = 67
-    amount_of_grid_links = 66
+    description_count = 67
+    link_count = 66
+
+    tab_title = ["Наша команда | BrainUp", "Contributors | BrainUp"]
 
     page_title = ["Наша команда", "Our Team"]
 
@@ -15,8 +14,10 @@ class ContributorsPageData:
         "Developers", "Developers in test", "Quality Assurance"
     ]
 
-    slogan_text = ["Мы собрались все вместе, чтобы сделать вашу жизнь проще!",
-                   "We are all here to make your life easier!"]
+    text_on_page = [
+        "Мы собрались все вместе, чтобы сделать вашу жизнь проще!",
+        "We are all here to make your life easier!"
+    ]
 
     all_team_link_href = "https://brainup.site/contributors#"
     all_team_link_status_code = 200

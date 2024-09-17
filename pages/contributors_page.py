@@ -1,10 +1,8 @@
 """Methods for verifying web elements on the 'Contributors' page"""
 import allure
 import requests
-
 from pages.base_page import BasePage
 from locators.contributors_page_locators import ContributorsPageLocators
-from test_data.contributors_page_data import ContributorsPageData
 
 
 class ContributorsPage(BasePage):
@@ -14,249 +12,180 @@ class ContributorsPage(BasePage):
     def check_presence_of_page_content(self):
         return self.element_is_present(self.locators.PAGE_CONTENT)
 
-    @allure.step("Check if page content is visible on the page")
+    @allure.step("Check if page content is visible")
     def check_visibility_of_page_content(self):
         return self.element_is_visible(self.locators.PAGE_CONTENT)
 
-    @allure.step("Get structure of the page")
-    def get_structure_of_page(self):
-        elements = self.elements_are_present(self.locators.PAGE_STRUCTURE)
-        # print(f"Amount of elements on the 1st level of nesting on the page is: {len(elements)}")
-        tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 1st level of nesting on the page are: {tags}")
-        return tags
+    @allure.step("Get structure of the 1st level of nesting on the page")
+    def get_structure_of_1st_level(self):
+        elements = self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
 
-    @allure.step("Check if elements of the 1st level of nesting are visible on the page")
-    def check_visibility_of_elements_on_page(self):
-        elements = self.elements_are_present(self.locators.PAGE_STRUCTURE)
-        all_elements_are_displayed = all(element.is_displayed() for element in elements)
-        return all_elements_are_displayed
+    @allure.step("Check if elements of the 1st level of nesting are visible")
+    def check_elements_visibility_on_1st_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_1st_level())
 
-    @allure.step("Get amount of sections with content on the page")
-    def get_amount_of_sections_on_page(self):
-        sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
-        # print(len(sections))
-        return len(sections)
+    @allure.step("Get structure of the 2nd level of nesting on the page")
+    def get_structure_of_2nd_level(self):
+        elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
 
-    @allure.step("Check sections are visible on the page")
-    def check_visibility_of_sections(self):
-        sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
-        all_sections_are_displayed = all(section.is_displayed() for section in sections)
-        return all_sections_are_displayed
+    @allure.step("Check if elements of the 2nd level of nesting are visible")
+    def check_elements_visibility_on_2nd_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_2nd_level())
 
-    @allure.step("Get structure of section with content on the page")
-    def get_structure_of_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_FIRST_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 1st level of nesting in the section is: {len(elements)}")
-        tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 1st level of nesting in the section are: {tags}")
-        return tags
+    @allure.step("Get structure of the 3rd level of nesting on the page")
+    def get_structure_of_3rd_level(self):
+        elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
 
-    @allure.step("Check if elements of the 1st level are visible in the section")
-    def check_visibility_of_elements_in_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_FIRST_LEVEL_ELEMENTS)
-        all_elements_are_displayed = all(element.is_displayed() for element in elements)
-        return all_elements_are_displayed
+    @allure.step("Check if elements of the 3rd level of nesting are visible")
+    def check_elements_visibility_on_3rd_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_3rd_level())
 
-    @allure.step("Get structure of subsections in the section")
-    def get_structure_of_1st_level_in_section(self):
-        elements = self.elements_are_present(self.locators.PAGE_SUBSECTIONS)
-        # print(f"Amount of subsections on the 1st level of nesting in the section is: {len(elements)}")
-        tags = [element.tag_name for element in elements]
-        # print(f"Tags of subsections on the 1st level of nesting in the section are: {tags}")
-        return tags
+    @allure.step("Get structure of the 4th level of nesting on the page")
+    def get_structure_of_4th_level(self):
+        elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
 
-    @allure.step("Check subsections are visible in the section")
-    def check_visibility_of_elements_in_subsections(self):
-        subsections = self.elements_are_present(self.locators.PAGE_SUBSECTIONS)
-        all_subsections_are_displayed = all(subsection.is_displayed() for subsection in subsections)
-        return all_subsections_are_displayed
+    @allure.step("Check if elements of the 4th level of nesting are visible")
+    def check_elements_visibility_on_4th_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_4th_level())
 
-    @allure.step("Get structure of sub-subsections on the page") #ch
-    def get_structure_of_2nd_level_in_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_SECOND_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 2nd level of nesting in the section is: {len(elements)}")
-        tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 2nd level of nesting in the section are: {tags}")
-        return tags
+    @allure.step("Get structure of the 5th level of nesting on the page")
+    def get_structure_of_5th_level(self):
+        elements = self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return elements
 
-    @allure.step("Check if elements on the 2nd level of nesting are visible on the page")
-    def check_visibility_of_elements_on_2nd_level_in_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_SECOND_LEVEL_ELEMENTS)
-        all_elements_are_displayed = all(element.is_displayed() for element in elements)
-        return all_elements_are_displayed
+    @allure.step("Check the title h2 on the 2nd level of nesting is present on the page")
+    def check_title_presence(self):
+        return self.element_is_present(self.locators.PAGE_TITLE)
 
-    @allure.step("Get structure of sub-sub-subsections on the page")
-    def get_structure_of_3rd_level_in_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_THIRD_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 3rd level of nesting in the section is: {len(elements)}")
-        tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 3rd level of nesting in the section are: {tags}")
-        return tags
+    @allure.step("Check the title h2 on the 2nd level of nesting is visible")
+    def check_title_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_TITLE)
 
-    @allure.step("Check if elements of the 3rd level of nesting are visible on the page")
-    def check_visibility_of_elements_on_3rd_level_in_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_THIRD_LEVEL_ELEMENTS)
-        all_elements_are_displayed = all(element.is_displayed() for element in elements)
-        return all_elements_are_displayed
+    @allure.step("Get the list of subtitles h3 on the 2nd level of nesting on the page")
+    def get_list_of_subtitles(self):
+        return self.elements_are_present(self.locators.PAGE_SUBTITLES)
 
-    @allure.step("Get the list of subsections on the 3rd level of nesting")
-    def get_amount_of_subsections_on_3rd_level(self):
-        subsections = self.elements_are_present(self.locators.SECTION_THIRD_LEVEL_CONTAINERS)
-        # print(f"Amount of subsections on the 3rd level is: {len(subsections)}")
-        return len(subsections)
+    @allure.step("Check if subtitles h3 on the 2nd level of nesting are visible")
+    def check_visibility_of_subtitles(self):
+        return all(element.is_displayed() for element in self.get_list_of_subtitles())
 
-    @allure.step("Get structure of elements of the 4th level of nesting")
-    def get_structure_of_4th_level_in_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_FOURTH_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 4th level of nesting in the section is: {len(elements)}")
-        tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 4th level of nesting in the section are: {tags}")
-        return tags
+    @allure.step("Get the list of cards on the 3rd level of nesting on the page")
+    def get_list_of_cards(self):
+        return self.elements_are_present(self.locators.CONTRIBUTOR_CARDS)
 
-    @allure.step("Get amount of contributor's cards in the section grid")
-    def get_amount_of_cards_in_the_grid(self):
-        contributor_cards = self.elements_are_present(self.locators.GRID_CONTRIBUTOR_CARDS)
-        return len(contributor_cards)
+    @allure.step("Check cards are visible")
+    def check_cards_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_cards())
 
-    @allure.step("Get amount of contributor's images in the section grid")
-    def get_amount_of_images_in_the_grid(self):
-        images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        return len(images)
+    @allure.step("Get the list of descriptions in cards on the 4th level of nesting on the page")
+    def get_list_of_card_descriptions(self):
+        return self.elements_are_present(self.locators.CARD_DESCRIPTIONS)
 
-    @allure.step("Get amount of contributor's links in the section grid")
-    def get_amount_of_links_in_the_grid(self):
-        links = self.elements_are_present(self.locators.GRID_CARD_LINKS)
-        return len(links)
+    @allure.step("Check descriptions in cards are visible")
+    def check_descriptions_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_card_descriptions())
 
-    @allure.step("Get amount of contributor's descriptions in the section grid")
-    def get_amount_of_descriptions_in_the_grid(self):
-        descriptions = self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS)
-        return len(descriptions)
+    @allure.step("Get the list of links on the 4th level of nesting on the page")
+    def get_list_of_links(self):
+        return self.elements_are_present(self.locators.PAGE_LINKS)
 
-    @allure.step("Get value of the subtitle in the section on the page")
-    def get_value_of_title_on_the_page(self):
-        title_value = self.get_text(self.locators.SECTION_TITLE)
-        return title_value
+    @allure.step("Check links on the page are visible")
+    def check_links_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_links())
 
-    @allure.step("Get the list of subtitle values on the page")
+    @allure.step("Get the list of images in cards on the 5th level of nesting on the page")
+    def get_list_of_card_images(self):
+        return self.elements_are_present(self.locators.CARD_IMAGES)
+
+    @allure.step("Check images in cards are visible")
+    def check_image_visibility_in_cards(self):
+        return all(element.is_displayed() for element in self.get_list_of_card_images())
+
+    # Checking text on the tab&page
+    @allure.step("Get value of the title of the tab")
+    def get_value_of_tab_title(self):
+        return self.get_current_tab_title()
+
+    @allure.step("Get value of the title h2 on the page")
+    def get_value_of_title(self):
+        return self.check_title_presence().text
+
+    @allure.step("Get the list of subtitle h3 values on the page")
     def get_values_of_subtitles(self):
-        subtitles = self.elements_are_present(self.locators.SECTION_SUBTITLES)
-        subtitle_values = [subtitle.text for subtitle in subtitles]
-        return subtitle_values
+        return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
-    @allure.step("Get text in the slogan on the page")
-    def get_value_of_slogan(self):
-        slogan = self.element_is_present(self.locators.SLOGAN).text
-        return slogan
+    @allure.step("Get content of the text on the page")
+    def get_text_content_on_page(self):
+        return self.element_is_present(self.locators.PAGE_TEXT).text
 
     @allure.step("Check the content of descriptions in cards")
     def check_values_of_card_descriptions(self):
-        elements_with_text = self.elements_are_present(self.locators.GRID_CARD_DESCRIPTIONS)
-        element_values = [element.text for element in elements_with_text]
-        filled_count, empty_count = 0, 0
-        for i in range(len(element_values)):
-            if element_values[i]:
-                filled_count += 1
-            else:
-                empty_count += 1
-        common_count = filled_count + empty_count
-        return common_count
+        values = [element.text for element in self.get_list_of_card_descriptions()]
+        full, empty = [], []
+        for i in range(len(values)):
+            full.append(values[i]) if values[i] else empty.append(values[i])
+        return len(full) + len(empty)
 
     @allure.step("Check text in links in cards")
     def check_text_in_card_links(self):
-        links = self.elements_are_present(self.locators.GRID_CARD_LINKS)
-        element_values = [link.text for link in links]
-        filled_count, empty_count = 0, 0
-        for i in range(len(element_values)):
-            if element_values[i]:
-                filled_count += 1
-            else:
-                empty_count += 1
-        common_count = filled_count + empty_count
-        return common_count
-
-    @allure.step("Get the list of links in the section")
-    def get_list_of_links_in_section(self):
-        links = self.elements_are_present(self.locators.SECTION_LINKS)
-        # print(f"\nAmount of links in the section is: {len(links)}")
-        return links
-
-    @allure.step("Check if links are visible in the section")
-    def check_visibility_of_links_in_section(self):
-        links = self.get_list_of_links_in_section()
-        all_links_are_displayed = all(link.is_displayed() for link in links)
-        return all_links_are_displayed
-
-    @allure.step("Check if links in the section are clickable")
-    def check_links_clickability(self):
-        links = self.get_list_of_links_in_section()
-        all_links_are_enabled = all(link.is_enabled() for link in links)
-        return all_links_are_enabled
-
-    @allure.step("Get attribute 'href' of links in the section")
-    def get_links_href(self):
-        links = self.get_list_of_links_in_section()
-        links_href = [element.get_attribute("href") for element in links]
-        return links_href
-
-    @allure.step("Get attribute 'href' of the 'All Team' link")
-    def get_all_team_link_href(self):
-        return self.get_link_href(self.locators.ALL_TEAM_LINK)
-
-    @allure.step("Get status code of 'All Team' link")
-    def get_all_team_link_status_code(self):
-        link_href = self.get_all_team_link_href()
-        link_status_code = requests.head(link_href).status_code
-        return link_status_code
+        values = [link.text for link in self.elements_are_present(self.locators.CARD_LINKS)]
+        full, empty = [], []
+        for i in range(len(values)):
+            full.append(values[i]) if values[i] else empty.append(values[i])
+        return len(full) + len(empty)
 
     @allure.step("Get text in the 'All Team' link")
     def get_text_in_all_team_link(self):
         return self.get_text(self.locators.ALL_TEAM_LINK)
 
-    @allure.step("Check the image in each contributor card is present and visible on the page")
-    def check_image_presence_and_visibility_in_the_grid(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        all_images_are_displayed = all(image.is_displayed() for image in card_images)
-        return all_images_are_displayed
+    # Checking links on the page
+    @allure.step("Check if links on the page are clickable")
+    def check_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list_of_links())
 
-    @allure.step("Check attribute 'src' of images in contributor cards on the page")
-    def check_images_src_in_contributor_cards(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        src_list = [image.get_attribute('src') for image in card_images]
-        image_src = [image_src.startswith(ContributorsPageData.images_src_start) for image_src in src_list]
-        return image_src
+    @allure.step("Get attribute 'href' of links on the page")
+    def get_links_href(self):
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
 
-    @allure.step("Get the list of attribute 'alt' values of images in contributor cards on the page")
-    def get_images_alt_in_contributor_cards(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        alt_list = [image.get_attribute('alt') for image in card_images]
-        return alt_list
+    @allure.step("Get attribute 'href' of the 'All Team' link")
+    def get_all_team_link_href(self):
+        return self.get_link_href(self.locators.ALL_TEAM_LINK)
 
-    @allure.step("""Get the list of size values of images in contributor cards on the page 
-                    and check their changes after resizing""")
-    def check_size_changes_of_card_images(self):
-        card_images = self.elements_are_present(self.locators.GRID_CARD_IMAGES)
-        image_sizes_before = [image.size for image in card_images]
-        self.driver.set_window_size(1200, 800)
-        image_sizes_after = [image.size for image in card_images]
-        # print("The results of checking changes of image sizes in cards after resizing are:")
-        changed, lost, unchanged = 0, 0, 0
-        for i in range(len(image_sizes_after)):
-            if image_sizes_before[i] != image_sizes_after[i]:
-                changed += 1
-                if image_sizes_after[i] == {'height': 0, 'width': 0}:
-                    lost += 1
-                    # print(f"\n   The image #{i + 1} has become invisible because has sizes that changed: "
-                    #       f"\nfrom {image_sizes_before[i]} before resizing \nto {image_sizes_after[i]} after resizing")
-                # else:
-                    # print(f"\n   The image #{i + 1} has sizes that changed: \nfrom {image_sizes_before[i]} before "
-                    #       f"resizing \nto {image_sizes_after[i]} after resizing")
-            else:
-                unchanged += 1
-                # print(f"\n   The image #{i + 1} has sizes that remain: \nthe same {image_sizes_before[i]} before resizing "
-                #       f"\nand {image_sizes_after[i]} after resizing")
-        # print(f"\nSummary of image size checks\n   Amount of images with changed sizes after resizing is: {changed}, "
-        #       f"\nincluding images that have become invisible on the page: {lost}")
-        # print(f"   Amount of images with unchanged sizes after resizing is: {unchanged}")
+    @allure.step("Get status code of the 'All Team' link")
+    def get_all_team_link_status_code(self):
+        return requests.head(self.get_all_team_link_href()).status_code
+
+    # Checking images in grids
+    @allure.step("Get the list of attribute 'src' values of images in contributor cards")
+    def get_images_src(self):
+        return [image.get_attribute('src') for image in self.get_list_of_card_images()]
+
+    @allure.step("Get the list of attribute 'alt' values of images in contributor cards")
+    def get_images_alt(self):
+        return [image.get_attribute('alt') for image in self.get_list_of_card_images()]
+
+    @allure.step("Get the list of sizes of images in contributor cards")
+    def get_images_sizes(self):
+        return [image.size for image in self.get_list_of_card_images()]
+
+    @allure.step("Check changes of images sizes after resizing")
+    def check_size_changes_of_images(self):
+        images = self.get_list_of_card_images()
+        images_sizes_before = [image.size for image in images]
+        self.driver.set_window_size(200, 700)
+        images_sizes_after = [image.size for image in images]
+        changed, lost, unchanged = [], [], []
+        for i in range(len(images)):
+            changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
+            lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
+        print(f'\nChanged: {len(changed)}, Lost: {len(lost)}, Unchanged: {len(unchanged)}')
         return changed, lost, unchanged

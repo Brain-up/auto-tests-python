@@ -5,7 +5,7 @@ class UsedResourcesPageData:
     tab_title_current = "Brn"
     tab_title_expected = ["Используемые ресурсы | BrainUp", "Used Resources | BrainUp"]
 
-    title_h1 = ["Используемые ресурсы", "Used Resources"]
+    page_title = ["Используемые ресурсы", "Used Resources"]
 
     text_on_page = [
         "Фотографии упражнений в приложении взяты со следующих платформ:",
@@ -31,7 +31,7 @@ class UsedResourcesPageData:
         "thome/Alphabetical_list.html"
     ]
 
-    links_status_codes = [200, 301]
+    link_status_codes = [200, 301]
 
     icons_xmlns = "http://www.w3.org/2000/svg"
 

@@ -107,7 +107,7 @@ class BasePage:
 
     def get_current_tab_url(self):
         try:
-            Wait(self.driver, 30).until(ec.presence_of_element_located((By.TAG_NAME, "title")))
+            Wait(self.driver, 50).until(ec.presence_of_element_located((By.TAG_NAME, "title")))
             return self.driver.current_url
         except TimeoutException:
             return False
