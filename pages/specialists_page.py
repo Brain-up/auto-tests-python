@@ -218,13 +218,47 @@ class SpecialistsPage(BasePage):
         return [image.size for image in self.get_list_of_card_images()]
 
     @allure.step("Check changes of images sizes after resizing")
-    def check_size_changes_of_images(self):
+    def check_size_changes_of_images1(self):
         images = self.get_list_of_card_images()
         images_sizes_before = [image.size for image in images]
-        self.driver.set_window_size(1200, 800)
+        # self.driver.set_window_size(1200, 800)
+        self.driver.set_window_size(220, 700)
         images_sizes_after = [image.size for image in images]
         changed, lost, unchanged = [], [], []
         for i in range(len(images)):
             changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
             lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
+        print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
+        return changed
+
+    @allure.step("Check changes of images sizes after resizing")
+    def check_size_changes_of_images2(self):
+        time.sleep(3)
+        images = self.get_list_of_card_images()
+        images_sizes_before = [image.size for image in images]
+        self.driver.set_window_size(400, 1080)
+        time.sleep(7)
+        try:
+            images_sizes_after = [image.size for image in images]
+            changed, lost, unchanged = [], [], []
+            for i in range(len(images)):
+                changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
+                lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
+            print(f'All images have changed sizes' if len(changed) == len(images)
+                  else f'Images {unchanged} have unchanged sizes')
+            return changed
+        except TimeoutException:
+            print("The entire set of images has not been loaded during the allotted time after resizing")
+
+    @allure.step("Check changes of images sizes after resizing")
+    def check_size_changes_of_images(self):
+        images = self.get_list_of_card_images()
+        images_sizes_before = [image.size for image in images]
+        self.driver.set_window_size(200, 700)
+        images_sizes_after = [image.size for image in images]
+        changed, lost, unchanged = [], [], []
+        for i in range(len(images)):
+            changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
+            lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
+        print(f'\nChanged: {len(changed)}, Lost: {len(lost)}, Unchanged: {len(unchanged)}')
         return changed, lost, unchanged

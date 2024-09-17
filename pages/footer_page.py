@@ -1,26 +1,23 @@
-import time
 import allure
 import requests
 from selenium.common import TimeoutException
-from locators.footer_page_locators import FooterLocators, RelatedPagesElementsLocators
+from locators.footer_page_locators import FooterLocators
 from pages.base_page import BasePage
-from test_data.footer_data import FooterData
 
 
 class FooterPage(BasePage):
     locators = FooterLocators
-    locators1 = RelatedPagesElementsLocators
 
     # Checking the structure and display of elements in the Footer
-    @allure.step("Check Footer is present in the DOM tree on the page")
+    @allure.step("Check the Footer is present in the DOM tree on the page")
     def check_footer_presence(self):
         return self.element_is_present(self.locators.FOOTER)
 
-    @allure.step("Check if Footer is visible on the page")
+    @allure.step("Check if the Footer is visible on the page")
     def check_footer_visibility(self):
         return self.element_is_visible(self.locators.FOOTER)
 
-    @allure.step("Check Footer is invisible")
+    @allure.step("Check the Footer is invisible")
     def check_footer_invisibility(self):
         return self.element_is_not_visible(self.locators.FOOTER)
 
@@ -122,6 +119,14 @@ class FooterPage(BasePage):
     def check_images_visibility(self):
         return all(element.is_displayed() for element in self.get_list_of_images())
 
+    @allure.step("Check the Jetbrains image is present in the DOM tree")
+    def check_jetbrains_image_presence(self):
+        return self.element_is_present(self.locators.JETBRAINS_IMAGE)
+
+    @allure.step("Check the Jetbrains image is invisible in the Footer")
+    def check_jetbrains_image_invisibility(self):
+        return self.element_is_not_visible(self.locators.JETBRAINS_IMAGE)
+
     # Checking text in the Footer
     @allure.step("Get content of text in the Footer")
     def get_footer_text(self):
@@ -136,7 +141,7 @@ class FooterPage(BasePage):
     def check_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list_of_links())
 
-    @allure.step("Get attribute 'href' of in the Footer")
+    @allure.step("Get attribute 'href' of links in the Footer")
     def get_links_href(self):
         return [element.get_attribute("href") for element in self.get_list_of_links()]
 
@@ -155,210 +160,52 @@ class FooterPage(BasePage):
         return [requests.head(link_href).status_code for link_href in links_href]
 
     @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
-    def click_on_links1(self):
-        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
-        new_tabs_urls = []
-        for i in range(1, len(new_tabs) + 1):
-            self.driver.switch_to.window(self.driver.window_handles[i])
-            time.sleep(5)
-            new_tabs_urls.append(self.get_current_tab_url())
-        return new_tabs_urls
-
-    @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
-    def click_on_links2(self):
-        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
-        print(len(new_tabs))
-        new_tabs_urls = []
-        for i in range(1, len(new_tabs) + 1):
-            self.driver.switch_to.window(self.driver.window_handles[i])
-            time.sleep(5)
-            try:
-                new_tabs_urls.append(self.get_current_tab_url())
-            except TimeoutException:
-                print(f"The tab {i} has not been loaded during the allotted time")
-        print(new_tabs_urls)
-        return new_tabs_urls
-
-    @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
     def click_on_links(self):
         new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
-        print(len(new_tabs))
-        new_tabs_urls = []
+        # print(f'Opened tabs: {len(new_tabs)}')
+        new_tabs_urls, count1, count2, count3 = [], 0, 0, 0
         for i in range(1, len(new_tabs) + 1):
-            self.driver.switch_to.window(self.driver.window_handles[i])
-            time.sleep(5)
             try:
-                if self.get_current_tab_url() in FooterData.pages_urls:
-                    new_tabs_urls.append(self.get_current_tab_url())
+                self.driver.switch_to.window(self.driver.window_handles[i])
+                new_tab_url = self.get_current_tab_url()
+                if new_tab_url:
+                    new_tabs_urls.append(new_tab_url)
+                    count1 += 1
+                else:
+                    print(f"The tab url {i} has not been defined during the allotted time")
+                    count2 += 1
             except TimeoutException:
                 print(f"The tab {i} has not been loaded during the allotted time")
-        print(new_tabs_urls)
+                count3 += 1
+        print(f'{new_tabs_urls}\nDefined tabs urls: {count1}\nUndefined tabs urls: {count2}\nUnloaded tabs: {count3}')
         return new_tabs_urls
 
     @allure.step("Click on the 'Contact us' link in the Footer and thereby open an email client")
     def click_contact_us_link(self):
         self.element_is_present_and_clickable(self.locators.CONTACT_US_LINK).click()
 
-    @allure.step("Find the element on the page")
-    def find_element(self, locator):
-        return self.driver.find_element(*locator)
+    # Checking images in the Footer
+    @allure.step("Get the list of attribute 'src' values of images in links")
+    def get_images_src(self):
+        return [image.get_attribute('src') for image in self.get_list_of_images()]
 
-    @allure.step("Get attribute 'src' of an element's image")
-    def get_image_src(self, locator):
-        return self.driver.find_element(*locator).get_attribute("src")
+    @allure.step("Get the list of attribute 'alt' values of images in links")
+    def get_images_alt(self):
+        return [image.get_attribute('alt') for image in self.get_list_of_images()]
 
-    @allure.step("Get attribute 'alt' of an element's image")
-    def get_image_alt(self, locator):
-        return self.driver.find_element(*locator).get_attribute("alt")
+    @allure.step("Get the list of sizes of images in links")
+    def get_images_sizes(self):
+        return [image.size for image in self.get_list_of_images()]
 
-    @allure.step("Get attribute 'width' of an element's image")
-    def get_image_width(self, locator):
-        return self.driver.find_element(*locator).get_attribute("width")
-
-    @allure.step("Get attribute 'height' of an element's image")
-    def get_image_height(self, locator):
-        return self.driver.find_element(*locator).get_attribute("height")
-
-    @allure.step("Get attribute 'href' of the ARASAAC link")
-    def get_arasaac_link_href(self):
-        return self.get_link_href(self.locators.ARASAAC_LINK)
-
-    @allure.step("Check the ARASAAC image is present in Footer")
-    def check_arasaac_image_presence(self):
-        return self.element_is_present(self.locators.ARASAAC_IMAGE)
-
-    @allure.step("Check the ARASAAC image is visible in Footer")
-    def check_arasaac_image_visibility(self):
-        return self.element_is_visible(self.locators.ARASAAC_IMAGE)
-
-    @allure.step("Get attribute 'src' of the ARASAAC image in Footer")
-    def get_arasaac_image_src(self):
-        return self.get_image_src(self.locators.ARASAAC_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the ARASAAC image in Footer")
-    def get_arasaac_image_alt(self):
-        return self.get_image_alt(self.locators.ARASAAC_IMAGE)
-
-    @allure.step("Get attribute 'width' of the ARASAAC image in Footer")
-    def get_visible_width_of_arasaac_image(self):
-        return self.get_image_width(self.locators.ARASAAC_IMAGE)
-
-    @allure.step("Get attribute 'height' of the ARASAAC image in Footer")
-    def get_visible_height_of_arasaac_image(self):
-        return self.get_image_height(self.locators.ARASAAC_IMAGE)
-
-    @allure.step("Get attribute 'href' of the EPAM link")
-    def get_epam_link_href(self):
-        return self.get_link_href(self.locators.EPAM_LINK)
-
-    @allure.step("Check the EPAM image is present in Footer")
-    def check_epam_image_presence(self):
-        return self.element_is_present(self.locators.EPAM_IMAGE)
-
-    @allure.step("Check the EPAM image is present and visible in Footer")
-    def check_epam_image_visibility(self):
-        return self.element_is_visible(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'src' of the EPAM image in Footer")
-    def get_epam_image_src(self):
-        return self.get_image_src(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the EPAM image in Footer")
-    def get_epam_image_alt(self):
-        return self.get_image_alt(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'width' of the EPAM image in Footer")
-    def get_visible_width_of_epam_image(self):
-        return self.get_image_width(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'height' of the EPAM image in Footer")
-    def get_visible_height_of_epam_image(self):
-        return self.get_image_height(self.locators.EPAM_IMAGE)
-
-    @allure.step("Get attribute 'href' of the Jetbrains link")
-    def get_jetbrains_link_href(self):
-        return self.get_link_href(self.locators.JETBRAINS_LINK)
-
-    @allure.step("Check the Jetbrains image is present in the DOM tree on the page")
-    def check_jetbrains_image_presence(self):
-        return self.element_is_present(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Check the Jetbrains image is present and visible in Footer")
-    def check_jetbrains_image_visibility(self):
-        return self.element_is_visible(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Check the Jetbrains image is invisible in Footer")
-    def check_jetbrains_image_invisibility(self):
-        return self.element_is_not_visible(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Get attribute 'src' of the Jetbrains image in Footer")
-    def get_jetbrains_image_src(self):
-        return self.get_image_src(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the Jetbrains image in Footer")
-    def get_jetbrains_image_alt(self):
-        return self.get_image_alt(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Get attribute 'width' of the Jetbrains image in Footer")
-    def get_visible_width_of_jetbrains_image(self):
-        return self.get_image_width(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Get attribute 'height' of the Jetbrains image in Footer")
-    def get_visible_height_of_jetbrains_image(self):
-        return self.get_image_height(self.locators.JETBRAINS_IMAGE)
-
-    @allure.step("Get attribute 'href' of the REG.RU link")
-    def get_reg_link_href(self):
-        return self.get_link_href(self.locators.REG_LINK)
-
-    @allure.step("Check the REG.RU image is present in Footer")
-    def check_reg_image_presence(self):
-        return self.element_is_present(self.locators.REG_IMAGE)
-
-    @allure.step("Check the REG.RU image is visible in Footer")
-    def check_reg_image_visibility(self):
-        return self.element_is_visible(self.locators.REG_IMAGE)
-
-    @allure.step("Get attribute 'src' of the REG.RU image in Footer")
-    def get_reg_image_src(self):
-        return self.get_image_src(self.locators.REG_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the REG.RU image in Footer")
-    def get_reg_image_alt(self):
-        return self.get_image_alt(self.locators.REG_IMAGE)
-
-    @allure.step("Get attribute 'width' of the REG.RU image in Footer")
-    def get_visible_width_of_reg_image(self):
-        return self.get_image_width(self.locators.REG_IMAGE)
-
-    @allure.step("Get attribute 'height' of the REG.RU image in Footer")
-    def get_visible_height_of_reg_image(self):
-        return self.get_image_height(self.locators.REG_IMAGE)
-
-    @allure.step("Get attribute 'href' of the Selectel link")
-    def get_selectel_link_href(self):
-        return self.get_link_href(self.locators.SELECTEL_LINK)
-
-    @allure.step("Check the Selectel image is present in Footer")
-    def check_selectel_image_presence(self):
-        return self.element_is_present(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Check the Selectel image is visible in Footer")
-    def check_selectel_image_visibility(self):
-        return self.element_is_visible(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Get attribute 'src' of the Selectel image in Footer")
-    def get_selectel_image_src(self):
-        return self.get_image_src(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Get attribute 'alt' of the Selectel image in Footer")
-    def get_selectel_image_alt(self):
-        return self.get_image_alt(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Get attribute 'width' of the Selectel image in Footer")
-    def get_visible_width_of_selectel_image(self):
-        return self.get_image_width(self.locators.SELECTEL_IMAGE)
-
-    @allure.step("Get attribute 'height' of the Selectel image in Footer")
-    def get_visible_height_of_selectel_image(self):
-        return self.get_image_height(self.locators.SELECTEL_IMAGE)
+    @allure.step("Check changes of images sizes after resizing")
+    def check_size_changes_of_images(self):
+        images = self.get_list_of_images()
+        images_sizes_before = [image.size for image in images]
+        self.driver.set_window_size(400, 700)
+        images_sizes_after = [image.size for image in images]
+        changed, lost, unchanged = [], [], []
+        for i in range(len(images)):
+            changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
+            lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
+        # print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
+        return changed

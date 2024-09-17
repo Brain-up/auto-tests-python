@@ -1,151 +1,368 @@
-"""Methods for verifying web elements in the Header on the site"""
+"""Methods for verifying web elements in the Header of the site"""
 import time
-
 import allure
 import requests
-
 from pages.base_page import BasePage
-from locators.header_page_locators import HeaderPageLocators
+from locators.header_page_locators import (HeaderUnauthorizedLocators, HeaderAuthorizedLocators,
+                                           StartUnauthorizedPageLocators)
 
 
 class HeaderPage(BasePage):
-    locators = HeaderPageLocators
+    locators = HeaderUnauthorizedLocators
+    locators1 = HeaderAuthorizedLocators
+    locators2 = StartUnauthorizedPageLocators
 
-    @allure.step("Check if some content is present in the Header")
-    def check_presence_of_header_content(self):
+    # Checking the structure and display of elements in the Header
+    @allure.step("Check the Header is present in the DOM tree on the page")
+    def check_header_presence(self):
         return self.element_is_present(self.locators.HEADER_CONTENT)
 
-    @allure.step("Check if page content is visible in the Header")
-    def check_visibility_of_header_content(self):
+    @allure.step("Check if the Header is visible on the page")
+    def check_header_visibility(self):
         return self.element_is_visible(self.locators.HEADER_CONTENT)
 
     @allure.step("Get structure of the 1st level of nesting in the Header")
-    def get_structure_of_1st_level_in_header(self):
+    def get_structure_of_1st_level(self):
         elements = self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 1st level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 1st level of nesting in the Header are: {tags}")
-        return tags
+        # print(tags)
+        return elements
 
-    @allure.step("Check if elements of the 1st level of nesting are visible in the Header")
-    def check_elements_visibility_on_1st_level_in_header(self):
-        elements = self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
-        display_of_all_elements = all(element.is_displayed() for element in elements)
-        return display_of_all_elements
+    @allure.step("Check if elements of the 1st level of nesting are visible")
+    def check_elements_visibility_on_1st_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_1st_level())
 
     @allure.step("Get structure of the 2nd level of nesting the Header")
-    def get_structure_of_2nd_level_in_header(self):
+    def get_structure_of_2nd_level(self):
         elements = self.elements_are_present(self.locators.HEADER_SECOND_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 2nd level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 2nd level of nesting in the Header are: {tags}")
-        return tags
+        # print(tags)
+        return elements
 
-    @allure.step("Check if elements of the 2nd level of nesting are visible in the Header")
-    def check_elements_visibility_on_2nd_level_in_header(self):
-        elements = self.elements_are_present(self.locators.HEADER_SECOND_LEVEL_ELEMENTS)
-        display_of_all_elements = all(element.is_displayed() for element in elements)
-        return display_of_all_elements
+    @allure.step("Check if elements of the 2nd level of nesting are visible")
+    def check_elements_visibility_on_2nd_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_2nd_level())
 
     @allure.step("Get structure of the 3rd level of nesting the Header")
-    def get_structure_of_3rd_level_in_header(self):
+    def get_structure_of_3rd_level(self):
+        time.sleep(5)
         elements = self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 3rd level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 3rd level of nesting in the Header are: {tags}")
-        return tags
+        # print(tags)
+        return self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
 
-    @allure.step("Check if elements on the 3rd level of nesting are visible in the Header")
-    def check_elements_visibility_on_3rd_level_in_header(self):
-        elements = self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
-        display_of_all_elements = all(element.is_displayed() for element in elements)
-        return display_of_all_elements
+    @allure.step("Check if elements on the 3rd level of nesting are visible")
+    def check_elements_visibility_on_3rd_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_3rd_level())
 
     @allure.step("Get structure of the 4th level of nesting the Header")
-    def get_structure_of_4th_level_in_header(self):
+    def get_structure_of_4th_level(self):
         elements = self.elements_are_present(self.locators.HEADER_FOURTH_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 4th level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 4th level of nesting in the Header are: {tags}")
-        return tags
+        # print(tags)
+        return elements
 
-    @allure.step("Check if elements on the 4th level of nesting are visible in the Header")
-    def check_elements_visibility_on_4th_level_in_header(self):
-        elements = self.elements_are_present(self.locators.HEADER_FOURTH_LEVEL_ELEMENTS)
-        display_of_all_elements = all(element.is_displayed() for element in elements)
-        return display_of_all_elements
+    @allure.step("Check if elements on the 4th level of nesting are visible")
+    def check_elements_visibility_on_4th_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_4th_level())
 
     @allure.step("Get structure of the 5th level of nesting the Header")
-    def get_structure_of_5th_level_in_header(self):
+    def get_structure_of_5th_level(self):
         elements = self.elements_are_present(self.locators.HEADER_FIFTH_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 5th level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 5th level of nesting in the Header are: {tags}")
-        return tags
+        # print(tags)
+        return elements
 
-    @allure.step("Check if elements on the 5th level of nesting are visible in the Header")
-    def check_elements_visibility_on_5th_level_in_header(self):
-        elements = self.elements_are_present(self.locators.HEADER_FIFTH_LEVEL_ELEMENTS)
-        display_of_elements_part = all(element.is_displayed() for element in elements[1:4])
-        return display_of_elements_part
+    @allure.step("Check if elements on the 5th level of nesting are visible")
+    def check_elements_visibility_on_5th_level_on_page(self):
+        return all(element.is_displayed() for element in self.get_structure_of_5th_level()[1:4])
 
     @allure.step("Get structure of the 6th level of nesting the Header")
-    def get_structure_of_6th_level_in_header(self):
+    def get_structure_of_6th_level(self):
         elements = self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
-        # print(f"Amount of elements on the 6th level of nesting in the Header is: {len(elements)}")
         tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements on the 6th level of nesting in the Header are: {tags}")
-        return tags
+        # print(tags)
+        return elements
 
-    @allure.step("Check if elements on the 6th level of nesting are invisible in the Header")
-    def check_elements_invisibility_on_6th_level_in_header(self):
-        elements = self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
-        non_display_of_all_elements = all(self.element_is_not_visible(element) for element in elements)
-        return non_display_of_all_elements
+    @allure.step("Check if elements on the 6th level of nesting are invisible")
+    def check_elements_invisibility_on_6th_level_on_page(self):
+        return all(self.element_is_not_visible(element) for element in self.get_structure_of_6th_level()[:6])
 
-    @allure.step("Get structure of the 'ru-en' section in the Header")
-    def get_structure_of_ru_en_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_WITH_BUTTONS_RU_EN)
-        # print(f"Amount of elements in the 'ru-en' section in the Header is: {len(elements)}")
-        tags = [element.tag_name for element in elements]
-        # print(f"Tags of elements in the 'ru-en' section in the Header are: {tags}")
-        return tags
+    @allure.step("Get the list of links on different levels of nesting in the Header for an unauthorized user")
+    def get_list_of_links_unauth(self):
+        return self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
 
-    @allure.step("Check if elements in the 'ru-en' section are visible in the Header")
-    def check_elements_visibility_in_ru_en_section(self):
-        elements = self.elements_are_present(self.locators.SECTION_WITH_BUTTONS_RU_EN)
-        display_of_all_elements = all(element.is_displayed() for element in elements)
-        return display_of_all_elements
+    @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user")
+    def get_list_of_links_auth(self):
+        return self.elements_are_present(self.locators.HEADER_LINKS_AUTH)
 
-# Checks of Logo in the Section 1 in the Header
-    @allure.step("Check the 'Logo' link is present in DOM")
+    @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
+                 for an unauthorized user""")
+    def get_list_of_direct_links_unauth(self):
+        links = self.get_list_of_links_unauth()
+        direct_links = []
+        for i in [1, 2, 9, 0]:
+            direct_links.append(links[i])
+        return direct_links
+
+    @allure.step("""Get the list of the 'Groups', 'Statistics', 'About', 'Telegram', 'Profile', 'Logo' links 
+                    (direct links) in the Header for an authorized user""")
+    def get_list_of_direct_links_auth(self):
+        links = self.get_list_of_links_auth()
+        direct_links = []
+        for i in [1, 2, 3, 4, 11, 0]:
+            direct_links.append(links[i])
+        return direct_links
+
+    @allure.step("Check the 'About', 'Telegram', 'Registration', 'Logo' links are visible for an unauthorized user")
+    def check_direct_links_visibility_unauth(self):
+        return all(link.is_displayed() for link in self.get_list_of_direct_links_unauth())
+
+    @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Registration', 'Logo' links are visible "
+                 for an authorized user""")
+    def check_direct_links_visibility_auth(self):
+        return all(link.is_displayed() for link in self.get_list_of_direct_links_auth())
+
+    @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources', "
+                  'Donate', 'GitHub' links in the 'More' dropdown in the Header for every user""")
+    def get_list_of_links_in_more1(self):
+        links = self.get_list_of_links_unauth()
+        more_links = []
+        for i in range(3, 9):
+            more_links.append(links[i])
+        return more_links
+
+    @allure.step("""Get the list of links (internal and external) in the 'More' dropdown in the Header
+                 for every user""")
+    def get_list_of_links_in_more(self):
+        return self.elements_are_present(self.locators.LINKS_IN_MORE)
+
+    @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
+                    in the 'More' dropdown are invisible for every user""")
+    def check_links_invisibility_in_more(self):
+        return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_more())
+
+    @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
+                    in the 'More' dropdown are visible for every user""")
+    def check_links_visibility_in_more(self):
+        self.click_more_button()
+        return all(link.is_displayed() for link in self.get_list_of_links_in_more())
+
+    # Lists of links
+    @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
+    def get_list_of_internal_links(self):
+        links = self.get_list_of_links_unauth()
+        internal_links = []
+        for i in [0, 1, 5, 6, 7, 8, 9]:
+            internal_links.append(links[i])
+        return internal_links
+
+    @allure.step("Get the general list of external links in the Header for an unauthorized user""")
+    def get_list_of_external_links(self):
+        links = self.get_list_of_links()
+        external_links = []
+        for i in [2, 3, 4]:
+            external_links.append(links[i])
+        return external_links
+
+    @allure.step("""Get the list of the 'About', 'Registration', 'Logo' links (direct internal links) in the Header
+                    for an unauthorized user""")
+    def get_list_of_direct_internal_links(self):
+        links = self.get_list_of_links_unauth()
+        direct_internal_links = []
+        for i in [1, 9, 0]:
+            direct_internal_links.append(links[i])
+        return direct_internal_links
+
+    @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
+                 (internal links) in the 'More' dropdown for an unauthorized user""")
+    def get_list_of_internal_links_in_more(self):
+        links = self.get_list_of_links_unauth()
+        more_internal_links = []
+        for i in range(5, 9):
+            more_internal_links.append(links[i])
+        return more_internal_links
+
+    @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) in the 'More' dropdown 
+                    for an unauthorized user""")
+    def get_list_of_external_links_in_more(self):
+        links = self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
+        external_links = []
+        for i in range(3, 5):
+            external_links.append(links[i])
+        return external_links
+
+    @allure.step("Check the 'Logo' link is present in the Header for every user")
     def check_logo_link_presence(self):
         return self.element_is_present(self.locators.LOGO_LINK)
 
-    @allure.step("Check the 'Logo' link is visible on the page")
+    @allure.step("Check the 'Logo' link is visible for every user")
     def check_logo_link_visibility(self):
         return self.element_is_visible(self.locators.LOGO_LINK)
 
-    @allure.step("Check the 'Logo' link is clickable")
-    def check_logo_link_clickability(self):
-        return self.element_is_clickable(self.locators.LOGO_LINK)
+    @allure.step("Check the 'Registration' link is present in the Header for an unauthorized user")
+    def check_registration_link_presence(self):
+        return self.element_is_present(self.locators.LINK_REGISTRATION)
 
-    @allure.step("Get attribute 'href' of the 'Logo' link")
-    def get_logo_link_href(self):
-        return self.get_link_href(self.locators.LOGO_LINK)
+    @allure.step("Check the 'Registration' link is visible for an unauthorized user")
+    def check_registration_link_visibility(self):
+        return self.element_is_visible(self.locators.LINK_REGISTRATION)
 
-    @allure.step("Get status code of the 'Logo' link")
-    def get_logo_link_status_code(self):
-        link_href = self.get_logo_link_href()
-        link_status_code = requests.head(link_href).status_code
-        # print(f"Logo link status code is: ", link_status_code)
-        return link_status_code
+    @allure.step("Check the 'Profile' link is present in the Header for an authorized user")
+    def check_profile_link_presence(self):
+        return self.element_is_present(self.locators1.LINK_PROFILE)
+
+    @allure.step("Check the 'Profile' link is visible for an authorized user")
+    def check_profile_link_visibility(self):
+        return self.element_is_visible(self.locators1.LINK_PROFILE)
+
+    @allure.step("Get the list of buttons in the Header for an unauthorized user")
+    def get_list_of_buttons_unauth(self):
+        return self.elements_are_present(self.locators.HEADER_BUTTONS)
+
+    @allure.step("Check buttons are visible for an unauthorized user")
+    def check_buttons_unauth_visibility(self):
+        return all(button.is_displayed() for button in self.get_list_of_buttons_unauth())
+
+    @allure.step("Get the list of buttons in the Header for an authorized user")
+    def get_list_of_buttons_auth(self):
+        return self.elements_are_present(self.locators.HEADER_BUTTONS[:4])
+
+    @allure.step("Check buttons are visible are visible for an authorized user")
+    def check_buttons_auth_visibility(self):
+        return all(button.is_displayed() for button in self.get_list_of_buttons_auth())
+
+    @allure.step("Get the list of 'ru' and 'en' buttons in the Header for unauthorized and authorized users")
+    def get_list_of_ru_en_buttons(self):
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.RU_EN_BUTTONS)
+
+    @allure.step("Check if 'ru' and 'en' buttons are visible for unauthorized and authorized users")
+    def check_ru_en_buttons_visibility(self):
+        return all(element.is_displayed() for element in self.get_list_of_ru_en_buttons())
+
+    @allure.step("Check the 'More' button is present in the Header for unauthorized and authorized users")
+    def check_more_button_presence(self):
+        return self.element_is_present(self.locators.MORE_BUTTON)
+
+    @allure.step("Check the 'More' button is visible for unauthorized and authorized users")
+    def check_more_button_visibility(self):
+        return self.element_is_visible(self.locators.MORE_BUTTON)
+
+    @allure.step("Check the 'Logout' button is present in the Header for an authorized user")
+    def check_logout_button_presence(self):
+        return self.element_is_present(self.locators1.LOGOUT_BUTTON)
+
+    @allure.step("Check the 'Logout' button is visible for an authorized user")
+    def check_logout_button_visibility(self):
+        return self.element_is_visible(self.locators1.LOGOUT_BUTTON)
+
+    # Checks of text in the Header
+    @allure.step("Get text in the 'About', 'Telegram', 'Registration' links in the Header for an unauthorized user")
+    def get_text_in_direct_links(self):
+        return [link.text for link in self.get_list_of_direct_links_unauth()[:3]]
+
+    @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
+    links in the Header""")
+    def get_text_of_links_in_more(self):
+        self.click_more_button()
+        return [link.text for link in self.get_list_of_links_in_more()]
+
+    @allure.step("Get text in buttons in the Header")
+    def get_text_in_buttons(self):
+        return [button.text for button in self.get_list_of_buttons_unauth()]
+
+    @allure.step("Get text in 'ru' and 'en' buttons in the Header")
+    def get_text_in_ru_en_buttons(self):
+        return [button.text for button in self.get_list_of_ru_en_buttons()]
+
+    # Checks of links in the Header
+    @allure.step("Check if links are clickable in the Header")
+    def check_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list_of_links_unauth())
+
+    @allure.step("Get attribute 'href' of links in the Header")
+    def get_links_href(self):
+        return [element.get_attribute("href") for element in self.get_list_of_links_unauth()]
+
+    @allure.step("Get status codes of links in the Header")
+    def get_links_status_codes(self):
+        return [requests.head(link_href).status_code for link_href in self.get_links_href()]
+
+    # Checks of links navigation
+    @allure.step("Click on internal links in the Header and thereby open corresponding web pages in the same tab")
+    def click_on_internal_links_in_header(self):
+        opened_pages = []
+        # Click on the 'About', 'Registration', 'Logo' links
+        for link in self.get_list_of_direct_internal_links():
+            link.click()
+            opened_pages.append(self.get_current_tab_url())
+        # Click on the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links
+        for link in self.get_list_of_internal_links_in_more():
+            self.click_more_button()
+            link.click()
+            time.sleep(1)
+            opened_pages.append(self.get_current_tab_url())
+        # print('\n', *opened_pages, sep='\n')
+        return opened_pages
+
+    @allure.step("Click on external links in the Header and thereby open corresponding web pages on new tabs")
+    def click_on_external_links_in_header(self):
+        opened_pages = []
+        # Click on the 'Telegram' link
+        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
+        # Click on the 'GitHub', 'Donate' links
+        self.click_more_button()
+        new_tabs = [link.click() for link in self.get_list_of_external_links_in_more()]
+        # Get the list of opened tabs urls
+        for i in range(1, len(new_tabs) + 2):
+            self.driver.switch_to.window(self.driver.window_handles[i])
+            opened_pages.append(self.get_current_tab_url())
+        # print('\n', *opened_pages, sep='\n')
+        return opened_pages
 
     @allure.step("Click on the 'Logo' link")
-    def click_logo_link(self):
+    def click_on_logo_link(self):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
 
+    # Checks of buttons clicking in the Header
+    @allure.step("Click on the 'More' button")
+    def click_more_button(self):
+        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
+
+    @allure.step("Check for dropdown is open/closed in the Header after clicking on the button 'More'")
+    def check_dropdown_opens_and_closes(self):
+        dropdown_state = 0
+        if self.check_links_invisibility_in_more():
+            dropdown_state = 1
+        if self.check_links_visibility_in_more():
+            dropdown_state = 2
+        self.click_more_button()
+        if self.check_links_invisibility_in_more():
+            dropdown_state = 3
+        if dropdown_state == 3:
+            return True
+
+    @allure.step("Click on the 'ru' button")
+    def click_on_ru_button(self):
+        self.element_is_present_and_clickable(self.locators.RU_BUTTON).click()
+
+    @allure.step("Click on the 'en' button")
+    def click_on_en_button(self):
+        self.element_is_present_and_clickable(self.locators.EN_BUTTON).click()
+
+    @allure.step("Check for language change to RU on the page after clicking on the button 'ru'")
+    def check_language_change_ru(self):
+        self.click_on_ru_button()
+        return self.element_is_present(self.locators2.START_UNAUTHORIZED_PAGE_TITLE).text
+
+    @allure.step("Check for language change to EN on the page after clicking on the button 'en'")
+    def check_language_change_en(self):
+        self.click_on_en_button()
+        return self.element_is_present(self.locators2.START_UNAUTHORIZED_PAGE_TITLE).text
+
+    # Checking images in the Header
     @allure.step("Check if the 'Logo' image is present")
     def check_logo_image_presence(self):
         return self.element_is_present(self.locators.LOGO_IMAGE)
@@ -158,78 +375,15 @@ class HeaderPage(BasePage):
     def get_xmlns_of_logo_image(self):
         return self.element_is_present(self.locators.LOGO_IMAGE).get_attribute("xmlns")
 
-    @allure.step("Get size values of the 'Logo' image")
-    def get_sizes_of_logo_image(self):
-        logo_image_sizes = self.get_image_size(self.locators.LOGO_IMAGE)
-        # print(f"The sizes of the 'Logo' image are: {logo_image_sizes}")
-        return logo_image_sizes
+    @allure.step("Get size of the 'Logo' image")
+    def get_size_of_logo_image(self):
+        return self.get_image_size(self.locators.LOGO_IMAGE)
 
-    @allure.step("""Get size of the 'Logo' image and check its changes after resizing""")
-    def check_size_changes_of_logo_section(self):
-        section_size_before = self.get_image_size(self.locators.LOGO_SECTION)
-        # print(f"The sizes of the 'Logo' section are: {section_size_before}")
+    @allure.step("""Check if size of the 'Logo' image changes after resizing""")
+    def check_size_changes_of_logo_image(self):
+        image_size_before = self.get_size_of_logo_image()
         self.driver.set_window_size(220, 1100)
-        section_size_after = self.get_image_size(self.locators.LOGO_LINK)
-        # print(f"The sizes of the 'Logo' section are: {section_size_after}")
-        if section_size_before != section_size_after:
-            changes = 1
-            # print(f"\nThe 'Logo' section has sizes that changed: \nfrom {section_size_before} before "
-            #       f"resizing \nto {section_size_after} after resizing")
-        else:
-            changes = 0
-            # print("\nThe 'Logo' section has sizes that didn't change after resizing")
+        image_size_after = self.get_size_of_logo_image()
+        changes = 1 if image_size_before == image_size_after else 0
+        print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
         return changes
-
-    # Checks of the 'About' and the 'Telegram' links in the Section 2 in the Header
-    @allure.step("Get the list of links in the Section 2 in the Header")
-    def get_list_of_links_in_section_2(self):
-        links = self.elements_are_present(self.locators.SECTION_2_LINKS)
-        # print(f"\nAmount of links in the Section 2 is: {len(links)}")
-        return links
-
-    @allure.step("Check the 'About' and the 'Telegram' links are present and visible in the Section 2 in the Header")
-    def check_links_visibility_in_section_2(self):
-        links = self.get_list_of_links_in_section_2()
-        all_links_are_displayed = all(link.is_displayed() for link in links)
-        return all_links_are_displayed
-
-    @allure.step("Check the 'About' and the 'Telegram' links are clickable in the Section 2 in the Header")
-    def check_links_clickability_in_section_2(self):
-        links = self.get_list_of_links_in_section_2()
-        all_links_are_enabled = all(link.is_enabled() for link in links)
-        return all_links_are_enabled
-
-    @allure.step("Get attribute 'href' of the 'About' and the 'Telegram' links in the Section 2 in the Header")
-    def get_links_href_in_section_2(self):
-        links = self.get_list_of_links_in_section_2()
-        links_href = [element.get_attribute("href") for element in links]
-        return links_href
-
-    @allure.step("Get status codes of the 'About' and the 'Telegram' links in the Section 2 in the Header")
-    def get_links_status_code_in_section_2(self):
-        links_href = self.get_links_href_in_section_2()
-        links_status_code = [requests.head(link_href).status_code for link_href in links_href]
-        return links_status_code
-
-    @allure.step("""Click on the 'About' and the 'Telegram' links in the Section 2 in the Header 
-    and thereby open corresponding web pages in the same or new tab""")
-    def click_on_links_and_return_back(self):
-        opened_pages = []
-        self.element_is_present_and_clickable(self.locators.SECTION_2_LINK_ABOUT).click()
-        opened_pages.append(self.driver.current_url)
-        self.driver.back()
-        opened_pages.append(self.driver.current_url)
-        self.element_is_present_and_clickable(self.locators.SECTION_2_LINK_TELEGRAM).click()
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        opened_pages.append(self.driver.current_url)
-        self.driver.switch_to.window(self.driver.window_handles[0])
-        opened_pages.append(self.driver.current_url)
-        # print('\n', *opened_pages, sep='\n')
-        return opened_pages
-
-    @allure.step("Get the list of text in the 'About' and the 'Telegram' links in the Sections 2 in the Header")
-    def get_text_in_links_in_section_2(self):
-        links = self.get_list_of_links_in_section_2()
-        links_text = [link.text for link in links]
-        # print(f"Text of links in the Section 2 is:", *links_text, sep='\n')
-        return links_text

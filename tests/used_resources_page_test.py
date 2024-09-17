@@ -69,7 +69,7 @@ class TestUsedResourcesPage:
                 assert text_content, "Text content on the page is empty"
                 assert text_content in UsedResourcesPageData.text_on_page, "Text content mismatches the valid value"
 
-            @allure.title("Verify text in links in the sections")
+            @allure.title("Verify text in links in sections")
             def test_ur_02_04_verify_text_in_links(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
@@ -79,7 +79,7 @@ class TestUsedResourcesPage:
                     "Text in links mismatch valid values"
 
         class TestUsedResourcesPageForAuthorizedUserLinks:
-            @allure.title("""Verify presence, visibility, clickability, href, status code of links in the sections""")
+            @allure.title("""Verify presence, visibility, clickability, href, status code of links in sections""")
             def test_ur_03_01_verify_links_in_sections(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
@@ -106,7 +106,7 @@ class TestUsedResourcesPage:
                     "Links in the sections lead to incorrect pages after clicking"
 
         class TestUsedResourcesPageForAuthorizedUserIcons:
-            @allure.title("Verify presence, visibility and attributes of icons in the sections")
+            @allure.title("Verify presence, visibility and attributes of icons in sections")
             def test_ur_04_01_verify_icons_in_sections(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()
@@ -119,7 +119,7 @@ class TestUsedResourcesPage:
                 assert all(icon_xmlns == UsedResourcesPageData.icons_xmlns for icon_xmlns in icons_xmlns), \
                     "The 'xmlns' attribute value of some icons is empty or non-accurate"
 
-            @allure.title("Verify sizes of icons in the sections")
+            @allure.title("Verify sizes of icons in sections")
             def test_ur_04_02_verify_icons_sizes(self, driver, auto_test_user_authorized):
                 page = UsedResourcesPage(driver)
                 page.open_used_resources_page()

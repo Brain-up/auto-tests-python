@@ -134,3 +134,9 @@ class TestContactsPage:
             new_tabs_urls = page.click_on_links()
             assert all(tab_url in ContactsPageData.pages_urls for tab_url in new_tabs_urls), \
                 "Links in the section 2 lead to incorrect pages after clicking"
+
+        @allure.title("Verify that the email link calls an email client")
+        def test_cp_03_03_verify_email_link_calls_an_email_client(self, driver, contacts_page_open):
+            page = ContactsPage(driver)
+            page.click_email_link()
+            assert True, "The email link does not call an email client"

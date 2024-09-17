@@ -10,3 +10,4 @@ class ProfilePageLocators:
     SUCCESSFUL_MESSAGE = (By.XPATH, '//p[@class="firebaseui-text"]')
     PROFILE = (By.XPATH, '//a[@href="/profile"]')
     WRONG_AUTH_DATA_MSG = (By.XPATH, '//p[contains(@class, "text-red-500")]')
+    TITLE = (By.CSS_SELECTOR, 'h3')

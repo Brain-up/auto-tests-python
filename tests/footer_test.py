@@ -107,12 +107,33 @@ class TestFooter:
         def test_fp_03_03_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
             page = FooterPage(driver)
             page.click_contact_us_link()
-            assert True, "the 'Contact us' link in the Footer does not call an email client"
+            assert True, "The 'Contact us' link in the Footer does not call an email client"
 
-    class TestFooterForAuthorizedUserOnly:
+    class TestFooterImages:
+        @allure.title("Verify attributes of images in links in the Footer")
+        def test_fp_04_01_verify_images_attributes_in_links(self, driver, main_page_open):
+            page = FooterPage(driver)
+            images_src = page.get_images_src()
+            images_alt = page.get_images_alt()
+            assert images_src, "The 'src' attribute value of images is empty"
+            assert all(image_src in FooterData.images_src for image_src in images_src), \
+                "The 'src' attribute of some images mismatches valid values"
+            assert images_alt, "The 'alt' attribute value of some images is empty"
+            assert all(image_alt in FooterData.images_alt for image_alt in images_alt), \
+                "The 'alt' attribute value of some images is empty or mismatches valid values"
+
+        @allure.title("Verify sizes of images in links in the Footer")
+        def test_fp_04_02_verify_images_sizes_in_links(self, driver, main_page_open):
+            page = FooterPage(driver)
+            images_size = page.get_images_sizes()
+            images_size_changed = page.check_size_changes_of_images()
+            assert images_size != 0, "Images in links have not sizes"
+            assert len(images_size_changed) == len(FooterData.images_src), "Not all images in links have changed sizes"
+
+    class TestFooterAuthorized:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")
-        def test_fp_02_01_01_verify_footer_invisibility_through_the_modal_window(self, driver, auto_test_user_authorized):
+        def test_fp_05_01_verify_footer_invisibility_through_modal_window(self, driver, auto_test_user_authorized):
             modal_window_page = FooterPage(driver, SpecificExercisesUrls.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
             assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()), \
@@ -120,215 +141,3 @@ class TestFooter:
             assert (modal_window_page.check_footer_invisibility()
                     and modal_window_page.check_jetbrains_image_invisibility()), \
                 "Footer (including the Jetbrains image) is visible through the modal window"
-
-    class TestFooterImages:
-        @allure.title("Verify accuracy of the ARASAAC link's image in Footer")
-        def test_fp_04_01_verify_arasaac_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_image_src = page.get_arasaac_image_src()
-            link_image_alt = page.get_arasaac_image_alt()
-            assert link_image_src, "The 'src' attribute value of the ARASAAC link's image is empty"
-            assert link_image_src == FooterData.footer_images_src["arasaac_img_src"], \
-                "The 'src' attribute value of the ARASAAC link image is unaccurate"
-            assert link_image_alt, "The 'alt' attribute value of the ARASAAC link image is empty"
-            assert link_image_alt == FooterData.footer_images_alt["arasaac_img_alt"], \
-                "The ARASAAC link image is unaccurate"
-
-        @allure.title("Verify visible sizes of the ARASAAC link's image in Footer")
-        def test_fp_04_02_verify_visible_sizes_of_arasaac_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_arasaac_link_href()
-            image_width = page.get_visible_width_of_arasaac_image()
-            image_height = page.get_visible_height_of_arasaac_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            assert image_width != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
-            assert image_height != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image height = 0"
-
-        @allure.title("Verify changes of visible sizes of the ARASAAC link's image in Footer")
-        def test_fp_04_03_verify_changes_of_visible_sizes_of_arasaac_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_arasaac_link_href()
-            image_width = page.get_visible_width_of_arasaac_image()
-            image_height = page.get_visible_height_of_arasaac_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            driver.set_window_size(504, 638)
-            image_width_new = page.get_visible_width_of_arasaac_image()
-            image_height_new = page.get_visible_height_of_arasaac_image()
-            # print(f"The new visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width_new}x{image_height_new} px")
-            assert image_width != image_width_new, \
-                f"The image width in the {link_href} link in Footer has not changed due to resizing"
-            assert image_height == image_height_new, \
-                f"The image height in the {link_href} link in Footer has changed due to resizing"
-
-        @allure.title("Verify accuracy of the EPAM link's image in Footer")
-        def test_fp_04_04_verify_epam_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_image_src = page.get_epam_image_src()
-            link_image_alt = page.get_epam_image_alt()
-            assert link_image_src, "The 'src' attribute value of the EPAM link's image is empty"
-            assert link_image_src == FooterData.footer_images_src["epam_img_src"], \
-                "The 'src' attribute value of the EPAM link image is unaccurate"
-            assert link_image_alt, "The 'alt' attribute value of the EPAM link image is empty"
-            assert link_image_alt == FooterData.footer_images_alt["epam_img_alt"], \
-                "The EPAM link image is unaccurate"
-
-        @allure.title("Verify visible sizes of the EPAM link's image in Footer")
-        def test_fp_04_05_verify_visible_sizes_of_epam_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_epam_link_href()
-            image_width = page.get_visible_width_of_epam_image()
-            image_height = page.get_visible_height_of_epam_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            assert image_width != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
-            assert image_height != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image height = 0"
-
-        @allure.title("Verify changes of visible sizes of the EPAM link's image in Footer")
-        def test_fp_04_06_verify_changes_of_visible_sizes_of_epam_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_epam_link_href()
-            image_width = page.get_visible_width_of_epam_image()
-            image_height = page.get_visible_height_of_epam_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            driver.set_window_size(504, 638)
-            image_width_new = page.get_visible_width_of_epam_image()
-            image_height_new = page.get_visible_height_of_epam_image()
-            # print(f"The new visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width_new}x{image_height_new} px")
-            assert image_width != image_width_new, \
-                f"The image width in the {link_href} link in Footer has not changed due to resizing"
-            assert image_height == image_height_new, \
-                f"The image height in the {link_href} link in Footer has changed due to resizing"
-
-        @allure.title("Verify accuracy of the JETBRAINS link's image in Footer")
-        def test_fp_04_07_verify_jetbrains_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_image_src = page.get_jetbrains_image_src()
-            link_image_alt = page.get_jetbrains_image_alt()
-            assert link_image_src == FooterData.footer_images_src["jetbrains_img_src"], \
-                "The 'src' attribute value of the JETBRAINS link image is unaccurate"
-            assert link_image_alt, "The 'alt' attribute value of the JETBRAINS link image is empty"
-            assert link_image_alt == FooterData.footer_images_alt["jetbrains_img_alt"], \
-                "The JETBRAINS link image is unaccurate"
-
-        @allure.title("Verify visible sizes of the JETBRAINS link's image in Footer")
-        def test_fp_04_08_verify_visible_sizes_of_jetbrains_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_jetbrains_link_href()
-            image_width = page.get_visible_width_of_jetbrains_image()
-            image_height = page.get_visible_height_of_jetbrains_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            assert image_width != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
-            assert image_height != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image height = 0"
-
-        @allure.title("Verify changes of visible sizes of the JETBRAINS link's image in Footer")
-        def test_fp_04_09_verify_changes_of_visible_sizes_of_jetbrains_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_jetbrains_link_href()
-            image_width = page.get_visible_width_of_jetbrains_image()
-            image_height = page.get_visible_height_of_jetbrains_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            driver.set_window_size(504, 638)
-            image_width_new = page.get_visible_width_of_jetbrains_image()
-            image_height_new = page.get_visible_height_of_jetbrains_image()
-            # print(f"The new visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width_new}x{image_height_new} px")
-            assert image_width != image_width_new, \
-                f"The image width in the {link_href} link in Footer has not changed due to resizing"
-            assert image_height == image_height_new, \
-                f"The image height in the {link_href} link in Footer has changed due to resizing"
-
-        @allure.title("Verify accuracy of the REG.RU link's image in Footer")
-        def test_fp_04_10_verify_reg_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_image_src = page.get_reg_image_src()
-            link_image_alt = page.get_reg_image_alt()
-            assert link_image_src == FooterData.footer_images_src["reg_img_src"], \
-                "The 'src' attribute value of the REG.RU link image is unaccurate"
-            assert link_image_alt, "The 'alt' attribute value of the REG.RU link image is empty"
-            assert link_image_alt == FooterData.footer_images_alt["reg_img_alt"], "The REG.RU link image is unaccurate"
-
-        @allure.title("Verify visible sizes of the REG.RU link's image in Footer")
-        def test_fp_04_11_verify_visible_sizes_of_reg_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_reg_link_href()
-            image_width = page.get_visible_width_of_reg_image()
-            image_height = page.get_visible_height_of_reg_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            assert image_width != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
-            assert image_height != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image height = 0"
-
-        @allure.title("Verify changes of visible sizes of the REG.RU link's image in Footer")
-        def test_fp_04_12_verify_changes_of_visible_sizes_of_reg_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_reg_link_href()
-            image_width = page.get_visible_width_of_reg_image()
-            image_height = page.get_visible_height_of_reg_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            driver.set_window_size(504, 638)
-            image_width_new = page.get_visible_width_of_reg_image()
-            image_height_new = page.get_visible_height_of_reg_image()
-            # print(f"The new visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width_new}x{image_height_new} px")
-            assert image_width != image_width_new, \
-                f"The image width in the {link_href} link in Footer has not changed due to resizing"
-            assert image_height == image_height_new, \
-                f"The image height in the {link_href} link in Footer has changed due to resizing"
-
-        @allure.title("Verify accuracy of the Selectel link's image in Footer")
-        def test_fp_04_13_verify_selectel_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_image_src = page.get_selectel_image_src()
-            link_image_alt = page.get_selectel_image_alt()
-            assert link_image_src == FooterData.footer_images_src["selectel_img_src"], \
-                "The 'src' attribute value of the Selectel link image is unaccurate"
-            assert link_image_alt, "The 'alt' attribute value of the Selectel link image is empty"
-            assert link_image_alt == FooterData.footer_images_alt["selectel_img_alt"], \
-                "The Selectel link image is unaccurate"
-
-        @allure.title("Verify visible sizes of the Selectel link's image in Footer")
-        def test_fp_04_14_verify_visible_sizes_of_selectel_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_selectel_link_href()
-            image_width = page.get_visible_width_of_selectel_image()
-            image_height = page.get_visible_height_of_selectel_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            assert image_width != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image width = 0"
-            assert image_height != 0, \
-                f"The image in the {link_href} link in Footer is invisible, a reason: image height = 0"
-
-        @allure.title("Verify changes of visible sizes of the Selectel link's image in Footer")
-        def test_fp_04_15_verify_changes_of_visible_sizes_of_selectel_link_image(self, driver, main_page_open):
-            page = FooterPage(driver)
-            link_href = page.get_selectel_link_href()
-            image_width = page.get_visible_width_of_selectel_image()
-            image_height = page.get_visible_height_of_selectel_image()
-            # print(f"The current visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width}x{image_height} px")
-            driver.set_window_size(504, 638)
-            image_width_new = page.get_visible_width_of_selectel_image()
-            image_height_new = page.get_visible_height_of_selectel_image()
-            # print(f"The new visible sizes of the picture in the {link_href} link are: "
-            #       f"{image_width_new}x{image_height_new} px")
-            assert image_width != image_width_new, \
-                f"The image width in the {link_href} link in Footer has not changed due to resizing"
-            assert image_height == image_height_new, \
-                f"The image height in the {link_href} link in Footer has changed due to resizing"

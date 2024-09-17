@@ -23,7 +23,7 @@ class TestStartUnauthorizedPage:
             sections_amount = page.get_amount_of_sections_on_page()
             sections_visibility = page.check_visibility_of_sections()
             assert sections_amount == StartUnauthorizedPageData.amount_of_sections_with_content_on_page, \
-                "The amount of sections with content does not match the expected value"
+                "The amount of sections with content mismatches the valid value"
             assert sections_visibility, "Sections with content are invisible"
 
         @allure.title("""Verify the composition and visibility of elements 
