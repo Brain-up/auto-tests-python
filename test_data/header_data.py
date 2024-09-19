@@ -2,7 +2,7 @@
 
 
 class HeaderData:
-    links_text = [
+    links_text_unauth = [
         "ОПИСАНИЕ", "ABOUT",
         "TELEGRAM",
         "Пожертвовать", "Donate",
@@ -12,6 +12,19 @@ class HeaderData:
         "Наша команда", "Contributors",
         "Используемые ресурсы", "Used Resources",
         "Регистрация", "Registration"
+    ]
+
+    links_text_auth = [
+        "УПРАЖНЕНИЯ", "GROUPS",
+        "СТАТИСТИКА", "STATISTICS",
+        "ОПИСАНИЕ", "ABOUT",
+        "TELEGRAM",
+        "Пожертвовать", "Donate",
+        "GitHub",
+        "Контакты", "Contacts",
+        "Специалисты", "Specialists",
+        "Наша команда", "Contributors",
+        "Используемые ресурсы", "Used Resources"
     ]
 
     buttons_text = ['RU', 'EN', 'ЕЩЕ...', 'MORE...']
