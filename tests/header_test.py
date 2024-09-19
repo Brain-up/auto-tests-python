@@ -81,17 +81,17 @@ class TestHeaderPage:
                 assert more_button_presence, "The 'More' button is absent in the Header"
                 assert more_button_visibility, "The 'More' button is invisible"
 
-        class TestHeaderPageText:
-            @allure.title("Verify values of the text in links, buttons in the Header")
-            def test_hp_02_01_verify_text_in_links_and_buttons(self, driver, main_page_open):
+        class TestUnauthHeaderPageText:
+            @allure.title("Verify values of the text in links, buttons in the Header for an unauthorized user")
+            def test_hpu_02_01_verify_unauth_text_in_links_and_buttons(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                direct_links_text = page.get_text_in_direct_links()
+                direct_links_text = page.get_text_in_direct_links_unauth()
                 links_in_more_text = page.get_text_of_links_in_more()
-                buttons_text = page.get_text_in_buttons()
+                buttons_text = page.get_text_in_buttons_unauth()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
-                assert all(link_text in HeaderData.links_text for link_text in direct_links_text), \
+                assert all(link_text in HeaderData.links_text_unauth for link_text in direct_links_text), \
                     "Text in links in section 2 mismatches valid values"
-                assert all(link_text in HeaderData.links_text for link_text in links_in_more_text), \
+                assert all(link_text in HeaderData.links_text_unauth for link_text in links_in_more_text), \
                     "Text in links in section 3 mismatches valid values"
                 assert all(button_text in HeaderData.buttons_text for button_text in buttons_text), \
                     "Text in buttons mismatches valid values"
@@ -259,3 +259,21 @@ class TestHeaderPage:
                 assert more_button_visibility, "The 'More' button is invisible"
                 assert logout_button_presence, "The 'Logout' button is absent in the Header"
                 assert logout_button_visibility, "The 'Logout' button is invisible"
+
+        class TestAuthHeaderPageText:
+            @allure.title("Verify values of the text in links, buttons in the Header for an authorized user")
+            def test_hpa_02_01_verify_auth_text_in_links_and_buttons(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                direct_links_text = page.get_text_in_direct_links_auth()
+                links_in_more_text = page.get_text_of_links_in_more()
+                buttons_text = page.get_text_in_buttons_auth()
+                ru_en_buttons_text = page.get_text_in_ru_en_buttons()
+                assert all(link_text in HeaderData.links_text_auth for link_text in direct_links_text[:4]), \
+                    "Text in links in section 2 mismatches valid values"
+                assert direct_links_text[4], "Text in the 'Profile' link is absent"
+                assert all(link_text in HeaderData.links_text_auth for link_text in links_in_more_text), \
+                    "Text in links in section 3 mismatches valid values"
+                assert all(button_text in HeaderData.buttons_text for button_text in buttons_text), \
+                    "Text in buttons mismatches valid values"
+                assert all(button_text in HeaderData.ru_en_buttons_text for button_text in ru_en_buttons_text), \
+                    "Text in 'ru-en' buttons mismatches valid values"

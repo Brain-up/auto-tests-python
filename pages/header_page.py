@@ -226,7 +226,8 @@ class HeaderPage(BasePage):
 
     @allure.step("Get the list of buttons in the Header for an authorized user")
     def get_list_of_buttons_auth(self):
-        return self.elements_are_present(self.locators.HEADER_BUTTONS[:4])
+        return self.elements_are_present(self.locators.HEADER_BUTTONS)[:4]
+
 
     @allure.step("Check buttons are visible are visible for an authorized user")
     def check_buttons_auth_visibility(self):
@@ -259,8 +260,13 @@ class HeaderPage(BasePage):
 
     # Checks of text in the Header
     @allure.step("Get text in the 'About', 'Telegram', 'Registration' links in the Header for an unauthorized user")
-    def get_text_in_direct_links(self):
+    def get_text_in_direct_links_unauth(self):
         return [link.text for link in self.get_list_of_direct_links_unauth()[:3]]
+
+    @allure.step("""Get text in the 'Groups', 'Statistics', 'About', 'Telegram', 'Profile' links in the Header 
+    for an authorized user""")
+    def get_text_in_direct_links_auth(self):
+        return [link.text for link in self.get_list_of_direct_links_auth()[:5]]
 
     @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
     links in the Header""")
@@ -268,9 +274,13 @@ class HeaderPage(BasePage):
         self.click_more_button()
         return [link.text for link in self.get_list_of_links_in_more()]
 
-    @allure.step("Get text in buttons in the Header")
-    def get_text_in_buttons(self):
+    @allure.step("Get text in buttons in the Header for an unauthorized user")
+    def get_text_in_buttons_unauth(self):
         return [button.text for button in self.get_list_of_buttons_unauth()]
+
+    @allure.step("Get text in buttons in the Header for an authorized user")
+    def get_text_in_buttons_auth(self):
+        return [button.text for button in self.get_list_of_buttons_auth()[:3]]
 
     @allure.step("Get text in 'ru' and 'en' buttons in the Header")
     def get_text_in_ru_en_buttons(self):
