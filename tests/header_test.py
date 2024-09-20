@@ -98,16 +98,16 @@ class TestHeaderPage:
                 assert all(button_text in HeaderData.ru_en_buttons_text for button_text in ru_en_buttons_text), \
                     "Text in 'ru-en' buttons mismatches valid values"
 
-        class TestHeaderPageLinks:
-            @allure.title("Verify clickability, href, status code of links in the Header")
-            def test_hp_03_01_verify_header_links(self, driver, main_page_open):
+        class TestUnauthHeaderPageLinks:
+            @allure.title("Verify clickability, href, status code of links in the Header for an unauthorized user")
+            def test_hpu_03_01_verify_unauth_header_links(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                links_clickability = page.check_links_clickability()
-                links_href = page.get_links_href()
-                link_status_codes = page.get_links_status_codes()
+                links_clickability = page.check_links_clickability_unauth()
+                links_href = page.get_links_href_unauth()
+                link_status_codes = page.get_links_status_codes_unauth()
                 assert links_clickability, "Links are unclickable"
                 assert links_href, "Links href are empty"
-                assert all(link_href in HeaderData.links_href for link_href in links_href), \
+                assert all(link_href in HeaderData.links_href_unauth for link_href in links_href), \
                     "Attributes 'href' of links mismatch valid values"
                 assert all(status_code == HeaderData.link_status_codes for status_code in link_status_codes), \
                     "Status codes of links mismatch valid values"
@@ -277,3 +277,17 @@ class TestHeaderPage:
                     "Text in buttons mismatches valid values"
                 assert all(button_text in HeaderData.ru_en_buttons_text for button_text in ru_en_buttons_text), \
                     "Text in 'ru-en' buttons mismatches valid values"
+
+        class TestAuthHeaderPageLinks:
+            @allure.title("Verify clickability, href, status code of links in the Header for an authorized user")
+            def test_hpa_03_01_verify_auth_header_links(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                links_clickability = page.check_links_clickability_auth()
+                links_href = page.get_links_href_auth()
+                link_status_codes = page.get_links_status_codes_auth()
+                assert links_clickability, "Links are unclickable"
+                assert links_href, "Links href are empty"
+                assert all(link_href in HeaderData.links_href_auth for link_href in links_href), \
+                    "Attributes 'href' of links mismatch valid values"
+                assert all(status_code == HeaderData.link_status_codes for status_code in link_status_codes), \
+                    "Status codes of links mismatch valid values"
