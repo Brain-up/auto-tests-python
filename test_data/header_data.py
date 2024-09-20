@@ -34,7 +34,7 @@ class HeaderData:
     title_text_ru = "Преимущества"
     title_text_en = "Advantages"
 
-    links_href = [
+    links_href_unauth = [
         "https://brainup.site/",
         "https://brainup.site/description",
         "https://t.me/BrainUpUsers",
@@ -45,6 +45,22 @@ class HeaderData:
         "https://brainup.site/contributors",
         "https://brainup.site/used-resources",
         "https://brainup.site/registration"
+    ]
+
+    links_href_auth = [
+        "https://brainup.site/",
+        "https://brainup.site/groups?locale=ru-ru",
+        "https://brainup.site/groups?locale=en-us",
+        "https://brainup.site/profile/statistics",
+        "https://brainup.site/description",
+        "https://t.me/BrainUpUsers",
+        "https://opencollective.com/brainup",
+        "https://github.com/Brain-up/brn",
+        "https://brainup.site/contact",
+        "https://brainup.site/specialists",
+        "https://brainup.site/contributors",
+        "https://brainup.site/used-resources",
+        "https://brainup.site/profile"
     ]
 
     link_status_codes = 200

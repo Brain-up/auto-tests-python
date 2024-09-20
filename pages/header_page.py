@@ -287,17 +287,29 @@ class HeaderPage(BasePage):
         return [button.text for button in self.get_list_of_ru_en_buttons()]
 
     # Checks of links in the Header
-    @allure.step("Check if links are clickable in the Header")
-    def check_links_clickability(self):
+    @allure.step("Check if links are clickable in the Header for an unauthorized user")
+    def check_links_clickability_unauth(self):
         return all(link.is_enabled() for link in self.get_list_of_links_unauth())
 
-    @allure.step("Get attribute 'href' of links in the Header")
-    def get_links_href(self):
+    @allure.step("Check if links are clickable in the Header for an authorized user")
+    def check_links_clickability_auth(self):
+        return all(link.is_enabled() for link in self.get_list_of_links_auth())
+
+    @allure.step("Get attribute 'href' of links in the Header for an unauthorized user")
+    def get_links_href_unauth(self):
         return [element.get_attribute("href") for element in self.get_list_of_links_unauth()]
 
-    @allure.step("Get status codes of links in the Header")
-    def get_links_status_codes(self):
-        return [requests.head(link_href).status_code for link_href in self.get_links_href()]
+    @allure.step("Get attribute 'href' of links in the Header for an authorized user")
+    def get_links_href_auth(self):
+        return [element.get_attribute("href") for element in self.get_list_of_links_auth()]
+
+    @allure.step("Get status codes of links in the Header an unauthorized user")
+    def get_links_status_codes_unauth(self):
+        return [requests.head(link_href).status_code for link_href in self.get_links_href_unauth()]
+
+    @allure.step("Get status codes of links in the Header an authorized user")
+    def get_links_status_codes_auth(self):
+        return [requests.head(link_href).status_code for link_href in self.get_links_href_auth()]
 
     # Checks of links navigation
     @allure.step("Click on internal links in the Header and thereby open corresponding web pages in the same tab")
