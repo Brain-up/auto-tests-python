@@ -65,10 +65,25 @@ class HeaderData:
 
     link_status_codes = 200
 
-    pages_urls = [
+    pages_urls_unauth = [
         "https://brainup.site/description",
         "https://t.me/BrainUpUsers",
         "https://brainup.site/registration",
+        "https://brainup.site/contact",
+        "https://brainup.site/specialists",
+        "https://brainup.site/contributors",
+        "https://brainup.site/used-resources",
+        "https://opencollective.com/brainup",
+        "https://github.com/Brain-up/brn",
+        "https://brainup.site/"
+    ]
+
+    pages_urls_auth = [
+        "https://brainup.site/groups?locale=ru-ru",
+        "https://brainup.site/profile/statistics",
+        "https://brainup.site/description",
+        "https://t.me/BrainUpUsers",
+        "https://brainup.site/profile",
         "https://brainup.site/contact",
         "https://brainup.site/specialists",
         "https://brainup.site/contributors",

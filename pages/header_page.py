@@ -147,6 +147,17 @@ class HeaderPage(BasePage):
     def check_links_visibility_in_more(self):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_list_of_links_in_more())
+    # ==================================================================
+    @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
+                  (internal links) in the 'More' dropdown for every user""")
+    def get_list_of_internal_links_in_more(self):
+        return self.get_list_of_links_in_more()[2:]
+
+    @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
+                    in the 'More' dropdown for every user""")
+    def get_list_of_external_links_in_more(self):
+        return self.get_list_of_links_in_more()[:1]
+    # =========================================================
 
     # Lists of links
     @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
@@ -165,18 +176,28 @@ class HeaderPage(BasePage):
             external_links.append(links[i])
         return external_links
 
-    @allure.step("""Get the list of the 'About', 'Registration', 'Logo' links (direct internal links) in the Header
-                    for an unauthorized user""")
-    def get_list_of_direct_internal_links(self):
+    @allure.step("""Get the list of the 'About', 'Registration', 'Logo' links (direct internal links) 
+    in the Header for an unauthorized user""")
+    def get_list_of_direct_internal_links_unauth(self):
         links = self.get_list_of_links_unauth()
         direct_internal_links = []
         for i in [1, 9, 0]:
             direct_internal_links.append(links[i])
         return direct_internal_links
 
+    @allure.step("""Get the list of the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links (direct internal links)
+     in the Header for an authorized user""")
+    def get_list_of_direct_internal_links_auth(self):
+        links = self.get_list_of_links_auth()
+        direct_internal_links = []
+        for i in [2, 1, 3, 11, 0]:
+            direct_internal_links.append(links[i])
+        print([element.get_attribute("href") for element in direct_internal_links])
+        return direct_internal_links
+
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
                  (internal links) in the 'More' dropdown for an unauthorized user""")
-    def get_list_of_internal_links_in_more(self):
+    def get_list_of_internal_links_in_more1(self):
         links = self.get_list_of_links_unauth()
         more_internal_links = []
         for i in range(5, 9):
@@ -185,7 +206,7 @@ class HeaderPage(BasePage):
 
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) in the 'More' dropdown 
                     for an unauthorized user""")
-    def get_list_of_external_links_in_more(self):
+    def get_list_of_external_links_in_more1(self):
         links = self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
         external_links = []
         for i in range(3, 5):
@@ -303,20 +324,21 @@ class HeaderPage(BasePage):
     def get_links_href_auth(self):
         return [element.get_attribute("href") for element in self.get_list_of_links_auth()]
 
-    @allure.step("Get status codes of links in the Header an unauthorized user")
+    @allure.step("Get status codes of links in the Header for an unauthorized user")
     def get_links_status_codes_unauth(self):
         return [requests.head(link_href).status_code for link_href in self.get_links_href_unauth()]
 
-    @allure.step("Get status codes of links in the Header an authorized user")
+    @allure.step("Get status codes of links in the Header for an authorized user")
     def get_links_status_codes_auth(self):
         return [requests.head(link_href).status_code for link_href in self.get_links_href_auth()]
 
     # Checks of links navigation
-    @allure.step("Click on internal links in the Header and thereby open corresponding web pages in the same tab")
-    def click_on_internal_links_in_header(self):
+    @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
+    for an unauthorized user""")
+    def click_on_internal_links_in_header_unauth(self):
         opened_pages = []
         # Click on the 'About', 'Registration', 'Logo' links
-        for link in self.get_list_of_direct_internal_links():
+        for link in self.get_list_of_direct_internal_links_unauth():
             link.click()
             opened_pages.append(self.get_current_tab_url())
         # Click on the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links
@@ -325,7 +347,26 @@ class HeaderPage(BasePage):
             link.click()
             time.sleep(1)
             opened_pages.append(self.get_current_tab_url())
-        # print('\n', *opened_pages, sep='\n')
+        print('\n', *opened_pages, sep='\n')
+        return opened_pages
+
+    @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
+    for an authorized user""")
+    def click_on_internal_links_in_header_auth(self):
+        opened_pages = []
+        # Click on the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links
+        for link in self.get_list_of_direct_internal_links_auth():
+            link.click()
+            time.sleep(1)
+            opened_pages.append(self.get_current_tab_url())
+        # Click on the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links
+        for link in self.get_list_of_internal_links_in_more():
+            self.click_more_button()
+            time.sleep(1)
+            link.click()
+            time.sleep(1)
+            opened_pages.append(self.get_current_tab_url())
+        print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on external links in the Header and thereby open corresponding web pages on new tabs")
