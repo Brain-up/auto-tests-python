@@ -80,6 +80,7 @@ class HeaderData:
 
     pages_urls_auth = [
         "https://brainup.site/groups?locale=ru-ru",
+        "https://brainup.site/groups?locale=en-us",
         "https://brainup.site/profile/statistics",
         "https://brainup.site/description",
         "https://t.me/BrainUpUsers",
