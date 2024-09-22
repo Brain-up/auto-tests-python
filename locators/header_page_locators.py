@@ -22,7 +22,7 @@ class HeaderUnauthorizedLocators:
     LINK_LOGO = (By.XPATH, "(//nav//a)[1]")
     LINK_REGISTRATION = (By.XPATH, "(//nav//a)[10]")
     LINK_SPECIALISTS = (By.XPATH, "(//nav//a)[7]")
-    LINK_TELEGRAM = (By.XPATH, "(//nav//a)[3]")
+    LINK_TELEGRAM = (By.XPATH, '//a[@href="https://t.me/BrainUpUsers"]')
     LINK_USED_RESOURCES = (By.XPATH, "(//nav//a)[9]")
     LINKS_IN_MORE = (By.XPATH, "//div[contains(@class, 'bottom')]/a")
     # LINK_ABOUT = (By.XPATH, "//div[contains(@class, 'text-s')]/a[1]")
@@ -32,6 +32,7 @@ class HeaderUnauthorizedLocators:
     # LINK_GITHUB = (By.XPATH, "//div[contains(@class, 'bottom')]/a[2]")
     # LINK_REGISTRATION = (By.ID, "ember10")
     # LINK_SPECIALISTS = (By.XPATH, "//div[contains(@class, 'bottom')]/a[4]")
+    # LINK_TELEGRAM = (By.XPATH, "(//nav//a)[3]")
     # LINK_TELEGRAM = (By.XPATH, "//div[contains(@class, 'text-s')]/a[2]")
     # LINK_USED_RESOURCES = (By.XPATH, "//div[contains(@class, 'bottom')]/a[6]")
     LINKS2 = (By.XPATH, "//div[contains(@class, 'text-s')]/a")
@@ -47,6 +48,7 @@ class HeaderUnauthorizedLocators:
 
 class HeaderAuthorizedLocators:
     LINK_PROFILE = (By.XPATH, "(//nav//a)[12]")
+    LINK_TELEGRAM_AUTH = (By.XPATH, "(//nav//a)[5]")
     LOGOUT_BUTTON = (By.XPATH, "//button[@data-test-logout-button]")
 
 
