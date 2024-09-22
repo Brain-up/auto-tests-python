@@ -122,7 +122,8 @@ class TestHeaderPage:
                 assert all(page in HeaderData.pages_urls_unauth for page in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
 
-            @allure.title("Verify if external links in the Header lead to correct pages after click")
+            @allure.title("""Verify if external links in the Header for an unauthorized user 
+            lead to correct pages after click""")
             def test_hpu_03_03_verify_unauth_external_links_lead_to_correct_pages(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 external_links_in_more = page.get_list_of_external_links_in_more()
@@ -295,10 +296,20 @@ class TestHeaderPage:
 
             @allure.title("""Verify if internal links in the Header for an authorized user 
             lead to correct pages after click""")
-            def test_hpa_03_02_verify_internal_links_lead_to_correct_pages(self, driver, auto_test_user_authorized):
+            def test_hpa_03_02_verify_auth_internal_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 internal_links_in_more = page.get_list_of_internal_links_in_more()
                 opened_pages = page.click_on_internal_links_in_header_auth()
                 assert internal_links_in_more, "Internal links are not collected in the list"
                 assert all(page in HeaderData.pages_urls_auth for page in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
+
+            @allure.title("""Verify if external links in the Header for an authorized user 
+            lead to correct pages after click""")
+            def test_hpa_03_03_verify_auth_external_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                external_links_in_more = page.get_list_of_external_links_in_more()
+                opened_pages = page.click_on_external_links_in_header()
+                assert external_links_in_more, "External links are not collected in the list"
+                assert all(page in HeaderData.pages_urls_auth for page in opened_pages), \
+                    "Some of external links lead to incorrect pages after clicking"

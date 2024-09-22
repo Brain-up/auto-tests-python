@@ -147,7 +147,8 @@ class HeaderPage(BasePage):
     def check_links_visibility_in_more(self):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_list_of_links_in_more())
-    # ==================================================================
+
+    # Lists of links
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
                   (internal links) in the 'More' dropdown for every user""")
     def get_list_of_internal_links_in_more(self):
@@ -156,10 +157,8 @@ class HeaderPage(BasePage):
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
                     in the 'More' dropdown for every user""")
     def get_list_of_external_links_in_more(self):
-        return self.get_list_of_links_in_more()[:1]
-    # =========================================================
+        return self.get_list_of_links_in_more()[:2]
 
-    # Lists of links
     @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
     def get_list_of_internal_links(self):
         links = self.get_list_of_links_unauth()
@@ -369,7 +368,8 @@ class HeaderPage(BasePage):
         print('\n', *opened_pages, sep='\n')
         return opened_pages
 
-    @allure.step("Click on external links in the Header and thereby open corresponding web pages on new tabs")
+    @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
+    for every user""")
     def click_on_external_links_in_header(self):
         opened_pages = []
         # Click on the 'Telegram' link
@@ -381,7 +381,7 @@ class HeaderPage(BasePage):
         for i in range(1, len(new_tabs) + 2):
             self.driver.switch_to.window(self.driver.window_handles[i])
             opened_pages.append(self.get_current_tab_url())
-        # print('\n', *opened_pages, sep='\n')
+        print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on the 'Logo' link")
