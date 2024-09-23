@@ -134,7 +134,7 @@ class TestHeaderPage:
 
             @allure.title("""Verify that the 'Logo' link on the Start Unauthorized Page 
                              doesn't refresh the current page or lead to other pages after clicking""")
-            def test_hp_03_04_verify_clicking_on_logo_link_on_start_unauthorized_page(self, driver, main_page_open):
+            def test_hpu_03_04_verify_click_logo_link_on_start_unauthorized_page(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
@@ -144,9 +144,9 @@ class TestHeaderPage:
                 current_page_source = page.driver.page_source
                 assert len(handles_before) == len(handles_after), "The number of open tabs changed after clicking"
                 assert initial_page_source == current_page_source, \
-                    "'Logo' link in the sections 1 refreshes the page after clicking"
+                    "'Logo' link in the Header refreshes the page after clicking"
                 assert initial_page_url == current_page_url, \
-                    "'Logo' link in the sections 1 leads to some page after clicking"
+                    "'Logo' link in the Header leads to some page after clicking"
 
             @allure.title("Verify the dropdown opens/closes after clicking on the 'More' button in the Header")
             def test_hp_03_05_verify_more_button_click(self, driver, main_page_open):
@@ -313,3 +313,19 @@ class TestHeaderPage:
                 assert external_links_in_more, "External links are not collected in the list"
                 assert all(page in HeaderData.pages_urls_auth for page in opened_pages), \
                     "Some of external links lead to incorrect pages after clicking"
+
+            @allure.title("""Verify that the 'Logo' link on the Start Authorized Page 
+                             doesn't refresh the current page or lead to other pages after clicking""")
+            def test_hpu_03_04_verify_click_logo_link_on_start_authorized_page(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                handles_before = driver.window_handles
+                initial_page_source = page.driver.page_source
+                initial_page_url = page.driver.current_url
+                current_page_url = page.click_on_logo_link()
+                handles_after = driver.window_handles
+                current_page_source = page.driver.page_source
+                assert len(handles_before) == len(handles_after), "The number of open tabs changed after clicking"
+                assert initial_page_source == current_page_source, \
+                    "'Logo' link in the Header refreshes the page after clicking"
+                assert initial_page_url == current_page_url, \
+                    "'Logo' link in the Header leads to some page after clicking"
