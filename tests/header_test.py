@@ -134,7 +134,7 @@ class TestHeaderPage:
 
             @allure.title("""Verify that the 'Logo' link on the Start Unauthorized Page 
                              doesn't refresh the current page or lead to other pages after clicking""")
-            def test_hpu_03_04_verify_click_logo_link_on_start_unauthorized_page(self, driver, main_page_open):
+            def test_hpu_03_04_verify_click_unauth_logo_link(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
@@ -148,8 +148,9 @@ class TestHeaderPage:
                 assert initial_page_url == current_page_url, \
                     "'Logo' link in the Header leads to some page after clicking"
 
-            @allure.title("Verify the dropdown opens/closes after clicking on the 'More' button in the Header")
-            def test_hp_03_05_verify_more_button_click(self, driver, main_page_open):
+            @allure.title("""Verify the dropdown opens/closes after clicking on the 'More' button in the Header 
+            on the Start Unauthorized Page""")
+            def test_hpu_03_05_verify_unauth_more_button_click(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 button_click = page.check_dropdown_opens_and_closes()
                 assert button_click, "The dropdown isn't open/closed after clicking the 'More' button"
@@ -316,7 +317,7 @@ class TestHeaderPage:
 
             @allure.title("""Verify that the 'Logo' link on the Start Authorized Page 
                              doesn't refresh the current page or lead to other pages after clicking""")
-            def test_hpu_03_04_verify_click_logo_link_on_start_authorized_page(self, driver, auto_test_user_authorized):
+            def test_hpa_03_04_verify_click_auth_logo_link(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
@@ -329,3 +330,10 @@ class TestHeaderPage:
                     "'Logo' link in the Header refreshes the page after clicking"
                 assert initial_page_url == current_page_url, \
                     "'Logo' link in the Header leads to some page after clicking"
+
+            @allure.title("""Verify the dropdown opens/closes after clicking on the 'More' button in the Header 
+               on the Start Authorized Page""")
+            def test_hpa_03_05_verify_auth_more_button_click(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                button_click = page.check_dropdown_opens_and_closes()
+                assert button_click, "The dropdown isn't open/closed after clicking the 'More' button"

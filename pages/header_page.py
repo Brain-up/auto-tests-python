@@ -384,17 +384,17 @@ class HeaderPage(BasePage):
         print('\n', *opened_pages, sep='\n')
         return opened_pages
 
-    @allure.step("Click on the 'Logo' link")
+    @allure.step("Click on the 'Logo' link for every user")
     def click_on_logo_link(self):
         self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
         return self.driver.current_url
 
     # Checks of buttons clicking in the Header
-    @allure.step("Click on the 'More' button")
+    @allure.step("Click on the 'More' button for every user")
     def click_more_button(self):
         return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
 
-    @allure.step("Check for dropdown is open/closed in the Header after clicking on the button 'More'")
+    @allure.step("Check for dropdown is open/closed after clicking on the button 'More' in the Header for every user")
     def check_dropdown_opens_and_closes(self):
         dropdown_state = 0
         if self.check_links_invisibility_in_more():
