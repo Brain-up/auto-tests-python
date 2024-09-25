@@ -155,13 +155,15 @@ class TestHeaderPage:
                 button_click = page.check_dropdown_opens_and_closes()
                 assert button_click, "The dropdown isn't open/closed after clicking the 'More' button"
 
-            @allure.title("Verify switching of the 'ru' and 'en' buttons in the Header")
-            def test_hp_03_06_verify_ru_en_buttons_switching(self, driver, main_page_open):
+            @allure.title("Verify switching of the 'ru', 'en' buttons in the Header on the Start Unauthorized Page")
+            def test_hpu_03_06_verify_unauth_ru_en_buttons_switching(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                text_ru = page.check_language_change_ru()
-                text_en = page.check_language_change_en()
-                assert text_ru == HeaderData.title_text_ru, "RU language isn't enabled after clicking the 'ru' button"
-                assert text_en == HeaderData.title_text_en, "EN language isn't enabled after clicking the 'en' button"
+                text_ru = page.check_language_change_ru_unauth()
+                text_en = page.check_language_change_en_unauth()
+                assert text_ru == HeaderData.title_text_ru_unauth, \
+                    "RU language isn't enabled after clicking the 'ru' button"
+                assert text_en == HeaderData.title_text_en_unauth, \
+                    "EN language isn't enabled after clicking the 'en' button"
 
         class TestHeaderPageImages:
             @allure.title("Verify presence, visibility and attributes of the image in the 'Logo' link")
@@ -337,3 +339,13 @@ class TestHeaderPage:
                 page = HeaderPage(driver)
                 button_click = page.check_dropdown_opens_and_closes()
                 assert button_click, "The dropdown isn't open/closed after clicking the 'More' button"
+
+            @allure.title("Verify switching of the 'ru', 'en' buttons in the Header on the Start Authorized Page")
+            def test_hpa_03_06_verify_auth_ru_en_buttons_switching(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                text_ru = page.check_language_change_ru_auth()
+                text_en = page.check_language_change_en_auth()
+                assert text_ru == HeaderData.title_text_ru_auth, \
+                    "RU language isn't enabled after clicking the 'ru' button"
+                assert text_en == HeaderData.title_text_en_auth, \
+                    "EN language isn't enabled after clicking the 'en' button"
