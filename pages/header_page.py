@@ -4,13 +4,13 @@ import allure
 import requests
 from pages.base_page import BasePage
 from locators.header_page_locators import (HeaderUnauthorizedLocators, HeaderAuthorizedLocators,
-                                           StartUnauthorizedPageLocators)
+                                           StartPagesLocators)
 
 
 class HeaderPage(BasePage):
     locators = HeaderUnauthorizedLocators
     locators1 = HeaderAuthorizedLocators
-    locators2 = StartUnauthorizedPageLocators
+    locators2 = StartPagesLocators
 
     # Checking the structure and display of elements in the Header
     @allure.step("Check the Header is present in the DOM tree on the page")
@@ -407,23 +407,33 @@ class HeaderPage(BasePage):
         if dropdown_state == 3:
             return True
 
-    @allure.step("Click on the 'ru' button")
+    @allure.step("Click on the 'ru' button in the Header for every user")
     def click_on_ru_button(self):
         self.element_is_present_and_clickable(self.locators.RU_BUTTON).click()
 
-    @allure.step("Click on the 'en' button")
+    @allure.step("Click on the 'en' button in the Header for every user")
     def click_on_en_button(self):
         self.element_is_present_and_clickable(self.locators.EN_BUTTON).click()
 
-    @allure.step("Check for language change to RU on the page after clicking on the button 'ru'")
-    def check_language_change_ru(self):
+    @allure.step("Check for language change to RU on the page after clicking the button 'ru' for an unauthorized user")
+    def check_language_change_ru_unauth(self):
         self.click_on_ru_button()
         return self.element_is_present(self.locators2.START_UNAUTHORIZED_PAGE_TITLE).text
 
-    @allure.step("Check for language change to EN on the page after clicking on the button 'en'")
-    def check_language_change_en(self):
+    @allure.step("Check for language change to EN on the page after clicking the button 'en' for an unauthorized user")
+    def check_language_change_en_unauth(self):
         self.click_on_en_button()
         return self.element_is_present(self.locators2.START_UNAUTHORIZED_PAGE_TITLE).text
+
+    @allure.step("Check for language change to RU on the page after clicking the button 'ru' for an authorized user")
+    def check_language_change_ru_auth(self):
+        self.click_on_ru_button()
+        return self.element_is_present(self.locators2.START_AUTHORIZED_PAGE_TITLE).text
+
+    @allure.step("Check for language change to EN on the page after clicking the button 'en' for an authorized user")
+    def check_language_change_en_auth(self):
+        self.click_on_en_button()
+        return self.element_is_present(self.locators2.START_AUTHORIZED_PAGE_TITLE).text
 
     # Checking images in the Header
     @allure.step("Check if the 'Logo' image is present")

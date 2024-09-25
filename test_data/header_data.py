@@ -31,8 +31,11 @@ class HeaderData:
 
     ru_en_buttons_text = "RU / EN"
 
-    title_text_ru = "Преимущества"
-    title_text_en = "Advantages"
+    title_text_ru_unauth = "Преимущества"
+    title_text_en_unauth = "Advantages"
+
+    title_text_ru_auth = "Давайте выберем, какие упражнения будем делать сегодня?"
+    title_text_en_auth = "Let's choose what exercises we do today?"
 
     links_href_unauth = [
         "https://brainup.site/",

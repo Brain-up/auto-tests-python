@@ -52,5 +52,6 @@ class HeaderAuthorizedLocators:
     LOGOUT_BUTTON = (By.XPATH, "//button[@data-test-logout-button]")
 
 
-class StartUnauthorizedPageLocators:
+class StartPagesLocators:
+    START_AUTHORIZED_PAGE_TITLE = (By.XPATH, "//h3")
     START_UNAUTHORIZED_PAGE_TITLE = (By.XPATH, "(//h2)[2]")
