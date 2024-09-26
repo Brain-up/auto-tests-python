@@ -1,0 +1,4015 @@
+{
+  "uid" : "918abf57e84a80ce",
+  "name" : "Solutions to a random task in the \"Слова Королёвой\" .",
+  "fullName" : "tests.test_speech_exercises_ru.TestCardsRU#test_solve_koroleva_cards_ru",
+  "historyId" : "c9fe4fbd9394e2fb5a6898be66ba433b",
+  "time" : {
+    "start" : 1727342179218,
+    "stop" : 1727342396102,
+    "duration" : 216884
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x559c6ed8713a <unknown>\n#1 0x559c6ea6d5e0 <unknown>\n#2 0x559c6eabcbe8 <unknown>\n#3 0x559c6eabce81 <unknown>\n#4 0x559c6eb038c4 <unknown>\n#5 0x559c6eae1b4d <unknown>\n#6 0x559c6eb00d7d <unknown>\n#7 0x559c6eae18c3 <unknown>\n#8 0x559c6eaaf6b3 <unknown>\n#9 0x559c6eab068e <unknown>\n#10 0x559c6ed51b3b <unknown>\n#11 0x559c6ed55ac1 <unknown>\n#12 0x559c6ed3e335 <unknown>\n#13 0x559c6ed56642 <unknown>\n#14 0x559c6ed2349f <unknown>\n#15 0x559c6ed76038 <unknown>\n#16 0x559c6ed76203 <unknown>\n#17 0x559c6ed85f8c <unknown>\n#18 0x7f4419494ac3 <unknown>",
+  "statusTrace" : "self = <pages.speech_exercises_page_ru.SpeechExercisesPageRU object at 0x7fc90fde86b0>\n\n    @allure.step('get_correct_answer')\n    def get_correct_answer(self):\n        try:\n            while True:\n                time.sleep(1)\n                self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                answer_value = self.element_is_present(\n                    self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                    'data-correct-answer')\n                print('Answer_value: ', answer_value)\n    \n                if answer_value != \"undefined\" and ',' not in answer_value:\n                    try:\n                        correct_card = self.element_is_present_and_clickable(\n                            (By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n                        self.action_move_to_element(correct_card)\n                        correct_card.click()\n                    except Exception as ex:\n                        print(ex)\n                        correct_card = self.element_is_present_and_clickable(\n                            (By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n                        self.action_move_to_element(correct_card)\n                        correct_card.click()\n                elif ',' in answer_value:\n                    time.sleep(1)\n                    self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                    answer_value = self.element_is_present(\n                        self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                        'data-correct-answer')\n                    list_answers = answer_value.split(',')\n                    for answer in list_answers:\n                        print('answer', answer_value)\n                        try:\n>                           correct_card = self.element_is_present_and_clickable(\n                                (By.XPATH, f'//*[text()=\"{answer}\"]'))\n\npages/speech_exercises_page_ru.py:139: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/base_page.py:34: in element_is_present_and_clickable\n    self.element_is_clickable(locator))\npages/base_page.py:59: in element_is_clickable\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"874e70931812d2faa867d2b57a31addf\")>\nmethod = <function element_to_be_clickable.<locals>._predicate at 0x7fc90fdf0680>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//*[text()=\"мышь\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//*[text()=\"мышь\"]')\n\n/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException\n\nDuring handling of the above exception, another exception occurred:\n\nself = <pages.speech_exercises_page_ru.SpeechExercisesPageRU object at 0x7fc90fde86b0>\n\n    @allure.step('get_correct_answer')\n    def get_correct_answer(self):\n        try:\n            while True:\n                time.sleep(1)\n                self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                answer_value = self.element_is_present(\n                    self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                    'data-correct-answer')\n                print('Answer_value: ', answer_value)\n    \n                if answer_value != \"undefined\" and ',' not in answer_value:\n                    try:\n                        correct_card = self.element_is_present_and_clickable(\n                            (By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n                        self.action_move_to_element(correct_card)\n                        correct_card.click()\n                    except Exception as ex:\n                        print(ex)\n                        correct_card = self.element_is_present_and_clickable(\n                            (By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n                        self.action_move_to_element(correct_card)\n                        correct_card.click()\n                elif ',' in answer_value:\n                    time.sleep(1)\n                    self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                    answer_value = self.element_is_present(\n                        self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                        'data-correct-answer')\n                    list_answers = answer_value.split(',')\n                    for answer in list_answers:\n                        print('answer', answer_value)\n                        try:\n                            correct_card = self.element_is_present_and_clickable(\n                                (By.XPATH, f'//*[text()=\"{answer}\"]'))\n                            self.action_move_to_element(correct_card)\n                            correct_card.click()\n                        except Exception as ex:\n                            print(ex)\n>                           correct_card = self.element_is_present_and_clickable(\n                                (By.XPATH, f'//*[text()=\"{answer}\"]'))\n\npages/speech_exercises_page_ru.py:145: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/base_page.py:34: in element_is_present_and_clickable\n    self.element_is_clickable(locator))\npages/base_page.py:59: in element_is_clickable\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"874e70931812d2faa867d2b57a31addf\")>\nmethod = <function element_to_be_clickable.<locals>._predicate at 0x7fc90fcfcae0>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//*[text()=\"мышь\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//*[text()=\"мышь\"]')\n\n/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7fc90ffb3740>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"874e70931812d2faa867d2b57a31addf\")>\ndefault_user_authorized = None\n\n    @pytest.mark.xfail\n    @allure.suite(\"Речевые упражнения.\")\n    @allure.title('Solutions to a random task in the \"Слова Королёвой\" .')\n    def test_solve_koroleva_cards_ru(self, driver, default_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        page.click_button_exercises()\n        page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)\n        seria_id = page.set_url_to_get_id_words_koroleva_ru_group()\n        card_id = page.click_random_card()\n    \n        page = SpeechExercisesAPI(driver)\n        payloads = page.get_random_id_from_list_sub_group_default(card_id, seria_id)\n        random_id = page.get_random_id_from_payloads(payloads)\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n    \n        page.click_start_and_get_list_words_ru()\n        page = SpeechExercisesPageRU(driver)\n>       message = page.get_correct_answer()\n\ntests/test_speech_exercises_ru.py:156: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_ru.py:155: in get_correct_answer\n    message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)\npages/base_page.py:51: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"874e70931812d2faa867d2b57a31addf\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7fc90fcff240>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nE       Stacktrace:\nE       #0 0x559c6ed8713a <unknown>\nE       #1 0x559c6ea6d5e0 <unknown>\nE       #2 0x559c6eabcbe8 <unknown>\nE       #3 0x559c6eabce81 <unknown>\nE       #4 0x559c6eb038c4 <unknown>\nE       #5 0x559c6eae1b4d <unknown>\nE       #6 0x559c6eb00d7d <unknown>\nE       #7 0x559c6eae18c3 <unknown>\nE       #8 0x559c6eaaf6b3 <unknown>\nE       #9 0x559c6eab068e <unknown>\nE       #10 0x559c6ed51b3b <unknown>\nE       #11 0x559c6ed55ac1 <unknown>\nE       #12 0x559c6ed3e335 <unknown>\nE       #13 0x559c6ed56642 <unknown>\nE       #14 0x559c6ed2349f <unknown>\nE       #15 0x559c6ed76038 <unknown>\nE       #16 0x559c6ed76203 <unknown>\nE       #17 0x559c6ed85f8c <unknown>\nE       #18 0x7f4419494ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1727341100642,
+      "stop" : 1727341100642,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1727342172724,
+      "stop" : 1727342176301,
+      "duration" : 3577
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1727342172724,
+        "stop" : 1727342176301,
+        "duration" : 3577
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"874e70931812d2faa867d2b57a31addf\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "default_user_authorized",
+    "time" : {
+      "start" : 1727342176301,
+      "stop" : 1727342179218,
+      "duration" : 2917
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "DEFAULT user authorized",
+      "time" : {
+        "start" : 1727342176301,
+        "stop" : 1727342179218,
+        "duration" : 2917
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check url is present: https://brainup.site/groups",
+        "time" : {
+          "start" : 1727342176669,
+          "stop" : 1727342179191,
+          "duration" : 2522
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Loader checking",
+        "time" : {
+          "start" : 1727342179191,
+          "stop" : 1727342179217,
+          "duration" : 26
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"874e70931812d2faa867d2b57a31addf\")>"
+      }, {
+        "name" : "main_page_open",
+        "value" : "None"
+      } ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1727342171940,
+      "stop" : 1727342172724,
+      "duration" : 784
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x559c6ed8713a <unknown>\n#1 0x559c6ea6d5e0 <unknown>\n#2 0x559c6eabcbe8 <unknown>\n#3 0x559c6eabce81 <unknown>\n#4 0x559c6eb038c4 <unknown>\n#5 0x559c6eae1b4d <unknown>\n#6 0x559c6eb00d7d <unknown>\n#7 0x559c6eae18c3 <unknown>\n#8 0x559c6eaaf6b3 <unknown>\n#9 0x559c6eab068e <unknown>\n#10 0x559c6ed51b3b <unknown>\n#11 0x559c6ed55ac1 <unknown>\n#12 0x559c6ed3e335 <unknown>\n#13 0x559c6ed56642 <unknown>\n#14 0x559c6ed2349f <unknown>\n#15 0x559c6ed76038 <unknown>\n#16 0x559c6ed76203 <unknown>\n#17 0x559c6ed85f8c <unknown>\n#18 0x7f4419494ac3 <unknown>",
+    "statusTrace" : "self = <pages.speech_exercises_page_ru.SpeechExercisesPageRU object at 0x7fc90fde86b0>\n\n    @allure.step('get_correct_answer')\n    def get_correct_answer(self):\n        try:\n            while True:\n                time.sleep(1)\n                self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                answer_value = self.element_is_present(\n                    self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                    'data-correct-answer')\n                print('Answer_value: ', answer_value)\n    \n                if answer_value != \"undefined\" and ',' not in answer_value:\n                    try:\n                        correct_card = self.element_is_present_and_clickable(\n                            (By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n                        self.action_move_to_element(correct_card)\n                        correct_card.click()\n                    except Exception as ex:\n                        print(ex)\n                        correct_card = self.element_is_present_and_clickable(\n                            (By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n                        self.action_move_to_element(correct_card)\n                        correct_card.click()\n                elif ',' in answer_value:\n                    time.sleep(1)\n                    self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                    answer_value = self.element_is_present(\n                        self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                        'data-correct-answer')\n                    list_answers = answer_value.split(',')\n                    for answer in list_answers:\n                        print('answer', answer_value)\n                        try:\n>                           correct_card = self.element_is_present_and_clickable(\n                                (By.XPATH, f'//*[text()=\"{answer}\"]'))\n\npages/speech_exercises_page_ru.py:139: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/base_page.py:34: in element_is_present_and_clickable\n    self.element_is_clickable(locator))\npages/base_page.py:59: in element_is_clickable\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"874e70931812d2faa867d2b57a31addf\")>\nmethod = <function element_to_be_clickable.<locals>._predicate at 0x7fc90fdf0680>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//*[text()=\"мышь\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//*[text()=\"мышь\"]')\n\n/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException\n\nDuring handling of the above exception, another exception occurred:\n\nself = <pages.speech_exercises_page_ru.SpeechExercisesPageRU object at 0x7fc90fde86b0>\n\n    @allure.step('get_correct_answer')\n    def get_correct_answer(self):\n        try:\n            while True:\n                time.sleep(1)\n                self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                answer_value = self.element_is_present(\n                    self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                    'data-correct-answer')\n                print('Answer_value: ', answer_value)\n    \n                if answer_value != \"undefined\" and ',' not in answer_value:\n                    try:\n                        correct_card = self.element_is_present_and_clickable(\n                            (By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n                        self.action_move_to_element(correct_card)\n                        correct_card.click()\n                    except Exception as ex:\n                        print(ex)\n                        correct_card = self.element_is_present_and_clickable(\n                            (By.XPATH, f'//*[text()=\"{answer_value}\"]'))\n                        self.action_move_to_element(correct_card)\n                        correct_card.click()\n                elif ',' in answer_value:\n                    time.sleep(1)\n                    self.element_is_present(self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER)\n                    answer_value = self.element_is_present(\n                        self.locators.SpeechExercisesPageLocators.CORRECT_ANSWER).get_attribute(\n                        'data-correct-answer')\n                    list_answers = answer_value.split(',')\n                    for answer in list_answers:\n                        print('answer', answer_value)\n                        try:\n                            correct_card = self.element_is_present_and_clickable(\n                                (By.XPATH, f'//*[text()=\"{answer}\"]'))\n                            self.action_move_to_element(correct_card)\n                            correct_card.click()\n                        except Exception as ex:\n                            print(ex)\n>                           correct_card = self.element_is_present_and_clickable(\n                                (By.XPATH, f'//*[text()=\"{answer}\"]'))\n\npages/speech_exercises_page_ru.py:145: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/base_page.py:34: in element_is_present_and_clickable\n    self.element_is_clickable(locator))\npages/base_page.py:59: in element_is_clickable\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"874e70931812d2faa867d2b57a31addf\")>\nmethod = <function element_to_be_clickable.<locals>._predicate at 0x7fc90fcfcae0>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//*[text()=\"мышь\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//*[text()=\"мышь\"]')\n\n/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7fc90ffb3740>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"874e70931812d2faa867d2b57a31addf\")>\ndefault_user_authorized = None\n\n    @pytest.mark.xfail\n    @allure.suite(\"Речевые упражнения.\")\n    @allure.title('Solutions to a random task in the \"Слова Королёвой\" .')\n    def test_solve_koroleva_cards_ru(self, driver, default_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        page.click_button_exercises()\n        page.select_group(SpeechExercisesPageLocators.WORDS_BY_KOROLEVA_BUTTON)\n        seria_id = page.set_url_to_get_id_words_koroleva_ru_group()\n        card_id = page.click_random_card()\n    \n        page = SpeechExercisesAPI(driver)\n        payloads = page.get_random_id_from_list_sub_group_default(card_id, seria_id)\n        random_id = page.get_random_id_from_payloads(payloads)\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n    \n        page.click_start_and_get_list_words_ru()\n        page = SpeechExercisesPageRU(driver)\n>       message = page.get_correct_answer()\n\ntests/test_speech_exercises_ru.py:156: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_ru.py:155: in get_correct_answer\n    message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)\npages/base_page.py:51: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"874e70931812d2faa867d2b57a31addf\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7fc90fcff240>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nE       Stacktrace:\nE       #0 0x559c6ed8713a <unknown>\nE       #1 0x559c6ea6d5e0 <unknown>\nE       #2 0x559c6eabcbe8 <unknown>\nE       #3 0x559c6eabce81 <unknown>\nE       #4 0x559c6eb038c4 <unknown>\nE       #5 0x559c6eae1b4d <unknown>\nE       #6 0x559c6eb00d7d <unknown>\nE       #7 0x559c6eae18c3 <unknown>\nE       #8 0x559c6eaaf6b3 <unknown>\nE       #9 0x559c6eab068e <unknown>\nE       #10 0x559c6ed51b3b <unknown>\nE       #11 0x559c6ed55ac1 <unknown>\nE       #12 0x559c6ed3e335 <unknown>\nE       #13 0x559c6ed56642 <unknown>\nE       #14 0x559c6ed2349f <unknown>\nE       #15 0x559c6ed76038 <unknown>\nE       #16 0x559c6ed76203 <unknown>\nE       #17 0x559c6ed85f8c <unknown>\nE       #18 0x7f4419494ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+    "steps" : [ {
+      "name" : "Click button \"Упражнения\".",
+      "time" : {
+        "start" : 1727342179218,
+        "stop" : 1727342179387,
+        "duration" : 169
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Click button \"RU\".",
+        "time" : {
+          "start" : 1727342179218,
+          "stop" : 1727342179291,
+          "duration" : 73
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "select_group",
+      "time" : {
+        "start" : 1727342179387,
+        "stop" : 1727342183234,
+        "duration" : 3847
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Select Russian language. Click \"RU\" button.",
+        "time" : {
+          "start" : 1727342179387,
+          "stop" : 1727342179445,
+          "duration" : 58
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"Речевые упражнения\".",
+        "time" : {
+          "start" : 1727342179445,
+          "stop" : 1727342180543,
+          "duration" : 1098
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"СЛОВА КОРОЛЁВОЙ\".",
+        "time" : {
+          "start" : 1727342183166,
+          "stop" : 1727342183234,
+          "duration" : 68
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "selector_for_sub_group",
+        "value" : "('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')"
+      } ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Get seria ID from URL: https://brainup.site/groups/2/series/17",
+      "time" : {
+        "start" : 1727342183234,
+        "stop" : 1727342184287,
+        "duration" : 1053
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Wait until url to be: https://brainup.site/groups/2/series/17.",
+        "time" : {
+          "start" : 1727342183234,
+          "stop" : 1727342184284,
+          "duration" : 1050
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "click_random_card",
+      "time" : {
+        "start" : 1727342184287,
+        "stop" : 1727342184451,
+        "duration" : 164
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Getting list cards: ['1 слово из 2..4 (1)', '1 слово из 2..4 (2)', '1 слово из 2..4 (3)', '1 слово из 2..4 (4)', '1 слово из 2..4 (5)', '1 слово из 2..4 (6)', '1 слово из 6', '2 слова из 4', '3 слова из 6', '2 слова из 6']",
+        "time" : {
+          "start" : 1727342184376,
+          "stop" : 1727342184376,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list of cards. \nCard ID in list is:, 9",
+        "time" : {
+          "start" : 1727342184376,
+          "stop" : 1727342184376,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Selected card is: 3 слова из 6",
+        "time" : {
+          "start" : 1727342184393,
+          "stop" : 1727342184444,
+          "duration" : 51
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "get_random_id_from_list_sub_group_default",
+      "time" : {
+        "start" : 1727342184451,
+        "stop" : 1727342185334,
+        "duration" : 883
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Status code is: 200",
+        "time" : {
+          "start" : 1727342185332,
+          "stop" : 1727342185332,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Send GET request with params: https://brainup.site/api/subgroups?seriesId=17headers=\"Content-Type\": \"application/json\",\"Authorization\": \"Bearer\": \"{id_token_default}\"",
+        "time" : {
+          "start" : 1727342185332,
+          "stop" : 1727342185332,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Getting list of cards id: {'data': [{'seriesId': 17, 'id': 115, 'level': 1, 'name': '1 слово из 2..4 (1)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_1.svg', 'description': '1я группа слов: по одному', 'withPictures': False, 'exercises': [1905, 1906, 1907, 1908, 1909]}, {'seriesId': 17, 'id': 116, 'level': 2, 'name': '1 слово из 2..4 (2)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_2.svg', 'description': '2я группа слов: по одному', 'withPictures': False, 'exercises': [1910, 1911, 1912, 1913, 1914]}, {'seriesId': 17, 'id': 117, 'level': 3, 'name': '1 слово из 2..4 (3)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_3.svg', 'description': '3я группа слов: по одному', 'withPictures': False, 'exercises': [1915, 1916, 1917, 1918, 1919]}, {'seriesId': 17, 'id': 118, 'level': 4, 'name': '1 слово из 2..4 (4)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_4.svg', 'description': '4я группа слов: по одному', 'withPictures': False, 'exercises': [1920, 1921, 1922, 1923, 1924]}, {'seriesId': 17, 'id': 119, 'level': 5, 'name': '1 слово из 2..4 (5)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_5.svg', 'description': '5я группа слов: по одному', 'withPictures': False, 'exercises': [1925, 1926, 1927, 1928, 1929]}, {'seriesId': 17, 'id': 120, 'level': 6, 'name': '1 слово из 2..4 (6)', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_first_6.svg', 'description': '6я группа слов: по одному', 'withPictures': False, 'exercises': [1930, 1931, 1932, 1933, 1934]}, {'seriesId': 17, 'id': 121, 'level': 20, 'name': '1 слово из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_1_4.svg', 'description': 'Одно слово из 6', 'withPictures': False, 'exercises': [1935, 1936, 1937, 1938, 1939, 1940]}, {'seriesId': 17, 'id': 122, 'level': 21, 'name': '2 слова из 4', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_2_4.svg', 'description': 'Два слово из 4', 'withPictures': False, 'exercises': [1941, 1942, 1943, 1944, 1945, 1946]}, {'seriesId': 17, 'id': 124, 'level': 21, 'name': '3 слова из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_3_6.svg', 'description': 'Три слово из 6', 'withPictures': False, 'exercises': [1954, 1958, 1953, 1956, 1957, 1955, 1974, 1975, 1976, 1977]}, {'seriesId': 17, 'id': 123, 'level': 21, 'name': '2 слова из 6', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/koroleva_words_second_2_6.svg', 'description': 'Два слово из 6', 'withPictures': False, 'exercises': [1947, 1948, 1949, 1950, 1951, 1952, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973]}], 'errors': [], 'meta': []}",
+        "time" : {
+          "start" : 1727342185333,
+          "stop" : 1727342185333,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list: 1977",
+        "time" : {
+          "start" : 1727342185333,
+          "stop" : 1727342185333,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "card_id",
+        "value" : "8"
+      }, {
+        "name" : "seria_id",
+        "value" : "'17'"
+      } ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "get_random_id_from_payloads",
+      "time" : {
+        "start" : 1727342185334,
+        "stop" : 1727342186019,
+        "duration" : 685
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "payloads",
+        "value" : "{'ids': [1954, 1958, 1953, 1956, 1957, 1955, 1974, 1975, 1976, 1977]}"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "click_start_and_get_list_words_ru",
+      "time" : {
+        "start" : 1727342186336,
+        "stop" : 1727342190838,
+        "duration" : 4502
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Click button \"Start\".",
+        "time" : {
+          "start" : 1727342186336,
+          "stop" : 1727342190575,
+          "duration" : 4239
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Getting a list of exercise words from the front: ['круг', 'рубашка', 'мышь', 'машина', 'спать', 'голова']",
+        "time" : {
+          "start" : 1727342190684,
+          "stop" : 1727342190685,
+          "duration" : 1
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"Повторить\".",
+        "time" : {
+          "start" : 1727342190685,
+          "stop" : 1727342190761,
+          "duration" : 76
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"Решать\".",
+        "time" : {
+          "start" : 1727342190761,
+          "stop" : 1727342190838,
+          "duration" : 77
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "get_correct_answer",
+      "time" : {
+        "start" : 1727342190838,
+        "stop" : 1727342396101,
+        "duration" : 205263
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x559c6ed8713a <unknown>\n#1 0x559c6ea6d5e0 <unknown>\n#2 0x559c6eabcbe8 <unknown>\n#3 0x559c6eabce81 <unknown>\n#4 0x559c6eb038c4 <unknown>\n#5 0x559c6eae1b4d <unknown>\n#6 0x559c6eb00d7d <unknown>\n#7 0x559c6eae18c3 <unknown>\n#8 0x559c6eaaf6b3 <unknown>\n#9 0x559c6eab068e <unknown>\n#10 0x559c6ed51b3b <unknown>\n#11 0x559c6ed55ac1 <unknown>\n#12 0x559c6ed3e335 <unknown>\n#13 0x559c6ed56642 <unknown>\n#14 0x559c6ed2349f <unknown>\n#15 0x559c6ed76038 <unknown>\n#16 0x559c6ed76203 <unknown>\n#17 0x559c6ed85f8c <unknown>\n#18 0x7f4419494ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/speech_exercises_page_ru.py\", line 155, in get_correct_answer\n    message = self.element_is_present(self.locators.SpeechExercisesPageLocators.CONGRATULATION_MESSAGE)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 51, in element_is_present\n    return Wait(self.driver, self.timeout).until(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342194999,
+          "stop" : 1727342195265,
+          "duration" : 266
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342194999,
+            "stop" : 1727342195265,
+            "duration" : 266
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342195334,
+          "stop" : 1727342195599,
+          "duration" : 265
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342195334,
+            "stop" : 1727342195598,
+            "duration" : 264
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342195664,
+          "stop" : 1727342195932,
+          "duration" : 268
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342195664,
+            "stop" : 1727342195932,
+            "duration" : 268
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342197012,
+          "stop" : 1727342197269,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342197012,
+            "stop" : 1727342197269,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342200942,
+          "stop" : 1727342201215,
+          "duration" : 273
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342200942,
+            "stop" : 1727342201215,
+            "duration" : 273
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342203305,
+          "stop" : 1727342203562,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342203305,
+            "stop" : 1727342203562,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342203618,
+          "stop" : 1727342203881,
+          "duration" : 263
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342203618,
+            "stop" : 1727342203881,
+            "duration" : 263
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342203988,
+          "stop" : 1727342204248,
+          "duration" : 260
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342203988,
+            "stop" : 1727342204248,
+            "duration" : 260
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342208428,
+          "stop" : 1727342208698,
+          "duration" : 270
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342208428,
+            "stop" : 1727342208698,
+            "duration" : 270
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342208765,
+          "stop" : 1727342209032,
+          "duration" : 267
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342208765,
+            "stop" : 1727342209032,
+            "duration" : 267
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342209091,
+          "stop" : 1727342209365,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342209091,
+            "stop" : 1727342209365,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342210439,
+          "stop" : 1727342210697,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342210439,
+            "stop" : 1727342210697,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342213834,
+          "stop" : 1727342214097,
+          "duration" : 263
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342213834,
+            "stop" : 1727342214097,
+            "duration" : 263
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342214155,
+          "stop" : 1727342214415,
+          "duration" : 260
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342214155,
+            "stop" : 1727342214414,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342214479,
+          "stop" : 1727342214748,
+          "duration" : 269
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342214479,
+            "stop" : 1727342214748,
+            "duration" : 269
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342218407,
+          "stop" : 1727342218681,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342218407,
+            "stop" : 1727342218681,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342218741,
+          "stop" : 1727342219015,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342218741,
+            "stop" : 1727342219015,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342219075,
+          "stop" : 1727342219348,
+          "duration" : 273
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342219075,
+            "stop" : 1727342219348,
+            "duration" : 273
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342220423,
+          "stop" : 1727342220681,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342220423,
+            "stop" : 1727342220681,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342223852,
+          "stop" : 1727342224114,
+          "duration" : 262
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342223852,
+            "stop" : 1727342224114,
+            "duration" : 262
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342226204,
+          "stop" : 1727342226461,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342226204,
+            "stop" : 1727342226461,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342226516,
+          "stop" : 1727342226780,
+          "duration" : 264
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342226516,
+            "stop" : 1727342226780,
+            "duration" : 264
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342226842,
+          "stop" : 1727342227114,
+          "duration" : 272
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342226842,
+            "stop" : 1727342227114,
+            "duration" : 272
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342231288,
+          "stop" : 1727342231547,
+          "duration" : 259
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342231288,
+            "stop" : 1727342231547,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342231605,
+          "stop" : 1727342231864,
+          "duration" : 259
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342231605,
+            "stop" : 1727342231864,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342231922,
+          "stop" : 1727342232180,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342231923,
+            "stop" : 1727342232180,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342233257,
+          "stop" : 1727342233516,
+          "duration" : 259
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342233257,
+            "stop" : 1727342233516,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342237196,
+          "stop" : 1727342237463,
+          "duration" : 267
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342237196,
+            "stop" : 1727342237463,
+            "duration" : 267
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342239558,
+          "stop" : 1727342239830,
+          "duration" : 272
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342239558,
+            "stop" : 1727342239830,
+            "duration" : 272
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342239887,
+          "stop" : 1727342240147,
+          "duration" : 260
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342239887,
+            "stop" : 1727342240146,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342240207,
+          "stop" : 1727342240481,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342240207,
+            "stop" : 1727342240481,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342245169,
+          "stop" : 1727342245430,
+          "duration" : 261
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342245169,
+            "stop" : 1727342245430,
+            "duration" : 261
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342245489,
+          "stop" : 1727342245763,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342245489,
+            "stop" : 1727342245763,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342245822,
+          "stop" : 1727342246097,
+          "duration" : 275
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342245823,
+            "stop" : 1727342246097,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342247176,
+          "stop" : 1727342247434,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342247176,
+            "stop" : 1727342247434,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342251133,
+          "stop" : 1727342251396,
+          "duration" : 263
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342251133,
+            "stop" : 1727342251396,
+            "duration" : 263
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342253485,
+          "stop" : 1727342253742,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342253485,
+            "stop" : 1727342253742,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342253796,
+          "stop" : 1727342254063,
+          "duration" : 267
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342253796,
+            "stop" : 1727342254063,
+            "duration" : 267
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342254122,
+          "stop" : 1727342254396,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342254122,
+            "stop" : 1727342254396,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342259085,
+          "stop" : 1727342259346,
+          "duration" : 261
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342259085,
+            "stop" : 1727342259346,
+            "duration" : 261
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342259404,
+          "stop" : 1727342259663,
+          "duration" : 259
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342259404,
+            "stop" : 1727342259663,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342259743,
+          "stop" : 1727342260012,
+          "duration" : 269
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342259743,
+            "stop" : 1727342260012,
+            "duration" : 269
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342261086,
+          "stop" : 1727342261343,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342261086,
+            "stop" : 1727342261343,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342265008,
+          "stop" : 1727342265279,
+          "duration" : 271
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342265008,
+            "stop" : 1727342265279,
+            "duration" : 271
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342267372,
+          "stop" : 1727342267629,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342267372,
+            "stop" : 1727342267629,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342267686,
+          "stop" : 1727342267946,
+          "duration" : 260
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342267686,
+            "stop" : 1727342267946,
+            "duration" : 260
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342268005,
+          "stop" : 1727342268279,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342268005,
+            "stop" : 1727342268279,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342272478,
+          "stop" : 1727342272746,
+          "duration" : 268
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342272478,
+            "stop" : 1727342272746,
+            "duration" : 268
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342272803,
+          "stop" : 1727342273062,
+          "duration" : 259
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342272803,
+            "stop" : 1727342273062,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342273121,
+          "stop" : 1727342273379,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342273121,
+            "stop" : 1727342273379,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342274456,
+          "stop" : 1727342274714,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342274456,
+            "stop" : 1727342274714,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342276806,
+          "stop" : 1727342277063,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342276806,
+            "stop" : 1727342277063,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342277116,
+          "stop" : 1727342277378,
+          "duration" : 262
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342277116,
+            "stop" : 1727342277378,
+            "duration" : 262
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342277437,
+          "stop" : 1727342277695,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342277437,
+            "stop" : 1727342277695,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342279787,
+          "stop" : 1727342280045,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342279787,
+            "stop" : 1727342280045,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342280105,
+          "stop" : 1727342280378,
+          "duration" : 273
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342280105,
+            "stop" : 1727342280378,
+            "duration" : 273
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342280434,
+          "stop" : 1727342280695,
+          "duration" : 261
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342280434,
+            "stop" : 1727342280695,
+            "duration" : 261
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342281766,
+          "stop" : 1727342282023,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342281766,
+            "stop" : 1727342282023,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342284110,
+          "stop" : 1727342284367,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342284110,
+            "stop" : 1727342284367,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342284421,
+          "stop" : 1727342284678,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342284421,
+            "stop" : 1727342284678,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342284734,
+          "stop" : 1727342284995,
+          "duration" : 261
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342284734,
+            "stop" : 1727342284995,
+            "duration" : 261
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342287084,
+          "stop" : 1727342287341,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.161\")>",
+          "time" : {
+            "start" : 1727342287084,
+            "stop" : 1727342287341,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342287397,
+          "stop" : 1727342287661,
+          "duration" : 264
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342287397,
+            "stop" : 1727342287661,
+            "duration" : 264
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342287740,
+          "stop" : 1727342288012,
+          "duration" : 272
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342287740,
+            "stop" : 1727342288011,
+            "duration" : 271
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342289085,
+          "stop" : 1727342289343,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342289085,
+            "stop" : 1727342289343,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342291434,
+          "stop" : 1727342291691,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342291434,
+            "stop" : 1727342291691,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342291749,
+          "stop" : 1727342292011,
+          "duration" : 262
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342291749,
+            "stop" : 1727342292011,
+            "duration" : 262
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342292075,
+          "stop" : 1727342292345,
+          "duration" : 270
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342292075,
+            "stop" : 1727342292345,
+            "duration" : 270
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342294438,
+          "stop" : 1727342294695,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342294438,
+            "stop" : 1727342294695,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342294754,
+          "stop" : 1727342295028,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342294754,
+            "stop" : 1727342295028,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342295089,
+          "stop" : 1727342295361,
+          "duration" : 272
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342295089,
+            "stop" : 1727342295361,
+            "duration" : 272
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342296437,
+          "stop" : 1727342296695,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342296437,
+            "stop" : 1727342296695,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342298787,
+          "stop" : 1727342299044,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342298787,
+            "stop" : 1727342299044,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342299101,
+          "stop" : 1727342299361,
+          "duration" : 260
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342299101,
+            "stop" : 1727342299361,
+            "duration" : 260
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342299422,
+          "stop" : 1727342299695,
+          "duration" : 273
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342299422,
+            "stop" : 1727342299695,
+            "duration" : 273
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342301791,
+          "stop" : 1727342302048,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342301791,
+            "stop" : 1727342302048,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342302108,
+          "stop" : 1727342302378,
+          "duration" : 270
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342302108,
+            "stop" : 1727342302378,
+            "duration" : 270
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342302437,
+          "stop" : 1727342302711,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342302437,
+            "stop" : 1727342302711,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342303790,
+          "stop" : 1727342304048,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342303790,
+            "stop" : 1727342304048,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342306140,
+          "stop" : 1727342306397,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342306140,
+            "stop" : 1727342306397,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342306481,
+          "stop" : 1727342306739,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342306481,
+            "stop" : 1727342306739,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342306802,
+          "stop" : 1727342307061,
+          "duration" : 259
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342306802,
+            "stop" : 1727342307061,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342309156,
+          "stop" : 1727342309414,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342309157,
+            "stop" : 1727342309414,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342309473,
+          "stop" : 1727342309744,
+          "duration" : 271
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342309473,
+            "stop" : 1727342309744,
+            "duration" : 271
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342309804,
+          "stop" : 1727342310078,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342309804,
+            "stop" : 1727342310078,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342311157,
+          "stop" : 1727342311414,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342311157,
+            "stop" : 1727342311414,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342313510,
+          "stop" : 1727342313767,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342313510,
+            "stop" : 1727342313767,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342313822,
+          "stop" : 1727342314079,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342313822,
+            "stop" : 1727342314079,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342314141,
+          "stop" : 1727342314411,
+          "duration" : 270
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342314141,
+            "stop" : 1727342314411,
+            "duration" : 270
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342316501,
+          "stop" : 1727342316758,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342316501,
+            "stop" : 1727342316758,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342316814,
+          "stop" : 1727342317077,
+          "duration" : 263
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342316814,
+            "stop" : 1727342317077,
+            "duration" : 263
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342317136,
+          "stop" : 1727342317410,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342317137,
+            "stop" : 1727342317410,
+            "duration" : 273
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342318482,
+          "stop" : 1727342318739,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342318482,
+            "stop" : 1727342318739,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342320831,
+          "stop" : 1727342321089,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342320831,
+            "stop" : 1727342321089,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342321145,
+          "stop" : 1727342321410,
+          "duration" : 265
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342321145,
+            "stop" : 1727342321410,
+            "duration" : 265
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342321468,
+          "stop" : 1727342321727,
+          "duration" : 259
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342321468,
+            "stop" : 1727342321727,
+            "duration" : 259
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342323815,
+          "stop" : 1727342324073,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.181\")>",
+          "time" : {
+            "start" : 1727342323815,
+            "stop" : 1727342324073,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342324130,
+          "stop" : 1727342324393,
+          "duration" : 263
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342324130,
+            "stop" : 1727342324393,
+            "duration" : 263
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342324473,
+          "stop" : 1727342324743,
+          "duration" : 270
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342324473,
+            "stop" : 1727342324743,
+            "duration" : 270
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342325815,
+          "stop" : 1727342326073,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342325815,
+            "stop" : 1727342326073,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342328165,
+          "stop" : 1727342328422,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342328165,
+            "stop" : 1727342328422,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342328479,
+          "stop" : 1727342328743,
+          "duration" : 264
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342328479,
+            "stop" : 1727342328743,
+            "duration" : 264
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342328803,
+          "stop" : 1727342329077,
+          "duration" : 274
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342328803,
+            "stop" : 1727342329077,
+            "duration" : 274
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342331164,
+          "stop" : 1727342331421,
+          "duration" : 257
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.182\")>",
+          "time" : {
+            "start" : 1727342331164,
+            "stop" : 1727342331421,
+            "duration" : 257
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342331477,
+          "stop" : 1727342331743,
+          "duration" : 266
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.159\")>",
+          "time" : {
+            "start" : 1727342331477,
+            "stop" : 1727342331743,
+            "duration" : 266
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342331801,
+          "stop" : 1727342332059,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.163\")>",
+          "time" : {
+            "start" : 1727342331801,
+            "stop" : 1727342332059,
+            "duration" : 258
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Action move to element",
+        "time" : {
+          "start" : 1727342333143,
+          "stop" : 1727342333411,
+          "duration" : 268
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Move to <selenium.webdriver.remote.webelement.WebElement (session=\"874e70931812d2faa867d2b57a31addf\", element=\"f.AE82F1D1B9D6724288B67A24E04C3F6C.d.DF2AF44414F1CD44D8C6A26712AE4824.e.157\")>",
+          "time" : {
+            "start" : 1727342333143,
+            "stop" : 1727342333411,
+            "duration" : 268
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 214,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 238,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1727342396136,
+      "stop" : 1727342396240,
+      "duration" : 104
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Speech exercises."
+  }, {
+    "name" : "suite",
+    "value" : "Речевые упражнения."
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCardsRU"
+  }, {
+    "name" : "host",
+    "value" : "fv-az984-81"
+  }, {
+    "name" : "thread",
+    "value" : "2254-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_speech_exercises_ru"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 74,
+        "passed" : 377,
+        "unknown" : 0,
+        "total" : 451
+      },
+      "items" : [ {
+        "uid" : "934b9f526cb44a78",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/293//#testresult/934b9f526cb44a78",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@data-test-active-link=\"Слова Королёвой\"]')\nStacktrace:\n#0 0x562e1892b13a <unknown>\n#1 0x562e186115e0 <unknown>\n#2 0x562e18660be8 <unknown>\n#3 0x562e18660e81 <unknown>\n#4 0x562e186a78c4 <unknown>\n#5 0x562e18685b4d <unknown>\n#6 0x562e186a4d7d <unknown>\n#7 0x562e186858c3 <unknown>\n#8 0x562e186536b3 <unknown>\n#9 0x562e1865468e <unknown>\n#10 0x562e188f5b3b <unknown>\n#11 0x562e188f9ac1 <unknown>\n#12 0x562e188e2335 <unknown>\n#13 0x562e188fa642 <unknown>\n#14 0x562e188c749f <unknown>\n#15 0x562e1891a038 <unknown>\n#16 0x562e1891a203 <unknown>\n#17 0x562e18929f8c <unknown>\n#18 0x7f37e1894ac3 <unknown>",
+        "time" : {
+          "start" : 1727340603828,
+          "stop" : 1727340629297,
+          "duration" : 25469
+        }
+      }, {
+        "uid" : "bae69b8aec630ffb",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/292//#testresult/bae69b8aec630ffb",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727340127905,
+          "stop" : 1727340156731,
+          "duration" : 28826
+        }
+      }, {
+        "uid" : "a563545012748777",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/134//#testresult/a563545012748777",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727313300930,
+          "stop" : 1727313338914,
+          "duration" : 37984
+        }
+      }, {
+        "uid" : "5d1f4d1ab236ee27",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/291//#testresult/5d1f4d1ab236ee27",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x5618d829d2da <unknown>\n#1 0x5618d7f6b200 <unknown>\n#2 0x5618d7fbaaa2 <unknown>\n#3 0x5618d7fbad41 <unknown>\n#4 0x5618d8000964 <unknown>\n#5 0x5618d7fdf8fd <unknown>\n#6 0x5618d7ffddfd <unknown>\n#7 0x5618d7fdf673 <unknown>\n#8 0x5618d7fad473 <unknown>\n#9 0x5618d7fae47e <unknown>\n#10 0x5618d82640db <unknown>\n#11 0x5618d8268071 <unknown>\n#12 0x5618d82509d5 <unknown>\n#13 0x5618d8268bf2 <unknown>\n#14 0x5618d8235b6f <unknown>\n#15 0x5618d828c248 <unknown>\n#16 0x5618d828c417 <unknown>\n#17 0x5618d829c0cc <unknown>\n#18 0x7fc891894ac3 <unknown>",
+        "time" : {
+          "start" : 1727256669619,
+          "stop" : 1727256794874,
+          "duration" : 125255
+        }
+      }, {
+        "uid" : "2e9c7bc84b0ccc4f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/290//#testresult/2e9c7bc84b0ccc4f",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727253903951,
+          "stop" : 1727253933041,
+          "duration" : 29090
+        }
+      }, {
+        "uid" : "c09d0686810f6a94",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/290//#testresult/c09d0686810f6a94",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727248563625,
+          "stop" : 1727248591413,
+          "duration" : 27788
+        }
+      }, {
+        "uid" : "a5f616714b3a6ff3",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/133//#testresult/a5f616714b3a6ff3",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727226943590,
+          "stop" : 1727226968029,
+          "duration" : 24439
+        }
+      }, {
+        "uid" : "767a669ecd75c3c4",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/289//#testresult/767a669ecd75c3c4",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727173592058,
+          "stop" : 1727173714955,
+          "duration" : 122897
+        }
+      }, {
+        "uid" : "1bb82bd18df0077e",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/288//#testresult/1bb82bd18df0077e",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727171655347,
+          "stop" : 1727171693854,
+          "duration" : 38507
+        }
+      }, {
+        "uid" : "1d1f4a688e4cf29",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/288//#testresult/1d1f4a688e4cf29",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727169054592,
+          "stop" : 1727169078877,
+          "duration" : 24285
+        }
+      }, {
+        "uid" : "a3f3e84d994569c9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/288//#testresult/a3f3e84d994569c9",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727166320799,
+          "stop" : 1727166491243,
+          "duration" : 170444
+        }
+      }, {
+        "uid" : "83d418bc7c6fe2bc",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/288//#testresult/83d418bc7c6fe2bc",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727164630683,
+          "stop" : 1727164662348,
+          "duration" : 31665
+        }
+      }, {
+        "uid" : "3290917d79c5a397",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/132//#testresult/3290917d79c5a397",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727140268053,
+          "stop" : 1727140288101,
+          "duration" : 20048
+        }
+      }, {
+        "uid" : "d3fe115870431ab5",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/287//#testresult/d3fe115870431ab5",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727085568126,
+          "stop" : 1727085590228,
+          "duration" : 22102
+        }
+      }, {
+        "uid" : "5b3883e3de91535f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/286//#testresult/5b3883e3de91535f",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//h3[@class=\"mt-6 mb-6 text-2xl font-semibold\"]')\nStacktrace:\n#0 0x55678d9292da <unknown>\n#1 0x55678d5f7200 <unknown>\n#2 0x55678d646aa2 <unknown>\n#3 0x55678d646d41 <unknown>\n#4 0x55678d68c964 <unknown>\n#5 0x55678d66b8fd <unknown>\n#6 0x55678d689dfd <unknown>\n#7 0x55678d66b673 <unknown>\n#8 0x55678d639473 <unknown>\n#9 0x55678d63a47e <unknown>\n#10 0x55678d8f00db <unknown>\n#11 0x55678d8f4071 <unknown>\n#12 0x55678d8dc9d5 <unknown>\n#13 0x55678d8f4bf2 <unknown>\n#14 0x55678d8c1b6f <unknown>\n#15 0x55678d918248 <unknown>\n#16 0x55678d918417 <unknown>\n#17 0x55678d9280cc <unknown>\n#18 0x7f1860094ac3 <unknown>",
+        "time" : {
+          "start" : 1727084109830,
+          "stop" : 1727084319194,
+          "duration" : 209364
+        }
+      }, {
+        "uid" : "68d7bd3c82649907",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/131//#testresult/68d7bd3c82649907",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727053985977,
+          "stop" : 1727054011311,
+          "duration" : 25334
+        }
+      }, {
+        "uid" : "902ec3010579108b",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/285//#testresult/902ec3010579108b",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1726998853073,
+          "stop" : 1726998878335,
+          "duration" : 25262
+        }
+      }, {
+        "uid" : "797f22a357474ebd",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/284//#testresult/797f22a357474ebd",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1726997228459,
+          "stop" : 1726997361246,
+          "duration" : 132787
+        }
+      }, {
+        "uid" : "e1a008a6d029ca77",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/284//#testresult/e1a008a6d029ca77",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1726995871827,
+          "stop" : 1726995895795,
+          "duration" : 23968
+        }
+      }, {
+        "uid" : "ef9dd64b8dad4192",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/130//#testresult/ef9dd64b8dad4192",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1726967726234,
+          "stop" : 1726967747779,
+          "duration" : 21545
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail" ]
+  },
+  "source" : "918abf57e84a80ce.json",
+  "parameterValues" : [ ]
+}
