@@ -354,6 +354,6 @@ class TestHeaderPage:
                on the Start Authorized Page""")
             def test_hpa_03_07_verify_auth_user_logout_by_logout_button_click(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
-                button_click = page.check_user_logout()
+                button_click = page.check_auth_user_logout()
                 assert button_click in HeaderData.titles_text_unauth, \
                     "A user is authorized after clicking the 'Logout' button"
