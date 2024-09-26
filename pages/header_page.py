@@ -435,6 +435,16 @@ class HeaderPage(BasePage):
         self.click_on_en_button()
         return self.element_is_present(self.locators2.START_AUTHORIZED_PAGE_TITLE).text
 
+    @allure.step("Click on the 'Logout' button in the Header for an authorized user")
+    def click_logout_button_auth(self):
+        self.check_logout_button_presence().click()
+
+    @allure.step("Check for user logout after clicking on the button 'Logout' in the Header for an authorized user")
+    def check_user_logout(self):
+        start_element = self.element_is_present(self.locators2.START_AUTHORIZED_PAGE_TITLE).text
+        self.click_logout_button_auth()
+        return self.element_is_present(self.locators2.START_UNAUTHORIZED_PAGE_TITLE).text
+
     # Checking images in the Header
     @allure.step("Check if the 'Logo' image is present")
     def check_logo_image_presence(self):

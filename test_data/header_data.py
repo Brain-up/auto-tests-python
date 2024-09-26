@@ -33,6 +33,7 @@ class HeaderData:
 
     title_text_ru_unauth = "Преимущества"
     title_text_en_unauth = "Advantages"
+    titles_text_unauth = ["Преимущества", "Advantages"]
 
     title_text_ru_auth = "Давайте выберем, какие упражнения будем делать сегодня?"
     title_text_en_auth = "Let's choose what exercises we do today?"
