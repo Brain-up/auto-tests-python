@@ -1,4 +1,6 @@
 """Methods for verifying web elements on the 'Contributors' page"""
+import time
+
 import allure
 import requests
 from pages.base_page import BasePage
@@ -88,6 +90,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get the list of descriptions in cards on the 4th level of nesting on the page")
     def get_list_of_card_descriptions(self):
+        time.sleep(1)
         return self.elements_are_present(self.locators.CARD_DESCRIPTIONS)
 
     @allure.step("Check descriptions in cards are visible")
@@ -133,6 +136,7 @@ class ContributorsPage(BasePage):
         full, empty = [], []
         for i in range(len(values)):
             full.append(values[i]) if values[i] else empty.append(values[i])
+        print(len(full), len(empty))
         return len(full) + len(empty)
 
     @allure.step("Check text in links in cards")
@@ -141,11 +145,12 @@ class ContributorsPage(BasePage):
         full, empty = [], []
         for i in range(len(values)):
             full.append(values[i]) if values[i] else empty.append(values[i])
+        print(len(full), len(empty))
         return len(full) + len(empty)
 
     @allure.step("Get text in the 'All Team' link")
     def get_text_in_all_team_link(self):
-        return self.get_text(self.locators.ALL_TEAM_LINK)
+        return self.element_is_present(self.locators.ALL_TEAM_LINK).text
 
     # Checking links on the page
     @allure.step("Check if links on the page are clickable")
