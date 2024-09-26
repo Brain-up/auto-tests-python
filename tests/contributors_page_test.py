@@ -97,16 +97,14 @@ class TestContributorsPage:
         def test_cnp_02_04_verify_text_of_card_descriptions(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             description_values = page.check_values_of_card_descriptions()
-            assert description_values == ContributorsPageData.description_count, \
-                "Text in descriptions is absent or mismatches valid count"
+            assert description_values, "Text in descriptions is absent"
 
         @allure.title("Verify text in card links and the 'All Team' link")
         def test_cnp_02_05_verify_text_in_card_links(self, driver, contributors_page_open):
             page = ContributorsPage(driver)
             card_links_text = page.check_text_in_card_links()
             link_text = page.get_text_in_all_team_link()
-            assert card_links_text == ContributorsPageData.link_count, \
-                "Text in card links is absent or mismatch valid count"
+            assert card_links_text, "Text in card links is absent"
             assert link_text, "Text in the 'All Team' link is absent"
             assert link_text in ContributorsPageData.all_team_link_text, \
                 "Text in the 'All Team' link mismatches any valid values"

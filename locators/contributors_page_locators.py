@@ -3,8 +3,10 @@ from selenium.webdriver.common.by import By
 
 
 class ContributorsPageLocators:
-    ALL_TEAM_LINK = (By.XPATH, "(//section//a)[67]")
-    CARD_DESCRIPTIONS = (By.CSS_SELECTOR, ".leading-5")
+    ALL_TEAM_LINK = (By.XPATH, "(//section//a)[68]")
+    ALL_LINKS = (By.XPATH, "//section//a")
+    # CARD_DESCRIPTIONS = (By.CSS_SELECTOR, ".leading-5")
+    CARD_DESCRIPTIONS = (By.XPATH, "//div[contains(@class, 'leading-5')]")
     CARD_IMAGES = (By.CSS_SELECTOR, ".team-member img")
     CARD_LINKS = (By.CSS_SELECTOR, "a.mb-1")
     CONTRIBUTOR_CARDS = (By.CSS_SELECTOR, ".team-member")

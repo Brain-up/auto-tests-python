@@ -2,8 +2,8 @@
 
 
 class ContributorsPageData:
-    description_count = 67
-    link_count = 66
+    description_count = 68
+    link_count = 67
 
     tab_title = ["Наша команда | BrainUp", "Contributors | BrainUp"]
 
