@@ -165,13 +165,14 @@ class TestHeaderPage:
                 assert text_en == HeaderData.title_text_en_unauth, \
                     "EN language isn't enabled after clicking the 'en' button"
 
-        class TestHeaderPageImages:
-            @allure.title("Verify presence, visibility and attributes of the image in the 'Logo' link")
-            def test_hp_04_01_verify_logo_image(self, driver, main_page_open):
+        class TestUnauthHeaderPageImages:
+            @allure.title("""Verify presence, visibility and attributes of the image in the 'Logo' link in the Header 
+               on the Start Unauthorized Page""")
+            def test_hpu_04_01_verify_unauth_logo_image(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                logo_image_presence = page.check_logo_image_presence()
-                logo_image_visibility = page.check_logo_image_visibility()
-                image_xmlns = page.get_xmlns_of_logo_image()
+                logo_image_presence = page.check_unauth_logo_image_presence()
+                logo_image_visibility = page.check_unauth_logo_image_visibility()
+                image_xmlns = page.get_xmlns_of_unauth_logo_image()
                 assert logo_image_presence, "An image in the 'Logo' link is absent on the page"
                 assert logo_image_visibility, "The 'Logo' image is invisible"
                 assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
@@ -357,3 +358,17 @@ class TestHeaderPage:
                 button_click = page.check_auth_user_logout()
                 assert button_click in HeaderData.titles_text_unauth, \
                     "A user is authorized after clicking the 'Logout' button"
+
+        class TestAuthHeaderPageImages:
+            @allure.title("""Verify presence, visibility and attributes of the image in the 'Logo' link in the Header 
+               on the Start Authorized Page""")
+            def test_hpa_04_01_verify_auth_logo_image(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                logo_image_presence = page.check_auth_logo_image_presence()
+                logo_image_visibility = page.check_auth_logo_image_visibility()
+                image_xmlns = page.get_xmlns_of_auth_logo_image()
+                assert logo_image_presence, "An image in the 'Logo' link is absent on the page"
+                assert logo_image_visibility, "The 'Logo' image is invisible"
+                assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
+                assert image_xmlns == HeaderData.logo_image_xmlns, \
+                    "The 'xmlns' attribute value of the 'Logo' image mismatches valid value"
