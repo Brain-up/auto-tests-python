@@ -7,7 +7,6 @@ class HeaderUnauthorizedLocators:
     HEADER_BUTTONS = (By.XPATH, "//button")
     HEADER_CONTENT = (By.XPATH, "//div[contains(@class, 'header')]")
     HEADER_LINKS_UNAUTH = (By.XPATH, "//nav//a")
-    HEADER_LINKS_AUTH = (By.XPATH, "//nav//a")
     HEADER_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*")
     HEADER_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*")
     HEADER_THIRD_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*/*")
@@ -36,7 +35,7 @@ class HeaderUnauthorizedLocators:
     # LINK_TELEGRAM = (By.XPATH, "//div[contains(@class, 'text-s')]/a[2]")
     # LINK_USED_RESOURCES = (By.XPATH, "//div[contains(@class, 'bottom')]/a[6]")
     LINKS2 = (By.XPATH, "//div[contains(@class, 'text-s')]/a")
-    LOGO_IMAGE = (By.XPATH, "//nav//*[name()='svg']")
+    LOGO_IMAGE_UNAUTH = (By.XPATH, "//nav//*[name()='svg']")
     LOGO_LINK = (By.XPATH, "//a[@data-test-logo]")
     LOGO_SECTION = (By.XPATH, "//nav/div")
     MORE_BUTTON = (By.ID, "other-menu")
@@ -47,9 +46,13 @@ class HeaderUnauthorizedLocators:
 
 
 class HeaderAuthorizedLocators:
+    HEADER_LINKS_AUTH = (By.XPATH, "//nav//a")
+    ICON_HEADPHONE = (By.XPATH, "(//nav//*[name()='svg'])[2]")
     LINK_PROFILE = (By.XPATH, "(//nav//a)[12]")
     LINK_TELEGRAM_AUTH = (By.XPATH, "(//nav//a)[5]")
+    LOGO_IMAGE_AUTH = (By.XPATH, "(//nav//*[name()='svg'])[1]")
     LOGOUT_BUTTON = (By.XPATH, "//button[@data-test-logout-button]")
+    LOGOUT_ICON = (By.XPATH, "(//nav//*[name()='svg'])[3]")
 
 
 class StartPagesLocators:

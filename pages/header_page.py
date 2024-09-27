@@ -94,7 +94,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user")
     def get_list_of_links_auth(self):
-        return self.elements_are_present(self.locators.HEADER_LINKS_AUTH)
+        return self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
 
     @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
                  for an unauthorized user""")
@@ -446,23 +446,35 @@ class HeaderPage(BasePage):
         return self.element_is_present(self.locators2.START_UNAUTHORIZED_PAGE_TITLE).text
 
     # Checking images in the Header
-    @allure.step("Check if the 'Logo' image is present")
-    def check_logo_image_presence(self):
-        return self.element_is_present(self.locators.LOGO_IMAGE)
+    @allure.step("Check if the 'Logo' image is present in the Header for an unauthorized user")
+    def check_unauth_logo_image_presence(self):
+        return self.element_is_present(self.locators.LOGO_IMAGE_UNAUTH)
 
-    @allure.step("Check if the 'Logo' image is visible")
-    def check_logo_image_visibility(self):
-        return self.element_is_visible(self.locators.LOGO_IMAGE)
+    @allure.step("Check if the 'Logo' image is present in the Header for an authorized user")
+    def check_auth_logo_image_presence(self):
+        return self.element_is_present(self.locators1.LOGO_IMAGE_AUTH)
 
-    @allure.step("Get attribute 'xmlns' of the 'Logo' image")
-    def get_xmlns_of_logo_image(self):
-        return self.element_is_present(self.locators.LOGO_IMAGE).get_attribute("xmlns")
+    @allure.step("Check if the 'Logo' image is visible in the Header for an unauthorized user")
+    def check_unauth_logo_image_visibility(self):
+        return self.element_is_visible(self.locators.LOGO_IMAGE_UNAUTH)
 
-    @allure.step("Get size of the 'Logo' image")
+    @allure.step("Check if the 'Logo' image is visible in the Header for an authorized user")
+    def check_auth_logo_image_visibility(self):
+        return self.element_is_visible(self.locators1.LOGO_IMAGE_AUTH)
+
+    @allure.step("Get attribute 'xmlns' of the 'Logo' image in the Header for an unauthorized user")
+    def get_xmlns_of_unauth_logo_image(self):
+        return self.element_is_present(self.locators.LOGO_IMAGE_UNAUTH).get_attribute("xmlns")
+
+    @allure.step("Get attribute 'xmlns' of the 'Logo' image in the Header for an authorized user")
+    def get_xmlns_of_auth_logo_image(self):
+        return self.element_is_present(self.locators1.LOGO_IMAGE_AUTH).get_attribute("xmlns")
+
+    @allure.step("Get size of the 'Logo' image in the Header for an unauthorized user")
     def get_size_of_logo_image(self):
-        return self.get_image_size(self.locators.LOGO_IMAGE)
+        return self.get_image_size(self.locators.LOGO_IMAGE_UNAUTH)
 
-    @allure.step("""Check if size of the 'Logo' image changes after resizing""")
+    @allure.step("Check if size of the 'Logo' image changes after resizing in the Header for an unauthorized user")
     def check_size_changes_of_logo_image(self):
         image_size_before = self.get_size_of_logo_image()
         self.driver.set_window_size(220, 1100)
