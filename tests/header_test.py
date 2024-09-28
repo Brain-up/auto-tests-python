@@ -179,11 +179,11 @@ class TestHeaderPage:
                 assert image_xmlns == HeaderData.logo_image_xmlns, \
                     "The 'xmlns' attribute value of the 'Logo' image mismatches valid value"
 
-            @allure.title("Verify size of the image in the 'Logo' link")
-            def test_hp_04_02_verify_logo_image_size(self, driver, main_page_open):
+            @allure.title("Verify size of the image in the 'Logo' link in the Header on the Start Unauthorized Page")
+            def test_hpu_04_02_verify_unauth_logo_image_size(self, driver, main_page_open):
                 page = HeaderPage(driver)
-                image_size = page.get_size_of_logo_image()
-                image_size_change = page.check_size_changes_of_logo_image()
+                image_size = page.get_size_of_unauth_logo_image()
+                image_size_change = page.check_size_changes_of_unauth_logo_image()
                 assert image_size != 0, f"The image in the 'Logo' image has not size"
                 assert image_size_change, "The 'Logo' image size is changed"
 
@@ -372,3 +372,11 @@ class TestHeaderPage:
                 assert image_xmlns, "The 'xmlns' attribute value of the 'Logo' image is empty"
                 assert image_xmlns == HeaderData.logo_image_xmlns, \
                     "The 'xmlns' attribute value of the 'Logo' image mismatches valid value"
+
+            @allure.title("Verify size of the image in the 'Logo' link in the Header on the Start Authorized Page")
+            def test_hpa_04_02_verify_auth_logo_image_size(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                image_size = page.get_size_of_auth_logo_image()
+                image_size_change = page.check_size_changes_of_auth_logo_image()
+                assert image_size != 0, f"The image in the 'Logo' image has not size"
+                assert image_size_change, "The 'Logo' image size is changed"
