@@ -471,14 +471,27 @@ class HeaderPage(BasePage):
         return self.element_is_present(self.locators1.LOGO_IMAGE_AUTH).get_attribute("xmlns")
 
     @allure.step("Get size of the 'Logo' image in the Header for an unauthorized user")
-    def get_size_of_logo_image(self):
+    def get_size_of_unauth_logo_image(self):
         return self.get_image_size(self.locators.LOGO_IMAGE_UNAUTH)
 
+    @allure.step("Get size of the 'Logo' image in the Header for an authorized user")
+    def get_size_of_auth_logo_image(self):
+        return self.get_image_size(self.locators1.LOGO_IMAGE_AUTH)
+
     @allure.step("Check if size of the 'Logo' image changes after resizing in the Header for an unauthorized user")
-    def check_size_changes_of_logo_image(self):
-        image_size_before = self.get_size_of_logo_image()
+    def check_size_changes_of_unauth_logo_image(self):
+        image_size_before = self.get_size_of_unauth_logo_image()
         self.driver.set_window_size(220, 1100)
-        image_size_after = self.get_size_of_logo_image()
+        image_size_after = self.get_size_of_unauth_logo_image()
+        changes = 1 if image_size_before == image_size_after else 0
+        print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
+        return changes
+
+    @allure.step("Check if size of the 'Logo' image changes after resizing in the Header for an authorized user")
+    def check_size_changes_of_auth_logo_image(self):
+        image_size_before = self.get_size_of_auth_logo_image()
+        self.driver.set_window_size(220, 1100)
+        image_size_after = self.get_size_of_auth_logo_image()
         changes = 1 if image_size_before == image_size_after else 0
         print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
         return changes
