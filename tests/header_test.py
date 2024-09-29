@@ -380,3 +380,16 @@ class TestHeaderPage:
                 image_size_change = page.check_size_changes_of_auth_logo_image()
                 assert image_size != 0, f"The image in the 'Logo' image has not size"
                 assert image_size_change, "The 'Logo' image size is changed"
+
+            @allure.title("Verify presence, visibility, attributes of icons in the Header on the Start Authorized Page")
+            def test_hpa_04_03_verify_auth_icons(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                icons_presence = page.get_list_of_auth_icons()
+                icons_visibility = page.check_auth_icons_visibility()
+                icons_xmlns = page.get_auth_icons_xmlns()
+                print(icons_xmlns)
+                assert icons_presence, "Icons in the Header are absent"
+                assert icons_visibility, "Icons in the Header are invisible"
+                assert icons_xmlns, "The 'xmlns' attribute value of icons in the Header are empty"
+                assert all(icon_xmlns == HeaderData.icons_xmlns for icon_xmlns in icons_xmlns), \
+                    "The 'xmlns' attribute value of some icons is empty or non-accurate"

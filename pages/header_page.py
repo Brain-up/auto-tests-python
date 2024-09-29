@@ -495,3 +495,16 @@ class HeaderPage(BasePage):
         changes = 1 if image_size_before == image_size_after else 0
         print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
         return changes
+
+    # Checking icons in the Header
+    @allure.step("Get the list of the 'Headphone' and 'Logout' icons in the Header for an authorized user")
+    def get_list_of_auth_icons(self):
+        return self.elements_are_present(self.locators1.HEADER_ICONS)[1:]
+
+    @allure.step("Check all icons are visible in the Header for an authorized user")
+    def check_auth_icons_visibility(self):
+        return all(icon.is_displayed() for icon in self.get_list_of_auth_icons())
+
+    @allure.step("Get attribute 'xmlns' of icons in the Header for an authorized user")
+    def get_auth_icons_xmlns(self):
+        return [icon.get_attribute('xmlns') for icon in self.get_list_of_auth_icons()]

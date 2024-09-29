@@ -98,4 +98,5 @@ class HeaderData:
         "https://brainup.site/"
     ]
 
+    icons_xmlns = "http://www.w3.org/2000/svg"
     logo_image_xmlns = "http://www.w3.org/2000/svg"
