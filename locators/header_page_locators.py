@@ -47,7 +47,8 @@ class HeaderUnauthorizedLocators:
 
 class HeaderAuthorizedLocators:
     HEADER_LINKS_AUTH = (By.XPATH, "//nav//a")
-    ICON_HEADPHONE = (By.XPATH, "(//nav//*[name()='svg'])[2]")
+    HEADER_ICONS = (By.XPATH, "//nav//*[name()='svg']")
+    HEADPHONE_ICON = (By.XPATH, "(//nav//*[name()='svg'])[2]")
     LINK_PROFILE = (By.XPATH, "(//nav//a)[12]")
     LINK_TELEGRAM_AUTH = (By.XPATH, "(//nav//a)[5]")
     LOGO_IMAGE_AUTH = (By.XPATH, "(//nav//*[name()='svg'])[1]")
