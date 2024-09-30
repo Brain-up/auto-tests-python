@@ -100,3 +100,6 @@ class HeaderData:
 
     icons_xmlns = "http://www.w3.org/2000/svg"
     logo_image_xmlns = "http://www.w3.org/2000/svg"
+
+    profile_avatar_src = "https://brainup.site/pictures/avatars/avatar%201.png"
+    profile_avatar_alt = "user avatar"

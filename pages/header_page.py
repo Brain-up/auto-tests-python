@@ -496,6 +496,22 @@ class HeaderPage(BasePage):
         print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
         return changes
 
+    @allure.step("Check if the profile avatar is present in the Header for an authorized user")
+    def check_auth_profile_avatar_presence(self):
+        return self.element_is_present(self.locators1.PROFILE_AVATAR)
+
+    @allure.step("Check if the profile avatar is visible in the Header for an authorized user")
+    def check_auth_profile_avatar_visibility(self):
+        return self.element_is_visible(self.locators1.PROFILE_AVATAR)
+
+    @allure.step("Get attribute 'src' of the profile avatar in the Header for an authorized user")
+    def get_src_of_auth_profile_avatar(self):
+        return self.element_is_present(self.locators1.PROFILE_AVATAR).get_attribute("src")
+
+    @allure.step("Get attribute 'alt' of the profile avatar in the Header for an authorized user")
+    def get_alt_of_auth_profile_avatar(self):
+        return self.element_is_present(self.locators1.PROFILE_AVATAR).get_attribute("alt")
+
     # Checking icons in the Header
     @allure.step("Get the list of the 'Headphone' and 'Logout' icons in the Header for an authorized user")
     def get_list_of_auth_icons(self):
