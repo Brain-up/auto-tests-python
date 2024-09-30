@@ -393,3 +393,20 @@ class TestHeaderPage:
                 assert icons_xmlns, "The 'xmlns' attribute value of icons in the Header are empty"
                 assert all(icon_xmlns == HeaderData.icons_xmlns for icon_xmlns in icons_xmlns), \
                     "The 'xmlns' attribute value of some icons is empty or non-accurate"
+
+            @allure.title("""Verify presence, visibility and attributes of the profile avatar in the Header 
+               on the Start Authorized Page""")
+            def test_hpa_04_04_verify_auth_profile_avatar(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                profile_avatar_presence = page.check_auth_profile_avatar_presence()
+                profile_avatar_visibility = page.check_auth_profile_avatar_visibility()
+                profile_avatar_src = page.get_src_of_auth_profile_avatar()
+                profile_avatar_alt = page.get_alt_of_auth_profile_avatar()
+                assert profile_avatar_presence, "The profile avatar is absent on the page"
+                assert profile_avatar_visibility, "The profile avatar is invisible"
+                assert profile_avatar_src, "The 'src' attribute value of the profile avatar is empty"
+                assert profile_avatar_src == HeaderData.profile_avatar_src, \
+                    "The 'src' attribute value of the profile avatar mismatches the valid value"
+                assert profile_avatar_alt, "The 'alt' attribute value of the profile avatar is empty"
+                assert profile_avatar_alt == HeaderData.profile_avatar_alt, \
+                    "The 'alt' attribute value of the profile avatar mismatches the valid value"
