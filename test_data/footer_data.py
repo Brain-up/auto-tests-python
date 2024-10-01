@@ -38,5 +38,6 @@ class FooterData:
         "https://www.epam.com/", "https://epam.com/",
         "https://www.jetbrains.com/",
         "https://www.reg.ru/", "https://reg.ru/",
+        "https://www.reg.ru/?utm_source=brainup.site&utm_medium=referral&utm_campaign=brainup.site&utm_referrer=brainup.site",
         "https://selectel.ru/"
     ]
