@@ -278,6 +278,14 @@ class HeaderPage(BasePage):
     def check_logout_button_visibility(self):
         return self.element_is_visible(self.locators1.LOGOUT_BUTTON)
 
+    @allure.step("Check the user name is present in the Header for an authorized user")
+    def check_user_name_presence(self):
+        return self.element_is_present(self.locators1.USER_NAME)
+
+    @allure.step("Check the user name is visible for an authorized user")
+    def check_user_name_visibility(self):
+        return self.element_is_visible(self.locators1.USER_NAME)
+
     # Checks of text in the Header
     @allure.step("Get text in the 'About', 'Telegram', 'Registration' links in the Header for an unauthorized user")
     def get_text_in_direct_links_unauth(self):

@@ -55,6 +55,7 @@ class HeaderAuthorizedLocators:
     LOGOUT_BUTTON = (By.XPATH, "//button[@data-test-logout-button]")
     LOGOUT_ICON = (By.XPATH, "(//nav//*[name()='svg'])[3]")
     PROFILE_AVATAR = (By.XPATH, "//div/img")
+    USER_NAME = (By.XPATH, "//a//p")
 
 
 class StartPagesLocators:

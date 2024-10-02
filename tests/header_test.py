@@ -284,6 +284,14 @@ class TestHeaderPage:
                 assert all(button_text in HeaderData.ru_en_buttons_text for button_text in ru_en_buttons_text), \
                     "Text in 'ru-en' buttons mismatches valid values"
 
+            @allure.title("Verify presence, visibility of the user name in the Header for an authorized user")
+            def test_hpa_02_02_verify_auth_user_name(self, driver, auto_test_user_authorized):
+                page = HeaderPage(driver)
+                user_name_presence = page.check_user_name_presence()
+                user_name_visibility = page.check_user_name_visibility()
+                assert user_name_presence, "The user name is absent on the page"
+                assert user_name_visibility, "The user name is invisible"
+
         class TestAuthHeaderPageLinks:
             @allure.title("Verify clickability, href, status code of links in the Header for an authorized user")
             def test_hpa_03_01_verify_auth_header_links(self, driver, auto_test_user_authorized):
@@ -335,13 +343,13 @@ class TestHeaderPage:
                     "'Logo' link in the Header leads to some page after clicking"
 
             @allure.title("""Verify the dropdown opens/closes after clicking on the 'More' button in the Header 
-               on the Start Authorized Page""")
+               for an authorized user""")
             def test_hpa_03_05_verify_auth_more_button_click(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 button_click = page.check_dropdown_opens_and_closes()
                 assert button_click, "The dropdown isn't open/closed after clicking the 'More' button"
 
-            @allure.title("Verify switching of the 'ru', 'en' buttons in the Header on the Start Authorized Page")
+            @allure.title("Verify switching of the 'ru', 'en' buttons in the Header for an authorized user")
             def test_hpa_03_06_verify_auth_ru_en_buttons_switching(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 text_ru = page.check_language_change_ru_auth()
@@ -351,8 +359,7 @@ class TestHeaderPage:
                 assert text_en == HeaderData.title_text_en_auth, \
                     "EN language isn't enabled after clicking the 'en' button"
 
-            @allure.title("""Verify user logout after clicking on the 'Logout' button in the Header 
-               on the Start Authorized Page""")
+            @allure.title("Verify user logout after clicking the 'Logout' button in the Header for an authorized user")
             def test_hpa_03_07_verify_auth_user_logout_by_logout_button_click(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 button_click = page.check_auth_user_logout()
@@ -361,7 +368,7 @@ class TestHeaderPage:
 
         class TestAuthHeaderPageImages:
             @allure.title("""Verify presence, visibility and attributes of the image in the 'Logo' link in the Header 
-               on the Start Authorized Page""")
+               for an authorized user""")
             def test_hpa_04_01_verify_auth_logo_image(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 logo_image_presence = page.check_auth_logo_image_presence()
@@ -373,7 +380,7 @@ class TestHeaderPage:
                 assert image_xmlns == HeaderData.logo_image_xmlns, \
                     "The 'xmlns' attribute value of the 'Logo' image mismatches valid value"
 
-            @allure.title("Verify size of the image in the 'Logo' link in the Header on the Start Authorized Page")
+            @allure.title("Verify size of the image in the 'Logo' link in the Header for an authorized user")
             def test_hpa_04_02_verify_auth_logo_image_size(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 image_size = page.get_size_of_auth_logo_image()
@@ -381,7 +388,7 @@ class TestHeaderPage:
                 assert image_size != 0, f"The image in the 'Logo' image has not size"
                 assert image_size_change, "The 'Logo' image size is changed"
 
-            @allure.title("Verify presence, visibility, attributes of icons in the Header on the Start Authorized Page")
+            @allure.title("Verify presence, visibility, attributes of icons in the Header for an authorized user")
             def test_hpa_04_03_verify_auth_icons(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 icons_presence = page.get_list_of_auth_icons()
@@ -395,7 +402,7 @@ class TestHeaderPage:
                     "The 'xmlns' attribute value of some icons is empty or non-accurate"
 
             @allure.title("""Verify presence, visibility and attributes of the profile avatar in the Header 
-               on the Start Authorized Page""")
+               for an authorized user""")
             def test_hpa_04_04_verify_auth_profile_avatar(self, driver, auto_test_user_authorized):
                 page = HeaderPage(driver)
                 profile_avatar_presence = page.check_auth_profile_avatar_presence()
