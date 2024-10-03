@@ -23,10 +23,9 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting in the Header")
     def get_structure_of_1st_level(self):
-        elements = self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(tags)
-        return elements
+        # elements = self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 1st level of nesting are visible")
     def check_elements_visibility_on_1st_level_in_header(self):
@@ -34,10 +33,8 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 2nd level of nesting the Header")
     def get_structure_of_2nd_level(self):
-        elements = self.elements_are_present(self.locators.HEADER_SECOND_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.HEADER_SECOND_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
     def check_elements_visibility_on_2nd_level_in_header(self):
@@ -46,9 +43,7 @@ class HeaderPage(BasePage):
     @allure.step("Get structure of the 3rd level of nesting the Header")
     def get_structure_of_3rd_level(self):
         time.sleep(5)
-        elements = self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(tags)
+        # tags = [element.tag_name for element in elements]
         return self.elements_are_present(self.locators.HEADER_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements on the 3rd level of nesting are visible")
@@ -57,10 +52,8 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 4th level of nesting the Header")
     def get_structure_of_4th_level(self):
-        elements = self.elements_are_present(self.locators.HEADER_FOURTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.HEADER_FOURTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements on the 4th level of nesting are visible")
     def check_elements_visibility_on_4th_level_in_header(self):
@@ -68,10 +61,8 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 5th level of nesting the Header")
     def get_structure_of_5th_level(self):
-        elements = self.elements_are_present(self.locators.HEADER_FIFTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.HEADER_FIFTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements on the 5th level of nesting are visible")
     def check_elements_visibility_on_5th_level_in_header(self):
@@ -79,10 +70,8 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 6th level of nesting the Header")
     def get_structure_of_6th_level(self):
-        elements = self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.HEADER_SIXTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements on the 6th level of nesting are invisible")
     def check_elements_invisibility_on_6th_level_in_header(self):
@@ -354,7 +343,6 @@ class HeaderPage(BasePage):
             link.click()
             time.sleep(1)
             opened_pages.append(self.get_current_tab_url())
-        print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
@@ -373,7 +361,6 @@ class HeaderPage(BasePage):
             link.click()
             time.sleep(1)
             opened_pages.append(self.get_current_tab_url())
-        print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
@@ -389,7 +376,6 @@ class HeaderPage(BasePage):
         for i in range(1, len(new_tabs) + 2):
             self.driver.switch_to.window(self.driver.window_handles[i])
             opened_pages.append(self.get_current_tab_url())
-        print('\n', *opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on the 'Logo' link for every user")
@@ -492,7 +478,7 @@ class HeaderPage(BasePage):
         self.driver.set_window_size(220, 1100)
         image_size_after = self.get_size_of_unauth_logo_image()
         changes = 1 if image_size_before == image_size_after else 0
-        print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
+        # print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
         return changes
 
     @allure.step("Check if size of the 'Logo' image changes after resizing in the Header for an authorized user")
@@ -501,7 +487,7 @@ class HeaderPage(BasePage):
         self.driver.set_window_size(220, 1100)
         image_size_after = self.get_size_of_auth_logo_image()
         changes = 1 if image_size_before == image_size_after else 0
-        print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
+        # print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
         return changes
 
     @allure.step("Check if the profile avatar is present in the Header for an authorized user")
