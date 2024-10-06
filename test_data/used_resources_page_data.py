@@ -2,7 +2,7 @@
 
 
 class UsedResourcesPageData:
-    tab_title_current = "Brn"
+    tab_title_current = ["Brn", "BrainUp"]
     tab_title_expected = ["Используемые ресурсы | BrainUp", "Used Resources | BrainUp"]
 
     page_title = ["Используемые ресурсы", "Used Resources"]

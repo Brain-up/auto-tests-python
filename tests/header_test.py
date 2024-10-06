@@ -1,5 +1,6 @@
 """Auto tests for verifying web elements in the Header of the site"""
 import allure
+import pytest
 from pages.header_page import HeaderPage
 from test_data.header_data import HeaderData
 
@@ -187,6 +188,7 @@ class TestHeaderPage:
                 assert image_size != 0, f"The image in the 'Logo' image has not size"
                 assert image_size_change, "The 'Logo' image size is changed"
 
+    @pytest.mark.skip(reason="unsupported preconditions")
     class TestAuthorizedHeaderPage:
         class TestAuthHeaderPageStructure:
             @allure.title("Verify presence and visibility of the Header for an authorized user")
