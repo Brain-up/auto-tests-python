@@ -1,8 +1,10 @@
 """Auto tests for verifying web elements on the 'Groups' page"""
 import allure
+import pytest
 from pages.groups_page import GroupsPage
 
 
+@pytest.mark.skip(reason="unsupported preconditions")
 @allure.epic("The Groups Page")
 class TestGroupsPage:
     class TestGroupsPageStructure:

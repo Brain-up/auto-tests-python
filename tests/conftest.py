@@ -61,6 +61,15 @@ def specialists_page_open(driver, main_page_open):
 
 
 @pytest.fixture()
+@allure.step(f'Open page: {MainPageLinks.URL_USED_RESOURCES_PAGE}')
+def used_resources_page_open(driver, main_page_open):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.MORE_BUTTON).click()
+    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.LINK_USED_RESOURCES).click()
+    time.sleep(1)
+
+
+@pytest.fixture()
 @allure.step('Auto test user authorized')
 def auto_test_user_authorized(driver, main_page_open):
     page = BasePage(driver)

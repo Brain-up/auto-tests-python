@@ -2,16 +2,11 @@
 import allure
 import requests
 from pages.base_page import BasePage
-from test_data.links import MainPageLinks
 from locators.used_resources_page_locators import UsedResourcesPageLocators
 
 
 class UsedResourcesPage(BasePage):
     locators = UsedResourcesPageLocators
-
-    @allure.step("Open the 'Used resources' page")
-    def open_used_resources_page(self):
-        self.driver.get(MainPageLinks.URL_USED_RESOURCES_PAGE)
 
     # Checking the structure and display of elements on the page
     @allure.step("Check if some content is present in DOM")
