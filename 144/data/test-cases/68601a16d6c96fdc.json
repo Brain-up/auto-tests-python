@@ -1,0 +1,667 @@
+{
+  "uid" : "68601a16d6c96fdc",
+  "name" : "Select a random card from \"Similar phrases\" group and compare UI vs BACKEND data",
+  "fullName" : "tests.test_speech_exercises_en.TestCardsEN#test_random_cards_in_similar_phrases_en",
+  "historyId" : "106afe14e1824ad4b55b346a52794d4b",
+  "time" : {
+    "start" : 1728177182174,
+    "stop" : 1728177206884,
+    "duration" : 24710
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nKeyError: 5",
+  "statusTrace" : "self = <tests.test_speech_exercises_en.TestCardsEN object at 0x7fad59156690>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"db0d9c76331293e1cb222aae6f6168d6\")>\nspecialist_user_authorized = None\n\n    @pytest.mark.xfail\n    @allure.suite(\"Speech exercises EN.\")\n    @allure.title('Select a random card from \"Similar phrases\" group and compare UI vs BACKEND data')\n    def test_random_cards_in_similar_phrases_en(self, driver, specialist_user_authorized):\n        page = SpeechExercisesPage(driver)\n        page.select_group(SpeechExercisesPageLocators.SIMILAR_PHRASES_EN)\n        seria_id = page.set_url_to_get_id_similar_phrase_group()\n        card_id = page.click_random_sub_group_in_similar_phrases()\n    \n        page = SpeechExercisesAPI(driver)\n>       random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)\n\ntests/test_speech_exercises_en.py:62: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncard_id = 5, seria_id = '10'\n\n    @staticmethod\n    @allure.step('get_random_id_from_list_sub_group')\n    def get_random_id_from_list_sub_group(card_id, seria_id):\n        print('Card_id is:', card_id)\n        print('Seria_id is:', seria_id)\n        list_cards_id = requests.get(f'https://brainup.site/api/subgroups?seriesId={seria_id}',\n                                     headers={'Content-Type': 'application/json',\n                                              'Authorization': 'Bearer {}'.format(id_token)})\n        with allure.step(f'Status code is: {list_cards_id.status_code}'):\n            pass\n        with allure.step(\n                f'Send GET request with params: '\n                f'https://brainup.site/api/subgroups?seriesId={seria_id} '\n                f'headers=\"Content-Type\": \"application/json\",\"Authorization\": \"Bearer\": \"{{id_token}}\"'):\n            pass\n        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):\n            pass\n        result_get = json.loads(list_cards_id.text)\n>       id_number = random.choice(result_get['data'][card_id]['exercises'])\nE       KeyError: 5\n\npages/speech_exercises_page_api.py:44: KeyError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "specialist_user_authorized",
+    "time" : {
+      "start" : 1728177179231,
+      "stop" : 1728177182174,
+      "duration" : 2943
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "USER specialist authorized",
+      "time" : {
+        "start" : 1728177179231,
+        "stop" : 1728177182174,
+        "duration" : 2943
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check url is present: https://brainup.site/groups",
+        "time" : {
+          "start" : 1728177179622,
+          "stop" : 1728177182147,
+          "duration" : 2525
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Loader checking",
+        "time" : {
+          "start" : 1728177182147,
+          "stop" : 1728177182174,
+          "duration" : 27
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"db0d9c76331293e1cb222aae6f6168d6\")>"
+      }, {
+        "name" : "main_page_open",
+        "value" : "None"
+      } ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1728177176174,
+      "stop" : 1728177179231,
+      "duration" : 3057
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1728177176174,
+        "stop" : 1728177179231,
+        "duration" : 3057
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"db0d9c76331293e1cb222aae6f6168d6\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1728176400346,
+      "stop" : 1728176400346,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1728177175403,
+      "stop" : 1728177176173,
+      "duration" : 770
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nKeyError: 5",
+    "statusTrace" : "self = <tests.test_speech_exercises_en.TestCardsEN object at 0x7fad59156690>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"db0d9c76331293e1cb222aae6f6168d6\")>\nspecialist_user_authorized = None\n\n    @pytest.mark.xfail\n    @allure.suite(\"Speech exercises EN.\")\n    @allure.title('Select a random card from \"Similar phrases\" group and compare UI vs BACKEND data')\n    def test_random_cards_in_similar_phrases_en(self, driver, specialist_user_authorized):\n        page = SpeechExercisesPage(driver)\n        page.select_group(SpeechExercisesPageLocators.SIMILAR_PHRASES_EN)\n        seria_id = page.set_url_to_get_id_similar_phrase_group()\n        card_id = page.click_random_sub_group_in_similar_phrases()\n    \n        page = SpeechExercisesAPI(driver)\n>       random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)\n\ntests/test_speech_exercises_en.py:62: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncard_id = 5, seria_id = '10'\n\n    @staticmethod\n    @allure.step('get_random_id_from_list_sub_group')\n    def get_random_id_from_list_sub_group(card_id, seria_id):\n        print('Card_id is:', card_id)\n        print('Seria_id is:', seria_id)\n        list_cards_id = requests.get(f'https://brainup.site/api/subgroups?seriesId={seria_id}',\n                                     headers={'Content-Type': 'application/json',\n                                              'Authorization': 'Bearer {}'.format(id_token)})\n        with allure.step(f'Status code is: {list_cards_id.status_code}'):\n            pass\n        with allure.step(\n                f'Send GET request with params: '\n                f'https://brainup.site/api/subgroups?seriesId={seria_id} '\n                f'headers=\"Content-Type\": \"application/json\",\"Authorization\": \"Bearer\": \"{{id_token}}\"'):\n            pass\n        with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):\n            pass\n        result_get = json.loads(list_cards_id.text)\n>       id_number = random.choice(result_get['data'][card_id]['exercises'])\nE       KeyError: 5\n\npages/speech_exercises_page_api.py:44: KeyError",
+    "steps" : [ {
+      "name" : "select_group",
+      "time" : {
+        "start" : 1728177182175,
+        "stop" : 1728177184478,
+        "duration" : 2303
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Select Russian language. Click \"EN\" button.",
+        "time" : {
+          "start" : 1728177182175,
+          "stop" : 1728177182238,
+          "duration" : 63
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"SPEECH EXERCISES\".",
+        "time" : {
+          "start" : 1728177182238,
+          "stop" : 1728177182299,
+          "duration" : 61
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"SIMILAR PHRASES\".",
+        "time" : {
+          "start" : 1728177184421,
+          "stop" : 1728177184478,
+          "duration" : 57
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "selector_for_sub_group",
+        "value" : "('xpath', '//button[@data-test-active-link=\"Similar phrases\"]')"
+      } ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Get seria ID from URL: https://brainup.site/groups/4/series/10",
+      "time" : {
+        "start" : 1728177184479,
+        "stop" : 1728177184485,
+        "duration" : 6
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Wait until url to be: https://brainup.site/groups/4/series/10.",
+        "time" : {
+          "start" : 1728177184479,
+          "stop" : 1728177184482,
+          "duration" : 3
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "click_random_sub_group_in_similar_phrases",
+      "time" : {
+        "start" : 1728177184485,
+        "stop" : 1728177184590,
+        "duration" : 105
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Wait until cards is present.",
+        "time" : {
+          "start" : 1728177184485,
+          "stop" : 1728177184494,
+          "duration" : 9
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Getting list cards: ['Phrases with different length', 'Phrases with `no`', 'Similar phrases', 'Phrases with different end', 'Short words', 'Prepositions']",
+        "time" : {
+          "start" : 1728177184538,
+          "stop" : 1728177184538,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list of cards. \nCard ID in list is:, 6",
+        "time" : {
+          "start" : 1728177184538,
+          "stop" : 1728177184538,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Selected card is: Prepositions",
+        "time" : {
+          "start" : 1728177184549,
+          "stop" : 1728177184584,
+          "duration" : 35
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "get_random_id_from_list_sub_group",
+      "time" : {
+        "start" : 1728177184591,
+        "stop" : 1728177206883,
+        "duration" : 22292
+      },
+      "status" : "broken",
+      "statusMessage" : "KeyError: 5\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/speech_exercises_page_api.py\", line 44, in get_random_id_from_list_sub_group\n    id_number = random.choice(result_get['data'][card_id]['exercises'])\n                              ~~~~~~~~~~~~~~~~~~^^^^^^^^^\n",
+      "steps" : [ {
+        "name" : "Status code is: 403",
+        "time" : {
+          "start" : 1728177206883,
+          "stop" : 1728177206883,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Send GET request with params: https://brainup.site/api/subgroups?seriesId=10 headers=\"Content-Type\": \"application/json\",\"Authorization\": \"Bearer\": \"{id_token}\"",
+        "time" : {
+          "start" : 1728177206883,
+          "stop" : 1728177206883,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Getting list of cards id: {'data': {}, 'errors': ['Доступ запрещен'], 'meta': []}",
+        "time" : {
+          "start" : 1728177206883,
+          "stop" : 1728177206883,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "card_id",
+        "value" : "5"
+      }, {
+        "name" : "seria_id",
+        "value" : "'10'"
+      } ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 15,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1728177206922,
+      "stop" : 1728177207011,
+      "duration" : 89
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Speech exercises."
+  }, {
+    "name" : "suite",
+    "value" : "Speech exercises EN."
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCardsEN"
+  }, {
+    "name" : "host",
+    "value" : "fv-az692-231"
+  }, {
+    "name" : "thread",
+    "value" : "2356-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_speech_exercises_en"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 32,
+        "passed" : 449,
+        "unknown" : 0,
+        "total" : 481
+      },
+      "items" : [ {
+        "uid" : "c2bf052da6c23483",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/311//#testresult/c2bf052da6c23483",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1728117811758,
+          "stop" : 1728117820958,
+          "duration" : 9200
+        }
+      }, {
+        "uid" : "6dfe5b48a5326f90",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/310//#testresult/6dfe5b48a5326f90",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator https://brainup.site/groups",
+        "time" : {
+          "start" : 1728109178326,
+          "stop" : 1728109178326,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "39fd576508ee68b0",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/143//#testresult/39fd576508ee68b0",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1728090444588,
+          "stop" : 1728090453753,
+          "duration" : 9165
+        }
+      }, {
+        "uid" : "88c6f32ab9fd6495",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/142//#testresult/88c6f32ab9fd6495",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1728004071104,
+          "stop" : 1728004080451,
+          "duration" : 9347
+        }
+      }, {
+        "uid" : "4ad5c3694e2dc0ae",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/309//#testresult/4ad5c3694e2dc0ae",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Url: https://brainup.site/groups/4/series/10/subgroup/111/exercise/3152 has not been changed!!!",
+        "time" : {
+          "start" : 1727945580732,
+          "stop" : 1727945607481,
+          "duration" : 26749
+        }
+      }, {
+        "uid" : "87febcf69f55d88a",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/308//#testresult/87febcf69f55d88a",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727943223647,
+          "stop" : 1727943247159,
+          "duration" : 23512
+        }
+      }, {
+        "uid" : "850eaee61730b6be",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/141//#testresult/850eaee61730b6be",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727917914313,
+          "stop" : 1727917963838,
+          "duration" : 49525
+        }
+      }, {
+        "uid" : "131b956f7fe2b026",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/307//#testresult/131b956f7fe2b026",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727865253872,
+          "stop" : 1727865319164,
+          "duration" : 65292
+        }
+      }, {
+        "uid" : "f5fa78d04b6eea10",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/306//#testresult/f5fa78d04b6eea10",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727863342451,
+          "stop" : 1727863360385,
+          "duration" : 17934
+        }
+      }, {
+        "uid" : "bd278428c4409256",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/306//#testresult/bd278428c4409256",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727861634862,
+          "stop" : 1727861680483,
+          "duration" : 45621
+        }
+      }, {
+        "uid" : "dbb4b02adde7a41",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/140//#testresult/dbb4b02adde7a41",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727831391948,
+          "stop" : 1727831441335,
+          "duration" : 49387
+        }
+      }, {
+        "uid" : "ee81d185af2e54dc",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/305//#testresult/ee81d185af2e54dc",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727776319996,
+          "stop" : 1727776355151,
+          "duration" : 35155
+        }
+      }, {
+        "uid" : "81d363cc2d2343b2",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/304//#testresult/81d363cc2d2343b2",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727773053991,
+          "stop" : 1727773064718,
+          "duration" : 10727
+        }
+      }, {
+        "uid" : "3dcec29b7c97b377",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/139//#testresult/3dcec29b7c97b377",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Url: https://brainup.site/groups/4/series/10/subgroup/111/exercise/3110 has not been changed!!!",
+        "time" : {
+          "start" : 1727745393846,
+          "stop" : 1727745420845,
+          "duration" : 26999
+        }
+      }, {
+        "uid" : "436ea6adfa6c4e45",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/303//#testresult/436ea6adfa6c4e45",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 0",
+        "time" : {
+          "start" : 1727686948417,
+          "stop" : 1727686967845,
+          "duration" : 19428
+        }
+      }, {
+        "uid" : "b6e1c3c04afcab41",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/302//#testresult/b6e1c3c04afcab41",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 1",
+        "time" : {
+          "start" : 1727684455978,
+          "stop" : 1727684477154,
+          "duration" : 21176
+        }
+      }, {
+        "uid" : "335348c06a1c72d5",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/302//#testresult/335348c06a1c72d5",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Url: https://brainup.site/groups/4/series/10/subgroup/110/exercise/3037 has not been changed!!!",
+        "time" : {
+          "start" : 1727682865039,
+          "stop" : 1727682918073,
+          "duration" : 53034
+        }
+      }, {
+        "uid" : "92c9fde568276853",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/138//#testresult/92c9fde568276853",
+        "status" : "passed",
+        "statusDetails" : "XPASS",
+        "time" : {
+          "start" : 1727658704701,
+          "stop" : 1727658715063,
+          "duration" : 10362
+        }
+      }, {
+        "uid" : "201fb1fe9387902d",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/301//#testresult/201fb1fe9387902d",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Url: https://brainup.site/groups/4/series/10/subgroup/110/exercise/3049 has not been changed!!!",
+        "time" : {
+          "start" : 1727598764420,
+          "stop" : 1727598790710,
+          "duration" : 26290
+        }
+      }, {
+        "uid" : "3a60a60c855c9d2c",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/300//#testresult/3a60a60c855c9d2c",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Url: https://brainup.site/groups/4/series/10/subgroup/109/exercise/2941 has not been changed!!!",
+        "time" : {
+          "start" : 1727596635299,
+          "stop" : 1727596662876,
+          "duration" : 27577
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail" ]
+  },
+  "source" : "68601a16d6c96fdc.json",
+  "parameterValues" : [ ]
+}
