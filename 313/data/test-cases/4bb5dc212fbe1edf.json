@@ -1,0 +1,544 @@
+{
+  "uid" : "4bb5dc212fbe1edf",
+  "name" : "Check registration with new email",
+  "fullName" : "tests.registration_page_test.TestRegistrationPage#test_registration_with_new_email",
+  "historyId" : "4edba687d923f9def916eed021709ae3",
+  "time" : {
+    "start" : 1728226554681,
+    "stop" : 1728226580432,
+    "duration" : 25751
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//a[@href=\"/profile\"]')\nStacktrace:\n#0 0x557f54e0713a <unknown>\n#1 0x557f54aed5e0 <unknown>\n#2 0x557f54b3cbe8 <unknown>\n#3 0x557f54b3ce81 <unknown>\n#4 0x557f54b838c4 <unknown>\n#5 0x557f54b61b4d <unknown>\n#6 0x557f54b80d7d <unknown>\n#7 0x557f54b618c3 <unknown>\n#8 0x557f54b2f6b3 <unknown>\n#9 0x557f54b3068e <unknown>\n#10 0x557f54dd1b3b <unknown>\n#11 0x557f54dd5ac1 <unknown>\n#12 0x557f54dbe335 <unknown>\n#13 0x557f54dd6642 <unknown>\n#14 0x557f54da349f <unknown>\n#15 0x557f54df6038 <unknown>\n#16 0x557f54df6203 <unknown>\n#17 0x557f54e05f8c <unknown>\n#18 0x7f124c694ac3 <unknown>",
+  "statusTrace" : "self = <tests.registration_page_test.TestRegistrationPage object at 0x7f2fe970ade0>\nmain_page_open = None\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"6ba29988b20b5e051dd7820305ca26d9\")>\n\n    @allure.title('Check registration with new email')\n    def test_registration_with_new_email(self, main_page_open, driver):\n        page = RegistrationPage(driver)\n        page.open_registration_page()\n        page.fill_first_name(Registration.FIRST_NAME)\n        page.fill_birthday(Registration.BIRTHDAY)\n        page.choose_gender()\n        with allure.step(\"Fill email\"):\n            page.fill_email(Registration.EMAIL)\n        with allure.step(\"Fill password\"):\n            page.fill_password(os.environ[\"CHANGE_PASSWORD\"])\n        with allure.step(\"Fill repeat password\"):\n            page.fill_repeat_password(os.environ[\"CHANGE_PASSWORD\"])\n        page.choose_agreement()\n        page.click_registration_button()\n        page.check_change_url()\n        page = ProfilePage(driver)\n>       assert page.check_user_profile(), 'The user has not registered with a new email'\n\ntests/registration_page_test.py:36: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/profile_page.py:87: in check_user_profile\n    return self.element_is_visible(ProfilePageLocators.PROFILE)\npages/base_page.py:37: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:51: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"6ba29988b20b5e051dd7820305ca26d9\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7f2fe951ba60>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//a[@href=\"/profile\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//a[@href=\"/profile\"]')\nE       Stacktrace:\nE       #0 0x557f54e0713a <unknown>\nE       #1 0x557f54aed5e0 <unknown>\nE       #2 0x557f54b3cbe8 <unknown>\nE       #3 0x557f54b3ce81 <unknown>\nE       #4 0x557f54b838c4 <unknown>\nE       #5 0x557f54b61b4d <unknown>\nE       #6 0x557f54b80d7d <unknown>\nE       #7 0x557f54b618c3 <unknown>\nE       #8 0x557f54b2f6b3 <unknown>\nE       #9 0x557f54b3068e <unknown>\nE       #10 0x557f54dd1b3b <unknown>\nE       #11 0x557f54dd5ac1 <unknown>\nE       #12 0x557f54dbe335 <unknown>\nE       #13 0x557f54dd6642 <unknown>\nE       #14 0x557f54da349f <unknown>\nE       #15 0x557f54df6038 <unknown>\nE       #16 0x557f54df6203 <unknown>\nE       #17 0x557f54e05f8c <unknown>\nE       #18 0x7f124c694ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1728226550812,
+      "stop" : 1728226554681,
+      "duration" : 3869
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1728226550812,
+        "stop" : 1728226554681,
+        "duration" : 3869
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"6ba29988b20b5e051dd7820305ca26d9\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1728226550064,
+      "stop" : 1728226550812,
+      "duration" : 748
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1728225721158,
+      "stop" : 1728225721158,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//a[@href=\"/profile\"]')\nStacktrace:\n#0 0x557f54e0713a <unknown>\n#1 0x557f54aed5e0 <unknown>\n#2 0x557f54b3cbe8 <unknown>\n#3 0x557f54b3ce81 <unknown>\n#4 0x557f54b838c4 <unknown>\n#5 0x557f54b61b4d <unknown>\n#6 0x557f54b80d7d <unknown>\n#7 0x557f54b618c3 <unknown>\n#8 0x557f54b2f6b3 <unknown>\n#9 0x557f54b3068e <unknown>\n#10 0x557f54dd1b3b <unknown>\n#11 0x557f54dd5ac1 <unknown>\n#12 0x557f54dbe335 <unknown>\n#13 0x557f54dd6642 <unknown>\n#14 0x557f54da349f <unknown>\n#15 0x557f54df6038 <unknown>\n#16 0x557f54df6203 <unknown>\n#17 0x557f54e05f8c <unknown>\n#18 0x7f124c694ac3 <unknown>",
+    "statusTrace" : "self = <tests.registration_page_test.TestRegistrationPage object at 0x7f2fe970ade0>\nmain_page_open = None\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"6ba29988b20b5e051dd7820305ca26d9\")>\n\n    @allure.title('Check registration with new email')\n    def test_registration_with_new_email(self, main_page_open, driver):\n        page = RegistrationPage(driver)\n        page.open_registration_page()\n        page.fill_first_name(Registration.FIRST_NAME)\n        page.fill_birthday(Registration.BIRTHDAY)\n        page.choose_gender()\n        with allure.step(\"Fill email\"):\n            page.fill_email(Registration.EMAIL)\n        with allure.step(\"Fill password\"):\n            page.fill_password(os.environ[\"CHANGE_PASSWORD\"])\n        with allure.step(\"Fill repeat password\"):\n            page.fill_repeat_password(os.environ[\"CHANGE_PASSWORD\"])\n        page.choose_agreement()\n        page.click_registration_button()\n        page.check_change_url()\n        page = ProfilePage(driver)\n>       assert page.check_user_profile(), 'The user has not registered with a new email'\n\ntests/registration_page_test.py:36: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/profile_page.py:87: in check_user_profile\n    return self.element_is_visible(ProfilePageLocators.PROFILE)\npages/base_page.py:37: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:51: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"6ba29988b20b5e051dd7820305ca26d9\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7f2fe951ba60>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//a[@href=\"/profile\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//a[@href=\"/profile\"]')\nE       Stacktrace:\nE       #0 0x557f54e0713a <unknown>\nE       #1 0x557f54aed5e0 <unknown>\nE       #2 0x557f54b3cbe8 <unknown>\nE       #3 0x557f54b3ce81 <unknown>\nE       #4 0x557f54b838c4 <unknown>\nE       #5 0x557f54b61b4d <unknown>\nE       #6 0x557f54b80d7d <unknown>\nE       #7 0x557f54b618c3 <unknown>\nE       #8 0x557f54b2f6b3 <unknown>\nE       #9 0x557f54b3068e <unknown>\nE       #10 0x557f54dd1b3b <unknown>\nE       #11 0x557f54dd5ac1 <unknown>\nE       #12 0x557f54dbe335 <unknown>\nE       #13 0x557f54dd6642 <unknown>\nE       #14 0x557f54da349f <unknown>\nE       #15 0x557f54df6038 <unknown>\nE       #16 0x557f54df6203 <unknown>\nE       #17 0x557f54e05f8c <unknown>\nE       #18 0x7f124c694ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+    "steps" : [ {
+      "name" : "Open registration page",
+      "time" : {
+        "start" : 1728226554682,
+        "stop" : 1728226554779,
+        "duration" : 97
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Fill first name",
+      "time" : {
+        "start" : 1728226554779,
+        "stop" : 1728226554858,
+        "duration" : 79
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "firstname",
+        "value" : "'Auto Test'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Fill birthday",
+      "time" : {
+        "start" : 1728226554858,
+        "stop" : 1728226554927,
+        "duration" : 69
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "birthday",
+        "value" : "2015"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Choose gender",
+      "time" : {
+        "start" : 1728226554927,
+        "stop" : 1728226554981,
+        "duration" : 54
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Fill email",
+      "time" : {
+        "start" : 1728226554981,
+        "stop" : 1728226555108,
+        "duration" : 127
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Fill password",
+      "time" : {
+        "start" : 1728226555109,
+        "stop" : 1728226555173,
+        "duration" : 64
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Fill repeat password",
+      "time" : {
+        "start" : 1728226555174,
+        "stop" : 1728226555238,
+        "duration" : 64
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Choose agreement",
+      "time" : {
+        "start" : 1728226555239,
+        "stop" : 1728226555288,
+        "duration" : 49
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Click REGISTRATION button",
+      "time" : {
+        "start" : 1728226555289,
+        "stop" : 1728226555366,
+        "duration" : 77
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Wait changing url",
+      "time" : {
+        "start" : 1728226555366,
+        "stop" : 1728226560419,
+        "duration" : 5053
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Wait until url: https://brainup.site/registration will be changed.",
+        "time" : {
+          "start" : 1728226555366,
+          "stop" : 1728226560419,
+          "duration" : 5053
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Check user's profile",
+      "time" : {
+        "start" : 1728226560419,
+        "stop" : 1728226580431,
+        "duration" : 20012
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//a[@href=\"/profile\"]')\nStacktrace:\n#0 0x557f54e0713a <unknown>\n#1 0x557f54aed5e0 <unknown>\n#2 0x557f54b3cbe8 <unknown>\n#3 0x557f54b3ce81 <unknown>\n#4 0x557f54b838c4 <unknown>\n#5 0x557f54b61b4d <unknown>\n#6 0x557f54b80d7d <unknown>\n#7 0x557f54b618c3 <unknown>\n#8 0x557f54b2f6b3 <unknown>\n#9 0x557f54b3068e <unknown>\n#10 0x557f54dd1b3b <unknown>\n#11 0x557f54dd5ac1 <unknown>\n#12 0x557f54dbe335 <unknown>\n#13 0x557f54dd6642 <unknown>\n#14 0x557f54da349f <unknown>\n#15 0x557f54df6038 <unknown>\n#16 0x557f54df6203 <unknown>\n#17 0x557f54e05f8c <unknown>\n#18 0x7f124c694ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/profile_page.py\", line 87, in check_user_profile\n    return self.element_is_visible(ProfilePageLocators.PROFILE)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 37, in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 51, in element_is_present\n    return Wait(self.driver, self.timeout).until(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "6558976f9bdc7e8b",
+      "name" : "Screenshot 2024-10-06 14:56:20.527253",
+      "source" : "6558976f9bdc7e8b.png",
+      "type" : "image/png",
+      "size" : 49977
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 12,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1728226580528,
+      "stop" : 1728226580616,
+      "duration" : 88
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Test Registration Page"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "registration_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRegistrationPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1206-68"
+  }, {
+    "name" : "thread",
+    "value" : "2342-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.registration_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 20,
+        "skipped" : 0,
+        "passed" : 463,
+        "unknown" : 0,
+        "total" : 483
+      },
+      "items" : [ {
+        "uid" : "30a4b42d7a88aed8",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/312//#testresult/30a4b42d7a88aed8",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//a[@href=\"/profile\"]')\nStacktrace:\n#0 0x5602eabd313a <unknown>\n#1 0x5602ea8b95e0 <unknown>\n#2 0x5602ea908be8 <unknown>\n#3 0x5602ea908e81 <unknown>\n#4 0x5602ea94f8c4 <unknown>\n#5 0x5602ea92db4d <unknown>\n#6 0x5602ea94cd7d <unknown>\n#7 0x5602ea92d8c3 <unknown>\n#8 0x5602ea8fb6b3 <unknown>\n#9 0x5602ea8fc68e <unknown>\n#10 0x5602eab9db3b <unknown>\n#11 0x5602eaba1ac1 <unknown>\n#12 0x5602eab8a335 <unknown>\n#13 0x5602eaba2642 <unknown>\n#14 0x5602eab6f49f <unknown>\n#15 0x5602eabc2038 <unknown>\n#16 0x5602eabc2203 <unknown>\n#17 0x5602eabd1f8c <unknown>\n#18 0x7fdc10694ac3 <unknown>",
+        "time" : {
+          "start" : 1728221667608,
+          "stop" : 1728221692881,
+          "duration" : 25273
+        }
+      }, {
+        "uid" : "9633c35d1dd3b779",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/144//#testresult/9633c35d1dd3b779",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728176955219,
+          "stop" : 1728176960020,
+          "duration" : 4801
+        }
+      }, {
+        "uid" : "21439ce785aceab9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/311//#testresult/21439ce785aceab9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728117591021,
+          "stop" : 1728117595256,
+          "duration" : 4235
+        }
+      }, {
+        "uid" : "f59f6636f809cc90",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/310//#testresult/f59f6636f809cc90",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728108972534,
+          "stop" : 1728108976793,
+          "duration" : 4259
+        }
+      }, {
+        "uid" : "a9517940bada8a35",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/143//#testresult/a9517940bada8a35",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728090230256,
+          "stop" : 1728090234526,
+          "duration" : 4270
+        }
+      }, {
+        "uid" : "8185256c6ea10895",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/142//#testresult/8185256c6ea10895",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728003846384,
+          "stop" : 1728003852594,
+          "duration" : 6210
+        }
+      }, {
+        "uid" : "d6319b96cc928c1e",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/309//#testresult/d6319b96cc928c1e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727945275931,
+          "stop" : 1727945281220,
+          "duration" : 5289
+        }
+      }, {
+        "uid" : "27f692536ee24b0",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/308//#testresult/27f692536ee24b0",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: Url: https://brainup.site/registration has not been changed!!!",
+        "time" : {
+          "start" : 1727942926991,
+          "stop" : 1727942947784,
+          "duration" : 20793
+        }
+      }, {
+        "uid" : "4f18b1b82f2e094f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/141//#testresult/4f18b1b82f2e094f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727917639665,
+          "stop" : 1727917644450,
+          "duration" : 4785
+        }
+      }, {
+        "uid" : "287edb464b54bef3",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/307//#testresult/287edb464b54bef3",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: Url: https://brainup.site/registration has not been changed!!!",
+        "time" : {
+          "start" : 1727864952256,
+          "stop" : 1727864973105,
+          "duration" : 20849
+        }
+      }, {
+        "uid" : "28197ca6fd7db818",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/306//#testresult/28197ca6fd7db818",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727863028589,
+          "stop" : 1727863034400,
+          "duration" : 5811
+        }
+      }, {
+        "uid" : "be1d4dc86f18a773",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/306//#testresult/be1d4dc86f18a773",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727861350568,
+          "stop" : 1727861364417,
+          "duration" : 13849
+        }
+      }, {
+        "uid" : "d54e5f7a48de9541",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/140//#testresult/d54e5f7a48de9541",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727831126362,
+          "stop" : 1727831131622,
+          "duration" : 5260
+        }
+      }, {
+        "uid" : "2e7048e0e22c423a",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/305//#testresult/2e7048e0e22c423a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727775997033,
+          "stop" : 1727776013480,
+          "duration" : 16447
+        }
+      }, {
+        "uid" : "f6bab06307a225c3",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/304//#testresult/f6bab06307a225c3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727772793295,
+          "stop" : 1727772798059,
+          "duration" : 4764
+        }
+      }, {
+        "uid" : "af17f7808cf3c1d5",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/139//#testresult/af17f7808cf3c1d5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727745104929,
+          "stop" : 1727745111206,
+          "duration" : 6277
+        }
+      }, {
+        "uid" : "1cc21af0aa5a453b",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/303//#testresult/1cc21af0aa5a453b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727686674758,
+          "stop" : 1727686695114,
+          "duration" : 20356
+        }
+      }, {
+        "uid" : "e065e8ca23d13063",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/302//#testresult/e065e8ca23d13063",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727684180288,
+          "stop" : 1727684185087,
+          "duration" : 4799
+        }
+      }, {
+        "uid" : "79d8b131b2ac2636",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/302//#testresult/79d8b131b2ac2636",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: Url: https://brainup.site/registration has not been changed!!!",
+        "time" : {
+          "start" : 1727682595065,
+          "stop" : 1727682615933,
+          "duration" : 20868
+        }
+      }, {
+        "uid" : "5ab08ae1bbe2e0fd",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/138//#testresult/5ab08ae1bbe2e0fd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1727658437226,
+          "stop" : 1727658442687,
+          "duration" : 5461
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "4bb5dc212fbe1edf.json",
+  "parameterValues" : [ ]
+}
