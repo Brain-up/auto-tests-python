@@ -17,7 +17,7 @@ class TestGroupsPage:
             assert page_content_visibility, "The page content is invisible"
 
         @allure.title("Verify composition, visibility of elements on the 1st-2nd levels of nesting on the page")
-        def test_gp_01_02_verify_auth_header_structure_and_visibility(self, driver, auto_test_user_authorized):
+        def test_gp_01_02_verify_page_structure_and_visibility(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
             structure_of_1st_level = page.get_structure_of_1st_level()
             visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level()
