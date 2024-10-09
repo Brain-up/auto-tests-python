@@ -15,7 +15,7 @@ class TestGroupsPage:
             assert page_content_presence is not None, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible"
 
-        @allure.title("Verify composition, visibility of elements on the 1st-4th levels of nesting on the page")
+        @allure.title("Verify composition, visibility of elements on the 1st-6th levels of nesting on the page")
         def test_gp_01_02_verify_page_structure_and_visibility(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
             structure_of_1st_level = page.get_structure_of_1st_level()
