@@ -1,12 +1,11 @@
 """Auto tests for verifying web elements on the 'Specialists' page"""
 import allure
-import pytest
 from pages.specialists_page import SpecialistsPage
 from test_data.specialists_page_data import SpecialistsPageData
 from test_data.start_unauthorized_page_data import StartUnauthorizedPageData
 
 
-@pytest.mark.skip(reason="unsupported preconditions")
+# @pytest.mark.skip(reason="unsupported preconditions")
 @allure.epic("Test Specialists Page")
 class TestSpecialistsPage:
     class TestSpecialistsPageStructure:
