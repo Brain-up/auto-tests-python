@@ -84,3 +84,19 @@ class GroupsPage(BasePage):
     def check_elements_visibility_on_6th_level(self):
         time.sleep(1)
         return all(element.is_displayed() for element in self.get_structure_of_6th_level())
+
+    @allure.step("Check the title h3 on the 2nd level of nesting is present on the page")
+    def check_title_presence(self):
+        return self.element_is_present(self.locators.PAGE_TITLE)
+
+    @allure.step("Check the title h3 on the 2nd level of nesting is visible")
+    def check_title_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_TITLE)
+
+    @allure.step("Get the list of tiles on the 3rd level of nesting on the page")
+    def get_list_of_tiles(self):
+        return self.elements_are_present(self.locators.PAGE_TILES)
+
+    @allure.step("Check if tiles on the 3rd level of nesting are visible")
+    def check_visibility_of_tiles(self):
+        return all(element.is_displayed() for element in self.get_list_of_tiles())

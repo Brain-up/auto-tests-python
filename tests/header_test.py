@@ -188,7 +188,7 @@ class TestHeaderPage:
                 assert image_size != 0, f"The image in the 'Logo' image has not size"
                 assert image_size_change, "The 'Logo' image size is changed"
 
-    @pytest.mark.skip(reason="unsupported preconditions")
+    # @pytest.mark.skip(reason="unsupported preconditions")
     class TestAuthorizedHeaderPage:
         class TestAuthHeaderPageStructure:
             @allure.title("Verify presence and visibility of the Header for an authorized user")

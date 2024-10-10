@@ -10,3 +10,6 @@ class GroupsPageLocators:
     PAGE_FOURTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*")
     PAGE_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*")
     PAGE_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*")
+    # PAGE_TILES = (By.XPATH, "//ol/li")
+    PAGE_TILES = (By.CSS_SELECTOR, ".list-item")
+    PAGE_TITLE = (By.TAG_NAME, "h3")
