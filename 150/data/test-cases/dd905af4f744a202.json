@@ -1,0 +1,339 @@
+{
+  "uid" : "dd905af4f744a202",
+  "name" : "Verify redirection to used resources page not authorized user.",
+  "fullName" : "tests.main_page_test.TestMainPage#test_mp_08_verify_redirection_to_used_resources_page",
+  "historyId" : "43df35c0ef3ab6719310f8b9b9ee7530",
+  "time" : {
+    "start" : 1728694617525,
+    "stop" : 1728694617525,
+    "duration" : 0
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=129.0.6668.89)\nStacktrace:\n#0 0x55bb4405a02a <unknown>\n#1 0x55bb43d405e0 <unknown>\n#2 0x55bb43d387eb <unknown>\n#3 0x55bb43d28a09 <unknown>\n#4 0x55bb43d2a744 <unknown>\n#5 0x55bb43d28cbd <unknown>\n#6 0x55bb43d2852f <unknown>\n#7 0x55bb43d28422 <unknown>\n#8 0x55bb43d26493 <unknown>\n#9 0x55bb43d26ada <unknown>\n#10 0x55bb43d42f41 <unknown>\n#11 0x55bb43dd48c5 <unknown>\n#12 0x55bb43db4b22 <unknown>\n#13 0x55bb43dd3d7d <unknown>\n#14 0x55bb43db48c3 <unknown>\n#15 0x55bb43d826b3 <unknown>\n#16 0x55bb43d8368e <unknown>\n#17 0x55bb44024a2b <unknown>\n#18 0x55bb440289b1 <unknown>\n#19 0x55bb44011225 <unknown>\n#20 0x55bb44029532 <unknown>\n#21 0x55bb43ff638f <unknown>\n#22 0x55bb44048f28 <unknown>\n#23 0x55bb440490f3 <unknown>\n#24 0x55bb44058e7c <unknown>\n#25 0x7f13d9894ac3 <unknown>",
+  "statusTrace" : "driver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"eb609dbbb13b54867af849dcd58c8028\")>\n\n    @pytest.fixture()\n    @allure.step(f'Open page: {MainPageLinks.URL_MAIN_PAGE}')\n    def main_page_open(driver):\n>       driver.get(MainPageLinks.URL_MAIN_PAGE)\n\ntests/conftest.py:22: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:353: in get\n    self.execute(Command.GET, {\"url\": url})\n/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:344: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f8f5b3a6d50>\nresponse = {'status': 500, 'value': '{\"value\":{\"error\":\"unknown error\",\"message\":\"unknown error: net::ERR_CONNECTION_REFUSED\\\\n  ...\\\\n#23 0x55bb440490f3 \\\\u003Cunknown>\\\\n#24 0x55bb44058e7c \\\\u003Cunknown>\\\\n#25 0x7f13d9894ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\nE         (Session info: chrome=129.0.6668.89)\nE       Stacktrace:\nE       #0 0x55bb4405a02a <unknown>\nE       #1 0x55bb43d405e0 <unknown>\nE       #2 0x55bb43d387eb <unknown>\nE       #3 0x55bb43d28a09 <unknown>\nE       #4 0x55bb43d2a744 <unknown>\nE       #5 0x55bb43d28cbd <unknown>\nE       #6 0x55bb43d2852f <unknown>\nE       #7 0x55bb43d28422 <unknown>\nE       #8 0x55bb43d26493 <unknown>\nE       #9 0x55bb43d26ada <unknown>\nE       #10 0x55bb43d42f41 <unknown>\nE       #11 0x55bb43dd48c5 <unknown>\nE       #12 0x55bb43db4b22 <unknown>\nE       #13 0x55bb43dd3d7d <unknown>\nE       #14 0x55bb43db48c3 <unknown>\nE       #15 0x55bb43d826b3 <unknown>\nE       #16 0x55bb43d8368e <unknown>\nE       #17 0x55bb44024a2b <unknown>\nE       #18 0x55bb440289b1 <unknown>\nE       #19 0x55bb44011225 <unknown>\nE       #20 0x55bb44029532 <unknown>\nE       #21 0x55bb43ff638f <unknown>\nE       #22 0x55bb44048f28 <unknown>\nE       #23 0x55bb440490f3 <unknown>\nE       #24 0x55bb44058e7c <unknown>\nE       #25 0x7f13d9894ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: WebDriverException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1728694482412,
+      "stop" : 1728694482412,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1728694618292,
+      "stop" : 1728694618928,
+      "duration" : 636
+    },
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=129.0.6668.89)\nStacktrace:\n#0 0x55bb4405a02a <unknown>\n#1 0x55bb43d405e0 <unknown>\n#2 0x55bb43d387eb <unknown>\n#3 0x55bb43d28a09 <unknown>\n#4 0x55bb43d2a744 <unknown>\n#5 0x55bb43d28cbd <unknown>\n#6 0x55bb43d2852f <unknown>\n#7 0x55bb43d28422 <unknown>\n#8 0x55bb43d26493 <unknown>\n#9 0x55bb43d26ada <unknown>\n#10 0x55bb43d42f41 <unknown>\n#11 0x55bb43dd48c5 <unknown>\n#12 0x55bb43db4b22 <unknown>\n#13 0x55bb43dd3d7d <unknown>\n#14 0x55bb43db48c3 <unknown>\n#15 0x55bb43d826b3 <unknown>\n#16 0x55bb43d8368e <unknown>\n#17 0x55bb44024a2b <unknown>\n#18 0x55bb440289b1 <unknown>\n#19 0x55bb44011225 <unknown>\n#20 0x55bb44029532 <unknown>\n#21 0x55bb43ff638f <unknown>\n#22 0x55bb44048f28 <unknown>\n#23 0x55bb440490f3 <unknown>\n#24 0x55bb44058e7c <unknown>\n#25 0x7f13d9894ac3 <unknown>\n\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/pluggy/_callers.py\", line 103, in _multicall\n    res = hook_impl.function(*args)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/_pytest/fixtures.py\", line 1123, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/_pytest/fixtures.py\", line 902, in call_fixture_func\n    fixture_result = fixturefunc(**kwargs)\n                     ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/tests/conftest.py\", line 22, in main_page_open\n    driver.get(MainPageLinks.URL_MAIN_PAGE)\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 353, in get\n    self.execute(Command.GET, {\"url\": url})\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 344, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1728694618292,
+        "stop" : 1728694618927,
+        "duration" : 635
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=129.0.6668.89)\nStacktrace:\n#0 0x55bb4405a02a <unknown>\n#1 0x55bb43d405e0 <unknown>\n#2 0x55bb43d387eb <unknown>\n#3 0x55bb43d28a09 <unknown>\n#4 0x55bb43d2a744 <unknown>\n#5 0x55bb43d28cbd <unknown>\n#6 0x55bb43d2852f <unknown>\n#7 0x55bb43d28422 <unknown>\n#8 0x55bb43d26493 <unknown>\n#9 0x55bb43d26ada <unknown>\n#10 0x55bb43d42f41 <unknown>\n#11 0x55bb43dd48c5 <unknown>\n#12 0x55bb43db4b22 <unknown>\n#13 0x55bb43dd3d7d <unknown>\n#14 0x55bb43db48c3 <unknown>\n#15 0x55bb43d826b3 <unknown>\n#16 0x55bb43d8368e <unknown>\n#17 0x55bb44024a2b <unknown>\n#18 0x55bb440289b1 <unknown>\n#19 0x55bb44011225 <unknown>\n#20 0x55bb44029532 <unknown>\n#21 0x55bb43ff638f <unknown>\n#22 0x55bb44048f28 <unknown>\n#23 0x55bb440490f3 <unknown>\n#24 0x55bb44058e7c <unknown>\n#25 0x7f13d9894ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/tests/conftest.py\", line 22, in main_page_open\n    driver.get(MainPageLinks.URL_MAIN_PAGE)\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 353, in get\n    self.execute(Command.GET, {\"url\": url})\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 344, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"eb609dbbb13b54867af849dcd58c8028\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1728694617525,
+      "stop" : 1728694618292,
+      "duration" : 767
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1728694618959,
+      "stop" : 1728694619021,
+      "duration" : 62
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Main Page."
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "main_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1245-423"
+  }, {
+    "name" : "thread",
+    "value" : "2340-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.main_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 5,
+        "skipped" : 0,
+        "passed" : 493,
+        "unknown" : 0,
+        "total" : 498
+      },
+      "items" : [ {
+        "uid" : "9f65a9bee155a7ab",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/149//#testresult/9f65a9bee155a7ab",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=129.0.6668.89)\nStacktrace:\n#0 0x560f194e502a <unknown>\n#1 0x560f191cb5e0 <unknown>\n#2 0x560f191c37eb <unknown>\n#3 0x560f191b3a09 <unknown>\n#4 0x560f191b5744 <unknown>\n#5 0x560f191b3cbd <unknown>\n#6 0x560f191b352f <unknown>\n#7 0x560f191b3422 <unknown>\n#8 0x560f191b1493 <unknown>\n#9 0x560f191b1ada <unknown>\n#10 0x560f191cdf41 <unknown>\n#11 0x560f1925f8c5 <unknown>\n#12 0x560f1923fb22 <unknown>\n#13 0x560f1925ed7d <unknown>\n#14 0x560f1923f8c3 <unknown>\n#15 0x560f1920d6b3 <unknown>\n#16 0x560f1920e68e <unknown>\n#17 0x560f194afa2b <unknown>\n#18 0x560f194b39b1 <unknown>\n#19 0x560f1949c225 <unknown>\n#20 0x560f194b4532 <unknown>\n#21 0x560f1948138f <unknown>\n#22 0x560f194d3f28 <unknown>\n#23 0x560f194d40f3 <unknown>\n#24 0x560f194e3e7c <unknown>\n#25 0x7f4afac94ac3 <unknown>",
+        "time" : {
+          "start" : 1728608225564,
+          "stop" : 1728608225564,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "355218562f6ed13d",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/322//#testresult/355218562f6ed13d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728557203979,
+          "stop" : 1728557204130,
+          "duration" : 151
+        }
+      }, {
+        "uid" : "5bfb525804a76d47",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/321//#testresult/5bfb525804a76d47",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728554091692,
+          "stop" : 1728554091851,
+          "duration" : 159
+        }
+      }, {
+        "uid" : "bbaa0e036fd0e5de",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/148//#testresult/bbaa0e036fd0e5de",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728522074545,
+          "stop" : 1728522074738,
+          "duration" : 193
+        }
+      }, {
+        "uid" : "18e2410aa34b6328",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/320//#testresult/18e2410aa34b6328",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728470502173,
+          "stop" : 1728470502324,
+          "duration" : 151
+        }
+      }, {
+        "uid" : "98a8ab9c4756d2a0",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/319//#testresult/98a8ab9c4756d2a0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728467920331,
+          "stop" : 1728467920537,
+          "duration" : 206
+        }
+      }, {
+        "uid" : "a5a6422a7a0fbcba",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/147//#testresult/a5a6422a7a0fbcba",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728435791405,
+          "stop" : 1728435791610,
+          "duration" : 205
+        }
+      }, {
+        "uid" : "f79741e592bd1475",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/318//#testresult/f79741e592bd1475",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728378019462,
+          "stop" : 1728378019640,
+          "duration" : 178
+        }
+      }, {
+        "uid" : "8610494b9329e7e8",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/317//#testresult/8610494b9329e7e8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728375226320,
+          "stop" : 1728375226469,
+          "duration" : 149
+        }
+      }, {
+        "uid" : "e33ed55c91c8059b",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/316//#testresult/e33ed55c91c8059b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728375110934,
+          "stop" : 1728375111110,
+          "duration" : 176
+        }
+      }, {
+        "uid" : "ae8112f6de443db6",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/146//#testresult/ae8112f6de443db6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728349194459,
+          "stop" : 1728349194643,
+          "duration" : 184
+        }
+      }, {
+        "uid" : "3bf9c17e14e3351",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/315//#testresult/3bf9c17e14e3351",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728292888205,
+          "stop" : 1728292888391,
+          "duration" : 186
+        }
+      }, {
+        "uid" : "a1633ef5ad7788c1",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/314//#testresult/a1633ef5ad7788c1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728289935936,
+          "stop" : 1728289936122,
+          "duration" : 186
+        }
+      }, {
+        "uid" : "ebb4acee73115671",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/145//#testresult/ebb4acee73115671",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728263340539,
+          "stop" : 1728263340693,
+          "duration" : 154
+        }
+      }, {
+        "uid" : "b52840734bdbdee3",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/313//#testresult/b52840734bdbdee3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728226483862,
+          "stop" : 1728226484010,
+          "duration" : 148
+        }
+      }, {
+        "uid" : "c5cdd7082794c94a",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/312//#testresult/c5cdd7082794c94a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728221600569,
+          "stop" : 1728221600723,
+          "duration" : 154
+        }
+      }, {
+        "uid" : "d5c4ea71796af18a",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/144//#testresult/d5c4ea71796af18a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728176926746,
+          "stop" : 1728176926941,
+          "duration" : 195
+        }
+      }, {
+        "uid" : "91bfff3a7e178965",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/311//#testresult/91bfff3a7e178965",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728117562666,
+          "stop" : 1728117562852,
+          "duration" : 186
+        }
+      }, {
+        "uid" : "9c1f26462405b7b9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/310//#testresult/9c1f26462405b7b9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728108945926,
+          "stop" : 1728108946113,
+          "duration" : 187
+        }
+      }, {
+        "uid" : "acf1ddac60aca84d",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/143//#testresult/acf1ddac60aca84d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728090203610,
+          "stop" : 1728090203798,
+          "duration" : 188
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "dd905af4f744a202.json",
+  "parameterValues" : [ ]
+}
