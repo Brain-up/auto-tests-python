@@ -43,14 +43,18 @@ class TestGroupsPage:
             assert structure_of_6th_level, "Elements on the 6th level are absent on the page"
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible"
 
-        @allure.title("Verify presence, visibility of the title, tiles on the page")
+        @allure.title("Verify presence, visibility of the title, tiles, links on the page")
         def test_gp_01_03_verify_page_structural_elements(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
             title_on_2nd_level = page.check_title_presence()
             title_visibility = page.check_title_visibility()
             tiles_on_3rd_level = page.get_list_of_tiles()
             tiles_visibility = page.check_visibility_of_tiles()
+            links_on_4th_level = page.get_list_of_links()
+            links_visibility = page.check_visibility_of_links()
             assert title_on_2nd_level, "The title on the 2nd level is absent on the page"
             assert title_visibility, "The title on the 2nd level is invisible"
             assert tiles_on_3rd_level, "Tiles on the 3rd level are absent on the page"
             assert tiles_visibility, "Tiles on the 3rd level are invisible"
+            assert links_on_4th_level, "Links on the 4th level are absent on the page"
+            assert links_visibility, "Links on the 4th level are invisible"

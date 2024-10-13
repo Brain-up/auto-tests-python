@@ -100,3 +100,11 @@ class GroupsPage(BasePage):
     @allure.step("Check if tiles on the 3rd level of nesting are visible")
     def check_visibility_of_tiles(self):
         return all(element.is_displayed() for element in self.get_list_of_tiles())
+
+    @allure.step("Get the list of links on the 4th level of nesting on the page")
+    def get_list_of_links(self):
+        return self.elements_are_present(self.locators.PAGE_LINKS)
+
+    @allure.step("Check if links on the 4th level of nesting are visible")
+    def check_visibility_of_links(self):
+        return all(element.is_displayed() for element in self.get_list_of_links())
