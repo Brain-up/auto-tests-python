@@ -48,13 +48,17 @@ class TestGroupsPage:
             page = GroupsPage(driver)
             title_on_2nd_level = page.check_title_presence()
             title_visibility = page.check_title_visibility()
-            tiles_on_3rd_level = page.get_list_of_tiles()
+            tiles_on_2nd_level = page.get_list_of_tiles()
             tiles_visibility = page.check_visibility_of_tiles()
-            links_on_4th_level = page.get_list_of_links()
+            links_on_3rd_level = page.get_list_of_links()
             links_visibility = page.check_visibility_of_links()
+            images_on_6th_level = page.get_list_of_images()
+            images_visibility = page.check_visibility_of_images()
             assert title_on_2nd_level, "The title on the 2nd level is absent on the page"
             assert title_visibility, "The title on the 2nd level is invisible"
-            assert tiles_on_3rd_level, "Tiles on the 3rd level are absent on the page"
-            assert tiles_visibility, "Tiles on the 3rd level are invisible"
-            assert links_on_4th_level, "Links on the 4th level are absent on the page"
-            assert links_visibility, "Links on the 4th level are invisible"
+            assert tiles_on_2nd_level, "Tiles on the 2nd level are absent on the page"
+            assert tiles_visibility, "Tiles on the 2nd level are invisible"
+            assert links_on_3rd_level, "Links on the 3rd level are absent on the page"
+            assert links_visibility, "Links on the 3rd level are invisible"
+            assert images_on_6th_level, "Images on the 6th level are absent on the page"
+            assert images_visibility, "Images on the 6th level are invisible"

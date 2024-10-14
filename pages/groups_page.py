@@ -93,18 +93,27 @@ class GroupsPage(BasePage):
     def check_title_visibility(self):
         return self.element_is_visible(self.locators.PAGE_TITLE)
 
-    @allure.step("Get the list of tiles on the 3rd level of nesting on the page")
+    @allure.step("Get the list of tiles on the 2nd level of nesting on the page")
     def get_list_of_tiles(self):
         return self.elements_are_present(self.locators.PAGE_TILES)
 
-    @allure.step("Check if tiles on the 3rd level of nesting are visible")
+    @allure.step("Check if tiles on the 2nd level of nesting are visible")
     def check_visibility_of_tiles(self):
         return all(element.is_displayed() for element in self.get_list_of_tiles())
 
-    @allure.step("Get the list of links on the 4th level of nesting on the page")
+    @allure.step("Get the list of links on the 3rd level of nesting on the page")
     def get_list_of_links(self):
         return self.elements_are_present(self.locators.PAGE_LINKS)
 
-    @allure.step("Check if links on the 4th level of nesting are visible")
+    @allure.step("Check if links on the 3rd level of nesting are visible")
     def check_visibility_of_links(self):
         return all(element.is_displayed() for element in self.get_list_of_links())
+
+    @allure.step("Get the list of images on the 6th level of nesting on the page")
+    def get_list_of_images(self):
+        return self.elements_are_present(self.locators.PAGE_IMAGES)
+
+    @allure.step("Check if images on the 6th level of nesting are visible")
+    def check_visibility_of_images(self):
+        time.sleep(1)
+        return all(element.is_displayed() for element in self.get_list_of_images())
