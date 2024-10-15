@@ -117,3 +117,11 @@ class GroupsPage(BasePage):
     def check_visibility_of_images(self):
         time.sleep(1)
         return all(element.is_displayed() for element in self.get_list_of_images())
+
+    @allure.step("Get the list of subtitles on the 6th level of nesting on the page")
+    def get_list_of_subtitles(self):
+        return self.elements_are_present(self.locators.PAGE_SUBTITLES)
+
+    @allure.step("Check if subtitles on the 6th level of nesting are visible")
+    def check_visibility_of_subtitles(self):
+        return all(element.is_displayed() for element in self.get_list_of_subtitles())
