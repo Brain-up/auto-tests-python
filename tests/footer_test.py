@@ -1,6 +1,5 @@
 """Auto tests for verifying web elements in the Footer on pages"""
 import allure
-import pytest
 from pages.footer_page import FooterPage
 from test_data.links import SpecificExercisesUrls
 from test_data.footer_data import FooterData
@@ -131,7 +130,7 @@ class TestFooter:
             assert images_size != 0, "Images in links have not sizes"
             assert len(images_size_changed) == len(FooterData.images_src), "Not all images in links have changed sizes"
 
-    @pytest.mark.skip(reason="unsupported preconditions")
+    # @pytest.mark.skip(reason="unsupported preconditions")
     class TestFooterAuthorized:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")

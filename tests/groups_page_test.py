@@ -1,6 +1,7 @@
 """Auto tests for verifying web elements on the 'Groups' page"""
 import allure
 from pages.groups_page import GroupsPage
+from test_data.groups_page_data import GroupsPageData
 
 
 # @pytest.mark.skip(reason="unsupported preconditions")
@@ -66,3 +67,12 @@ class TestGroupsPage:
             assert images_visibility, "Images on the 6th level are invisible"
             assert subtitles_on_6th_level, "Subtitles on the 6th level are absent on the page"
             assert subtitles_visibility, "Subtitles on the 6th level are invisible"
+
+    class TestGroupsPageText:
+        @allure.title("Verify value of the title of the tab")
+        def test_gp_02_01_verify_tab_title(self, driver, auto_test_user_authorized):
+            page = GroupsPage(driver)
+            tab_title_value = page.get_value_of_tab_title()
+            assert tab_title_value, "The title value of the tab is empty"
+            assert tab_title_value in GroupsPageData.tab_title, "The title on the tab doesn't match the valid value"
+
