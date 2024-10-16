@@ -125,3 +125,8 @@ class GroupsPage(BasePage):
     @allure.step("Check if subtitles on the 6th level of nesting are visible")
     def check_visibility_of_subtitles(self):
         return all(element.is_displayed() for element in self.get_list_of_subtitles())
+
+    # Checking text on the tab&page
+    @allure.step("Get value of the title of the tab")
+    def get_value_of_tab_title(self):
+        return self.get_current_tab_title()
