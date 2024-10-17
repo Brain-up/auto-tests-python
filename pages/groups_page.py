@@ -130,3 +130,7 @@ class GroupsPage(BasePage):
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
         return self.get_current_tab_title()
+
+    @allure.step("Get value of the title with tag 'h3' on the page")
+    def get_value_of_page_title(self):
+        return self.get_text(self.locators.PAGE_TITLE)

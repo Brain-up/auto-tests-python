@@ -76,3 +76,10 @@ class TestGroupsPage:
             assert tab_title_value, "The title value of the tab is empty"
             assert tab_title_value in GroupsPageData.tab_title, "The title on the tab doesn't match the valid value"
 
+        @allure.title("Verify value of the title on the page")
+        def test_gp_02_02_verify_page_title(self, driver, auto_test_user_authorized):
+            page = GroupsPage(driver)
+            title_value = page.get_value_of_page_title()
+            assert title_value, "The title value on the page is empty"
+            assert title_value in GroupsPageData.page_title, "The title on the page mismatches the valid value"
+
