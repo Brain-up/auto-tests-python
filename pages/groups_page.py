@@ -134,3 +134,7 @@ class GroupsPage(BasePage):
     @allure.step("Get value of the title with tag 'h3' on the page")
     def get_value_of_page_title(self):
         return self.get_text(self.locators.PAGE_TITLE)
+
+    @allure.step("Get the list of subtitle 'h4' values on the page")
+    def get_values_of_subtitles(self):
+        return [subtitle.text for subtitle in self.get_list_of_subtitles()]
