@@ -10,3 +10,10 @@ class GroupsPageData:
         "НЕРЕЧЕВЫЕ УПРАЖНЕНИЯ (СИГНАЛЫ ЕЩЁ В РАЗРАБОТКЕ)", "РЕЧЕВЫЕ УПРАЖНЕНИЯ (ГОТОВЫ ДЛЯ ЗАНЯТИЙ)",
         "NON-SPEECH EXERCISES (NOT IMPLEMENTED YET)", "SPEECH EXERCISES"
     ]
+
+    links_href = [
+        "https://brainup.site/groups/1",
+        "https://brainup.site/groups/2"
+    ]
+
+    links_status_code = 200

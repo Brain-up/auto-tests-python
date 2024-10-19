@@ -1,7 +1,7 @@
 """Methods for verifying web elements on the 'Groups' page"""
 import time
-
 import allure
+import requests
 from pages.base_page import BasePage
 from locators.groups_page_locators import GroupsPageLocators
 
@@ -101,21 +101,13 @@ class GroupsPage(BasePage):
     def check_visibility_of_tiles(self):
         return all(element.is_displayed() for element in self.get_list_of_tiles())
 
-    @allure.step("Get the list of links on the 3rd level of nesting on the page")
-    def get_list_of_links(self):
-        return self.elements_are_present(self.locators.PAGE_LINKS)
-
-    @allure.step("Check if links on the 3rd level of nesting are visible")
-    def check_visibility_of_links(self):
-        return all(element.is_displayed() for element in self.get_list_of_links())
-
     @allure.step("Get the list of images on the 6th level of nesting on the page")
     def get_list_of_images(self):
         return self.elements_are_present(self.locators.PAGE_IMAGES)
 
     @allure.step("Check if images on the 6th level of nesting are visible")
     def check_visibility_of_images(self):
-        time.sleep(1)
+        time.sleep(3)
         return all(element.is_displayed() for element in self.get_list_of_images())
 
     @allure.step("Get the list of subtitles on the 6th level of nesting on the page")
@@ -138,3 +130,24 @@ class GroupsPage(BasePage):
     @allure.step("Get the list of subtitle 'h4' values on the page")
     def get_values_of_subtitles(self):
         return [subtitle.text for subtitle in self.get_list_of_subtitles()]
+
+    # Checking links on the page
+    @allure.step("Get the list of links on the 3rd level of nesting on the page")
+    def get_list_of_links(self):
+        return self.elements_are_present(self.locators.PAGE_LINKS)
+
+    @allure.step("Check if links on the 3rd level of nesting are visible")
+    def check_visibility_of_links(self):
+        return all(element.is_displayed() for element in self.get_list_of_links())
+
+    @allure.step("Check if links are clickable")
+    def check_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list_of_links())
+
+    @allure.step("Get attribute 'href' of links")
+    def get_links_href(self):
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
+
+    @allure.step("Get status code of links")
+    def get_links_status_codes(self):
+        return [requests.head(link_href).status_code for link_href in self.get_links_href()]
