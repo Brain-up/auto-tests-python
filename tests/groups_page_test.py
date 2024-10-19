@@ -87,3 +87,15 @@ class TestGroupsPage:
             assert all(subtitle_value in GroupsPageData.page_subtitles for subtitle_value in subtitle_values), \
                 "Subtitles mismatch any valid values"
 
+    class TestGroupsPageLinks:
+        @allure.title("Verify clickability, href, status code of links on the page")
+        def test_gp_03_01_verify_links(self, driver, auto_test_user_authorized):
+            page = GroupsPage(driver)
+            links_clickability = page.check_links_clickability()
+            links_href = page.get_links_href()
+            link_status_codes = page.get_links_status_codes()
+            assert links_clickability, "Links are unclickable"
+            assert links_href, "Links href are empty"
+            assert links_href == GroupsPageData.links_href, "Attributes 'href' of links do not match valid values"
+            assert all(element == GroupsPageData.links_status_code for element in link_status_codes), \
+                "Status codes of links mismatch valid values"
