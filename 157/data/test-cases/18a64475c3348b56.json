@@ -1,0 +1,714 @@
+{
+  "uid" : "18a64475c3348b56",
+  "name" : "Select a random card from \"Предложения\" group and compare UI vs BACKEND data.",
+  "fullName" : "tests.test_speech_exercises_ru.TestCardsRU#test_random_cards_in_sentences_ru",
+  "historyId" : "0c7f6c8c808a1acd373a8bdcd331af43",
+  "time" : {
+    "start" : 1729300346237,
+    "stop" : 1729300375368,
+    "duration" : 29131
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x559557f660aa <unknown>\n#1 0x559557a7d1a0 <unknown>\n#2 0x559557ac9d06 <unknown>\n#3 0x559557ac9fa1 <unknown>\n#4 0x559557b0f344 <unknown>\n#5 0x559557aeddad <unknown>\n#6 0x559557b0c866 <unknown>\n#7 0x559557aedb23 <unknown>\n#8 0x559557abc990 <unknown>\n#9 0x559557abd96e <unknown>\n#10 0x559557f3216b <unknown>\n#11 0x559557f35f68 <unknown>\n#12 0x559557f1f64c <unknown>\n#13 0x559557f36ae7 <unknown>\n#14 0x559557f044af <unknown>\n#15 0x559557f544f8 <unknown>\n#16 0x559557f546c0 <unknown>\n#17 0x559557f64f26 <unknown>\n#18 0x7f7ad0894ac3 <unknown>",
+  "statusTrace" : "self = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7fca8f4fe750>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"21dad09438530aec7c015ed684ca9cff\")>\nspecialist_user_authorized = None\n\n    @pytest.mark.xfail\n    @allure.suite(\"Речевые упражнения.\")\n    @allure.title('Select a random card from \"Предложения\" group and compare UI vs BACKEND data.')\n    def test_random_cards_in_sentences_ru(self, driver, specialist_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        page.select_group(SpeechExercisesPageLocators.SENTENCES_RU)\n        seria_id = page.set_url_to_get_id_sentences_ru_group()\n        card_id = page.click_random_card()\n    \n        page = SpeechExercisesAPI(driver)\n        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n        page.wait_changed_url(driver.current_url)\n        id_for_back = str(driver.current_url).split('/')[-1]\n>       list_words_ui = page.click_start_and_get_list_words_for_group_words_ru()\n\ntests/test_speech_exercises_ru.py:97: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_api.py:113: in click_start_and_get_list_words_for_group_words_ru\n    self.element_is_present_and_clickable(self.locators.BUTTON_START_RU).click()\npages/base_page.py:32: in element_is_present_and_clickable\n    return (Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"21dad09438530aec7c015ed684ca9cff\")>\nmethod = <function visibility_of_element_located.<locals>._predicate at 0x7fca8f3d8540>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//button[@aria-label=\"Начать выполнение упражнения\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nE       Stacktrace:\nE       #0 0x559557f660aa <unknown>\nE       #1 0x559557a7d1a0 <unknown>\nE       #2 0x559557ac9d06 <unknown>\nE       #3 0x559557ac9fa1 <unknown>\nE       #4 0x559557b0f344 <unknown>\nE       #5 0x559557aeddad <unknown>\nE       #6 0x559557b0c866 <unknown>\nE       #7 0x559557aedb23 <unknown>\nE       #8 0x559557abc990 <unknown>\nE       #9 0x559557abd96e <unknown>\nE       #10 0x559557f3216b <unknown>\nE       #11 0x559557f35f68 <unknown>\nE       #12 0x559557f1f64c <unknown>\nE       #13 0x559557f36ae7 <unknown>\nE       #14 0x559557f044af <unknown>\nE       #15 0x559557f544f8 <unknown>\nE       #16 0x559557f546c0 <unknown>\nE       #17 0x559557f64f26 <unknown>\nE       #18 0x7f7ad0894ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1729299334249,
+      "stop" : 1729299334249,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "specialist_user_authorized",
+    "time" : {
+      "start" : 1729300343802,
+      "stop" : 1729300346236,
+      "duration" : 2434
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "USER specialist authorized",
+      "time" : {
+        "start" : 1729300343802,
+        "stop" : 1729300346236,
+        "duration" : 2434
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check url is present: https://brainup.site/groups",
+        "time" : {
+          "start" : 1729300344183,
+          "stop" : 1729300346204,
+          "duration" : 2021
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Loader checking",
+        "time" : {
+          "start" : 1729300346204,
+          "stop" : 1729300346236,
+          "duration" : 32
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"21dad09438530aec7c015ed684ca9cff\")>"
+      }, {
+        "name" : "main_page_open",
+        "value" : "None"
+      } ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1729300341227,
+      "stop" : 1729300343801,
+      "duration" : 2574
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1729300341227,
+        "stop" : 1729300343801,
+        "duration" : 2574
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"21dad09438530aec7c015ed684ca9cff\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1729300340448,
+      "stop" : 1729300341227,
+      "duration" : 779
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x559557f660aa <unknown>\n#1 0x559557a7d1a0 <unknown>\n#2 0x559557ac9d06 <unknown>\n#3 0x559557ac9fa1 <unknown>\n#4 0x559557b0f344 <unknown>\n#5 0x559557aeddad <unknown>\n#6 0x559557b0c866 <unknown>\n#7 0x559557aedb23 <unknown>\n#8 0x559557abc990 <unknown>\n#9 0x559557abd96e <unknown>\n#10 0x559557f3216b <unknown>\n#11 0x559557f35f68 <unknown>\n#12 0x559557f1f64c <unknown>\n#13 0x559557f36ae7 <unknown>\n#14 0x559557f044af <unknown>\n#15 0x559557f544f8 <unknown>\n#16 0x559557f546c0 <unknown>\n#17 0x559557f64f26 <unknown>\n#18 0x7f7ad0894ac3 <unknown>",
+    "statusTrace" : "self = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7fca8f4fe750>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"21dad09438530aec7c015ed684ca9cff\")>\nspecialist_user_authorized = None\n\n    @pytest.mark.xfail\n    @allure.suite(\"Речевые упражнения.\")\n    @allure.title('Select a random card from \"Предложения\" group and compare UI vs BACKEND data.')\n    def test_random_cards_in_sentences_ru(self, driver, specialist_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        page.select_group(SpeechExercisesPageLocators.SENTENCES_RU)\n        seria_id = page.set_url_to_get_id_sentences_ru_group()\n        card_id = page.click_random_card()\n    \n        page = SpeechExercisesAPI(driver)\n        random_id = page.get_random_id_from_list_sub_group(card_id, seria_id)\n        driver.get(driver.current_url + f'/exercise/{random_id}')  # Open the URL with the received card ID\n        page.wait_changed_url(driver.current_url)\n        id_for_back = str(driver.current_url).split('/')[-1]\n>       list_words_ui = page.click_start_and_get_list_words_for_group_words_ru()\n\ntests/test_speech_exercises_ru.py:97: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_api.py:113: in click_start_and_get_list_words_for_group_words_ru\n    self.element_is_present_and_clickable(self.locators.BUTTON_START_RU).click()\npages/base_page.py:32: in element_is_present_and_clickable\n    return (Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"21dad09438530aec7c015ed684ca9cff\")>\nmethod = <function visibility_of_element_located.<locals>._predicate at 0x7fca8f3d8540>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//button[@aria-label=\"Начать выполнение упражнения\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nE       Stacktrace:\nE       #0 0x559557f660aa <unknown>\nE       #1 0x559557a7d1a0 <unknown>\nE       #2 0x559557ac9d06 <unknown>\nE       #3 0x559557ac9fa1 <unknown>\nE       #4 0x559557b0f344 <unknown>\nE       #5 0x559557aeddad <unknown>\nE       #6 0x559557b0c866 <unknown>\nE       #7 0x559557aedb23 <unknown>\nE       #8 0x559557abc990 <unknown>\nE       #9 0x559557abd96e <unknown>\nE       #10 0x559557f3216b <unknown>\nE       #11 0x559557f35f68 <unknown>\nE       #12 0x559557f1f64c <unknown>\nE       #13 0x559557f36ae7 <unknown>\nE       #14 0x559557f044af <unknown>\nE       #15 0x559557f544f8 <unknown>\nE       #16 0x559557f546c0 <unknown>\nE       #17 0x559557f64f26 <unknown>\nE       #18 0x7f7ad0894ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+    "steps" : [ {
+      "name" : "select_group",
+      "time" : {
+        "start" : 1729300346237,
+        "stop" : 1729300349576,
+        "duration" : 3339
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Select Russian language. Click \"RU\" button.",
+        "time" : {
+          "start" : 1729300346237,
+          "stop" : 1729300346311,
+          "duration" : 74
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"Речевые упражнения\".",
+        "time" : {
+          "start" : 1729300346311,
+          "stop" : 1729300347409,
+          "duration" : 1098
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Click button \"ПРЕДЛОЖЕНИЯ\".",
+        "time" : {
+          "start" : 1729300349511,
+          "stop" : 1729300349576,
+          "duration" : 65
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "selector_for_sub_group",
+        "value" : "('xpath', '//button[@title=\"Распознавание предложений\"]')"
+      } ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Get seria ID from URL: https://brainup.site/groups/2/series/4",
+      "time" : {
+        "start" : 1729300349576,
+        "stop" : 1729300350599,
+        "duration" : 1023
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Wait until url to be: https://brainup.site/groups/2/series/4.",
+        "time" : {
+          "start" : 1729300349577,
+          "stop" : 1729300350596,
+          "duration" : 1019
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "click_random_card",
+      "time" : {
+        "start" : 1729300350599,
+        "stop" : 1729300350704,
+        "duration" : 105
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Getting list cards: ['Из 2 слов', 'Из 3 слов', 'Из 4 слов', 'Из 5 слов', 'Из 6 слов']",
+        "time" : {
+          "start" : 1729300350641,
+          "stop" : 1729300350641,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list of cards. \nCard ID in list is:, 3",
+        "time" : {
+          "start" : 1729300350641,
+          "stop" : 1729300350641,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Selected card is: Из 4 слов",
+        "time" : {
+          "start" : 1729300350652,
+          "stop" : 1729300350697,
+          "duration" : 45
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "get_random_id_from_list_sub_group",
+      "time" : {
+        "start" : 1729300350704,
+        "stop" : 1729300351517,
+        "duration" : 813
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Status code is: 200",
+        "time" : {
+          "start" : 1729300351515,
+          "stop" : 1729300351515,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Send GET request with params: https://brainup.site/api/subgroups?seriesId=4 headers=\"Content-Type\": \"application/json\",\"Authorization\": \"Bearer\": \"{id_token}\"",
+        "time" : {
+          "start" : 1729300351516,
+          "stop" : 1729300351516,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Getting list of cards id: {'data': [{'seriesId': 4, 'id': 55, 'level': 1, 'name': 'Из 2 слов', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/sentence_with_2_words.svg', 'description': 'Пойми предложение из 2 слов', 'withPictures': False, 'exercises': [1624, 1625, 1626, 1627, 1628, 1629, 1630, 1631, 1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641, 1642, 1643, 1644, 1645, 1646, 1647, 1648, 1649, 1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1659, 1660]}, {'seriesId': 4, 'id': 56, 'level': 2, 'name': 'Из 3 слов', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/sentence_with_3_words.svg', 'description': 'Пойми предложение из 3 слов', 'withPictures': False, 'exercises': [1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672, 1673, 1674, 1675, 1676, 1677, 1678, 1679, 1680, 1681, 1682, 1683, 1684, 1685, 1686, 1687, 1688, 1689, 1690, 1691, 1692, 1693, 1694, 1695, 1696, 1697, 1698, 1699, 1700, 1701, 1702, 1703, 1704, 1705, 1706, 1707, 1708, 1709, 1710, 1711, 1712, 1713, 1714, 1715, 1716, 1717, 1718, 1719, 1720, 1721, 1722, 1723, 1724, 1725, 1726, 1727, 1728, 1729, 1730, 1731, 1732, 1733, 1734, 1735, 1736, 1737, 1738, 1739, 1740, 1741, 1742, 1743, 1744, 1745, 1746, 1747, 1748, 1749, 1750, 1751, 1752, 1753, 1754, 1755, 1756, 1757, 1758]}, {'seriesId': 4, 'id': 57, 'level': 3, 'name': 'Из 4 слов', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/sentence_with_4_words.svg', 'description': 'Пойми предложение из 4 слов', 'withPictures': False, 'exercises': [1759, 1760, 1761, 1762, 1763, 1764, 1765, 1766, 1767, 1768, 1769, 1770, 1771, 1772, 1773, 1774, 1775, 1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785, 1786, 1787, 1788, 1789, 1790, 1791, 1792, 1793, 1794, 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802]}, {'seriesId': 4, 'id': 58, 'level': 4, 'name': 'Из 5 слов', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/sentence_with_5_words.svg', 'description': 'Пойми предложение из 5 слов', 'withPictures': False, 'exercises': [1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810, 1811, 1812, 1813, 1814, 1815, 1816, 1817, 1818, 1819, 1820, 1821, 1822, 1823]}, {'seriesId': 4, 'id': 59, 'level': 5, 'name': 'Из 6 слов', 'pictureUrl': 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/sentence_with_6_words.svg', 'description': 'Пойми предложение из 6 слов', 'withPictures': False, 'exercises': [1824, 1825, 1826, 1827, 1828, 1829, 1830, 1831, 1832, 1833]}], 'errors': [], 'meta': []}",
+        "time" : {
+          "start" : 1729300351516,
+          "stop" : 1729300351516,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Select random id from list: 1791",
+        "time" : {
+          "start" : 1729300351516,
+          "stop" : 1729300351516,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "card_id",
+        "value" : "2"
+      }, {
+        "name" : "seria_id",
+        "value" : "'4'"
+      } ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Wait until url: https://brainup.site/groups/2/series/4/subgroup/57/exercise/1791 will be changed.",
+      "time" : {
+        "start" : 1729300351792,
+        "stop" : 1729300355321,
+        "duration" : 3529
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "click_start_and_get_list_words_for_group_words_ru",
+      "time" : {
+        "start" : 1729300355324,
+        "stop" : 1729300375368,
+        "duration" : 20044
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x559557f660aa <unknown>\n#1 0x559557a7d1a0 <unknown>\n#2 0x559557ac9d06 <unknown>\n#3 0x559557ac9fa1 <unknown>\n#4 0x559557b0f344 <unknown>\n#5 0x559557aeddad <unknown>\n#6 0x559557b0c866 <unknown>\n#7 0x559557aedb23 <unknown>\n#8 0x559557abc990 <unknown>\n#9 0x559557abd96e <unknown>\n#10 0x559557f3216b <unknown>\n#11 0x559557f35f68 <unknown>\n#12 0x559557f1f64c <unknown>\n#13 0x559557f36ae7 <unknown>\n#14 0x559557f044af <unknown>\n#15 0x559557f544f8 <unknown>\n#16 0x559557f546c0 <unknown>\n#17 0x559557f64f26 <unknown>\n#18 0x7f7ad0894ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/speech_exercises_page_api.py\", line 113, in click_start_and_get_list_words_for_group_words_ru\n    self.element_is_present_and_clickable(self.locators.BUTTON_START_RU).click()\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 32, in element_is_present_and_clickable\n    return (Wait(self.driver, self.timeout).until(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ {
+        "name" : "Click button \"Start\".",
+        "time" : {
+          "start" : 1729300355324,
+          "stop" : 1729300375367,
+          "duration" : 20043
+        },
+        "status" : "broken",
+        "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x559557f660aa <unknown>\n#1 0x559557a7d1a0 <unknown>\n#2 0x559557ac9d06 <unknown>\n#3 0x559557ac9fa1 <unknown>\n#4 0x559557b0f344 <unknown>\n#5 0x559557aeddad <unknown>\n#6 0x559557b0c866 <unknown>\n#7 0x559557aedb23 <unknown>\n#8 0x559557abc990 <unknown>\n#9 0x559557abd96e <unknown>\n#10 0x559557f3216b <unknown>\n#11 0x559557f35f68 <unknown>\n#12 0x559557f1f64c <unknown>\n#13 0x559557f36ae7 <unknown>\n#14 0x559557f044af <unknown>\n#15 0x559557f544f8 <unknown>\n#16 0x559557f546c0 <unknown>\n#17 0x559557f64f26 <unknown>\n#18 0x7f7ad0894ac3 <unknown>\n\n",
+        "statusTrace" : "  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/speech_exercises_page_api.py\", line 113, in click_start_and_get_list_words_for_group_words_ru\n    self.element_is_present_and_clickable(self.locators.BUTTON_START_RU).click()\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 32, in element_is_present_and_clickable\n    return (Wait(self.driver, self.timeout).until(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 18,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1729300375384,
+      "stop" : 1729300375485,
+      "duration" : 101
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Speech exercises."
+  }, {
+    "name" : "suite",
+    "value" : "Речевые упражнения."
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCardsRU"
+  }, {
+    "name" : "host",
+    "value" : "fv-az700-749"
+  }, {
+    "name" : "thread",
+    "value" : "2225-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_speech_exercises_ru"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 52,
+        "passed" : 465,
+        "unknown" : 0,
+        "total" : 517
+      },
+      "items" : [ {
+        "uid" : "806d72c26dd06ffd",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/334//#testresult/806d72c26dd06ffd",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x561e50cb402a <unknown>\n#1 0x561e5099a5e0 <unknown>\n#2 0x561e509e9be8 <unknown>\n#3 0x561e509e9e81 <unknown>\n#4 0x561e50a308c4 <unknown>\n#5 0x561e50a0eb4d <unknown>\n#6 0x561e50a2dd7d <unknown>\n#7 0x561e50a0e8c3 <unknown>\n#8 0x561e509dc6b3 <unknown>\n#9 0x561e509dd68e <unknown>\n#10 0x561e50c7ea2b <unknown>\n#11 0x561e50c829b1 <unknown>\n#12 0x561e50c6b225 <unknown>\n#13 0x561e50c83532 <unknown>\n#14 0x561e50c5038f <unknown>\n#15 0x561e50ca2f28 <unknown>\n#16 0x561e50ca30f3 <unknown>\n#17 0x561e50cb2e7c <unknown>\n#18 0x7fa712094ac3 <unknown>",
+        "time" : {
+          "start" : 1729244428626,
+          "stop" : 1729244458066,
+          "duration" : 29440
+        }
+      }, {
+        "uid" : "d9e04dbe8da9d3f5",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/333//#testresult/d9e04dbe8da9d3f5",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x561bde84b02a <unknown>\n#1 0x561bde5315e0 <unknown>\n#2 0x561bde580be8 <unknown>\n#3 0x561bde580e81 <unknown>\n#4 0x561bde5c78c4 <unknown>\n#5 0x561bde5a5b4d <unknown>\n#6 0x561bde5c4d7d <unknown>\n#7 0x561bde5a58c3 <unknown>\n#8 0x561bde5736b3 <unknown>\n#9 0x561bde57468e <unknown>\n#10 0x561bde815a2b <unknown>\n#11 0x561bde8199b1 <unknown>\n#12 0x561bde802225 <unknown>\n#13 0x561bde81a532 <unknown>\n#14 0x561bde7e738f <unknown>\n#15 0x561bde839f28 <unknown>\n#16 0x561bde83a0f3 <unknown>\n#17 0x561bde849e7c <unknown>\n#18 0x7f756b694ac3 <unknown>",
+        "time" : {
+          "start" : 1729242646622,
+          "stop" : 1729242675741,
+          "duration" : 29119
+        }
+      }, {
+        "uid" : "7d3de9ef1d934757",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/156//#testresult/7d3de9ef1d934757",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55ce173db02a <unknown>\n#1 0x55ce170c15e0 <unknown>\n#2 0x55ce17110be8 <unknown>\n#3 0x55ce17110e81 <unknown>\n#4 0x55ce171578c4 <unknown>\n#5 0x55ce17135b4d <unknown>\n#6 0x55ce17154d7d <unknown>\n#7 0x55ce171358c3 <unknown>\n#8 0x55ce171036b3 <unknown>\n#9 0x55ce1710468e <unknown>\n#10 0x55ce173a5a2b <unknown>\n#11 0x55ce173a99b1 <unknown>\n#12 0x55ce17392225 <unknown>\n#13 0x55ce173aa532 <unknown>\n#14 0x55ce1737738f <unknown>\n#15 0x55ce173c9f28 <unknown>\n#16 0x55ce173ca0f3 <unknown>\n#17 0x55ce173d9e7c <unknown>\n#18 0x7f1d18a94ac3 <unknown>",
+        "time" : {
+          "start" : 1729213957285,
+          "stop" : 1729213986406,
+          "duration" : 29121
+        }
+      }, {
+        "uid" : "51bae96f44259cd3",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/332//#testresult/51bae96f44259cd3",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55be3a51f02a <unknown>\n#1 0x55be3a2055e0 <unknown>\n#2 0x55be3a254be8 <unknown>\n#3 0x55be3a254e81 <unknown>\n#4 0x55be3a29b8c4 <unknown>\n#5 0x55be3a279b4d <unknown>\n#6 0x55be3a298d7d <unknown>\n#7 0x55be3a2798c3 <unknown>\n#8 0x55be3a2476b3 <unknown>\n#9 0x55be3a24868e <unknown>\n#10 0x55be3a4e9a2b <unknown>\n#11 0x55be3a4ed9b1 <unknown>\n#12 0x55be3a4d6225 <unknown>\n#13 0x55be3a4ee532 <unknown>\n#14 0x55be3a4bb38f <unknown>\n#15 0x55be3a50df28 <unknown>\n#16 0x55be3a50e0f3 <unknown>\n#17 0x55be3a51de7c <unknown>\n#18 0x7fead5094ac3 <unknown>",
+        "time" : {
+          "start" : 1729155117802,
+          "stop" : 1729155147588,
+          "duration" : 29786
+        }
+      }, {
+        "uid" : "cf3d68dc2783ce5d",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/331//#testresult/cf3d68dc2783ce5d",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55b951bce02a <unknown>\n#1 0x55b9518b45e0 <unknown>\n#2 0x55b951903be8 <unknown>\n#3 0x55b951903e81 <unknown>\n#4 0x55b95194a8c4 <unknown>\n#5 0x55b951928b4d <unknown>\n#6 0x55b951947d7d <unknown>\n#7 0x55b9519288c3 <unknown>\n#8 0x55b9518f66b3 <unknown>\n#9 0x55b9518f768e <unknown>\n#10 0x55b951b98a2b <unknown>\n#11 0x55b951b9c9b1 <unknown>\n#12 0x55b951b85225 <unknown>\n#13 0x55b951b9d532 <unknown>\n#14 0x55b951b6a38f <unknown>\n#15 0x55b951bbcf28 <unknown>\n#16 0x55b951bbd0f3 <unknown>\n#17 0x55b951bcce7c <unknown>\n#18 0x7fe83ec94ac3 <unknown>",
+        "time" : {
+          "start" : 1729153376137,
+          "stop" : 1729153405483,
+          "duration" : 29346
+        }
+      }, {
+        "uid" : "a26c42ae4ba36a65",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/155//#testresult/a26c42ae4ba36a65",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55fbc62c402a <unknown>\n#1 0x55fbc5faa5e0 <unknown>\n#2 0x55fbc5ff9be8 <unknown>\n#3 0x55fbc5ff9e81 <unknown>\n#4 0x55fbc60408c4 <unknown>\n#5 0x55fbc601eb4d <unknown>\n#6 0x55fbc603dd7d <unknown>\n#7 0x55fbc601e8c3 <unknown>\n#8 0x55fbc5fec6b3 <unknown>\n#9 0x55fbc5fed68e <unknown>\n#10 0x55fbc628ea2b <unknown>\n#11 0x55fbc62929b1 <unknown>\n#12 0x55fbc627b225 <unknown>\n#13 0x55fbc6293532 <unknown>\n#14 0x55fbc626038f <unknown>\n#15 0x55fbc62b2f28 <unknown>\n#16 0x55fbc62b30f3 <unknown>\n#17 0x55fbc62c2e7c <unknown>\n#18 0x7f0198294ac3 <unknown>",
+        "time" : {
+          "start" : 1729127520856,
+          "stop" : 1729127550138,
+          "duration" : 29282
+        }
+      }, {
+        "uid" : "bf2ab7c6e6522130",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/330//#testresult/bf2ab7c6e6522130",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x559cec66302a <unknown>\n#1 0x559cec3495e0 <unknown>\n#2 0x559cec398be8 <unknown>\n#3 0x559cec398e81 <unknown>\n#4 0x559cec3df8c4 <unknown>\n#5 0x559cec3bdb4d <unknown>\n#6 0x559cec3dcd7d <unknown>\n#7 0x559cec3bd8c3 <unknown>\n#8 0x559cec38b6b3 <unknown>\n#9 0x559cec38c68e <unknown>\n#10 0x559cec62da2b <unknown>\n#11 0x559cec6319b1 <unknown>\n#12 0x559cec61a225 <unknown>\n#13 0x559cec632532 <unknown>\n#14 0x559cec5ff38f <unknown>\n#15 0x559cec651f28 <unknown>\n#16 0x559cec6520f3 <unknown>\n#17 0x559cec661e7c <unknown>\n#18 0x7fe3f4694ac3 <unknown>",
+        "time" : {
+          "start" : 1729064918329,
+          "stop" : 1729064947587,
+          "duration" : 29258
+        }
+      }, {
+        "uid" : "54664eb5498b98d2",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/329//#testresult/54664eb5498b98d2",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55fc9db1d02a <unknown>\n#1 0x55fc9d8035e0 <unknown>\n#2 0x55fc9d852be8 <unknown>\n#3 0x55fc9d852e81 <unknown>\n#4 0x55fc9d8998c4 <unknown>\n#5 0x55fc9d877b4d <unknown>\n#6 0x55fc9d896d7d <unknown>\n#7 0x55fc9d8778c3 <unknown>\n#8 0x55fc9d8456b3 <unknown>\n#9 0x55fc9d84668e <unknown>\n#10 0x55fc9dae7a2b <unknown>\n#11 0x55fc9daeb9b1 <unknown>\n#12 0x55fc9dad4225 <unknown>\n#13 0x55fc9daec532 <unknown>\n#14 0x55fc9dab938f <unknown>\n#15 0x55fc9db0bf28 <unknown>\n#16 0x55fc9db0c0f3 <unknown>\n#17 0x55fc9db1be7c <unknown>\n#18 0x7f1801094ac3 <unknown>",
+        "time" : {
+          "start" : 1729062397103,
+          "stop" : 1729062426570,
+          "duration" : 29467
+        }
+      }, {
+        "uid" : "f2f2794ebb4b9122",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/154//#testresult/f2f2794ebb4b9122",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55f16c26e02a <unknown>\n#1 0x55f16bf545e0 <unknown>\n#2 0x55f16bfa3be8 <unknown>\n#3 0x55f16bfa3e81 <unknown>\n#4 0x55f16bfea8c4 <unknown>\n#5 0x55f16bfc8b4d <unknown>\n#6 0x55f16bfe7d7d <unknown>\n#7 0x55f16bfc88c3 <unknown>\n#8 0x55f16bf966b3 <unknown>\n#9 0x55f16bf9768e <unknown>\n#10 0x55f16c238a2b <unknown>\n#11 0x55f16c23c9b1 <unknown>\n#12 0x55f16c225225 <unknown>\n#13 0x55f16c23d532 <unknown>\n#14 0x55f16c20a38f <unknown>\n#15 0x55f16c25cf28 <unknown>\n#16 0x55f16c25d0f3 <unknown>\n#17 0x55f16c26ce7c <unknown>\n#18 0x7f5be5294ac3 <unknown>",
+        "time" : {
+          "start" : 1729041349072,
+          "stop" : 1729041381304,
+          "duration" : 32232
+        }
+      }, {
+        "uid" : "f770a795f2a70b92",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/328//#testresult/f770a795f2a70b92",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x556dc92fb02a <unknown>\n#1 0x556dc8fe15e0 <unknown>\n#2 0x556dc9030be8 <unknown>\n#3 0x556dc9030e81 <unknown>\n#4 0x556dc90778c4 <unknown>\n#5 0x556dc9055b4d <unknown>\n#6 0x556dc9074d7d <unknown>\n#7 0x556dc90558c3 <unknown>\n#8 0x556dc90236b3 <unknown>\n#9 0x556dc902468e <unknown>\n#10 0x556dc92c5a2b <unknown>\n#11 0x556dc92c99b1 <unknown>\n#12 0x556dc92b2225 <unknown>\n#13 0x556dc92ca532 <unknown>\n#14 0x556dc929738f <unknown>\n#15 0x556dc92e9f28 <unknown>\n#16 0x556dc92ea0f3 <unknown>\n#17 0x556dc92f9e7c <unknown>\n#18 0x7ff96f494ac3 <unknown>",
+        "time" : {
+          "start" : 1728984734380,
+          "stop" : 1728984763404,
+          "duration" : 29024
+        }
+      }, {
+        "uid" : "8152559d6d4f17f1",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/327//#testresult/8152559d6d4f17f1",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55b078b7302a <unknown>\n#1 0x55b0788595e0 <unknown>\n#2 0x55b0788a8be8 <unknown>\n#3 0x55b0788a8e81 <unknown>\n#4 0x55b0788ef8c4 <unknown>\n#5 0x55b0788cdb4d <unknown>\n#6 0x55b0788ecd7d <unknown>\n#7 0x55b0788cd8c3 <unknown>\n#8 0x55b07889b6b3 <unknown>\n#9 0x55b07889c68e <unknown>\n#10 0x55b078b3da2b <unknown>\n#11 0x55b078b419b1 <unknown>\n#12 0x55b078b2a225 <unknown>\n#13 0x55b078b42532 <unknown>\n#14 0x55b078b0f38f <unknown>\n#15 0x55b078b61f28 <unknown>\n#16 0x55b078b620f3 <unknown>\n#17 0x55b078b71e7c <unknown>\n#18 0x7f87a7a94ac3 <unknown>",
+        "time" : {
+          "start" : 1728980238261,
+          "stop" : 1728980291246,
+          "duration" : 52985
+        }
+      }, {
+        "uid" : "8d571cfe0f6ee7c4",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/153//#testresult/8d571cfe0f6ee7c4",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55d1fc8a602a <unknown>\n#1 0x55d1fc58c5e0 <unknown>\n#2 0x55d1fc5dbbe8 <unknown>\n#3 0x55d1fc5dbe81 <unknown>\n#4 0x55d1fc6228c4 <unknown>\n#5 0x55d1fc600b4d <unknown>\n#6 0x55d1fc61fd7d <unknown>\n#7 0x55d1fc6008c3 <unknown>\n#8 0x55d1fc5ce6b3 <unknown>\n#9 0x55d1fc5cf68e <unknown>\n#10 0x55d1fc870a2b <unknown>\n#11 0x55d1fc8749b1 <unknown>\n#12 0x55d1fc85d225 <unknown>\n#13 0x55d1fc875532 <unknown>\n#14 0x55d1fc84238f <unknown>\n#15 0x55d1fc894f28 <unknown>\n#16 0x55d1fc8950f3 <unknown>\n#17 0x55d1fc8a4e7c <unknown>\n#18 0x7f6be4494ac3 <unknown>",
+        "time" : {
+          "start" : 1728954641335,
+          "stop" : 1728954671173,
+          "duration" : 29838
+        }
+      }, {
+        "uid" : "470b1356eba5f12f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/326//#testresult/470b1356eba5f12f",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55f31535302a <unknown>\n#1 0x55f3150395e0 <unknown>\n#2 0x55f315088be8 <unknown>\n#3 0x55f315088e81 <unknown>\n#4 0x55f3150cf8c4 <unknown>\n#5 0x55f3150adb4d <unknown>\n#6 0x55f3150ccd7d <unknown>\n#7 0x55f3150ad8c3 <unknown>\n#8 0x55f31507b6b3 <unknown>\n#9 0x55f31507c68e <unknown>\n#10 0x55f31531da2b <unknown>\n#11 0x55f3153219b1 <unknown>\n#12 0x55f31530a225 <unknown>\n#13 0x55f315322532 <unknown>\n#14 0x55f3152ef38f <unknown>\n#15 0x55f315341f28 <unknown>\n#16 0x55f3153420f3 <unknown>\n#17 0x55f315351e7c <unknown>\n#18 0x7fa965694ac3 <unknown>",
+        "time" : {
+          "start" : 1728898339940,
+          "stop" : 1728898369364,
+          "duration" : 29424
+        }
+      }, {
+        "uid" : "aca8ff1c5dbdca39",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/325//#testresult/aca8ff1c5dbdca39",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x5619d5c4802a <unknown>\n#1 0x5619d592e5e0 <unknown>\n#2 0x5619d597dbe8 <unknown>\n#3 0x5619d597de81 <unknown>\n#4 0x5619d59c48c4 <unknown>\n#5 0x5619d59a2b4d <unknown>\n#6 0x5619d59c1d7d <unknown>\n#7 0x5619d59a28c3 <unknown>\n#8 0x5619d59706b3 <unknown>\n#9 0x5619d597168e <unknown>\n#10 0x5619d5c12a2b <unknown>\n#11 0x5619d5c169b1 <unknown>\n#12 0x5619d5bff225 <unknown>\n#13 0x5619d5c17532 <unknown>\n#14 0x5619d5be438f <unknown>\n#15 0x5619d5c36f28 <unknown>\n#16 0x5619d5c370f3 <unknown>\n#17 0x5619d5c46e7c <unknown>\n#18 0x7fe59a894ac3 <unknown>",
+        "time" : {
+          "start" : 1728895998382,
+          "stop" : 1728896027385,
+          "duration" : 29003
+        }
+      }, {
+        "uid" : "12a972196caa0237",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/152//#testresult/12a972196caa0237",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x563283a2102a <unknown>\n#1 0x5632837075e0 <unknown>\n#2 0x563283756be8 <unknown>\n#3 0x563283756e81 <unknown>\n#4 0x56328379d8c4 <unknown>\n#5 0x56328377bb4d <unknown>\n#6 0x56328379ad7d <unknown>\n#7 0x56328377b8c3 <unknown>\n#8 0x5632837496b3 <unknown>\n#9 0x56328374a68e <unknown>\n#10 0x5632839eba2b <unknown>\n#11 0x5632839ef9b1 <unknown>\n#12 0x5632839d8225 <unknown>\n#13 0x5632839f0532 <unknown>\n#14 0x5632839bd38f <unknown>\n#15 0x563283a0ff28 <unknown>\n#16 0x563283a100f3 <unknown>\n#17 0x563283a1fe7c <unknown>\n#18 0x7f0a81894ac3 <unknown>",
+        "time" : {
+          "start" : 1728868484558,
+          "stop" : 1728868514849,
+          "duration" : 30291
+        }
+      }, {
+        "uid" : "f46606b4b39ab392",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/324//#testresult/f46606b4b39ab392",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x55b7ae52c02a <unknown>\n#1 0x55b7ae2125e0 <unknown>\n#2 0x55b7ae261be8 <unknown>\n#3 0x55b7ae261e81 <unknown>\n#4 0x55b7ae2a88c4 <unknown>\n#5 0x55b7ae286b4d <unknown>\n#6 0x55b7ae2a5d7d <unknown>\n#7 0x55b7ae2868c3 <unknown>\n#8 0x55b7ae2546b3 <unknown>\n#9 0x55b7ae25568e <unknown>\n#10 0x55b7ae4f6a2b <unknown>\n#11 0x55b7ae4fa9b1 <unknown>\n#12 0x55b7ae4e3225 <unknown>\n#13 0x55b7ae4fb532 <unknown>\n#14 0x55b7ae4c838f <unknown>\n#15 0x55b7ae51af28 <unknown>\n#16 0x55b7ae51b0f3 <unknown>\n#17 0x55b7ae52ae7c <unknown>\n#18 0x7fbca7c94ac3 <unknown>",
+        "time" : {
+          "start" : 1728851876352,
+          "stop" : 1728851905742,
+          "duration" : 29390
+        }
+      }, {
+        "uid" : "7f0a401705330b4d",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/323//#testresult/7f0a401705330b4d",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//button[@aria-label=\"Начать выполнение упражнения\"]')\nStacktrace:\n#0 0x560e09dd202a <unknown>\n#1 0x560e09ab85e0 <unknown>\n#2 0x560e09b07be8 <unknown>\n#3 0x560e09b07e81 <unknown>\n#4 0x560e09b4e8c4 <unknown>\n#5 0x560e09b2cb4d <unknown>\n#6 0x560e09b4bd7d <unknown>\n#7 0x560e09b2c8c3 <unknown>\n#8 0x560e09afa6b3 <unknown>\n#9 0x560e09afb68e <unknown>\n#10 0x560e09d9ca2b <unknown>\n#11 0x560e09da09b1 <unknown>\n#12 0x560e09d89225 <unknown>\n#13 0x560e09da1532 <unknown>\n#14 0x560e09d6e38f <unknown>\n#15 0x560e09dc0f28 <unknown>\n#16 0x560e09dc10f3 <unknown>\n#17 0x560e09dd0e7c <unknown>\n#18 0x7f993be94ac3 <unknown>",
+        "time" : {
+          "start" : 1728849038498,
+          "stop" : 1728849068470,
+          "duration" : 29972
+        }
+      }, {
+        "uid" : "c236edd5ad701fc9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/151//#testresult/c236edd5ad701fc9",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=129.0.6668.89)\nStacktrace:\n#0 0x55b4fcf2002a <unknown>\n#1 0x55b4fcc065e0 <unknown>\n#2 0x55b4fcbfe7eb <unknown>\n#3 0x55b4fcbeea09 <unknown>\n#4 0x55b4fcbf0744 <unknown>\n#5 0x55b4fcbeecbd <unknown>\n#6 0x55b4fcbee52f <unknown>\n#7 0x55b4fcbee422 <unknown>\n#8 0x55b4fcbec493 <unknown>\n#9 0x55b4fcbecada <unknown>\n#10 0x55b4fcc08f41 <unknown>\n#11 0x55b4fcc9a8c5 <unknown>\n#12 0x55b4fcc7ab22 <unknown>\n#13 0x55b4fcc99d7d <unknown>\n#14 0x55b4fcc7a8c3 <unknown>\n#15 0x55b4fcc486b3 <unknown>\n#16 0x55b4fcc4968e <unknown>\n#17 0x55b4fceeaa2b <unknown>\n#18 0x55b4fceee9b1 <unknown>\n#19 0x55b4fced7225 <unknown>\n#20 0x55b4fceef532 <unknown>\n#21 0x55b4fcebc38f <unknown>\n#22 0x55b4fcf0ef28 <unknown>\n#23 0x55b4fcf0f0f3 <unknown>\n#24 0x55b4fcf1ee7c <unknown>\n#25 0x7f8632294ac3 <unknown>",
+        "time" : {
+          "start" : 1728781358851,
+          "stop" : 1728781358851,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "db099469129dbb40",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/150//#testresult/db099469129dbb40",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=129.0.6668.89)\nStacktrace:\n#0 0x5613a7eb702a <unknown>\n#1 0x5613a7b9d5e0 <unknown>\n#2 0x5613a7b957eb <unknown>\n#3 0x5613a7b85a09 <unknown>\n#4 0x5613a7b87744 <unknown>\n#5 0x5613a7b85cbd <unknown>\n#6 0x5613a7b8552f <unknown>\n#7 0x5613a7b85422 <unknown>\n#8 0x5613a7b83493 <unknown>\n#9 0x5613a7b83ada <unknown>\n#10 0x5613a7b9ff41 <unknown>\n#11 0x5613a7c318c5 <unknown>\n#12 0x5613a7c11b22 <unknown>\n#13 0x5613a7c30d7d <unknown>\n#14 0x5613a7c118c3 <unknown>\n#15 0x5613a7bdf6b3 <unknown>\n#16 0x5613a7be068e <unknown>\n#17 0x5613a7e81a2b <unknown>\n#18 0x5613a7e859b1 <unknown>\n#19 0x5613a7e6e225 <unknown>\n#20 0x5613a7e86532 <unknown>\n#21 0x5613a7e5338f <unknown>\n#22 0x5613a7ea5f28 <unknown>\n#23 0x5613a7ea60f3 <unknown>\n#24 0x5613a7eb5e7c <unknown>\n#25 0x7f3f2d694ac3 <unknown>",
+        "time" : {
+          "start" : 1728694685379,
+          "stop" : 1728694685379,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "ff18090cb9db40b4",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/149//#testresult/ff18090cb9db40b4",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=129.0.6668.89)\nStacktrace:\n#0 0x55f00457e02a <unknown>\n#1 0x55f0042645e0 <unknown>\n#2 0x55f00425c7eb <unknown>\n#3 0x55f00424ca09 <unknown>\n#4 0x55f00424e744 <unknown>\n#5 0x55f00424ccbd <unknown>\n#6 0x55f00424c52f <unknown>\n#7 0x55f00424c422 <unknown>\n#8 0x55f00424a493 <unknown>\n#9 0x55f00424aada <unknown>\n#10 0x55f004266f41 <unknown>\n#11 0x55f0042f88c5 <unknown>\n#12 0x55f0042d8b22 <unknown>\n#13 0x55f0042f7d7d <unknown>\n#14 0x55f0042d88c3 <unknown>\n#15 0x55f0042a66b3 <unknown>\n#16 0x55f0042a768e <unknown>\n#17 0x55f004548a2b <unknown>\n#18 0x55f00454c9b1 <unknown>\n#19 0x55f004535225 <unknown>\n#20 0x55f00454d532 <unknown>\n#21 0x55f00451a38f <unknown>\n#22 0x55f00456cf28 <unknown>\n#23 0x55f00456d0f3 <unknown>\n#24 0x55f00457ce7c <unknown>\n#25 0x7f3b4f294ac3 <unknown>",
+        "time" : {
+          "start" : 1728608286223,
+          "stop" : 1728608286223,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail" ]
+  },
+  "source" : "18a64475c3348b56.json",
+  "parameterValues" : [ ]
+}
