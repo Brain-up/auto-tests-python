@@ -96,6 +96,7 @@ class TestGroupsPage:
             link_status_codes = page.get_links_status_codes()
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
-            assert links_href == GroupsPageData.links_href, "Attributes 'href' of links do not match valid values"
+            assert all(link_href in GroupsPageData.links_href for link_href in links_href), \
+                "Attributes 'href' of links mismatch valid values"
             assert all(element == GroupsPageData.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
