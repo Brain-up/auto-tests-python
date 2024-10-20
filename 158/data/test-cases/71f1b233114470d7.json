@@ -1,0 +1,508 @@
+{
+  "uid" : "71f1b233114470d7",
+  "name" : "Change the password by receiving an email link",
+  "fullName" : "tests.profile_page_test.TestProfilePage#test_change_password",
+  "historyId" : "9957e716460bffae2f2d96bf28fa1581",
+  "time" : {
+    "start" : 1729386709514,
+    "stop" : 1729386773322,
+    "duration" : 63808
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x5561f581b0aa <unknown>\n#1 0x5561f53321a0 <unknown>\n#2 0x5561f537ed06 <unknown>\n#3 0x5561f537efa1 <unknown>\n#4 0x5561f53c4344 <unknown>\n#5 0x5561f53a2dad <unknown>\n#6 0x5561f53c1866 <unknown>\n#7 0x5561f53a2b23 <unknown>\n#8 0x5561f5371990 <unknown>\n#9 0x5561f537296e <unknown>\n#10 0x5561f57e716b <unknown>\n#11 0x5561f57eaf68 <unknown>\n#12 0x5561f57d464c <unknown>\n#13 0x5561f57ebae7 <unknown>\n#14 0x5561f57b94af <unknown>\n#15 0x5561f58094f8 <unknown>\n#16 0x5561f58096c0 <unknown>\n#17 0x5561f5819f26 <unknown>\n#18 0x7fa08be94ac3 <unknown>",
+  "statusTrace" : "self = <tests.profile_page_test.TestProfilePage object at 0x7fda735873e0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"06e442ae98d435f492313d076d2c9e0d\")>\nmain_page_open = None\n\n    @allure.title(\"Change the password by receiving an email link\")\n    def test_change_password(self, driver, main_page_open):\n        page = ProfilePage(driver)\n        page.open_login_page()\n        page.authorise_user()\n        page.loader_checking()\n        page.go_to_profile_page()\n        page.click_change_password_link()\n        page.field_recovery_email()\n        page.click_send_recovery_email_link()\n        link = page.get_link_change_password_by_email()\n        assert 'brainupspb' in link, \"The link to change the password was not received\"\n        driver.get(link)\n>       page.enter_new_password_field()\n\ntests/profile_page_test.py:24: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/profile_page.py:74: in enter_new_password_field\n    self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(choice([os.environ[\"CHANGE_PASSWORD\"],\npages/base_page.py:37: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:51: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"06e442ae98d435f492313d076d2c9e0d\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7fda7342fec0>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//input[@name=\"newPassword\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nE       Stacktrace:\nE       #0 0x5561f581b0aa <unknown>\nE       #1 0x5561f53321a0 <unknown>\nE       #2 0x5561f537ed06 <unknown>\nE       #3 0x5561f537efa1 <unknown>\nE       #4 0x5561f53c4344 <unknown>\nE       #5 0x5561f53a2dad <unknown>\nE       #6 0x5561f53c1866 <unknown>\nE       #7 0x5561f53a2b23 <unknown>\nE       #8 0x5561f5371990 <unknown>\nE       #9 0x5561f537296e <unknown>\nE       #10 0x5561f57e716b <unknown>\nE       #11 0x5561f57eaf68 <unknown>\nE       #12 0x5561f57d464c <unknown>\nE       #13 0x5561f57ebae7 <unknown>\nE       #14 0x5561f57b94af <unknown>\nE       #15 0x5561f58094f8 <unknown>\nE       #16 0x5561f58096c0 <unknown>\nE       #17 0x5561f5819f26 <unknown>\nE       #18 0x7fa08be94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1729386704899,
+      "stop" : 1729386705678,
+      "duration" : 779
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1729386047942,
+      "stop" : 1729386047942,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1729386705678,
+      "stop" : 1729386709513,
+      "duration" : 3835
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://brainup.site/",
+      "time" : {
+        "start" : 1729386705678,
+        "stop" : 1729386709513,
+        "duration" : 3835
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"06e442ae98d435f492313d076d2c9e0d\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x5561f581b0aa <unknown>\n#1 0x5561f53321a0 <unknown>\n#2 0x5561f537ed06 <unknown>\n#3 0x5561f537efa1 <unknown>\n#4 0x5561f53c4344 <unknown>\n#5 0x5561f53a2dad <unknown>\n#6 0x5561f53c1866 <unknown>\n#7 0x5561f53a2b23 <unknown>\n#8 0x5561f5371990 <unknown>\n#9 0x5561f537296e <unknown>\n#10 0x5561f57e716b <unknown>\n#11 0x5561f57eaf68 <unknown>\n#12 0x5561f57d464c <unknown>\n#13 0x5561f57ebae7 <unknown>\n#14 0x5561f57b94af <unknown>\n#15 0x5561f58094f8 <unknown>\n#16 0x5561f58096c0 <unknown>\n#17 0x5561f5819f26 <unknown>\n#18 0x7fa08be94ac3 <unknown>",
+    "statusTrace" : "self = <tests.profile_page_test.TestProfilePage object at 0x7fda735873e0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"06e442ae98d435f492313d076d2c9e0d\")>\nmain_page_open = None\n\n    @allure.title(\"Change the password by receiving an email link\")\n    def test_change_password(self, driver, main_page_open):\n        page = ProfilePage(driver)\n        page.open_login_page()\n        page.authorise_user()\n        page.loader_checking()\n        page.go_to_profile_page()\n        page.click_change_password_link()\n        page.field_recovery_email()\n        page.click_send_recovery_email_link()\n        link = page.get_link_change_password_by_email()\n        assert 'brainupspb' in link, \"The link to change the password was not received\"\n        driver.get(link)\n>       page.enter_new_password_field()\n\ntests/profile_page_test.py:24: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/profile_page.py:74: in enter_new_password_field\n    self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(choice([os.environ[\"CHANGE_PASSWORD\"],\npages/base_page.py:37: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:51: in element_is_present\n    return Wait(self.driver, self.timeout).until(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"06e442ae98d435f492313d076d2c9e0d\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7fda7342fec0>\nmessage = 'Can\\'t find element by locator (\\'xpath\\', \\'//input[@name=\"newPassword\"]\\')'\n\n    def until(self, method, message: str = \"\"):\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nE       Stacktrace:\nE       #0 0x5561f581b0aa <unknown>\nE       #1 0x5561f53321a0 <unknown>\nE       #2 0x5561f537ed06 <unknown>\nE       #3 0x5561f537efa1 <unknown>\nE       #4 0x5561f53c4344 <unknown>\nE       #5 0x5561f53a2dad <unknown>\nE       #6 0x5561f53c1866 <unknown>\nE       #7 0x5561f53a2b23 <unknown>\nE       #8 0x5561f5371990 <unknown>\nE       #9 0x5561f537296e <unknown>\nE       #10 0x5561f57e716b <unknown>\nE       #11 0x5561f57eaf68 <unknown>\nE       #12 0x5561f57d464c <unknown>\nE       #13 0x5561f57ebae7 <unknown>\nE       #14 0x5561f57b94af <unknown>\nE       #15 0x5561f58094f8 <unknown>\nE       #16 0x5561f58096c0 <unknown>\nE       #17 0x5561f5819f26 <unknown>\nE       #18 0x7fa08be94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:95: TimeoutException",
+    "steps" : [ {
+      "name" : "Open login page",
+      "time" : {
+        "start" : 1729386709514,
+        "stop" : 1729386709611,
+        "duration" : 97
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Authorise user",
+      "time" : {
+        "start" : 1729386709611,
+        "stop" : 1729386711956,
+        "duration" : 2345
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Wait until url: https://brainup.site/profile will be changed.",
+        "time" : {
+          "start" : 1729386711950,
+          "stop" : 1729386711956,
+          "duration" : 6
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Loader checking",
+      "time" : {
+        "start" : 1729386711956,
+        "stop" : 1729386712493,
+        "duration" : 537
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Go to the Profile page",
+      "time" : {
+        "start" : 1729386712494,
+        "stop" : 1729386712552,
+        "duration" : 58
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Click the button 'Change password'",
+      "time" : {
+        "start" : 1729386712553,
+        "stop" : 1729386713138,
+        "duration" : 585
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Clear field the email and enter data",
+      "time" : {
+        "start" : 1729386713138,
+        "stop" : 1729386713264,
+        "duration" : 126
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Click the button 'Send recovery email'",
+      "time" : {
+        "start" : 1729386713264,
+        "stop" : 1729386718321,
+        "duration" : 5057
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get a link to change the password by email",
+      "time" : {
+        "start" : 1729386718322,
+        "stop" : 1729386722314,
+        "duration" : 3992
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Enter the data in the email field",
+      "time" : {
+        "start" : 1729386722987,
+        "stop" : 1729386773322,
+        "duration" : 50335
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x5561f581b0aa <unknown>\n#1 0x5561f53321a0 <unknown>\n#2 0x5561f537ed06 <unknown>\n#3 0x5561f537efa1 <unknown>\n#4 0x5561f53c4344 <unknown>\n#5 0x5561f53a2dad <unknown>\n#6 0x5561f53c1866 <unknown>\n#7 0x5561f53a2b23 <unknown>\n#8 0x5561f5371990 <unknown>\n#9 0x5561f537296e <unknown>\n#10 0x5561f57e716b <unknown>\n#11 0x5561f57eaf68 <unknown>\n#12 0x5561f57d464c <unknown>\n#13 0x5561f57ebae7 <unknown>\n#14 0x5561f57b94af <unknown>\n#15 0x5561f58094f8 <unknown>\n#16 0x5561f58096c0 <unknown>\n#17 0x5561f5819f26 <unknown>\n#18 0x7fa08be94ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/profile_page.py\", line 74, in enter_new_password_field\n    self.element_is_visible(ProfilePageLocators.NEW_PASSWORD).send_keys(choice([os.environ[\"CHANGE_PASSWORD\"],\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 37, in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 51, in element_is_present\n    return Wait(self.driver, self.timeout).until(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "ea3a1b1e7c6c0ed1",
+      "name" : "Screenshot 2024-10-20 01:12:53.412035",
+      "source" : "ea3a1b1e7c6c0ed1.png",
+      "type" : "image/png",
+      "size" : 22281
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 10,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1729386773413,
+      "stop" : 1729386773516,
+      "duration" : 103
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Test Profile Page"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "profile_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestProfilePage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1148-153"
+  }, {
+    "name" : "thread",
+    "value" : "2234-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.profile_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 34,
+        "skipped" : 0,
+        "passed" : 486,
+        "unknown" : 0,
+        "total" : 520
+      },
+      "items" : [ {
+        "uid" : "85ef27f75ad63dff",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/336//#testresult/85ef27f75ad63dff",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729334790408,
+          "stop" : 1729334802703,
+          "duration" : 12295
+        }
+      }, {
+        "uid" : "64ce6cf69e6e7b2a",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/335//#testresult/64ce6cf69e6e7b2a",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x556a4004e0aa <unknown>\n#1 0x556a3fb651a0 <unknown>\n#2 0x556a3fbb1d06 <unknown>\n#3 0x556a3fbb1fa1 <unknown>\n#4 0x556a3fbf7344 <unknown>\n#5 0x556a3fbd5dad <unknown>\n#6 0x556a3fbf4866 <unknown>\n#7 0x556a3fbd5b23 <unknown>\n#8 0x556a3fba4990 <unknown>\n#9 0x556a3fba596e <unknown>\n#10 0x556a4001a16b <unknown>\n#11 0x556a4001df68 <unknown>\n#12 0x556a4000764c <unknown>\n#13 0x556a4001eae7 <unknown>\n#14 0x556a3ffec4af <unknown>\n#15 0x556a4003c4f8 <unknown>\n#16 0x556a4003c6c0 <unknown>\n#17 0x556a4004cf26 <unknown>\n#18 0x7f2f0be94ac3 <unknown>",
+        "time" : {
+          "start" : 1729333195684,
+          "stop" : 1729333257492,
+          "duration" : 61808
+        }
+      }, {
+        "uid" : "f6d1f079995edf8c",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/157//#testresult/f6d1f079995edf8c",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x55c9527550aa <unknown>\n#1 0x55c95226c1a0 <unknown>\n#2 0x55c9522b8d06 <unknown>\n#3 0x55c9522b8fa1 <unknown>\n#4 0x55c9522fe344 <unknown>\n#5 0x55c9522dcdad <unknown>\n#6 0x55c9522fb866 <unknown>\n#7 0x55c9522dcb23 <unknown>\n#8 0x55c9522ab990 <unknown>\n#9 0x55c9522ac96e <unknown>\n#10 0x55c95272116b <unknown>\n#11 0x55c952724f68 <unknown>\n#12 0x55c95270e64c <unknown>\n#13 0x55c952725ae7 <unknown>\n#14 0x55c9526f34af <unknown>\n#15 0x55c9527434f8 <unknown>\n#16 0x55c9527436c0 <unknown>\n#17 0x55c952753f26 <unknown>\n#18 0x7f5e0fc94ac3 <unknown>",
+        "time" : {
+          "start" : 1729299854263,
+          "stop" : 1729299915848,
+          "duration" : 61585
+        }
+      }, {
+        "uid" : "7ce5f0230dfcc817",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/334//#testresult/7ce5f0230dfcc817",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x55e6dee4b02a <unknown>\n#1 0x55e6deb315e0 <unknown>\n#2 0x55e6deb80be8 <unknown>\n#3 0x55e6deb80e81 <unknown>\n#4 0x55e6debc78c4 <unknown>\n#5 0x55e6deba5b4d <unknown>\n#6 0x55e6debc4d7d <unknown>\n#7 0x55e6deba58c3 <unknown>\n#8 0x55e6deb736b3 <unknown>\n#9 0x55e6deb7468e <unknown>\n#10 0x55e6dee15a2b <unknown>\n#11 0x55e6dee199b1 <unknown>\n#12 0x55e6dee02225 <unknown>\n#13 0x55e6dee1a532 <unknown>\n#14 0x55e6dede738f <unknown>\n#15 0x55e6dee39f28 <unknown>\n#16 0x55e6dee3a0f3 <unknown>\n#17 0x55e6dee49e7c <unknown>\n#18 0x7fcc20294ac3 <unknown>",
+        "time" : {
+          "start" : 1729243934542,
+          "stop" : 1729243996124,
+          "duration" : 61582
+        }
+      }, {
+        "uid" : "4149c739148fec43",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/333//#testresult/4149c739148fec43",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729242200683,
+          "stop" : 1729242213416,
+          "duration" : 12733
+        }
+      }, {
+        "uid" : "782ee2c645aad4a0",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/156//#testresult/782ee2c645aad4a0",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: Can't find element by locator ('xpath', '//input[@name=\"newPassword\"]')\nStacktrace:\n#0 0x55a4c785102a <unknown>\n#1 0x55a4c75375e0 <unknown>\n#2 0x55a4c7586be8 <unknown>\n#3 0x55a4c7586e81 <unknown>\n#4 0x55a4c75cd8c4 <unknown>\n#5 0x55a4c75abb4d <unknown>\n#6 0x55a4c75cad7d <unknown>\n#7 0x55a4c75ab8c3 <unknown>\n#8 0x55a4c75796b3 <unknown>\n#9 0x55a4c757a68e <unknown>\n#10 0x55a4c781ba2b <unknown>\n#11 0x55a4c781f9b1 <unknown>\n#12 0x55a4c7808225 <unknown>\n#13 0x55a4c7820532 <unknown>\n#14 0x55a4c77ed38f <unknown>\n#15 0x55a4c783ff28 <unknown>\n#16 0x55a4c78400f3 <unknown>\n#17 0x55a4c784fe7c <unknown>\n#18 0x7fa3c7a94ac3 <unknown>",
+        "time" : {
+          "start" : 1729213482614,
+          "stop" : 1729213545179,
+          "duration" : 62565
+        }
+      }, {
+        "uid" : "b2ca82cace84cee0",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/332//#testresult/b2ca82cace84cee0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729154691898,
+          "stop" : 1729154703392,
+          "duration" : 11494
+        }
+      }, {
+        "uid" : "3c134bba9f8fd137",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/331//#testresult/3c134bba9f8fd137",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729152931003,
+          "stop" : 1729152943805,
+          "duration" : 12802
+        }
+      }, {
+        "uid" : "e209e7462aaef5b0",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/155//#testresult/e209e7462aaef5b0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729127065173,
+          "stop" : 1729127077312,
+          "duration" : 12139
+        }
+      }, {
+        "uid" : "e9a34c43ba9121bf",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/330//#testresult/e9a34c43ba9121bf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729064465649,
+          "stop" : 1729064477544,
+          "duration" : 11895
+        }
+      }, {
+        "uid" : "5491fa937f5fd59c",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/329//#testresult/5491fa937f5fd59c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729061956775,
+          "stop" : 1729061968472,
+          "duration" : 11697
+        }
+      }, {
+        "uid" : "fac8bf2d82f086e5",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/154//#testresult/fac8bf2d82f086e5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729040928393,
+          "stop" : 1729040940784,
+          "duration" : 12391
+        }
+      }, {
+        "uid" : "4e77a718151b469",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/328//#testresult/4e77a718151b469",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728984312160,
+          "stop" : 1728984324091,
+          "duration" : 11931
+        }
+      }, {
+        "uid" : "398cb6c699cd41cd",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/327//#testresult/398cb6c699cd41cd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728979754999,
+          "stop" : 1728979768262,
+          "duration" : 13263
+        }
+      }, {
+        "uid" : "6203f1f31c4cb064",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/153//#testresult/6203f1f31c4cb064",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728954203369,
+          "stop" : 1728954215607,
+          "duration" : 12238
+        }
+      }, {
+        "uid" : "93cff6a8107a4321",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/326//#testresult/93cff6a8107a4321",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728897918373,
+          "stop" : 1728897930052,
+          "duration" : 11679
+        }
+      }, {
+        "uid" : "76a1b1b70465ec25",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/325//#testresult/76a1b1b70465ec25",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728895562868,
+          "stop" : 1728895574678,
+          "duration" : 11810
+        }
+      }, {
+        "uid" : "d8fa725112cd01b2",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/152//#testresult/d8fa725112cd01b2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728867977680,
+          "stop" : 1728867992069,
+          "duration" : 14389
+        }
+      }, {
+        "uid" : "1e466826fc50458d",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/324//#testresult/1e466826fc50458d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728851439614,
+          "stop" : 1728851451121,
+          "duration" : 11507
+        }
+      }, {
+        "uid" : "6410d8edb6b92c09",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/323//#testresult/6410d8edb6b92c09",
+        "status" : "passed",
+        "time" : {
+          "start" : 1728848576172,
+          "stop" : 1728848588753,
+          "duration" : 12581
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "71f1b233114470d7.json",
+  "parameterValues" : [ ]
+}
