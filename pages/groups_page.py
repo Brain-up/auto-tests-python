@@ -146,8 +146,29 @@ class GroupsPage(BasePage):
 
     @allure.step("Get attribute 'href' of links")
     def get_links_href(self):
-        return [element.get_attribute("href") for element in self.get_list_of_links()]
+        time.sleep(1)
+        links_href = [element.get_attribute("href") for element in self.get_list_of_links()]
+        print(links_href)
+        return links_href
 
     @allure.step("Get status code of links")
     def get_links_status_codes(self):
         return [requests.head(link_href).status_code for link_href in self.get_links_href()]
+
+    @allure.step("Click on links on the page and thereby open corresponding web pages in the same tab")
+    def click_on_links(self):
+        opened_pages = []
+        self.element_is_present_and_clickable(self.locators.PAGE_LINKS1).click()
+        time.sleep(2)
+        opened_pages.append(self.get_current_tab_url())
+        print(self.get_current_tab_url())
+        self.driver.back()
+        time.sleep(2)
+        self.element_is_present_and_clickable(self.locators.PAGE_LINKS2).click()
+        time.sleep(3)
+        opened_pages.append(self.get_current_tab_url())
+        print(self.get_current_tab_url())
+        print(opened_pages)
+        self.driver.back()
+        time.sleep(2)
+        return opened_pages
