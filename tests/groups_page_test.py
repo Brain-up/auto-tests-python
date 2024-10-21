@@ -100,3 +100,9 @@ class TestGroupsPage:
                 "Attributes 'href' of links mismatch valid values"
             assert all(element == GroupsPageData.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
+
+        @allure.title("""Verify if links on the page lead to correct pages after clicking""")
+        def test_gp_03_02_verify_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
+            page = GroupsPage(driver)
+            opened_pages = page.click_on_links()
+            assert opened_pages, "Checkings have not carried out"
