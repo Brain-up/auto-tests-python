@@ -96,7 +96,7 @@ class TestGroupsPage:
             link_status_codes = page.get_links_status_codes()
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
-            assert all(link_href in GroupsPageData.links_href for link_href in links_href), \
+            assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href), \
                 "Attributes 'href' of links mismatch valid values"
             assert all(element == GroupsPageData.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
@@ -105,4 +105,6 @@ class TestGroupsPage:
         def test_gp_03_02_verify_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
             opened_pages = page.click_on_links()
-            assert opened_pages, "Checkings have not carried out"
+            assert opened_pages, "Transitions to exercises pages have not performed"
+            assert all(page in GroupsPageData.pages_urls for page in opened_pages), \
+                "Some of links lead to incorrect pages after clicking"
