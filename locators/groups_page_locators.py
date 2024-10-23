@@ -18,3 +18,8 @@ class GroupsPageLocators:
     PAGE_TILES = (By.CSS_SELECTOR, ".list-item")
     PAGE_TITLE = (By.TAG_NAME, "h3")
     PAGE_SUBTITLES = (By.TAG_NAME, "h4")
+
+
+class HeaderLocators:
+    EN_BUTTON = (By.XPATH, "(//span/button)[2]")
+    RU_BUTTON = (By.XPATH, "(//span/button)[1]")

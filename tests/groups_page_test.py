@@ -101,10 +101,10 @@ class TestGroupsPage:
             assert all(element == GroupsPageData.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
-        @allure.title("""Verify if links on the page lead to correct pages after clicking""")
+        @allure.title("""Verify if links on the 'ru' local lead to correct pages after clicking""")
         def test_gp_03_02_verify_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
-            opened_pages = page.click_on_links()
+            opened_pages = page.click_on_links_on_ru_local()
             assert opened_pages, "Transitions to exercises pages have not performed"
             assert all(page in GroupsPageData.pages_urls for page in opened_pages), \
                 "Some of links lead to incorrect pages after clicking"
