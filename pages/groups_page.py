@@ -137,6 +137,10 @@ class GroupsPage(BasePage):
     def click_on_ru_button(self):
         self.element_is_present_and_clickable(self.locators1.RU_BUTTON).click()
 
+    @allure.step("Click on the 'en' button in the Header for every user")
+    def click_on_en_button(self):
+        self.element_is_present_and_clickable(self.locators1.EN_BUTTON).click()
+
     @allure.step("Get the list of links on the 3rd level of nesting on the page")
     def get_list_of_links(self):
         return self.elements_are_present(self.locators.PAGE_LINKS)
@@ -165,9 +169,28 @@ class GroupsPage(BasePage):
     def get_links_status_codes(self):
         return [requests.head(link_href).status_code for link_href in self.get_links_href()]
 
-    @allure.step("Click on links on the page and thereby open corresponding web pages in the same tab")
+    @allure.step("Click on links on the 'ru' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_ru_local(self):
         self.click_on_ru_button()
+        opened_pages = []
+        self.element_is_present_and_clickable(self.locators.PAGE_LINKS1).click()
+        time.sleep(2)
+        opened_pages.append(self.get_current_tab_url())
+        self.driver.back()
+        time.sleep(2)
+        self.click_on_ru_button()
+        self.element_is_present_and_clickable(self.locators.PAGE_LINKS2).click()
+        time.sleep(3)
+        opened_pages.append(self.get_current_tab_url())
+        print(opened_pages)
+        self.driver.back()
+        time.sleep(2)
+        return opened_pages
+
+    @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
+    def click_on_links_on_en_local(self):
+        self.click_on_en_button()
+        time.sleep(1)
         opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LINKS1).click()
         time.sleep(2)
