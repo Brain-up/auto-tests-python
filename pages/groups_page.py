@@ -153,8 +153,17 @@ class GroupsPage(BasePage):
     def check_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list_of_links())
 
-    @allure.step("Get attribute 'href' of links")
-    def get_links_href(self):
+    @allure.step("Get attribute 'href' of links on the 'ru' local")
+    def get_links_href_ru(self):
+        self.click_on_ru_button()
+        time.sleep(1)
+        links_href = [element.get_attribute("href") for element in self.get_list_of_links()]
+        print(links_href)
+        return links_href
+
+    @allure.step("Get attribute 'href' of links on the 'en' local")
+    def get_links_href_en(self):
+        self.click_on_en_button()
         time.sleep(1)
         links_href = [element.get_attribute("href") for element in self.get_list_of_links()]
         print(links_href)
@@ -167,11 +176,12 @@ class GroupsPage(BasePage):
 
     @allure.step("Get status code of links")
     def get_links_status_codes(self):
-        return [requests.head(link_href).status_code for link_href in self.get_links_href()]
+        return [requests.head(link_href).status_code for link_href in self.get_links_href_ru()]
 
     @allure.step("Click on links on the 'ru' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_ru_local(self):
         self.click_on_ru_button()
+        time.sleep(1)
         opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LINKS1).click()
         time.sleep(3)
@@ -183,8 +193,6 @@ class GroupsPage(BasePage):
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         print(opened_pages)
-        # self.driver.back()
-        # time.sleep(2)
         return opened_pages
 
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
@@ -201,6 +209,4 @@ class GroupsPage(BasePage):
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         print(opened_pages)
-        # self.driver.back()
-        # time.sleep(2)
         return opened_pages
