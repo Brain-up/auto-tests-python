@@ -92,12 +92,16 @@ class TestGroupsPage:
         def test_gp_03_01_verify_links(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
             links_clickability = page.check_links_clickability()
-            links_href = page.get_links_href()
+            links_href_ru = page.get_links_href_ru()
+            links_href_en = page.get_links_href_en()
             link_status_codes = page.get_links_status_codes()
             assert links_clickability, "Links are unclickable"
-            assert links_href, "Links href are empty"
-            assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href), \
-                "Attributes 'href' of links mismatch valid values"
+            assert links_href_ru, "Links href are empty"
+            assert links_href_en, "Links href are empty"
+            assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href_ru), \
+                "Attributes 'href' of links on the 'ru' local mismatch valid values"
+            assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href_en), \
+                "Attributes 'href' of links on the 'en' local mismatch valid values"
             assert all(element == GroupsPageData.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
