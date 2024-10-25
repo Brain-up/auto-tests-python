@@ -161,7 +161,7 @@ class GroupsPage(BasePage):
         print(links_href)
         return links_href
 
-    @allure.step("Get attribute 'href' of links on the 'ru' local")
+    @allure.step("Get attribute 'href' of links on the 'en' local")
     def get_links_href_en(self):
         self.click_on_en_button()
         time.sleep(1)
