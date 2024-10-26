@@ -120,3 +120,23 @@ class TestGroupsPage:
             assert opened_pages, "Transitions to exercises pages have not performed"
             assert all(page in GroupsPageData.pages_urls for page in opened_pages), \
                 "Some of links lead to incorrect pages after clicking"
+
+    class TestGroupsPageImages:
+        @allure.title("Verify attributes of images in links on the page")
+        def test_gp_04_01_verify_images_attributes(self, driver, auto_test_user_authorized):
+            page = GroupsPage(driver)
+            images_src = page.get_images_src()
+            images_alt_ru = page.get_images_alt_ru()
+            images_alt_en = page.get_images_alt_en()
+            print(images_src)
+            print(images_alt_ru)
+            print(images_alt_en)
+            assert images_src, "The 'src' attribute value of images is empty"
+            assert all(image_src in GroupsPageData.images_src for image_src in images_src), \
+                "The 'src' attribute of some images mismatches valid values"
+            assert images_alt_ru, "The 'alt' attribute value of some images is empty on the 'ru' local"
+            assert all(image_alt in GroupsPageData.images_alt_ru for image_alt in images_alt_ru), \
+                "The 'alt' attribute value of some images is empty or mismatches valid values on the 'ru' local"
+            assert images_alt_en, "The 'alt' attribute value of some images is empty on the 'en' local"
+            assert all(image_alt in GroupsPageData.images_alt_en for image_alt in images_alt_en), \
+                "The 'alt' attribute value of some images is empty or mismatches valid values on the 'en' local"

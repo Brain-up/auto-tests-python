@@ -210,3 +210,20 @@ class GroupsPage(BasePage):
         opened_pages.append(self.get_current_tab_url())
         print(opened_pages)
         return opened_pages
+
+    # Checking images on the page
+    @allure.step("Get the list of attribute 'src' values of images in links")
+    def get_images_src(self):
+        return [image.get_attribute('src') for image in self.get_list_of_images()]
+
+    @allure.step("Get the list of attribute 'alt' values of images in links on the 'ru' local")
+    def get_images_alt_ru(self):
+        self.click_on_ru_button()
+        time.sleep(1)
+        return [image.get_attribute('alt') for image in self.get_list_of_images()]
+
+    @allure.step("Get the list of attribute 'alt' values of images in links on the 'en' local")
+    def get_images_alt_en(self):
+        self.click_on_en_button()
+        time.sleep(1)
+        return [image.get_attribute('alt') for image in self.get_list_of_images()]
