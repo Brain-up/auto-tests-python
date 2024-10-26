@@ -23,3 +23,16 @@ class GroupsPageData:
         "https://brainup.site/groups/1/series/18", "https://brainup.site/groups/2/series/1",
         "https://brainup.site/groups/3/series/14", "https://brainup.site/groups/4/series/10"
     ]
+
+    images_src = [
+        "https://brainup.site/pictures/exercise-type/speech-exercises.svg",
+        "https://brainup.site/pictures/exercise-type/non-speech-exercises.svg"
+    ]
+
+    images_alt_ru = [
+        "Неречевые упражнения (сигналы ещё в разработке)", "Речевые упражнения (готовы для занятий)"
+    ]
+
+    images_alt_en = [
+        "Non-Speech exercises (not implemented yet)", "Speech exercises"
+    ]
