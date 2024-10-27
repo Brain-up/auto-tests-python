@@ -140,3 +140,12 @@ class TestGroupsPage:
             assert images_alt_en, "The 'alt' attribute value of some images is empty on the 'en' local"
             assert all(image_alt in GroupsPageData.images_alt_en for image_alt in images_alt_en), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values on the 'en' local"
+
+        @allure.title("Verify sizes of images in links on the page")
+        def test_gp_04_02_verify_images_sizes(self, driver, auto_test_user_authorized):
+            page = GroupsPage(driver)
+            images_size = page.get_images_sizes()
+            images_size_changed = page.check_size_changes_of_images()
+            assert images_size != 0, "Images in links have not sizes"
+            assert len(images_size_changed) == len(GroupsPageData.images_src), \
+                "Not all images in links have changed sizes"

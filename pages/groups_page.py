@@ -136,10 +136,12 @@ class GroupsPage(BasePage):
     @allure.step("Click on the 'ru' button in the Header for every user")
     def click_on_ru_button(self):
         self.element_is_present_and_clickable(self.locators1.RU_BUTTON).click()
+        time.sleep(2)
 
     @allure.step("Click on the 'en' button in the Header for every user")
     def click_on_en_button(self):
         self.element_is_present_and_clickable(self.locators1.EN_BUTTON).click()
+        time.sleep(2)
 
     @allure.step("Get the list of links on the 3rd level of nesting on the page")
     def get_list_of_links(self):
@@ -219,11 +221,31 @@ class GroupsPage(BasePage):
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'ru' local")
     def get_images_alt_ru(self):
         self.click_on_ru_button()
-        time.sleep(1)
         return [image.get_attribute('alt') for image in self.get_list_of_images()]
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'en' local")
     def get_images_alt_en(self):
         self.click_on_en_button()
-        time.sleep(1)
         return [image.get_attribute('alt') for image in self.get_list_of_images()]
+
+    @allure.step("Get the list of sizes of images in links")
+    def get_images_sizes(self):
+        time.sleep(2)
+        return [image.size for image in self.get_list_of_images()]
+
+    @allure.step("Check changes of images sizes after resizing")
+    def check_size_changes_of_images(self):
+        time.sleep(2)
+        images = self.get_list_of_images()
+        images_sizes_before = [image.size for image in images]
+        print(images_sizes_before)
+        self.driver.set_window_size(400, 700)
+        time.sleep(2)
+        images_sizes_after = [image.size for image in images]
+        print(images_sizes_after)
+        changed, lost, unchanged = [], [], []
+        for i in range(len(images)):
+            changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
+            lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
+        print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
+        return changed
