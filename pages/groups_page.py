@@ -120,8 +120,14 @@ class GroupsPage(BasePage):
         return all(element.is_displayed() for element in self.get_list_of_subtitles())
 
     # Checking text on the tab&page
-    @allure.step("Get value of the title of the tab")
-    def get_value_of_tab_title(self):
+    @allure.step("Get value of the title of the tab on the 'ru' local")
+    def get_value_of_tab_title_ru(self):
+        self.click_on_ru_button()
+        return self.get_current_tab_title()
+
+    @allure.step("Get value of the title of the tab on the 'en' local")
+    def get_value_of_tab_title_en(self):
+        self.click_on_en_button()
         return self.get_current_tab_title()
 
     @allure.step("Get value of the title with tag 'h3' on the page")
@@ -132,7 +138,7 @@ class GroupsPage(BasePage):
     def get_values_of_subtitles(self):
         return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
-    # Checking links on the page
+    # Checking links and buttons on the page
     @allure.step("Click on the 'ru' button in the Header for every user")
     def click_on_ru_button(self):
         self.element_is_present_and_clickable(self.locators1.RU_BUTTON).click()
