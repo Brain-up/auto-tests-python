@@ -24,7 +24,7 @@ class Messages:
 class Registration:
     FIRST_NAME = 'Auto Test'
     BIRTHDAY = random.randint(datetime.now().year - 100, datetime.now().year)
-    EMAIL = f'autotest_N@{time.time()}.com'
+    EMAIL = f'autotestuser_n@{str(time.time()).replace(".", "")}.com'
     test_data = 'title, first_name, birthday, email, password, confirm_password, error_message'
     DATA_REGISTRATION = [
         (
