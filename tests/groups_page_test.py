@@ -72,9 +72,16 @@ class TestGroupsPage:
         @allure.title("Verify value of the title of the tab")
         def test_gp_02_01_verify_tab_title(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
-            tab_title_value = page.get_value_of_tab_title()
-            assert tab_title_value, "The title value of the tab is empty"
-            assert tab_title_value in GroupsPageData.tab_title, "The title on the tab doesn't match the valid value"
+            tab_title_value_ru = page.get_value_of_tab_title_ru()
+            tab_title_value_en = page.get_value_of_tab_title_en()
+            print(tab_title_value_ru)
+            print(tab_title_value_en)
+            assert tab_title_value_ru, "The title value of the tab is empty on the 'ru' local"
+            assert tab_title_value_ru in GroupsPageData.tab_title, \
+                "The title on the tab doesn't match the valid value on the 'ru' local"
+            assert tab_title_value_en, "The title value of the tab is empty on the 'en' local"
+            assert tab_title_value_en in GroupsPageData.tab_title, \
+                "The title on the tab doesn't match the valid value on the 'en' local"
 
         @allure.title("Verify value of the title and subtitles on the page")
         def test_gp_02_02_verify_page_title_and_subtitles(self, driver, auto_test_user_authorized):
@@ -128,9 +135,6 @@ class TestGroupsPage:
             images_src = page.get_images_src()
             images_alt_ru = page.get_images_alt_ru()
             images_alt_en = page.get_images_alt_en()
-            print(images_src)
-            print(images_alt_ru)
-            print(images_alt_en)
             assert images_src, "The 'src' attribute value of images is empty"
             assert all(image_src in GroupsPageData.images_src for image_src in images_src), \
                 "The 'src' attribute of some images mismatches valid values"
