@@ -2,14 +2,14 @@
 
 
 class GroupsPageData:
-    tab_title = ["Группы | BrainUp", "Groups | BrainUp"]
+    tab_title_ru = "Группы | BrainUp"
+    tab_title_en = "Groups | BrainUp"
 
-    page_title = ["Давайте выберем, какие упражнения будем делать сегодня?", "Let's choose what exercises we do today?"]
+    page_title_ru = "Давайте выберем, какие упражнения будем делать сегодня?"
+    page_title_en = "Let's choose what exercises we do today?"
 
-    page_subtitles = [
-        "НЕРЕЧЕВЫЕ УПРАЖНЕНИЯ (СИГНАЛЫ ЕЩЁ В РАЗРАБОТКЕ)", "РЕЧЕВЫЕ УПРАЖНЕНИЯ (ГОТОВЫ ДЛЯ ЗАНЯТИЙ)",
-        "NON-SPEECH EXERCISES (NOT IMPLEMENTED YET)", "SPEECH EXERCISES"
-    ]
+    page_subtitles_ru = ["НЕРЕЧЕВЫЕ УПРАЖНЕНИЯ (СИГНАЛЫ ЕЩЁ В РАЗРАБОТКЕ)", "РЕЧЕВЫЕ УПРАЖНЕНИЯ (ГОТОВЫ ДЛЯ ЗАНЯТИЙ)"]
+    page_subtitles_en = ["NON-SPEECH EXERCISES (NOT IMPLEMENTED YET)", "SPEECH EXERCISES"]
 
     links_href = [
         "https://brainup.site/groups/1", "https://brainup.site/groups/2",
