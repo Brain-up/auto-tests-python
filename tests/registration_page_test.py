@@ -1,5 +1,7 @@
+import json
 import os
 import pytest
+import requests
 from dotenv import load_dotenv
 import allure
 from selenium.common import TimeoutException
@@ -19,21 +21,31 @@ class TestRegistrationPage:
     @allure.title('Check registration with new email')
     def test_registration_with_new_email(self, main_page_open, driver):
         page = RegistrationPage(driver)
+        new_email = Registration.EMAIL
         page.open_registration_page()
         page.fill_first_name(Registration.FIRST_NAME)
         page.fill_birthday(Registration.BIRTHDAY)
         page.choose_gender()
         with allure.step("Fill email"):
-            page.fill_email(Registration.EMAIL)
+            page.fill_email(new_email)
         with allure.step("Fill password"):
-            page.fill_password(os.environ["CHANGE_PASSWORD"])
+            page.fill_password(os.environ["PASSWORD"])
         with allure.step("Fill repeat password"):
-            page.fill_repeat_password(os.environ["CHANGE_PASSWORD"])
+            page.fill_repeat_password(os.environ["PASSWORD"])
         page.choose_agreement()
         page.click_registration_button()
         page.check_change_url()
         page = ProfilePage(driver)
         assert page.check_user_profile(), 'The user has not registered with a new email'
+        authorization_url = os.environ["AUTH_URL"]
+        user = {"email": new_email, "password": os.environ["PASSWORD"], "returnSecureToken": "true"}
+        response = requests.post(authorization_url, user)
+        token = response.json()['idToken']
+        url = f'{os.environ["DELETE_USER"]}{new_email}'
+        payload = {}
+        headers = {'Authorization': f'Bearer {token}'}
+        response = requests.request("DELETE", url=url, headers=headers, data=payload)
+        assert response.status_code == 200
 
     @pytest.mark.parametrize(Registration.test_data, Registration.DATA_REGISTRATION)
     def test_registration_negative(self, driver, main_page_open, title, first_name, birthday, email, password,

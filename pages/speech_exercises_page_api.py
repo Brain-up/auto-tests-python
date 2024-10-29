@@ -1,20 +1,21 @@
 import json
+import os
 import random
-
 import allure
 import requests
-
 from locators.speech_exercises_page_locators import SpeechExercisesPageLocators
 from pages.base_page import BasePage
+from dotenv import load_dotenv
 
-authorization_url = ('https://www.googleapis.com/identitytoolkit/v3/'
-                     'relyingparty/verifyPassword?key=AIzaSyCxu7mVxd_waBDUn9VKblBl4zl8MX5WxWY')
-data_specialist_user = {"email": "autoTestSpecialist@brainup.spb.ru", "password": "password",
+load_dotenv()
+
+authorization_url = os.environ["AUTH_URL"]
+data_specialist_user = {"email": os.environ["SPECIALIST_LOGIN"], "password": os.environ["PASSWORD"],
                         "returnSecureToken": "true"}
 result_post_specialist = requests.post(authorization_url, data_specialist_user)
 id_token = json.loads(result_post_specialist.text)['idToken']
 
-data_default_user = {"email": "default@default.ru", "password": "password",
+data_default_user = {"email": os.environ["DEFAULT_LOGIN"], "password": os.environ["PASSWORD"],
                      "returnSecureToken": "true"}
 result_post_default = requests.post(authorization_url, data_default_user).json()
 id_token_default = result_post_default['idToken']
