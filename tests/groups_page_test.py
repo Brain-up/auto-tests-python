@@ -77,22 +77,35 @@ class TestGroupsPage:
             print(tab_title_value_ru)
             print(tab_title_value_en)
             assert tab_title_value_ru, "The title value of the tab is empty on the 'ru' local"
-            assert tab_title_value_ru in GroupsPageData.tab_title, \
+            assert tab_title_value_ru == GroupsPageData.tab_title_ru, \
                 "The title on the tab doesn't match the valid value on the 'ru' local"
             assert tab_title_value_en, "The title value of the tab is empty on the 'en' local"
-            assert tab_title_value_en in GroupsPageData.tab_title, \
+            assert tab_title_value_en == GroupsPageData.tab_title_en, \
                 "The title on the tab doesn't match the valid value on the 'en' local"
 
         @allure.title("Verify value of the title and subtitles on the page")
         def test_gp_02_02_verify_page_title_and_subtitles(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
-            title_value = page.get_value_of_page_title()
-            subtitle_values = page.get_values_of_subtitles()
-            assert title_value, "The title value on the page is empty"
-            assert title_value in GroupsPageData.page_title, "The title on the page mismatches the valid value"
-            assert subtitle_values, "Subtitle values on the page are empty"
-            assert all(subtitle_value in GroupsPageData.page_subtitles for subtitle_value in subtitle_values), \
-                "Subtitles mismatch any valid values"
+            title_value_ru = page.get_value_of_page_title_ru()
+            title_value_en = page.get_value_of_page_title_en()
+            print(title_value_ru)
+            print(title_value_en)
+            subtitle_values_ru = page.get_values_of_subtitles_ru()
+            subtitle_values_en = page.get_values_of_subtitles_en()
+            print(subtitle_values_ru)
+            print(subtitle_values_en)
+            assert title_value_ru, "The title value on the page is empty on the 'ru' local"
+            assert title_value_ru == GroupsPageData.page_title_ru, \
+                "The title on the page mismatches the valid value on the 'ru' local"
+            assert title_value_en, "The title value on the page is empty on the 'en' local"
+            assert title_value_en == GroupsPageData.page_title_en, \
+                "The title on the page mismatches the valid value on the 'en' local"
+            assert subtitle_values_ru, "Subtitle values are empty on the 'ru' local"
+            assert all(subtitle_value in GroupsPageData.page_subtitles_ru for subtitle_value in subtitle_values_ru), \
+                "Subtitles mismatch any valid values on the 'ru' local"
+            assert subtitle_values_en, "Subtitle values are empty on the 'en' local"
+            assert all(subtitle_value in GroupsPageData.page_subtitles_en for subtitle_value in subtitle_values_en), \
+                "Subtitles mismatch any valid values on the 'en' local"
 
     class TestGroupsPageLinks:
         @allure.title("Verify clickability, href, status code of links on the page")
