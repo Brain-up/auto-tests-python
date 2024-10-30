@@ -74,8 +74,6 @@ class TestGroupsPage:
             page = GroupsPage(driver)
             tab_title_value_ru = page.get_value_of_tab_title_ru()
             tab_title_value_en = page.get_value_of_tab_title_en()
-            print(tab_title_value_ru)
-            print(tab_title_value_en)
             assert tab_title_value_ru, "The title value of the tab is empty on the 'ru' local"
             assert tab_title_value_ru == GroupsPageData.tab_title_ru, \
                 "The title on the tab doesn't match the valid value on the 'ru' local"
@@ -88,12 +86,8 @@ class TestGroupsPage:
             page = GroupsPage(driver)
             title_value_ru = page.get_value_of_page_title_ru()
             title_value_en = page.get_value_of_page_title_en()
-            print(title_value_ru)
-            print(title_value_en)
             subtitle_values_ru = page.get_values_of_subtitles_ru()
             subtitle_values_en = page.get_values_of_subtitles_en()
-            print(subtitle_values_ru)
-            print(subtitle_values_en)
             assert title_value_ru, "The title value on the page is empty on the 'ru' local"
             assert title_value_ru == GroupsPageData.page_title_ru, \
                 "The title on the page mismatches the valid value on the 'ru' local"
