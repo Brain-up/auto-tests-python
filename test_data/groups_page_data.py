@@ -29,10 +29,5 @@ class GroupsPageData:
         "https://brainup.site/pictures/exercise-type/non-speech-exercises.svg"
     ]
 
-    images_alt_ru = [
-        "Неречевые упражнения (сигналы ещё в разработке)", "Речевые упражнения (готовы для занятий)"
-    ]
-
-    images_alt_en = [
-        "Non-Speech exercises (not implemented yet)", "Speech exercises"
-    ]
+    images_alt_ru = ["Неречевые упражнения (сигналы ещё в разработке)", "Речевые упражнения (готовы для занятий)"]
+    images_alt_en = ["Non-Speech exercises (not implemented yet)", "Speech exercises"]

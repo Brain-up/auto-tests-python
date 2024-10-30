@@ -21,10 +21,8 @@ class GroupsPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting on the page")
     def get_structure_of_1st_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 1st level of nesting are visible")
     def check_elements_visibility_on_1st_level(self):
@@ -32,10 +30,8 @@ class GroupsPage(BasePage):
 
     @allure.step("Get structure of the 2nd level of nesting on the page")
     def get_structure_of_2nd_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
     def check_elements_visibility_on_2nd_level(self):
@@ -43,10 +39,8 @@ class GroupsPage(BasePage):
 
     @allure.step("Get structure of the 3rd level of nesting on the page")
     def get_structure_of_3rd_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 3rd level of nesting are visible")
     def check_elements_visibility_on_3rd_level(self):
@@ -54,10 +48,8 @@ class GroupsPage(BasePage):
 
     @allure.step("Get structure of the 4th level of nesting on the page")
     def get_structure_of_4th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 4th level of nesting are visible")
     def check_elements_visibility_on_4th_level(self):
@@ -65,10 +57,8 @@ class GroupsPage(BasePage):
 
     @allure.step("Get structure of the 5th level of nesting on the page")
     def get_structure_of_5th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 5th level of nesting are visible")
     def check_elements_visibility_on_5th_level(self):
@@ -77,8 +67,7 @@ class GroupsPage(BasePage):
     @allure.step("Get structure of the 6th level of nesting on the page")
     def get_structure_of_6th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(tags)
+        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 6th level of nesting are visible")
@@ -177,17 +166,13 @@ class GroupsPage(BasePage):
     def get_links_href_ru(self):
         self.click_on_ru_button()
         time.sleep(1)
-        links_href = [element.get_attribute("href") for element in self.get_list_of_links()]
-        print(links_href)
-        return links_href
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
 
     @allure.step("Get attribute 'href' of links on the 'en' local")
     def get_links_href_en(self):
         self.click_on_en_button()
         time.sleep(1)
-        links_href = [element.get_attribute("href") for element in self.get_list_of_links()]
-        print(links_href)
-        return links_href
+        return [element.get_attribute("href") for element in self.get_list_of_links()]
 
     @allure.step("Check the first part of the attribute 'href' of links")
     def check_first_part_of_link_href(self):
@@ -256,14 +241,12 @@ class GroupsPage(BasePage):
         time.sleep(2)
         images = self.get_list_of_images()
         images_sizes_before = [image.size for image in images]
-        print(images_sizes_before)
         self.driver.set_window_size(400, 700)
         time.sleep(2)
         images_sizes_after = [image.size for image in images]
-        print(images_sizes_after)
         changed, lost, unchanged = [], [], []
         for i in range(len(images)):
             changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
             lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-        print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
+        # print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
         return changed
