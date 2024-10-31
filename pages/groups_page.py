@@ -162,6 +162,18 @@ class GroupsPage(BasePage):
     def check_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list_of_links())
 
+    @allure.step("Get attribute 'title' of links on the 'ru' local")
+    def get_links_titles_ru(self):
+        self.click_on_ru_button()
+        time.sleep(1)
+        return [element.get_attribute("title") for element in self.get_list_of_links()]
+
+    @allure.step("Get attribute 'title' of links on the 'en' local")
+    def get_links_titles_en(self):
+        self.click_on_en_button()
+        time.sleep(1)
+        return [element.get_attribute("title") for element in self.get_list_of_links()]
+
     @allure.step("Get attribute 'href' of links on the 'ru' local")
     def get_links_href_ru(self):
         self.click_on_ru_button()

@@ -106,12 +106,20 @@ class TestGroupsPage:
         def test_gp_03_01_verify_links(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
             links_clickability = page.check_links_clickability()
+            link_titles_ru = page.get_links_titles_ru()
+            link_titles_en = page.get_links_titles_en()
             links_href_ru = page.get_links_href_ru()
             links_href_en = page.get_links_href_en()
             link_status_codes = page.get_links_status_codes()
             assert links_clickability, "Links are unclickable"
-            assert links_href_ru, "Links href are empty"
-            assert links_href_en, "Links href are empty"
+            assert link_titles_ru, "Link titles values are empty on the 'ru' local"
+            assert all(link_title in GroupsPageData.link_titles_ru for link_title in link_titles_ru), \
+                "Link titles mismatch any valid values on the 'ru' local"
+            assert link_titles_en, "Link titles values are empty on the 'en' local"
+            assert all(link_title in GroupsPageData.link_titles_en for link_title in link_titles_en), \
+                "Link titles mismatch any valid values on the 'en' local"
+            assert links_href_ru, "Links href are empty on the 'ru' local"
+            assert links_href_en, "Links href are empty on the 'en' local"
             assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href_ru), \
                 "Attributes 'href' of links on the 'ru' local mismatch valid values"
             assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href_en), \
