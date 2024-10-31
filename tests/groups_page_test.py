@@ -102,7 +102,7 @@ class TestGroupsPage:
                 "Subtitles mismatch any valid values on the 'en' local"
 
     class TestGroupsPageLinks:
-        @allure.title("Verify clickability, href, status code of links on the page")
+        @allure.title("Verify clickability, title, href, status code of links on the page")
         def test_gp_03_01_verify_links(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
             links_clickability = page.check_links_clickability()
