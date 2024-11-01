@@ -5,6 +5,8 @@ class FooterData:
     with_the_support_text = ["При поддержке", "With the support"]
     contact_us_link_text = ["Обратная связь", "Contact us"]
 
+    link_titles = "brainupproject@yandex.ru"
+
     links_href = [
         "https://arasaac.org/",
         "mailto:brainupproject@yandex.ru?subject=BrainUp",

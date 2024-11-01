@@ -89,6 +89,9 @@ class BasePage:
     def get_link_href(self, locator):
         return self.driver.find_element(*locator).get_attribute("href")
 
+    def get_link_title(self, locator):
+        return self.driver.find_element(*locator).get_attribute("title")
+
     def get_image_src(self, locator):
         return self.driver.find_element(*locator).get_attribute("src")
 
