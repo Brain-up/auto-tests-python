@@ -84,10 +84,13 @@ class TestFooter:
         def test_fp_03_01_verify_footer_links(self, driver, main_page_open):
             page = FooterPage(driver)
             links_clickability = page.check_links_clickability()
+            contact_us_link_title = page.get_contact_us_link_title()
             links_href = page.get_links_href()
             link_prefix_and_subject = page.check_contact_us_link_href()
             link_status_codes = page.get_supporter_links_status_codes()
             assert links_clickability, "Links are unclickable"
+            assert contact_us_link_title, "Link title value is empty"
+            assert contact_us_link_title in FooterData.link_titles, "Link title mismatches the valid value"
             assert links_href, "Links href are empty"
             assert all(link_href in FooterData.links_href for link_href in links_href), \
                 "Attributes 'href' of links mismatch valid values"

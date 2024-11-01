@@ -141,6 +141,10 @@ class FooterPage(BasePage):
     def check_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list_of_links())
 
+    @allure.step("Get attribute 'title' of the 'Contact us' link")
+    def get_contact_us_link_title(self):
+        return self.get_link_title(self.locators.CONTACT_US_LINK)
+
     @allure.step("Get attribute 'href' of links in the Footer")
     def get_links_href(self):
         return [element.get_attribute("href") for element in self.get_list_of_links()]
