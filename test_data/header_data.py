@@ -38,6 +38,8 @@ class HeaderData:
     title_text_ru_auth = "Давайте выберем, какие упражнения будем делать сегодня?"
     title_text_en_auth = "Let's choose what exercises we do today?"
 
+    link_titles = "Телеграм чат для пользователей"
+
     links_href_unauth = [
         "https://brainup.site/",
         "https://brainup.site/description",

@@ -104,9 +104,12 @@ class TestHeaderPage:
             def test_hpu_03_01_verify_unauth_header_links(self, driver, main_page_open):
                 page = HeaderPage(driver)
                 links_clickability = page.check_links_clickability_unauth()
+                tg_link_title = page.get_tg_link_title()
                 links_href = page.get_links_href_unauth()
                 link_status_codes = page.get_links_status_codes_unauth()
                 assert links_clickability, "Links are unclickable"
+                assert tg_link_title, "The link title value is empty"
+                assert tg_link_title in HeaderData.link_titles, "The link title mismatches the valid value"
                 assert links_href, "Links href are empty"
                 assert all(link_href in HeaderData.links_href_unauth for link_href in links_href), \
                     "Attributes 'href' of links mismatch valid values"
