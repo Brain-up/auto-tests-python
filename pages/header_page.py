@@ -312,6 +312,10 @@ class HeaderPage(BasePage):
     def check_links_clickability_auth(self):
         return all(link.is_enabled() for link in self.get_list_of_links_auth())
 
+    @allure.step("Get attribute 'title' of the 'Telegram' link in the Header")
+    def get_tg_link_title(self):
+        return self.get_link_title(self.locators.LINK_TELEGRAM)
+
     @allure.step("Get attribute 'href' of links in the Header for an unauthorized user")
     def get_links_href_unauth(self):
         return [element.get_attribute("href") for element in self.get_list_of_links_unauth()]

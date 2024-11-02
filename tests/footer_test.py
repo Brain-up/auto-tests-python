@@ -89,8 +89,8 @@ class TestFooter:
             link_prefix_and_subject = page.check_contact_us_link_href()
             link_status_codes = page.get_supporter_links_status_codes()
             assert links_clickability, "Links are unclickable"
-            assert contact_us_link_title, "Link title value is empty"
-            assert contact_us_link_title in FooterData.link_titles, "Link title mismatches the valid value"
+            assert contact_us_link_title, "The link title value is empty"
+            assert contact_us_link_title in FooterData.link_titles, "The link title mismatches the valid value"
             assert links_href, "Links href are empty"
             assert all(link_href in FooterData.links_href for link_href in links_href), \
                 "Attributes 'href' of links mismatch valid values"
