@@ -3,6 +3,6 @@ import allure
 
 
 @allure.epic("The Exercises 'Words' Page on the 'ru' local")
-class TestExercisesWordsRuPage:
-    class TestExercisesWordsRuPageStructure:
+class TestExercisesRuWordsPage:
+    class TestExercisesRuWordsPageStructure:
         pass

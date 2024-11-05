@@ -1,5 +1,5 @@
 """Data for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
 
 
-class ExercisesWordsRuPageData:
+class ExercisesRuWordsPageData:
     pass
