@@ -188,7 +188,7 @@ class GroupsPage(BasePage):
 
     @allure.step("Check the first part of the attribute 'href' of links")
     def check_first_part_of_link_href(self):
-        link_href = self.get_link_href(self.locators.PAGE_LINKS1)
+        link_href = self.get_link_href(self.locators.PAGE_LINKS)
         return link_href.startswith('https://brainup.site/groups/')
 
     @allure.step("Get status code of links")
@@ -200,13 +200,13 @@ class GroupsPage(BasePage):
         self.click_on_ru_button()
         time.sleep(1)
         opened_pages = []
-        self.element_is_present_and_clickable(self.locators.PAGE_LINKS1).click()
+        self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
         time.sleep(3)
         self.click_on_ru_button()
-        self.element_is_present_and_clickable(self.locators.PAGE_LINKS2).click()
+        self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         print(opened_pages)
@@ -217,12 +217,12 @@ class GroupsPage(BasePage):
         self.click_on_en_button()
         time.sleep(1)
         opened_pages = []
-        self.element_is_present_and_clickable(self.locators.PAGE_LINKS1).click()
+        self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
         time.sleep(3)
-        self.element_is_present_and_clickable(self.locators.PAGE_LINKS2).click()
+        self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         print(opened_pages)

@@ -5,13 +5,15 @@ import allure
 import pytest
 from dotenv import load_dotenv
 
+from locators.groups_page_locators import GroupsPageLocators
+from locators.header_page_locators import HeaderUnauthorizedLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.main_page_locators import MainPageLocators
-from locators.header_page_locators import HeaderUnauthorizedLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
+
 from pages.base_page import BasePage
 from pages.profile_page import ProfilePage
-from test_data.links import MainPageLinks
+from test_data.links import MainPageLinks, ExercisesUrls
 
 load_dotenv()
 
@@ -41,6 +43,15 @@ def contacts_page_open(driver, main_page_open):
 @allure.step(f'Open page: {MainPageLinks.URL_DESCRIPTION_PAGE}')
 def description_page_open(driver):
     driver.get(MainPageLinks.URL_DESCRIPTION_PAGE)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE}')
+def exercises_ru_words_page_open(driver, auto_test_user_authorized):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.RU_BUTTON).click()
+    page.element_is_present_and_clickable(GroupsPageLocators.PAGE_LINK2).click()
+    time.sleep(2)
 
 
 @pytest.fixture()

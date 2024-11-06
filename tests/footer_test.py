@@ -1,7 +1,7 @@
 """Auto tests for verifying web elements in the Footer on pages"""
 import allure
 from pages.footer_page import FooterPage
-from test_data.links import SpecificExercisesUrls
+from test_data.links import ExercisesUrls
 from test_data.footer_data import FooterData
 
 
@@ -138,7 +138,7 @@ class TestFooter:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")
         def test_fp_05_01_verify_footer_invisibility_through_modal_window(self, driver, auto_test_user_authorized):
-            modal_window_page = FooterPage(driver, SpecificExercisesUrls.URL_OF_EXERCISE_1_MODAL_WINDOW_PAGE)
+            modal_window_page = FooterPage(driver, ExercisesUrls.URL_EXERCISE1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
             assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()), \
                 "Footer (including the Jetbrains image) is absent in the DOM tree"
