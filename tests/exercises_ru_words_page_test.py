@@ -10,4 +10,6 @@ class TestExercisesRuWordsPage:
         def test_erw_01_01_verify_page_presence_and_visibility(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             page_content_presence = page.check_presence_of_page_content()
+            page_content_visibility = page.check_visibility_of_page_content()
             assert page_content_presence is not None, "The page content is absent in DOM"
+            assert page_content_visibility, "The page content is invisible"
