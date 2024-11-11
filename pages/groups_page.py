@@ -143,12 +143,12 @@ class GroupsPage(BasePage):
     @allure.step("Click on the 'ru' button in the Header for every user")
     def click_on_ru_button(self):
         self.element_is_present_and_clickable(self.locators1.RU_BUTTON).click()
-        time.sleep(2)
+        time.sleep(3)
 
     @allure.step("Click on the 'en' button in the Header for every user")
     def click_on_en_button(self):
         self.element_is_present_and_clickable(self.locators1.EN_BUTTON).click()
-        time.sleep(2)
+        time.sleep(3)
 
     @allure.step("Get the list of links on the 3rd level of nesting on the page")
     def get_list_of_links(self):
