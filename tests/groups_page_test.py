@@ -85,18 +85,19 @@ class TestGroupsPage:
         def test_gp_02_02_verify_page_title_and_subtitles(self, driver, auto_test_user_authorized):
             page = GroupsPage(driver)
             title_value_ru = page.get_value_of_page_title_ru()
-            title_value_en = page.get_value_of_page_title_en()
             subtitle_values_ru = page.get_values_of_subtitles_ru()
+            title_value_en = page.get_value_of_page_title_en()
             subtitle_values_en = page.get_values_of_subtitles_en()
+            print(title_value_ru, subtitle_values_ru, title_value_en, subtitle_values_en, sep='\n')
             assert title_value_ru, "The title value on the page is empty on the 'ru' local"
             assert title_value_ru == GroupsPageData.page_title_ru, \
                 "The title on the page mismatches the valid value on the 'ru' local"
-            assert title_value_en, "The title value on the page is empty on the 'en' local"
-            assert title_value_en == GroupsPageData.page_title_en, \
-                "The title on the page mismatches the valid value on the 'en' local"
             assert subtitle_values_ru, "Subtitle values are empty on the 'ru' local"
             assert all(subtitle_value in GroupsPageData.page_subtitles_ru for subtitle_value in subtitle_values_ru), \
                 "Subtitles mismatch any valid values on the 'ru' local"
+            assert title_value_en, "The title value on the page is empty on the 'en' local"
+            assert title_value_en == GroupsPageData.page_title_en, \
+                "The title on the page mismatches the valid value on the 'en' local"
             assert subtitle_values_en, "Subtitle values are empty on the 'en' local"
             assert all(subtitle_value in GroupsPageData.page_subtitles_en for subtitle_value in subtitle_values_en), \
                 "Subtitles mismatch any valid values on the 'en' local"
@@ -133,7 +134,7 @@ class TestGroupsPage:
             opened_pages = page.click_on_links_on_ru_local()
             assert opened_pages, "Transitions to exercises pages have not performed"
             assert all(page in GroupsPageData.pages_urls for page in opened_pages), \
-                "Some of links lead to incorrect pages after clicking"
+                "Some links lead to incorrect pages after clicking"
 
         @allure.title("""Verify if links on the 'en' local lead to correct pages after clicking""")
         def test_gp_03_03_verify_en_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
@@ -141,7 +142,7 @@ class TestGroupsPage:
             opened_pages = page.click_on_links_on_en_local()
             assert opened_pages, "Transitions to exercises pages have not performed"
             assert all(page in GroupsPageData.pages_urls for page in opened_pages), \
-                "Some of links lead to incorrect pages after clicking"
+                "Some links lead to incorrect pages after clicking"
 
     class TestGroupsPageImages:
         @allure.title("Verify attributes of images in links on the page")

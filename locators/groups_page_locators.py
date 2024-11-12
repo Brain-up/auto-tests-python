@@ -23,3 +23,4 @@ class GroupsPageLocators:
 class HeaderLocators:
     EN_BUTTON = (By.XPATH, "(//span/button)[2]")
     RU_BUTTON = (By.XPATH, "(//span/button)[1]")
+    LOGO_LINK = (By.XPATH, "//a[@data-test-logo]")
