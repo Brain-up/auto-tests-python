@@ -143,12 +143,12 @@ class GroupsPage(BasePage):
     @allure.step("Click on the 'ru' button in the Header for every user")
     def click_on_ru_button(self):
         self.element_is_present_and_clickable(self.locators1.RU_BUTTON).click()
-        time.sleep(3)
+        time.sleep(4)
 
     @allure.step("Click on the 'en' button in the Header for every user")
     def click_on_en_button(self):
         self.element_is_present_and_clickable(self.locators1.EN_BUTTON).click()
-        time.sleep(3)
+        time.sleep(4)
 
     @allure.step("Get the list of links on the 3rd level of nesting on the page")
     def get_list_of_links(self):
@@ -198,16 +198,18 @@ class GroupsPage(BasePage):
     @allure.step("Click on links on the 'ru' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_ru_local(self):
         self.click_on_ru_button()
-        time.sleep(1)
+        time.sleep(2)
         opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
-        self.driver.back()
-        time.sleep(3)
-        self.click_on_ru_button()
+        # self.driver.back()
+        self.element_is_present_and_clickable(self.locators1.LOGO_LINK).click()
+        time.sleep(4)
+        # self.click_on_ru_button()
+        # time.sleep(2)
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
-        time.sleep(3)
+        time.sleep(4)
         opened_pages.append(self.get_current_tab_url())
         print(opened_pages)
         return opened_pages
@@ -223,7 +225,7 @@ class GroupsPage(BasePage):
         self.driver.back()
         time.sleep(3)
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
-        time.sleep(3)
+        time.sleep(4)
         opened_pages.append(self.get_current_tab_url())
         print(opened_pages)
         return opened_pages
