@@ -201,7 +201,7 @@ class GroupsPage(BasePage):
         time.sleep(2)
         opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
-        time.sleep(3)
+        time.sleep(4)
         opened_pages.append(self.get_current_tab_url())
         # self.driver.back()
         self.element_is_present_and_clickable(self.locators1.LOGO_LINK).click()
