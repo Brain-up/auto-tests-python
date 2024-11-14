@@ -72,7 +72,7 @@ class GroupsPage(BasePage):
 
     @allure.step("Check if elements of the 6th level of nesting are visible")
     def check_elements_visibility_on_6th_level(self):
-        time.sleep(2)
+        time.sleep(3)
         return all(element.is_displayed() for element in self.get_structure_of_6th_level())
 
     @allure.step("Check the title h3 on the 2nd level of nesting is present on the page")
@@ -217,13 +217,13 @@ class GroupsPage(BasePage):
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_en_local(self):
         self.click_on_en_button()
-        time.sleep(1)
+        time.sleep(2)
         opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
-        time.sleep(3)
+        time.sleep(4)
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(3)
+        time.sleep(4)
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
         time.sleep(4)
         opened_pages.append(self.get_current_tab_url())
