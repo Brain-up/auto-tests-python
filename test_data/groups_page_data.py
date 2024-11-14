@@ -18,7 +18,7 @@ class GroupsPageData:
         "https://brainup.site/groups/1", "https://brainup.site/groups/2",
         "https://brainup.site/groups/3", "https://brainup.site/groups/4",
     ]
-    link_href_first_part = "https://brainup.site/groups/"
+    link_href_first_part = "https://www.brainup.site/groups/"
 
     links_status_code = 200
 
