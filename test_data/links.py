@@ -1,5 +1,6 @@
 class MainPageLinks:
-    URL_MAIN_PAGE = "https://brainup.site/"
+    URL_MAIN_PAGE = "https://www.brainup.site/"
+    # URL_MAIN_PAGE = "https://brainup.site/"
     # URL_MAIN_PAGE = "https://brainup.fun/"
     URL_CONTACTS_PAGE = f"{URL_MAIN_PAGE}contact"
     URL_CONTRIBUTORS_PAGE = f"{URL_MAIN_PAGE}contributors"

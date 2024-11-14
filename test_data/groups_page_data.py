@@ -23,8 +23,8 @@ class GroupsPageData:
     links_status_code = 200
 
     pages_urls = [
-        "https://brainup.site/groups/1/series/18", "https://brainup.site/groups/2/series/1",
-        "https://brainup.site/groups/3/series/14", "https://brainup.site/groups/4/series/10"
+        "https://www.brainup.site/groups/1/series/18", "https://www.brainup.site/groups/2/series/1",
+        "https://www.brainup.site/groups/3/series/14", "https://www.brainup.site/groups/4/series/10"
     ]
 
     images_src = [

@@ -72,7 +72,7 @@ class GroupsPage(BasePage):
 
     @allure.step("Check if elements of the 6th level of nesting are visible")
     def check_elements_visibility_on_6th_level(self):
-        time.sleep(2)
+        time.sleep(3)
         return all(element.is_displayed() for element in self.get_structure_of_6th_level())
 
     @allure.step("Check the title h3 on the 2nd level of nesting is present on the page")
