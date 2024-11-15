@@ -1,4 +1,5 @@
 """Data for verifying web elements in the Header on web pages"""
+from test_data.links import MainPageLinks as Links
 
 
 class HeaderData:
@@ -41,67 +42,67 @@ class HeaderData:
     link_titles = "Телеграм чат для пользователей"
 
     links_href_unauth = [
-        "https://brainup.site/",
-        "https://brainup.site/description",
+        f"{Links.URL_MAIN_PAGE}",
+        f"{Links.URL_MAIN_PAGE}description",
         "https://t.me/BrainUpUsers",
         "https://opencollective.com/brainup",
         "https://github.com/Brain-up/brn",
-        "https://brainup.site/contact",
-        "https://brainup.site/specialists",
-        "https://brainup.site/contributors",
-        "https://brainup.site/used-resources",
-        "https://brainup.site/registration"
+        f"{Links.URL_MAIN_PAGE}contact",
+        f"{Links.URL_MAIN_PAGE}specialists",
+        f"{Links.URL_MAIN_PAGE}contributors",
+        f"{Links.URL_MAIN_PAGE}used-resources",
+        f"{Links.URL_MAIN_PAGE}registration"
     ]
 
     links_href_auth = [
-        "https://brainup.site/",
-        "https://brainup.site/groups?locale=ru-ru",
-        "https://brainup.site/groups?locale=en-us",
-        "https://brainup.site/profile/statistics",
-        "https://brainup.site/description",
+        f"{Links.URL_MAIN_PAGE}",
+        f"{Links.URL_MAIN_PAGE}groups?locale=ru-ru",
+        f"{Links.URL_MAIN_PAGE}groups?locale=en-us",
+        f"{Links.URL_MAIN_PAGE}profile/statistics",
+        f"{Links.URL_MAIN_PAGE}description",
         "https://t.me/BrainUpUsers",
         "https://opencollective.com/brainup",
         "https://github.com/Brain-up/brn",
-        "https://brainup.site/contact",
-        "https://brainup.site/specialists",
-        "https://brainup.site/contributors",
-        "https://brainup.site/used-resources",
-        "https://brainup.site/profile"
+        f"{Links.URL_MAIN_PAGE}contact",
+        f"{Links.URL_MAIN_PAGE}specialists",
+        f"{Links.URL_MAIN_PAGE}contributors",
+        f"{Links.URL_MAIN_PAGE}used-resources",
+        f"{Links.URL_MAIN_PAGE}profile"
     ]
 
     link_status_codes = 200
 
     pages_urls_unauth = [
-        "https://brainup.site/description",
+        f"{Links.URL_MAIN_PAGE}description",
         "https://t.me/BrainUpUsers",
-        "https://brainup.site/registration",
-        "https://brainup.site/contact",
-        "https://brainup.site/specialists",
-        "https://brainup.site/contributors",
-        "https://brainup.site/used-resources",
+        f"{Links.URL_MAIN_PAGE}registration",
+        f"{Links.URL_MAIN_PAGE}contact",
+        f"{Links.URL_MAIN_PAGE}specialists",
+        f"{Links.URL_MAIN_PAGE}contributors",
+        f"{Links.URL_MAIN_PAGE}used-resources",
         "https://opencollective.com/brainup",
         "https://github.com/Brain-up/brn",
-        "https://brainup.site/"
+        f"{Links.URL_MAIN_PAGE}"
     ]
 
     pages_urls_auth = [
-        "https://brainup.site/groups?locale=ru-ru",
-        "https://brainup.site/groups?locale=en-us",
-        "https://brainup.site/profile/statistics",
-        "https://brainup.site/description",
+        f"{Links.URL_MAIN_PAGE}groups?locale=ru-ru",
+        f"{Links.URL_MAIN_PAGE}groups?locale=en-us",
+        f"{Links.URL_MAIN_PAGE}profile/statistics",
+        f"{Links.URL_MAIN_PAGE}description",
         "https://t.me/BrainUpUsers",
-        "https://brainup.site/profile",
-        "https://brainup.site/contact",
-        "https://brainup.site/specialists",
-        "https://brainup.site/contributors",
-        "https://brainup.site/used-resources",
+        f"{Links.URL_MAIN_PAGE}profile",
+        f"{Links.URL_MAIN_PAGE}contact",
+        f"{Links.URL_MAIN_PAGE}specialists",
+        f"{Links.URL_MAIN_PAGE}contributors",
+        f"{Links.URL_MAIN_PAGE}used-resources",
         "https://opencollective.com/brainup",
         "https://github.com/Brain-up/brn",
-        "https://brainup.site/"
+        f"{Links.URL_MAIN_PAGE}"
     ]
 
     icons_xmlns = "http://www.w3.org/2000/svg"
     logo_image_xmlns = "http://www.w3.org/2000/svg"
 
-    profile_avatar_src = "https://brainup.site/pictures/avatars/avatar%201.png"
+    profile_avatar_src = f"{Links.URL_MAIN_PAGE}pictures/avatars/avatar%201.png"
     profile_avatar_alt = "user avatar"

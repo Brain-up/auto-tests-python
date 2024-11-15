@@ -1,4 +1,3 @@
-import json
 import os
 import pytest
 import requests
@@ -9,6 +8,7 @@ from pages.profile_page import ProfilePage
 from pages.registration_page import RegistrationPage
 from test_data.links import MainPageLinks
 from test_data.registration_data import Messages, Registration
+from test_data.links import MainPageLinks as Links
 
 load_dotenv()
 
@@ -41,7 +41,7 @@ class TestRegistrationPage:
         user = {"email": new_email, "password": os.environ["PASSWORD"], "returnSecureToken": "true"}
         response = requests.post(authorization_url, user)
         token = response.json()['idToken']
-        url = f'{os.environ["DELETE_USER"]}{new_email}'
+        url = f'{Links.URL_MAIN_PAGE}{os.environ["DELETE_USER"]}{new_email}'
         payload = {}
         headers = {'Authorization': f'Bearer {token}'}
         response = requests.request("DELETE", url=url, headers=headers, data=payload)

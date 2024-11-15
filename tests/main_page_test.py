@@ -1,11 +1,13 @@
 import allure
-
+import requests
 from pages.main_page import MainPage
 from test_data.links import MainPageLinks
+from pythonping import ping
 
 
 @allure.epic("Main Page.")
 class TestMainPage:
+    link = MainPageLinks
 
     @allure.title("Verify redirection to description page not authorized user.")
     def test_mp_01_verify_redirection_to_description_page(self, driver, main_page_open):
@@ -69,3 +71,18 @@ class TestMainPage:
         registration_button = page.clicability_of_registration_button()
         assert registration_button == MainPageLinks.URL_REGISTRATION_PAGE, "The link leads to an incorrect page."
 
+    @allure.title("Checking the domain is available")
+    def test_check_domain_available(self):
+        url = self.link.URL_MAIN_PAGE
+        try:
+            requests.get(url)
+            result = "The domain is available"
+        except Exception:
+            result = "The domain is not available"
+        assert result == "The domain is available", "The domain is not available"
+
+    @allure.title("Checking the ip is available")
+    def test_check_ip_available(self):
+        ip = '188.68.222.249'
+        result = ping(ip, verbose=False).stats_packets_returned
+        assert result > 0, "The ip is not available"

@@ -1,4 +1,5 @@
 """Data for verifying web elements on the 'Contributors' page"""
+from test_data.links import MainPageLinks as Links
 
 
 class ContributorsPageData:
@@ -19,7 +20,7 @@ class ContributorsPageData:
         "We are all here to make your life easier!"
     ]
 
-    all_team_link_href = "https://brainup.site/contributors#"
+    all_team_link_href = f"{Links.URL_MAIN_PAGE}contributors#"
     all_team_link_status_code = 200
     all_team_link_text = ["Вся Команда", "All Team"]
 

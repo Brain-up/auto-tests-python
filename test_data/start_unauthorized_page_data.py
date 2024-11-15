@@ -1,4 +1,5 @@
 """Data for verifying web elements on the starting page for unauthorized users"""
+from test_data.links import MainPageLinks as Links
 
 
 class StartUnauthorizedPageData:
@@ -40,11 +41,11 @@ class StartUnauthorizedPageData:
 
     login_link_text = ["Начать", "Login"]
 
-    login_link_href = "https://brainup.site/login"
+    login_link_href = f"{Links.URL_MAIN_PAGE}login"
 
     login_link_status_code = 200
 
-    page_url = "https://brainup.site/"
+    page_url = Links.URL_MAIN_PAGE
 
     image_src_in_section1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAGICAYAAAC5"
 

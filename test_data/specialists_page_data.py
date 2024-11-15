@@ -1,4 +1,5 @@
 """Data for verifying web elements on the 'Specialists' page"""
+from test_data.links import MainPageLinks as Links
 
 
 class SpecialistsPageData:
@@ -47,7 +48,7 @@ class SpecialistsPageData:
 
     all_specialists_link_text = ["Все Специалисты", "All Specialists"]
 
-    all_specialists_link_href = "https://brainup.site/specialists#"
+    all_specialists_link_href = f"{Links.URL_MAIN_PAGE}specialists#"
 
     all_specialists_link_status_code = 200
 
@@ -64,4 +65,4 @@ class SpecialistsPageData:
 
     images_alt = "user avatar"
 
-    page_url = "https://brainup.site/specialists"
+    page_url = f"{Links.URL_MAIN_PAGE}specialists"

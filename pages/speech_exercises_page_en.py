@@ -1,9 +1,8 @@
 import random
-
 import allure
-
 from locators import speech_exercises_page_locators as locators
 from pages.base_page import BasePage
+from test_data.links import MainPageLinks as Links
 
 
 class SpeechExercisesPage(BasePage):
@@ -21,16 +20,16 @@ class SpeechExercisesPage(BasePage):
         with allure.step(f'Click button "{text_of_the_button.text}".'):
             self.element_is_present_and_clickable(selector_for_sub_group).click()
 
-    @allure.step('Get seria ID from URL: https://brainup.site/groups/4/series/9')
+    @allure.step(f'Get seria ID from URL: {Links.URL_MAIN_PAGE}groups/4/series/9')
     def set_url_to_get_id_words_group(self):
-        self.wait_url_to_be('https://brainup.site/groups/4/series/9')
+        self.wait_url_to_be(f'{Links.URL_MAIN_PAGE}groups/4/series/9')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
 
-    @allure.step('Get seria ID from URL: https://brainup.site/groups/4/series/10')
+    @allure.step(f'Get seria ID from URL: {Links.URL_MAIN_PAGE}groups/4/series/10')
     def set_url_to_get_id_similar_phrase_group(self):
-        self.wait_url_to_be('https://brainup.site/groups/4/series/10')
+        self.wait_url_to_be(f'{Links.URL_MAIN_PAGE}groups/4/series/10')
         url = self.get_current_url()
         id_for_api_group = str(url).split('/')[-1]
         return id_for_api_group
