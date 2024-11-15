@@ -4,6 +4,7 @@ import allure
 import requests
 from pages.base_page import BasePage
 from locators.groups_page_locators import GroupsPageLocators, HeaderLocators
+from test_data.links import MainPageLinks as Links
 
 
 class GroupsPage(BasePage):
@@ -189,7 +190,7 @@ class GroupsPage(BasePage):
     @allure.step("Check the first part of the attribute 'href' of links")
     def check_first_part_of_link_href(self):
         link_href = self.get_link_href(self.locators.PAGE_LINKS)
-        return link_href.startswith('https://brainup.site/groups/')
+        return link_href.startswith(f'{Links.URL_MAIN_PAGE}groups/')
 
     @allure.step("Get status code of links")
     def get_links_status_codes(self):

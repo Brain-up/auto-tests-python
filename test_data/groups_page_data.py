@@ -1,4 +1,5 @@
 """Data for verifying web elements on the 'Groups' page"""
+from test_data.links import MainPageLinks as Links
 
 
 class GroupsPageData:
@@ -15,21 +16,21 @@ class GroupsPageData:
     link_titles_en = ["Non-Speech", "Speech"]
 
     links_href = [
-        "https://brainup.site/groups/1", "https://brainup.site/groups/2",
-        "https://brainup.site/groups/3", "https://brainup.site/groups/4",
+        f"{Links.URL_MAIN_PAGE}groups/1", f"{Links.URL_MAIN_PAGE}groups/2",
+        f"{Links.URL_MAIN_PAGE}groups/3", f"{Links.URL_MAIN_PAGE}groups/4",
     ]
-    link_href_first_part = "https://www.brainup.site/groups/"
+    link_href_first_part = f"{Links.URL_MAIN_PAGE}groups/"
 
     links_status_code = 200
 
     pages_urls = [
-        "https://www.brainup.site/groups/1/series/18", "https://www.brainup.site/groups/2/series/1",
-        "https://www.brainup.site/groups/3/series/14", "https://www.brainup.site/groups/4/series/10"
+        f"{Links.URL_MAIN_PAGE}groups/1/series/18", f"{Links.URL_MAIN_PAGE}groups/2/series/1",
+        f"{Links.URL_MAIN_PAGE}groups/3/series/14", f"{Links.URL_MAIN_PAGE}groups/4/series/10"
     ]
 
     images_src = [
-        "https://brainup.site/pictures/exercise-type/speech-exercises.svg",
-        "https://brainup.site/pictures/exercise-type/non-speech-exercises.svg"
+        f"{Links.URL_MAIN_PAGE}pictures/exercise-type/speech-exercises.svg",
+        f"{Links.URL_MAIN_PAGE}pictures/exercise-type/non-speech-exercises.svg"
     ]
 
     images_alt_ru = ["Неречевые упражнения (сигналы ещё в разработке)", "Речевые упражнения (готовы для занятий)"]
