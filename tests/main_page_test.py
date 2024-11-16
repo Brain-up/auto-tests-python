@@ -1,4 +1,5 @@
 import allure
+import pytest
 import requests
 from pages.main_page import MainPage
 from test_data.links import MainPageLinks
@@ -81,8 +82,9 @@ class TestMainPage:
             result = "The domain is not available"
         assert result == "The domain is available", "The domain is not available"
 
+    @pytest.mark.skip("Only for manual running")
     @allure.title("Checking the ip is available")
     def test_check_ip_available(self):
         ip = '188.68.222.249'
-        result = ping(ip, verbose=False).stats_packets_returned
+        result = ping(ip).stats_packets_returned
         assert result > 0, "The ip is not available"
