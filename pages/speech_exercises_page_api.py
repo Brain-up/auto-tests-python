@@ -30,14 +30,14 @@ class SpeechExercisesAPI(BasePage):
     def get_random_id_from_list_sub_group(card_id, seria_id):
         print('Card_id is:', card_id)
         print('Seria_id is:', seria_id)
-        list_cards_id = requests.get(f'{Links.URL_MAIN_PAGE}subgroups?seriesId={seria_id}',
+        list_cards_id = requests.get(f'{Links.URL_MAIN_PAGE}api/subgroups?seriesId={seria_id}',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token)})
         with allure.step(f'Status code is: {list_cards_id.status_code}'):
             pass
         with allure.step(
                 f'Send GET request with params: '
-                f'{Links.URL_MAIN_PAGE}subgroups?seriesId={seria_id} '
+                f'{Links.URL_MAIN_PAGE}api/subgroups?seriesId={seria_id}'
                 f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token}}"'):
             pass
         with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
@@ -53,7 +53,7 @@ class SpeechExercisesAPI(BasePage):
     @staticmethod
     @allure.step('get_list_of_words_from_card')
     def get_list_of_words_from_card(card_id):
-        result_get = requests.get(f'{Links.URL_MAIN_PAGE}tasks/{str(card_id)}',
+        result_get = requests.get(f'{Links.URL_MAIN_PAGE}api/tasks/{str(card_id)}',
                                   headers={'Content-Type': 'application/json',
                                            'Authorization': 'Bearer {}'.format(id_token)})
         with allure.step(f'Status code is: {result_get.status_code}'):
@@ -69,7 +69,7 @@ class SpeechExercisesAPI(BasePage):
     @staticmethod
     @allure.step('get_list_of_words_from_card_group_words')
     def get_list_of_words_from_card_group_words(card_id):
-        result_get = requests.get(f'{Links.URL_MAIN_PAGE}tasks/{str(card_id)}',
+        result_get = requests.get(f'{Links.URL_MAIN_PAGE}api/tasks/{str(card_id)}',
                                   headers={'Content-Type': 'application/json',
                                            'Authorization': 'Bearer {}'.format(id_token)})
         with allure.step(f'Status code is: {result_get.status_code}'):
@@ -124,14 +124,14 @@ class SpeechExercisesAPI(BasePage):
     def get_random_id_from_list_sub_group_default(card_id, seria_id):
         print('Card_id is:', card_id)
         print('Seria_id is:', seria_id)
-        list_cards_id = requests.get(f'{Links.URL_MAIN_PAGE}subgroups?seriesId={seria_id}',
+        list_cards_id = requests.get(f'{Links.URL_MAIN_PAGE}api/subgroups?seriesId={seria_id}',
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer {}'.format(id_token_default)})
         with allure.step(f'Status code is: {list_cards_id.status_code}'):
             pass
         with allure.step(
                 f'Send GET request with params: '
-                f'{Links.URL_MAIN_PAGE}subgroups?seriesId={seria_id}'
+                f'{Links.URL_MAIN_PAGE}api/subgroups?seriesId={seria_id}'
                 f'headers="Content-Type": "application/json","Authorization": "Bearer": "{{id_token_default}}"'):
             pass
         with allure.step(f'Getting list of cards id: {list_cards_id.json()}'):
@@ -150,7 +150,7 @@ class SpeechExercisesAPI(BasePage):
     @staticmethod
     @allure.step('get_list_of_words_from_card_default')
     def get_list_of_words_from_card_default(card_id):
-        result_post = requests.post(f'{Links.URL_MAIN_PAGE}tasks/{str(card_id)}',
+        result_post = requests.post(f'{Links.URL_MAIN_PAGE}api/tasks/{str(card_id)}',
                                     headers={'Content-Type': 'application/json',
                                              'Authorization': 'Bearer {}'.format(id_token_default)})
         with allure.step(f'Status code is: {result_post.status_code}'):
@@ -166,7 +166,7 @@ class SpeechExercisesAPI(BasePage):
     @staticmethod
     @allure.step('get_random_id_from_payloads')
     def get_random_id_from_payloads(payloads):
-        exercises = requests.post(f'{Links.URL_MAIN_PAGE}exercises/byIds',
+        exercises = requests.post(f'{Links.URL_MAIN_PAGE}api/exercises/byIds',
                                   headers={'Content-Type': 'application/json',
                                            'Authorization': 'Bearer {}'.format(id_token_default)}, json=payloads)
         random_id = random.choice(exercises.json()['data'])
