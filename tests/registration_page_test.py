@@ -1,21 +1,18 @@
 import os
 import pytest
-import requests
 from dotenv import load_dotenv
 import allure
 from selenium.common import TimeoutException
 from pages.profile_page import ProfilePage
 from pages.registration_page import RegistrationPage
-from test_data.links import MainPageLinks
 from test_data.registration_data import Messages, Registration
-from test_data.links import MainPageLinks as Links
+from pages.brainup_api_page import BrainUPAPI
 
 load_dotenv()
 
 
 @allure.epic("Test Registration Page")
 class TestRegistrationPage:
-    urls = MainPageLinks
     msg = Messages
 
     @allure.title('Check registration with new email')
@@ -37,15 +34,9 @@ class TestRegistrationPage:
         page.check_change_url()
         page = ProfilePage(driver)
         assert page.check_user_profile(), 'The user has not registered with a new email'
-        authorization_url = os.environ["AUTH_URL"]
-        user = {"email": new_email, "password": os.environ["PASSWORD"], "returnSecureToken": "true"}
-        response = requests.post(authorization_url, user)
-        token = response.json()['idToken']
-        url = f'{Links.URL_MAIN_PAGE}{os.environ["DELETE_USER"]}{new_email}'
-        payload = {}
-        headers = {'Authorization': f'Bearer {token}'}
-        response = requests.request("DELETE", url=url, headers=headers, data=payload)
-        assert response.status_code == 200
+        token = BrainUPAPI.get_user_token(new_email, os.environ["PASSWORD"])
+        status_code = BrainUPAPI.delete_authorised_user(new_email, token)
+        assert status_code == 200, "The user has not been deleted"
 
     @pytest.mark.parametrize(Registration.test_data, Registration.DATA_REGISTRATION)
     def test_registration_negative(self, driver, main_page_open, title, first_name, birthday, email, password,
