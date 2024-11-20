@@ -204,15 +204,11 @@ class GroupsPage(BasePage):
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
         time.sleep(4)
         opened_pages.append(self.get_current_tab_url())
-        # self.driver.back()
         self.element_is_present_and_clickable(self.locators1.LOGO_LINK).click()
         time.sleep(4)
-        # self.click_on_ru_button()
-        # time.sleep(2)
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
         time.sleep(4)
         opened_pages.append(self.get_current_tab_url())
-        print(opened_pages)
         return opened_pages
 
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
@@ -228,7 +224,6 @@ class GroupsPage(BasePage):
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
         time.sleep(4)
         opened_pages.append(self.get_current_tab_url())
-        print(opened_pages)
         return opened_pages
 
     # Checking images on the page

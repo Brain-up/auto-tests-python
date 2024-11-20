@@ -260,5 +260,5 @@ class SpecialistsPage(BasePage):
         for i in range(len(images)):
             changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
             lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-        print(f'\nChanged: {len(changed)}, Lost: {len(lost)}, Unchanged: {len(unchanged)}')
+        # print(f'\nChanged: {len(changed)}, Lost: {len(lost)}, Unchanged: {len(unchanged)}')
         return changed, lost, unchanged

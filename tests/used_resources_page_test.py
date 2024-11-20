@@ -43,7 +43,6 @@ class TestUsedResourcesPage:
         def test_ur_02_01_verify_tab_title(self, driver, used_resources_page_open):
             page = UsedResourcesPage(driver)
             tab_title_value = page.get_value_of_tab_title()
-            print(tab_title_value)
             assert tab_title_value, "The title value of the tab is empty"
             assert tab_title_value in UsedResourcesPageData.tab_title_expected, \
                 "The title value of the tab mismatches the valid value"

@@ -399,7 +399,6 @@ class TestHeaderPage:
                 icons_presence = page.get_list_of_auth_icons()
                 icons_visibility = page.check_auth_icons_visibility()
                 icons_xmlns = page.get_auth_icons_xmlns()
-                print(icons_xmlns)
                 assert icons_presence, "Icons in the Header are absent"
                 assert icons_visibility, "Icons in the Header are invisible"
                 assert icons_xmlns, "The 'xmlns' attribute value of icons in the Header are empty"
