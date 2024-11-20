@@ -181,7 +181,7 @@ class FooterPage(BasePage):
             except TimeoutException:
                 print(f"The tab {i} has not been loaded during the allotted time")
                 count3 += 1
-        print(f'{new_tabs_urls}\nDefined tabs urls: {count1}\nUndefined tabs urls: {count2}\nUnloaded tabs: {count3}')
+        # print(f'{new_tabs_urls}\nDefined tabs urls: {count1}\nUndefined tabs urls: {count2}\nUnloaded tabs: {count3}')
         return new_tabs_urls
 
     @allure.step("Click on the 'Contact us' link in the Footer and thereby open an email client")

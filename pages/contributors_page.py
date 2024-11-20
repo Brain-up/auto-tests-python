@@ -136,7 +136,6 @@ class ContributorsPage(BasePage):
         full, empty = [], []
         for i in range(len(values)):
             full.append(values[i]) if values[i] else empty.append(values[i])
-        print(len(full), len(empty))
         return len(full) + len(empty)
 
     @allure.step("Check text in links in cards")
@@ -145,7 +144,6 @@ class ContributorsPage(BasePage):
         full, empty = [], []
         for i in range(len(values)):
             full.append(values[i]) if values[i] else empty.append(values[i])
-        print(len(full), len(empty))
         return len(full) + len(empty)
 
     @allure.step("Get text in the 'All Team' link")
@@ -192,5 +190,5 @@ class ContributorsPage(BasePage):
         for i in range(len(images)):
             changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
             lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-        print(f'\nChanged: {len(changed)}, Lost: {len(lost)}, Unchanged: {len(unchanged)}')
+        # print(f'\nChanged: {len(changed)}, Lost: {len(lost)}, Unchanged: {len(unchanged)}')
         return changed, lost, unchanged

@@ -88,7 +88,6 @@ class TestGroupsPage:
             subtitle_values_ru = page.get_values_of_subtitles_ru()
             title_value_en = page.get_value_of_page_title_en()
             subtitle_values_en = page.get_values_of_subtitles_en()
-            print(title_value_ru, subtitle_values_ru, title_value_en, subtitle_values_en, sep='\n')
             assert title_value_ru, "The title value on the page is empty on the 'ru' local"
             assert title_value_ru == GroupsPageData.page_title_ru, \
                 "The title on the page mismatches the valid value on the 'ru' local"
