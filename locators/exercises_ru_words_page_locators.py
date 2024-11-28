@@ -11,3 +11,4 @@ class ExercisesRuWordsPageLocators:
     PAGE_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*")
     PAGE_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*")
     PAGE_SEVENTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*")
+    PAGE_LIST1 = (By.TAG_NAME, "ul")
