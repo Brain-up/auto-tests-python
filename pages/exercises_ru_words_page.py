@@ -92,3 +92,11 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Check if elements of the 7th level of nesting are visible")
     def check_elements_visibility_on_7th_level(self):
         return all(element.is_displayed() for element in self.get_structure_of_7th_level())
+
+    @allure.step("Check the list1 on the 3rd level of nesting is present on the page")
+    def check_list1_presence(self):
+        return self.element_is_present(self.locators.PAGE_LIST1)
+
+    @allure.step("Check the list1 on the 3rd level level of nesting is visible")
+    def check_list1_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_LIST1)

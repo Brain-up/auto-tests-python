@@ -46,3 +46,11 @@ class TestExercisesRuWordsPage:
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible"
             assert structure_of_7th_level, "Elements on the 7th level are absent on the page"
             assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
+
+        @allure.title("Verify presence, visibility of lists on the page")
+        def test_erw_01_03_verify_page_structural_elements(self, driver, auto_test_user_authorized):
+            page = ExercisesRuWordsPage(driver)
+            list1_on_3rd_level = page.check_list1_presence()
+            list1_visibility = page.check_list1_visibility()
+            assert list1_on_3rd_level, "The list1 on the 3rd level is absent on the page"
+            assert list1_visibility, "The list1 on the 3rd level is invisible"
