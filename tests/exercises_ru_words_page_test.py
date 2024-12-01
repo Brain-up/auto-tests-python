@@ -52,5 +52,9 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             list1_on_3rd_level = page.check_list1_presence()
             list1_visibility = page.check_list1_visibility()
+            list2_on_5th_level = page.check_list2_presence()
+            list2_visibility = page.check_list2_visibility()
             assert list1_on_3rd_level, "The list1 on the 3rd level is absent on the page"
             assert list1_visibility, "The list1 on the 3rd level is invisible"
+            assert list2_on_5th_level, "The list2 on the 5th level is absent on the page"
+            assert list2_visibility, "The list2 on the 5th level is invisible"

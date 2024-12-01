@@ -1,4 +1,6 @@
 """Methods for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
+import time
+
 import allure
 from pages.base_page import BasePage
 from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators
@@ -100,3 +102,14 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Check the list1 on the 3rd level level of nesting is visible")
     def check_list1_visibility(self):
         return self.element_is_visible(self.locators.PAGE_LIST1)
+
+    @allure.step("Check the list2 on the 5th level of nesting is present on the page")
+    def check_list2_presence(self):
+        elements = self.elements_are_present(self.locators.PAGE_LIST2)
+        tags = [element.tag_name for element in elements]
+        print(tags)
+        return elements
+
+    @allure.step("Check the list2 on the 5th level level of nesting is visible")
+    def check_list2_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_LIST2)
