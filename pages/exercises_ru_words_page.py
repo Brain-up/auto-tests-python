@@ -106,10 +106,17 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Check the list2 on the 5th level of nesting is present on the page")
     def check_list2_presence(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST2)
-        tags = [element.tag_name for element in elements]
+        # tags = [element.tag_name for element in elements]
+        tags = [element.text for element in elements]
         print(tags)
+        print(len(tags))
         return elements
 
     @allure.step("Check the list2 on the 5th level level of nesting is visible")
     def check_list2_visibility(self):
         return self.element_is_visible(self.locators.PAGE_LIST2)
+
+    # Checking text on the tab&page
+    @allure.step("Get value of the title of the tab")
+    def get_value_of_tab_title(self):
+        return self.get_current_tab_title()
