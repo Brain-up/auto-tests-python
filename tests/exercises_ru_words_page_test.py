@@ -1,6 +1,7 @@
 """Auto tests for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
 import allure
 from pages.exercises_ru_words_page import ExercisesRuWordsPage
+from test_data.exercises_ru_words_page_data import ExercisesRuWordsPageData
 
 
 @allure.epic("The Exercises 'Words' Page on the 'ru' local")
@@ -48,7 +49,7 @@ class TestExercisesRuWordsPage:
             assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
 
         @allure.title("Verify presence, visibility of lists on the page")
-        def test_erw_01_03_verify_page_structural_elements(self, driver, auto_test_user_authorized):
+        def test_erw_01_03_verify_page_structural_elements(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             list1_on_3rd_level = page.check_list1_presence()
             list1_visibility = page.check_list1_visibility()
@@ -58,3 +59,12 @@ class TestExercisesRuWordsPage:
             assert list1_visibility, "The list1 on the 3rd level is invisible"
             assert list2_on_5th_level, "The list2 on the 5th level is absent on the page"
             assert list2_visibility, "The list2 on the 5th level is invisible"
+
+    class TestGroupsPageText:
+        @allure.title("Verify value of the title of the tab")
+        def test_erw_02_01_verify_tab_title(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            tab_title_value = page.get_value_of_tab_title()
+            assert tab_title_value, "The title value of the tab is empty"
+            assert tab_title_value == ExercisesRuWordsPageData.tab_title, \
+                "The title on the tab doesn't match the valid value"

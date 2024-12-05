@@ -2,4 +2,4 @@
 
 
 class ExercisesRuWordsPageData:
-    pass
+    tab_title = "Речевые упражнения (готовы для занятий) | BrainUp"
