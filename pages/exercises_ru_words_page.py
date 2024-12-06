@@ -1,13 +1,13 @@
 """Methods for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
 import time
-
 import allure
 from pages.base_page import BasePage
-from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators
+from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators, HeaderLocators
 
 
 class ExercisesRuWordsPage(BasePage):
     locators = ExercisesRuWordsPageLocators
+    locators1 = HeaderLocators
 
     # Checking the structure and display of elements on the page
     @allure.step("Check if some content is present in DOM")
@@ -22,7 +22,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_structure_of_1st_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 1st level of nesting are visible")
@@ -33,7 +33,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_structure_of_2nd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
@@ -44,7 +44,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_structure_of_3rd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 3rd level of nesting are visible")
@@ -55,7 +55,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_structure_of_4th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 4th level of nesting are visible")
@@ -66,7 +66,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_structure_of_5th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 5th level of nesting are visible")
@@ -77,7 +77,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_structure_of_6th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 6th level of nesting are visible")
@@ -88,7 +88,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_structure_of_7th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SEVENTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
-        print(tags)
+        # print(tags)
         return elements
 
     @allure.step("Check if elements of the 7th level of nesting are visible")
@@ -119,4 +119,6 @@ class ExercisesRuWordsPage(BasePage):
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
-        return self.get_current_tab_title()
+        tab_title = self.get_current_tab_title()
+        print(tab_title)
+        return tab_title
