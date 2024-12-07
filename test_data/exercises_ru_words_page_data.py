@@ -2,4 +2,4 @@
 
 
 class ExercisesRuWordsPageData:
-    tab_title = "Речевые упражнения (готовы для занятий) | BrainUp"
+    tab_title = ["Речевые упражнения (готовы для занятий) | BrainUp", "Speech exercises | BrainUp"]
