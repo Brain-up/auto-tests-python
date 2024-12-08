@@ -66,5 +66,5 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
-            assert tab_title_value in ExercisesRuWordsPageData.tab_title, \
+            assert tab_title_value == ExercisesRuWordsPageData.tab_title_ru, \
                 "The title on the tab doesn't match the valid value"
