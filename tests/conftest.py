@@ -47,14 +47,6 @@ def description_page_open(driver):
 
 @pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE}')
-def exercises_ru_words_page_open1(driver, auto_test_user_authorized):
-    page = BasePage(driver)
-    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.RU_BUTTON).click()
-    page.element_is_present_and_clickable(GroupsPageLocators.PAGE_LINK2).click()
-    time.sleep(3)
-
-@pytest.fixture()
-@allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE}')
 def exercises_ru_words_page_open(driver, main_page_open):
     page = BasePage(driver)
     page.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
