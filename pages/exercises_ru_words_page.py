@@ -99,9 +99,9 @@ class ExercisesRuWordsPage(BasePage):
     def check_list1_presence(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST1)
         # tags = [element.tag_name for element in elements]
-        tags = [element.text for element in elements]
-        print(tags)
-        print(len(tags))
+        tags_text = [element.text for element in elements]
+        print(tags_text)
+        print(len(tags_text))
         return elements
 
     @allure.step("Check the list1 is visible")
@@ -112,9 +112,9 @@ class ExercisesRuWordsPage(BasePage):
     def check_list2_presence(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST2)
         # tags = [element.tag_name for element in elements]
-        tags = [element.text for element in elements]
-        print(tags)
-        print(len(tags))
+        tags_text = [element.text for element in elements]
+        print(tags_text)
+        print(len(tags_text))
         return elements
 
     @allure.step("Check the list2 is visible")
@@ -125,14 +125,27 @@ class ExercisesRuWordsPage(BasePage):
     def check_list3_presence(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST3)
         # tags = [element.tag_name for element in elements]
-        tags = [element.text for element in elements]
-        print(tags)
-        print(len(tags))
+        tags_text = [element.text for element in elements]
+        print(tags_text)
+        print(len(tags_text))
         return elements
 
     @allure.step("Check the list3 is visible")
     def check_list3_visibility(self):
         return self.element_is_visible(self.locators.PAGE_LIST3)
+
+    @allure.step("Check the list4 on the 6th level of nesting is present on the page")
+    def check_list4_presence(self):
+        elements = self.elements_are_present(self.locators.CARD_IMAGES_LIST4)
+        # tags = [element.tag_name for element in elements]
+        style = [element.get_attribute("style") for element in elements]
+        print(*style, sep='\n')
+        print(len(style))
+        return elements
+
+    @allure.step("Check the list4 is visible")
+    def check_list4_visibility(self):
+        return self.element_is_visible(self.locators.CARD_IMAGES_LIST4)
 
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
