@@ -1,5 +1,4 @@
 """Methods for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
-import time
 import allure
 from pages.base_page import BasePage
 from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators, HeaderLocators
@@ -32,8 +31,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get structure of the 2nd level of nesting on the page")
     def get_structure_of_2nd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(tags)
+        # tags = [element.tag_name for element in elements]        #
         return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
@@ -54,8 +52,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get structure of the 4th level of nesting on the page")
     def get_structure_of_4th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(tags)
+        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 4th level of nesting are visible")
@@ -99,9 +96,6 @@ class ExercisesRuWordsPage(BasePage):
     def check_list1_presence(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST1)
         # tags = [element.tag_name for element in elements]
-        tags_text = [element.text for element in elements]
-        print(tags_text)
-        print(len(tags_text))
         return elements
 
     @allure.step("Check the list1 is visible")
@@ -112,9 +106,7 @@ class ExercisesRuWordsPage(BasePage):
     def check_list2_presence(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST2)
         # tags = [element.tag_name for element in elements]
-        tags_text = [element.text for element in elements]
-        print(tags_text)
-        print(len(tags_text))
+        # tags_text = [element.text for element in elements]
         return elements
 
     @allure.step("Check the list2 is visible")
@@ -125,9 +117,7 @@ class ExercisesRuWordsPage(BasePage):
     def check_list3_presence(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST3)
         # tags = [element.tag_name for element in elements]
-        tags_text = [element.text for element in elements]
-        print(tags_text)
-        print(len(tags_text))
+        # tags_text = [element.text for element in elements]
         return elements
 
     @allure.step("Check the list3 is visible")
@@ -138,9 +128,9 @@ class ExercisesRuWordsPage(BasePage):
     def check_list4_presence(self):
         elements = self.elements_are_present(self.locators.CARD_IMAGES_LIST4)
         # tags = [element.tag_name for element in elements]
-        style = [element.get_attribute("style") for element in elements]
-        print(*style, sep='\n')
-        print(len(style))
+        # style = [element.get_attribute("style") for element in elements]
+        # print(*style, sep='\n')
+        # print(len(style))
         return elements
 
     @allure.step("Check the list4 is visible")
@@ -153,3 +143,9 @@ class ExercisesRuWordsPage(BasePage):
         tab_title = self.get_current_tab_title()
         print(tab_title)
         return tab_title
+
+    @allure.step("Get value of the breadcrumbs on the on the page")
+    def get_value_of_breadcrumbs(self):
+        breadcrumbs_text = [element.text for element in self.check_list1_presence()]
+        print(breadcrumbs_text, len(breadcrumbs_text), sep='\n')
+        return breadcrumbs_text
