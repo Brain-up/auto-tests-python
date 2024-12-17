@@ -84,3 +84,11 @@ class TestExercisesRuWordsPage:
             assert breadcrumbs, "The breadcrumbs value on the page are empty"
             assert all(element in ExercisesRuWordsPageData.breadcrumbs for element in breadcrumbs), \
                 "The breadcrumbs on the page mismatch the valid values"
+
+        @allure.title("Verify text in group links on the page")
+        def test_erw_02_03_verify_group_links_text(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            links_text = page.get_group_links_text()
+            assert links_text, "Text in group links is absent"
+            assert all(element in ExercisesRuWordsPageData.group_links_text for element in links_text), \
+                "Text in group links mismatch the valid values"
