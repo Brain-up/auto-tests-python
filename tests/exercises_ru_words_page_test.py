@@ -92,3 +92,12 @@ class TestExercisesRuWordsPage:
             assert links_text, "Text in group links is absent"
             assert all(element in ExercisesRuWordsPageData.group_links_text for element in links_text), \
                 "Text in group links mismatch the valid values"
+
+        @allure.title("Verify text in cards on the page")
+        def test_erw_02_04_verify_cards_text(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            cards_text = page.get_cards_text()
+            assert cards_text, "Text in cards is absent"
+            assert all(element in ExercisesRuWordsPageData.cards_text for element in cards_text), \
+                "Text in cards mismatch the valid values"
+

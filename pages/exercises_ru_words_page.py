@@ -149,3 +149,9 @@ class ExercisesRuWordsPage(BasePage):
         links_text = [element.text for element in self.check_list2_presence()]
         print(len(links_text), *links_text, sep='\n')
         return links_text
+
+    @allure.step("Get text in cards on the page")
+    def get_cards_text(self):
+        cards_text = [element.text for element in self.check_list3_presence()]
+        print(len(cards_text), cards_text, sep='\n')
+        return cards_text
