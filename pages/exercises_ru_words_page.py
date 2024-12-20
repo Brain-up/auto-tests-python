@@ -141,7 +141,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get value of the breadcrumbs on the page")
     def get_value_of_breadcrumbs(self):
         breadcrumbs_text = [element.text for element in self.check_list1_presence()]
-        print(breadcrumbs_text, len(breadcrumbs_text), sep='\n')
+        print(len(breadcrumbs_text), breadcrumbs_text, sep='\n')
         return breadcrumbs_text
 
     @allure.step("Get text in group links on the page")
@@ -155,3 +155,8 @@ class ExercisesRuWordsPage(BasePage):
         cards_text = [element.text for element in self.check_list3_presence()]
         print(len(cards_text), cards_text, sep='\n')
         return cards_text
+
+    # Checking links on the page
+    @allure.step("Check if breadcrumbs are clickable")
+    def check_breadcrumbs_clickability(self):
+        return all(link.is_enabled() for link in self.check_list1_presence())
