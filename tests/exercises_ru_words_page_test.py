@@ -68,7 +68,7 @@ class TestExercisesRuWordsPage:
             assert list4_on_6th_level, "The list4 on the 6th level is absent on the page"
             assert list4_visibility, "The list4 on the 6th level is invisible"
 
-    class TestGroupsPageText:
+    class TestExercisesRuWordsPageText:
         @allure.title("Verify value of the title of the tab")
         def test_erw_02_01_verify_tab_title(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
@@ -78,11 +78,11 @@ class TestExercisesRuWordsPage:
                 "The title on the tab doesn't match the valid value"
 
         @allure.title("Verify value of the breadcrumbs on the page")
-        def test_erw_02_02_verify_page_breadcrumbs(self, driver, exercises_ru_words_page_open):
+        def test_erw_02_02_verify_page_breadcrumbs_text(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
-            breadcrumbs = page.get_value_of_breadcrumbs()
-            assert breadcrumbs, "The breadcrumbs value on the page are empty"
-            assert all(element in ExercisesRuWordsPageData.breadcrumbs for element in breadcrumbs), \
+            breadcrumbs_text = page.get_value_of_breadcrumbs()
+            assert breadcrumbs_text, "The breadcrumbs value on the page are empty"
+            assert all(element in ExercisesRuWordsPageData.breadcrumbs for element in breadcrumbs_text), \
                 "The breadcrumbs on the page mismatch the valid values"
 
         @allure.title("Verify text in group links on the page")
@@ -100,4 +100,11 @@ class TestExercisesRuWordsPage:
             assert cards_text, "Text in cards is absent"
             assert all(element in ExercisesRuWordsPageData.cards_text for element in cards_text), \
                 "Text in cards mismatch the valid values"
+
+    class TestExercisesRuWordsPageLinks:
+        @allure.title("Verify clickability of breadcrumbs on the page")
+        def test_erw_03_01_verify_breadcrumbs_links(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            breadcrumbs_clickability = page.check_breadcrumbs_clickability()
+            assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
 
