@@ -1,4 +1,5 @@
 """Data for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
+from test_data.links import MainPageLinks as Links
 
 
 class ExercisesRuWordsPageData:
@@ -16,3 +17,13 @@ class ExercisesRuWordsPageData:
                   'Транспорт (спецтехника)', 'Плодовые деревья и кусты', 'Растения', 'Деревья и кустарники',
                   'Спорт', 'В магазине', 'Парнокопытные', 'Породы собак', 'Канцелярские принадлежности', 'Цветы',
                   'Русский язык и литература', 'Физика', 'Биология', 'Инструменты']
+
+    breadcrumbs_links_href = [
+        f"{Links.URL_MAIN_PAGE}groups",
+        f"{Links.URL_MAIN_PAGE}groups/2",
+        f"{Links.URL_MAIN_PAGE}groups/2/series/1"
+    ]
+
+    a = ['https://www.brainup.site/groups',
+         'https://www.brainup.site/groups/2',
+         'https://www.brainup.site/groups/2/series/1']

@@ -106,5 +106,8 @@ class TestExercisesRuWordsPage:
         def test_erw_03_01_verify_breadcrumbs_links(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             breadcrumbs_clickability = page.check_breadcrumbs_clickability()
+            breadcrumbs_links_href = page.get_breadcrumbs_links_href()
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
+            assert all(href in ExercisesRuWordsPageData.breadcrumbs_links_href for href in breadcrumbs_links_href), \
+                "Attributes 'href' of links in breadcrumbs do not match the valid values"
 
