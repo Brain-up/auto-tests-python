@@ -160,3 +160,9 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Check if breadcrumbs are clickable")
     def check_breadcrumbs_clickability(self):
         return all(link.is_enabled() for link in self.check_list1_presence())
+
+    @allure.step("Get attribute 'href' of links in breadcrumbs")
+    def get_breadcrumbs_links_href(self):
+        breadcrumbs_links_href = [element.get_attribute("href") for element in self.check_list1_presence()]
+        print(len(breadcrumbs_links_href), *breadcrumbs_links_href, sep='\n')
+        return breadcrumbs_links_href

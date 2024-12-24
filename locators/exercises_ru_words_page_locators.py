@@ -11,7 +11,7 @@ class ExercisesRuWordsPageLocators:
     PAGE_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*")
     PAGE_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*")
     PAGE_SEVENTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*")
-    PAGE_LIST1 = (By.XPATH, '//ul[@aria-label="Breadcrumbs"]/li')
+    PAGE_LIST1 = (By.XPATH, '//ul[@aria-label="Breadcrumbs"]//a')
     # PAGE_LIST1 = (By.XPATH, "//main//div/li")
     PAGE_LIST2 = (By.XPATH, "//aside//li")
     PAGE_LIST3 = (By.XPATH, '//div[contains(@class, "series-page")]//a')
