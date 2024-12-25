@@ -1,5 +1,6 @@
 """Methods for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
 import allure
+import requests
 from pages.base_page import BasePage
 from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators, HeaderLocators
 
@@ -163,6 +164,8 @@ class ExercisesRuWordsPage(BasePage):
 
     @allure.step("Get attribute 'href' of links in breadcrumbs")
     def get_breadcrumbs_links_href(self):
-        breadcrumbs_links_href = [element.get_attribute("href") for element in self.check_list1_presence()]
-        print(len(breadcrumbs_links_href), *breadcrumbs_links_href, sep='\n')
-        return breadcrumbs_links_href
+        return [element.get_attribute("href") for element in self.check_list1_presence()]
+
+    @allure.step("Get status code of links")
+    def get_link_status_codes_in_breadcrumbs(self):
+        return [requests.head(link_href).status_code for link_href in self.get_breadcrumbs_links_href()]
