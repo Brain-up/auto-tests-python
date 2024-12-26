@@ -24,6 +24,4 @@ class ExercisesRuWordsPageData:
         f"{Links.URL_MAIN_PAGE}groups/2/series/1"
     ]
 
-    a = ['https://www.brainup.site/groups',
-         'https://www.brainup.site/groups/2',
-         'https://www.brainup.site/groups/2/series/1']
+    links_status_code = 200

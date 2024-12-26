@@ -102,12 +102,14 @@ class TestExercisesRuWordsPage:
                 "Text in cards mismatch the valid values"
 
     class TestExercisesRuWordsPageLinks:
-        @allure.title("Verify clickability of breadcrumbs on the page")
+        @allure.title("Verify clickability, href, status code of links in breadcrumbs on the page")
         def test_erw_03_01_verify_breadcrumbs_links(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             breadcrumbs_clickability = page.check_breadcrumbs_clickability()
             breadcrumbs_links_href = page.get_breadcrumbs_links_href()
+            breadcrumbs_link_status_codes = page.get_link_status_codes_in_breadcrumbs()
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
             assert all(href in ExercisesRuWordsPageData.breadcrumbs_links_href for href in breadcrumbs_links_href), \
-                "Attributes 'href' of links in breadcrumbs do not match the valid values"
-
+                "Attributes 'href' of links in breadcrumbs mismatch the valid values"
+            assert all(el == ExercisesRuWordsPageData.links_status_code for el in breadcrumbs_link_status_codes), \
+                "Status codes of links in breadcrumbs mismatch valid values"
