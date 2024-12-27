@@ -113,3 +113,9 @@ class TestExercisesRuWordsPage:
                 "Attributes 'href' of links in breadcrumbs mismatch the valid values"
             assert all(el == ExercisesRuWordsPageData.links_status_code for el in breadcrumbs_link_status_codes), \
                 "Status codes of links in breadcrumbs mismatch valid values"
+
+        @allure.title("Verify clickability of group links on the page")
+        def test_erw_03_02_verify_group_links_text(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            group_links_clickability = page.check_group_links_clickability()
+            assert group_links_clickability, "Group links are unclickable"

@@ -112,7 +112,6 @@ class ExercisesRuWordsPage(BasePage):
     def check_list3_presence(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST3)
         # tags = [element.tag_name for element in elements]
-        # tags_text = [element.text for element in elements]
         return elements
 
     @allure.step("Check the list3 is visible")
@@ -169,3 +168,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get status code of links")
     def get_link_status_codes_in_breadcrumbs(self):
         return [requests.head(link_href).status_code for link_href in self.get_breadcrumbs_links_href()]
+
+    @allure.step("Check if group links are clickable")
+    def check_group_links_clickability(self):
+        return all(link.is_enabled() for link in self.check_list2_presence())
