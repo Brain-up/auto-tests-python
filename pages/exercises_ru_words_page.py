@@ -89,7 +89,7 @@ class ExercisesRuWordsPage(BasePage):
         return all(element.is_displayed() for element in self.get_structure_of_7th_level())
 
     @allure.step("Check the list1 on the 4th level of nesting is present on the page")
-    def check_list1_presence(self):
+    def get_list1_of_links(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST1)
         # tags = [element.tag_name for element in elements]
         return elements
@@ -99,7 +99,7 @@ class ExercisesRuWordsPage(BasePage):
         return self.element_is_visible(self.locators.PAGE_LIST1)
 
     @allure.step("Check the list2 on the 4th level of nesting is present on the page")
-    def check_list2_presence(self):
+    def get_list2_of_links(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST2)
         # tags = [element.tag_name for element in elements]
         return elements
@@ -109,7 +109,7 @@ class ExercisesRuWordsPage(BasePage):
         return self.element_is_visible(self.locators.PAGE_LIST2)
 
     @allure.step("Check the list3 on the 5th level of nesting is present on the page")
-    def check_list3_presence(self):
+    def get_list3_of_links(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST3)
         # tags = [element.tag_name for element in elements]
         return elements
@@ -119,7 +119,7 @@ class ExercisesRuWordsPage(BasePage):
         return self.element_is_visible(self.locators.PAGE_LIST3)
 
     @allure.step("Check the list4 on the 6th level of nesting is present on the page")
-    def check_list4_presence(self):
+    def get_list4_of_links(self):
         elements = self.elements_are_present(self.locators.CARD_IMAGES_LIST4)
         # tags = [element.tag_name for element in elements]
         # style = [element.get_attribute("style") for element in elements]
@@ -140,35 +140,43 @@ class ExercisesRuWordsPage(BasePage):
 
     @allure.step("Get value of the breadcrumbs on the page")
     def get_value_of_breadcrumbs(self):
-        breadcrumbs_text = [element.text for element in self.check_list1_presence()]
+        breadcrumbs_text = [element.text for element in self.get_list1_of_links()]
         print(len(breadcrumbs_text), breadcrumbs_text, sep='\n')
         return breadcrumbs_text
 
     @allure.step("Get text in group links on the page")
     def get_group_links_text(self):
-        links_text = [element.text for element in self.check_list2_presence()]
+        links_text = [element.text for element in self.get_list2_of_links()]
         print(len(links_text), *links_text, sep='\n')
         return links_text
 
     @allure.step("Get text in cards on the page")
     def get_cards_text(self):
-        cards_text = [element.text for element in self.check_list3_presence()]
+        cards_text = [element.text for element in self.get_list3_of_links()]
         print(len(cards_text), cards_text, sep='\n')
         return cards_text
 
     # Checking links on the page
     @allure.step("Check if breadcrumbs are clickable")
     def check_breadcrumbs_clickability(self):
-        return all(link.is_enabled() for link in self.check_list1_presence())
+        return all(link.is_enabled() for link in self.get_list1_of_links())
 
     @allure.step("Get attribute 'href' of links in breadcrumbs")
     def get_breadcrumbs_links_href(self):
-        return [element.get_attribute("href") for element in self.check_list1_presence()]
+        breadcrumbs_links_href = [element.get_attribute("href") for element in self.get_list1_of_links()]
+        print(len(breadcrumbs_links_href), *breadcrumbs_links_href, sep='\n')
+        return breadcrumbs_links_href
 
-    @allure.step("Get status code of links")
+    @allure.step("Get status code of links in breadcrumbs")
     def get_link_status_codes_in_breadcrumbs(self):
         return [requests.head(link_href).status_code for link_href in self.get_breadcrumbs_links_href()]
 
     @allure.step("Check if group links are clickable")
     def check_group_links_clickability(self):
-        return all(link.is_enabled() for link in self.check_list2_presence())
+        return all(link.is_enabled() for link in self.get_list2_of_links())
+
+    @allure.step("Get attribute 'title' of group links")
+    def get_group_link_titles(self):
+        group_link_titles = [element.get_attribute("title") for element in self.get_list2_of_links()]
+        print(len(group_link_titles), *group_link_titles, sep='\n')
+        return group_link_titles
