@@ -1,7 +1,7 @@
 """Auto tests for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
 import allure
 from pages.exercises_ru_words_page import ExercisesRuWordsPage
-from test_data.exercises_ru_words_page_data import ExercisesRuWordsPageData
+from test_data.exercises_ru_words_page_data import ExercisesRuWordsPageData as ExRuWoPaData
 
 
 @allure.epic("The Exercises 'Words' Page on the 'ru' local")
@@ -51,13 +51,13 @@ class TestExercisesRuWordsPage:
         @allure.title("Verify presence, visibility of lists on the page")
         def test_erw_01_03_verify_page_structural_elements(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
-            list1_on_4th_level = page.check_list1_presence()
+            list1_on_4th_level = page.get_list1_of_links()
             list1_visibility = page.check_list1_visibility()
-            list2_on_4th_level = page.check_list2_presence()
+            list2_on_4th_level = page.get_list2_of_links()
             list2_visibility = page.check_list2_visibility()
-            list3_on_5th_level = page.check_list3_presence()
+            list3_on_5th_level = page.get_list3_of_links()
             list3_visibility = page.check_list3_visibility()
-            list4_on_6th_level = page.check_list4_presence()
+            list4_on_6th_level = page.get_list4_of_links()
             list4_visibility = page.check_list4_visibility()
             assert list1_on_4th_level, "The list1 on the 4th level is absent on the page"
             assert list1_visibility, "The list1 on the 4th level is invisible"
@@ -74,32 +74,30 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
-            assert tab_title_value == ExercisesRuWordsPageData.tab_title_ru, \
-                "The title on the tab doesn't match the valid value"
+            assert tab_title_value == ExRuWoPaData.tab_title_ru, "The title on the tab doesn't match the valid value"
 
         @allure.title("Verify value of the breadcrumbs on the page")
         def test_erw_02_02_verify_page_breadcrumbs_text(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             breadcrumbs_text = page.get_value_of_breadcrumbs()
             assert breadcrumbs_text, "The breadcrumbs value on the page are empty"
-            assert all(element in ExercisesRuWordsPageData.breadcrumbs for element in breadcrumbs_text), \
-                "The breadcrumbs on the page mismatch the valid values"
+            assert all(text in ExRuWoPaData.breadcrumbs for text in breadcrumbs_text), \
+                "Text in breadcrumbs mismatches valid values"
 
         @allure.title("Verify text in group links on the page")
         def test_erw_02_03_verify_group_links_text(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             links_text = page.get_group_links_text()
             assert links_text, "Text in group links is absent"
-            assert all(element in ExercisesRuWordsPageData.group_links_text for element in links_text), \
-                "Text in group links mismatch the valid values"
+            assert all(text in ExRuWoPaData.group_links_text for text in links_text), \
+                "Text in group links mismatches valid values"
 
         @allure.title("Verify text in cards on the page")
         def test_erw_02_04_verify_cards_text(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             cards_text = page.get_cards_text()
             assert cards_text, "Text in cards is absent"
-            assert all(element in ExercisesRuWordsPageData.cards_text for element in cards_text), \
-                "Text in cards mismatch the valid values"
+            assert all(text in ExRuWoPaData.cards_text for text in cards_text), "Text in cards mismatches valid values"
 
     class TestExercisesRuWordsPageLinks:
         @allure.title("Verify clickability, href, status code of links in breadcrumbs on the page")
@@ -109,13 +107,17 @@ class TestExercisesRuWordsPage:
             breadcrumbs_links_href = page.get_breadcrumbs_links_href()
             breadcrumbs_link_status_codes = page.get_link_status_codes_in_breadcrumbs()
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
-            assert all(href in ExercisesRuWordsPageData.breadcrumbs_links_href for href in breadcrumbs_links_href), \
-                "Attributes 'href' of links in breadcrumbs mismatch the valid values"
-            assert all(el == ExercisesRuWordsPageData.links_status_code for el in breadcrumbs_link_status_codes), \
+            assert all(href in ExRuWoPaData.breadcrumbs_links_href for href in breadcrumbs_links_href), \
+                "Attributes 'href' of links in breadcrumbs mismatch valid values"
+            assert all(element == ExRuWoPaData.links_status_code for element in breadcrumbs_link_status_codes), \
                 "Status codes of links in breadcrumbs mismatch valid values"
 
-        @allure.title("Verify clickability of group links on the page")
-        def test_erw_03_02_verify_group_links_text(self, driver, exercises_ru_words_page_open):
+        @allure.title("Verify clickability, titles of group links on the page")
+        def test_erw_03_02_verify_group_links(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             group_links_clickability = page.check_group_links_clickability()
+            group_link_titles = page.get_group_link_titles()
             assert group_links_clickability, "Group links are unclickable"
+            assert group_link_titles, "Group link titles values are empty"
+            assert all(element in ExRuWoPaData.group_link_titles for element in group_link_titles), \
+                "Group link titles mismatch valid values"
