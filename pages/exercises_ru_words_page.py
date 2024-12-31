@@ -180,3 +180,9 @@ class ExercisesRuWordsPage(BasePage):
         group_link_titles = [element.get_attribute("title") for element in self.get_list2_of_links()]
         print(len(group_link_titles), *group_link_titles, sep='\n')
         return group_link_titles
+
+    @allure.step("Get attribute 'active-links' of group links")
+    def get_group_link_active_links(self):
+        group_link_active_links = [el.get_attribute("data-test-active-link") for el in self.get_list2_of_links()]
+        print(len(group_link_active_links), *group_link_active_links, sep='\n')
+        return group_link_active_links
