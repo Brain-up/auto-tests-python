@@ -51,11 +51,11 @@ class TestExercisesRuWordsPage:
         @allure.title("Verify presence, visibility of lists on the page")
         def test_erw_01_03_verify_page_structural_elements(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
-            list1_on_4th_level = page.get_list1_of_links()
+            list1_on_4th_level = page.get_list1_of_breadcrumbs_links()
             list1_visibility = page.check_list1_visibility()
-            list2_on_4th_level = page.get_list2_of_links()
+            list2_on_4th_level = page.get_list2_of_group_links()
             list2_visibility = page.check_list2_visibility()
-            list3_on_5th_level = page.get_list3_of_links()
+            list3_on_5th_level = page.get_list3_of_subgroup_links()
             list3_visibility = page.check_list3_visibility()
             list4_on_6th_level = page.get_list4_of_links()
             list4_visibility = page.check_list4_visibility()
@@ -93,11 +93,12 @@ class TestExercisesRuWordsPage:
                 "Text in group links mismatches valid values"
 
         @allure.title("Verify text in cards on the page")
-        def test_erw_02_04_verify_cards_text(self, driver, exercises_ru_words_page_open):
+        def test_erw_02_04_verify_subgroup_links_text(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
-            cards_text = page.get_cards_text()
-            assert cards_text, "Text in cards is absent"
-            assert all(text in ExRuWoPaData.cards_text for text in cards_text), "Text in cards mismatches valid values"
+            subgroup_links_text = page.get_subgroup_links_text()
+            assert subgroup_links_text, "Text in cards is absent"
+            assert all(text in ExRuWoPaData.subgroup_links_text for text in subgroup_links_text), \
+                "Text in subgroup links mismatches valid values"
 
     class TestExercisesRuWordsPageLinks:
         @allure.title("Verify clickability, href, status code of links in breadcrumbs on the page")
@@ -125,3 +126,9 @@ class TestExercisesRuWordsPage:
             assert group_link_active_links, "Attributes 'active-link' of links in group links are empty"
             assert all(element in ExRuWoPaData.group_link_active_links for element in group_link_active_links), \
                 "Attributes 'active-link' of links in group links mismatch valid values"
+
+        @allure.title("Verify clickability subgroup links on the page")
+        def test_erw_03_03_verify_subgroup_links(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            subgroup_links_clickability = page.check_subgroup_links_clickability()
+            assert subgroup_links_clickability, "Subgroup links are unclickable"
