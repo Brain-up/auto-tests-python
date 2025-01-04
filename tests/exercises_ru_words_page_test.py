@@ -127,8 +127,12 @@ class TestExercisesRuWordsPage:
             assert all(element in ExRuWoPaData.group_link_active_links for element in group_link_active_links), \
                 "Attributes 'active-link' of links in group links mismatch valid values"
 
-        @allure.title("Verify clickability subgroup links on the page")
+        @allure.title("Verify clickability, titles of subgroup links on the page")
         def test_erw_03_03_verify_subgroup_links(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             subgroup_links_clickability = page.check_subgroup_links_clickability()
+            subgroup_link_titles = page.get_subgroup_link_titles()
             assert subgroup_links_clickability, "Subgroup links are unclickable"
+            assert subgroup_link_titles, "Subgroup link titles values are empty"
+            assert all(element in ExRuWoPaData.subgroup_link_titles for element in subgroup_link_titles), \
+                "Subgroup link titles mismatch valid values"

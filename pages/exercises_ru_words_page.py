@@ -178,15 +178,21 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get attribute 'title' of group links")
     def get_group_link_titles(self):
         group_link_titles = [element.get_attribute("title") for element in self.get_list2_of_group_links()]
-        print(len(group_link_titles), *group_link_titles, sep='\n')
+        # print(len(group_link_titles), *group_link_titles, sep='\n')
         return group_link_titles
 
     @allure.step("Get attribute 'active-links' of group links")
     def get_group_link_active_links(self):
         group_link_active_links = [el.get_attribute("data-test-active-link") for el in self.get_list2_of_group_links()]
-        print(len(group_link_active_links), *group_link_active_links, sep='\n')
+        # print(len(group_link_active_links), *group_link_active_links, sep='\n')
         return group_link_active_links
 
     @allure.step("Check if subgroup links are clickable")
     def check_subgroup_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list3_of_subgroup_links())
+
+    @allure.step("Get attribute 'title' of subgroup links")
+    def get_subgroup_link_titles(self):
+        subgroup_link_titles = [element.get_attribute("title") for element in self.get_list3_of_subgroup_links()]
+        print(len(subgroup_link_titles), *subgroup_link_titles, sep='\n')
+        return subgroup_link_titles
