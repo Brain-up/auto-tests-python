@@ -196,3 +196,9 @@ class ExercisesRuWordsPage(BasePage):
         subgroup_link_titles = [element.get_attribute("title") for element in self.get_list3_of_subgroup_links()]
         print(len(subgroup_link_titles), *subgroup_link_titles, sep='\n')
         return subgroup_link_titles
+
+    @allure.step("Get attribute 'href' of subgroup links")
+    def get_subgroup_links_href(self):
+        subgroup_links_href = [element.get_attribute("href") for element in self.get_list3_of_subgroup_links()]
+        print(len(subgroup_links_href), *subgroup_links_href, sep='\n')
+        return subgroup_links_href

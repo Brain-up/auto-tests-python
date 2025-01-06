@@ -1,5 +1,6 @@
 """Data for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
 from test_data.links import MainPageLinks as Links
+from test_data.links import ExercisesUrls as ExUrls
 
 
 class ExercisesRuWordsPageData:
@@ -47,9 +48,58 @@ class ExercisesRuWordsPageData:
     ]
 
     breadcrumbs_links_href = [
-        f"{Links.URL_MAIN_PAGE}groups",
-        f"{Links.URL_MAIN_PAGE}groups/2",
-        f"{Links.URL_MAIN_PAGE}groups/2/series/1"
+        f"{Links.URL_GROUPS_PAGE}",
+        f"{Links.URL_GROUPS_PAGE}/2",
+        f"{Links.URL_GROUPS_PAGE}/2/series/1"
+    ]
+
+    subgroup_links_href = [
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/1",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/2",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/3",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/4",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/5",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/6",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/7",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/8",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/9",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/10",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/11",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/12",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/13",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/14",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/15",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/16",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/17",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/18",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/19",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/20",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/21",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/22",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/23",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/24",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/25",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/26",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/27",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/28",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/29",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/30",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/31",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/32",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/33",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/34",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/35",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/36",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/37",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/38",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/39",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/40",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/41",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/42",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/43",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/44",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/45",
+        f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/46"
     ]
 
     links_status_code = 200
