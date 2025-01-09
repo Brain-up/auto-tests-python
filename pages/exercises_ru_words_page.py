@@ -141,19 +141,19 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get value of the breadcrumbs on the page")
     def get_value_of_breadcrumbs(self):
         breadcrumbs_text = [element.text for element in self.get_list1_of_breadcrumbs_links()]
-        print(len(breadcrumbs_text), breadcrumbs_text, sep='\n')
+        # print(len(breadcrumbs_text), breadcrumbs_text, sep='\n')
         return breadcrumbs_text
 
     @allure.step("Get text in group links on the page")
     def get_group_links_text(self):
         links_text = [element.text for element in self.get_list2_of_group_links()]
-        print(len(links_text), *links_text, sep='\n')
+        # print(len(links_text), *links_text, sep='\n')
         return links_text
 
     @allure.step("Get text in subgroup links on the page")
     def get_subgroup_links_text(self):
         subgroup_links_text = [element.text for element in self.get_list3_of_subgroup_links()]
-        print(len(subgroup_links_text), subgroup_links_text, sep='\n')
+        # print(len(subgroup_links_text), subgroup_links_text, sep='\n')
         return subgroup_links_text
 
     # Checking links on the page
@@ -164,7 +164,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get attribute 'href' of links in breadcrumbs")
     def get_breadcrumbs_links_href(self):
         breadcrumbs_links_href = [element.get_attribute("href") for element in self.get_list1_of_breadcrumbs_links()]
-        print(len(breadcrumbs_links_href), *breadcrumbs_links_href, sep='\n')
+        # print(len(breadcrumbs_links_href), *breadcrumbs_links_href, sep='\n')
         return breadcrumbs_links_href
 
     @allure.step("Get status code of links in breadcrumbs")
@@ -194,11 +194,15 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get attribute 'title' of subgroup links")
     def get_subgroup_link_titles(self):
         subgroup_link_titles = [element.get_attribute("title") for element in self.get_list3_of_subgroup_links()]
-        print(len(subgroup_link_titles), *subgroup_link_titles, sep='\n')
+        # print(len(subgroup_link_titles), *subgroup_link_titles, sep='\n')
         return subgroup_link_titles
 
     @allure.step("Get attribute 'href' of subgroup links")
     def get_subgroup_links_href(self):
         subgroup_links_href = [element.get_attribute("href") for element in self.get_list3_of_subgroup_links()]
-        print(len(subgroup_links_href), *subgroup_links_href, sep='\n')
+        # print(len(subgroup_links_href), *subgroup_links_href, sep='\n')
         return subgroup_links_href
+
+    @allure.step("Get status code of subgroup links")
+    def get_subgroup_link_status_codes(self):
+        return [requests.head(link_href).status_code for link_href in self.get_subgroup_links_href()]
