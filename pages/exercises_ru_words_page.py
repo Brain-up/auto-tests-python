@@ -1,4 +1,5 @@
 """Methods for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
+import time
 import allure
 import requests
 from pages.base_page import BasePage
@@ -206,3 +207,20 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get status code of subgroup links")
     def get_subgroup_link_status_codes(self):
         return [requests.head(link_href).status_code for link_href in self.get_subgroup_links_href()]
+
+    @allure.step("Click on breadcrumbs links and thereby open corresponding web pages in the same tab")
+    def click_on_breadcrumbs_links(self):
+        opened_pages = []
+        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_1).click()
+        time.sleep(1)
+        opened_pages.append(self.get_current_tab_url())
+        self.driver.back()
+        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_2).click()
+        opened_pages.append(self.get_current_tab_url())
+        self.driver.back()
+        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_3).click()
+        opened_pages.append(self.get_current_tab_url())
+        print(*opened_pages, sep='\n')
+        return opened_pages
+
+
