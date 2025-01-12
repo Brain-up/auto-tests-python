@@ -1,5 +1,4 @@
 import imaplib
-import time
 from random import choice
 import allure
 import os
@@ -20,21 +19,22 @@ class ProfilePage(BasePage):
     @staticmethod
     def get_link_change_password_by_email():
         with allure.step('Get a link to change the password by email'):
-            mail = imaplib.IMAP4_SSL('imap.mail.ru')
-            mail.login(os.environ["CHANGE_PASSWORD_EMAIL"], os.environ["PASSWORD_EMAIL"])
-            mail.select('INBOX')
-            result, data_id = mail.search(None, 'ALL')
+            data_id = [b'']
+            while data_id == [b'']:
+                mail = imaplib.IMAP4_SSL('imap.mail.ru')
+                mail.login(os.environ["CHANGE_PASSWORD_EMAIL"], os.environ["PASSWORD_EMAIL"])
+                mail.select('INBOX')
+                result, data_id = mail.search(None, 'UNSEEN')
             message_ids = data_id[0].split()
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-            raw_email = str(data_id[0][1])
             mail.logout()
-            first = raw_email.find(os.environ["PASSWORD_LINK"])
-            link = raw_email[first:first + 186]
+            msg = str(data_id[0][1])
+            first = msg.find(os.environ["PASSWORD_LINK"])
+            link = msg[first:first + 186]
             return link
 
     @allure.step("Authorise user")
     def authorise_user(self):
-        self.timeout = 2
         self.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["CHANGE_PASSWORD_EMAIL"])
         self.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["CHANGE_PASSWORD"])
         self.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
@@ -67,7 +67,6 @@ class ProfilePage(BasePage):
     @allure.step("Click the button 'Send recovery email'")
     def click_send_recovery_email_link(self):
         self.element_is_present_and_clickable(ProfilePageLocators.SEND_EMAIL).click()
-        time.sleep(5)
 
     @allure.step("Enter the data in the email field")
     def enter_new_password_field(self):
