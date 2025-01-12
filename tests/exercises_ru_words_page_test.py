@@ -148,3 +148,9 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             opened_pages = page.click_on_breadcrumbs_links()
             assert opened_pages, "Transitions to pages have not performed"
+
+        @allure.title("Verify if group links lead to correct pages after clicking")
+        def test_erw_03_05_verify_group_links_lead_to_correct_pages(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            opened_pages = page.click_on_group_links()
+            assert opened_pages, "Transitions to pages have not performed"
