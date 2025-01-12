@@ -223,4 +223,13 @@ class ExercisesRuWordsPage(BasePage):
         print(*opened_pages, sep='\n')
         return opened_pages
 
-
+    @allure.step("Click on group links and thereby open corresponding web pages in the same tab")
+    def click_on_group_links(self):
+        opened_pages = []
+        group_links = self.get_list2_of_group_links()
+        for i in range(7):
+            group_links[i].click()
+            time.sleep(1)
+            opened_pages.append(self.get_current_tab_url())
+        print(*opened_pages, sep='\n')
+        return opened_pages
