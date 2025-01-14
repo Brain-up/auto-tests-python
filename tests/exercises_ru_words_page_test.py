@@ -108,7 +108,7 @@ class TestExercisesRuWordsPage:
             breadcrumbs_links_href = page.get_breadcrumbs_links_href()
             breadcrumbs_link_status_codes = page.get_link_status_codes_in_breadcrumbs()
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
-            assert all(href in ExRuWoPaData.breadcrumbs_links_href for href in breadcrumbs_links_href), \
+            assert all(href in ExRuWoPaData.breadcrumbs_urls for href in breadcrumbs_links_href), \
                 "Attributes 'href' of links in breadcrumbs mismatch valid values"
             assert all(element == ExRuWoPaData.links_status_code for element in breadcrumbs_link_status_codes), \
                 "Status codes of links in breadcrumbs mismatch valid values"
@@ -148,6 +148,8 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             opened_pages = page.click_on_breadcrumbs_links()
             assert opened_pages, "Transitions to pages have not performed"
+            assert all(page in ExRuWoPaData.breadcrumbs_urls for page in opened_pages), \
+                "Some breadcrumbs links lead to incorrect pages after clicking"
 
         @allure.title("Verify if group links lead to correct pages after clicking")
         def test_erw_03_05_verify_group_links_lead_to_correct_pages(self, driver, exercises_ru_words_page_open):

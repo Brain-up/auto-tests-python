@@ -47,7 +47,7 @@ class ExercisesRuWordsPageData:
         'Цветы', 'Русский язык и литература', 'Физика', 'Биология', 'Инструменты'
     ]
 
-    breadcrumbs_links_href = [
+    breadcrumbs_urls = [
         f"{Links.URL_GROUPS_PAGE}",
         f"{Links.URL_GROUPS_PAGE}/2",
         f"{Links.URL_GROUPS_PAGE}/2/series/1"
