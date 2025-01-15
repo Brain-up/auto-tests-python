@@ -53,6 +53,16 @@ class ExercisesRuWordsPageData:
         f"{Links.URL_GROUPS_PAGE}/2/series/1"
     ]
 
+    group_link_urls = [
+        f"{Links.URL_GROUPS_PAGE}/2/series/1",
+        f"{Links.URL_GROUPS_PAGE}/2/series/17",
+        f"{Links.URL_GROUPS_PAGE}/2/series/2",
+        f"{Links.URL_GROUPS_PAGE}/2/series/3",
+        f"{Links.URL_GROUPS_PAGE}/2/series/4",
+        f"{Links.URL_GROUPS_PAGE}/2/series/5",
+        f"{Links.URL_GROUPS_PAGE}/2/series/6"
+    ]
+
     subgroup_links_href = [
         f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/1",
         f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/2",

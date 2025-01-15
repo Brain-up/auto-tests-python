@@ -156,3 +156,5 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             opened_pages = page.click_on_group_links()
             assert opened_pages, "Transitions to pages have not performed"
+            assert all(page in ExRuWoPaData.group_link_urls for page in opened_pages), \
+                "Some group links lead to incorrect pages after clicking"
