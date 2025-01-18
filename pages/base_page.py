@@ -28,6 +28,14 @@ class BasePage:
         print('Current url: ' + get_url)
         return get_url
 
+    def element_is_present(self, locator):
+        return Wait(self.driver, self.timeout).until(
+            ec.presence_of_element_located(locator), message=f"Can't find element by locator {locator}")
+
+    def element_is_clickable(self, locator):
+        return Wait(self.driver, self.timeout).until(
+            ec.element_to_be_clickable(locator), message=f"Can't find element by locator {locator}")
+
     def element_is_present_and_clickable(self, locator):
         return (Wait(self.driver, self.timeout).until(
             ec.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}") and
@@ -38,26 +46,18 @@ class BasePage:
         return Wait(self.driver, self.timeout).until(
             ec.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
 
-    def elements_are_visible(self, locator):
-        return Wait(self.driver, self.timeout).until(
-            ec.visibility_of_all_elements_located(locator),
-            message=f"Can't find elements by locator {locator}")
-
     def element_is_not_visible(self, locator):
         return Wait(self.driver, self.timeout).until(
             ec.invisibility_of_element_located(locator), message=f"The element located by {locator} is invisible")
-
-    def element_is_present(self, locator):
-        return Wait(self.driver, self.timeout).until(
-            ec.presence_of_element_located(locator), message=f"Can't find element by locator {locator}")
 
     def elements_are_present(self, locator):
         return Wait(self.driver, self.timeout).until(
             ec.presence_of_all_elements_located(locator), message=f"Can't find elements by locator {locator}")
 
-    def element_is_clickable(self, locator):
+    def elements_are_visible(self, locator):
         return Wait(self.driver, self.timeout).until(
-            ec.element_to_be_clickable(locator), message=f"Can't find element by locator {locator}")
+            ec.visibility_of_all_elements_located(locator),
+            message=f"Can't find elements by locator {locator}")
 
     def go_to_element(self, element):
         return self.driver.execute_script("arguments[0].scrollIntoView({ block: 'center'});", element)

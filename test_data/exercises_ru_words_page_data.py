@@ -63,7 +63,7 @@ class ExercisesRuWordsPageData:
         f"{Links.URL_GROUPS_PAGE}/2/series/6"
     ]
 
-    subgroup_links_href = [
+    subgroup_link_urls = [
         f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/1",
         f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/2",
         f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/3",
