@@ -138,7 +138,7 @@ class TestExercisesRuWordsPage:
             assert subgroup_link_titles, "Subgroup link titles values are empty"
             assert all(element in ExRuWoPaData.subgroup_link_titles for element in subgroup_link_titles), \
                 "Subgroup link titles mismatch valid values"
-            assert all(href in ExRuWoPaData.subgroup_links_href for href in subgroup_links_href), \
+            assert all(href in ExRuWoPaData.subgroup_link_urls for href in subgroup_links_href), \
                 "Attributes 'href' of subgroup links mismatch valid values"
             assert all(element == ExRuWoPaData.links_status_code for element in subgroup_links_status_codes), \
                 "Status codes of subgroup links mismatch valid values"
@@ -158,3 +158,11 @@ class TestExercisesRuWordsPage:
             assert opened_pages, "Transitions to pages have not performed"
             assert all(page in ExRuWoPaData.group_link_urls for page in opened_pages), \
                 "Some group links lead to incorrect pages after clicking"
+
+        @allure.title("Verify if subgroup links lead to correct pages after clicking")
+        def test_erw_03_06_verify_subgroup_links_lead_to_correct_pages(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            opened_pages1 = page.click_on_subgroup_link_family()
+            opened_pages2_4 = page.click_on_subgroup_link_beloved_home_food_clothes()
+            assert opened_pages1, "Transition to the page has not performed"
+            assert opened_pages2_4, "Transitions to pages have not performed"
