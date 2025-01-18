@@ -1,0 +1,474 @@
+{
+  "uid" : "2f2730f566596751",
+  "name" : "Verify clickability, href, status code of links in the Header for an unauthorized user",
+  "fullName" : "tests.header_test.TestUnauthHeaderPageLinks#test_hpu_03_01_verify_unauth_header_links",
+  "historyId" : "d9249644e65de57761cd38ac9263f19b",
+  "time" : {
+    "start" : 1737232569162,
+    "stop" : 1737232752439,
+    "duration" : 183277
+  },
+  "status" : "broken",
+  "statusMessage" : "requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+  "statusTrace" : "self = <urllib3.connectionpool.HTTPSConnectionPool object at 0x7f674a3fc3e0>\nmethod = 'HEAD', url = '/BrainUpUsers', body = None\nheaders = {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}\nretries = Retry(total=0, connect=None, read=False, redirect=None, status=None)\nredirect = False, assert_same_host = False\ntimeout = Timeout(connect=None, read=None, total=None), pool_timeout = None\nrelease_conn = False, chunked = False, body_pos = None, preload_content = False\ndecode_content = False, response_kw = {}\nparsed_url = Url(scheme=None, auth=None, host=None, port=None, path='/BrainUpUsers', query=None, fragment=None)\ndestination_scheme = None, conn = None, release_this_conn = True\nhttp_tunnel_required = False, err = None, clean_exit = False\n\n    def urlopen(  # type: ignore[override]\n        self,\n        method: str,\n        url: str,\n        body: _TYPE_BODY | None = None,\n        headers: typing.Mapping[str, str] | None = None,\n        retries: Retry | bool | int | None = None,\n        redirect: bool = True,\n        assert_same_host: bool = True,\n        timeout: _TYPE_TIMEOUT = _DEFAULT_TIMEOUT,\n        pool_timeout: int | None = None,\n        release_conn: bool | None = None,\n        chunked: bool = False,\n        body_pos: _TYPE_BODY_POSITION | None = None,\n        preload_content: bool = True,\n        decode_content: bool = True,\n        **response_kw: typing.Any,\n    ) -> BaseHTTPResponse:\n        \"\"\"\n        Get a connection from the pool and perform an HTTP request. This is the\n        lowest level call for making a request, so you'll need to specify all\n        the raw details.\n    \n        .. note::\n    \n           More commonly, it's appropriate to use a convenience method\n           such as :meth:`request`.\n    \n        .. note::\n    \n           `release_conn` will only behave as expected if\n           `preload_content=False` because we want to make\n           `preload_content=False` the default behaviour someday soon without\n           breaking backwards compatibility.\n    \n        :param method:\n            HTTP request method (such as GET, POST, PUT, etc.)\n    \n        :param url:\n            The URL to perform the request on.\n    \n        :param body:\n            Data to send in the request body, either :class:`str`, :class:`bytes`,\n            an iterable of :class:`str`/:class:`bytes`, or a file-like object.\n    \n        :param headers:\n            Dictionary of custom headers to send, such as User-Agent,\n            If-None-Match, etc. If None, pool headers are used. If provided,\n            these headers completely replace any pool-specific headers.\n    \n        :param retries:\n            Configure the number of retries to allow before raising a\n            :class:`~urllib3.exceptions.MaxRetryError` exception.\n    \n            If ``None`` (default) will retry 3 times, see ``Retry.DEFAULT``. Pass a\n            :class:`~urllib3.util.retry.Retry` object for fine-grained control\n            over different types of retries.\n            Pass an integer number to retry connection errors that many times,\n            but no other types of errors. Pass zero to never retry.\n    \n            If ``False``, then retries are disabled and any exception is raised\n            immediately. Also, instead of raising a MaxRetryError on redirects,\n            the redirect response will be returned.\n    \n        :type retries: :class:`~urllib3.util.retry.Retry`, False, or an int.\n    \n        :param redirect:\n            If True, automatically handle redirects (status codes 301, 302,\n            303, 307, 308). Each redirect counts as a retry. Disabling retries\n            will disable redirect, too.\n    \n        :param assert_same_host:\n            If ``True``, will make sure that the host of the pool requests is\n            consistent else will raise HostChangedError. When ``False``, you can\n            use the pool on an HTTP proxy and request foreign hosts.\n    \n        :param timeout:\n            If specified, overrides the default timeout for this one\n            request. It may be a float (in seconds) or an instance of\n            :class:`urllib3.util.Timeout`.\n    \n        :param pool_timeout:\n            If set and the pool is set to block=True, then this method will\n            block for ``pool_timeout`` seconds and raise EmptyPoolError if no\n            connection is available within the time period.\n    \n        :param bool preload_content:\n            If True, the response's body will be preloaded into memory.\n    \n        :param bool decode_content:\n            If True, will attempt to decode the body based on the\n            'content-encoding' header.\n    \n        :param release_conn:\n            If False, then the urlopen call will not release the connection\n            back into the pool once a response is received (but will release if\n            you read the entire contents of the response such as when\n            `preload_content=True`). This is useful if you're not preloading\n            the response's content immediately. You will need to call\n            ``r.release_conn()`` on the response ``r`` to return the connection\n            back into the pool. If None, it takes the value of ``preload_content``\n            which defaults to ``True``.\n    \n        :param bool chunked:\n            If True, urllib3 will send the body using chunked transfer\n            encoding. Otherwise, urllib3 will send the body using the standard\n            content-length form. Defaults to False.\n    \n        :param int body_pos:\n            Position to seek to in file-like body in the event of a retry or\n            redirect. Typically this won't need to be set because urllib3 will\n            auto-populate the value when needed.\n        \"\"\"\n        parsed_url = parse_url(url)\n        destination_scheme = parsed_url.scheme\n    \n        if headers is None:\n            headers = self.headers\n    \n        if not isinstance(retries, Retry):\n            retries = Retry.from_int(retries, redirect=redirect, default=self.retries)\n    \n        if release_conn is None:\n            release_conn = preload_content\n    \n        # Check host\n        if assert_same_host and not self.is_same_host(url):\n            raise HostChangedError(self, url, retries)\n    \n        # Ensure that the URL we're connecting to is properly encoded\n        if url.startswith(\"/\"):\n            url = to_str(_encode_target(url))\n        else:\n            url = to_str(parsed_url.url)\n    \n        conn = None\n    \n        # Track whether `conn` needs to be released before\n        # returning/raising/recursing. Update this variable if necessary, and\n        # leave `release_conn` constant throughout the function. That way, if\n        # the function recurses, the original value of `release_conn` will be\n        # passed down into the recursive call, and its value will be respected.\n        #\n        # See issue #651 [1] for details.\n        #\n        # [1] <https://github.com/urllib3/urllib3/issues/651>\n        release_this_conn = release_conn\n    \n        http_tunnel_required = connection_requires_http_tunnel(\n            self.proxy, self.proxy_config, destination_scheme\n        )\n    \n        # Merge the proxy headers. Only done when not using HTTP CONNECT. We\n        # have to copy the headers dict so we can safely change it without those\n        # changes being reflected in anyone else's copy.\n        if not http_tunnel_required:\n            headers = headers.copy()  # type: ignore[attr-defined]\n            headers.update(self.proxy_headers)  # type: ignore[union-attr]\n    \n        # Must keep the exception bound to a separate variable or else Python 3\n        # complains about UnboundLocalError.\n        err = None\n    \n        # Keep track of whether we cleanly exited the except block. This\n        # ensures we do proper cleanup in finally.\n        clean_exit = False\n    \n        # Rewind body position, if needed. Record current position\n        # for future rewinds in the event of a redirect/retry.\n        body_pos = set_file_position(body, body_pos)\n    \n        try:\n            # Request a connection from the queue.\n            timeout_obj = self._get_timeout(timeout)\n            conn = self._get_conn(timeout=pool_timeout)\n    \n            conn.timeout = timeout_obj.connect_timeout  # type: ignore[assignment]\n    \n            # Is this a closed/new connection that requires CONNECT tunnelling?\n            if self.proxy is not None and http_tunnel_required and conn.is_closed:\n                try:\n                    self._prepare_proxy(conn)\n                except (BaseSSLError, OSError, SocketTimeout) as e:\n                    self._raise_timeout(\n                        err=e, url=self.proxy.url, timeout_value=conn.timeout\n                    )\n                    raise\n    \n            # If we're going to release the connection in ``finally:``, then\n            # the response doesn't need to know about the connection. Otherwise\n            # it will also try to release it and we'll have a double-release\n            # mess.\n            response_conn = conn if not release_conn else None\n    \n            # Make the request on the HTTPConnection object\n>           response = self._make_request(\n                conn,\n                method,\n                url,\n                timeout=timeout_obj,\n                body=body,\n                headers=headers,\n                chunked=chunked,\n                retries=retries,\n                response_conn=response_conn,\n                preload_content=preload_content,\n                decode_content=decode_content,\n                **response_kw,\n            )\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:488: in _make_request\n    raise new_e\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:464: in _make_request\n    self._validate_conn(conn)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:1093: in _validate_conn\n    conn.connect()\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connection.py:741: in connect\n    sock_and_verified = _ssl_wrap_socket_and_match_hostname(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connection.py:920: in _ssl_wrap_socket_and_match_hostname\n    ssl_sock = ssl_wrap_socket(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/ssl_.py:460: in ssl_wrap_socket\n    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/ssl_.py:504: in _ssl_wrap_socket_impl\n    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:455: in wrap_socket\n    return self.sslsocket_class._create(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:1041: in _create\n    self.do_handshake()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=6>, block = False\n\n    @_sslcopydoc\n    def do_handshake(self, block=False):\n        self._check_connected()\n        timeout = self.gettimeout()\n        try:\n            if timeout == 0.0 and block:\n                self.settimeout(None)\n>           self._sslobj.do_handshake()\nE           ConnectionResetError: [Errno 104] Connection reset by peer\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:1319: ConnectionResetError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <requests.adapters.HTTPAdapter object at 0x7f674a594590>\nrequest = <PreparedRequest [HEAD]>, stream = False\ntimeout = Timeout(connect=None, read=None, total=None), verify = True\ncert = None, proxies = OrderedDict()\n\n    def send(\n        self, request, stream=False, timeout=None, verify=True, cert=None, proxies=None\n    ):\n        \"\"\"Sends PreparedRequest object. Returns Response object.\n    \n        :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.\n        :param stream: (optional) Whether to stream the request content.\n        :param timeout: (optional) How long to wait for the server to send\n            data before giving up, as a float, or a :ref:`(connect timeout,\n            read timeout) <timeouts>` tuple.\n        :type timeout: float or tuple or urllib3 Timeout object\n        :param verify: (optional) Either a boolean, in which case it controls whether\n            we verify the server's TLS certificate, or a string, in which case it\n            must be a path to a CA bundle to use\n        :param cert: (optional) Any user-provided SSL certificate to be trusted.\n        :param proxies: (optional) The proxies dictionary to apply to the request.\n        :rtype: requests.Response\n        \"\"\"\n    \n        try:\n            conn = self.get_connection(request.url, proxies)\n        except LocationValueError as e:\n            raise InvalidURL(e, request=request)\n    \n        self.cert_verify(conn, request.url, verify, cert)\n        url = self.request_url(request, proxies)\n        self.add_headers(\n            request,\n            stream=stream,\n            timeout=timeout,\n            verify=verify,\n            cert=cert,\n            proxies=proxies,\n        )\n    \n        chunked = not (request.body is None or \"Content-Length\" in request.headers)\n    \n        if isinstance(timeout, tuple):\n            try:\n                connect, read = timeout\n                timeout = TimeoutSauce(connect=connect, read=read)\n            except ValueError:\n                raise ValueError(\n                    f\"Invalid timeout {timeout}. Pass a (connect, read) timeout tuple, \"\n                    f\"or a single float to set both timeouts to the same value.\"\n                )\n        elif isinstance(timeout, TimeoutSauce):\n            pass\n        else:\n            timeout = TimeoutSauce(connect=timeout, read=timeout)\n    \n        try:\n>           resp = conn.urlopen(\n                method=request.method,\n                url=url,\n                body=request.body,\n                headers=request.headers,\n                redirect=False,\n                assert_same_host=False,\n                preload_content=False,\n                decode_content=False,\n                retries=self.max_retries,\n                timeout=timeout,\n                chunked=chunked,\n            )\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/adapters.py:486: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:841: in urlopen\n    retries = retries.increment(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/retry.py:474: in increment\n    raise reraise(type(error), error, _stacktrace)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/util.py:38: in reraise\n    raise value.with_traceback(tb)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: in urlopen\n    response = self._make_request(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:488: in _make_request\n    raise new_e\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:464: in _make_request\n    self._validate_conn(conn)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:1093: in _validate_conn\n    conn.connect()\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connection.py:741: in connect\n    sock_and_verified = _ssl_wrap_socket_and_match_hostname(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connection.py:920: in _ssl_wrap_socket_and_match_hostname\n    ssl_sock = ssl_wrap_socket(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/ssl_.py:460: in ssl_wrap_socket\n    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/ssl_.py:504: in _ssl_wrap_socket_impl\n    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:455: in wrap_socket\n    return self.sslsocket_class._create(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:1041: in _create\n    self.do_handshake()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=6>, block = False\n\n    @_sslcopydoc\n    def do_handshake(self, block=False):\n        self._check_connected()\n        timeout = self.gettimeout()\n        try:\n            if timeout == 0.0 and block:\n                self.settimeout(None)\n>           self._sslobj.do_handshake()\nE           urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:1319: ProtocolError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.header_test.TestHeaderPage.TestUnauthorizedHeaderPage.TestUnauthHeaderPageLinks object at 0x7f674a681220>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"a3bda07e7aa6e4d02822d78efae5e971\")>\nmain_page_open = None\n\n    @allure.title(\"Verify clickability, href, status code of links in the Header for an unauthorized user\")\n    def test_hpu_03_01_verify_unauth_header_links(self, driver, main_page_open):\n        page = HeaderPage(driver)\n        links_clickability = page.check_links_clickability_unauth()\n        tg_link_title = page.get_tg_link_title()\n        links_href = page.get_links_href_unauth()\n>       link_status_codes = page.get_links_status_codes_unauth()\n\ntests/header_test.py:109: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/header_page.py:329: in get_links_status_codes_unauth\n    return [requests.head(link_href).status_code for link_href in self.get_links_href_unauth()]\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/api.py:100: in head\n    return request(\"head\", url, **kwargs)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/api.py:59: in request\n    return session.request(method=method, url=url, **kwargs)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/sessions.py:589: in request\n    resp = self.send(prep, **send_kwargs)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/sessions.py:703: in send\n    r = adapter.send(request, **kwargs)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <requests.adapters.HTTPAdapter object at 0x7f674a594590>\nrequest = <PreparedRequest [HEAD]>, stream = False\ntimeout = Timeout(connect=None, read=None, total=None), verify = True\ncert = None, proxies = OrderedDict()\n\n    def send(\n        self, request, stream=False, timeout=None, verify=True, cert=None, proxies=None\n    ):\n        \"\"\"Sends PreparedRequest object. Returns Response object.\n    \n        :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.\n        :param stream: (optional) Whether to stream the request content.\n        :param timeout: (optional) How long to wait for the server to send\n            data before giving up, as a float, or a :ref:`(connect timeout,\n            read timeout) <timeouts>` tuple.\n        :type timeout: float or tuple or urllib3 Timeout object\n        :param verify: (optional) Either a boolean, in which case it controls whether\n            we verify the server's TLS certificate, or a string, in which case it\n            must be a path to a CA bundle to use\n        :param cert: (optional) Any user-provided SSL certificate to be trusted.\n        :param proxies: (optional) The proxies dictionary to apply to the request.\n        :rtype: requests.Response\n        \"\"\"\n    \n        try:\n            conn = self.get_connection(request.url, proxies)\n        except LocationValueError as e:\n            raise InvalidURL(e, request=request)\n    \n        self.cert_verify(conn, request.url, verify, cert)\n        url = self.request_url(request, proxies)\n        self.add_headers(\n            request,\n            stream=stream,\n            timeout=timeout,\n            verify=verify,\n            cert=cert,\n            proxies=proxies,\n        )\n    \n        chunked = not (request.body is None or \"Content-Length\" in request.headers)\n    \n        if isinstance(timeout, tuple):\n            try:\n                connect, read = timeout\n                timeout = TimeoutSauce(connect=connect, read=read)\n            except ValueError:\n                raise ValueError(\n                    f\"Invalid timeout {timeout}. Pass a (connect, read) timeout tuple, \"\n                    f\"or a single float to set both timeouts to the same value.\"\n                )\n        elif isinstance(timeout, TimeoutSauce):\n            pass\n        else:\n            timeout = TimeoutSauce(connect=timeout, read=timeout)\n    \n        try:\n            resp = conn.urlopen(\n                method=request.method,\n                url=url,\n                body=request.body,\n                headers=request.headers,\n                redirect=False,\n                assert_same_host=False,\n                preload_content=False,\n                decode_content=False,\n                retries=self.max_retries,\n                timeout=timeout,\n                chunked=chunked,\n            )\n    \n        except (ProtocolError, OSError) as err:\n>           raise ConnectionError(err, request=request)\nE           requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/adapters.py:501: ConnectionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1737232565507,
+      "stop" : 1737232566264,
+      "duration" : 757
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1737232566264,
+      "stop" : 1737232569162,
+      "duration" : 2898
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://www.brainup.site/",
+      "time" : {
+        "start" : 1737232566264,
+        "stop" : 1737232569162,
+        "duration" : 2898
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"a3bda07e7aa6e4d02822d78efae5e971\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1737231676377,
+      "stop" : 1737231676377,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "statusTrace" : "self = <urllib3.connectionpool.HTTPSConnectionPool object at 0x7f674a3fc3e0>\nmethod = 'HEAD', url = '/BrainUpUsers', body = None\nheaders = {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}\nretries = Retry(total=0, connect=None, read=False, redirect=None, status=None)\nredirect = False, assert_same_host = False\ntimeout = Timeout(connect=None, read=None, total=None), pool_timeout = None\nrelease_conn = False, chunked = False, body_pos = None, preload_content = False\ndecode_content = False, response_kw = {}\nparsed_url = Url(scheme=None, auth=None, host=None, port=None, path='/BrainUpUsers', query=None, fragment=None)\ndestination_scheme = None, conn = None, release_this_conn = True\nhttp_tunnel_required = False, err = None, clean_exit = False\n\n    def urlopen(  # type: ignore[override]\n        self,\n        method: str,\n        url: str,\n        body: _TYPE_BODY | None = None,\n        headers: typing.Mapping[str, str] | None = None,\n        retries: Retry | bool | int | None = None,\n        redirect: bool = True,\n        assert_same_host: bool = True,\n        timeout: _TYPE_TIMEOUT = _DEFAULT_TIMEOUT,\n        pool_timeout: int | None = None,\n        release_conn: bool | None = None,\n        chunked: bool = False,\n        body_pos: _TYPE_BODY_POSITION | None = None,\n        preload_content: bool = True,\n        decode_content: bool = True,\n        **response_kw: typing.Any,\n    ) -> BaseHTTPResponse:\n        \"\"\"\n        Get a connection from the pool and perform an HTTP request. This is the\n        lowest level call for making a request, so you'll need to specify all\n        the raw details.\n    \n        .. note::\n    \n           More commonly, it's appropriate to use a convenience method\n           such as :meth:`request`.\n    \n        .. note::\n    \n           `release_conn` will only behave as expected if\n           `preload_content=False` because we want to make\n           `preload_content=False` the default behaviour someday soon without\n           breaking backwards compatibility.\n    \n        :param method:\n            HTTP request method (such as GET, POST, PUT, etc.)\n    \n        :param url:\n            The URL to perform the request on.\n    \n        :param body:\n            Data to send in the request body, either :class:`str`, :class:`bytes`,\n            an iterable of :class:`str`/:class:`bytes`, or a file-like object.\n    \n        :param headers:\n            Dictionary of custom headers to send, such as User-Agent,\n            If-None-Match, etc. If None, pool headers are used. If provided,\n            these headers completely replace any pool-specific headers.\n    \n        :param retries:\n            Configure the number of retries to allow before raising a\n            :class:`~urllib3.exceptions.MaxRetryError` exception.\n    \n            If ``None`` (default) will retry 3 times, see ``Retry.DEFAULT``. Pass a\n            :class:`~urllib3.util.retry.Retry` object for fine-grained control\n            over different types of retries.\n            Pass an integer number to retry connection errors that many times,\n            but no other types of errors. Pass zero to never retry.\n    \n            If ``False``, then retries are disabled and any exception is raised\n            immediately. Also, instead of raising a MaxRetryError on redirects,\n            the redirect response will be returned.\n    \n        :type retries: :class:`~urllib3.util.retry.Retry`, False, or an int.\n    \n        :param redirect:\n            If True, automatically handle redirects (status codes 301, 302,\n            303, 307, 308). Each redirect counts as a retry. Disabling retries\n            will disable redirect, too.\n    \n        :param assert_same_host:\n            If ``True``, will make sure that the host of the pool requests is\n            consistent else will raise HostChangedError. When ``False``, you can\n            use the pool on an HTTP proxy and request foreign hosts.\n    \n        :param timeout:\n            If specified, overrides the default timeout for this one\n            request. It may be a float (in seconds) or an instance of\n            :class:`urllib3.util.Timeout`.\n    \n        :param pool_timeout:\n            If set and the pool is set to block=True, then this method will\n            block for ``pool_timeout`` seconds and raise EmptyPoolError if no\n            connection is available within the time period.\n    \n        :param bool preload_content:\n            If True, the response's body will be preloaded into memory.\n    \n        :param bool decode_content:\n            If True, will attempt to decode the body based on the\n            'content-encoding' header.\n    \n        :param release_conn:\n            If False, then the urlopen call will not release the connection\n            back into the pool once a response is received (but will release if\n            you read the entire contents of the response such as when\n            `preload_content=True`). This is useful if you're not preloading\n            the response's content immediately. You will need to call\n            ``r.release_conn()`` on the response ``r`` to return the connection\n            back into the pool. If None, it takes the value of ``preload_content``\n            which defaults to ``True``.\n    \n        :param bool chunked:\n            If True, urllib3 will send the body using chunked transfer\n            encoding. Otherwise, urllib3 will send the body using the standard\n            content-length form. Defaults to False.\n    \n        :param int body_pos:\n            Position to seek to in file-like body in the event of a retry or\n            redirect. Typically this won't need to be set because urllib3 will\n            auto-populate the value when needed.\n        \"\"\"\n        parsed_url = parse_url(url)\n        destination_scheme = parsed_url.scheme\n    \n        if headers is None:\n            headers = self.headers\n    \n        if not isinstance(retries, Retry):\n            retries = Retry.from_int(retries, redirect=redirect, default=self.retries)\n    \n        if release_conn is None:\n            release_conn = preload_content\n    \n        # Check host\n        if assert_same_host and not self.is_same_host(url):\n            raise HostChangedError(self, url, retries)\n    \n        # Ensure that the URL we're connecting to is properly encoded\n        if url.startswith(\"/\"):\n            url = to_str(_encode_target(url))\n        else:\n            url = to_str(parsed_url.url)\n    \n        conn = None\n    \n        # Track whether `conn` needs to be released before\n        # returning/raising/recursing. Update this variable if necessary, and\n        # leave `release_conn` constant throughout the function. That way, if\n        # the function recurses, the original value of `release_conn` will be\n        # passed down into the recursive call, and its value will be respected.\n        #\n        # See issue #651 [1] for details.\n        #\n        # [1] <https://github.com/urllib3/urllib3/issues/651>\n        release_this_conn = release_conn\n    \n        http_tunnel_required = connection_requires_http_tunnel(\n            self.proxy, self.proxy_config, destination_scheme\n        )\n    \n        # Merge the proxy headers. Only done when not using HTTP CONNECT. We\n        # have to copy the headers dict so we can safely change it without those\n        # changes being reflected in anyone else's copy.\n        if not http_tunnel_required:\n            headers = headers.copy()  # type: ignore[attr-defined]\n            headers.update(self.proxy_headers)  # type: ignore[union-attr]\n    \n        # Must keep the exception bound to a separate variable or else Python 3\n        # complains about UnboundLocalError.\n        err = None\n    \n        # Keep track of whether we cleanly exited the except block. This\n        # ensures we do proper cleanup in finally.\n        clean_exit = False\n    \n        # Rewind body position, if needed. Record current position\n        # for future rewinds in the event of a redirect/retry.\n        body_pos = set_file_position(body, body_pos)\n    \n        try:\n            # Request a connection from the queue.\n            timeout_obj = self._get_timeout(timeout)\n            conn = self._get_conn(timeout=pool_timeout)\n    \n            conn.timeout = timeout_obj.connect_timeout  # type: ignore[assignment]\n    \n            # Is this a closed/new connection that requires CONNECT tunnelling?\n            if self.proxy is not None and http_tunnel_required and conn.is_closed:\n                try:\n                    self._prepare_proxy(conn)\n                except (BaseSSLError, OSError, SocketTimeout) as e:\n                    self._raise_timeout(\n                        err=e, url=self.proxy.url, timeout_value=conn.timeout\n                    )\n                    raise\n    \n            # If we're going to release the connection in ``finally:``, then\n            # the response doesn't need to know about the connection. Otherwise\n            # it will also try to release it and we'll have a double-release\n            # mess.\n            response_conn = conn if not release_conn else None\n    \n            # Make the request on the HTTPConnection object\n>           response = self._make_request(\n                conn,\n                method,\n                url,\n                timeout=timeout_obj,\n                body=body,\n                headers=headers,\n                chunked=chunked,\n                retries=retries,\n                response_conn=response_conn,\n                preload_content=preload_content,\n                decode_content=decode_content,\n                **response_kw,\n            )\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:488: in _make_request\n    raise new_e\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:464: in _make_request\n    self._validate_conn(conn)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:1093: in _validate_conn\n    conn.connect()\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connection.py:741: in connect\n    sock_and_verified = _ssl_wrap_socket_and_match_hostname(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connection.py:920: in _ssl_wrap_socket_and_match_hostname\n    ssl_sock = ssl_wrap_socket(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/ssl_.py:460: in ssl_wrap_socket\n    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/ssl_.py:504: in _ssl_wrap_socket_impl\n    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:455: in wrap_socket\n    return self.sslsocket_class._create(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:1041: in _create\n    self.do_handshake()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=6>, block = False\n\n    @_sslcopydoc\n    def do_handshake(self, block=False):\n        self._check_connected()\n        timeout = self.gettimeout()\n        try:\n            if timeout == 0.0 and block:\n                self.settimeout(None)\n>           self._sslobj.do_handshake()\nE           ConnectionResetError: [Errno 104] Connection reset by peer\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:1319: ConnectionResetError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <requests.adapters.HTTPAdapter object at 0x7f674a594590>\nrequest = <PreparedRequest [HEAD]>, stream = False\ntimeout = Timeout(connect=None, read=None, total=None), verify = True\ncert = None, proxies = OrderedDict()\n\n    def send(\n        self, request, stream=False, timeout=None, verify=True, cert=None, proxies=None\n    ):\n        \"\"\"Sends PreparedRequest object. Returns Response object.\n    \n        :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.\n        :param stream: (optional) Whether to stream the request content.\n        :param timeout: (optional) How long to wait for the server to send\n            data before giving up, as a float, or a :ref:`(connect timeout,\n            read timeout) <timeouts>` tuple.\n        :type timeout: float or tuple or urllib3 Timeout object\n        :param verify: (optional) Either a boolean, in which case it controls whether\n            we verify the server's TLS certificate, or a string, in which case it\n            must be a path to a CA bundle to use\n        :param cert: (optional) Any user-provided SSL certificate to be trusted.\n        :param proxies: (optional) The proxies dictionary to apply to the request.\n        :rtype: requests.Response\n        \"\"\"\n    \n        try:\n            conn = self.get_connection(request.url, proxies)\n        except LocationValueError as e:\n            raise InvalidURL(e, request=request)\n    \n        self.cert_verify(conn, request.url, verify, cert)\n        url = self.request_url(request, proxies)\n        self.add_headers(\n            request,\n            stream=stream,\n            timeout=timeout,\n            verify=verify,\n            cert=cert,\n            proxies=proxies,\n        )\n    \n        chunked = not (request.body is None or \"Content-Length\" in request.headers)\n    \n        if isinstance(timeout, tuple):\n            try:\n                connect, read = timeout\n                timeout = TimeoutSauce(connect=connect, read=read)\n            except ValueError:\n                raise ValueError(\n                    f\"Invalid timeout {timeout}. Pass a (connect, read) timeout tuple, \"\n                    f\"or a single float to set both timeouts to the same value.\"\n                )\n        elif isinstance(timeout, TimeoutSauce):\n            pass\n        else:\n            timeout = TimeoutSauce(connect=timeout, read=timeout)\n    \n        try:\n>           resp = conn.urlopen(\n                method=request.method,\n                url=url,\n                body=request.body,\n                headers=request.headers,\n                redirect=False,\n                assert_same_host=False,\n                preload_content=False,\n                decode_content=False,\n                retries=self.max_retries,\n                timeout=timeout,\n                chunked=chunked,\n            )\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/adapters.py:486: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:841: in urlopen\n    retries = retries.increment(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/retry.py:474: in increment\n    raise reraise(type(error), error, _stacktrace)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/util.py:38: in reraise\n    raise value.with_traceback(tb)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: in urlopen\n    response = self._make_request(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:488: in _make_request\n    raise new_e\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:464: in _make_request\n    self._validate_conn(conn)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:1093: in _validate_conn\n    conn.connect()\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connection.py:741: in connect\n    sock_and_verified = _ssl_wrap_socket_and_match_hostname(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/connection.py:920: in _ssl_wrap_socket_and_match_hostname\n    ssl_sock = ssl_wrap_socket(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/ssl_.py:460: in ssl_wrap_socket\n    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/urllib3/util/ssl_.py:504: in _ssl_wrap_socket_impl\n    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:455: in wrap_socket\n    return self.sslsocket_class._create(\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:1041: in _create\n    self.do_handshake()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=6>, block = False\n\n    @_sslcopydoc\n    def do_handshake(self, block=False):\n        self._check_connected()\n        timeout = self.gettimeout()\n        try:\n            if timeout == 0.0 and block:\n                self.settimeout(None)\n>           self._sslobj.do_handshake()\nE           urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/ssl.py:1319: ProtocolError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.header_test.TestHeaderPage.TestUnauthorizedHeaderPage.TestUnauthHeaderPageLinks object at 0x7f674a681220>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"a3bda07e7aa6e4d02822d78efae5e971\")>\nmain_page_open = None\n\n    @allure.title(\"Verify clickability, href, status code of links in the Header for an unauthorized user\")\n    def test_hpu_03_01_verify_unauth_header_links(self, driver, main_page_open):\n        page = HeaderPage(driver)\n        links_clickability = page.check_links_clickability_unauth()\n        tg_link_title = page.get_tg_link_title()\n        links_href = page.get_links_href_unauth()\n>       link_status_codes = page.get_links_status_codes_unauth()\n\ntests/header_test.py:109: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/header_page.py:329: in get_links_status_codes_unauth\n    return [requests.head(link_href).status_code for link_href in self.get_links_href_unauth()]\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/api.py:100: in head\n    return request(\"head\", url, **kwargs)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/api.py:59: in request\n    return session.request(method=method, url=url, **kwargs)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/sessions.py:589: in request\n    resp = self.send(prep, **send_kwargs)\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/sessions.py:703: in send\n    r = adapter.send(request, **kwargs)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <requests.adapters.HTTPAdapter object at 0x7f674a594590>\nrequest = <PreparedRequest [HEAD]>, stream = False\ntimeout = Timeout(connect=None, read=None, total=None), verify = True\ncert = None, proxies = OrderedDict()\n\n    def send(\n        self, request, stream=False, timeout=None, verify=True, cert=None, proxies=None\n    ):\n        \"\"\"Sends PreparedRequest object. Returns Response object.\n    \n        :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.\n        :param stream: (optional) Whether to stream the request content.\n        :param timeout: (optional) How long to wait for the server to send\n            data before giving up, as a float, or a :ref:`(connect timeout,\n            read timeout) <timeouts>` tuple.\n        :type timeout: float or tuple or urllib3 Timeout object\n        :param verify: (optional) Either a boolean, in which case it controls whether\n            we verify the server's TLS certificate, or a string, in which case it\n            must be a path to a CA bundle to use\n        :param cert: (optional) Any user-provided SSL certificate to be trusted.\n        :param proxies: (optional) The proxies dictionary to apply to the request.\n        :rtype: requests.Response\n        \"\"\"\n    \n        try:\n            conn = self.get_connection(request.url, proxies)\n        except LocationValueError as e:\n            raise InvalidURL(e, request=request)\n    \n        self.cert_verify(conn, request.url, verify, cert)\n        url = self.request_url(request, proxies)\n        self.add_headers(\n            request,\n            stream=stream,\n            timeout=timeout,\n            verify=verify,\n            cert=cert,\n            proxies=proxies,\n        )\n    \n        chunked = not (request.body is None or \"Content-Length\" in request.headers)\n    \n        if isinstance(timeout, tuple):\n            try:\n                connect, read = timeout\n                timeout = TimeoutSauce(connect=connect, read=read)\n            except ValueError:\n                raise ValueError(\n                    f\"Invalid timeout {timeout}. Pass a (connect, read) timeout tuple, \"\n                    f\"or a single float to set both timeouts to the same value.\"\n                )\n        elif isinstance(timeout, TimeoutSauce):\n            pass\n        else:\n            timeout = TimeoutSauce(connect=timeout, read=timeout)\n    \n        try:\n            resp = conn.urlopen(\n                method=request.method,\n                url=url,\n                body=request.body,\n                headers=request.headers,\n                redirect=False,\n                assert_same_host=False,\n                preload_content=False,\n                decode_content=False,\n                retries=self.max_retries,\n                timeout=timeout,\n                chunked=chunked,\n            )\n    \n        except (ProtocolError, OSError) as err:\n>           raise ConnectionError(err, request=request)\nE           requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))\n\n/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/adapters.py:501: ConnectionError",
+    "steps" : [ {
+      "name" : "Check if links are clickable in the Header for an unauthorized user",
+      "time" : {
+        "start" : 1737232569162,
+        "stop" : 1737232569217,
+        "duration" : 55
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Get the list of links on different levels of nesting in the Header for an unauthorized user",
+        "time" : {
+          "start" : 1737232569162,
+          "stop" : 1737232569173,
+          "duration" : 11
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Get attribute 'title' of the 'Telegram' link in the Header",
+      "time" : {
+        "start" : 1737232569217,
+        "stop" : 1737232569244,
+        "duration" : 27
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get attribute 'href' of links in the Header for an unauthorized user",
+      "time" : {
+        "start" : 1737232569244,
+        "stop" : 1737232569322,
+        "duration" : 78
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Get the list of links on different levels of nesting in the Header for an unauthorized user",
+        "time" : {
+          "start" : 1737232569244,
+          "stop" : 1737232569250,
+          "duration" : 6
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Get status codes of links in the Header for an unauthorized user",
+      "time" : {
+        "start" : 1737232569322,
+        "stop" : 1737232752437,
+        "duration" : 183115
+      },
+      "status" : "broken",
+      "statusMessage" : "requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/header_page.py\", line 329, in get_links_status_codes_unauth\n    return [requests.head(link_href).status_code for link_href in self.get_links_href_unauth()]\n            ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/api.py\", line 100, in head\n    return request(\"head\", url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/requests/adapters.py\", line 501, in send\n    raise ConnectionError(err, request=request)\n",
+      "steps" : [ {
+        "name" : "Get attribute 'href' of links in the Header for an unauthorized user",
+        "time" : {
+          "start" : 1737232569322,
+          "stop" : 1737232569381,
+          "duration" : 59
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Get the list of links on different levels of nesting in the Header for an unauthorized user",
+          "time" : {
+            "start" : 1737232569322,
+            "stop" : 1737232569328,
+            "duration" : 6
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "1cce0583539b257b",
+      "name" : "Screenshot 2025-01-18 20:39:12.709846",
+      "source" : "1cce0583539b257b.png",
+      "type" : "image/png",
+      "size" : 122368
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 8,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1737232752711,
+      "stop" : 1737232752795,
+      "duration" : 84
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Test Header"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "header_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestHeaderPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1326-162"
+  }, {
+    "name" : "thread",
+    "value" : "2417-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.header_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 129,
+        "unknown" : 0,
+        "total" : 131
+      },
+      "items" : [ {
+        "uid" : "63c36ef366e403fc",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/248//#testresult/63c36ef366e403fc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1737162277725,
+          "stop" : 1737162285344,
+          "duration" : 7619
+        }
+      }, {
+        "uid" : "23990f13f44d465c",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/451//#testresult/23990f13f44d465c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1737109239148,
+          "stop" : 1737109243301,
+          "duration" : 4153
+        }
+      }, {
+        "uid" : "8a2fc7bcd48b175",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/247//#testresult/8a2fc7bcd48b175",
+        "status" : "passed",
+        "time" : {
+          "start" : 1737075939157,
+          "stop" : 1737075946051,
+          "duration" : 6894
+        }
+      }, {
+        "uid" : "376ab2a04666a524",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/450//#testresult/376ab2a04666a524",
+        "status" : "passed",
+        "time" : {
+          "start" : 1737058737882,
+          "stop" : 1737058747324,
+          "duration" : 9442
+        }
+      }, {
+        "uid" : "c94922b13e8bbec3",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/246//#testresult/c94922b13e8bbec3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736989454937,
+          "stop" : 1736989460091,
+          "duration" : 5154
+        }
+      }, {
+        "uid" : "2f83d7d998bbd1cb",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/245//#testresult/2f83d7d998bbd1cb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736903128014,
+          "stop" : 1736903133055,
+          "duration" : 5041
+        }
+      }, {
+        "uid" : "8236e4cb05b042b7",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/449//#testresult/8236e4cb05b042b7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736894743399,
+          "stop" : 1736894747346,
+          "duration" : 3947
+        }
+      }, {
+        "uid" : "a4565f953495dc94",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/448//#testresult/a4565f953495dc94",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736888422715,
+          "stop" : 1736888427744,
+          "duration" : 5029
+        }
+      }, {
+        "uid" : "df5a5c4e14a630c4",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/244//#testresult/df5a5c4e14a630c4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736816661347,
+          "stop" : 1736816666617,
+          "duration" : 5270
+        }
+      }, {
+        "uid" : "fc77e8ca79a04f62",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/243//#testresult/fc77e8ca79a04f62",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736730594359,
+          "stop" : 1736730599000,
+          "duration" : 4641
+        }
+      }, {
+        "uid" : "72c92cbe525a4d03",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/447//#testresult/72c92cbe525a4d03",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736716837275,
+          "stop" : 1736716841760,
+          "duration" : 4485
+        }
+      }, {
+        "uid" : "9d4ab3a97cbd0b0e",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/446//#testresult/9d4ab3a97cbd0b0e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736714387506,
+          "stop" : 1736714391806,
+          "duration" : 4300
+        }
+      }, {
+        "uid" : "8bf44c4264594ff1",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/445//#testresult/8bf44c4264594ff1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736711632536,
+          "stop" : 1736711639755,
+          "duration" : 7219
+        }
+      }, {
+        "uid" : "d7650955622b77c",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/444//#testresult/d7650955622b77c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736707235623,
+          "stop" : 1736707242540,
+          "duration" : 6917
+        }
+      }, {
+        "uid" : "6207db2c9eba5815",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/242//#testresult/6207db2c9eba5815",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736644287845,
+          "stop" : 1736644293336,
+          "duration" : 5491
+        }
+      }, {
+        "uid" : "d0d8f44a6c6c5ffc",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/443//#testresult/d0d8f44a6c6c5ffc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736591019756,
+          "stop" : 1736591024532,
+          "duration" : 4776
+        }
+      }, {
+        "uid" : "394309e9f654d822",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/241//#testresult/394309e9f654d822",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736557531908,
+          "stop" : 1736557535912,
+          "duration" : 4004
+        }
+      }, {
+        "uid" : "4d0dec87382000a2",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/442//#testresult/4d0dec87382000a2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736543010668,
+          "stop" : 1736543014648,
+          "duration" : 3980
+        }
+      }, {
+        "uid" : "d9a75552d1f9e0b9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/240//#testresult/d9a75552d1f9e0b9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736471254494,
+          "stop" : 1736471258534,
+          "duration" : 4040
+        }
+      }, {
+        "uid" : "8fa0209bacbd8b20",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/441//#testresult/8fa0209bacbd8b20",
+        "status" : "passed",
+        "time" : {
+          "start" : 1736421851726,
+          "stop" : 1736421855893,
+          "duration" : 4167
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "2f2730f566596751.json",
+  "parameterValues" : [ ]
+}
