@@ -159,10 +159,14 @@ class TestExercisesRuWordsPage:
             assert all(page in ExRuWoPaData.group_link_urls for page in opened_pages), \
                 "Some group links lead to incorrect pages after clicking"
 
-        @allure.title("Verify if subgroup links lead to correct pages after clicking")
+        @allure.title("Verify if subgroup links 1-4 lead to correct pages after clicking")
         def test_erw_03_06_verify_subgroup_links_lead_to_correct_pages(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
-            opened_pages1 = page.click_on_subgroup_link_family()
+            opened_page1 = page.click_on_subgroup_link_family()
             opened_pages2_4 = page.click_on_subgroup_link_beloved_home_food_clothes()
-            assert opened_pages1, "Transition to the page has not performed"
+            assert opened_page1, "Transition to the page has not performed"
+            assert opened_page1 in ExRuWoPaData.subgroup_link_urls, \
+                "The first subgroup link leads to incorrect page after clicking"
             assert opened_pages2_4, "Transitions to pages have not performed"
+            assert all(page in ExRuWoPaData.subgroup_link_urls for page in opened_pages2_4), \
+                "Some subgroup links lead to incorrect pages after clicking"

@@ -236,16 +236,12 @@ class ExercisesRuWordsPage(BasePage):
 
     @allure.step("Click on subgroup link 'Family' and thereby open corresponding web pages in the same tab")
     def click_on_subgroup_link_family(self):
-        opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_1).click()
         time.sleep(1)
-        opened_pages.append(self.get_current_tab_url())
+        opened_page = self.get_current_tab_url()
         self.driver.back()
-        # self.element_is_present_and_clickable(self.locators.PAGE_LIST3_2).click()
-        opened_pages.append(self.get_current_tab_url())
-        # self.driver.back()
-        print(*opened_pages, sep='\n')
-        return opened_pages
+        print(opened_page)
+        return opened_page
 
     @allure.step("""Click on subgroup links 'Beloved Home', 'Food', 'Clothes' 
     and thereby open corresponding web pages in the same tab""")
@@ -256,20 +252,15 @@ class ExercisesRuWordsPage(BasePage):
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
         time.sleep(1)
-        opened_pages.append(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_3).click()
         time.sleep(1)
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
         time.sleep(1)
-        opened_pages.append(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_4).click()
         time.sleep(1)
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
         time.sleep(1)
-        opened_pages.append(self.get_current_tab_url())
         print(*opened_pages, sep='\n')
         return opened_pages
-
-
