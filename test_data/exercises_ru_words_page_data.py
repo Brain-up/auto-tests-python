@@ -113,3 +113,20 @@ class ExercisesRuWordsPageData:
     ]
 
     links_status_code = 200
+
+    subgroup_links_style = [
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/family.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/home.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/food.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/clothes.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/school.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/math.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/pets.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/animals.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/transport.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/colors.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/city.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/country.svg"");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/walk.svg");',
+        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/weather.svg");'
+    ]

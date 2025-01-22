@@ -170,3 +170,10 @@ class TestExercisesRuWordsPage:
             assert opened_pages2_4, "Transitions to pages have not performed"
             assert all(page in ExRuWoPaData.subgroup_link_urls for page in opened_pages2_4), \
                 "Some subgroup links lead to incorrect pages after clicking"
+
+    class TestExercisesRuWordsPageImages:
+        @allure.title("Verify attributes of images in links on the page")
+        def test_erw_04_01_verify_images_attributes(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            links_style = page.get_links_style()
+            assert links_style, "The 'style' attribute value of links is empty"

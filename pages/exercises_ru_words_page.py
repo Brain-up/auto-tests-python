@@ -264,3 +264,10 @@ class ExercisesRuWordsPage(BasePage):
         time.sleep(1)
         print(*opened_pages, sep='\n')
         return opened_pages
+
+    # Checking images on the page
+    @allure.step("Get the list of attribute 'style' values of images in links")
+    def get_links_style(self):
+        style = [image.get_attribute('style') for image in self.get_list4_of_links()]
+        print(len(style), *style, sep='\n')
+        return style
