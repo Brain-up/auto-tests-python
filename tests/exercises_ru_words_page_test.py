@@ -177,3 +177,5 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             links_style = page.get_links_style()
             assert links_style, "The 'style' attribute value of links is empty"
+            assert all(element in ExRuWoPaData.subgroup_links_style for element in links_style), \
+                "The 'style' attribute value of links do not match the valid values"

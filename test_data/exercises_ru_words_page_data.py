@@ -114,19 +114,17 @@ class ExercisesRuWordsPageData:
 
     links_status_code = 200
 
+    a = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme'
     subgroup_links_style = [
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/family.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/home.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/food.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/clothes.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/school.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/math.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/pets.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/animals.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/transport.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/colors.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/city.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/country.svg"");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/walk.svg");',
-        'background - image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/weather.svg");'
+        f'{a}/family.svg");', f'{a}/home.svg");', f'{a}/food.svg");', f'{a}/clothes.svg");', f'{a}/school.svg");',
+        f'{a}/math.svg");', f'{a}/pets.svg");', f'{a}/animals.svg");', f'{a}/transport.svg");', f'{a}/colors.svg");',
+        f'{a}/city.svg");', f'{a}/country.svg");', f'{a}/walk.svg");', f'{a}/weather.svg");', f'{a}/future.svg");',
+        f'{a}/body.svg");', f'{a}/game.svg");', f'{a}/adventure.svg");', f'{a}/hospital.svg");', f'{a}/feelings.svg");',
+        f'{a}/toys.svg");', f'{a}/insects.svg");', f'{a}/interior.svg");', f'{a}/kitchen.svg");', f'{a}/music.svg");',
+        f'{a}/musical_instruments.svg");', f'{a}/birds.svg");', f'{a}/jewelry.svg");', f'{a}/history.svg");',
+        f'{a}/actions.svg");', f'{a}/audible_actions.svg");', f'{a}/more_transport.svg");',
+        f'{a}/special_transport.svg");', f'{a}/fruit_trees.svg");', f'{a}/plants.svg");', f'{a}/trees.svg");',
+        f'{a}/sport.svg");', f'{a}/shop.svg");', f'{a}/artiodactyls.svg");', f'{a}/dogs.svg");',
+        f'{a}/stationery.svg");', f'{a}/flowers.svg");', f'{a}/literature.svg");', f'{a}/physics.svg");',
+        f'{a}/biology.svg");', f'{a}/instruments.svg");'
     ]
