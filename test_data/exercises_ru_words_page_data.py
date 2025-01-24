@@ -114,17 +114,16 @@ class ExercisesRuWordsPageData:
 
     links_status_code = 200
 
-    a = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme'
+    s = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/'
+    e = '.svg");'
     subgroup_links_style = [
-        f'{a}/family.svg");', f'{a}/home.svg");', f'{a}/food.svg");', f'{a}/clothes.svg");', f'{a}/school.svg");',
-        f'{a}/math.svg");', f'{a}/pets.svg");', f'{a}/animals.svg");', f'{a}/transport.svg");', f'{a}/colors.svg");',
-        f'{a}/city.svg");', f'{a}/country.svg");', f'{a}/walk.svg");', f'{a}/weather.svg");', f'{a}/future.svg");',
-        f'{a}/body.svg");', f'{a}/game.svg");', f'{a}/adventure.svg");', f'{a}/hospital.svg");', f'{a}/feelings.svg");',
-        f'{a}/toys.svg");', f'{a}/insects.svg");', f'{a}/interior.svg");', f'{a}/kitchen.svg");', f'{a}/music.svg");',
-        f'{a}/musical_instruments.svg");', f'{a}/birds.svg");', f'{a}/jewelry.svg");', f'{a}/history.svg");',
-        f'{a}/actions.svg");', f'{a}/audible_actions.svg");', f'{a}/more_transport.svg");',
-        f'{a}/special_transport.svg");', f'{a}/fruit_trees.svg");', f'{a}/plants.svg");', f'{a}/trees.svg");',
-        f'{a}/sport.svg");', f'{a}/shop.svg");', f'{a}/artiodactyls.svg");', f'{a}/dogs.svg");',
-        f'{a}/stationery.svg");', f'{a}/flowers.svg");', f'{a}/literature.svg");', f'{a}/physics.svg");',
-        f'{a}/biology.svg");', f'{a}/instruments.svg");'
+        f'{s}family{e}', f'{s}home{e}', f'{s}food{e}', f'{s}clothes{e}', f'{s}school{e}', f'{s}math{e}', f'{s}pets{e}',
+        f'{s}animals{e}', f'{s}transport{e}', f'{s}colors{e}', f'{s}city{e}', f'{s}country{e}', f'{s}walk{e}',
+        f'{s}weather{e}', f'{s}future{e}', f'{s}body{e}', f'{s}game{e}', f'{s}adventure{e}', f'{s}hospital{e}',
+        f'{s}feelings{e}', f'{s}toys{e}', f'{s}insects{e}', f'{s}interior{e}', f'{s}kitchen{e}', f'{s}music{e}',
+        f'{s}musical_instruments{e}', f'{s}birds{e}', f'{s}jewelry{e}', f'{s}history{e}', f'{s}actions{e}',
+        f'{s}audible_actions{e}', f'{s}more_transport{e}', f'{s}special_transport{e}', f'{s}fruit_trees{e}',
+        f'{s}plants{e}', f'{s}trees{e}', f'{s}sport{e}', f'{s}shop{e}', f'{s}artiodactyls{e}', f'{s}dogs{e}',
+        f'{s}stationery{e}', f'{s}flowers{e}', f'{s}literature{e}', f'{s}physics{e}', f'{s}biology{e}',
+        f'{s}instruments{e}'
     ]
