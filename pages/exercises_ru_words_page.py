@@ -219,6 +219,7 @@ class ExercisesRuWordsPage(BasePage):
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
         self.element_is_present_and_clickable(self.locators.PAGE_LIST1_3).click()
+        time.sleep(1)
         opened_pages.append(self.get_current_tab_url())
         print(*opened_pages, sep='\n')
         return opened_pages
@@ -271,3 +272,9 @@ class ExercisesRuWordsPage(BasePage):
         style = [image.get_attribute('style') for image in self.get_list4_of_links()]
         # print(len(style), *style, sep='\n')
         return style
+
+    @allure.step("Get the list of sizes of background-images in links")
+    def get_images_sizes(self):
+        images_size = [image.size for image in self.get_list4_of_links()]
+        print(len(images_size), *images_size, sep='\n')
+        return images_size
