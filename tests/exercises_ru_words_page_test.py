@@ -179,3 +179,9 @@ class TestExercisesRuWordsPage:
             assert links_style, "The 'style' attribute value of links is empty"
             assert all(element in ExRuWoPaData.subgroup_links_style for element in links_style), \
                 "The 'style' attribute value of links do not match the valid values"
+
+        @allure.title("Verify sizes of background-images in links on the page")
+        def test_erw_04_02_verify_images_sizes(self, driver, exercises_ru_words_page_open):
+            page = ExercisesRuWordsPage(driver)
+            images_size = page.get_images_sizes()
+            assert images_size != 0, "Background-images have not sizes"
