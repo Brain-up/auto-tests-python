@@ -184,4 +184,7 @@ class TestExercisesRuWordsPage:
         def test_erw_04_02_verify_images_sizes(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             images_size = page.get_images_sizes()
+            images_size_changed = page.check_size_changes_of_images()
             assert images_size != 0, "Background-images have not sizes"
+            assert len(images_size_changed) == len(ExRuWoPaData.subgroup_links_style), \
+                "Not all images in links have changed sizes"
