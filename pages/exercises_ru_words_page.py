@@ -276,5 +276,20 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get the list of sizes of background-images in links")
     def get_images_sizes(self):
         images_size = [image.size for image in self.get_list4_of_links()]
-        print(len(images_size), *images_size, sep='\n')
+        # print(len(images_size), *images_size, sep='\n')
         return images_size
+
+    @allure.step("Check changes of images sizes after resizing")
+    def check_size_changes_of_images(self):
+        time.sleep(2)
+        images = self.get_list4_of_links()
+        images_sizes_before = [image.size for image in images]
+        self.driver.set_window_size(400, 700)
+        time.sleep(2)
+        images_sizes_after = [image.size for image in images]
+        changed, lost, unchanged = [], [], []
+        for i in range(len(images)):
+            changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
+            lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
+        print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
+        return changed
