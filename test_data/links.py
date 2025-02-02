@@ -20,6 +20,9 @@ class ExercisesUrls:
     STARTING_POINT = MainPageLinks.URL_GROUPS_PAGE
 
     # Speech Exercises RU > Words
+    URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE = f"{STARTING_POINT}/2/series/2"
+
+    # Speech Exercises RU > Words
     URL_EXERCISES_RU_WORDS_PAGE = f"{STARTING_POINT}/2/series/1"
 
     # Speech Exercises > Words > Family
