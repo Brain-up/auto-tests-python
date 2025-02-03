@@ -5,6 +5,7 @@ import allure
 import pytest
 from dotenv import load_dotenv
 
+from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators
 from locators.groups_page_locators import GroupsPageLocators
 from locators.header_page_locators import HeaderUnauthorizedLocators
 from locators.login_page_locators import LoginPageLocators
@@ -43,6 +44,14 @@ def contacts_page_open(driver, main_page_open):
 @allure.step(f'Open page: {MainPageLinks.URL_DESCRIPTION_PAGE}')
 def description_page_open(driver):
     driver.get(MainPageLinks.URL_DESCRIPTION_PAGE)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}')
+def exercises_ru_similar_phrases_page_open(driver, exercises_ru_words_page_open):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(ExercisesRuWordsPageLocators.PAGE_LIST2_3).click()
+    time.sleep(3)
 
 
 @pytest.fixture()
