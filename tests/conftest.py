@@ -69,7 +69,7 @@ def exercises_ru_words_page_open(driver, main_page_open):
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
     page.element_is_present_and_clickable(HeaderUnauthorizedLocators.RU_BUTTON).click()
     page.element_is_present_and_clickable(GroupsPageLocators.PAGE_LINK2).click()
-    time.sleep(3)
+    time.sleep(4)
 
 
 @pytest.fixture()

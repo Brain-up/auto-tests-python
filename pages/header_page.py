@@ -180,7 +180,7 @@ class HeaderPage(BasePage):
         direct_internal_links = []
         for i in [2, 1, 3, 11, 0]:
             direct_internal_links.append(links[i])
-        print([element.get_attribute("href") for element in direct_internal_links])
+        # print([element.get_attribute("href") for element in direct_internal_links])
         return direct_internal_links
 
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "

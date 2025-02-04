@@ -136,7 +136,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
         tab_title = self.get_current_tab_title()
-        print(tab_title)
+        # print(tab_title)
         return tab_title
 
     @allure.step("Get value of the breadcrumbs on the page")
@@ -221,7 +221,7 @@ class ExercisesRuWordsPage(BasePage):
         self.element_is_present_and_clickable(self.locators.PAGE_LIST1_3).click()
         time.sleep(1)
         opened_pages.append(self.get_current_tab_url())
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on group links and thereby open corresponding web pages in the same tab")
@@ -232,7 +232,7 @@ class ExercisesRuWordsPage(BasePage):
             group_links[i].click()
             time.sleep(1)
             opened_pages.append(self.get_current_tab_url())
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on subgroup link 'Family' and thereby open corresponding web pages in the same tab")
@@ -241,7 +241,7 @@ class ExercisesRuWordsPage(BasePage):
         time.sleep(1)
         opened_page = self.get_current_tab_url()
         self.driver.back()
-        print(opened_page)
+        # print(opened_page)
         return opened_page
 
     @allure.step("""Click on subgroup links 'Beloved Home', 'Food', 'Clothes' 
@@ -263,7 +263,7 @@ class ExercisesRuWordsPage(BasePage):
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
         time.sleep(1)
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
 
     # Checking images on the page
@@ -291,5 +291,5 @@ class ExercisesRuWordsPage(BasePage):
         for i in range(len(images)):
             changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
             lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-        print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
+        # print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
         return changed
