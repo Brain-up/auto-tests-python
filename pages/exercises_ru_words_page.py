@@ -123,9 +123,6 @@ class ExercisesRuWordsPage(BasePage):
     def get_list4_of_links(self):
         elements = self.elements_are_present(self.locators.CARD_IMAGES_LIST4)
         # tags = [element.tag_name for element in elements]
-        # style = [element.get_attribute("style") for element in elements]
-        # print(*style, sep='\n')
-        # print(len(style))
         return elements
 
     @allure.step("Check the list4 is visible")
@@ -136,7 +133,6 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
         tab_title = self.get_current_tab_title()
-        # print(tab_title)
         return tab_title
 
     @allure.step("Get value of the breadcrumbs on the page")
