@@ -23,7 +23,6 @@ class HeaderPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting in the Header")
     def get_structure_of_1st_level(self):
-        # elements = self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return self.elements_are_present(self.locators.HEADER_FIRST_LEVEL_ELEMENTS)
 
