@@ -7,3 +7,4 @@ class ExercisesRuSimilarPhrasesPageLocators:
     PAGE_FIRST_LEVEL_ELEMENTS = (By.XPATH, "//main/*")
     PAGE_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*")
     PAGE_THIRD_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*")
+    PAGE_FOURTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*")

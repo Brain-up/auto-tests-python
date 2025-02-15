@@ -23,9 +23,13 @@ class TestExercisesRuSimilarPhrasesPage:
             visibility_of_elements_on_2nd_level = page.check_elements_visibility_on_2nd_level()
             structure_of_3rd_level = page.get_structure_of_3rd_level()
             visibility_of_elements_on_3rd_level = page.check_elements_visibility_on_3rd_level()
+            structure_of_4th_level = page.get_structure_of_4th_level()
+            visibility_of_elements_on_4th_level = page.check_elements_visibility_on_4th_level()
             assert structure_of_1st_level, "The page is empty"
             assert visibility_of_elements_on_1st_level, "1th-level elements are invisible"
             assert structure_of_2nd_level, "Elements on the 2nd level are absent on the page"
             assert visibility_of_elements_on_2nd_level, "2nd-level elements are invisible"
             assert structure_of_3rd_level, "Elements on the 3rd level are absent on the page"
             assert visibility_of_elements_on_3rd_level, "3rd-level elements are invisible"
+            assert structure_of_4th_level, "Elements on the 4th level are absent on the page"
+            assert visibility_of_elements_on_4th_level, "4th-level elements are invisible"
