@@ -217,7 +217,7 @@ class ExercisesRuWordsPage(BasePage):
         self.element_is_present_and_clickable(self.locators.PAGE_LIST1_3).click()
         time.sleep(1)
         opened_pages.append(self.get_current_tab_url())
-        # print(*opened_pages, sep='\n')
+        print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on group links and thereby open corresponding web pages in the same tab")

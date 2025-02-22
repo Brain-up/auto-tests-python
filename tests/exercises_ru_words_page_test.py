@@ -6,7 +6,7 @@ from test_data.exercises_ru_words_page_data import ExercisesRuWordsPageData as E
 
 @allure.epic("The Exercises 'Words' Page on the 'ru' local")
 class TestExercisesRuWordsPage:
-    class TestExercisesRuWordsPageStructure:
+    class TestExRuWordsPageStructure:
         @allure.title("Verify presence and visibility of content on the page")
         def test_erw_01_01_verify_page_presence_and_visibility(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
@@ -67,7 +67,7 @@ class TestExercisesRuWordsPage:
             assert list4_on_6th_level, "The list4 on the 6th level is absent on the page"
             assert list4_visibility, "The list4 on the 6th level is invisible"
 
-    class TestExercisesRuWordsPageText:
+    class TestExRuWordsPageText:
         @allure.title("Verify value of the title of the tab")
         def test_erw_02_01_verify_tab_title(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
@@ -99,7 +99,7 @@ class TestExercisesRuWordsPage:
             assert all(text in ExRuWoPaData.subgroup_links_text for text in subgroup_links_text), \
                 "Text in subgroup links mismatches valid values"
 
-    class TestExercisesRuWordsPageLinks:
+    class TestExRuWordsPageLinks:
         @allure.title("Verify clickability, href, status code of links in breadcrumbs on the page")
         def test_erw_03_01_verify_breadcrumbs_links(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
@@ -170,7 +170,7 @@ class TestExercisesRuWordsPage:
             assert all(page in ExRuWoPaData.subgroup_link_urls for page in opened_pages2_4), \
                 "Some subgroup links lead to incorrect pages after clicking"
 
-    class TestExercisesRuWordsPageImages:
+    class TestExRuWordsPageImages:
         @allure.title("Verify attributes of images in links on the page")
         def test_erw_04_01_verify_images_attributes(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
