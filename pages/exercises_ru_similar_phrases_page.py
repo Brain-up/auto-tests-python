@@ -92,3 +92,14 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Check if elements of the 7th level of nesting are visible")
     def check_elements_visibility_on_7th_level(self):
         return all(element.is_displayed() for element in self.get_structure_of_7th_level())
+
+    @allure.step("Check the list1 on the 4th level of nesting is present on the page")
+    def get_list1_of_breadcrumbs_links(self):
+        elements = self.elements_are_present(self.locators.PAGE_LIST1)
+        tags = [element.tag_name for element in elements]
+        print(*tags)
+        return elements
+
+    @allure.step("Check the list1 is visible")
+    def check_list1_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_LIST1)

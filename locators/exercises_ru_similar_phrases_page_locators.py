@@ -11,3 +11,4 @@ class ExercisesRuSimilarPhrasesPageLocators:
     PAGE_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*")
     PAGE_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*")
     PAGE_SEVENTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*")
+    PAGE_LIST1 = (By.XPATH, '//ul[@aria-label="Breadcrumbs"]//a')
