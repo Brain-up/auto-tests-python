@@ -103,3 +103,14 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Check the list1 is visible")
     def check_list1_visibility(self):
         return self.element_is_visible(self.locators.PAGE_LIST1)
+
+    @allure.step("Check the list2 on the 5th level of nesting is present on the page")
+    def get_list2_of_group_links(self):
+        elements = self.elements_are_present(self.locators.PAGE_LIST2)
+        tags = [element.tag_name for element in elements]
+        print(*tags)
+        return elements
+
+    @allure.step("Check the list2 is visible")
+    def check_list2_visibility(self):
+        return self.element_is_visible(self.locators.PAGE_LIST2)
