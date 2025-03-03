@@ -147,18 +147,21 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             opened_page1 = page.click_on_breadcrumbs_link1()
             assert opened_page1, "Transitions to pages have not performed"
+            assert opened_page1 in ExRuWoPaData.breadcrumbs_urls, "The link leads to an incorrect page after clicking"
 
         @allure.title("Verify if breadcrumbs link2 leads to the correct page after clicking")
         def test_erw_03_04_02_verify_breadcrumbs_link2_leads_to_correct_page(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             opened_page2 = page.click_on_breadcrumbs_link2()
             assert opened_page2, "Transitions to pages have not performed"
+            assert opened_page2 in ExRuWoPaData.breadcrumbs_urls, "The link leads to an incorrect page after clicking"
 
         @allure.title("Verify if breadcrumbs link3 leads to the correct page after clicking")
         def test_erw_03_04_03_verify_breadcrumbs_link3_leads_to_correct_page(self, driver, exercises_ru_words_page_open):
             page = ExercisesRuWordsPage(driver)
             opened_page3 = page.click_on_breadcrumbs_link3()
             assert opened_page3, "Transitions to pages have not performed"
+            assert opened_page3 in ExRuWoPaData.breadcrumbs_urls, "The link leads to an incorrect page after clicking"
 
         @allure.title("Verify if group links lead to correct pages after clicking")
         def test_erw_03_05_verify_group_links_lead_to_correct_pages(self, driver, exercises_ru_words_page_open):

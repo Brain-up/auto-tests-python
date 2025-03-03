@@ -100,7 +100,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_list1_of_breadcrumbs_links(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST1)
         tags = [element.tag_name for element in elements]
-        print(*tags)
+        # print(*tags)
         return elements
 
     @allure.step("Check the list1 is visible")
@@ -111,7 +111,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_list2_of_group_links(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST2)
         tags = [element.tag_name for element in elements]
-        print(*tags)
+        # print(*tags)
         return elements
 
     @allure.step("Check the list2 is visible")
@@ -122,7 +122,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_list3_of_subgroup_links(self):
         elements = self.elements_are_present(self.locators.PAGE_LIST3)
         tags = [element.tag_name for element in elements]
-        print(*tags)
+        # print(*tags)
         return elements
 
     @allure.step("Check the list3 is visible")
@@ -133,7 +133,7 @@ class ExercisesRuWordsPage(BasePage):
     def get_list4_of_links(self):
         elements = self.elements_are_present(self.locators.CARD_IMAGES_LIST4)
         tags = [element.tag_name for element in elements]
-        print(*tags)
+        # print(*tags)
         return elements
 
     @allure.step("Check the list4 is visible")
@@ -234,6 +234,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Click on breadcrumbs link 1 and thereby open corresponding the web page in the same tab")
     def click_on_breadcrumbs_link1(self):
         self.element_is_present_and_clickable(self.locators.PAGE_LIST1_1).click()
+        time.sleep(3)
         opened_page = self.get_current_tab_url()
         print(opened_page)
         self.driver.back()
