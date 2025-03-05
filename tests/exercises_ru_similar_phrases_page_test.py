@@ -47,13 +47,17 @@ class TestExercisesRuSimilarPhrasesPage:
             assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
 
         @allure.title("Verify presence, visibility of lists on the page")
-        def test_erw_01_03_verify_page_structural_elements(self, driver, exercises_ru_similar_phrases_page_open):
+        def test_ersp_01_03_verify_page_structural_elements(self, driver, exercises_ru_similar_phrases_page_open):
             page = ExercisesRuSimilarPhrasesPage(driver)
             list1_on_5th_level = page.get_list1_of_breadcrumbs_links()
             list1_visibility = page.check_list1_visibility()
             list2_on_5th_level = page.get_list2_of_group_links()
             list2_visibility = page.check_list2_visibility()
+            list3_on_5th_level = page.get_list3_of_subgroup_links()
+            list3_visibility = page.check_list3_visibility()
             assert list1_on_5th_level, "The list1 on the 5th level is absent on the page"
             assert list1_visibility, "The list1 on the 5th level is invisible"
             assert list2_on_5th_level, "The list2 on the 5th level is absent on the page"
             assert list2_visibility, "The list2 on the 5th level is invisible"
+            assert list3_on_5th_level, "The list3 on the 5th level is absent on the page"
+            assert list3_visibility, "The list3 on the 5th level is invisible"
