@@ -125,3 +125,14 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Check the list3 is visible")
     def check_list3_visibility(self):
         return all(element.is_displayed() for element in self.get_list3_of_subgroup_links())
+
+    @allure.step("Check the list4 on the 6th level of nesting is present on the page")
+    def get_list4_of_links(self):
+        elements = self.elements_are_present(self.locators.CARD_IMAGES_LIST4)
+        tags = [element.tag_name for element in elements]
+        print(*tags)
+        return elements
+
+    @allure.step("Check the list4 is visible")
+    def check_list4_visibility(self):
+        return all(element.is_displayed() for element in self.get_list4_of_links())
