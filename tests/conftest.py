@@ -57,7 +57,7 @@ def exercises_ru_page_open(driver, auto_test_user_authorized):
 @allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}')
 def exercises_ru_similar_phrases_page_open(driver, exercises_ru_page_open):
     driver.get(ExercisesUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE)
-    time.sleep(1)
+    time.sleep(3)
 
 
 @pytest.fixture()

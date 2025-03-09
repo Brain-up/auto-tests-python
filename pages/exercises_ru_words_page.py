@@ -144,6 +144,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
         tab_title = self.get_current_tab_title()
+        print(tab_title)
         return tab_title
 
     @allure.step("Get value of the breadcrumbs on the page")
@@ -262,9 +263,9 @@ class ExercisesRuWordsPage(BasePage):
         group_links = self.get_list2_of_group_links()
         for i in range(7):
             group_links[i].click()
-            time.sleep(1)
+            time.sleep(2)
             opened_pages.append(self.get_current_tab_url())
-        # print(*opened_pages, sep='\n')
+        print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on subgroup link 'Family' and thereby open corresponding web pages in the same tab")

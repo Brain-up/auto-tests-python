@@ -2,4 +2,4 @@
 
 
 class ExercisesRuSimilarPhrasesPageData:
-    pass
+    tab_title_ru = "Речевые упражнения (готовы для занятий) | BrainUp"
