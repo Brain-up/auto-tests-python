@@ -1,6 +1,7 @@
 """Auto tests for verifying web elements on the 'Exercises "Similar phrases"' page on the 'ru' local"""
 import allure
 from pages.exercises_ru_similar_phrases_page import ExercisesRuSimilarPhrasesPage
+from test_data.exercises_ru_similar_phrases_page_data import ExercisesRuSimilarPhrasesPageData as ExRuSimPhrPaData
 
 
 @allure.epic("The Exercises 'Similar phrases' Page on the 'ru' local")
@@ -65,3 +66,11 @@ class TestExercisesRuSimilarPhrasesPage:
             assert list3_visibility, "The list3 on the 5th level is invisible"
             assert list4_on_6th_level, "The list4 on the 6th level is absent on the page"
             assert list4_visibility, "The list4 on the 6th level is invisible"
+
+    class TestExRuSimPhrPageText:
+        @allure.title("Verify value of the title of the tab")
+        def test_ersp_02_01_verify_tab_title(self, driver, exercises_ru_similar_phrases_page_open):
+            page = ExercisesRuSimilarPhrasesPage(driver)
+            tab_title_value = page.get_value_of_tab_title()
+            assert tab_title_value, "The title value of the tab is empty"
+            assert tab_title_value == ExRuSimPhrPaData.tab_title_ru, "The tab title doesn't match the valid value"
