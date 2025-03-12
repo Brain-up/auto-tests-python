@@ -143,3 +143,9 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
         tab_title = self.get_current_tab_title()
         print(tab_title)
         return tab_title
+
+    @allure.step("Get value of the breadcrumbs on the page")
+    def get_value_of_breadcrumbs(self):
+        breadcrumbs_text = [element.text for element in self.get_list1_of_breadcrumbs_links()]
+        print(len(breadcrumbs_text), breadcrumbs_text, sep='\n')
+        return breadcrumbs_text

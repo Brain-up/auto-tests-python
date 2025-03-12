@@ -74,3 +74,11 @@ class TestExercisesRuSimilarPhrasesPage:
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
             assert tab_title_value == ExRuSimPhrPaData.tab_title_ru, "The tab title doesn't match the valid value"
+
+        @allure.title("Verify value of the breadcrumbs on the page")
+        def test_ersp_02_02_verify_page_breadcrumbs_text(self, driver, exercises_ru_similar_phrases_page_open):
+            page = ExercisesRuSimilarPhrasesPage(driver)
+            breadcrumbs_text = page.get_value_of_breadcrumbs()
+            assert breadcrumbs_text, "The breadcrumbs value on the page are empty"
+            assert all(text in ExRuSimPhrPaData.breadcrumbs for text in breadcrumbs_text), \
+                "Text in breadcrumbs mismatches valid values"
