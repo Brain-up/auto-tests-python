@@ -149,3 +149,9 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
         breadcrumbs_text = [element.text for element in self.get_list1_of_breadcrumbs_links()]
         print(len(breadcrumbs_text), breadcrumbs_text, sep='\n')
         return breadcrumbs_text
+
+    @allure.step("Get text in group links on the page")
+    def get_group_links_text(self):
+        links_text = [element.text for element in self.get_list2_of_group_links()]
+        print(len(links_text), *links_text, sep='\n')
+        return links_text
