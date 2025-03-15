@@ -274,29 +274,31 @@ class ExercisesRuWordsPage(BasePage):
         time.sleep(1)
         opened_page = self.get_current_tab_url()
         self.driver.back()
-        # print(opened_page)
+        time.sleep(1)
+        print(opened_page)
         return opened_page
 
     @allure.step("""Click on subgroup links 'Beloved Home', 'Food', 'Clothes' 
     and thereby open corresponding web pages in the same tab""")
     def click_on_subgroup_link_beloved_home_food_clothes(self):
         opened_pages = []
+        time.sleep(2)
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_2).click()
-        time.sleep(1)
+        time.sleep(2)
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(1)
+        time.sleep(2)
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_3).click()
-        time.sleep(1)
+        time.sleep(2)
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(1)
+        time.sleep(2)
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_4).click()
-        time.sleep(1)
+        time.sleep(2)
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(1)
-        # print(*opened_pages, sep='\n')
+        time.sleep(2)
+        print(*opened_pages, sep='\n')
         return opened_pages
 
     # Checking images on the page
