@@ -155,3 +155,9 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
         links_text = [element.text for element in self.get_list2_of_group_links()]
         print(len(links_text), *links_text, sep='\n')
         return links_text
+
+    @allure.step("Get text in subgroup links on the page")
+    def get_subgroup_links_text(self):
+        subgroup_links_text = [element.text for element in self.get_list3_of_subgroup_links()]
+        print(len(subgroup_links_text), subgroup_links_text, sep='\n')
+        return subgroup_links_text

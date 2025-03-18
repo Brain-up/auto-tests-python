@@ -90,3 +90,11 @@ class TestExercisesRuSimilarPhrasesPage:
             assert links_text, "Text in group links is absent"
             assert all(text in ExRuSimPhrPaData.group_links_text for text in links_text), \
                 "Text in group links mismatches valid values"
+
+        @allure.title("Verify text in cards on the page")
+        def test_ersp_02_04_verify_subgroup_links_text(self, driver, exercises_ru_similar_phrases_page_open):
+            page = ExercisesRuSimilarPhrasesPage(driver)
+            subgroup_links_text = page.get_subgroup_links_text()
+            assert subgroup_links_text, "Text in cards is absent"
+            assert all(text in ExRuSimPhrPaData.subgroup_links_text for text in subgroup_links_text), \
+                "Text in subgroup links mismatches valid values"
