@@ -161,3 +161,8 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
         subgroup_links_text = [element.text for element in self.get_list3_of_subgroup_links()]
         print(len(subgroup_links_text), subgroup_links_text, sep='\n')
         return subgroup_links_text
+
+    # Checking links on the page
+    @allure.step("Check if breadcrumbs are clickable")
+    def check_breadcrumbs_clickability(self):
+        return all(link.is_enabled() for link in self.get_list1_of_breadcrumbs_links())
