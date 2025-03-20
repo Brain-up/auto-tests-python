@@ -98,3 +98,10 @@ class TestExercisesRuSimilarPhrasesPage:
             assert subgroup_links_text, "Text in cards is absent"
             assert all(text in ExRuSimPhrPaData.subgroup_links_text for text in subgroup_links_text), \
                 "Text in subgroup links mismatches valid values"
+
+    class TestExRuSimPhrPageLinks:
+        @allure.title("Verify clickability of links in breadcrumbs on the page")
+        def test_ersp_03_01_verify_breadcrumbs_links(self, driver, exercises_ru_similar_phrases_page_open):
+            page = ExercisesRuSimilarPhrasesPage(driver)
+            breadcrumbs_clickability = page.check_breadcrumbs_clickability()
+            assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
