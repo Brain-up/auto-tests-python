@@ -1,0 +1,525 @@
+{
+  "uid" : "991497d615115ee6",
+  "name" : "Solutions to a random task in the \"Слова\" group and comparison of statics.",
+  "fullName" : "tests.test_speech_exercises_ru.TestCardsRU#test_solve_word_cards_with_statistic_ru",
+  "historyId" : "0fb6881b2015244903bd7785af7503a6",
+  "time" : {
+    "start" : 1742520542619,
+    "stop" : 1742520544576,
+    "duration" : 1957
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nselenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x55d85c89aa1a <unknown>\n#1 0x55d85c352390 <unknown>\n#2 0x55d85c358ede <unknown>\n#3 0x55d85c35b728 <unknown>\n#4 0x55d85c35b7b3 <unknown>\n#5 0x55d85c39e29d <unknown>\n#6 0x55d85c3c9bd2 <unknown>\n#7 0x55d85c39778a <unknown>\n#8 0x55d85c3c9d9e <unknown>\n#9 0x55d85c3f007b <unknown>\n#10 0x55d85c3c99a3 <unknown>\n#11 0x55d85c39560e <unknown>\n#12 0x55d85c396dd1 <unknown>\n#13 0x55d85c860ddb <unknown>\n#14 0x55d85c864cbc <unknown>\n#15 0x55d85c848392 <unknown>\n#16 0x55d85c865834 <unknown>\n#17 0x55d85c82c1ef <unknown>\n#18 0x55d85c889038 <unknown>\n#19 0x55d85c889216 <unknown>\n#20 0x55d85c899896 <unknown>\n#21 0x7fc0cdc9caa4 <unknown>\n#22 0x7fc0cdd29c3c <unknown>",
+  "statusTrace" : "self = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7ff0df83ac90>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"9ac6f54c5606c34c8f14896f86398c04\")>\ndefault_user_authorized = None\n\n    @pytest.mark.xfail\n    @allure.suite(\"Речевые упражнения.\")\n    @allure.title('Solutions to a random task in the \"Слова\" group and comparison of statics.')\n    def test_solve_word_cards_with_statistic_ru(self, driver, default_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        page.click_button_ru()\n>       table = page.get_statistic_data()\n\ntests/test_speech_exercises_ru.py:165: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_ru.py:179: in get_statistic_data\n    title = [i.text for i in titles]\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:89: in text\n    return self._execute(Command.GET_ELEMENT_TEXT)[\"value\"]\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:394: in _execute\n    return self._parent.execute(command, params)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:344: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7ff0df799ee0>\nresponse = {'status': 404, 'value': '{\"value\":{\"error\":\"stale element reference\",\"message\":\"stale element reference: stale elemen...\\\\n#20 0x55d85c899896 \\\\u003Cunknown>\\\\n#21 0x7fc0cdc9caa4 \\\\u003Cunknown>\\\\n#22 0x7fc0cdd29c3c \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\nE         (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nE       Stacktrace:\nE       #0 0x55d85c89aa1a <unknown>\nE       #1 0x55d85c352390 <unknown>\nE       #2 0x55d85c358ede <unknown>\nE       #3 0x55d85c35b728 <unknown>\nE       #4 0x55d85c35b7b3 <unknown>\nE       #5 0x55d85c39e29d <unknown>\nE       #6 0x55d85c3c9bd2 <unknown>\nE       #7 0x55d85c39778a <unknown>\nE       #8 0x55d85c3c9d9e <unknown>\nE       #9 0x55d85c3f007b <unknown>\nE       #10 0x55d85c3c99a3 <unknown>\nE       #11 0x55d85c39560e <unknown>\nE       #12 0x55d85c396dd1 <unknown>\nE       #13 0x55d85c860ddb <unknown>\nE       #14 0x55d85c864cbc <unknown>\nE       #15 0x55d85c848392 <unknown>\nE       #16 0x55d85c865834 <unknown>\nE       #17 0x55d85c82c1ef <unknown>\nE       #18 0x55d85c889038 <unknown>\nE       #19 0x55d85c889216 <unknown>\nE       #20 0x55d85c899896 <unknown>\nE       #21 0x7fc0cdc9caa4 <unknown>\nE       #22 0x7fc0cdd29c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: StaleElementReferenceException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1742520535213,
+      "stop" : 1742520536038,
+      "duration" : 825
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1742518824397,
+      "stop" : 1742518824397,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "default_user_authorized",
+    "time" : {
+      "start" : 1742520540150,
+      "stop" : 1742520542618,
+      "duration" : 2468
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "DEFAULT user authorized",
+      "time" : {
+        "start" : 1742520540150,
+        "stop" : 1742520542618,
+        "duration" : 2468
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Check url is present: https://www.brainup.site/groups",
+        "time" : {
+          "start" : 1742520540568,
+          "stop" : 1742520542596,
+          "duration" : 2028
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Loader checking",
+        "time" : {
+          "start" : 1742520542596,
+          "stop" : 1742520542618,
+          "duration" : 22
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"9ac6f54c5606c34c8f14896f86398c04\")>"
+      }, {
+        "name" : "main_page_open",
+        "value" : "None"
+      } ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1742520536038,
+      "stop" : 1742520540150,
+      "duration" : 4112
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://www.brainup.site/",
+      "time" : {
+        "start" : 1742520536038,
+        "stop" : 1742520540150,
+        "duration" : 4112
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"9ac6f54c5606c34c8f14896f86398c04\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nselenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x55d85c89aa1a <unknown>\n#1 0x55d85c352390 <unknown>\n#2 0x55d85c358ede <unknown>\n#3 0x55d85c35b728 <unknown>\n#4 0x55d85c35b7b3 <unknown>\n#5 0x55d85c39e29d <unknown>\n#6 0x55d85c3c9bd2 <unknown>\n#7 0x55d85c39778a <unknown>\n#8 0x55d85c3c9d9e <unknown>\n#9 0x55d85c3f007b <unknown>\n#10 0x55d85c3c99a3 <unknown>\n#11 0x55d85c39560e <unknown>\n#12 0x55d85c396dd1 <unknown>\n#13 0x55d85c860ddb <unknown>\n#14 0x55d85c864cbc <unknown>\n#15 0x55d85c848392 <unknown>\n#16 0x55d85c865834 <unknown>\n#17 0x55d85c82c1ef <unknown>\n#18 0x55d85c889038 <unknown>\n#19 0x55d85c889216 <unknown>\n#20 0x55d85c899896 <unknown>\n#21 0x7fc0cdc9caa4 <unknown>\n#22 0x7fc0cdd29c3c <unknown>",
+    "statusTrace" : "self = <tests.test_speech_exercises_ru.TestCardsRU object at 0x7ff0df83ac90>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"9ac6f54c5606c34c8f14896f86398c04\")>\ndefault_user_authorized = None\n\n    @pytest.mark.xfail\n    @allure.suite(\"Речевые упражнения.\")\n    @allure.title('Solutions to a random task in the \"Слова\" group and comparison of statics.')\n    def test_solve_word_cards_with_statistic_ru(self, driver, default_user_authorized):\n        page = SpeechExercisesPageRU(driver)\n        page.click_button_ru()\n>       table = page.get_statistic_data()\n\ntests/test_speech_exercises_ru.py:165: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/speech_exercises_page_ru.py:179: in get_statistic_data\n    title = [i.text for i in titles]\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:89: in text\n    return self._execute(Command.GET_ELEMENT_TEXT)[\"value\"]\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:394: in _execute\n    return self._parent.execute(command, params)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:344: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7ff0df799ee0>\nresponse = {'status': 404, 'value': '{\"value\":{\"error\":\"stale element reference\",\"message\":\"stale element reference: stale elemen...\\\\n#20 0x55d85c899896 \\\\u003Cunknown>\\\\n#21 0x7fc0cdc9caa4 \\\\u003Cunknown>\\\\n#22 0x7fc0cdd29c3c \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\nE         (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nE       Stacktrace:\nE       #0 0x55d85c89aa1a <unknown>\nE       #1 0x55d85c352390 <unknown>\nE       #2 0x55d85c358ede <unknown>\nE       #3 0x55d85c35b728 <unknown>\nE       #4 0x55d85c35b7b3 <unknown>\nE       #5 0x55d85c39e29d <unknown>\nE       #6 0x55d85c3c9bd2 <unknown>\nE       #7 0x55d85c39778a <unknown>\nE       #8 0x55d85c3c9d9e <unknown>\nE       #9 0x55d85c3f007b <unknown>\nE       #10 0x55d85c3c99a3 <unknown>\nE       #11 0x55d85c39560e <unknown>\nE       #12 0x55d85c396dd1 <unknown>\nE       #13 0x55d85c860ddb <unknown>\nE       #14 0x55d85c864cbc <unknown>\nE       #15 0x55d85c848392 <unknown>\nE       #16 0x55d85c865834 <unknown>\nE       #17 0x55d85c82c1ef <unknown>\nE       #18 0x55d85c889038 <unknown>\nE       #19 0x55d85c889216 <unknown>\nE       #20 0x55d85c899896 <unknown>\nE       #21 0x7fc0cdc9caa4 <unknown>\nE       #22 0x7fc0cdd29c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: StaleElementReferenceException",
+    "steps" : [ {
+      "name" : "click_button RU",
+      "time" : {
+        "start" : 1742520542619,
+        "stop" : 1742520542697,
+        "duration" : 78
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Click button \"RU\".",
+        "time" : {
+          "start" : 1742520542619,
+          "stop" : 1742520542697,
+          "duration" : 78
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "get_statistic_data",
+      "time" : {
+        "start" : 1742520542697,
+        "stop" : 1742520544575,
+        "duration" : 1878
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x55d85c89aa1a <unknown>\n#1 0x55d85c352390 <unknown>\n#2 0x55d85c358ede <unknown>\n#3 0x55d85c35b728 <unknown>\n#4 0x55d85c35b7b3 <unknown>\n#5 0x55d85c39e29d <unknown>\n#6 0x55d85c3c9bd2 <unknown>\n#7 0x55d85c39778a <unknown>\n#8 0x55d85c3c9d9e <unknown>\n#9 0x55d85c3f007b <unknown>\n#10 0x55d85c3c99a3 <unknown>\n#11 0x55d85c39560e <unknown>\n#12 0x55d85c396dd1 <unknown>\n#13 0x55d85c860ddb <unknown>\n#14 0x55d85c864cbc <unknown>\n#15 0x55d85c848392 <unknown>\n#16 0x55d85c865834 <unknown>\n#17 0x55d85c82c1ef <unknown>\n#18 0x55d85c889038 <unknown>\n#19 0x55d85c889216 <unknown>\n#20 0x55d85c899896 <unknown>\n#21 0x7fc0cdc9caa4 <unknown>\n#22 0x7fc0cdd29c3c <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/speech_exercises_page_ru.py\", line 179, in get_statistic_data\n    title = [i.text for i in titles]\n             ^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 89, in text\n    return self._execute(Command.GET_ELEMENT_TEXT)[\"value\"]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 394, in _execute\n    return self._parent.execute(command, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 344, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+      "steps" : [ {
+        "name" : "Click button \"Статистика\"\".",
+        "time" : {
+          "start" : 1742520542698,
+          "stop" : 1742520542811,
+          "duration" : 113
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Check statistic table is present and scroll to table",
+        "time" : {
+          "start" : 1742520542811,
+          "stop" : 1742520543855,
+          "duration" : 1044
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Get data from the table.",
+        "time" : {
+          "start" : 1742520543855,
+          "stop" : 1742520544574,
+          "duration" : 719
+        },
+        "status" : "broken",
+        "statusMessage" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x55d85c89aa1a <unknown>\n#1 0x55d85c352390 <unknown>\n#2 0x55d85c358ede <unknown>\n#3 0x55d85c35b728 <unknown>\n#4 0x55d85c35b7b3 <unknown>\n#5 0x55d85c39e29d <unknown>\n#6 0x55d85c3c9bd2 <unknown>\n#7 0x55d85c39778a <unknown>\n#8 0x55d85c3c9d9e <unknown>\n#9 0x55d85c3f007b <unknown>\n#10 0x55d85c3c99a3 <unknown>\n#11 0x55d85c39560e <unknown>\n#12 0x55d85c396dd1 <unknown>\n#13 0x55d85c860ddb <unknown>\n#14 0x55d85c864cbc <unknown>\n#15 0x55d85c848392 <unknown>\n#16 0x55d85c865834 <unknown>\n#17 0x55d85c82c1ef <unknown>\n#18 0x55d85c889038 <unknown>\n#19 0x55d85c889216 <unknown>\n#20 0x55d85c899896 <unknown>\n#21 0x7fc0cdc9caa4 <unknown>\n#22 0x7fc0cdd29c3c <unknown>\n\n",
+        "statusTrace" : "  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/speech_exercises_page_ru.py\", line 179, in get_statistic_data\n    title = [i.text for i in titles]\n             ^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 89, in text\n    return self._execute(Command.GET_ELEMENT_TEXT)[\"value\"]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 394, in _execute\n    return self._parent.execute(command, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 344, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1742520544609,
+      "stop" : 1742520544670,
+      "duration" : 61
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "Речевые упражнения."
+  }, {
+    "name" : "epic",
+    "value" : "Speech exercises."
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCardsRU"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1377-376"
+  }, {
+    "name" : "thread",
+    "value" : "2433-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_speech_exercises_ru"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 48,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 48
+      },
+      "items" : [ {
+        "uid" : "9537607c23c05442",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/514//#testresult/9537607c23c05442",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 12",
+        "time" : {
+          "start" : 1742487381950,
+          "stop" : 1742487387848,
+          "duration" : 5898
+        }
+      }, {
+        "uid" : "df8bc761d5418c9c",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/309//#testresult/df8bc761d5418c9c",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 24",
+        "time" : {
+          "start" : 1742433873821,
+          "stop" : 1742433879956,
+          "duration" : 6135
+        }
+      }, {
+        "uid" : "993535041fd8a767",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/513//#testresult/993535041fd8a767",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 4",
+        "time" : {
+          "start" : 1742417767958,
+          "stop" : 1742417776401,
+          "duration" : 8443
+        }
+      }, {
+        "uid" : "ef413cca9ba3046d",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/308//#testresult/ef413cca9ba3046d",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 34",
+        "time" : {
+          "start" : 1742347554363,
+          "stop" : 1742347560996,
+          "duration" : 6633
+        }
+      }, {
+        "uid" : "ae691bffbb936567",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/512//#testresult/ae691bffbb936567",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 43",
+        "time" : {
+          "start" : 1742281325269,
+          "stop" : 1742281331410,
+          "duration" : 6141
+        }
+      }, {
+        "uid" : "b0172725f6fcec8f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/307//#testresult/b0172725f6fcec8f",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 6",
+        "time" : {
+          "start" : 1742260997168,
+          "stop" : 1742261003808,
+          "duration" : 6640
+        }
+      }, {
+        "uid" : "8dbdebc9a8e233b9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/511//#testresult/8dbdebc9a8e233b9",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 1",
+        "time" : {
+          "start" : 1742231996803,
+          "stop" : 1742232003800,
+          "duration" : 6997
+        }
+      }, {
+        "uid" : "292253df252b2fdb",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/306//#testresult/292253df252b2fdb",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 26",
+        "time" : {
+          "start" : 1742174998629,
+          "stop" : 1742175005508,
+          "duration" : 6879
+        }
+      }, {
+        "uid" : "c7e56ea30b8809f2",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/510//#testresult/c7e56ea30b8809f2",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 44",
+        "time" : {
+          "start" : 1742156515540,
+          "stop" : 1742156524905,
+          "duration" : 9365
+        }
+      }, {
+        "uid" : "e80ca7308b48559",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/305//#testresult/e80ca7308b48559",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 28",
+        "time" : {
+          "start" : 1742088481928,
+          "stop" : 1742088489002,
+          "duration" : 7074
+        }
+      }, {
+        "uid" : "d2156da560b5cd5e",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/509//#testresult/d2156da560b5cd5e",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 19",
+        "time" : {
+          "start" : 1742073171614,
+          "stop" : 1742073178571,
+          "duration" : 6957
+        }
+      }, {
+        "uid" : "ec6d28c0b346ed8",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/304//#testresult/ec6d28c0b346ed8",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 27",
+        "time" : {
+          "start" : 1742001822332,
+          "stop" : 1742001831281,
+          "duration" : 8949
+        }
+      }, {
+        "uid" : "54774e8373bebf72",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/508//#testresult/54774e8373bebf72",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 13",
+        "time" : {
+          "start" : 1741947202436,
+          "stop" : 1741947210414,
+          "duration" : 7978
+        }
+      }, {
+        "uid" : "6be367c1d8de4a77",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/303//#testresult/6be367c1d8de4a77",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 20",
+        "time" : {
+          "start" : 1741915402322,
+          "stop" : 1741915410596,
+          "duration" : 8274
+        }
+      }, {
+        "uid" : "24af7d7a4dc63a16",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/507//#testresult/24af7d7a4dc63a16",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 9",
+        "time" : {
+          "start" : 1741898281390,
+          "stop" : 1741898289305,
+          "duration" : 7915
+        }
+      }, {
+        "uid" : "a5a06f6e464e3df0",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/302//#testresult/a5a06f6e464e3df0",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 6",
+        "time" : {
+          "start" : 1741829048879,
+          "stop" : 1741829056556,
+          "duration" : 7677
+        }
+      }, {
+        "uid" : "2d0fcf948961977",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/506//#testresult/2d0fcf948961977",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 18",
+        "time" : {
+          "start" : 1741776036748,
+          "stop" : 1741776044672,
+          "duration" : 7924
+        }
+      }, {
+        "uid" : "1d3eccb59a7011ce",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/301//#testresult/1d3eccb59a7011ce",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 6",
+        "time" : {
+          "start" : 1741742654215,
+          "stop" : 1741742662592,
+          "duration" : 8377
+        }
+      }, {
+        "uid" : "3dffa79ab7ddacc2",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/505//#testresult/3dffa79ab7ddacc2",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 0",
+        "time" : {
+          "start" : 1741729907025,
+          "stop" : 1741729914414,
+          "duration" : 7389
+        }
+      }, {
+        "uid" : "8bbe135d3eaced26",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/300//#testresult/8bbe135d3eaced26",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 20",
+        "time" : {
+          "start" : 1741656565573,
+          "stop" : 1741656573903,
+          "duration" : 8330
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail" ]
+  },
+  "source" : "991497d615115ee6.json",
+  "parameterValues" : [ ]
+}
