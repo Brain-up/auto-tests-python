@@ -213,17 +213,21 @@ class GroupsPage(BasePage):
 
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_en_local(self):
+        opened_pages = []
         self.click_on_en_button()
         time.sleep(2)
-        opened_pages = []
+        print(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
-        time.sleep(4)
+        time.sleep(5)
         opened_pages.append(self.get_current_tab_url())
+        print(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(4)
+        time.sleep(5)
+        print(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
-        time.sleep(4)
+        time.sleep(5)
         opened_pages.append(self.get_current_tab_url())
+        print(self.get_current_tab_url())
         return opened_pages
 
     # Checking images on the page
