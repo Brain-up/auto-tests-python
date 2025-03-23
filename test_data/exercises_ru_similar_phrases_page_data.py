@@ -1,4 +1,5 @@
 """Data for verifying web elements on the 'Exercises "Similar phrases"' page on the 'ru' local"""
+from test_data.links import MainPageLinks as Links
 
 
 class ExercisesRuSimilarPhrasesPageData:
@@ -11,3 +12,9 @@ class ExercisesRuSimilarPhrasesPageData:
 
     subgroup_links_text = ['Разной длительности', 'С частицей Не', 'Похожие',
                            'С разным окончанием', 'Из коротких слов', 'С разными предлогами']
+
+    breadcrumbs_urls = [
+        f"{Links.URL_GROUPS_PAGE}",
+        f"{Links.URL_GROUPS_PAGE}/2",
+        f"{Links.URL_GROUPS_PAGE}/2/series/2"
+    ]
