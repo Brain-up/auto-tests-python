@@ -100,8 +100,11 @@ class TestExercisesRuSimilarPhrasesPage:
                 "Text in subgroup links mismatches valid values"
 
     class TestExRuSimPhrPageLinks:
-        @allure.title("Verify clickability of links in breadcrumbs on the page")
+        @allure.title("Verify clickability, href of links in breadcrumbs on the page")
         def test_ersp_03_01_verify_breadcrumbs_links(self, driver, exercises_ru_similar_phrases_page_open):
             page = ExercisesRuSimilarPhrasesPage(driver)
             breadcrumbs_clickability = page.check_breadcrumbs_clickability()
+            breadcrumbs_links_href = page.get_breadcrumbs_links_href()
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
+            assert all(href in ExRuSimPhrPaData.breadcrumbs_urls for href in breadcrumbs_links_href), \
+                "Attributes 'href' of links in breadcrumbs mismatch valid values"
