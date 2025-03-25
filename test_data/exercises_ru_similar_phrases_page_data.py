@@ -18,3 +18,5 @@ class ExercisesRuSimilarPhrasesPageData:
         f"{Links.URL_GROUPS_PAGE}/2",
         f"{Links.URL_GROUPS_PAGE}/2/series/2"
     ]
+
+    links_status_code = 200

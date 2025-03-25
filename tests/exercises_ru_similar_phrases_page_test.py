@@ -105,6 +105,9 @@ class TestExercisesRuSimilarPhrasesPage:
             page = ExercisesRuSimilarPhrasesPage(driver)
             breadcrumbs_clickability = page.check_breadcrumbs_clickability()
             breadcrumbs_links_href = page.get_breadcrumbs_links_href()
+            breadcrumbs_link_status_codes = page.get_link_status_codes_in_breadcrumbs()
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
             assert all(href in ExRuSimPhrPaData.breadcrumbs_urls for href in breadcrumbs_links_href), \
                 "Attributes 'href' of links in breadcrumbs mismatch valid values"
+            assert all(element == ExRuSimPhrPaData.links_status_code for element in breadcrumbs_link_status_codes), \
+                "Status codes of links in breadcrumbs mismatch valid values"
