@@ -1,0 +1,369 @@
+{
+  "uid" : "adc5acfca3d16054",
+  "name" : "Verify href, status code of the 'All Team' link",
+  "fullName" : "tests.contributors_page_test.TestContributorsPageLinks#test_cnp_03_02_verify_all_team_link",
+  "historyId" : "2513d614bdf55f80776a06878d6c6d12",
+  "time" : {
+    "start" : 1742864723894,
+    "stop" : 1742864723910,
+    "duration" : 16
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//div[contains(@class, 'mt-20')]/a\"}\n  (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nStacktrace:\n#0 0x55e5816d2a1a <unknown>\n#1 0x55e58118a390 <unknown>\n#2 0x55e5811dbc85 <unknown>\n#3 0x55e5811dbeb1 <unknown>\n#4 0x55e58122ad64 <unknown>\n#5 0x55e581201bfd <unknown>\n#6 0x55e58122807b <unknown>\n#7 0x55e5812019a3 <unknown>\n#8 0x55e5811cd60e <unknown>\n#9 0x55e5811cedd1 <unknown>\n#10 0x55e581698ddb <unknown>\n#11 0x55e58169ccbc <unknown>\n#12 0x55e581680392 <unknown>\n#13 0x55e58169d834 <unknown>\n#14 0x55e5816641ef <unknown>\n#15 0x55e5816c1038 <unknown>\n#16 0x55e5816c1216 <unknown>\n#17 0x55e5816d1896 <unknown>\n#18 0x7f5744a9caa4 <unknown>\n#19 0x7f5744b29c3c <unknown>",
+  "statusTrace" : "self = <tests.contributors_page_test.TestContributorsPage.TestContributorsPageLinks object at 0x7f3d073b4e00>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"aff125550c69e664792e6eab13506b2a\")>\ncontributors_page_open = None\n\n    @allure.title(\"Verify href, status code of the 'All Team' link\")\n    def test_cnp_03_02_verify_all_team_link(self, driver, contributors_page_open):\n        page = ContributorsPage(driver)\n>       link_href = page.get_all_team_link_href()\n\ntests/contributors_page_test.py:125: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/contributors_page.py:164: in get_all_team_link_href\n    return self.get_link_href(self.locators.ALL_TEAM_LINK)\npages/base_page.py:90: in get_link_href\n    return self.driver.find_element(*locator).get_attribute(\"href\")\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:738: in find_element\n    return self.execute(Command.FIND_ELEMENT, {\"using\": by, \"value\": value})[\"value\"]\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:344: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f3d070303e0>\nresponse = {'status': 404, 'value': '{\"value\":{\"error\":\"no such element\",\"message\":\"no such element: Unable to locate element: {\\...\\\\n#17 0x55e5816d1896 \\\\u003Cunknown>\\\\n#18 0x7f5744a9caa4 \\\\u003Cunknown>\\\\n#19 0x7f5744b29c3c \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//div[contains(@class, 'mt-20')]/a\"}\nE         (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nE       Stacktrace:\nE       #0 0x55e5816d2a1a <unknown>\nE       #1 0x55e58118a390 <unknown>\nE       #2 0x55e5811dbc85 <unknown>\nE       #3 0x55e5811dbeb1 <unknown>\nE       #4 0x55e58122ad64 <unknown>\nE       #5 0x55e581201bfd <unknown>\nE       #6 0x55e58122807b <unknown>\nE       #7 0x55e5812019a3 <unknown>\nE       #8 0x55e5811cd60e <unknown>\nE       #9 0x55e5811cedd1 <unknown>\nE       #10 0x55e581698ddb <unknown>\nE       #11 0x55e58169ccbc <unknown>\nE       #12 0x55e581680392 <unknown>\nE       #13 0x55e58169d834 <unknown>\nE       #14 0x55e5816641ef <unknown>\nE       #15 0x55e5816c1038 <unknown>\nE       #16 0x55e5816c1216 <unknown>\nE       #17 0x55e5816d1896 <unknown>\nE       #18 0x7f5744a9caa4 <unknown>\nE       #19 0x7f5744b29c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: NoSuchElementException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1742864439073,
+      "stop" : 1742864439073,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1742864719850,
+      "stop" : 1742864720679,
+      "duration" : 829
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "contributors_page_open",
+    "time" : {
+      "start" : 1742864720679,
+      "stop" : 1742864723894,
+      "duration" : 3215
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://www.brainup.site/contributors",
+      "time" : {
+        "start" : 1742864720679,
+        "stop" : 1742864723894,
+        "duration" : 3215
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"aff125550c69e664792e6eab13506b2a\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//div[contains(@class, 'mt-20')]/a\"}\n  (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nStacktrace:\n#0 0x55e5816d2a1a <unknown>\n#1 0x55e58118a390 <unknown>\n#2 0x55e5811dbc85 <unknown>\n#3 0x55e5811dbeb1 <unknown>\n#4 0x55e58122ad64 <unknown>\n#5 0x55e581201bfd <unknown>\n#6 0x55e58122807b <unknown>\n#7 0x55e5812019a3 <unknown>\n#8 0x55e5811cd60e <unknown>\n#9 0x55e5811cedd1 <unknown>\n#10 0x55e581698ddb <unknown>\n#11 0x55e58169ccbc <unknown>\n#12 0x55e581680392 <unknown>\n#13 0x55e58169d834 <unknown>\n#14 0x55e5816641ef <unknown>\n#15 0x55e5816c1038 <unknown>\n#16 0x55e5816c1216 <unknown>\n#17 0x55e5816d1896 <unknown>\n#18 0x7f5744a9caa4 <unknown>\n#19 0x7f5744b29c3c <unknown>",
+    "statusTrace" : "self = <tests.contributors_page_test.TestContributorsPage.TestContributorsPageLinks object at 0x7f3d073b4e00>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"aff125550c69e664792e6eab13506b2a\")>\ncontributors_page_open = None\n\n    @allure.title(\"Verify href, status code of the 'All Team' link\")\n    def test_cnp_03_02_verify_all_team_link(self, driver, contributors_page_open):\n        page = ContributorsPage(driver)\n>       link_href = page.get_all_team_link_href()\n\ntests/contributors_page_test.py:125: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/contributors_page.py:164: in get_all_team_link_href\n    return self.get_link_href(self.locators.ALL_TEAM_LINK)\npages/base_page.py:90: in get_link_href\n    return self.driver.find_element(*locator).get_attribute(\"href\")\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:738: in find_element\n    return self.execute(Command.FIND_ELEMENT, {\"using\": by, \"value\": value})[\"value\"]\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:344: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f3d070303e0>\nresponse = {'status': 404, 'value': '{\"value\":{\"error\":\"no such element\",\"message\":\"no such element: Unable to locate element: {\\...\\\\n#17 0x55e5816d1896 \\\\u003Cunknown>\\\\n#18 0x7f5744a9caa4 \\\\u003Cunknown>\\\\n#19 0x7f5744b29c3c \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//div[contains(@class, 'mt-20')]/a\"}\nE         (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nE       Stacktrace:\nE       #0 0x55e5816d2a1a <unknown>\nE       #1 0x55e58118a390 <unknown>\nE       #2 0x55e5811dbc85 <unknown>\nE       #3 0x55e5811dbeb1 <unknown>\nE       #4 0x55e58122ad64 <unknown>\nE       #5 0x55e581201bfd <unknown>\nE       #6 0x55e58122807b <unknown>\nE       #7 0x55e5812019a3 <unknown>\nE       #8 0x55e5811cd60e <unknown>\nE       #9 0x55e5811cedd1 <unknown>\nE       #10 0x55e581698ddb <unknown>\nE       #11 0x55e58169ccbc <unknown>\nE       #12 0x55e581680392 <unknown>\nE       #13 0x55e58169d834 <unknown>\nE       #14 0x55e5816641ef <unknown>\nE       #15 0x55e5816c1038 <unknown>\nE       #16 0x55e5816c1216 <unknown>\nE       #17 0x55e5816d1896 <unknown>\nE       #18 0x7f5744a9caa4 <unknown>\nE       #19 0x7f5744b29c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: NoSuchElementException",
+    "steps" : [ {
+      "name" : "Get attribute 'href' of the 'All Team' link",
+      "time" : {
+        "start" : 1742864723894,
+        "stop" : 1742864723909,
+        "duration" : 15
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//div[contains(@class, 'mt-20')]/a\"}\n  (Session info: chrome=134.0.6998.88); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nStacktrace:\n#0 0x55e5816d2a1a <unknown>\n#1 0x55e58118a390 <unknown>\n#2 0x55e5811dbc85 <unknown>\n#3 0x55e5811dbeb1 <unknown>\n#4 0x55e58122ad64 <unknown>\n#5 0x55e581201bfd <unknown>\n#6 0x55e58122807b <unknown>\n#7 0x55e5812019a3 <unknown>\n#8 0x55e5811cd60e <unknown>\n#9 0x55e5811cedd1 <unknown>\n#10 0x55e581698ddb <unknown>\n#11 0x55e58169ccbc <unknown>\n#12 0x55e581680392 <unknown>\n#13 0x55e58169d834 <unknown>\n#14 0x55e5816641ef <unknown>\n#15 0x55e5816c1038 <unknown>\n#16 0x55e5816c1216 <unknown>\n#17 0x55e5816d1896 <unknown>\n#18 0x7f5744a9caa4 <unknown>\n#19 0x7f5744b29c3c <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/contributors_page.py\", line 164, in get_all_team_link_href\n    return self.get_link_href(self.locators.ALL_TEAM_LINK)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/base_page.py\", line 90, in get_link_href\n    return self.driver.find_element(*locator).get_attribute(\"href\")\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 738, in find_element\n    return self.execute(Command.FIND_ELEMENT, {\"using\": by, \"value\": value})[\"value\"]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 344, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "9751c21d7dd8e08e",
+      "name" : "Screenshot 2025-03-25 01:05:24.050032",
+      "source" : "9751c21d7dd8e08e.png",
+      "type" : "image/png",
+      "size" : 7498
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1742864724051,
+      "stop" : 1742864724110,
+      "duration" : 59
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "The Contributors Page"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "contributors_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestContributorsPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1988-652"
+  }, {
+    "name" : "thread",
+    "value" : "2445-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.contributors_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 55,
+        "unknown" : 0,
+        "total" : 56
+      },
+      "items" : [ {
+        "uid" : "68dc0a39c369ebc9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/518//#testresult/68dc0a39c369ebc9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742806347534,
+          "stop" : 1742806348099,
+          "duration" : 565
+        }
+      }, {
+        "uid" : "5b39e8d2322b1b77",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/313//#testresult/5b39e8d2322b1b77",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742778250286,
+          "stop" : 1742778250855,
+          "duration" : 569
+        }
+      }, {
+        "uid" : "e56acdb00fdcb67e",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/517//#testresult/e56acdb00fdcb67e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742759100747,
+          "stop" : 1742759101572,
+          "duration" : 825
+        }
+      }, {
+        "uid" : "a225b07de5b4df15",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/312//#testresult/a225b07de5b4df15",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742692018837,
+          "stop" : 1742692019437,
+          "duration" : 600
+        }
+      }, {
+        "uid" : "34e8adb1999e1f49",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/311//#testresult/34e8adb1999e1f49",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742605221957,
+          "stop" : 1742605222599,
+          "duration" : 642
+        }
+      }, {
+        "uid" : "bbf4c419a6f73c59",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/516//#testresult/bbf4c419a6f73c59",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742592609465,
+          "stop" : 1742592610105,
+          "duration" : 640
+        }
+      }, {
+        "uid" : "1c274d03e35c960c",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/515//#testresult/1c274d03e35c960c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742581712336,
+          "stop" : 1742581712972,
+          "duration" : 636
+        }
+      }, {
+        "uid" : "d837ec4a27d42f88",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/310//#testresult/d837ec4a27d42f88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742518973182,
+          "stop" : 1742518974006,
+          "duration" : 824
+        }
+      }, {
+        "uid" : "e3541979ee5ef3cb",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/514//#testresult/e3541979ee5ef3cb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742485979625,
+          "stop" : 1742485980299,
+          "duration" : 674
+        }
+      }, {
+        "uid" : "8b6cf0e2ce0289c1",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/309//#testresult/8b6cf0e2ce0289c1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742432453357,
+          "stop" : 1742432453906,
+          "duration" : 549
+        }
+      }, {
+        "uid" : "5a891227b7d828dd",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/513//#testresult/5a891227b7d828dd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742416223614,
+          "stop" : 1742416224178,
+          "duration" : 564
+        }
+      }, {
+        "uid" : "f5dafa46c6afc5f7",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/308//#testresult/f5dafa46c6afc5f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742346117425,
+          "stop" : 1742346117978,
+          "duration" : 553
+        }
+      }, {
+        "uid" : "7fbe831a25e62c50",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/512//#testresult/7fbe831a25e62c50",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742280038449,
+          "stop" : 1742280039124,
+          "duration" : 675
+        }
+      }, {
+        "uid" : "7ce470f194fea1cf",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/307//#testresult/7ce470f194fea1cf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742259676504,
+          "stop" : 1742259677082,
+          "duration" : 578
+        }
+      }, {
+        "uid" : "845d0a55787cea00",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/511//#testresult/845d0a55787cea00",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742230582598,
+          "stop" : 1742230583330,
+          "duration" : 732
+        }
+      }, {
+        "uid" : "34270624d3e557bf",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/306//#testresult/34270624d3e557bf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742173405646,
+          "stop" : 1742173406472,
+          "duration" : 826
+        }
+      }, {
+        "uid" : "a2147a3ab819a08a",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/510//#testresult/a2147a3ab819a08a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742154973209,
+          "stop" : 1742154973936,
+          "duration" : 727
+        }
+      }, {
+        "uid" : "d8e3b7dc0b090c9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/305//#testresult/d8e3b7dc0b090c9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742087144231,
+          "stop" : 1742087144827,
+          "duration" : 596
+        }
+      }, {
+        "uid" : "d71343bb239ef1d7",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/509//#testresult/d71343bb239ef1d7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742071568168,
+          "stop" : 1742071568998,
+          "duration" : 830
+        }
+      }, {
+        "uid" : "bcb409b843dbafc8",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/304//#testresult/bcb409b843dbafc8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1742000395992,
+          "stop" : 1742000396646,
+          "duration" : 654
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "adc5acfca3d16054.json",
+  "parameterValues" : [ ]
+}
