@@ -1,5 +1,6 @@
 """Methods for verifying web elements on the 'Exercises "Similar phrases"' page on the 'ru' local"""
 import allure
+import requests
 from pages.base_page import BasePage
 from locators.exercises_ru_similar_phrases_page_locators import ExercisesRuSimilarPhrasesPageLocators
 
@@ -172,3 +173,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
         breadcrumbs_links_href = [element.get_attribute("href") for element in self.get_list1_of_breadcrumbs_links()]
         print(len(breadcrumbs_links_href), *breadcrumbs_links_href, sep='\n')
         return breadcrumbs_links_href
+
+    @allure.step("Get status code of links in breadcrumbs")
+    def get_link_status_codes_in_breadcrumbs(self):
+        return [requests.head(link_href).status_code for link_href in self.get_breadcrumbs_links_href()]
