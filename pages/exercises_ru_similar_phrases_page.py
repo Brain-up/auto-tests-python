@@ -177,3 +177,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Get status code of links in breadcrumbs")
     def get_link_status_codes_in_breadcrumbs(self):
         return [requests.head(link_href).status_code for link_href in self.get_breadcrumbs_links_href()]
+
+    @allure.step("Check if group links are clickable")
+    def check_group_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list2_of_group_links())
