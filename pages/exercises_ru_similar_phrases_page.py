@@ -181,3 +181,9 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Check if group links are clickable")
     def check_group_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list2_of_group_links())
+
+    @allure.step("Get attribute 'title' of group links")
+    def get_group_link_titles(self):
+        group_link_titles = [element.get_attribute("title") for element in self.get_list2_of_group_links()]
+        print(len(group_link_titles), *group_link_titles, sep='\n')
+        return group_link_titles

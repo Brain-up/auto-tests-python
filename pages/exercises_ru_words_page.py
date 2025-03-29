@@ -271,7 +271,7 @@ class ExercisesRuWordsPage(BasePage):
     @allure.step("Click on subgroup link 'Family' and thereby open corresponding web pages in the same tab")
     def click_on_subgroup_link_family(self):
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_1).click()
-        time.sleep(1)
+        time.sleep(2)
         opened_page = self.get_current_tab_url()
         self.driver.back()
         time.sleep(1)
