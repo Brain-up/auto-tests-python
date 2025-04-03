@@ -80,7 +80,7 @@ class TestExercisesRuSimilarPhrasesPage:
             page = ExercisesRuSimilarPhrasesPage(driver)
             breadcrumbs_text = page.get_value_of_breadcrumbs()
             assert breadcrumbs_text, "The breadcrumbs value on the page are empty"
-            assert all(text in ExRuSimPhrPaData.breadcrumbs for text in breadcrumbs_text), \
+            assert all(text in ExRuSimPhrPaData.breadcrumbs_text for text in breadcrumbs_text), \
                 "Text in breadcrumbs mismatches valid values"
 
         @allure.title("Verify text in group links on the page")
@@ -109,7 +109,7 @@ class TestExercisesRuSimilarPhrasesPage:
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
             assert all(href in ExRuSimPhrPaData.breadcrumbs_urls for href in breadcrumbs_links_href), \
                 "Attributes 'href' of links in breadcrumbs mismatch valid values"
-            assert all(element == ExRuSimPhrPaData.links_status_code for element in breadcrumbs_link_status_codes), \
+            assert all(element in ExRuSimPhrPaData.links_status_code for element in breadcrumbs_link_status_codes), \
                 "Status codes of links in breadcrumbs mismatch valid values"
 
         @allure.title("Verify clickability, titles, attributes of group links on the page")
