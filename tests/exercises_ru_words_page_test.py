@@ -80,7 +80,7 @@ class TestExercisesRuWordsPage:
             page = ExercisesRuWordsPage(driver)
             breadcrumbs_text = page.get_value_of_breadcrumbs()
             assert breadcrumbs_text, "The breadcrumbs value on the page are empty"
-            assert all(text in ExRuWoPaData.breadcrumbs for text in breadcrumbs_text), \
+            assert all(text in ExRuWoPaData.breadcrumbs_text for text in breadcrumbs_text), \
                 "Text in breadcrumbs mismatches valid values"
 
         @allure.title("Verify text in group links on the page")
@@ -109,7 +109,7 @@ class TestExercisesRuWordsPage:
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
             assert all(href in ExRuWoPaData.breadcrumbs_urls for href in breadcrumbs_links_href), \
                 "Attributes 'href' of links in breadcrumbs mismatch valid values"
-            assert all(element == ExRuWoPaData.links_status_code for element in breadcrumbs_link_status_codes), \
+            assert all(element in ExRuWoPaData.links_status_code for element in breadcrumbs_link_status_codes), \
                 "Status codes of links in breadcrumbs mismatch valid values"
 
         @allure.title("Verify clickability, titles, attributes of group links on the page")
@@ -139,7 +139,7 @@ class TestExercisesRuWordsPage:
                 "Subgroup link titles mismatch valid values"
             assert all(href in ExRuWoPaData.subgroup_link_urls for href in subgroup_links_href), \
                 "Attributes 'href' of subgroup links mismatch valid values"
-            assert all(element == ExRuWoPaData.links_status_code for element in subgroup_links_status_codes), \
+            assert all(element in ExRuWoPaData.links_status_code for element in subgroup_links_status_codes), \
                 "Status codes of subgroup links mismatch valid values"
 
         @allure.title("Verify if breadcrumbs link1 leads to the correct page after clicking")
