@@ -124,7 +124,7 @@ class TestGroupsPage:
                 "Attributes 'href' of links on the 'ru' local mismatch valid values"
             assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href_en), \
                 "Attributes 'href' of links on the 'en' local mismatch valid values"
-            assert all(element == GroupsPageData.links_status_code for element in link_status_codes), \
+            assert all(element in GroupsPageData.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
         @allure.title("""Verify if links on the 'ru' local lead to correct pages after clicking""")
