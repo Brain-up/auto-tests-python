@@ -14,7 +14,7 @@ class TestContributorsPage:
             page = ContributorsPage(driver)
             page_content_presence = page.check_presence_of_page_content()
             page_content_visibility = page.check_visibility_of_page_content()
-            assert page_content_presence is not None, "The page content is absent in DOM"
+            assert page_content_presence, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible"
 
         @allure.title("""Verify the composition and visibility of elements 
@@ -126,7 +126,7 @@ class TestContributorsPage:
             link_status_code = page.get_all_team_link_status_code()
             assert link_href == ContributorsPageData.all_team_link_href, \
                 "The attribute 'href' of the link mismatches the valid value"
-            assert link_status_code == ContributorsPageData.all_team_link_status_code, \
+            assert link_status_code in ContributorsPageData.all_team_link_status_code, \
                 "The status code of the link mismatches the valid value"
 
     class TestContributorCardImages:

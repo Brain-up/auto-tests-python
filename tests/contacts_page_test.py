@@ -12,7 +12,7 @@ class TestContactsPage:
             page = ContactsPage(driver)
             page_content_presence = page.check_presence_of_page_content()
             page_content_visibility = page.check_visibility_of_page_content()
-            assert page_content_presence is not None, "The page content is absent in DOM"
+            assert page_content_presence, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible"
 
         @allure.title("Verify the composition and visibility of elements on the 1st level of nesting in the section 1")
