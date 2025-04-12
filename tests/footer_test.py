@@ -13,7 +13,7 @@ class TestFooter:
             page = FooterPage(driver)
             footer_presence = page.check_footer_presence()
             footer_visibility = page.check_footer_visibility()
-            assert footer_presence is not None, "The Footer is absent in DOM"
+            assert footer_presence, "The Footer is absent in DOM"
             assert footer_visibility, "The Footer is invisible"
 
         @allure.title("Verify composition and visibility of elements on the 1st-7th levels of nesting in the Footer")
@@ -92,18 +92,18 @@ class TestFooter:
             assert contact_us_link_title, "The link title value is empty"
             assert contact_us_link_title in FooterData.link_titles, "The link title mismatches the valid value"
             assert links_href, "Links href are empty"
-            assert all(link_href in FooterData.links_href for link_href in links_href), \
+            assert all(element in FooterData.links_href for element in links_href), \
                 "Attributes 'href' of links mismatch valid values"
             assert link_prefix_and_subject, \
                 "The attribute 'href' of the 'Contact us' link does not contain the proper prefix and/or subject"
-            assert all(status_code in FooterData.link_status_codes for status_code in link_status_codes), \
+            assert all(element in FooterData.link_status_codes for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
         @allure.title("Verify that links in the Footer lead to correct pages after clicking")
         def test_fp_03_02_verify_links_lead_to_the_correct_pages(self, driver, main_page_open):
             page = FooterPage(driver)
             new_tabs_urls = page.click_on_links()
-            assert all(tab_url in FooterData.pages_urls for tab_url in new_tabs_urls), \
+            assert all(element in FooterData.pages_urls for element in new_tabs_urls), \
                 "Links in the Footer lead to incorrect pages after clicking or did not loaded during the allotted time"
 
         @allure.title("Verify that the 'Contact us' link in the Footer calls an email client")
@@ -119,10 +119,10 @@ class TestFooter:
             images_src = page.get_images_src()
             images_alt = page.get_images_alt()
             assert images_src, "The 'src' attribute value of images is empty"
-            assert all(image_src in FooterData.images_src for image_src in images_src), \
+            assert all(element in FooterData.images_src for element in images_src), \
                 "The 'src' attribute of some images mismatches valid values"
             assert images_alt, "The 'alt' attribute value of some images is empty"
-            assert all(image_alt in FooterData.images_alt for image_alt in images_alt), \
+            assert all(element in FooterData.images_alt for element in images_alt), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values"
 
         @allure.title("Verify sizes of images in links in the Footer")
