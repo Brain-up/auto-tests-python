@@ -14,7 +14,7 @@ class TestHeaderPage:
                 page = HeaderPage(driver)
                 page_content_presence = page.check_header_presence()
                 page_content_visibility = page.check_header_visibility()
-                assert page_content_presence is not None, "The Header is absent in DOM"
+                assert page_content_presence, "The Header is absent in DOM"
                 assert page_content_visibility, "The Header is invisible for an unauthorized user"
 
             @allure.title("""Verify composition, visibility of elements on the 1st-6th levels of nesting in the Header
@@ -90,13 +90,13 @@ class TestHeaderPage:
                 links_in_more_text = page.get_text_of_links_in_more()
                 buttons_text = page.get_text_in_buttons_unauth()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
-                assert all(link_text in HeaderData.links_text_unauth for link_text in direct_links_text), \
+                assert all(element in HeaderData.links_text_unauth for element in direct_links_text), \
                     "Text in links in section 2 mismatches valid values"
-                assert all(link_text in HeaderData.links_text_unauth for link_text in links_in_more_text), \
+                assert all(element in HeaderData.links_text_unauth for element in links_in_more_text), \
                     "Text in links in section 3 mismatches valid values"
-                assert all(button_text in HeaderData.buttons_text for button_text in buttons_text), \
+                assert all(element in HeaderData.buttons_text for element in buttons_text), \
                     "Text in buttons mismatches valid values"
-                assert all(button_text in HeaderData.ru_en_buttons_text for button_text in ru_en_buttons_text), \
+                assert all(element in HeaderData.ru_en_buttons_text for element in ru_en_buttons_text), \
                     "Text in 'ru-en' buttons mismatches valid values"
 
         class TestUnauthHeaderPageLinks:
@@ -111,9 +111,9 @@ class TestHeaderPage:
                 assert tg_link_title, "The link title value is empty"
                 assert tg_link_title in HeaderData.link_titles, "The link title mismatches the valid value"
                 assert links_href, "Links href are empty"
-                assert all(link_href in HeaderData.links_href_unauth for link_href in links_href), \
+                assert all(element in HeaderData.links_href_unauth for element in links_href), \
                     "Attributes 'href' of links mismatch valid values"
-                assert all(status_code == HeaderData.link_status_codes for status_code in link_status_codes), \
+                assert all(element in HeaderData.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
             @allure.title("""Verify if internal links in the Header for an unauthorized user 
@@ -123,7 +123,7 @@ class TestHeaderPage:
                 internal_links_in_more = page.get_list_of_internal_links_in_more()
                 opened_pages = page.click_on_internal_links_in_header_unauth()
                 assert internal_links_in_more, "Internal links are not collected in the list"
-                assert all(page in HeaderData.pages_urls_unauth for page in opened_pages), \
+                assert all(element in HeaderData.pages_urls_unauth for element in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
 
             @allure.title("""Verify if external links in the Header for an unauthorized user 
@@ -133,7 +133,7 @@ class TestHeaderPage:
                 external_links_in_more = page.get_list_of_external_links_in_more()
                 opened_pages = page.click_on_external_links_in_header()
                 assert external_links_in_more, "External links are not collected in the list"
-                assert all(page in HeaderData.pages_urls_unauth for page in opened_pages), \
+                assert all(element in HeaderData.pages_urls_unauth for element in opened_pages), \
                     "Some of external links lead to incorrect pages after clicking"
 
             @allure.title("""Verify that the 'Logo' link on the Start Unauthorized Page 
@@ -199,7 +199,7 @@ class TestHeaderPage:
                 page = HeaderPage(driver)
                 page_content_presence = page.check_header_presence()
                 page_content_visibility = page.check_header_visibility()
-                assert page_content_presence is not None, "The Header is absent in DOM"
+                assert page_content_presence, "The Header is absent in DOM"
                 assert page_content_visibility, "The Header is invisible for an authorized user"
 
             @allure.title("""Verify composition, visibility of elements on the 1st-6th levels of nesting in the Header
@@ -279,14 +279,14 @@ class TestHeaderPage:
                 links_in_more_text = page.get_text_of_links_in_more()
                 buttons_text = page.get_text_in_buttons_auth()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
-                assert all(link_text in HeaderData.links_text_auth for link_text in direct_links_text[:4]), \
+                assert all(element in HeaderData.links_text_auth for element in direct_links_text[:4]), \
                     "Text in links in section 2 mismatches valid values"
                 assert direct_links_text[4], "Text in the 'Profile' link is absent"
-                assert all(link_text in HeaderData.links_text_auth for link_text in links_in_more_text), \
+                assert all(element in HeaderData.links_text_auth for element in links_in_more_text), \
                     "Text in links in section 3 mismatches valid values"
-                assert all(button_text in HeaderData.buttons_text for button_text in buttons_text), \
+                assert all(element in HeaderData.buttons_text for element in buttons_text), \
                     "Text in buttons mismatches valid values"
-                assert all(button_text in HeaderData.ru_en_buttons_text for button_text in ru_en_buttons_text), \
+                assert all(element in HeaderData.ru_en_buttons_text for element in ru_en_buttons_text), \
                     "Text in 'ru-en' buttons mismatches valid values"
 
             @allure.title("Verify presence, visibility of the user name in the Header for an authorized user")
@@ -306,9 +306,9 @@ class TestHeaderPage:
                 link_status_codes = page.get_links_status_codes_auth()
                 assert links_clickability, "Links are unclickable"
                 assert links_href, "Links href are empty"
-                assert all(link_href in HeaderData.links_href_auth for link_href in links_href), \
+                assert all(element in HeaderData.links_href_auth for element in links_href), \
                     "Attributes 'href' of links mismatch valid values"
-                assert all(status_code == HeaderData.link_status_codes for status_code in link_status_codes), \
+                assert all(element in HeaderData.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
             @allure.title("""Verify if internal links in the Header for an authorized user 
@@ -318,7 +318,7 @@ class TestHeaderPage:
                 internal_links_in_more = page.get_list_of_internal_links_in_more()
                 opened_pages = page.click_on_internal_links_in_header_auth()
                 assert internal_links_in_more, "Internal links are not collected in the list"
-                assert all(page in HeaderData.pages_urls_auth for page in opened_pages), \
+                assert all(element in HeaderData.pages_urls_auth for element in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
 
             @allure.title("""Verify if external links in the Header for an authorized user 
@@ -328,7 +328,7 @@ class TestHeaderPage:
                 external_links_in_more = page.get_list_of_external_links_in_more()
                 opened_pages = page.click_on_external_links_in_header()
                 assert external_links_in_more, "External links are not collected in the list"
-                assert all(page in HeaderData.pages_urls_auth for page in opened_pages), \
+                assert all(element in HeaderData.pages_urls_auth for element in opened_pages), \
                     "Some of external links lead to incorrect pages after clicking"
 
             @allure.title("""Verify that the 'Logo' link on the Start Authorized Page 
@@ -402,7 +402,7 @@ class TestHeaderPage:
                 assert icons_presence, "Icons in the Header are absent"
                 assert icons_visibility, "Icons in the Header are invisible"
                 assert icons_xmlns, "The 'xmlns' attribute value of icons in the Header are empty"
-                assert all(icon_xmlns == HeaderData.icons_xmlns for icon_xmlns in icons_xmlns), \
+                assert all(element in HeaderData.icons_xmlns for element in icons_xmlns), \
                     "The 'xmlns' attribute value of some icons is empty or non-accurate"
 
             @allure.title("""Verify presence, visibility and attributes of the profile avatar in the Header 
