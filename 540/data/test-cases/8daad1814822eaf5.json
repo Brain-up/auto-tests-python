@@ -1,0 +1,475 @@
+{
+  "uid" : "8daad1814822eaf5",
+  "name" : "Change the password by receiving an email link",
+  "fullName" : "tests.profile_page_test.TestProfilePage#test_change_password",
+  "historyId" : "9957e716460bffae2f2d96bf28fa1581",
+  "time" : {
+    "start" : 1744719915094,
+    "stop" : 1744721145197,
+    "duration" : 1230103
+  },
+  "status" : "broken",
+  "statusMessage" : "ConnectionResetError: [Errno 104] Connection reset by peer",
+  "statusTrace" : "cls = <class 'ssl.SSLSocket'>\nsock = <socket.socket [closed] fd=-1, family=2, type=1, proto=6>\nserver_side = False, do_handshake_on_connect = True, suppress_ragged_eofs = True\nserver_hostname = 'imap.mail.ru'\ncontext = <ssl.SSLContext object at 0x7f87b34eca50>, session = None\n\n    @classmethod\n    def _create(cls, sock, server_side=False, do_handshake_on_connect=True,\n                suppress_ragged_eofs=True, server_hostname=None,\n                context=None, session=None):\n        if sock.getsockopt(SOL_SOCKET, SO_TYPE) != SOCK_STREAM:\n            raise NotImplementedError(\"only stream sockets are supported\")\n        if server_side:\n            if server_hostname:\n                raise ValueError(\"server_hostname can only be specified \"\n                                 \"in client mode\")\n            if session is not None:\n                raise ValueError(\"session can only be specified in \"\n                                 \"client mode\")\n        if context.check_hostname and not server_hostname:\n            raise ValueError(\"check_hostname requires server_hostname\")\n    \n        sock_timeout = sock.gettimeout()\n        kwargs = dict(\n            family=sock.family, type=sock.type, proto=sock.proto,\n            fileno=sock.fileno()\n        )\n        self = cls.__new__(cls, **kwargs)\n        super(SSLSocket, self).__init__(**kwargs)\n        sock.detach()\n        # Now SSLSocket is responsible for closing the file descriptor.\n        try:\n            self._context = context\n            self._session = session\n            self._closed = False\n            self._sslobj = None\n            self.server_side = server_side\n            self.server_hostname = context._encode_hostname(server_hostname)\n            self.do_handshake_on_connect = do_handshake_on_connect\n            self.suppress_ragged_eofs = suppress_ragged_eofs\n    \n            # See if we are connected\n            try:\n>               self.getpeername()\nE               OSError: [Errno 107] Transport endpoint is not connected\n\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py:992: OSError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.profile_page_test.TestProfilePage object at 0x7f87b35190d0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"a6e32de8ede1b3d84b80bff11a3a5e15\")>\nmain_page_open = None\n\n    @allure.title(\"Change the password by receiving an email link\")\n    def test_change_password(self, driver, main_page_open):\n        page = ProfilePage(driver)\n        page.open_login_page()\n        page.authorise_user()\n        page.loader_checking()\n        page.go_to_profile_page()\n        page.click_change_password_link()\n        page.field_recovery_email()\n        page.click_send_recovery_email_link()\n>       link = page.get_link_change_password_by_email()\n\ntests/profile_page_test.py:21: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/profile_page.py:24: in get_link_change_password_by_email\n    mail = imaplib.IMAP4_SSL('imap.mail.ru')\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:1315: in __init__\n    IMAP4.__init__(self, host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:205: in __init__\n    self.open(host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:1328: in open\n    IMAP4.open(self, host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:315: in open\n    self.sock = self._create_socket(timeout)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:1319: in _create_socket\n    return self.ssl_context.wrap_socket(sock,\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py:455: in wrap_socket\n    return self.sslsocket_class._create(\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py:1004: in _create\n    notconn_pre_handshake_data = self.recv(1)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=6>, buflen = 1\nflags = 0\n\n    def recv(self, buflen=1024, flags=0):\n        self._checkClosed()\n        if self._sslobj is not None:\n            if flags != 0:\n                raise ValueError(\n                    \"non-zero flags not allowed in calls to recv() on %s\" %\n                    self.__class__)\n            return self.read(buflen)\n        else:\n>           return super().recv(buflen, flags)\nE           ConnectionResetError: [Errno 104] Connection reset by peer\n\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py:1234: ConnectionResetError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1744719911193,
+      "stop" : 1744719912026,
+      "duration" : 833
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1744718773600,
+      "stop" : 1744718773600,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1744719912026,
+      "stop" : 1744719915094,
+      "duration" : 3068
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Open page: https://www.brainup.site/",
+      "time" : {
+        "start" : 1744719912026,
+        "stop" : 1744719915094,
+        "duration" : 3068
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"a6e32de8ede1b3d84b80bff11a3a5e15\")>"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "ConnectionResetError: [Errno 104] Connection reset by peer",
+    "statusTrace" : "cls = <class 'ssl.SSLSocket'>\nsock = <socket.socket [closed] fd=-1, family=2, type=1, proto=6>\nserver_side = False, do_handshake_on_connect = True, suppress_ragged_eofs = True\nserver_hostname = 'imap.mail.ru'\ncontext = <ssl.SSLContext object at 0x7f87b34eca50>, session = None\n\n    @classmethod\n    def _create(cls, sock, server_side=False, do_handshake_on_connect=True,\n                suppress_ragged_eofs=True, server_hostname=None,\n                context=None, session=None):\n        if sock.getsockopt(SOL_SOCKET, SO_TYPE) != SOCK_STREAM:\n            raise NotImplementedError(\"only stream sockets are supported\")\n        if server_side:\n            if server_hostname:\n                raise ValueError(\"server_hostname can only be specified \"\n                                 \"in client mode\")\n            if session is not None:\n                raise ValueError(\"session can only be specified in \"\n                                 \"client mode\")\n        if context.check_hostname and not server_hostname:\n            raise ValueError(\"check_hostname requires server_hostname\")\n    \n        sock_timeout = sock.gettimeout()\n        kwargs = dict(\n            family=sock.family, type=sock.type, proto=sock.proto,\n            fileno=sock.fileno()\n        )\n        self = cls.__new__(cls, **kwargs)\n        super(SSLSocket, self).__init__(**kwargs)\n        sock.detach()\n        # Now SSLSocket is responsible for closing the file descriptor.\n        try:\n            self._context = context\n            self._session = session\n            self._closed = False\n            self._sslobj = None\n            self.server_side = server_side\n            self.server_hostname = context._encode_hostname(server_hostname)\n            self.do_handshake_on_connect = do_handshake_on_connect\n            self.suppress_ragged_eofs = suppress_ragged_eofs\n    \n            # See if we are connected\n            try:\n>               self.getpeername()\nE               OSError: [Errno 107] Transport endpoint is not connected\n\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py:992: OSError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.profile_page_test.TestProfilePage object at 0x7f87b35190d0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"a6e32de8ede1b3d84b80bff11a3a5e15\")>\nmain_page_open = None\n\n    @allure.title(\"Change the password by receiving an email link\")\n    def test_change_password(self, driver, main_page_open):\n        page = ProfilePage(driver)\n        page.open_login_page()\n        page.authorise_user()\n        page.loader_checking()\n        page.go_to_profile_page()\n        page.click_change_password_link()\n        page.field_recovery_email()\n        page.click_send_recovery_email_link()\n>       link = page.get_link_change_password_by_email()\n\ntests/profile_page_test.py:21: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/profile_page.py:24: in get_link_change_password_by_email\n    mail = imaplib.IMAP4_SSL('imap.mail.ru')\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:1315: in __init__\n    IMAP4.__init__(self, host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:205: in __init__\n    self.open(host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:1328: in open\n    IMAP4.open(self, host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:315: in open\n    self.sock = self._create_socket(timeout)\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py:1319: in _create_socket\n    return self.ssl_context.wrap_socket(sock,\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py:455: in wrap_socket\n    return self.sslsocket_class._create(\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py:1004: in _create\n    notconn_pre_handshake_data = self.recv(1)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=6>, buflen = 1\nflags = 0\n\n    def recv(self, buflen=1024, flags=0):\n        self._checkClosed()\n        if self._sslobj is not None:\n            if flags != 0:\n                raise ValueError(\n                    \"non-zero flags not allowed in calls to recv() on %s\" %\n                    self.__class__)\n            return self.read(buflen)\n        else:\n>           return super().recv(buflen, flags)\nE           ConnectionResetError: [Errno 104] Connection reset by peer\n\n/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py:1234: ConnectionResetError",
+    "steps" : [ {
+      "name" : "Open login page",
+      "time" : {
+        "start" : 1744719915094,
+        "stop" : 1744719915241,
+        "duration" : 147
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Authorise user",
+      "time" : {
+        "start" : 1744719915242,
+        "stop" : 1744719916244,
+        "duration" : 1002
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Loader checking",
+      "time" : {
+        "start" : 1744719916244,
+        "stop" : 1744719918322,
+        "duration" : 2078
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Go to the Profile page",
+      "time" : {
+        "start" : 1744719918322,
+        "stop" : 1744719918398,
+        "duration" : 76
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Click the button 'Change password'",
+      "time" : {
+        "start" : 1744719918399,
+        "stop" : 1744719918997,
+        "duration" : 598
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Clear field the email and enter data",
+      "time" : {
+        "start" : 1744719918997,
+        "stop" : 1744719919172,
+        "duration" : 175
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Click the button 'Send recovery email'",
+      "time" : {
+        "start" : 1744719919172,
+        "stop" : 1744719919254,
+        "duration" : 82
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get a link to change the password by email",
+      "time" : {
+        "start" : 1744719919254,
+        "stop" : 1744721145178,
+        "duration" : 1225924
+      },
+      "status" : "broken",
+      "statusMessage" : "ConnectionResetError: [Errno 104] Connection reset by peer\n",
+      "statusTrace" : "  File \"/home/runner/work/auto-tests-python/auto-tests-python/pages/profile_page.py\", line 24, in get_link_change_password_by_email\n    mail = imaplib.IMAP4_SSL('imap.mail.ru')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py\", line 1315, in __init__\n    IMAP4.__init__(self, host, port, timeout)\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py\", line 205, in __init__\n    self.open(host, port, timeout)\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py\", line 1328, in open\n    IMAP4.open(self, host, port, timeout)\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py\", line 315, in open\n    self.sock = self._create_socket(timeout)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/imaplib.py\", line 1319, in _create_socket\n    return self.ssl_context.wrap_socket(sock,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py\", line 455, in wrap_socket\n    return self.sslsocket_class._create(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py\", line 1004, in _create\n    notconn_pre_handshake_data = self.recv(1)\n                                 ^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.9/x64/lib/python3.12/ssl.py\", line 1234, in recv\n    return super().recv(buflen, flags)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "6fd06904a9071b9a",
+      "name" : "Screenshot 2025-04-15 12:45:45.409540",
+      "source" : "6fd06904a9071b9a.png",
+      "type" : "image/png",
+      "size" : 116068
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 8,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1744721145410,
+      "stop" : 1744721145496,
+      "duration" : 86
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Test Profile Page"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "profile_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestProfilePage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1043-919"
+  }, {
+    "name" : "thread",
+    "value" : "2498-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.profile_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 94,
+        "unknown" : 0,
+        "total" : 98
+      },
+      "items" : [ {
+        "uid" : "cec34b745208b11f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/335//#testresult/cec34b745208b11f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744680304121,
+          "stop" : 1744680332072,
+          "duration" : 27951
+        }
+      }, {
+        "uid" : "93b9340747998d95",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/539//#testresult/93b9340747998d95",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744664691393,
+          "stop" : 1744664700384,
+          "duration" : 8991
+        }
+      }, {
+        "uid" : "8b0000d2746cf344",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/334//#testresult/8b0000d2746cf344",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744593816173,
+          "stop" : 1744593842612,
+          "duration" : 26439
+        }
+      }, {
+        "uid" : "505c38d3bcb1f85b",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/333//#testresult/505c38d3bcb1f85b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744512523383,
+          "stop" : 1744512532000,
+          "duration" : 8617
+        }
+      }, {
+        "uid" : "3a6ae4bdf244eff2",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/537//#testresult/3a6ae4bdf244eff2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744486765007,
+          "stop" : 1744486791132,
+          "duration" : 26125
+        }
+      }, {
+        "uid" : "a8425bf255d44257",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/332//#testresult/a8425bf255d44257",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744420765008,
+          "stop" : 1744420773706,
+          "duration" : 8698
+        }
+      }, {
+        "uid" : "d793fafe9d49f766",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/536//#testresult/d793fafe9d49f766",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744397822372,
+          "stop" : 1744397849090,
+          "duration" : 26718
+        }
+      }, {
+        "uid" : "3e2c6388ec7301a7",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/331//#testresult/3e2c6388ec7301a7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744334287440,
+          "stop" : 1744334312680,
+          "duration" : 25240
+        }
+      }, {
+        "uid" : "ba18a10c0d15d01b",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/535//#testresult/ba18a10c0d15d01b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744307823665,
+          "stop" : 1744307849831,
+          "duration" : 26166
+        }
+      }, {
+        "uid" : "5fa6ee55768c7236",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/330//#testresult/5fa6ee55768c7236",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744247878019,
+          "stop" : 1744247886861,
+          "duration" : 8842
+        }
+      }, {
+        "uid" : "9cd456c20c9699d2",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/534//#testresult/9cd456c20c9699d2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744198575331,
+          "stop" : 1744198585499,
+          "duration" : 10168
+        }
+      }, {
+        "uid" : "1c53168c72efd150",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/329//#testresult/1c53168c72efd150",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744161611176,
+          "stop" : 1744161639287,
+          "duration" : 28111
+        }
+      }, {
+        "uid" : "f173c9386881f26e",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/533//#testresult/f173c9386881f26e",
+        "status" : "broken",
+        "statusDetails" : "imaplib.IMAP4.abort: command: LOGIN => socket error: EOF",
+        "time" : {
+          "start" : 1744139649883,
+          "stop" : 1744148144630,
+          "duration" : 8494747
+        }
+      }, {
+        "uid" : "7bc833f63ea5e3ff",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/328//#testresult/7bc833f63ea5e3ff",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744075029285,
+          "stop" : 1744075037993,
+          "duration" : 8708
+        }
+      }, {
+        "uid" : "9f1fa6c36f2afc4f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/532//#testresult/9f1fa6c36f2afc4f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1744021673207,
+          "stop" : 1744021702078,
+          "duration" : 28871
+        }
+      }, {
+        "uid" : "b381041ed40722d9",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/327//#testresult/b381041ed40722d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1743988975940,
+          "stop" : 1743989003763,
+          "duration" : 27823
+        }
+      }, {
+        "uid" : "3378a43be4e9356f",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/531//#testresult/3378a43be4e9356f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1743970193678,
+          "stop" : 1743970219662,
+          "duration" : 25984
+        }
+      }, {
+        "uid" : "f6ef3d70d25f88c8",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/326//#testresult/f6ef3d70d25f88c8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1743902497440,
+          "stop" : 1743902506170,
+          "duration" : 8730
+        }
+      }, {
+        "uid" : "b1bf224815e38388",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/530//#testresult/b1bf224815e38388",
+        "status" : "passed",
+        "time" : {
+          "start" : 1743844696405,
+          "stop" : 1743844707199,
+          "duration" : 10794
+        }
+      }, {
+        "uid" : "4b84596ae8cee7d6",
+        "reportUrl" : "https://Brain-up.github.io/auto-tests-python/325//#testresult/4b84596ae8cee7d6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1743815771838,
+          "stop" : 1743815780526,
+          "duration" : 8688
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "8daad1814822eaf5.json",
+  "parameterValues" : [ ]
+}
