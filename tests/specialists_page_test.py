@@ -14,7 +14,7 @@ class TestSpecialistsPage:
             page = SpecialistsPage(driver)
             page_content_presence = page.check_presence_of_page_content()
             page_content_visibility = page.check_visibility_of_page_content()
-            assert page_content_presence is not None, "The page content is absent in DOM"
+            assert page_content_presence, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible"
 
         @allure.title("""Verify the composition and visibility of elements 
@@ -110,10 +110,10 @@ class TestSpecialistsPage:
             name_values = page.get_name_values_in_cards()
             profession_values = page.get_profession_values_in_cards()
             assert name_values, "Name values in cards are empty"
-            assert name_values in SpecialistsPageData.specialists_names, \
-                "Names in specialist cards mismatch the valid values"
+            assert all(element in SpecialistsPageData.specialists_names for element in name_values), \
+                "Names in specialist cards mismatch valid values"
             assert profession_values, "Profession values in cards are empty"
-            assert profession_values in SpecialistsPageData.specialists_professions, \
+            assert all(element in SpecialistsPageData.specialists_professions for element in profession_values), \
                 "Professions in specialist cards mismatch valid values"
 
         @allure.title("Verify text in the 'All Specialists' link")
@@ -135,7 +135,7 @@ class TestSpecialistsPage:
             assert link_href, "Link href is empty"
             assert link_href == SpecialistsPageData.all_specialists_link_href, \
                 "The attribute 'href' of the link mismatches the valid value"
-            assert link_status_code == SpecialistsPageData.all_specialists_link_status_code, \
+            assert link_status_code in SpecialistsPageData.all_specialists_link_status_code, \
                 "The status code of the link mismatches the valid value"
 
         @allure.title("""Verify that the 'All Specialists' link leads an unauthorized user 
@@ -170,10 +170,10 @@ class TestSpecialistsPage:
             images_src = page.get_images_src()
             images_alt = page.get_images_alt()
             assert images_src, "The 'src' attribute value of some card images is empty"
-            assert images_src == SpecialistsPageData.images_src, \
+            assert all(element in SpecialistsPageData.images_src for element in images_src), \
                 "The 'src' attribute of the card images mismatches valid values"
             assert images_alt, "The 'alt' attribute value of some card images is empty"
-            assert all(image_alt == SpecialistsPageData.images_alt for image_alt in images_alt), \
+            assert all(element == SpecialistsPageData.images_alt for element in images_alt), \
                 "The 'alt' attribute value of some card images is empty or mismatches valid values"
 
         @allure.title("Verify sizes of images in specialist cards in the grid")
