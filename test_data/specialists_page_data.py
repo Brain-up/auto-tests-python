@@ -3,25 +3,23 @@ from test_data.links import MainPageLinks as Links
 
 
 class SpecialistsPageData:
-    tab_title = ["Специалисты | BrainUp", "Specialists | BrainUp"]
+    tab_title = ("Специалисты | BrainUp", "Specialists | BrainUp")
 
-    page_title = ["Специалисты", "Specialists"]
+    page_title = ("Специалисты", "Specialists")
 
-    text_on_page = ["Обучающая программа BrainUp разработана совместно с лучшими специалистами "
+    text_on_page = ("Обучающая программа BrainUp разработана совместно с лучшими специалистами "
                     "в области сурдопедагогики из России и Беларуси",
                     "The BrainUp training program was developed jointly with the best specialists "
-                    "in the field of deaf education from Russia and Belarus"]
+                    "in the field of deaf education from Russia and Belarus")
 
-    specialists_names = [
-        ["Гарбарук Екатерина Сергеевна", "Прошина Любовь Александровна", "Березкина Ксения Сергеевна",
-         "Метельская Наталья Николаевна", "Королева Инна Васильевна", "Юлия Кибалова", "Платоненко Дарья Сергеевна",
-         "Сивенкова Кристина Александровна"],
-        ["Ekaterina Garbaruk", "Lubov Proshina", "Ksenia Berezkina", "Natalia Metelskaya", "Inna Koroleva",
-         "Yulia Kibalova", "Daria Platonenko", "Kristina Sivenkova"]
-    ]
+    specialists_names = ("Гарбарук Екатерина Сергеевна", "Прошина Любовь Александровна", "Березкина Ксения Сергеевна",
+                         "Метельская Наталья Николаевна", "Королева Инна Васильевна", "Юлия Кибалова",
+                         "Платоненко Дарья Сергеевна", "Сивенкова Кристина Александровна",
+                         "Ekaterina Garbaruk", "Lubov Proshina", "Ksenia Berezkina", "Natalia Metelskaya",
+                         "Inna Koroleva", "Yulia Kibalova", "Daria Platonenko", "Kristina Sivenkova")
 
-    specialists_professions = [
-        ["Кандидат биологических наук, специалист Лаборатории слуха и речи ПСПбГМУ, специалист "
+    specialists_professions = (
+        "Кандидат биологических наук, специалист Лаборатории слуха и речи ПСПбГМУ, специалист "
          "в области диагностики слуховых нарушений",
          "Сурдопедагог, РНПЦ оториноларингологии, опыт работы более 10 лет",
          "Сурдопедагог, Городской ресурсный центр для детей с нарушением слуха, опыт работы более 10 лет",
@@ -30,8 +28,8 @@ class SpecialistsPageData:
          'автор серии методических пособий "Учусь слушать и говорить"',
          "Сурдопедагог, дефектолог, Лаборатория слуха и речи ПСПбГМУ, опыт работы более 10 лет",
          "Сурдопедагог, РНПЦ оториноларингологии, опыт работы более 3 лет",
-         "Сурдопедагог, СПб Сурдоцентр, молодой специалист"],
-        ["Candidate of Biological Sciences, expert at the Laboratory of Hearing and Speech "
+         "Сурдопедагог, СПб Сурдоцентр, молодой специалист",
+        "Candidate of Biological Sciences, expert at the Laboratory of Hearing and Speech "
          "(The Pavlov First Saint Petersburg State Medical University), expert in diagnosis of aural disorders",
          "Teacher of the deaf, Belarusian Republican Scientific and Practical Center of Otorhinolaryngology, "
          "10+ years of experience",
@@ -43,25 +41,18 @@ class SpecialistsPageData:
          "(The Pavlov First Saint Petersburg State Medical University), 10+ years of experience",
          "Teacher of the deaf, Belarusian Republican Scientific and Practical Center of Otorhinolaryngology, "
          "3+ years of experience",
-         "Teacher of the deaf, Saint Petersburg Center of Otorhinolaryngology, young professional"]
-    ]
+         "Teacher of the deaf, Saint Petersburg Center of Otorhinolaryngology, young professional")
 
-    all_specialists_link_text = ["Все Специалисты", "All Specialists"]
+    all_specialists_link_text = ("Все Специалисты", "All Specialists")
 
     all_specialists_link_href = f"{Links.URL_MAIN_PAGE}specialists#"
 
-    all_specialists_link_status_code = 200
+    all_specialists_link_status_code = (200,)
 
-    images_src = [
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/garbaruk.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/proshina.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/berezkina.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/metelskaya.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/koroleva.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/kibalova.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/platonenko.png",
-        "https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/sivenkova.png"
-    ]
+    s = 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/'
+    e = '.png'
+    images_src = (f'{s}garbaruk{e}', f'{s}proshina{e}', f'{s}berezkina{e}', f'{s}metelskaya{e}',
+                  f'{s}koroleva{e}', f'{s}kibalova{e}', f'{s}platonenko{e}', f'{s}sivenkova{e}')
 
     images_alt = "user avatar"
 

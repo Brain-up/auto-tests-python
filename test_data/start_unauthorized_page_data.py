@@ -15,13 +15,13 @@ class StartUnauthorizedPageData:
     page_subtitles = ["BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ"]
 
     text_on_page = {
-        "text_in_section1": [
+        "text_in_section1": (
             "Наш сайт - это платформа интерактивных упражнений для взрослых и детей от семи лет с когнитивными "
             "проблемами восприятия речи, которая помогает тренировать способности слушать и понимать",
             "Our site is a platform of interactive exercises for adults and children from the age of seven with "
-            "cognitive speech perception problems, which helps to train the ability to listen and understand."],
+            "cognitive speech perception problems, which helps to train the ability to listen and understand."),
 
-        "text_in_section2": [
+        "text_in_section2": (
             "Тренируйтесь всего от 30 минут в день для развития и получения результата",
 
             "Первая бесплатная онлайн программа для взрослых и детей с когнитивными проблемами восприятия речи. "
@@ -36,7 +36,7 @@ class StartUnauthorizedPageData:
             "Занимаясь по нашей программе, вы сможете, развивать слух в различных акустических ситуациях; "
             "тренировать слуховую память, прослушивая упражнения столько раз, сколько необходимо именно вам. "
             "А также, расширить словарный запас в интересной игровой форме и в дальшейшем использовать новые слова "
-            "в общении с друзьями и знакомыми."]
+            "в общении с друзьями и знакомыми.")
     }
 
     login_link_text = ["Начать", "Login"]
