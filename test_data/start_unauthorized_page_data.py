@@ -7,12 +7,10 @@ class StartUnauthorizedPageData:
 
     tab_title = "BrainUp"
 
-    page_titles = [
-        "BrainUP - онлайн занятия для детей и взрослых", "Преимущества",
-        "BrainUP - online classes for children and adults", "Advantages"
-    ]
+    page_titles = ("BrainUP - онлайн занятия для детей и взрослых", "Преимущества",
+                   "BrainUP - online classes for children and adults", "Advantages")
 
-    page_subtitles = ["BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ"]
+    page_subtitles = ("BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ")
 
     text_on_page = {
         "text_in_section1": (
@@ -39,11 +37,11 @@ class StartUnauthorizedPageData:
             "в общении с друзьями и знакомыми.")
     }
 
-    login_link_text = ["Начать", "Login"]
+    login_link_text = ("Начать", "Login")
 
     login_link_href = f"{Links.URL_MAIN_PAGE}login"
 
-    login_link_status_code = 200
+    login_link_status_code = (200,)
 
     page_url = Links.URL_MAIN_PAGE
 

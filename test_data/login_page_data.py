@@ -2,4 +2,4 @@
 
 
 class LoginPageData:
-    sign_in_tab = ["ВОЙТИ", "SIGN IN"]
+    sign_in_tab = ("ВОЙТИ", "SIGN IN")
