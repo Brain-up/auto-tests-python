@@ -20,5 +20,5 @@ class ContributorsPageData:
     all_team_link_status_code = (200,)
     all_team_link_text = ("Вся Команда", "All Team")
 
-    images_alt = "user avatar"
+    images_alt = ("user avatar",)
     images_src_start = "https://avatars.githubusercontent"
