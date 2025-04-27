@@ -3,7 +3,7 @@ from test_data.links import MainPageLinks as Links
 
 
 class ExercisesRuSimilarPhrasesPageData:
-    tab_title_ru = "Речевые упражнения (готовы для занятий) | BrainUp"
+    tab_title_ru = ("Речевые упражнения (готовы для занятий) | BrainUp",)
 
     breadcrumbs_text = ('', 'Речевые упражнения (готовы для занятий)', 'Похожие фразы')
 
