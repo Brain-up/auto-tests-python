@@ -5,7 +5,7 @@ from test_data.links import ExercisesUrls as ExUrls
 
 class ExercisesRuWordsPageData:
     tab_title = ("Речевые упражнения (готовы для занятий) | BrainUp", "Speech exercises | BrainUp")
-    tab_title_ru = "Речевые упражнения (готовы для занятий) | BrainUp"
+    tab_title_ru = ("Речевые упражнения (готовы для занятий) | BrainUp",)
 
     breadcrumbs_text = ('', 'Речевые упражнения (готовы для занятий)', 'Слова')
 
@@ -46,73 +46,28 @@ class ExercisesRuWordsPageData:
                         f"{Links.URL_GROUPS_PAGE}/2",
                         f"{Links.URL_GROUPS_PAGE}/2/series/1")
 
-    group_link_urls = (f"{Links.URL_GROUPS_PAGE}/2/series/1",
-                       f"{Links.URL_GROUPS_PAGE}/2/series/17",
-                       f"{Links.URL_GROUPS_PAGE}/2/series/2",
-                       f"{Links.URL_GROUPS_PAGE}/2/series/3",
-                       f"{Links.URL_GROUPS_PAGE}/2/series/4",
-                       f"{Links.URL_GROUPS_PAGE}/2/series/5",
-                       f"{Links.URL_GROUPS_PAGE}/2/series/6")
+    p = f"{Links.URL_GROUPS_PAGE}/2/series/"
+    group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
 
-    subgroup_link_urls = (f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/1",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/2",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/3",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/4",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/5",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/6",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/7",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/8",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/9",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/10",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/11",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/12",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/13",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/14",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/15",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/16",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/17",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/18",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/19",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/20",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/21",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/22",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/23",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/24",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/25",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/26",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/27",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/28",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/29",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/30",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/31",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/32",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/33",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/34",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/35",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/36",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/37",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/38",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/39",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/40",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/41",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/42",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/43",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/44",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/45",
-                          f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/46")
+    q = f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/"
+    subgroup_link_urls = (f"{q}1", f"{q}2", f"{q}3", f"{q}4", f"{q}5", f"{q}6", f"{q}7", f"{q}8", f"{q}9", f"{q}10",
+                          f"{q}11", f"{q}12", f"{q}13", f"{q}14", f"{q}15", f"{q}16", f"{q}17", f"{q}18", f"{q}19",
+                          f"{q}20", f"{q}21", f"{q}22", f"{q}23", f"{q}24", f"{q}25", f"{q}26", f"{q}27", f"{q}28",
+                          f"{q}29", f"{q}30", f"{q}31", f"{q}32", f"{q}33", f"{q}34", f"{q}35", f"{q}36", f"{q}37",
+                          f"{q}38", f"{q}39", f"{q}40", f"{q}41", f"{q}42", f"{q}43", f"{q}44", f"{q}45", f"{q}46")
 
     links_status_code = (200,)
 
     s = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/'
     e = '.svg");'
-    subgroup_links_style = (f'{s}family{e}', f'{s}home{e}', f'{s}food{e}', f'{s}clothes{e}', f'{s}school{e}',
-                            f'{s}math{e}', f'{s}pets{e}', f'{s}animals{e}', f'{s}transport{e}', f'{s}colors{e}',
-                            f'{s}city{e}', f'{s}country{e}', f'{s}walk{e}', f'{s}weather{e}', f'{s}future{e}',
-                            f'{s}body{e}', f'{s}game{e}', f'{s}adventure{e}', f'{s}hospital{e}', f'{s}feelings{e}',
-                            f'{s}toys{e}', f'{s}insects{e}', f'{s}interior{e}', f'{s}kitchen{e}', f'{s}music{e}',
-                            f'{s}musical_instruments{e}', f'{s}birds{e}', f'{s}jewelry{e}', f'{s}history{e}',
-                            f'{s}actions{e}', f'{s}audible_actions{e}', f'{s}more_transport{e}',
-                            f'{s}special_transport{e}', f'{s}fruit_trees{e}', f'{s}plants{e}', f'{s}trees{e}',
-                            f'{s}sport{e}', f'{s}shop{e}', f'{s}artiodactyls{e}', f'{s}dogs{e}', f'{s}stationery{e}',
-                            f'{s}flowers{e}', f'{s}literature{e}', f'{s}physics{e}', f'{s}biology{e}',
-                            f'{s}instruments{e}')
+    subgroup_links_style = (f"{s}family{e}", f"{s}home{e}", f"{s}food{e}", f"{s}clothes{e}", f"{s}school{e}",
+                            f"{s}math{e}", f"{s}pets{e}", f"{s}animals{e}", f"{s}transport{e}", f"{s}colors{e}",
+                            f"{s}city{e}", f"{s}country{e}", f"{s}walk{e}", f"{s}weather{e}", f"{s}future{e}",
+                            f"{s}body{e}", f"{s}game{e}", f"{s}adventure{e}", f"{s}hospital{e}", f"{s}feelings{e}",
+                            f"{s}toys{e}", f"{s}insects{e}", f"{s}interior{e}", f"{s}kitchen{e}", f"{s}music{e}",
+                            f"{s}musical_instruments{e}", f"{s}birds{e}", f"{s}jewelry{e}", f"{s}history{e}",
+                            f"{s}actions{e}", f"{s}audible_actions{e}", f"{s}more_transport{e}",
+                            f"{s}special_transport{e}", f"{s}fruit_trees{e}", f"{s}plants{e}", f"{s}trees{e}",
+                            f"{s}sport{e}", f"{s}shop{e}", f"{s}artiodactyls{e}", f"{s}dogs{e}", f"{s}stationery{e}",
+                            f"{s}flowers{e}", f"{s}literature{e}", f"{s}physics{e}", f"{s}biology{e}",
+                            f"{s}instruments{e}")
