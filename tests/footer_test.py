@@ -1,8 +1,8 @@
 """Auto tests for verifying web elements in the Footer on pages"""
 import allure
-from pages.footer_page import FooterPage
+from pages.footer_page import FooterPage as fPage
 from test_data.links import ExercisesUrls
-from test_data.footer_data import FooterData
+from test_data.footer_data import FooterData as fPD
 
 
 @allure.epic("Test Footer")
@@ -10,7 +10,7 @@ class TestFooter:
     class TestFooterStructure:
         @allure.title("Verify presence and visibility of the Footer")
         def test_fp_01_01_verify_footer_presence_and_visibility(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             footer_presence = page.check_footer_presence()
             footer_visibility = page.check_footer_visibility()
             assert footer_presence, "The Footer is absent in DOM"
@@ -18,7 +18,7 @@ class TestFooter:
 
         @allure.title("Verify composition and visibility of elements on the 1st-7th levels of nesting in the Footer")
         def test_fp_01_02_verify_footer_structure_and_visibility(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             structure_of_1st_level = page.get_structure_of_1st_level()
             visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level_on_page()
             structure_of_2nd_level = page.get_structure_of_2nd_level()
@@ -50,7 +50,7 @@ class TestFooter:
 
         @allure.title("Verify presence, visibility of text, links, images in the Footer")
         def test_fp_01_03_verify_footer_structural_elements(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             text_on_4th_level = page.check_text_presence()
             text_visibility = page.check_text_visibility()
             links_on_3rd_and_6th_levels = page.get_list_of_links()
@@ -67,22 +67,22 @@ class TestFooter:
     class TestFooterText:
         @allure.title("Verify content of text in the Footer")
         def test_fp_02_01_verify_footer_text(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             text_content = page.get_footer_text()
             assert text_content, "The text content in the Footer is empty"
-            assert text_content in FooterData.with_the_support_text, "Text in the Footer mismatches the valid value"
+            assert text_content in fPD.with_the_support_text, "Text in the Footer mismatches the valid value"
 
         @allure.title("Verify text in the 'Contact us' link in the Footer")
         def test_fp_02_02_verify_text_in_links(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             link_text = page.get_text_in_contact_us_link()
             assert link_text, "Text in the link is empty"
-            assert link_text in FooterData.contact_us_link_text, "Text in the link mismatches the valid value"
+            assert link_text in fPD.contact_us_link_text, "Text in the link mismatches the valid value"
 
     class TestFooterLinks:
         @allure.title("Verify clickability, href, prefix and subject, status code of links in the Footer")
         def test_fp_03_01_verify_footer_links(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             links_clickability = page.check_links_clickability()
             contact_us_link_title = page.get_contact_us_link_title()
             links_href = page.get_links_href()
@@ -90,55 +90,54 @@ class TestFooter:
             link_status_codes = page.get_supporter_links_status_codes()
             assert links_clickability, "Links are unclickable"
             assert contact_us_link_title, "The link title value is empty"
-            assert contact_us_link_title in FooterData.link_titles, "The link title mismatches the valid value"
+            assert contact_us_link_title in fPD.link_titles, "The link title mismatches the valid value"
             assert links_href, "Links href are empty"
-            assert all(element in FooterData.links_href for element in links_href), \
+            assert all(element in fPD.links_href for element in links_href), \
                 "Attributes 'href' of links mismatch valid values"
             assert link_prefix_and_subject, \
                 "The attribute 'href' of the 'Contact us' link does not contain the proper prefix and/or subject"
-            assert all(element in FooterData.link_status_codes for element in link_status_codes), \
+            assert all(element in fPD.link_status_codes for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
         @allure.title("Verify that links in the Footer lead to correct pages after clicking")
         def test_fp_03_02_verify_links_lead_to_the_correct_pages(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             new_tabs_urls = page.click_on_links()
-            assert all(element in FooterData.pages_urls for element in new_tabs_urls), \
+            assert all(element in fPD.pages_urls for element in new_tabs_urls), \
                 "Links in the Footer lead to incorrect pages after clicking or did not loaded during the allotted time"
 
         @allure.title("Verify that the 'Contact us' link in the Footer calls an email client")
         def test_fp_03_03_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             page.click_contact_us_link()
             assert True, "The 'Contact us' link in the Footer does not call an email client"
 
     class TestFooterImages:
         @allure.title("Verify attributes of images in links in the Footer")
         def test_fp_04_01_verify_images_attributes_in_links(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             images_src = page.get_images_src()
             images_alt = page.get_images_alt()
             assert images_src, "The 'src' attribute value of images is empty"
-            assert all(element in FooterData.images_src for element in images_src), \
+            assert all(element in fPD.images_src for element in images_src), \
                 "The 'src' attribute of some images mismatches valid values"
             assert images_alt, "The 'alt' attribute value of some images is empty"
-            assert all(element in FooterData.images_alt for element in images_alt), \
+            assert all(element in fPD.images_alt for element in images_alt), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values"
 
         @allure.title("Verify sizes of images in links in the Footer")
         def test_fp_04_02_verify_images_sizes_in_links(self, driver, main_page_open):
-            page = FooterPage(driver)
+            page = fPage(driver)
             images_size = page.get_images_sizes()
             images_size_changed = page.check_size_changes_of_images()
             assert images_size != 0, "Images in links have not sizes"
-            assert len(images_size_changed) == len(FooterData.images_src), "Not all images in links have changed sizes"
+            assert len(images_size_changed) == len(fPD.images_src), "Not all images in links have changed sizes"
 
-    # @pytest.mark.skip(reason="unsupported preconditions")
     class TestFooterAuthorized:
 
         @allure.title("Verify Footer invisibility through the modal window with the exercise")
         def test_fp_05_01_verify_footer_invisibility_through_modal_window(self, driver, auto_test_user_authorized):
-            modal_window_page = FooterPage(driver, ExercisesUrls.URL_EXERCISE1_MODAL_WINDOW_PAGE)
+            modal_window_page = fPage(driver, ExercisesUrls.URL_EXERCISE1_MODAL_WINDOW_PAGE)
             modal_window_page.open()
             assert (modal_window_page.check_footer_presence() and modal_window_page.check_jetbrains_image_presence()), \
                 "Footer (including the Jetbrains image) is absent in the DOM tree"
