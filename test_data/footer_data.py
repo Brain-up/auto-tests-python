@@ -15,7 +15,7 @@ class FooterData:
                   "https://reg.ru/",
                   "https://selectel.ru/")
 
-    link_status_codes = (200, 301)
+    link_status_codes = (200, 403)
 
     images_src = (f"{Links.URL_MAIN_PAGE}logos/logo_ARASAAC_black-6aced95542b919137b28bced5be83596.png",
                   f"{Links.URL_MAIN_PAGE}logos/epam-cd401151c8ee5f14afbba10b72cd5fea.png",
