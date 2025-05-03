@@ -1,24 +1,23 @@
 """Auto tests for verifying web elements on the 'Groups' page"""
 import allure
-from pages.groups_page import GroupsPage
-from test_data.groups_page_data import GroupsPageData
+from pages.groups_page import GroupsPage as gPage
+from test_data.groups_page_data import GroupsPageData as gPD
 
 
-# @pytest.mark.skip(reason="unsupported preconditions")
 @allure.epic("The Groups Page")
 class TestGroupsPage:
     class TestGroupsPageStructure:
         @allure.title("Verify presence and visibility of content on the page")
         def test_gp_01_01_verify_page_presence_and_visibility(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             page_content_presence = page.check_presence_of_page_content()
             page_content_visibility = page.check_visibility_of_page_content()
-            assert page_content_presence is not None, "The page content is absent in DOM"
+            assert page_content_presence, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible"
 
         @allure.title("Verify composition, visibility of elements on the 1st-6th levels of nesting on the page")
         def test_gp_01_02_verify_page_structure_and_visibility(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             structure_of_1st_level = page.get_structure_of_1st_level()
             visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level()
             structure_of_2nd_level = page.get_structure_of_2nd_level()
@@ -46,7 +45,7 @@ class TestGroupsPage:
 
         @allure.title("Verify presence, visibility of the title, tiles, links, images, subtitles on the page")
         def test_gp_01_03_verify_page_structural_elements(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             title_on_2nd_level = page.check_title_presence()
             title_visibility = page.check_title_visibility()
             tiles_on_2nd_level = page.get_list_of_tiles()
@@ -71,40 +70,38 @@ class TestGroupsPage:
     class TestGroupsPageText:
         @allure.title("Verify value of the title of the tab")
         def test_gp_02_01_verify_tab_title(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             tab_title_value_ru = page.get_value_of_tab_title_ru()
             tab_title_value_en = page.get_value_of_tab_title_en()
             assert tab_title_value_ru, "The title value of the tab is empty on the 'ru' local"
-            assert tab_title_value_ru == GroupsPageData.tab_title_ru, \
-                "The title on the tab doesn't match the valid value on the 'ru' local"
+            assert tab_title_value_ru == gPD.tab_title_ru, "The tab title mismatches the valid value on the 'ru' local"
             assert tab_title_value_en, "The title value of the tab is empty on the 'en' local"
-            assert tab_title_value_en == GroupsPageData.tab_title_en, \
-                "The title on the tab doesn't match the valid value on the 'en' local"
+            assert tab_title_value_en == gPD.tab_title_en, "The tab title mismatches the valid value on the 'en' local"
 
         @allure.title("Verify value of the title and subtitles on the page")
         def test_gp_02_02_verify_page_title_and_subtitles(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             title_value_ru = page.get_value_of_page_title_ru()
             subtitle_values_ru = page.get_values_of_subtitles_ru()
             title_value_en = page.get_value_of_page_title_en()
             subtitle_values_en = page.get_values_of_subtitles_en()
             assert title_value_ru, "The title value on the page is empty on the 'ru' local"
-            assert title_value_ru == GroupsPageData.page_title_ru, \
+            assert title_value_ru == gPD.page_title_ru, \
                 "The title on the page mismatches the valid value on the 'ru' local"
             assert subtitle_values_ru, "Subtitle values are empty on the 'ru' local"
-            assert all(subtitle_value in GroupsPageData.page_subtitles_ru for subtitle_value in subtitle_values_ru), \
+            assert all(element in gPD.page_subtitles_ru for element in subtitle_values_ru), \
                 "Subtitles mismatch any valid values on the 'ru' local"
             assert title_value_en, "The title value on the page is empty on the 'en' local"
-            assert title_value_en == GroupsPageData.page_title_en, \
+            assert title_value_en == gPD.page_title_en, \
                 "The title on the page mismatches the valid value on the 'en' local"
             assert subtitle_values_en, "Subtitle values are empty on the 'en' local"
-            assert all(subtitle_value in GroupsPageData.page_subtitles_en for subtitle_value in subtitle_values_en), \
+            assert all(element in gPD.page_subtitles_en for element in subtitle_values_en), \
                 "Subtitles mismatch any valid values on the 'en' local"
 
     class TestGroupsPageLinks:
         @allure.title("Verify clickability, title, href, status code of links on the page")
         def test_gp_03_01_verify_links(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             links_clickability = page.check_links_clickability()
             link_titles_ru = page.get_links_titles_ru()
             link_titles_en = page.get_links_titles_en()
@@ -113,58 +110,57 @@ class TestGroupsPage:
             link_status_codes = page.get_links_status_codes()
             assert links_clickability, "Links are unclickable"
             assert link_titles_ru, "Link titles values are empty on the 'ru' local"
-            assert all(link_title in GroupsPageData.link_titles_ru for link_title in link_titles_ru), \
+            assert all(element in gPD.link_titles_ru for element in link_titles_ru), \
                 "Link titles mismatch any valid values on the 'ru' local"
             assert link_titles_en, "Link titles values are empty on the 'en' local"
-            assert all(link_title in GroupsPageData.link_titles_en for link_title in link_titles_en), \
+            assert all(element in gPD.link_titles_en for element in link_titles_en), \
                 "Link titles mismatch any valid values on the 'en' local"
             assert links_href_ru, "Links href are empty on the 'ru' local"
             assert links_href_en, "Links href are empty on the 'en' local"
-            assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href_ru), \
+            assert all(element.startswith(gPD.link_href_first_part) for element in links_href_ru), \
                 "Attributes 'href' of links on the 'ru' local mismatch valid values"
-            assert all(link_href.startswith(GroupsPageData.link_href_first_part) for link_href in links_href_en), \
+            assert all(element.startswith(gPD.link_href_first_part) for element in links_href_en), \
                 "Attributes 'href' of links on the 'en' local mismatch valid values"
-            assert all(element in GroupsPageData.links_status_code for element in link_status_codes), \
+            assert all(element in gPD.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
         @allure.title("""Verify if links on the 'ru' local lead to correct pages after clicking""")
         def test_gp_03_02_verify_ru_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             opened_pages = page.click_on_links_on_ru_local()
             assert opened_pages, "Transitions to exercises pages have not performed"
-            assert all(page in GroupsPageData.pages_urls for page in opened_pages), \
+            assert all(element in gPD.pages_urls for element in opened_pages), \
                 "Some links lead to incorrect pages after clicking"
 
         @allure.title("""Verify if links on the 'en' local lead to correct pages after clicking""")
         def test_gp_03_03_verify_en_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             opened_pages = page.click_on_links_on_en_local()
             assert opened_pages, "Transitions to exercises pages have not performed"
-            assert all(page in GroupsPageData.pages_urls for page in opened_pages), \
+            assert all(element in gPD.pages_urls for element in opened_pages), \
                 "Some links lead to incorrect pages after clicking"
 
     class TestGroupsPageImages:
         @allure.title("Verify attributes of images in links on the page")
         def test_gp_04_01_verify_images_attributes(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             images_src = page.get_images_src()
             images_alt_ru = page.get_images_alt_ru()
             images_alt_en = page.get_images_alt_en()
             assert images_src, "The 'src' attribute value of images is empty"
-            assert all(image_src in GroupsPageData.images_src for image_src in images_src), \
+            assert all(element in gPD.images_src for element in images_src), \
                 "The 'src' attribute of some images mismatches valid values"
             assert images_alt_ru, "The 'alt' attribute value of some images is empty on the 'ru' local"
-            assert all(image_alt in GroupsPageData.images_alt_ru for image_alt in images_alt_ru), \
+            assert all(element in gPD.images_alt_ru for element in images_alt_ru), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values on the 'ru' local"
             assert images_alt_en, "The 'alt' attribute value of some images is empty on the 'en' local"
-            assert all(image_alt in GroupsPageData.images_alt_en for image_alt in images_alt_en), \
+            assert all(element in gPD.images_alt_en for element in images_alt_en), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values on the 'en' local"
 
         @allure.title("Verify sizes of images in links on the page")
         def test_gp_04_02_verify_images_sizes(self, driver, auto_test_user_authorized):
-            page = GroupsPage(driver)
+            page = gPage(driver)
             images_size = page.get_images_sizes()
             images_size_changed = page.check_size_changes_of_images()
             assert images_size != 0, "Images in links have not sizes"
-            assert len(images_size_changed) == len(GroupsPageData.images_src), \
-                "Not all images in links have changed sizes"
+            assert len(images_size_changed) == len(gPD.images_src), "Not all images in links have changed sizes"
