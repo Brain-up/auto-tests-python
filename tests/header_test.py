@@ -1,6 +1,5 @@
 """Auto tests for verifying web elements in the Header of the site"""
 import allure
-import pytest
 from pages.header_page import HeaderPage as hPage
 from test_data.header_data import HeaderData as hPD
 
@@ -111,7 +110,7 @@ class TestHeaderPage:
                 assert tg_link_title, "The link title value is empty"
                 assert tg_link_title in hPD.link_titles, "The link title mismatches the valid value"
                 assert links_href, "Links href are empty"
-                assert all(element in hPD.links_href_unauth for element in links_href), \
+                assert all(element in hPD.set_unauth for element in links_href), \
                     "Attributes 'href' of links mismatch valid values"
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
@@ -123,7 +122,7 @@ class TestHeaderPage:
                 internal_links_in_more = page.get_list_of_internal_links_in_more()
                 opened_pages = page.click_on_internal_links_in_header_unauth()
                 assert internal_links_in_more, "Internal links are not collected in the list"
-                assert all(element in hPD.pages_urls_unauth for element in opened_pages), \
+                assert all(element in hPD.set_unauth for element in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
 
             @allure.title("""Verify if external links in the Header for an unauthorized user 
@@ -133,7 +132,7 @@ class TestHeaderPage:
                 external_links_in_more = page.get_list_of_external_links_in_more()
                 opened_pages = page.click_on_external_links_in_header()
                 assert external_links_in_more, "External links are not collected in the list"
-                assert all(element in hPD.pages_urls_unauth for element in opened_pages), \
+                assert all(element in hPD.set_unauth for element in opened_pages), \
                     "Some of external links lead to incorrect pages after clicking"
 
             @allure.title("""Verify that the 'Logo' link on the Start Unauthorized Page 
@@ -302,8 +301,7 @@ class TestHeaderPage:
                 link_status_codes = page.get_links_status_codes_auth()
                 assert links_clickability, "Links are unclickable"
                 assert links_href, "Links href are empty"
-                assert all(element in hPD.links_href_auth for element in links_href), \
-                    "Attributes 'href' of links mismatch valid values"
+                assert all(element in hPD.set_auth for element in links_href), "Links href mismatch valid values"
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
@@ -314,7 +312,7 @@ class TestHeaderPage:
                 internal_links_in_more = page.get_list_of_internal_links_in_more()
                 opened_pages = page.click_on_internal_links_in_header_auth()
                 assert internal_links_in_more, "Internal links are not collected in the list"
-                assert all(element in hPD.pages_urls_auth for element in opened_pages), \
+                assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
 
             @allure.title("""Verify if external links in the Header for an authorized user 
@@ -324,7 +322,7 @@ class TestHeaderPage:
                 external_links_in_more = page.get_list_of_external_links_in_more()
                 opened_pages = page.click_on_external_links_in_header()
                 assert external_links_in_more, "External links are not collected in the list"
-                assert all(element in hPD.pages_urls_auth for element in opened_pages), \
+                assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of external links lead to incorrect pages after clicking"
 
             @allure.title("""Verify that the Logo link on the Start Authorized Page 

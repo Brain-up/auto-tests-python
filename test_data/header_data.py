@@ -37,60 +37,28 @@ class HeaderData:
 
     link_titles = "Телеграм чат для пользователей"
 
-    links_href_unauth = (f"{Links.URL_MAIN_PAGE}",
-                         f"{Links.URL_MAIN_PAGE}description",
-                         "https://t.me/BrainUpUsers",
-                         "https://opencollective.com/brainup",
-                         "https://github.com/Brain-up/brn",
-                         f"{Links.URL_MAIN_PAGE}contact",
-                         f"{Links.URL_MAIN_PAGE}specialists",
-                         f"{Links.URL_MAIN_PAGE}contributors",
-                         f"{Links.URL_MAIN_PAGE}used-resources",
-                         f"{Links.URL_MAIN_PAGE}registration")
+    s = Links.URL_MAIN_PAGE
+    s1 = f"{s}contact"
+    s2 = f"{s}contributors"
+    s3 = f"{s}description"
+    s4 = f"{s}groups?locale=ru-ru"
+    s5 = f"{s}groups?locale=en-us"
+    s6 = f"{s}profile"
+    s7 = f"{s}profile/statistics"
+    s8 = f"{s}registration"
+    s9 = f"{s}specialists"
+    s10 = f"{s}used-resources"
+    s11 = "https://github.com/Brain-up/brn"
+    s12 = "https://opencollective.com/brainup"
+    s13 = "https://t.me/BrainUpUsers"
 
-    links_href_auth = (f"{Links.URL_MAIN_PAGE}",
-                       f"{Links.URL_MAIN_PAGE}groups?locale=ru-ru",
-                       f"{Links.URL_MAIN_PAGE}groups?locale=en-us",
-                       f"{Links.URL_MAIN_PAGE}profile/statistics",
-                       f"{Links.URL_MAIN_PAGE}description",
-                       "https://t.me/BrainUpUsers",
-                       "https://opencollective.com/brainup",
-                       "https://github.com/Brain-up/brn",
-                       f"{Links.URL_MAIN_PAGE}contact",
-                       f"{Links.URL_MAIN_PAGE}specialists",
-                       f"{Links.URL_MAIN_PAGE}contributors",
-                       f"{Links.URL_MAIN_PAGE}used-resources",
-                       f"{Links.URL_MAIN_PAGE}profile")
+    set_auth = (s, s1, s2, s3, s4, s5, s6, s7, s9, s10, s11, s12, s13)
+    set_unauth = (s, s1, s2, s3, s8, s9, s10, s11, s12, s13)
 
     link_status_codes = (200,)
-
-    pages_urls_unauth = (f"{Links.URL_MAIN_PAGE}description",
-                         "https://t.me/BrainUpUsers",
-                         f"{Links.URL_MAIN_PAGE}registration",
-                         f"{Links.URL_MAIN_PAGE}contact",
-                         f"{Links.URL_MAIN_PAGE}specialists",
-                         f"{Links.URL_MAIN_PAGE}contributors",
-                         f"{Links.URL_MAIN_PAGE}used-resources",
-                         "https://opencollective.com/brainup",
-                         "https://github.com/Brain-up/brn",
-                         f"{Links.URL_MAIN_PAGE}")
-
-    pages_urls_auth = (f"{Links.URL_MAIN_PAGE}groups?locale=ru-ru",
-                       f"{Links.URL_MAIN_PAGE}groups?locale=en-us",
-                       f"{Links.URL_MAIN_PAGE}profile/statistics",
-                       f"{Links.URL_MAIN_PAGE}description",
-                       "https://t.me/BrainUpUsers",
-                       f"{Links.URL_MAIN_PAGE}profile",
-                       f"{Links.URL_MAIN_PAGE}contact",
-                       f"{Links.URL_MAIN_PAGE}specialists",
-                       f"{Links.URL_MAIN_PAGE}contributors",
-                       f"{Links.URL_MAIN_PAGE}used-resources",
-                       "https://opencollective.com/brainup",
-                       "https://github.com/Brain-up/brn",
-                       f"{Links.URL_MAIN_PAGE}")
 
     icons_xmlns = ("http://www.w3.org/2000/svg",)
     logo_image_xmlns = "http://www.w3.org/2000/svg"
 
-    profile_avatar_src = f"{Links.URL_MAIN_PAGE}pictures/avatars/avatar%201.png"
+    profile_avatar_src = f"{s}pictures/avatars/avatar%201.png"
     profile_avatar_alt = "user avatar"
