@@ -111,11 +111,11 @@ class SpecialistsPage(BasePage):
         return self.element_is_visible(self.locators.PAGE_GRID)
 
     @allure.step("Check the 'All Specialists' link on the 3rd level of nesting is present on the page")
-    def check_all_specialists_link_presence(self):
+    def check_all_spec_link_presence(self):
         return self.element_is_present(self.locators.ALL_SPECIALISTS_LINK)
 
     @allure.step("Check the 'All Specialists' link on the 3rd level of nesting is visible")
-    def check_all_specialists_link_visibility(self):
+    def check_all_spec_link_visibility(self):
         return self.element_is_visible(self.locators.ALL_SPECIALISTS_LINK)
 
     @allure.step("Get the list of specialist cards on the 3rd level of nesting on the page")
@@ -178,24 +178,24 @@ class SpecialistsPage(BasePage):
         return [profession.text for profession in self.get_list_of_professions_in_cards()]
 
     @allure.step("Get text in the 'All Specialists' link")
-    def get_text_in_all_specialists_link(self):
+    def get_text_in_all_spec_link(self):
         return self.get_text(self.locators.ALL_SPECIALISTS_LINK)
 
     # Checking the 'All Specialists' link
     @allure.step("Check the 'All Specialists' link is clickable")
-    def check_all_specialists_link_clickability(self):
+    def check_all_spec_link_clickability(self):
         return self.element_is_clickable(self.locators.ALL_SPECIALISTS_LINK)
 
     @allure.step("Get attribute 'href' of the 'All Specialists' link")
-    def get_all_specialists_link_href(self):
+    def get_all_spec_link_href(self):
         return self.get_link_href(self.locators.ALL_SPECIALISTS_LINK)
 
     @allure.step("Get status code of the 'All Specialists' link")
-    def get_all_specialists_link_status_code(self):
-        return requests.head(self.get_all_specialists_link_href()).status_code
+    def get_all_spec_link_status_code(self):
+        return requests.head(self.get_all_spec_link_href()).status_code
 
     @allure.step("Click on the 'All Specialists' link and thereby open the corresponding web page in a new tab")
-    def click_all_specialists_link(self):
+    def click_all_spec_link(self):
         self.element_is_present_and_clickable(self.locators.ALL_SPECIALISTS_LINK).click()
         self.switch_to_new_window()
         return self.get_current_tab_url()
@@ -228,7 +228,7 @@ class SpecialistsPage(BasePage):
         for i in range(len(images)):
             changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
             lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-        print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
+        # print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
         return changed
 
     @allure.step("Check changes of images sizes after resizing")

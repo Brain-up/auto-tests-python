@@ -12,13 +12,13 @@ class SpecialistsPageData:
                     "The BrainUp training program was developed jointly with the best specialists "
                     "in the field of deaf education from Russia and Belarus")
 
-    specialists_names = ("Гарбарук Екатерина Сергеевна", "Прошина Любовь Александровна", "Березкина Ксения Сергеевна",
+    spec_names = ("Гарбарук Екатерина Сергеевна", "Прошина Любовь Александровна", "Березкина Ксения Сергеевна",
                          "Метельская Наталья Николаевна", "Королева Инна Васильевна", "Юлия Кибалова",
                          "Платоненко Дарья Сергеевна", "Сивенкова Кристина Александровна",
                          "Ekaterina Garbaruk", "Lubov Proshina", "Ksenia Berezkina", "Natalia Metelskaya",
                          "Inna Koroleva", "Yulia Kibalova", "Daria Platonenko", "Kristina Sivenkova")
 
-    specialists_professions = (
+    spec_professions = (
         "Кандидат биологических наук, специалист Лаборатории слуха и речи ПСПбГМУ, специалист "
          "в области диагностики слуховых нарушений",
          "Сурдопедагог, РНПЦ оториноларингологии, опыт работы более 10 лет",
@@ -43,11 +43,11 @@ class SpecialistsPageData:
          "3+ years of experience",
          "Teacher of the deaf, Saint Petersburg Center of Otorhinolaryngology, young professional")
 
-    all_specialists_link_text = ("Все Специалисты", "All Specialists")
+    all_spec_link_text = ("Все Специалисты", "All Specialists")
 
-    all_specialists_link_href = f"{Links.URL_MAIN_PAGE}specialists#"
+    all_spec_link_href = f"{Links.URL_MAIN_PAGE}specialists#"
 
-    all_specialists_link_status_code = (200,)
+    all_spec_link_status_code = (200,)
 
     s = 'https://brnup.s3.eu-north-1.amazonaws.com/pictures/specialists/'
     e = '.png'
