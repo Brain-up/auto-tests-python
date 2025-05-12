@@ -92,10 +92,8 @@ class TestFooter:
             assert contact_us_link_title, "The link title value is empty"
             assert contact_us_link_title in fPD.link_titles, "The link title mismatches the valid value"
             assert links_href, "Links href are empty"
-            assert all(element in fPD.links_href for element in links_href), \
-                "Attributes 'href' of links mismatch valid values"
-            assert link_prefix_and_subject, \
-                "The attribute 'href' of the 'Contact us' link does not contain the proper prefix and/or subject"
+            assert all(element in fPD.links_href for element in links_href), "Links href mismatch valid values"
+            assert link_prefix_and_subject, "The Contact us link href doesn't contain the proper prefix and/or subject"
             assert all(element in fPD.link_status_codes for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
@@ -104,7 +102,7 @@ class TestFooter:
             page = fPage(driver)
             new_tabs_urls = page.click_on_links()
             assert all(element in fPD.pages_urls for element in new_tabs_urls), \
-                "Links in the Footer lead to incorrect pages after clicking or did not loaded during the allotted time"
+                "Links in the Footer lead to invalid pages after clicking or don't load during the allotted time"
 
         @allure.title("Verify that the 'Contact us' link in the Footer calls an email client")
         def test_fp_03_03_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
