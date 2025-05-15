@@ -83,7 +83,7 @@ class TestContactsPage:
             page = ctPage(driver)
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
-            assert tab_title_value in ctPD.tab_title, "The title on the tab doesn't match the valid value"
+            assert tab_title_value in ctPD.tab_title, "The tab title mismatches the valid value"
 
         @allure.title("Verify values of the title and subtitles with tags h1, h2 on the page")
         def test_cp_02_02_verify_page_title_and_subtitles(self, driver, contacts_page_open):
@@ -91,24 +91,23 @@ class TestContactsPage:
             title_value = page.get_value_of_title()
             subtitle_values = page.get_values_of_subtitles()
             assert title_value, "The title value on the page is empty"
-            assert title_value in ctPD.page_title, "The title on the page doesn't match the valid value"
+            assert title_value in ctPD.page_title, "The title on the page mismatches the valid value"
             assert subtitle_values, "Subtitle values on the page are empty"
-            assert all(element in ctPD.page_subtitles for element in subtitle_values), \
-                "Subtitles mismatch any valid values"
+            assert all(element in ctPD.page_subtitles for element in subtitle_values), "Subtitles mismatch valid values"
 
         @allure.title("Verify content of the text in the section 2")
         def test_cp_02_03_verify_page_text(self, driver, contacts_page_open):
             page = ctPage(driver)
             text_content = page.get_text_content_on_page()
             assert text_content, "The text content in the section 2 is empty"
-            assert all(text in ctPD.text_on_page for text in text_content), "Text mismatches valid values"
+            assert all(element in ctPD.text_on_page for element in text_content), "Text mismatches valid values"
 
         @allure.title("Verify text in links in the section 2")
         def test_cp_02_04_verify_text_in_links(self, driver, contacts_page_open):
             page = ctPage(driver)
             links_text = page.get_text_in_links()
             assert links_text, "Text in links is empty"
-            assert all(text in ctPD.links_text for text in links_text), "Links text mismatches valid values"
+            assert all(element in ctPD.links_text for element in links_text), "Links text mismatches valid values"
 
     class TestContactsPageLinks:
         @allure.title("Verify presence, visibility, clickability, href, prefix, status code of links in the section 2")
@@ -124,7 +123,7 @@ class TestContactsPage:
             assert links_visibility, "Links are invisible"
             assert links_clickability, "Links are unclickable"
             assert links_href, "Links href are empty"
-            assert all(href in ctPD.links_href for href in links_href), \
+            assert all(element in ctPD.links_href for element in links_href), \
                 "Attributes 'href' of links mismatch valid values"
             assert link_prefix, "The attribute 'href' of the email link does not contain the proper prefix"
             assert all(element in ctPD.links_status_code for element in links_status_codes), \

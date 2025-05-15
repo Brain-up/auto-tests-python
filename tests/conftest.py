@@ -5,6 +5,7 @@ import allure
 import pytest
 from dotenv import load_dotenv
 
+from locators.contacts_page_locators import ContactsPageLocators
 from locators.header_page_locators import HeaderUnauthorizedLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.main_page_locators import MainPageLocators
@@ -37,7 +38,7 @@ def contacts_page_open(driver, main_page_open):
     page = BasePage(driver)
     page.element_is_present_and_clickable(HeaderUnauthorizedLocators.MORE_BUTTON).click()
     page.element_is_present_and_clickable(HeaderUnauthorizedLocators.LINK_CONTACTS).click()
-    time.sleep(1)
+    page.element_is_present(ContactsPageLocators.PAGE_TITLE)
 
 
 @pytest.fixture()
