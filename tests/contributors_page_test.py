@@ -4,7 +4,6 @@ from pages.contributors_page import ContributorsPage as ctbPage
 from test_data.contributors_page_data import ContributorsPageData as ctbPD
 
 
-# @pytest.mark.skip(reason="unsupported preconditions")
 @allure.epic("The Contributors Page")
 class TestContributorsPage:
     class TestContributorsPageStructure:
