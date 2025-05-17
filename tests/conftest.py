@@ -6,12 +6,14 @@ import pytest
 from dotenv import load_dotenv
 
 from locators.contacts_page_locators import ContactsPageLocators
+from locators.contributors_page_locators import ContributorsPageLocators
 from locators.header_page_locators import HeaderUnauthorizedLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.main_page_locators import MainPageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 
 from pages.base_page import BasePage
+from pages.contributors_page import ContributorsPage
 from pages.groups_page import GroupsPage
 from pages.profile_page import ProfilePage
 
@@ -30,6 +32,8 @@ def main_page_open(driver):
 @allure.step(f'Open page: {MainPageLinks.URL_CONTRIBUTORS_PAGE}')
 def contributors_page_open(driver):
     driver.get(MainPageLinks.URL_CONTRIBUTORS_PAGE)
+    page = ContributorsPage(driver)
+    page.element_is_present(ContributorsPageLocators.PAGE_TITLE)
 
 
 @pytest.fixture()

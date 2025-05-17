@@ -16,7 +16,7 @@ class ContributorsPageData:
     text_on_page = ("Мы собрались все вместе, чтобы сделать вашу жизнь проще!",
                     "We are all here to make your life easier!")
 
-    all_team_link_href = f"{Links.URL_MAIN_PAGE}contributors#"
+    all_team_link_href = f"{Links.URL_CONTRIBUTORS_PAGE}#"
     all_team_link_status_code = (200,)
     all_team_link_text = ("Вся Команда", "All Team")
 
