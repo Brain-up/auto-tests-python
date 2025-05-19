@@ -112,22 +112,22 @@ class GroupsPage(BasePage):
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab on the 'ru' local")
     def get_value_of_tab_title_ru(self):
-        self.click_on_ru_button()
+        # self.click_on_ru_button()
         return self.get_current_tab_title()
 
     @allure.step("Get value of the title of the tab on the 'en' local")
     def get_value_of_tab_title_en(self):
-        self.click_on_en_button()
+        # self.click_on_en_button()
         return self.get_current_tab_title()
 
     @allure.step("Get value of the title with tag 'h3' on the 'ru' local")
     def get_value_of_page_title_ru(self):
-        self.click_on_ru_button()
+        # self.click_on_ru_button()
         return self.get_text(self.locators.PAGE_TITLE)
 
     @allure.step("Get value of the title with tag 'h3' on the 'en' local")
     def get_value_of_page_title_en(self):
-        self.click_on_en_button()
+        # self.click_on_en_button()
         return self.get_text(self.locators.PAGE_TITLE)
 
     @allure.step("Get the list of subtitle 'h4' values on the 'ru' local")
@@ -137,7 +137,7 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of subtitle 'h4' values on the 'en' local")
     def get_values_of_subtitles_en(self):
-        self.click_on_en_button()
+        # self.click_on_en_button()
         return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
     # Checking links and buttons on the page

@@ -8,7 +8,7 @@ from test_data.groups_page_data import GroupsPageData as gPD
 class TestGroupsPage:
     class TestGroupsPageStructure:
         @allure.title("Verify presence and visibility of content on the page")
-        def test_gp_01_01_verify_page_presence_and_visibility(self, driver, auto_test_user_authorized):
+        def test_gp_01_01_verify_page_presence_and_visibility(self, driver, groups_ru_page_open):
             page = gPage(driver)
             page_content_presence = page.check_presence_of_page_content()
             page_content_visibility = page.check_visibility_of_page_content()
@@ -16,7 +16,7 @@ class TestGroupsPage:
             assert page_content_visibility, "The page content is invisible"
 
         @allure.title("Verify composition, visibility of elements on the 1st-6th levels of nesting on the page")
-        def test_gp_01_02_verify_page_structure_and_visibility(self, driver, auto_test_user_authorized):
+        def test_gp_01_02_verify_page_structure_and_visibility(self, driver, groups_ru_page_open):
             page = gPage(driver)
             structure_of_1st_level = page.get_structure_of_1st_level()
             visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level()
@@ -44,7 +44,7 @@ class TestGroupsPage:
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible"
 
         @allure.title("Verify presence, visibility of the title, tiles, links, images, subtitles on the page")
-        def test_gp_01_03_verify_page_structural_elements(self, driver, auto_test_user_authorized):
+        def test_gp_01_03_verify_page_structural_elements(self, driver, groups_ru_page_open):
             page = gPage(driver)
             title_on_2nd_level = page.check_title_presence()
             title_visibility = page.check_title_visibility()
@@ -68,32 +68,50 @@ class TestGroupsPage:
             assert subtitles_visibility, "Subtitles on the 6th level are invisible"
 
     class TestGroupsPageText:
-        @allure.title("Verify value of the title of the tab")
-        def test_gp_02_01_verify_tab_title(self, driver, auto_test_user_authorized):
+        @allure.title("Verify value of the 'ru' title of the tab")
+        def test_gp_02_01_verify_ru_tab_title(self, driver, groups_ru_page_open):
             page = gPage(driver)
             tab_title_value_ru = page.get_value_of_tab_title_ru()
-            tab_title_value_en = page.get_value_of_tab_title_en()
             assert tab_title_value_ru, "The title value of the tab is empty on the 'ru' local"
             assert tab_title_value_ru == gPD.tab_title_ru, "The tab title mismatches the valid value on the 'ru' local"
+
+        @allure.title("Verify value of the 'en' title of the tab")
+        def test_gp_02_02_verify_en_tab_title(self, driver, groups_en_page_open):
+            page = gPage(driver)
+            tab_title_value_en = page.get_value_of_tab_title_en()
             assert tab_title_value_en, "The title value of the tab is empty on the 'en' local"
             assert tab_title_value_en == gPD.tab_title_en, "The tab title mismatches the valid value on the 'en' local"
 
-        @allure.title("Verify value of the title and subtitles on the page")
-        def test_gp_02_02_verify_page_title_and_subtitles(self, driver, auto_test_user_authorized):
+        @allure.title("Verify value of the 'ru' title on the page")
+        def test_gp_02_03_verify_ru_page_title(self, driver, groups_ru_page_open):
             page = gPage(driver)
             title_value_ru = page.get_value_of_page_title_ru()
-            subtitle_values_ru = page.get_values_of_subtitles_ru()
-            title_value_en = page.get_value_of_page_title_en()
-            subtitle_values_en = page.get_values_of_subtitles_en()
+            print(title_value_ru)
             assert title_value_ru, "The title value on the page is empty on the 'ru' local"
-            assert title_value_ru == gPD.page_title_ru, \
-                "The title on the page mismatches the valid value on the 'ru' local"
+            assert title_value_ru == gPD.page_title_ru, "The page title mismatches the valid value on the 'ru' local"
+
+        @allure.title("Verify value of the 'en' title on the page")
+        def test_gp_02_04_verify_en_page_title(self, driver, groups_en_page_open):
+            page = gPage(driver)
+            title_value_en = page.get_value_of_page_title_en()
+            print(title_value_en)
+            assert title_value_en, "The title value on the page is empty on the 'en' local"
+            assert title_value_en == gPD.page_title_en, "The page title mismatches the valid value on the 'en' local"
+
+        @allure.title("Verify value of the 'ru' subtitles on the page")
+        def test_gp_02_05_verify_ru_page_subtitles(self, driver, groups_ru_page_open):
+            page = gPage(driver)
+            subtitle_values_ru = page.get_values_of_subtitles_ru()
+            print(subtitle_values_ru)
             assert subtitle_values_ru, "Subtitle values are empty on the 'ru' local"
             assert all(element in gPD.page_subtitles_ru for element in subtitle_values_ru), \
                 "Subtitles mismatch any valid values on the 'ru' local"
-            assert title_value_en, "The title value on the page is empty on the 'en' local"
-            assert title_value_en == gPD.page_title_en, \
-                "The title on the page mismatches the valid value on the 'en' local"
+
+        @allure.title("Verify value of the 'en' subtitles on the page")
+        def test_gp_02_06_verify_en_page_subtitles(self, driver, groups_en_page_open):
+            page = gPage(driver)
+            subtitle_values_en = page.get_values_of_subtitles_en()
+            print(subtitle_values_en)
             assert subtitle_values_en, "Subtitle values are empty on the 'en' local"
             assert all(element in gPD.page_subtitles_en for element in subtitle_values_en), \
                 "Subtitles mismatch any valid values on the 'en' local"

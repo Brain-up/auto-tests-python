@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 
 from locators.contacts_page_locators import ContactsPageLocators
 from locators.contributors_page_locators import ContributorsPageLocators
-from locators.header_page_locators import HeaderUnauthorizedLocators
+from locators.groups_page_locators import GroupsPageLocators
+from locators.header_page_locators import HeaderUnauthorizedLocators as huLocators
 from locators.login_page_locators import LoginPageLocators
 from locators.main_page_locators import MainPageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
@@ -40,8 +41,8 @@ def contributors_page_open(driver):
 @allure.step(f'Open page: {MainPageLinks.URL_CONTACTS_PAGE}')
 def contacts_page_open(driver, main_page_open):
     page = BasePage(driver)
-    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.MORE_BUTTON).click()
-    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.LINK_CONTACTS).click()
+    page.element_is_present_and_clickable(huLocators.MORE_BUTTON).click()
+    page.element_is_present_and_clickable(huLocators.LINK_CONTACTS).click()
     page.element_is_present(ContactsPageLocators.PAGE_TITLE)
 
 
@@ -53,21 +54,30 @@ def description_page_open(driver):
 
 @pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.STARTING_POINT}')
-def exercises_ru_page_open(driver, auto_test_user_authorized):
+def groups_ru_page_open(driver, auto_test_user_authorized):
     page = GroupsPage(driver)
-    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.RU_BUTTON).click()
+    page.element_is_present_and_clickable(huLocators.RU_BUTTON).click()
+    page.element_is_present(GroupsPageLocators.PAGE_TITLE)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {ExercisesUrls.STARTING_POINT}')
+def groups_en_page_open(driver, auto_test_user_authorized):
+    page = GroupsPage(driver)
+    page.element_is_present_and_clickable(huLocators.EN_BUTTON).click()
+    page.element_is_present(GroupsPageLocators.PAGE_TITLE)
 
 
 @pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}')
-def exercises_ru_similar_phrases_page_open(driver, exercises_ru_page_open):
+def exercises_ru_similar_phrases_page_open(driver, groups_ru_page_open):
     driver.get(ExercisesUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE)
     time.sleep(3)
 
 
 @pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE}')
-def exercises_ru_words_page_open(driver, exercises_ru_page_open):
+def exercises_ru_words_page_open(driver, groups_ru_page_open):
     driver.get(ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE)
     time.sleep(3)
 
@@ -84,8 +94,8 @@ def login_page_open(driver, main_page_open):
 @allure.step(f'Open page: {MainPageLinks.URL_SPECIALISTS_PAGE}')
 def specialists_page_open(driver, main_page_open):
     page = BasePage(driver)
-    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.MORE_BUTTON).click()
-    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.LINK_SPECIALISTS).click()
+    page.element_is_present_and_clickable(huLocators.MORE_BUTTON).click()
+    page.element_is_present_and_clickable(huLocators.LINK_SPECIALISTS).click()
     time.sleep(1)
 
 
@@ -93,8 +103,8 @@ def specialists_page_open(driver, main_page_open):
 @allure.step(f'Open page: {MainPageLinks.URL_USED_RESOURCES_PAGE}')
 def used_resources_page_open(driver, main_page_open):
     page = BasePage(driver)
-    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.MORE_BUTTON).click()
-    page.element_is_present_and_clickable(HeaderUnauthorizedLocators.LINK_USED_RESOURCES).click()
+    page.element_is_present_and_clickable(huLocators.MORE_BUTTON).click()
+    page.element_is_present_and_clickable(huLocators.LINK_USED_RESOURCES).click()
     time.sleep(1)
 
 
