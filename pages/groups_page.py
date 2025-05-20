@@ -166,25 +166,19 @@ class GroupsPage(BasePage):
     @allure.step("Get attribute 'title' of links on the 'ru' local")
     def get_links_titles_ru(self):
         self.click_on_ru_button()
-        time.sleep(1)
+        # time.sleep(1)
         return [element.get_attribute("title") for element in self.get_list_of_links()]
 
     @allure.step("Get attribute 'title' of links on the 'en' local")
     def get_links_titles_en(self):
-        self.click_on_en_button()
-        time.sleep(1)
         return [element.get_attribute("title") for element in self.get_list_of_links()]
 
     @allure.step("Get attribute 'href' of links on the 'ru' local")
     def get_links_href_ru(self):
-        self.click_on_ru_button()
-        time.sleep(1)
         return [element.get_attribute("href") for element in self.get_list_of_links()]
 
     @allure.step("Get attribute 'href' of links on the 'en' local")
     def get_links_href_en(self):
-        self.click_on_en_button()
-        time.sleep(1)
         return [element.get_attribute("href") for element in self.get_list_of_links()]
 
     @allure.step("Check the first part of the attribute 'href' of links")
@@ -198,31 +192,31 @@ class GroupsPage(BasePage):
 
     @allure.step("Click on links on the 'ru' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_ru_local(self):
-        self.click_on_ru_button()
-        time.sleep(2)
+        # self.click_on_ru_button()
+        # time.sleep(2)
         opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
-        time.sleep(4)
+        time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators1.LOGO_LINK).click()
-        time.sleep(4)
+        # time.sleep(4)
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
-        time.sleep(4)
+        time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         return opened_pages
 
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_en_local(self):
         opened_pages = []
-        self.click_on_en_button()
-        time.sleep(2)
+        # self.click_on_en_button()
+        # time.sleep(2)
         print(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
         time.sleep(5)
         opened_pages.append(self.get_current_tab_url())
         print(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(5)
+        # time.sleep(5)
         print(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
         time.sleep(5)

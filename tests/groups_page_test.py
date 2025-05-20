@@ -117,33 +117,41 @@ class TestGroupsPage:
                 "Subtitles mismatch any valid values on the 'en' local"
 
     class TestGroupsPageLinks:
-        @allure.title("Verify clickability, title, href, status code of links on the page")
-        def test_gp_03_01_verify_links(self, driver, auto_test_user_authorized):
+        @allure.title("Verify clickability, status code of links on the page")
+        def test_gp_03_01_verify_links(self, driver, groups_ru_page_open):
             page = gPage(driver)
             links_clickability = page.check_links_clickability()
-            link_titles_ru = page.get_links_titles_ru()
-            link_titles_en = page.get_links_titles_en()
-            links_href_ru = page.get_links_href_ru()
-            links_href_en = page.get_links_href_en()
             link_status_codes = page.get_links_status_codes()
             assert links_clickability, "Links are unclickable"
-            assert link_titles_ru, "Link titles values are empty on the 'ru' local"
-            assert all(element in gPD.link_titles_ru for element in link_titles_ru), \
-                "Link titles mismatch any valid values on the 'ru' local"
-            assert link_titles_en, "Link titles values are empty on the 'en' local"
-            assert all(element in gPD.link_titles_en for element in link_titles_en), \
-                "Link titles mismatch any valid values on the 'en' local"
-            assert links_href_ru, "Links href are empty on the 'ru' local"
-            assert links_href_en, "Links href are empty on the 'en' local"
-            assert all(element.startswith(gPD.link_href_first_part) for element in links_href_ru), \
-                "Attributes 'href' of links on the 'ru' local mismatch valid values"
-            assert all(element.startswith(gPD.link_href_first_part) for element in links_href_en), \
-                "Attributes 'href' of links on the 'en' local mismatch valid values"
             assert all(element in gPD.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
+        @allure.title("Verify title, href of links on the 'ru' local")
+        def test_gp_03_02_verify_links_ru(self, driver, groups_ru_page_open):
+            page = gPage(driver)
+            link_titles_ru = page.get_links_titles_ru()
+            links_href_ru = page.get_links_href_ru()
+            assert link_titles_ru, "Link titles values are empty on the 'ru' local"
+            assert all(element in gPD.link_titles_ru for element in link_titles_ru), \
+                "Link titles mismatch any valid values on the 'ru' local"
+            assert links_href_ru, "Links href are empty on the 'ru' local"
+            assert all(element.startswith(gPD.link_href_first_part) for element in links_href_ru), \
+                "Attributes 'href' of links on the 'ru' local mismatch valid values"
+
+        @allure.title("Verify title, href of links on the 'en' local")
+        def test_gp_03_03_verify_links_en(self, driver, groups_en_page_open):
+            page = gPage(driver)
+            link_titles_en = page.get_links_titles_en()
+            links_href_en = page.get_links_href_en()
+            assert link_titles_en, "Link titles values are empty on the 'en' local"
+            assert all(element in gPD.link_titles_en for element in link_titles_en), \
+                "Link titles mismatch any valid values on the 'en' local"
+            assert links_href_en, "Links href are empty on the 'en' local"
+            assert all(element.startswith(gPD.link_href_first_part) for element in links_href_en), \
+                "Attributes 'href' of links on the 'en' local mismatch valid values"
+
         @allure.title("""Verify if links on the 'ru' local lead to correct pages after clicking""")
-        def test_gp_03_02_verify_ru_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
+        def test_gp_03_04_verify_ru_links_lead_to_proper_pages(self, driver, groups_ru_page_open):
             page = gPage(driver)
             opened_pages = page.click_on_links_on_ru_local()
             assert opened_pages, "Transitions to exercises pages have not performed"
@@ -151,7 +159,7 @@ class TestGroupsPage:
                 "Some links lead to incorrect pages after clicking"
 
         @allure.title("""Verify if links on the 'en' local lead to correct pages after clicking""")
-        def test_gp_03_03_verify_en_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
+        def test_gp_03_05_verify_en_links_lead_to_proper_pages(self, driver, groups_en_page_open):
             page = gPage(driver)
             opened_pages = page.click_on_links_on_en_local()
             assert opened_pages, "Transitions to exercises pages have not performed"
