@@ -86,7 +86,6 @@ class TestGroupsPage:
         def test_gp_02_03_verify_ru_page_title(self, driver, groups_ru_page_open):
             page = gPage(driver)
             title_value_ru = page.get_value_of_page_title_ru()
-            print(title_value_ru)
             assert title_value_ru, "The title value on the page is empty on the 'ru' local"
             assert title_value_ru == gPD.page_title_ru, "The page title mismatches the valid value on the 'ru' local"
 
@@ -94,7 +93,6 @@ class TestGroupsPage:
         def test_gp_02_04_verify_en_page_title(self, driver, groups_en_page_open):
             page = gPage(driver)
             title_value_en = page.get_value_of_page_title_en()
-            print(title_value_en)
             assert title_value_en, "The title value on the page is empty on the 'en' local"
             assert title_value_en == gPD.page_title_en, "The page title mismatches the valid value on the 'en' local"
 
@@ -102,7 +100,6 @@ class TestGroupsPage:
         def test_gp_02_05_verify_ru_page_subtitles(self, driver, groups_ru_page_open):
             page = gPage(driver)
             subtitle_values_ru = page.get_values_of_subtitles_ru()
-            print(subtitle_values_ru)
             assert subtitle_values_ru, "Subtitle values are empty on the 'ru' local"
             assert all(element in gPD.page_subtitles_ru for element in subtitle_values_ru), \
                 "Subtitles mismatch any valid values on the 'ru' local"
@@ -111,7 +108,6 @@ class TestGroupsPage:
         def test_gp_02_06_verify_en_page_subtitles(self, driver, groups_en_page_open):
             page = gPage(driver)
             subtitle_values_en = page.get_values_of_subtitles_en()
-            print(subtitle_values_en)
             assert subtitle_values_en, "Subtitle values are empty on the 'en' local"
             assert all(element in gPD.page_subtitles_en for element in subtitle_values_en), \
                 "Subtitles mismatch any valid values on the 'en' local"
@@ -167,24 +163,31 @@ class TestGroupsPage:
                 "Some links lead to incorrect pages after clicking"
 
     class TestGroupsPageImages:
-        @allure.title("Verify attributes of images in links on the page")
-        def test_gp_04_01_verify_images_attributes(self, driver, auto_test_user_authorized):
+        @allure.title("Verify attribute 'src' of images in links on the page")
+        def test_gp_04_01_verify_images_src(self, driver, groups_ru_page_open):
             page = gPage(driver)
             images_src = page.get_images_src()
-            images_alt_ru = page.get_images_alt_ru()
-            images_alt_en = page.get_images_alt_en()
             assert images_src, "The 'src' attribute value of images is empty"
             assert all(element in gPD.images_src for element in images_src), \
                 "The 'src' attribute of some images mismatches valid values"
+
+        @allure.title("Verify attribute 'alt' of images in links on the 'ru' local")
+        def test_gp_04_02_verify_images_alt_ru(self, driver, groups_ru_page_open):
+            page = gPage(driver)
+            images_alt_ru = page.get_images_alt_ru()
             assert images_alt_ru, "The 'alt' attribute value of some images is empty on the 'ru' local"
             assert all(element in gPD.images_alt_ru for element in images_alt_ru), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values on the 'ru' local"
+
+        def test_gp_04_03_verify_images_slt_en(self, driver, groups_en_page_open):
+            page = gPage(driver)
+            images_alt_en = page.get_images_alt_en()
             assert images_alt_en, "The 'alt' attribute value of some images is empty on the 'en' local"
             assert all(element in gPD.images_alt_en for element in images_alt_en), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values on the 'en' local"
 
         @allure.title("Verify sizes of images in links on the page")
-        def test_gp_04_02_verify_images_sizes(self, driver, auto_test_user_authorized):
+        def test_gp_04_04_verify_images_sizes(self, driver, groups_ru_page_open):
             page = gPage(driver)
             images_size = page.get_images_sizes()
             images_size_changed = page.check_size_changes_of_images()
