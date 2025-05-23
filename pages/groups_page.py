@@ -112,44 +112,39 @@ class GroupsPage(BasePage):
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab on the 'ru' local")
     def get_value_of_tab_title_ru(self):
-        # self.click_on_ru_button()
         return self.get_current_tab_title()
 
     @allure.step("Get value of the title of the tab on the 'en' local")
     def get_value_of_tab_title_en(self):
-        # self.click_on_en_button()
         return self.get_current_tab_title()
 
     @allure.step("Get value of the title with tag 'h3' on the 'ru' local")
     def get_value_of_page_title_ru(self):
-        # self.click_on_ru_button()
         return self.get_text(self.locators.PAGE_TITLE)
 
     @allure.step("Get value of the title with tag 'h3' on the 'en' local")
     def get_value_of_page_title_en(self):
-        # self.click_on_en_button()
         return self.get_text(self.locators.PAGE_TITLE)
 
     @allure.step("Get the list of subtitle 'h4' values on the 'ru' local")
     def get_values_of_subtitles_ru(self):
-        self.click_on_ru_button()
+        time.sleep(1)
         return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
     @allure.step("Get the list of subtitle 'h4' values on the 'en' local")
     def get_values_of_subtitles_en(self):
-        # self.click_on_en_button()
         return [subtitle.text for subtitle in self.get_list_of_subtitles()]
 
     # Checking links and buttons on the page
-    @allure.step("Click on the 'ru' button in the Header for every user")
-    def click_on_ru_button(self):
-        self.element_is_present_and_clickable(self.locators1.RU_BUTTON).click()
-        time.sleep(4)
+    # @allure.step("Click on the 'ru' button in the Header for every user")
+    # def click_on_ru_button(self):
+    #     self.element_is_present_and_clickable(self.locators1.RU_BUTTON).click()
+    #     time.sleep(4)
 
-    @allure.step("Click on the 'en' button in the Header for every user")
-    def click_on_en_button(self):
-        self.element_is_present_and_clickable(self.locators1.EN_BUTTON).click()
-        time.sleep(4)
+    # @allure.step("Click on the 'en' button in the Header for every user")
+    # def click_on_en_button(self):
+    #     self.element_is_present_and_clickable(self.locators1.EN_BUTTON).click()
+    #     time.sleep(4)
 
     @allure.step("Get the list of links on the 3rd level of nesting on the page")
     def get_list_of_links(self):
@@ -165,8 +160,7 @@ class GroupsPage(BasePage):
 
     @allure.step("Get attribute 'title' of links on the 'ru' local")
     def get_links_titles_ru(self):
-        self.click_on_ru_button()
-        # time.sleep(1)
+        time.sleep(1)
         return [element.get_attribute("title") for element in self.get_list_of_links()]
 
     @allure.step("Get attribute 'title' of links on the 'en' local")
@@ -192,14 +186,11 @@ class GroupsPage(BasePage):
 
     @allure.step("Click on links on the 'ru' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_ru_local(self):
-        # self.click_on_ru_button()
-        # time.sleep(2)
         opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators1.LOGO_LINK).click()
-        # time.sleep(4)
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
         time.sleep(3)
         opened_pages.append(self.get_current_tab_url())
@@ -208,20 +199,17 @@ class GroupsPage(BasePage):
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_en_local(self):
         opened_pages = []
-        # self.click_on_en_button()
-        # time.sleep(2)
-        print(self.get_current_tab_url())
+        # print(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
         time.sleep(5)
         opened_pages.append(self.get_current_tab_url())
-        print(self.get_current_tab_url())
+        # print(self.get_current_tab_url())
         self.driver.back()
-        # time.sleep(5)
-        print(self.get_current_tab_url())
+        # print(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
         time.sleep(5)
         opened_pages.append(self.get_current_tab_url())
-        print(self.get_current_tab_url())
+        # print(self.get_current_tab_url())
         return opened_pages
 
     # Checking images on the page
@@ -231,12 +219,11 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'ru' local")
     def get_images_alt_ru(self):
-        self.click_on_ru_button()
+        time.sleep(1)
         return [image.get_attribute('alt') for image in self.get_list_of_images()]
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'en' local")
     def get_images_alt_en(self):
-        self.click_on_en_button()
         return [image.get_attribute('alt') for image in self.get_list_of_images()]
 
     @allure.step("Get the list of sizes of images in links")
