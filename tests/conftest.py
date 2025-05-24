@@ -57,7 +57,9 @@ def description_page_open(driver):
 def groups_ru_page_open(driver, auto_test_user_authorized):
     page = GroupsPage(driver)
     page.element_is_present_and_clickable(huLocators.RU_BUTTON).click()
-    page.element_is_present(GroupsPageLocators.PAGE_TITLE)
+    page.element_is_visible(GroupsPageLocators.PAGE_SUBTITLES)
+    page.check_expected_link(ExercisesUrls.STARTING_POINT)
+    page.loader_checking()
 
 
 @pytest.fixture()
