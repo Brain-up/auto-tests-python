@@ -179,7 +179,7 @@ class TestGroupsPage:
             assert all(element in gPD.images_alt_ru for element in images_alt_ru), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values on the 'ru' local"
 
-        def test_gp_04_03_verify_images_slt_en(self, driver, groups_en_page_open):
+        def test_gp_04_03_verify_images_alt_en(self, driver, groups_en_page_open):
             page = gPage(driver)
             images_alt_en = page.get_images_alt_en()
             assert images_alt_en, "The 'alt' attribute value of some images is empty on the 'en' local"

@@ -6,10 +6,19 @@ from pages.base_page import BasePage
 from locators.groups_page_locators import GroupsPageLocators, HeaderLocators
 from test_data.links import MainPageLinks as Links
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+
 
 class GroupsPage(BasePage):
     locators = GroupsPageLocators
     locators1 = HeaderLocators
+
+    @allure.step("Loader checking")
+    def loader_checking(self):
+        self.timeout = 50
+        return WebDriverWait(self.driver, self.timeout).until(
+            ec.visibility_of_element_located(self.locators.PAGE_SUBTITLES))
 
     # Checking the structure and display of elements on the page
     @allure.step("Check if some content is present in DOM")
@@ -67,14 +76,18 @@ class GroupsPage(BasePage):
 
     @allure.step("Get structure of the 6th level of nesting on the page")
     def get_structure_of_6th_level(self):
+        WebDriverWait(self.driver, 30).until(
+            ec.presence_of_all_elements_located(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS))
         elements = self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 6th level of nesting are visible")
     def check_elements_visibility_on_6th_level(self):
-        time.sleep(3)
-        return all(element.is_displayed() for element in self.get_structure_of_6th_level())
+        elements = self.get_structure_of_6th_level()
+        for element in elements:
+            WebDriverWait(self.driver, 10).until(ec.visibility_of(element))
+        return all(element.is_displayed() for element in elements)
 
     @allure.step("Check the title h3 on the 2nd level of nesting is present on the page")
     def check_title_presence(self):
