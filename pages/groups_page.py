@@ -111,8 +111,10 @@ class GroupsPage(BasePage):
 
     @allure.step("Check if images on the 6th level of nesting are visible")
     def check_visibility_of_images(self):
-        time.sleep(3)
-        return all(element.is_displayed() for element in self.get_list_of_images())
+        elements = self.get_list_of_images()
+        for element in elements:
+            WebDriverWait(self.driver, 10).until(ec.visibility_of(element))
+        return all(element.is_displayed() for element in elements)
 
     @allure.step("Get the list of subtitles on the 6th level of nesting on the page")
     def get_list_of_subtitles(self):
@@ -147,17 +149,6 @@ class GroupsPage(BasePage):
     @allure.step("Get the list of subtitle 'h4' values on the 'en' local")
     def get_values_of_subtitles_en(self):
         return [subtitle.text for subtitle in self.get_list_of_subtitles()]
-
-    # Checking links and buttons on the page
-    # @allure.step("Click on the 'ru' button in the Header for every user")
-    # def click_on_ru_button(self):
-    #     self.element_is_present_and_clickable(self.locators1.RU_BUTTON).click()
-    #     time.sleep(4)
-
-    # @allure.step("Click on the 'en' button in the Header for every user")
-    # def click_on_en_button(self):
-    #     self.element_is_present_and_clickable(self.locators1.EN_BUTTON).click()
-    #     time.sleep(4)
 
     @allure.step("Get the list of links on the 3rd level of nesting on the page")
     def get_list_of_links(self):
