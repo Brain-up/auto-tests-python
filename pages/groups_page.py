@@ -107,7 +107,10 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of images on the 6th level of nesting on the page")
     def get_list_of_images(self):
-        return self.elements_are_present(self.locators.PAGE_IMAGES)
+        WebDriverWait(self.driver, 30).until(
+            ec.presence_of_all_elements_located(self.locators.PAGE_IMAGES))
+        elements = self.elements_are_present(self.locators.PAGE_IMAGES)
+        return elements
 
     @allure.step("Check if images on the 6th level of nesting are visible")
     def check_visibility_of_images(self):
@@ -223,8 +226,10 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'ru' local")
     def get_images_alt_ru(self):
-        time.sleep(1)
-        return [image.get_attribute('alt') for image in self.get_list_of_images()]
+        elements = self.get_list_of_images()
+        for element in elements:
+            WebDriverWait(self.driver, 20).until(ec.visibility_of(element))
+        return [element.get_attribute('alt') for element in elements]
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'en' local")
     def get_images_alt_en(self):
