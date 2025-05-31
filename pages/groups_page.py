@@ -227,8 +227,7 @@ class GroupsPage(BasePage):
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'ru' local")
     def get_images_alt_ru(self):
         elements = self.get_list_of_images()
-        for element in elements:
-            WebDriverWait(self.driver, 20).until(ec.visibility_of(element))
+        WebDriverWait(self.driver, 10).until(ec.visibility_of_all_elements_located(self.locators.PAGE_IMAGES))
         return [element.get_attribute('alt') for element in elements]
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'en' local")
@@ -237,8 +236,10 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of sizes of images in links")
     def get_images_sizes(self):
-        time.sleep(2)
-        return [image.size for image in self.get_list_of_images()]
+        elements = self.get_list_of_images()
+        for element in elements:
+            WebDriverWait(self.driver, 10).until(ec.visibility_of(element))
+        return [element.size for element in elements]
 
     @allure.step("Check changes of images sizes after resizing")
     def check_size_changes_of_images(self):
