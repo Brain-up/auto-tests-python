@@ -122,14 +122,20 @@ class TestGroupsPage:
             assert all(element in gPD.links_status_code for element in link_status_codes), \
                 "Status codes of links mismatch valid values"
 
-        @allure.title("Verify title, href of links on the 'ru' local")
-        def test_gp_03_02_verify_links_ru(self, driver, groups_ru_page_open):
+        @allure.title("Verify title of links on the 'ru' local")
+        def test_gp_03_02_01_verify_links_ru_title(self, driver, groups_ru_page_open):
             page = gPage(driver)
             link_titles_ru = page.get_links_titles_ru()
-            links_href_ru = page.get_links_href_ru()
+            print("Found alt attributes:", link_titles_ru)  # temporarily for debugging
+            print("Expected alt attributes:", gPD.link_titles_ru)
             assert link_titles_ru, "Link titles values are empty on the 'ru' local"
             assert all(element in gPD.link_titles_ru for element in link_titles_ru), \
                 "Link titles mismatch any valid values on the 'ru' local"
+
+        @allure.title("Verify href of links on the 'ru' local")
+        def test_gp_03_02_02_verify_links_ru_href(self, driver, groups_ru_page_open):
+            page = gPage(driver)
+            links_href_ru = page.get_links_href_ru()
             assert links_href_ru, "Links href are empty on the 'ru' local"
             assert all(element.startswith(gPD.link_href_first_part) for element in links_href_ru), \
                 "Attributes 'href' of links on the 'ru' local mismatch valid values"
