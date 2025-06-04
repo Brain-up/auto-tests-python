@@ -167,8 +167,9 @@ class GroupsPage(BasePage):
 
     @allure.step("Get attribute 'title' of links on the 'ru' local")
     def get_links_titles_ru(self):
-        time.sleep(1)
-        return [element.get_attribute("title") for element in self.get_list_of_links()]
+        elements = self.get_list_of_links()
+        WebDriverWait(self.driver, 10).until(ec.visibility_of_all_elements_located(self.locators.PAGE_IMAGES))
+        return [element.get_attribute('title') for element in elements]
 
     @allure.step("Get attribute 'title' of links on the 'en' local")
     def get_links_titles_en(self):
