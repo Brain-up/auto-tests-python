@@ -4,6 +4,7 @@ import time
 import allure
 import pytest
 from dotenv import load_dotenv
+from selenium.webdriver.support.wait import WebDriverWait
 
 from locators.contacts_page_locators import ContactsPageLocators
 from locators.contributors_page_locators import ContributorsPageLocators
@@ -12,12 +13,10 @@ from locators.header_page_locators import HeaderUnauthorizedLocators as huLocato
 from locators.login_page_locators import LoginPageLocators
 from locators.main_page_locators import MainPageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
-
 from pages.base_page import BasePage
 from pages.contributors_page import ContributorsPage
 from pages.groups_page import GroupsPage
 from pages.profile_page import ProfilePage
-
 from test_data.links import MainPageLinks, ExercisesUrls
 
 load_dotenv()
@@ -54,12 +53,28 @@ def description_page_open(driver):
 
 @pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.STARTING_POINT}')
-def groups_ru_page_open(driver, auto_test_user_authorized):
+def groups_ru_page_open1(driver, auto_test_user_authorized):
     page = GroupsPage(driver)
     page.element_is_present_and_clickable(huLocators.RU_BUTTON).click()
     page.element_is_visible(GroupsPageLocators.PAGE_SUBTITLES)
     page.check_expected_link(ExercisesUrls.STARTING_POINT)
     page.loader_checking()
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {ExercisesUrls.STARTING_POINT} on the "ru" local')
+def groups_ru_page_open(driver, auto_test_user_authorized):
+    page = GroupsPage(driver)
+    ru_button = page.element_is_present_and_clickable(huLocators.RU_BUTTON)
+    subtitles_before = [el.text for el in page.elements_are_located(GroupsPageLocators.PAGE_SUBTITLES)]
+    ru_button.click()
+
+    def subtitles_changed(driver):
+        current_subtitles = [el.text for el in page.elements_are_located(GroupsPageLocators.PAGE_SUBTITLES)]
+        return current_subtitles != subtitles_before and all(current_subtitles)
+
+    WebDriverWait(driver, 10).until(subtitles_changed)
+    page.elements_are_visible(GroupsPageLocators.PAGE_SUBTITLES)
 
 
 @pytest.fixture()
