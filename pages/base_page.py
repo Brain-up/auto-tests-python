@@ -54,10 +54,22 @@ class BasePage:
         return Wait(self.driver, self.timeout).until(
             ec.presence_of_all_elements_located(locator), message=f"Can't find elements by locator {locator}")
 
-    def elements_are_visible(self, locator):
+    def elements_are_visible1(self, locator):
         return Wait(self.driver, self.timeout).until(
             ec.visibility_of_all_elements_located(locator),
             message=f"Can't find elements by locator {locator}")
+
+    def elements_are_visible(self, locator, timeout=10):
+        try:
+            return Wait(self.driver, timeout).until(ec.visibility_of_all_elements_located(locator))
+        except TimeoutException:
+            raise TimeoutException(f"Elements have not become visible at locator {locator} within {timeout} seconds")
+
+    def elements_are_located(self, locator, timeout=10):
+        try:
+            return Wait(self.driver, timeout).until(ec.presence_of_all_elements_located(locator))
+        except TimeoutException:
+            raise TimeoutException(f"Elements were not found at locator {locator} within {timeout} seconds")
 
     def go_to_element(self, element):
         return self.driver.execute_script("arguments[0].scrollIntoView({ block: 'center'});", element)
