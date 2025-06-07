@@ -142,7 +142,6 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
         tab_title = self.get_current_tab_title()
-        # print(tab_title)
         return tab_title
 
     @allure.step("Get value of the breadcrumbs on the page")
