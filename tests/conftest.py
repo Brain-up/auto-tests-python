@@ -4,10 +4,13 @@ import time
 import allure
 import pytest
 from dotenv import load_dotenv
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait as Wait
 
 from locators.contacts_page_locators import ContactsPageLocators
 from locators.contributors_page_locators import ContributorsPageLocators
+from locators.exercises_ru_similar_phrases_page_locators import ExercisesRuSimilarPhrasesPageLocators as erspPL
 from locators.groups_page_locators import GroupsPageLocators
 from locators.header_page_locators import HeaderUnauthorizedLocators as huLocators
 from locators.login_page_locators import LoginPageLocators
@@ -52,16 +55,6 @@ def description_page_open(driver):
 
 
 @pytest.fixture()
-@allure.step(f'Open page: {ExercisesUrls.STARTING_POINT}')
-def groups_ru_page_open1(driver, auto_test_user_authorized):
-    page = GroupsPage(driver)
-    page.element_is_present_and_clickable(huLocators.RU_BUTTON).click()
-    page.element_is_visible(GroupsPageLocators.PAGE_SUBTITLES)
-    page.check_expected_link(ExercisesUrls.STARTING_POINT)
-    page.loader_checking()
-
-
-@pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.STARTING_POINT} on the "ru" local')
 def groups_ru_page_open(driver, auto_test_user_authorized):
     page = GroupsPage(driver)
@@ -73,7 +66,7 @@ def groups_ru_page_open(driver, auto_test_user_authorized):
         current_subtitles = [el.text for el in page.elements_are_located(GroupsPageLocators.PAGE_SUBTITLES)]
         return current_subtitles != subtitles_before and all(current_subtitles)
 
-    WebDriverWait(driver, 10).until(subtitles_changed)
+    Wait(driver, 10).until(subtitles_changed)
     page.elements_are_visible(GroupsPageLocators.PAGE_SUBTITLES)
 
 
@@ -86,10 +79,23 @@ def groups_en_page_open(driver, auto_test_user_authorized):
 
 
 @pytest.fixture()
-@allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}')
+@allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE} on the "ru" local')
 def exercises_ru_similar_phrases_page_open(driver, groups_ru_page_open):
     driver.get(ExercisesUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE)
-    time.sleep(3)
+
+    def page_fully_loaded(driver):
+        ready_state = driver.execute_script("return document.readyState")
+        if ready_state != "complete":
+            return False
+
+        try:
+            content = driver.find_element(*erspPL.PAGE_LIST3)
+            return content.is_displayed()
+        except NoSuchElementException:
+            return False
+
+    Wait(driver, timeout=10).until(page_fully_loaded)
+    Wait(driver, 10).until(EC.presence_of_all_elements_located(erspPL.PAGE_LIST3))
 
 
 @pytest.fixture()

@@ -2,8 +2,8 @@ import allure
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.support.ui import WebDriverWait as Wait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait as Wait
 
 from locators.main_page_locators import MainPageLocators
 
@@ -30,44 +30,44 @@ class BasePage:
 
     def element_is_present(self, locator):
         return Wait(self.driver, self.timeout).until(
-            ec.presence_of_element_located(locator), message=f"Can't find element by locator {locator}")
+            EC.presence_of_element_located(locator), message=f"Can't find element by locator {locator}")
 
     def element_is_clickable(self, locator):
         return Wait(self.driver, self.timeout).until(
-            ec.element_to_be_clickable(locator), message=f"Can't find element by locator {locator}")
+            EC.element_to_be_clickable(locator), message=f"Can't find element by locator {locator}")
 
     def element_is_present_and_clickable(self, locator):
         return (Wait(self.driver, self.timeout).until(
-            ec.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}") and
+            EC.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}") and
                 self.element_is_clickable(locator))
 
     def element_is_visible(self, locator):
         self.go_to_element(self.element_is_present(locator))
         return Wait(self.driver, self.timeout).until(
-            ec.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
+            EC.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
 
     def element_is_not_visible(self, locator):
         return Wait(self.driver, self.timeout).until(
-            ec.invisibility_of_element_located(locator), message=f"The element located by {locator} is invisible")
+            EC.invisibility_of_element_located(locator), message=f"The element located by {locator} is invisible")
 
     def elements_are_present(self, locator):
         return Wait(self.driver, self.timeout).until(
-            ec.presence_of_all_elements_located(locator), message=f"Can't find elements by locator {locator}")
+            EC.presence_of_all_elements_located(locator), message=f"Can't find elements by locator {locator}")
 
     def elements_are_visible1(self, locator):
         return Wait(self.driver, self.timeout).until(
-            ec.visibility_of_all_elements_located(locator),
+            EC.visibility_of_all_elements_located(locator),
             message=f"Can't find elements by locator {locator}")
 
     def elements_are_visible(self, locator, timeout=10):
         try:
-            return Wait(self.driver, timeout).until(ec.visibility_of_all_elements_located(locator))
+            return Wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))
         except TimeoutException:
             raise TimeoutException(f"Elements have not become visible at locator {locator} within {timeout} seconds")
 
     def elements_are_located(self, locator, timeout=10):
         try:
-            return Wait(self.driver, timeout).until(ec.presence_of_all_elements_located(locator))
+            return Wait(self.driver, timeout).until(EC.presence_of_all_elements_located(locator))
         except TimeoutException:
             raise TimeoutException(f"Elements were not found at locator {locator} within {timeout} seconds")
 
@@ -78,21 +78,21 @@ class BasePage:
         with allure.step(f'Check url is present: {url}'):
             try:
                 return Wait(self.driver, self.timeout).until(
-                    ec.url_to_be(url), message=f"Can't find element by locator {url}")
+                    EC.url_to_be(url), message=f"Can't find element by locator {url}")
             except Exception as ex:
                 print(ex)
                 return Wait(self.driver, self.timeout).until(
-                    ec.url_to_be(url), message=f"Can't find element by locator {url}")
+                    EC.url_to_be(url), message=f"Can't find element by locator {url}")
 
     def wait_changed_url(self, url):
         with allure.step(f'Wait until url: {url} will be changed.'):
             Wait(self.driver, self.timeout).until(
-                ec.url_changes(url), message=f"Url: {url} has not been changed!!!")
+                EC.url_changes(url), message=f"Url: {url} has not been changed!!!")
 
     def wait_url_to_be(self, url):
         with allure.step(f'Wait until url to be: {url}.'):
             Wait(self.driver, self.timeout).until(
-                ec.url_to_be(url), message=f"Url: {url} has not been changed!!!")
+                EC.url_to_be(url), message=f"Url: {url} has not been changed!!!")
 
     def get_text(self, locator):
         with allure.step(f'Get text in the element: {locator}'):
@@ -118,14 +118,14 @@ class BasePage:
 
     def get_current_tab_title(self):
         try:
-            Wait(self.driver, 30).until(ec.presence_of_element_located((By.TAG_NAME, "title")))
+            Wait(self.driver, 30).until(EC.presence_of_element_located((By.TAG_NAME, "title")))
             return self.driver.title
         except TimeoutException:
             return False
 
     def get_current_tab_url(self):
         try:
-            Wait(self.driver, 50).until(ec.presence_of_element_located((By.TAG_NAME, "title")))
+            Wait(self.driver, 50).until(EC.presence_of_element_located((By.TAG_NAME, "title")))
             return self.driver.current_url
         except TimeoutException:
             return False
@@ -133,7 +133,7 @@ class BasePage:
     def element_is_not_clickable(self, locator):
         self.timeout = 5
         try:
-            Wait(self.driver, self.timeout).until(ec.element_to_be_clickable(locator))
+            Wait(self.driver, self.timeout).until(EC.element_to_be_clickable(locator))
             return False
         except TimeoutException:
             return True
@@ -148,7 +148,7 @@ class BasePage:
     def check_element_is_visible(self, locator):
         """Return True or False if element is visible it's more easily for asserts"""
         try:
-            Wait(self.driver, self.timeout).until(ec.visibility_of_element_located(locator),
+            Wait(self.driver, self.timeout).until(EC.visibility_of_element_located(locator),
                                              message=f"Can't find element by locator {locator}")
             return True
         except TimeoutException:
