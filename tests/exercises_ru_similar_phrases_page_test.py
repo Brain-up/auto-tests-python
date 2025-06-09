@@ -72,8 +72,6 @@ class TestExercisesRuSimilarPhrasesPage:
         def test_ersp_02_01_verify_tab_title(self, driver, exercises_ru_similar_phrases_page_open):
             page = erspPage(driver)
             tab_title_value = page.get_value_of_tab_title()
-            print("Found tab title value:", tab_title_value)  # temporarily for debugging
-            print("Expected tab title value:", erspPD.tab_title_ru)
             assert tab_title_value, "The title value of the tab is empty"
             assert tab_title_value in erspPD.tab_title_ru, "The tab title mismatches the valid value"
 
@@ -97,8 +95,6 @@ class TestExercisesRuSimilarPhrasesPage:
         def test_ersp_02_04_verify_subgroup_links_text(self, driver, exercises_ru_similar_phrases_page_open):
             page = erspPage(driver)
             subgroup_links_text = page.get_subgroup_links_text()
-            print("Found tab title value:", subgroup_links_text)  # temporarily for debugging
-            print("Expected tab title value:", erspPD.subgroup_links_text)
             assert subgroup_links_text, "Text in cards is absent"
             assert all(element in erspPD.subgroup_links_text for element in subgroup_links_text), \
                 "Text in subgroup links mismatches valid values"
