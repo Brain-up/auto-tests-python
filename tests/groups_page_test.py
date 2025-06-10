@@ -126,8 +126,6 @@ class TestGroupsPage:
         def test_gp_03_02_01_verify_links_ru_title(self, driver, groups_ru_page_open):
             page = gPage(driver)
             link_titles_ru = page.get_links_titles_ru()
-            print("Found alt attributes:", link_titles_ru)  # temporarily for debugging
-            print("Expected alt attributes:", gPD.link_titles_ru)
             assert link_titles_ru, "Link titles values are empty on the 'ru' local"
             assert all(element in gPD.link_titles_ru for element in link_titles_ru), \
                 "Link titles mismatch any valid values on the 'ru' local"
@@ -181,8 +179,6 @@ class TestGroupsPage:
         def test_gp_04_02_verify_images_alt_ru(self, driver, groups_ru_page_open):
             page = gPage(driver)
             images_alt_ru = page.get_images_alt_ru()
-            print("Found alt attributes:", images_alt_ru)  # temporarily for debugging
-            print("Expected alt attributes:", gPD.images_alt_ru)
             assert images_alt_ru, "The 'alt' attribute value of some images is empty on the 'ru' local"
             assert all(element in gPD.images_alt_ru for element in images_alt_ru), \
                 "The 'alt' attribute value of some images is empty or mismatches valid values on the 'ru' local"

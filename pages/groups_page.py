@@ -6,19 +6,10 @@ from pages.base_page import BasePage
 from locators.groups_page_locators import GroupsPageLocators, HeaderLocators
 from test_data.links import MainPageLinks as Links
 
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-
 
 class GroupsPage(BasePage):
     locators = GroupsPageLocators
     locators1 = HeaderLocators
-
-    @allure.step("Loader checking")
-    def loader_checking(self):
-        self.timeout = 50
-        return WebDriverWait(self.driver, self.timeout).until(
-            ec.visibility_of_element_located(self.locators.PAGE_SUBTITLES))
 
     # Checking the structure and display of elements on the page
     @allure.step("Check if some content is present in DOM")
@@ -76,8 +67,6 @@ class GroupsPage(BasePage):
 
     @allure.step("Get structure of the 6th level of nesting on the page")
     def get_structure_of_6th_level(self):
-        WebDriverWait(self.driver, 30).until(
-            ec.presence_of_all_elements_located(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS))
         elements = self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         return elements
@@ -85,8 +74,6 @@ class GroupsPage(BasePage):
     @allure.step("Check if elements of the 6th level of nesting are visible")
     def check_elements_visibility_on_6th_level(self):
         elements = self.get_structure_of_6th_level()
-        for element in elements:
-            WebDriverWait(self.driver, 10).until(ec.visibility_of(element))
         return all(element.is_displayed() for element in elements)
 
     @allure.step("Check the title h3 on the 2nd level of nesting is present on the page")
@@ -107,16 +94,12 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of images on the 6th level of nesting on the page")
     def get_list_of_images(self):
-        WebDriverWait(self.driver, 30).until(
-            ec.presence_of_all_elements_located(self.locators.PAGE_IMAGES))
         elements = self.elements_are_present(self.locators.PAGE_IMAGES)
         return elements
 
     @allure.step("Check if images on the 6th level of nesting are visible")
     def check_visibility_of_images(self):
         elements = self.get_list_of_images()
-        for element in elements:
-            WebDriverWait(self.driver, 10).until(ec.visibility_of(element))
         return all(element.is_displayed() for element in elements)
 
     @allure.step("Get the list of subtitles on the 6th level of nesting on the page")
@@ -168,7 +151,6 @@ class GroupsPage(BasePage):
     @allure.step("Get attribute 'title' of links on the 'ru' local")
     def get_links_titles_ru(self):
         elements = self.get_list_of_links()
-        # WebDriverWait(self.driver, 10).until(ec.visibility_of_all_elements_located(self.locators.PAGE_IMAGES))
         return [element.get_attribute('title') for element in elements]
 
     @allure.step("Get attribute 'title' of links on the 'en' local")
@@ -228,7 +210,6 @@ class GroupsPage(BasePage):
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'ru' local")
     def get_images_alt_ru(self):
         elements = self.get_list_of_images()
-        WebDriverWait(self.driver, 10).until(ec.visibility_of_all_elements_located(self.locators.PAGE_IMAGES))
         return [element.get_attribute('alt') for element in elements]
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'en' local")
@@ -238,8 +219,6 @@ class GroupsPage(BasePage):
     @allure.step("Get the list of sizes of images in links")
     def get_images_sizes(self):
         elements = self.get_list_of_images()
-        for element in elements:
-            WebDriverWait(self.driver, 10).until(ec.visibility_of(element))
         return [element.size for element in elements]
 
     @allure.step("Check changes of images sizes after resizing")
