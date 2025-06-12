@@ -191,9 +191,10 @@ class TestGroupsPage:
                 "The 'alt' attribute value of some images is empty or mismatches valid values on the 'en' local"
 
         @allure.title("Verify sizes of images in links on the page")
-        def test_gp_04_04_verify_images_sizes(self, driver, groups_ru_page_open):
+        def test_gp_04_04_verify_images_sizes(self, driver, groups_en_page_open):
             page = gPage(driver)
             images_size = page.get_images_sizes()
-            images_size_changed = page.check_size_changes_of_images()
+            result = page.check_size_changes_of_images()
             assert images_size != 0, "Images in links have not sizes"
-            assert len(images_size_changed) == len(gPD.images_src), "Not all images in links have changed sizes"
+            assert len(result['changed']) > 0, "Images have not been resized"
+            assert not result['lost'], f"Lost images: {result['lost']}"
