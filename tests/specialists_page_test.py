@@ -5,7 +5,6 @@ from test_data.specialists_page_data import SpecialistsPageData as sPD
 from test_data.start_unauthorized_page_data import StartUnauthorizedPageData as suPD
 
 
-# @pytest.mark.skip(reason="unsupported preconditions")
 @allure.epic("Test Specialists Page")
 class TestSpecialistsPage:
     class TestSpecialistsPageStructure:

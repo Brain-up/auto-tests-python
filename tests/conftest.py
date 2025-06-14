@@ -119,7 +119,7 @@ def specialists_page_open(driver, main_page_open):
     page = BasePage(driver)
     page.element_is_present_and_clickable(huLocators.MORE_BUTTON).click()
     page.element_is_present_and_clickable(huLocators.LINK_SPECIALISTS).click()
-    time.sleep(1)
+    page.check_expected_link(MainPageLinks.URL_SPECIALISTS_PAGE)
 
 
 @pytest.fixture()
