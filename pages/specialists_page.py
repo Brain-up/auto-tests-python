@@ -1,12 +1,12 @@
 """Methods for verifying web elements on the 'Specialists' page"""
-import time
 import allure
 import requests
+from selenium.webdriver.support.wait import WebDriverWait as Wait
+from selenium.common import TimeoutException
 from pages.base_page import BasePage
 from test_data.links import MainPageLinks
 from locators.specialists_page_locators import SpecialistsPageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
-from selenium.common import TimeoutException
 
 
 class SpecialistsPage(BasePage):
@@ -39,7 +39,6 @@ class SpecialistsPage(BasePage):
     @allure.step("Get structure of the 2nd level of nesting on the page")
     def get_structure_of_2nd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
@@ -49,7 +48,6 @@ class SpecialistsPage(BasePage):
     @allure.step("Get structure of the 3rd level of nesting on the page")
     def get_structure_of_3rd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 3rd level of nesting are visible")
@@ -59,7 +57,6 @@ class SpecialistsPage(BasePage):
     @allure.step("Get structure of the 4th level of nesting on the page")
     def get_structure_of_4th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 4th level of nesting are visible")
@@ -69,7 +66,6 @@ class SpecialistsPage(BasePage):
     @allure.step("Get structure of the 5th level of nesting on the page")
     def get_structure_of_5th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 5th level of nesting are visible")
@@ -79,7 +75,6 @@ class SpecialistsPage(BasePage):
     @allure.step("Get structure of the 6th level of nesting on the page")
     def get_structure_of_6th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 6th level of nesting are visible")
@@ -132,13 +127,13 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Check the image in each specialist card is visible")
     def check_image_visibility_in_cards(self):
-        time.sleep(5)
         try:
-            card_images_visibility = all(element.is_displayed() for element in self.get_list_of_card_images())
-            return card_images_visibility
+            Wait(self.driver, 10).until(
+                lambda driver: all(element.is_displayed() for element in self.get_list_of_card_images()))
+            return True
         except TimeoutException:
             print("The entire set of images has not been loaded during the allotted time")
-            return None
+            return False
 
     @allure.step("Get the list of names in specialist cards on the 5th level of nesting on the page")
     def get_list_of_names_in_cards(self):
@@ -216,39 +211,6 @@ class SpecialistsPage(BasePage):
     @allure.step("Get the list of sizes of images in specialist cards")
     def get_images_sizes(self):
         return [image.size for image in self.get_list_of_card_images()]
-
-    @allure.step("Check changes of images sizes after resizing")
-    def check_size_changes_of_images1(self):
-        images = self.get_list_of_card_images()
-        images_sizes_before = [image.size for image in images]
-        # self.driver.set_window_size(1200, 800)
-        self.driver.set_window_size(220, 700)
-        images_sizes_after = [image.size for image in images]
-        changed, lost, unchanged = [], [], []
-        for i in range(len(images)):
-            changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
-            lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-        # print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
-        return changed
-
-    @allure.step("Check changes of images sizes after resizing")
-    def check_size_changes_of_images2(self):
-        time.sleep(3)
-        images = self.get_list_of_card_images()
-        images_sizes_before = [image.size for image in images]
-        self.driver.set_window_size(400, 1080)
-        time.sleep(7)
-        try:
-            images_sizes_after = [image.size for image in images]
-            changed, lost, unchanged = [], [], []
-            for i in range(len(images)):
-                changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
-                lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-            print(f'All images have changed sizes' if len(changed) == len(images)
-                  else f'Images {unchanged} have unchanged sizes')
-            return changed
-        except TimeoutException:
-            print("The entire set of images has not been loaded during the allotted time after resizing")
 
     @allure.step("Check changes of images sizes after resizing")
     def check_size_changes_of_images(self):
