@@ -11,6 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait as Wait
 from locators.contacts_page_locators import ContactsPageLocators
 from locators.contributors_page_locators import ContributorsPageLocators
 from locators.exercises_ru_similar_phrases_page_locators import ExercisesRuSimilarPhrasesPageLocators as erspPL
+from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators as erwPL
 from locators.groups_page_locators import GroupsPageLocators
 from locators.header_page_locators import HeaderUnauthorizedLocators as huLocators
 from locators.login_page_locators import LoginPageLocators
@@ -100,9 +101,29 @@ def exercises_ru_similar_phrases_page_open(driver, groups_ru_page_open):
 
 @pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE}')
-def exercises_ru_words_page_open(driver, groups_ru_page_open):
+def exercises_ru_words_page_open1(driver, groups_ru_page_open):
     driver.get(ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE)
     time.sleep(3)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE} on the "ru" local')
+def exercises_ru_words_page_open(driver, groups_ru_page_open):
+    driver.get(ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE)
+
+    def page_fully_loaded(driver):
+        ready_state = driver.execute_script("return document.readyState")
+        if ready_state != "complete":
+            return False
+
+        try:
+            content = driver.find_element(*erwPL.PAGE_LIST3)
+            return content.is_displayed()
+        except NoSuchElementException:
+            return False
+
+    Wait(driver, timeout=10).until(page_fully_loaded)
+    Wait(driver, 10).until(EC.presence_of_all_elements_located(erwPL.PAGE_LIST3))
 
 
 @pytest.fixture()
