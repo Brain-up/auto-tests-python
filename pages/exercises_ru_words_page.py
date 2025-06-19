@@ -2,6 +2,7 @@
 import time
 import allure
 import requests
+from selenium.webdriver.support.wait import WebDriverWait as Wait
 from pages.base_page import BasePage
 from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators, HeaderLocators
 
@@ -304,15 +305,15 @@ class ExercisesRuWordsPage(BasePage):
 
     @allure.step("Check changes of images sizes after resizing")
     def check_size_changes_of_images(self):
-        time.sleep(2)
         images = self.get_list4_of_links()
-        images_sizes_before = [image.size for image in images]
+        before = [img.size for img in images]
         self.driver.set_window_size(400, 700)
-        time.sleep(2)
-        images_sizes_after = [image.size for image in images]
-        changed, lost, unchanged = [], [], []
-        for i in range(len(images)):
-            changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
-            lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
-        # print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
-        return changed
+
+        Wait(self.driver, 5).until(lambda d: any(before[i] != img.size for i, img in enumerate(images)))
+
+        after = [img.size for img in images]
+        return {
+            'changed': [i for i, (b, a) in enumerate(zip(before, after)) if b != a and a != {'height': 0, 'width': 0}],
+            'unchanged': [i for i, (b, a) in enumerate(zip(before, after)) if b == a],
+            'lost': [i for i, a in enumerate(after) if a == {'height': 0, 'width': 0}]
+        }

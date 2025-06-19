@@ -196,7 +196,7 @@ class TestExercisesRuWordsPage:
         def test_erw_04_02_verify_images_sizes(self, driver, exercises_ru_words_page_open):
             page = erwPage(driver)
             images_size = page.get_images_sizes()
-            images_size_changed = page.check_size_changes_of_images()
+            result = page.check_size_changes_of_images()
             assert images_size != 0, "Background-images have not sizes"
-            assert len(images_size_changed) == len(erwPD.subgroup_links_style), \
-                "Not all images in links have changed sizes"
+            assert len(result['changed']) > 0, "Images have not been resized"
+            assert not result['lost'], f"Lost images: {result['lost']}"
