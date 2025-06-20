@@ -100,13 +100,6 @@ def exercises_ru_similar_phrases_page_open(driver, groups_ru_page_open):
 
 
 @pytest.fixture()
-@allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE}')
-def exercises_ru_words_page_open1(driver, groups_ru_page_open):
-    driver.get(ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE)
-    time.sleep(3)
-
-
-@pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE} on the "ru" local')
 def exercises_ru_words_page_open(driver, groups_ru_page_open):
     driver.get(ExercisesUrls.URL_EXERCISES_RU_WORDS_PAGE)
