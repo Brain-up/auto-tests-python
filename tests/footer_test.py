@@ -100,9 +100,9 @@ class TestFooter:
         @allure.title("Verify that links in the Footer lead to correct pages after clicking")
         def test_fp_03_02_verify_links_lead_to_the_correct_pages(self, driver, main_page_open):
             page = fPage(driver)
-            new_tabs_urls = page.click_on_links()
-            assert all(element in fPD.pages_urls for element in new_tabs_urls), \
-                "Links in the Footer lead to invalid pages after clicking or don't load during the allotted time"
+            actual_domains = page.click_on_links()
+            assert all(domain in fPD.domains for domain in actual_domains), \
+                "Links in the Footer lead to invalid pages after clicking or don't load within the allotted time"
 
         @allure.title("Verify that the 'Contact us' link in the Footer calls an email client")
         def test_fp_03_03_verify_contact_us_link_calls_an_email_client(self, driver, main_page_open):
