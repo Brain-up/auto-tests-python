@@ -11,14 +11,11 @@ class FooterData:
     link1 = "https://arasaac.org/"
     link2 = "mailto:brainupproject@yandex.ru?subject=BrainUp"
     link3 = "https://epam.com/"
-    link4 = "https://www.epam.com/"
-    link5 = "https://www.jetbrains.com/"
-    link6 = "https://reg.ru/"
-    link7 = "https://www.reg.ru/"
-    link8 = f"{link7}?utm_source=brainup.site&utm_medium=referral&utm_campaign=brainup.site&utm_referrer=brainup.site"
-    link9 = "https://selectel.ru/"
+    link4 = "https://www.jetbrains.com/"
+    link5 = "https://reg.ru/"
+    link6 = "https://selectel.ru/"
 
-    links_href = (link1, link2, link3, link5, link6, link9)
+    links_href = (link1, link2, link3, link4, link5, link6)
 
     link_status_codes = (200, 403)
 
@@ -32,4 +29,4 @@ class FooterData:
     images_alt = ("ARASAAC", "EPAM", "JetBrains", "Регистратор доменных имен РЕГ.РУ", "Selectel")
 
     # Related web pages urls
-    pages_urls = (link1, link3, link4, link5, link6, link7, link8, link9)
+    domains = ['arasaac.org', 'epam.com', 'jetbrains.com', 'reg.ru', 'selectel.ru']  # the list of domains

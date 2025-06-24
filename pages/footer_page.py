@@ -1,5 +1,7 @@
 import allure
 import requests
+from selenium.webdriver.support.wait import WebDriverWait as Wait
+from urllib.parse import urlparse
 from selenium.common import TimeoutException
 from locators.footer_page_locators import FooterLocators
 from pages.base_page import BasePage
@@ -34,7 +36,6 @@ class FooterPage(BasePage):
     @allure.step("Get structure of the 2nd level of nesting in the Footer")
     def get_structure_of_2nd_level(self):
         elements = self.elements_are_present(self.locators.FOOTER_SECOND_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
@@ -44,7 +45,6 @@ class FooterPage(BasePage):
     @allure.step("Get structure of the 3rd level of nesting in the Footer")
     def get_structure_of_3rd_level(self):
         elements = self.elements_are_present(self.locators.FOOTER_THIRD_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 3rd level of nesting are visible")
@@ -54,7 +54,6 @@ class FooterPage(BasePage):
     @allure.step("Get structure of the 4th level of nesting in the Footer")
     def get_structure_of_4th_level(self):
         elements = self.elements_are_present(self.locators.FOOTER_FOURTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 4th level of nesting are visible")
@@ -64,7 +63,6 @@ class FooterPage(BasePage):
     @allure.step("Get structure of the 5th level of nesting in the Footer")
     def get_structure_of_5th_level(self):
         elements = self.elements_are_present(self.locators.FOOTER_FIFTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 5th level of nesting are visible")
@@ -74,7 +72,6 @@ class FooterPage(BasePage):
     @allure.step("Get structure of the 6th level of nesting in the Footer")
     def get_structure_of_6th_level(self):
         elements = self.elements_are_present(self.locators.FOOTER_SIXTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 6th level of nesting are visible")
@@ -84,7 +81,6 @@ class FooterPage(BasePage):
     @allure.step("Get structure of the 7th level of nesting in the Footer")
     def get_structure_of_7th_level(self):
         elements = self.elements_are_present(self.locators.FOOTER_SEVENTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
         return elements
 
     @allure.step("Check if elements of the 7th level of nesting are visible")
@@ -165,24 +161,29 @@ class FooterPage(BasePage):
 
     @allure.step("Click on links in the Footer and thereby open corresponding web pages on new tabs")
     def click_on_links(self):
-        new_tabs = [link.click() for link in self.get_list_of_supporter_links()]
-        # print(f'Opened tabs: {len(new_tabs)}')
-        new_tabs_urls, count1, count2, count3 = [], 0, 0, 0
-        for i in range(1, len(new_tabs) + 1):
+        footer_links = self.get_list_of_supporter_links()
+
+        for link in footer_links:
+            link.click()
+
+        domains = []
+        for i in range(1, len(footer_links) + 1):
             try:
                 self.driver.switch_to.window(self.driver.window_handles[i])
-                new_tab_url = self.get_current_tab_url()
-                if new_tab_url:
-                    new_tabs_urls.append(new_tab_url)
-                    count1 += 1
-                else:
-                    print(f"The tab url {i} has not been defined during the allotted time")
-                    count2 += 1
+                Wait(self.driver, 10).until(lambda d: d.current_url not in ('', 'about:blank'))
+                current_url = self.driver.current_url
+                parsed_url = urlparse(current_url)
+                domain = parsed_url.netloc
+
+                if domain.startswith('www.'):
+                    domain = domain[4:]
+                domains.append(domain)
+
             except TimeoutException:
-                print(f"The tab {i} has not been loaded during the allotted time")
-                count3 += 1
-        # print(f'{new_tabs_urls}\nDefined tabs urls: {count1}\nUndefined tabs urls: {count2}\nUnloaded tabs: {count3}')
-        return new_tabs_urls
+                print(f"Tab {i} did not load within the allotted time")
+                continue
+
+        return domains
 
     @allure.step("Click on the 'Contact us' link in the Footer and thereby open an email client")
     def click_contact_us_link(self):
