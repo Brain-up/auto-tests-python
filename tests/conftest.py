@@ -67,7 +67,7 @@ def groups_ru_page_open(driver, auto_test_user_authorized):
         current_subtitles = [el.text for el in page.elements_are_located(GroupsPageLocators.PAGE_SUBTITLES)]
         return current_subtitles != subtitles_before and all(current_subtitles)
 
-    Wait(driver, 10).until(subtitles_changed)
+    Wait(driver, 20).until(subtitles_changed)
     page.elements_are_visible(GroupsPageLocators.PAGE_SUBTITLES)
 
 

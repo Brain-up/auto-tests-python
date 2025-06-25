@@ -2,6 +2,8 @@
 import time
 import allure
 import requests
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait as Wait
 
 from pages.base_page import BasePage
@@ -191,17 +193,22 @@ class GroupsPage(BasePage):
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_en_local(self):
         opened_pages = []
-        # print(self.get_current_tab_url())
-        self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
-        time.sleep(5)
+
+        link1 = self.element_is_present_and_clickable(self.locators.PAGE_LINK1)
+        current_url = self.driver.current_url
+        link1.click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
         opened_pages.append(self.get_current_tab_url())
-        # print(self.get_current_tab_url())
+
         self.driver.back()
-        # print(self.get_current_tab_url())
-        self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
-        time.sleep(5)
+        Wait(self.driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "h3")))
+
+        link2 = self.element_is_present_and_clickable(self.locators.PAGE_LINK2)
+        current_url = self.driver.current_url
+        link2.click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
         opened_pages.append(self.get_current_tab_url())
-        # print(self.get_current_tab_url())
+
         return opened_pages
 
     # Checking images on the page
