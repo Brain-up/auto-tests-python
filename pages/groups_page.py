@@ -181,13 +181,19 @@ class GroupsPage(BasePage):
     @allure.step("Click on links on the 'ru' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_ru_local(self):
         opened_pages = []
-        self.element_is_present_and_clickable(self.locators.PAGE_LINK1).click()
-        time.sleep(3)
+
+        link1 = self.element_is_present_and_clickable(self.locators.PAGE_LINK1)
+        current_url = self.driver.current_url
+        link1.click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
         opened_pages.append(self.get_current_tab_url())
         self.element_is_present_and_clickable(self.locators1.LOGO_LINK).click()
-        self.element_is_present_and_clickable(self.locators.PAGE_LINK2).click()
-        time.sleep(3)
+        link2 = self.element_is_present_and_clickable(self.locators.PAGE_LINK2)
+        current_url = self.driver.current_url
+        link2.click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
         opened_pages.append(self.get_current_tab_url())
+
         return opened_pages
 
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
