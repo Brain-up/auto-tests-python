@@ -154,7 +154,6 @@ class TestGroupsPage:
         def test_gp_03_05_verify_ru_links_lead_to_proper_pages(self, driver, groups_ru_page_open):
             page = gPage(driver)
             opened_pages = page.click_on_links_on_ru_local()
-            print(opened_pages)  # Temporarily for refactoring
             assert opened_pages, "Transitions to exercises pages have not performed"
             assert all(element in gPD.pages_urls for element in opened_pages), \
                 "Some links lead to incorrect pages after clicking"
@@ -163,7 +162,6 @@ class TestGroupsPage:
         def test_gp_03_06_verify_en_links_lead_to_proper_pages(self, driver, groups_en_page_open):
             page = gPage(driver)
             opened_pages = page.click_on_links_on_en_local()
-            print(opened_pages)  # Temporarily for refactoring
             assert opened_pages, "Transitions to exercises pages have not performed"
             assert all(element in gPD.pages_urls for element in opened_pages), \
                 "Some links lead to incorrect pages after clicking"
