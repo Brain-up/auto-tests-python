@@ -1,5 +1,4 @@
 """Methods for verifying web elements on the 'Groups' page"""
-import time
 import allure
 import requests
 from selenium.webdriver.common.by import By
@@ -133,12 +132,13 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of subtitle 'h4' values on the 'ru' local")
     def get_values_of_subtitles_ru(self):
-        time.sleep(1)
-        return [subtitle.text for subtitle in self.get_list_of_subtitles()]
+        elements = self.get_list_of_subtitles()
+        Wait(self.driver, 10).until(EC.visibility_of_all_elements_located(self.locators.PAGE_SUBTITLES))
+        return [element.text for element in elements]
 
     @allure.step("Get the list of subtitle 'h4' values on the 'en' local")
     def get_values_of_subtitles_en(self):
-        return [subtitle.text for subtitle in self.get_list_of_subtitles()]
+        return [element.text for element in self.get_list_of_subtitles()]
 
     @allure.step("Get the list of links on the 3rd level of nesting on the page")
     def get_list_of_links(self):
