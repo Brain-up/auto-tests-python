@@ -14,7 +14,7 @@ class BasePage:
     def __init__(self, driver, link=None):
         self.driver = driver
         self.link = link
-        self.timeout = 20
+        self.timeout = 10
 
     def open(self):
         with allure.step(f'Open page: {self.link}'):
