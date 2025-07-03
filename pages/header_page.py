@@ -339,9 +339,11 @@ class HeaderPage(BasePage):
         # Click on the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links
         for link in self.get_list_of_internal_links_in_more():
             self.click_more_button()
+            current_url = self.get_current_tab_url()
             link.click()
-            time.sleep(1)
+            Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
+        print(*opened_pages, sep='\n')  # Temporarily for debugging
         return opened_pages
 
     @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
