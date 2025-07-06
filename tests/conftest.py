@@ -154,6 +154,7 @@ def auto_test_user_authorized(driver, main_page_open):
     page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["LOGIN"])
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+    print("Current URL:", driver.current_url)  # Temporarily for debugging
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
     print("Current URL:", driver.current_url)  # Temporarily for debugging
     page = ProfilePage(driver)

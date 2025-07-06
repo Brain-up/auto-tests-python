@@ -1,5 +1,4 @@
 """Methods for verifying web elements in the Header of the site"""
-import time
 import allure
 import requests
 from selenium.webdriver.support import expected_conditions as EC
@@ -352,16 +351,18 @@ class HeaderPage(BasePage):
         opened_pages = []
         # Click on the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links
         for link in self.get_list_of_direct_internal_links_auth():
+            current_url = self.get_current_tab_url()
             link.click()
-            time.sleep(1)
+            Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
         # Click on the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links
         for link in self.get_list_of_internal_links_in_more():
             self.click_more_button()
-            time.sleep(1)
+            current_url = self.get_current_tab_url()
             link.click()
-            time.sleep(1)
+            Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
+        print(*opened_pages, sep='\n')  # Temporarily for debugging
         return opened_pages
 
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
