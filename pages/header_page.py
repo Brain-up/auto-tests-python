@@ -342,7 +342,6 @@ class HeaderPage(BasePage):
             link.click()
             Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
-        print(*opened_pages, sep='\n')  # Temporarily for debugging
         return opened_pages
 
     @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
@@ -362,7 +361,6 @@ class HeaderPage(BasePage):
             link.click()
             Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
-        print(*opened_pages, sep='\n')  # Temporarily for debugging
         return opened_pages
 
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
