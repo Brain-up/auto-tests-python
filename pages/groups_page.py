@@ -145,8 +145,7 @@ class GroupsPage(BasePage):
 
     @allure.step("Get attribute 'title' of links on the 'ru' local")
     def get_links_titles_ru(self):
-        elements = self.get_list_of_links()
-        return [element.get_attribute('title') for element in elements]
+        return [element.get_attribute('title') for element in self.get_list_of_links()]
 
     @allure.step("Get attribute 'title' of links on the 'en' local")
     def get_links_titles_en(self):
@@ -215,8 +214,7 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'ru' local")
     def get_images_alt_ru(self):
-        elements = self.get_list_of_images()
-        return [element.get_attribute('alt') for element in elements]
+        return [element.get_attribute('alt') for element in self.get_list_of_images()]
 
     @allure.step("Get the list of attribute 'alt' values of images in links on the 'en' local")
     def get_images_alt_en(self):
@@ -224,8 +222,7 @@ class GroupsPage(BasePage):
 
     @allure.step("Get the list of sizes of images in links")
     def get_images_sizes(self):
-        elements = self.get_list_of_images()
-        return [element.size for element in elements]
+        return [element.size for element in self.get_list_of_images()]
 
     @allure.step("Check changes of images sizes after resizing")
     def check_size_changes_of_images(self):
