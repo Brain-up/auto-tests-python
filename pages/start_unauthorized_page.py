@@ -21,8 +21,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get amount of sections with content on the page")
     def get_amount_of_sections_on_page(self):
-        sections = self.elements_are_present(self.locators.PAGE_SECTIONS)
-        return len(sections)
+        return len(self.elements_are_present(self.locators.PAGE_SECTIONS))
 
     @allure.step("Check sections are visible")
     def check_visibility_of_sections(self):
@@ -31,9 +30,8 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting in the section 1")
     def get_structure_of_1st_level_in_section1(self):
-        elements = self.elements_are_present(self.locators.SECTION_1_FIRST_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.SECTION_1_FIRST_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 1st level of nesting are visible in the section 1")
     def check_elements_visibility_on_1st_level_in_section1(self):
@@ -41,9 +39,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get structure of the 2nd level of nesting in the section 1")
     def get_structure_of_2nd_level_in_section1(self):
-        elements = self.elements_are_present(self.locators.SECTION_1_SECOND_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.SECTION_1_SECOND_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 2nd level of nesting are visible in the section 1")
     def check_elements_visibility_on_2nd_level_in_section1(self):
@@ -51,9 +47,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get structure of the 3rd level of nesting in the section 1")
     def get_structure_of_3rd_level_in_section1(self):
-        elements = self.elements_are_present(self.locators.SECTION_1_THIRD_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.SECTION_1_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 3rd level of nesting are visible in the section 1")
     def check_visibility_of_elements_on_3rd_level_in_section1(self):
@@ -61,9 +55,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting in the section 2")
     def get_structure_of_1st_level_in_section2(self):
-        elements = self.elements_are_present(self.locators.SECTION_2_FIRST_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.SECTION_2_FIRST_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 1st level of nesting are visible in the section 2")
     def check_elements_visibility_on_1st_level_in_section2(self):
@@ -71,9 +63,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get structure of the 2nd level of nesting in the section 2")
     def get_structure_of_2nd_level_in_section2(self):
-        elements = self.elements_are_present(self.locators.SECTION_2_SECOND_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.SECTION_2_SECOND_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 2nd level of nesting are visible in the section 2")
     def check_elements_visibility_on_2nd_level_in_section2(self):
@@ -81,9 +71,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get structure of the 3rd level of nesting in the section 2")
     def get_structure_of_3rd_level_in_section2(self):
-        elements = self.elements_are_present(self.locators.SECTION_2_THIRD_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.SECTION_2_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 3rd level of nesting are visible in the section 2")
     def check_visibility_of_elements_on_3rd_level_in_section2(self):
