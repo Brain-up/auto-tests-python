@@ -34,7 +34,24 @@ class StartUnauthorizedPageData:
             "Занимаясь по нашей программе, вы сможете, развивать слух в различных акустических ситуациях; "
             "тренировать слуховую память, прослушивая упражнения столько раз, сколько необходимо именно вам. "
             "А также, расширить словарный запас в интересной игровой форме и в дальшейшем использовать новые слова "
-            "в общении с друзьями и знакомыми.")
+            "в общении с друзьями и знакомыми.",
+
+            "Train for just 30 minutes a day to develop and achieve results",
+
+            "The first free online program for adults and children with cognitive speech perception problems. "
+            "All our lessons are designed for children aged 7 and older. "
+            "Currently, the program includes more than 20 different topics that you can start working on right away. "
+            "And there will be even more — we plan to constantly expand our list of topics.",
+
+            "We wanted the learning format to be as convenient as possible for each of our users. "
+            "That is why our lessons are available at any time. "
+            "You can choose when to study and create your own lesson schedule.",
+
+            "By following our program, you will be able to develop your hearing in various acoustic situations; "
+            "train your auditory memory by listening to exercises as many times as you need. "
+            "Additionally, you can expand your vocabulary in an engaging, "
+            "game-like format and later use new words in conversations with friends and acquaintances."
+        )
     }
 
     login_link_text = ("Начать", "Login")
