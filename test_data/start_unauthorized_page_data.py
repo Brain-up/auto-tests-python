@@ -10,7 +10,8 @@ class StartUnauthorizedPageData:
     page_titles = ("BrainUP - онлайн занятия для детей и взрослых", "Преимущества",
                    "BrainUP - online classes for children and adults", "Advantages")
 
-    page_subtitles = ("BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ")
+    page_subtitles = ("BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ",
+                      "ONLINE LESSONS", "SELF-DEVELOPMENT")
 
     text_on_page = {
         "text_in_section1": (
