@@ -1,8 +1,8 @@
 """Methods for verifying web elements on the 'Contributors' page"""
-import time
-
 import allure
 import requests
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait as Wait
 from pages.base_page import BasePage
 from locators.contributors_page_locators import ContributorsPageLocators
 
@@ -90,8 +90,8 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get the list of descriptions in cards on the 4th level of nesting on the page")
     def get_list_of_card_descriptions(self):
-        time.sleep(1)
-        return self.elements_are_present(self.locators.CARD_DESCRIPTIONS)
+        return Wait(self.driver, 10).until(
+            EC.visibility_of_all_elements_located(self.locators.CARD_DESCRIPTIONS))
 
     @allure.step("Check descriptions in cards are visible")
     def check_descriptions_visibility(self):
