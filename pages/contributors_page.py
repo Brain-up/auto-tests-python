@@ -20,9 +20,8 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting on the page")
     def get_structure_of_1st_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 1st level of nesting are visible")
     def check_elements_visibility_on_1st_level_on_page(self):
@@ -30,9 +29,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get structure of the 2nd level of nesting on the page")
     def get_structure_of_2nd_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
     def check_elements_visibility_on_2nd_level_on_page(self):
@@ -40,9 +37,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get structure of the 3rd level of nesting on the page")
     def get_structure_of_3rd_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 3rd level of nesting are visible")
     def check_elements_visibility_on_3rd_level_on_page(self):
@@ -50,9 +45,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get structure of the 4th level of nesting on the page")
     def get_structure_of_4th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 4th level of nesting are visible")
     def check_elements_visibility_on_4th_level_on_page(self):
@@ -60,9 +53,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get structure of the 5th level of nesting on the page")
     def get_structure_of_5th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        return elements
+        return self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
 
     @allure.step("Check the title h2 on the 2nd level of nesting is present on the page")
     def check_title_presence(self):
