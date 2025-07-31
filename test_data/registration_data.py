@@ -13,7 +13,7 @@ class Messages:
     WRONG_USER = 'Error: There is no user record corresponding to this identifier. The user may have been deleted.'
     EXISTING_EMAIL = 'The email address is already in use by another account.'
     EMPTY_CONFIRM_PASSWORD = ['Passwords should match', 'Пароли должны совпадать']
-    EMPTY_NAME = ['Empty LastName', 'Фамилия не Указана']
+    EMPTY_NAME = ['Empty Last Name', 'Фамилия не Указана']
     EMPTY_BIRTHDAY = ['Invalid date', 'Некорректная дата']
     EMPTY_GENDER = ['Empty gender', 'Пол не указан']
     EMPTY_EMAIL = ['Please enter your login and password', 'Пожалуйста, введите логин и пароль.']
