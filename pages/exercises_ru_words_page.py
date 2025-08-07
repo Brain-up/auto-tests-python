@@ -2,6 +2,7 @@
 import time
 import allure
 import requests
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait as Wait
 from pages.base_page import BasePage
 from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators, HeaderLocators
@@ -174,42 +175,19 @@ class ExercisesRuWordsPage(BasePage):
     def click_on_breadcrumbs_links(self):
         opened_pages = []
         self.element_is_present_and_clickable(self.locators.PAGE_LIST1_1).click()
-        time.sleep(1)
+        Wait(self.driver, self.timeout).until(EC.url_changes(self.driver.current_url))
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
+
         self.element_is_present_and_clickable(self.locators.PAGE_LIST1_2).click()
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
+
         self.element_is_present_and_clickable(self.locators.PAGE_LIST1_3).click()
-        time.sleep(1)
         opened_pages.append(self.get_current_tab_url())
+
         print(*opened_pages, sep='\n')
         return opened_pages
-
-    @allure.step("Click on breadcrumbs link 1 and thereby open corresponding the web page in the same tab")
-    def click_on_breadcrumbs_link1(self):
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_1).click()
-        time.sleep(3)
-        opened_page = self.get_current_tab_url()
-        print(opened_page)
-        self.driver.back()
-        return opened_page
-
-    @allure.step("Click on breadcrumbs link 2 and thereby open corresponding the web page in the same tab")
-    def click_on_breadcrumbs_link2(self):
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_2).click()
-        opened_page = self.get_current_tab_url()
-        print(opened_page)
-        self.driver.back()
-        return opened_page
-
-    @allure.step("Click on breadcrumbs link 3 and thereby open corresponding the web page in the same tab")
-    def click_on_breadcrumbs_link3(self):
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_3).click()
-        opened_page = self.get_current_tab_url()
-        print(opened_page)
-        self.driver.back()
-        return opened_page
 
     @allure.step("Click on group links and thereby open corresponding web pages in the same tab")
     def click_on_group_links(self):

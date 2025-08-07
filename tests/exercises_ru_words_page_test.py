@@ -142,26 +142,12 @@ class TestExercisesRuWordsPage:
             assert all(element in erwPD.links_status_code for element in subgroup_links_status_codes), \
                 "Status codes of subgroup links mismatch valid values"
 
-        @allure.title("Verify if breadcrumbs link1 leads to the correct page after clicking")
-        def test_erw_03_04_01_verify_breadcrumbs_link1_leads_to_correct_page(self, driver, exercises_ru_words_page_open):
+        @allure.title("Verify if breadcrumbs links lead to correct pages after clicking")
+        def test_erw_03_04_verify_breadcrumbs_links_navigation(self, driver, exercises_ru_words_page_open):
             page = erwPage(driver)
-            opened_page1 = page.click_on_breadcrumbs_link1()
-            assert opened_page1, "Transitions to pages have not performed"
-            assert opened_page1 in erwPD.breadcrumbs_urls, "The link leads to an incorrect page after clicking"
-
-        @allure.title("Verify if breadcrumbs link2 leads to the correct page after clicking")
-        def test_erw_03_04_02_verify_breadcrumbs_link2_leads_to_correct_page(self, driver, exercises_ru_words_page_open):
-            page = erwPage(driver)
-            opened_page2 = page.click_on_breadcrumbs_link2()
-            assert opened_page2, "Transitions to pages have not performed"
-            assert opened_page2 in erwPD.breadcrumbs_urls, "The link leads to an incorrect page after clicking"
-
-        @allure.title("Verify if breadcrumbs link3 leads to the correct page after clicking")
-        def test_erw_03_04_03_verify_breadcrumbs_link3_leads_to_correct_page(self, driver, exercises_ru_words_page_open):
-            page = erwPage(driver)
-            opened_page3 = page.click_on_breadcrumbs_link3()
-            assert opened_page3, "Transitions to pages have not performed"
-            assert opened_page3 in erwPD.breadcrumbs_urls, "The link leads to an incorrect page after clicking"
+            opened_pages = page.click_on_breadcrumbs_links()
+            assert opened_pages, "Transitions to pages have not performed"
+            assert all(element in erwPD.breadcrumbs_urls for element in opened_pages), "Links lead to incorrect pages"
 
         @allure.title("Verify if group links lead to correct pages after clicking")
         def test_erw_03_05_verify_group_links_lead_to_correct_pages(self, driver, exercises_ru_words_page_open):
