@@ -150,12 +150,11 @@ class TestExercisesRuWordsPage:
             assert all(element in erwPD.breadcrumbs_urls for element in opened_pages), "Links lead to incorrect pages"
 
         @allure.title("Verify if group links lead to correct pages after clicking")
-        def test_erw_03_05_verify_group_links_lead_to_correct_pages(self, driver, exercises_ru_words_page_open):
+        def test_erw_03_05_verify_group_links_navigation(self, driver, exercises_ru_words_page_open):
             page = erwPage(driver)
             opened_pages = page.click_on_group_links()
             assert opened_pages, "Transitions to pages have not performed"
-            assert all(element in erwPD.group_link_urls for element in opened_pages), \
-                "Some group links lead to incorrect pages after clicking"
+            assert all(element in erwPD.group_link_urls for element in opened_pages), "Links lead to incorrect pages"
 
         @allure.title("Verify if subgroup links 1-4 lead to correct pages after clicking")
         def test_erw_03_06_verify_subgroup_links_lead_to_correct_pages(self, driver, exercises_ru_words_page_open):
