@@ -1,5 +1,4 @@
 """Methods for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
-import time
 import allure
 import requests
 from selenium.webdriver.support import expected_conditions as EC
@@ -186,7 +185,7 @@ class ExercisesRuWordsPage(BasePage):
         self.element_is_present_and_clickable(self.locators.PAGE_LIST1_3).click()
         opened_pages.append(self.get_current_tab_url())
 
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on group links and thereby open corresponding web pages in the same tab")
@@ -199,16 +198,15 @@ class ExercisesRuWordsPage(BasePage):
             Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
             opened_pages.append(self.get_current_tab_url())
 
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on subgroup link 'Family' and thereby open corresponding web pages in the same tab")
     def click_on_subgroup_link_family(self):
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_1).click()
-        time.sleep(2)
+        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
         opened_page = self.get_current_tab_url()
         self.driver.back()
-        time.sleep(1)
         print(opened_page)
         return opened_page
 
@@ -216,22 +214,18 @@ class ExercisesRuWordsPage(BasePage):
     and thereby open corresponding web pages in the same tab""")
     def click_on_subgroup_link_beloved_home_food_clothes(self):
         opened_pages = []
-        time.sleep(2)
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_2).click()
-        time.sleep(2)
+        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(2)
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_3).click()
-        time.sleep(2)
+        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(2)
         self.element_is_present_and_clickable(self.locators.PAGE_LIST3_4).click()
-        time.sleep(2)
+        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
         opened_pages.append(self.get_current_tab_url())
         self.driver.back()
-        time.sleep(2)
         print(*opened_pages, sep='\n')
         return opened_pages
 
