@@ -229,6 +229,23 @@ class ExercisesRuWordsPage(BasePage):
         print(*opened_pages, sep='\n')
         return opened_pages
 
+    @allure.step("""Click on subgroup links and thereby open corresponding web pages in the same tab""")
+    def click_on_subgroup_links(self):
+        subgroup_locators = [self.locators.PAGE_LIST3_1, self.locators.PAGE_LIST3_2,
+                             self.locators.PAGE_LIST3_3, self.locators.PAGE_LIST3_4]
+        group_page_url = self.get_current_tab_url()
+        opened_pages = []
+
+        for link_locator in subgroup_locators:
+            self.element_is_clickable(link_locator).click()
+            Wait(self.driver, self.timeout).until(EC.url_changes(group_page_url))
+            opened_pages.append(self.get_current_tab_url())
+            self.driver.back()
+            Wait(self.driver, self.timeout).until(EC.url_to_be(group_page_url))
+
+        print(*opened_pages, sep='\n')
+        return opened_pages
+
     # Checking images on the page
     @allure.step("Get the list of attribute 'style' values of images in links")
     def get_links_style(self):
