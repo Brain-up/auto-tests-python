@@ -162,9 +162,8 @@ class ExercisesRuWordsPage(BasePage):
 
     @allure.step("Get attribute 'href' of subgroup links")
     def get_subgroup_links_href(self):
-        subgroup_links_href = [element.get_attribute("href") for element in self.get_list3_of_subgroup_links()]
         # print(len(subgroup_links_href), *subgroup_links_href, sep='\n')
-        return subgroup_links_href
+        return [element.get_attribute("href") for element in self.get_list3_of_subgroup_links()]
 
     @allure.step("Get status code of subgroup links")
     def get_subgroup_link_status_codes(self):
@@ -198,35 +197,6 @@ class ExercisesRuWordsPage(BasePage):
             Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
             opened_pages.append(self.get_current_tab_url())
 
-        # print(*opened_pages, sep='\n')
-        return opened_pages
-
-    @allure.step("Click on subgroup link 'Family' and thereby open corresponding web pages in the same tab")
-    def click_on_subgroup_link_family(self):
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST3_1).click()
-        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
-        opened_page = self.get_current_tab_url()
-        self.driver.back()
-        print(opened_page)
-        return opened_page
-
-    @allure.step("""Click on subgroup links 'Beloved Home', 'Food', 'Clothes' 
-    and thereby open corresponding web pages in the same tab""")
-    def click_on_subgroup_link_beloved_home_food_clothes(self):
-        opened_pages = []
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST3_2).click()
-        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
-        opened_pages.append(self.get_current_tab_url())
-        self.driver.back()
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST3_3).click()
-        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
-        opened_pages.append(self.get_current_tab_url())
-        self.driver.back()
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST3_4).click()
-        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
-        opened_pages.append(self.get_current_tab_url())
-        self.driver.back()
-        print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("""Click on subgroup links and thereby open corresponding web pages in the same tab""")
@@ -243,7 +213,6 @@ class ExercisesRuWordsPage(BasePage):
             self.driver.back()
             Wait(self.driver, self.timeout).until(EC.url_to_be(group_page_url))
 
-        print(*opened_pages, sep='\n')
         return opened_pages
 
     # Checking images on the page
