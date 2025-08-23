@@ -171,20 +171,18 @@ class ExercisesRuWordsPage(BasePage):
 
     @allure.step("Click on breadcrumbs links and thereby open corresponding web pages in the same tab")
     def click_on_breadcrumbs_links(self):
-        opened_pages = []
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_1).click()
-        Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
-        opened_pages.append(self.get_current_tab_url())
-        self.driver.back()
+        breadcrumbs_locators = [self.locators.PAGE_LIST1_1, self.locators.PAGE_LIST1_2, self.locators.PAGE_LIST1_3]
+        group_page_url = self.get_current_tab_url()
+        opened_pages = [self.get_current_tab_url()]
 
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_2).click()
-        opened_pages.append(self.get_current_tab_url())
-        self.driver.back()
+        for link_locator in breadcrumbs_locators[:2]:
+            self.element_is_clickable(link_locator).click()
+            Wait(self.driver, self.timeout).until(EC.url_changes(group_page_url))
+            opened_pages.append(self.get_current_tab_url())
+            self.driver.back()
+            Wait(self.driver, self.timeout).until(EC.url_to_be(group_page_url))
 
-        self.element_is_present_and_clickable(self.locators.PAGE_LIST1_3).click()
-        opened_pages.append(self.get_current_tab_url())
-
-        # print(*opened_pages, sep='\n')
+        print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on group links and thereby open corresponding web pages in the same tab")
