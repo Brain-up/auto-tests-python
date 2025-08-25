@@ -19,10 +19,8 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get structure of the 1st level of nesting on the page")
     def get_structure_of_1st_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(*tags)
-        return elements
+        # tags = [element.tag_name for element in elements]
+        return self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 1st level of nesting are visible")
     def check_elements_visibility_on_1st_level(self):
@@ -30,10 +28,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get structure of the 2nd level of nesting on the page")
     def get_structure_of_2nd_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(*tags)
-        return elements
+        return self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 2nd level of nesting are visible")
     def check_elements_visibility_on_2nd_level(self):
@@ -41,10 +36,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get structure of the 3rd level of nesting on the page")
     def get_structure_of_3rd_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(*tags)
-        return elements
+        return self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 3rd level of nesting are visible")
     def check_elements_visibility_on_3rd_level(self):
@@ -52,10 +44,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get structure of the 4th level of nesting on the page")
     def get_structure_of_4th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(*tags)
-        return elements
+        return self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 4th level of nesting are visible")
     def check_elements_visibility_on_4th_level(self):
@@ -63,10 +52,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get structure of the 5th level of nesting on the page")
     def get_structure_of_5th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(*tags)
-        return elements
+        return self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 5th level of nesting are visible")
     def check_elements_visibility_on_5th_level(self):
@@ -74,10 +60,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get structure of the 6th level of nesting on the page")
     def get_structure_of_6th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(*tags)
-        return elements
+        return self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 6th level of nesting are visible")
     def check_elements_visibility_on_6th_level(self):
@@ -85,10 +68,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get structure of the 7th level of nesting on the page")
     def get_structure_of_7th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_SEVENTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        # print(*tags)
-        return elements
+        return self.elements_are_present(self.locators.PAGE_SEVENTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 7th level of nesting are visible")
     def check_elements_visibility_on_7th_level(self):
