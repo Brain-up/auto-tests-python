@@ -85,8 +85,19 @@ class UsedResourcesPage(BasePage):
         return [link.get_attribute('href') for link in self.get_list_of_links()]
 
     @allure.step("Get status code of links in sections")
-    def get_links_status_codes(self):
+    def get_links_status_codes_brief(self):
         return [requests.head(link_href).status_code for link_href in self.get_links_href()]
+
+    @allure.step("Get status code of links in sections")
+    def get_links_status_codes(self):
+        status_codes = []
+        links_href = self.get_links_href()
+
+        for link_href in links_href:
+            link_status_code = requests.head(link_href).status_code
+            print(f'For the link: {link_href}, \nstatus code: {link_status_code}')
+            status_codes.append(link_status_code)
+        return status_codes
 
     @allure.step("Click on links in sections and thereby open corresponding web pages on new tabs")
     def click_on_links(self):
