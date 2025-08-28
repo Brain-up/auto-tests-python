@@ -25,7 +25,7 @@ class UsedResourcesPageData:
                   "https://web.archive.org/web/20090601012031/http://caliban.mpiz-koeln.mpg.de/~stueber/"
                   "thome/Alphabetical_list.html")
 
-    link_status_codes = (200, 301)
+    link_status_codes = (200, 301, 403)
 
     icons_xmlns = "http://www.w3.org/2000/svg"
 
