@@ -109,26 +109,20 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     # Checking text on the tab&page
     @allure.step("Get value of the title of the tab")
     def get_value_of_tab_title(self):
-        tab_title = self.get_current_tab_title()
-        return tab_title
+        return self.get_current_tab_title()
 
     @allure.step("Get value of the breadcrumbs on the page")
     def get_value_of_breadcrumbs(self):
-        breadcrumbs_text = [element.text for element in self.get_list1_of_breadcrumbs_links()]
         # print(len(breadcrumbs_text), breadcrumbs_text, sep='\n')
-        return breadcrumbs_text
+        return [element.text for element in self.get_list1_of_breadcrumbs_links()]
 
     @allure.step("Get text in group links on the page")
     def get_group_links_text(self):
-        links_text = [element.text for element in self.get_list2_of_group_links()]
-        # print(len(links_text), *links_text, sep='\n')
-        return links_text
+        return [element.text for element in self.get_list2_of_group_links()]
 
     @allure.step("Get text in subgroup links on the page")
     def get_subgroup_links_text(self):
-        subgroup_links_text = [element.text for element in self.get_list3_of_subgroup_links()]
-        # print(len(subgroup_links_text), subgroup_links_text, sep='\n')
-        return subgroup_links_text
+        return [element.text for element in self.get_list3_of_subgroup_links()]
 
     # Checking links on the page
     @allure.step("Check if breadcrumbs are clickable")
