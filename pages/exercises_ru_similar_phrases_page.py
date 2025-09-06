@@ -131,9 +131,8 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get attribute 'href' of links in breadcrumbs")
     def get_breadcrumbs_links_href(self):
-        breadcrumbs_links_href = [element.get_attribute("href") for element in self.get_list1_of_breadcrumbs_links()]
         # print(len(breadcrumbs_links_href), *breadcrumbs_links_href, sep='\n')
-        return breadcrumbs_links_href
+        return [element.get_attribute("href") for element in self.get_list1_of_breadcrumbs_links()]
 
     @allure.step("Get status code of links in breadcrumbs")
     def get_link_status_codes_in_breadcrumbs(self):
@@ -145,12 +144,10 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get attribute 'title' of group links")
     def get_group_link_titles(self):
-        group_link_titles = [element.get_attribute("title") for element in self.get_list2_of_group_links()]
         # print(len(group_link_titles), *group_link_titles, sep='\n')
-        return group_link_titles
+        return [element.get_attribute("title") for element in self.get_list2_of_group_links()]
 
     @allure.step("Get attribute 'active-links' of group links")
     def get_group_link_active_links(self):
-        group_link_active_links = [el.get_attribute("data-test-active-link") for el in self.get_list2_of_group_links()]
         # print(len(group_link_active_links), *group_link_active_links, sep='\n')
-        return group_link_active_links
+        return [el.get_attribute("data-test-active-link") for el in self.get_list2_of_group_links()]
