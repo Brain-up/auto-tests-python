@@ -125,3 +125,9 @@ class TestExercisesRuSimilarPhrasesPage:
             assert group_link_active_links, "Attributes 'active-link' of links in group links are empty"
             assert all(element in erspPD.group_link_active_links for element in group_link_active_links), \
                 "Attributes 'active-link' of links in group links mismatch valid values"
+
+        @allure.title("Verify clickability of subgroup links on the page")
+        def test_ersp_03_03_verify_subgroup_links(self, driver, exercises_ru_similar_phrases_page_open):
+            page = erspPage(driver)
+            subgroup_links_clickability = page.check_subgroup_links_clickability()
+            assert subgroup_links_clickability, "Subgroup links are unclickable"
