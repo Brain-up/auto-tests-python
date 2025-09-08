@@ -151,3 +151,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     def get_group_link_active_links(self):
         # print(len(group_link_active_links), *group_link_active_links, sep='\n')
         return [el.get_attribute("data-test-active-link") for el in self.get_list2_of_group_links()]
+
+    @allure.step("Check if subgroup links are clickable")
+    def check_subgroup_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list3_of_subgroup_links())
