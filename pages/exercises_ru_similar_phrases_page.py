@@ -155,3 +155,7 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Check if subgroup links are clickable")
     def check_subgroup_links_clickability(self):
         return all(link.is_enabled() for link in self.get_list3_of_subgroup_links())
+
+    @allure.step("Get attribute 'href' of subgroup links")
+    def get_subgroup_links_href(self):
+        return [element.get_attribute("href") for element in self.get_list3_of_subgroup_links()]

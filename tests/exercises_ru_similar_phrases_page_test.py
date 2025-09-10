@@ -130,4 +130,8 @@ class TestExercisesRuSimilarPhrasesPage:
         def test_ersp_03_03_verify_subgroup_links(self, driver, exercises_ru_similar_phrases_page_open):
             page = erspPage(driver)
             subgroup_links_clickability = page.check_subgroup_links_clickability()
+            subgroup_links_href = page.get_subgroup_links_href()
+            print(len(subgroup_links_href), *subgroup_links_href, sep='\n')
             assert subgroup_links_clickability, "Subgroup links are unclickable"
+            assert all(element in erspPD.subgroup_link_urls for element in subgroup_links_href), \
+                "Attributes 'href' of subgroup links mismatch valid values"
