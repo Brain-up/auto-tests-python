@@ -25,4 +25,11 @@ class ExercisesRuSimilarPhrasesPageData:
                         f"{Links.URL_GROUPS_PAGE}/2",
                         f"{Links.URL_GROUPS_PAGE}/2/series/2")
 
+    subgroup_link_urls = ("https://www.brainup.site/groups/2/series/2/subgroup/60",
+                          "https://www.brainup.site/groups/2/series/2/subgroup/61",
+                          "https://www.brainup.site/groups/2/series/2/subgroup/62",
+                          "https://www.brainup.site/groups/2/series/2/subgroup/63",
+                          "https://www.brainup.site/groups/2/series/2/subgroup/64",
+                          "https://www.brainup.site/groups/2/series/2/subgroup/65")
+
     links_status_code = (200,)
