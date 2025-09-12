@@ -158,4 +158,9 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
 
     @allure.step("Get attribute 'href' of subgroup links")
     def get_subgroup_links_href(self):
+        # print(len(subgroup_links_href), *subgroup_links_href, sep='\n')
         return [element.get_attribute("href") for element in self.get_list3_of_subgroup_links()]
+
+    @allure.step("Get status code of subgroup links")
+    def get_subgroup_link_status_codes(self):
+        return [requests.head(link_href).status_code for link_href in self.get_subgroup_links_href()]
