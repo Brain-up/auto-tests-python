@@ -1,6 +1,8 @@
 """Methods for verifying web elements on the 'Exercises "Similar phrases"' page on the 'ru' local"""
 import allure
 import requests
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait as Wait
 from pages.base_page import BasePage
 from locators.exercises_ru_similar_phrases_page_locators import ExercisesRuSimilarPhrasesPageLocators
 
@@ -164,3 +166,19 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Get status code of subgroup links")
     def get_subgroup_link_status_codes(self):
         return [requests.head(link_href).status_code for link_href in self.get_subgroup_links_href()]
+
+    @allure.step("Click on breadcrumbs links and thereby open corresponding web pages in the same tab")
+    def click_on_breadcrumbs_links(self):
+        breadcrumbs_locators = [self.locators.PAGE_LIST1_1, self.locators.PAGE_LIST1_2, self.locators.PAGE_LIST1_3]
+        group_page_url = self.get_current_tab_url()
+        opened_pages = [self.get_current_tab_url()]
+
+        for link_locator in breadcrumbs_locators[:2]:
+            self.element_is_clickable(link_locator).click()
+            Wait(self.driver, self.timeout).until(EC.url_changes(group_page_url))
+            opened_pages.append(self.get_current_tab_url())
+            self.driver.back()
+            Wait(self.driver, self.timeout).until(EC.url_to_be(group_page_url))
+
+        print(*opened_pages, sep='\n')
+        return opened_pages
