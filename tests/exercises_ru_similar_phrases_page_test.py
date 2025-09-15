@@ -137,3 +137,10 @@ class TestExercisesRuSimilarPhrasesPage:
                 "Attributes 'href' of subgroup links mismatch valid values"
             assert all(element in erspPD.links_status_code for element in subgroup_links_status_codes), \
                 "Status codes of subgroup links mismatch valid values"
+
+        @allure.title("Verify if breadcrumbs links lead to correct pages after clicking")
+        def test_ersp_03_04_verify_breadcrumbs_links_navigation(self, driver, exercises_ru_similar_phrases_page_open):
+            page = erspPage(driver)
+            opened_pages = page.click_on_breadcrumbs_links()
+            assert opened_pages, "Transitions to pages have not performed"
+            assert all(element in erspPD.breadcrumbs_urls for element in opened_pages), "Links lead to incorrect pages"
