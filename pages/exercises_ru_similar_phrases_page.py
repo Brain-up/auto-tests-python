@@ -180,5 +180,17 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
             self.driver.back()
             Wait(self.driver, self.timeout).until(EC.url_to_be(group_page_url))
 
+        return opened_pages
+
+    @allure.step("Click on group links and thereby open corresponding web pages in the same tab")
+    def click_on_group_links(self):
+        group_links = self.get_list2_of_group_links()
+        opened_pages = []
+
+        for link in group_links:
+            link.click()
+            Wait(self.driver, self.timeout).until(EC.url_changes(self.get_current_tab_url()))
+            opened_pages.append(self.get_current_tab_url())
+
         print(*opened_pages, sep='\n')
         return opened_pages
