@@ -25,6 +25,9 @@ class ExercisesRuSimilarPhrasesPageData:
                         f"{Links.URL_GROUPS_PAGE}/2",
                         f"{Links.URL_GROUPS_PAGE}/2/series/2")
 
+    p = f"{Links.URL_GROUPS_PAGE}/2/series/"
+    group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
+
     subgroup_link_urls = ("https://www.brainup.site/groups/2/series/2/subgroup/60",
                           "https://www.brainup.site/groups/2/series/2/subgroup/61",
                           "https://www.brainup.site/groups/2/series/2/subgroup/62",
