@@ -1,5 +1,6 @@
 """Data for verifying web elements on the 'Exercises "Similar phrases"' page on the 'ru' local"""
 from test_data.links import MainPageLinks as Links
+from test_data.links import ExercisesUrls as ExUrls
 
 
 class ExercisesRuSimilarPhrasesPageData:
@@ -28,11 +29,7 @@ class ExercisesRuSimilarPhrasesPageData:
     p = f"{Links.URL_GROUPS_PAGE}/2/series/"
     group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
 
-    subgroup_link_urls = ("https://www.brainup.site/groups/2/series/2/subgroup/60",
-                          "https://www.brainup.site/groups/2/series/2/subgroup/61",
-                          "https://www.brainup.site/groups/2/series/2/subgroup/62",
-                          "https://www.brainup.site/groups/2/series/2/subgroup/63",
-                          "https://www.brainup.site/groups/2/series/2/subgroup/64",
-                          "https://www.brainup.site/groups/2/series/2/subgroup/65")
+    q = f"{ExUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}/subgroup/"
+    subgroup_link_urls = (f"{q}60", f"{q}61", f"{q}62", f"{q}63", f"{q}64", f"{q}65")
 
     links_status_code = (200,)
