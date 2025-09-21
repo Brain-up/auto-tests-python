@@ -1,5 +1,4 @@
 """Data for verifying web elements on the 'Exercises "Similar phrases"' page on the 'ru' local"""
-from test_data.links import MainPageLinks as Links
 from test_data.links import ExercisesUrls as ExUrls
 
 
@@ -22,11 +21,10 @@ class ExercisesRuSimilarPhrasesPageData:
     subgroup_links_text = ('Разной длительности', 'С частицей Не', 'Похожие',
                            'С разным окончанием', 'Из коротких слов', 'С разными предлогами')
 
-    breadcrumbs_urls = (f"{Links.URL_GROUPS_PAGE}",
-                        f"{Links.URL_GROUPS_PAGE}/2",
-                        f"{Links.URL_GROUPS_PAGE}/2/series/2")
+    breadcrumbs_urls = (ExUrls.STARTING_POINT, f"{ExUrls.STARTING_POINT}/2",
+                        ExUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE)
 
-    p = f"{Links.URL_GROUPS_PAGE}/2/series/"
+    p = f"{ExUrls.STARTING_POINT}/2/series/"
     group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
 
     q = f"{ExUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}/subgroup/"
