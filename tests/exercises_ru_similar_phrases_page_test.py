@@ -151,3 +151,11 @@ class TestExercisesRuSimilarPhrasesPage:
             opened_pages = page.click_on_group_links()
             assert opened_pages, "Transitions to pages have not performed"
             assert all(element in erspPD.group_link_urls for element in opened_pages), "Links lead to incorrect pages"
+
+        @allure.title("Verify if subgroup links lead to correct pages after clicking")
+        def test_ersp_03_06_verify_subgroup_links_navigation(self, driver, exercises_ru_similar_phrases_page_open):
+            page = erspPage(driver)
+            opened_pages = page.click_on_subgroup_links()
+            assert opened_pages, "Transitions to pages have not performed"
+            assert all(element in erspPD.subgroup_link_urls for element in opened_pages), \
+                "Links lead to incorrect pages"
