@@ -180,7 +180,6 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
             self.driver.back()
             Wait(self.driver, self.timeout).until(EC.url_to_be(group_page_url))
 
-        print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on group links and thereby open corresponding web pages in the same tab")
@@ -210,5 +209,12 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
             self.driver.back()
             Wait(self.driver, self.timeout).until(EC.url_to_be(group_page_url))
 
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
+
+    # Checking images on the page
+    @allure.step("Get the list of attribute 'style' values of images in links")
+    def get_links_style(self):
+        style = [image.get_attribute('style') for image in self.get_list4_of_links()]
+        print(len(style), *style, sep='\n')
+        return style
