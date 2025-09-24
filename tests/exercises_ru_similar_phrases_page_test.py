@@ -159,3 +159,10 @@ class TestExercisesRuSimilarPhrasesPage:
             assert opened_pages, "Transitions to pages have not performed"
             assert all(element in erspPD.subgroup_link_urls for element in opened_pages), \
                 "Links lead to incorrect pages"
+
+    class TestExRuWordsPageImages:
+        @allure.title("Verify attributes of images in links on the page")
+        def test_ersp_04_01_verify_images_attributes(self, driver, exercises_ru_similar_phrases_page_open):
+            page = erspPage(driver)
+            links_style = page.get_links_style()
+            assert links_style, "The 'style' attribute value of links is empty"
