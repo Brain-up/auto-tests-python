@@ -31,3 +31,8 @@ class ExercisesRuSimilarPhrasesPageData:
     subgroup_link_urls = (f"{q}60", f"{q}61", f"{q}62", f"{q}63", f"{q}64", f"{q}65")
 
     links_status_code = (200,)
+
+    s = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/'
+    e = '.svg");'
+    subgroup_links_style = (f"{s}longShortPhrases{e}", f"{s}noPhrases{e}", f"{s}similarPhrases{e}",
+                            f"{s}differentEndPhrases{e}", f"{s}shortWords{e}", f"{s}prepositionPhrases{e}")
