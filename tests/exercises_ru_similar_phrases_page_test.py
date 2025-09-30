@@ -168,3 +168,9 @@ class TestExercisesRuSimilarPhrasesPage:
             assert links_style, "The 'style' attribute value of links is empty"
             assert all(element in erspPD.subgroup_links_style for element in links_style), \
                 "The 'style' attribute value of links mismatches valid values"
+
+        @allure.title("Verify sizes of background-images in links on the page")
+        def test_ersp_04_02_verify_images_sizes(self, driver, exercises_ru_similar_phrases_page_open):
+            page = erspPage(driver)
+            images_size = page.get_images_sizes()
+            assert images_size != 0, "Background-images have not sizes"
