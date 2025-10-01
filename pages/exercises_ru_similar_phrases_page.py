@@ -216,5 +216,11 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
     @allure.step("Get the list of attribute 'style' values of images in links")
     def get_links_style(self):
         style = [image.get_attribute('style') for image in self.get_list4_of_links()]
-        print(len(style), *style, sep='\n')
+        # print(len(style), *style, sep='\n')
         return style
+
+    @allure.step("Get the list of sizes of background-images in links")
+    def get_images_sizes(self):
+        images_size = [image.size for image in self.get_list4_of_links()]
+        print(len(images_size), *images_size, sep='\n')
+        return images_size
