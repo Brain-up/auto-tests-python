@@ -173,4 +173,9 @@ class TestExercisesRuSimilarPhrasesPage:
         def test_ersp_04_02_verify_images_sizes(self, driver, exercises_ru_similar_phrases_page_open):
             page = erspPage(driver)
             images_size = page.get_images_sizes()
+            result = page.check_size_changes_of_images()
+            print(result)
             assert images_size != 0, "Background-images have not sizes"
+            assert images_size != 0, "Background-images have not sizes"
+            assert len(result['changed']) > 0, "Images have not been resized"
+            assert not result['lost'], f"Lost images: {result['lost']}"
