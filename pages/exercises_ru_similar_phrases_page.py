@@ -224,3 +224,18 @@ class ExercisesRuSimilarPhrasesPage(BasePage):
         images_size = [image.size for image in self.get_list4_of_links()]
         print(len(images_size), *images_size, sep='\n')
         return images_size
+
+    @allure.step("Check changes of images sizes after resizing")
+    def check_size_changes_of_images(self):
+        images = self.get_list4_of_links()
+        before = [img.size for img in images]
+        self.driver.set_window_size(400, 700)
+
+        Wait(self.driver, 5).until(lambda d: any(before[i] != img.size for i, img in enumerate(images)))
+
+        after = [img.size for img in images]
+        return {
+            'changed': [i for i, (b, a) in enumerate(zip(before, after)) if b != a and a != {'height': 0, 'width': 0}],
+            'unchanged': [i for i, (b, a) in enumerate(zip(before, after)) if b == a],
+            'lost': [i for i, a in enumerate(after) if a == {'height': 0, 'width': 0}]
+        }
