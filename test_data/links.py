@@ -18,6 +18,8 @@ class MainPageLinks:
 
 class ExercisesUrls:
     STARTING_POINT = MainPageLinks.URL_GROUPS_PAGE
+    p = f"{STARTING_POINT}/2/series/"
+    group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
 
     # Speech Exercises RU > Similar Phrases
     URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE = f"{STARTING_POINT}/2/series/2"
