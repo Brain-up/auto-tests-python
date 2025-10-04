@@ -2,6 +2,7 @@
 import allure
 from pages.exercises_ru_similar_phrases_page import ExercisesRuSimilarPhrasesPage as erspPage
 from test_data.exercises_ru_similar_phrases_page_data import ExercisesRuSimilarPhrasesPageData as erspPD
+from test_data.links import ExercisesUrls as ExUrls
 
 
 @allure.epic("The Exercises 'Similar phrases' Page on the 'ru' local")
@@ -150,7 +151,7 @@ class TestExercisesRuSimilarPhrasesPage:
             page = erspPage(driver)
             opened_pages = page.click_on_group_links()
             assert opened_pages, "Transitions to pages have not performed"
-            assert all(element in erspPD.group_link_urls for element in opened_pages), "Links lead to incorrect pages"
+            assert all(element in ExUrls.group_link_urls for element in opened_pages), "Links lead to incorrect pages"
 
         @allure.title("Verify if subgroup links lead to correct pages after clicking")
         def test_ersp_03_06_verify_subgroup_links_navigation(self, driver, exercises_ru_similar_phrases_page_open):
@@ -174,7 +175,6 @@ class TestExercisesRuSimilarPhrasesPage:
             page = erspPage(driver)
             images_size = page.get_images_sizes()
             result = page.check_size_changes_of_images()
-            print(result)
             assert images_size != 0, "Background-images have not sizes"
             assert images_size != 0, "Background-images have not sizes"
             assert len(result['changed']) > 0, "Images have not been resized"
