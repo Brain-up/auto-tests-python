@@ -23,6 +23,8 @@ class ExercisesUrls:
 
     # Speech Exercises RU > Similar Phrases
     URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE = f"{STARTING_POINT}/2/series/2"
+    q = f"{URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}/subgroup/"
+    subgroup_link_urls = (f"{q}60", f"{q}61", f"{q}62", f"{q}63", f"{q}64", f"{q}65")
 
     # Speech Exercises RU > Words
     URL_EXERCISES_RU_WORDS_PAGE = f"{STARTING_POINT}/2/series/1"
