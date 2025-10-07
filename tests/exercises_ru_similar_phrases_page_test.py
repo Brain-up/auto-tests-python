@@ -134,7 +134,7 @@ class TestExercisesRuSimilarPhrasesPage:
             subgroup_links_href = page.get_subgroup_links_href()
             subgroup_links_status_codes = page.get_subgroup_link_status_codes()
             assert subgroup_links_clickability, "Subgroup links are unclickable"
-            assert all(element in erspPD.subgroup_link_urls for element in subgroup_links_href), \
+            assert all(element in ExUrls.subgroup_link_urls for element in subgroup_links_href), \
                 "Attributes 'href' of subgroup links mismatch valid values"
             assert all(element in erspPD.links_status_code for element in subgroup_links_status_codes), \
                 "Status codes of subgroup links mismatch valid values"
@@ -158,7 +158,7 @@ class TestExercisesRuSimilarPhrasesPage:
             page = erspPage(driver)
             opened_pages = page.click_on_subgroup_links()
             assert opened_pages, "Transitions to pages have not performed"
-            assert all(element in erspPD.subgroup_link_urls for element in opened_pages), \
+            assert all(element in ExUrls.subgroup_link_urls for element in opened_pages), \
                 "Links lead to incorrect pages"
 
     class TestExRuSimPhrPageImages:
