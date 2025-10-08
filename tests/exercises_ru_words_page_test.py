@@ -2,6 +2,7 @@
 import allure
 from pages.exercises_ru_words_page import ExercisesRuWordsPage as erwPage
 from test_data.exercises_ru_words_page_data import ExercisesRuWordsPageData as erwPD
+from test_data.links import ExercisesUrls as ExUrls
 
 
 @allure.epic("The Exercises 'Words' Page on the 'ru' local")
@@ -154,7 +155,7 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             opened_pages = page.click_on_group_links()
             assert opened_pages, "Transitions to pages have not performed"
-            assert all(element in erwPD.group_link_urls for element in opened_pages), "Links lead to incorrect pages"
+            assert all(element in ExUrls.group_link_urls for element in opened_pages), "Links lead to incorrect pages"
 
         @allure.title("Verify if subgroup links 1-4 lead to correct pages after clicking")
         def test_erw_03_06_verify_subgroup_links_navigation(self, driver, exercises_ru_words_page_open):
