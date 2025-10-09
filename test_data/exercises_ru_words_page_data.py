@@ -46,8 +46,8 @@ class ExercisesRuWordsPageData:
                         f"{Links.URL_GROUPS_PAGE}/2",
                         f"{Links.URL_GROUPS_PAGE}/2/series/1")
 
-    p = f"{Links.URL_GROUPS_PAGE}/2/series/"
-    group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
+    # p = f"{Links.URL_GROUPS_PAGE}/2/series/"
+    # group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
 
     q = f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/"
     subgroup_link_urls = (f"{q}1", f"{q}2", f"{q}3", f"{q}4", f"{q}5", f"{q}6", f"{q}7", f"{q}8", f"{q}9", f"{q}10",
