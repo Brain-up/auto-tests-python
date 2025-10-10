@@ -138,7 +138,7 @@ class TestExercisesRuWordsPage:
             assert subgroup_link_titles, "Subgroup link titles values are empty"
             assert all(element in erwPD.subgroup_link_titles for element in subgroup_link_titles), \
                 "Subgroup link titles mismatch valid values"
-            assert all(element in erwPD.subgroup_link_urls for element in subgroup_links_href), \
+            assert all(element in ExUrls.subgroup_link_urls_ru_words for element in subgroup_links_href), \
                 "Attributes 'href' of subgroup links mismatch valid values"
             assert all(element in erwPD.links_status_code for element in subgroup_links_status_codes), \
                 "Status codes of subgroup links mismatch valid values"
@@ -162,7 +162,8 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             opened_pages = page.click_on_subgroup_links()
             assert opened_pages, "Transitions to pages have not performed"
-            assert all(element in erwPD.subgroup_link_urls for element in opened_pages), "Links lead to incorrect pages"
+            assert all(element in ExUrls.subgroup_link_urls_ru_words for element in opened_pages), \
+                "Links lead to incorrect pages"
 
     class TestExRuWordsPageImages:
         @allure.title("Verify attributes of images in links on the page")
