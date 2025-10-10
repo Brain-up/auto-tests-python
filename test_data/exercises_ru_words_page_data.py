@@ -49,12 +49,12 @@ class ExercisesRuWordsPageData:
     # p = f"{Links.URL_GROUPS_PAGE}/2/series/"
     # group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
 
-    q = f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/"
-    subgroup_link_urls = (f"{q}1", f"{q}2", f"{q}3", f"{q}4", f"{q}5", f"{q}6", f"{q}7", f"{q}8", f"{q}9", f"{q}10",
-                          f"{q}11", f"{q}12", f"{q}13", f"{q}14", f"{q}15", f"{q}16", f"{q}17", f"{q}18", f"{q}19",
-                          f"{q}20", f"{q}21", f"{q}22", f"{q}23", f"{q}24", f"{q}25", f"{q}26", f"{q}27", f"{q}28",
-                          f"{q}29", f"{q}30", f"{q}31", f"{q}32", f"{q}33", f"{q}34", f"{q}35", f"{q}36", f"{q}37",
-                          f"{q}38", f"{q}39", f"{q}40", f"{q}41", f"{q}42", f"{q}43", f"{q}44", f"{q}45", f"{q}46")
+    # q = f"{ExUrls.URL_EXERCISES_RU_WORDS_PAGE}/subgroup/"
+    # subgroup_link_urls = (f"{q}1", f"{q}2", f"{q}3", f"{q}4", f"{q}5", f"{q}6", f"{q}7", f"{q}8", f"{q}9", f"{q}10",
+    #                       f"{q}11", f"{q}12", f"{q}13", f"{q}14", f"{q}15", f"{q}16", f"{q}17", f"{q}18", f"{q}19",
+    #                       f"{q}20", f"{q}21", f"{q}22", f"{q}23", f"{q}24", f"{q}25", f"{q}26", f"{q}27", f"{q}28",
+    #                       f"{q}29", f"{q}30", f"{q}31", f"{q}32", f"{q}33", f"{q}34", f"{q}35", f"{q}36", f"{q}37",
+    #                       f"{q}38", f"{q}39", f"{q}40", f"{q}41", f"{q}42", f"{q}43", f"{q}44", f"{q}45", f"{q}46")
 
     links_status_code = (200,)
 
