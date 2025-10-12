@@ -182,7 +182,7 @@ class ExercisesRuWordsPage(BasePage):
             self.driver.back()
             Wait(self.driver, self.timeout).until(EC.url_to_be(group_page_url))
 
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on group links and thereby open corresponding web pages in the same tab")
