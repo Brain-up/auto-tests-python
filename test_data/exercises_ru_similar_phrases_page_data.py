@@ -5,7 +5,7 @@ from test_data.links import ExercisesUrls as ExUrls
 class ExercisesRuSimilarPhrasesPageData:
     tab_title_ru = ("Речевые упражнения (готовы для занятий) | BrainUp",)
 
-    breadcrumbs_text = ('', 'Речевые упражнения (готовы для занятий)', 'Похожие фразы')
+    # breadcrumbs_text = ('', 'Речевые упражнения (готовы для занятий)', 'Похожие фразы')
 
     group_links_text = ('СЛОВА', 'СЛОВА КОРОЛЁВОЙ', 'ПОХОЖИЕ ФРАЗЫ', 'ГРУППА СЛОВ', 'ПРЕДЛОЖЕНИЯ',
                         'ДИХОТИЧЕСКОЕ СЛУШАНИЕ', 'СЛОВА С ЧАСТОТНОЙ ГРУППИРОВКОЙ')
@@ -23,12 +23,6 @@ class ExercisesRuSimilarPhrasesPageData:
 
     breadcrumbs_urls = (ExUrls.STARTING_POINT, f"{ExUrls.STARTING_POINT}/2",
                         ExUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE)
-
-    # p = f"{ExUrls.STARTING_POINT}/2/series/"
-    # group_link_urls = (f"{p}1", f"{p}2", f"{p}3", f"{p}4", f"{p}5", f"{p}6", f"{p}17")
-
-    # q = f"{ExUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}/subgroup/"
-    # subgroup_link_urls = (f"{q}60", f"{q}61", f"{q}62", f"{q}63", f"{q}64", f"{q}65")
 
     links_status_code = (200,)
 

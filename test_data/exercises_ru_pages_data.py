@@ -3,3 +3,7 @@
 
 class ExercisesRuPagesData:
     tab_title_ru = ("Речевые упражнения (готовы для занятий) | BrainUp",)
+
+    b1 = ''
+    b2 = 'Речевые упражнения (готовы для занятий)'
+    breadcrumbs_text_ru_similar_phrases = (b1, b2, 'Похожие фразы')
