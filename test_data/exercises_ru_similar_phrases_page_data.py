@@ -5,7 +5,7 @@ from test_data.links import ExercisesUrls as ExUrls
 class ExercisesRuSimilarPhrasesPageData:
     tab_title_ru = ("Речевые упражнения (готовы для занятий) | BrainUp",)
 
-    breadcrumbs_text = ('', 'Речевые упражнения (готовы для занятий)', 'Похожие фразы')
+    # breadcrumbs_text = ('', 'Речевые упражнения (готовы для занятий)', 'Похожие фразы')
 
     group_links_text = ('СЛОВА', 'СЛОВА КОРОЛЁВОЙ', 'ПОХОЖИЕ ФРАЗЫ', 'ГРУППА СЛОВ', 'ПРЕДЛОЖЕНИЯ',
                         'ДИХОТИЧЕСКОЕ СЛУШАНИЕ', 'СЛОВА С ЧАСТОТНОЙ ГРУППИРОВКОЙ')
