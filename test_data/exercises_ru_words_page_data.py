@@ -4,7 +4,7 @@ from test_data.links import ExercisesUrls as ExUrls
 
 class ExercisesRuWordsPageData:
     tab_title = ("Речевые упражнения (готовы для занятий) | BrainUp", "Speech exercises | BrainUp")
-    tab_title_ru = ("Речевые упражнения (готовы для занятий) | BrainUp",)
+    # tab_title_ru = ("Речевые упражнения (готовы для занятий) | BrainUp",)
 
     breadcrumbs_text = ('', 'Речевые упражнения (готовы для занятий)', 'Слова')
 
