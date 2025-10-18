@@ -2,6 +2,7 @@
 import allure
 from pages.exercises_ru_words_page import ExercisesRuWordsPage as erwPage
 from test_data.exercises_ru_words_page_data import ExercisesRuWordsPageData as erwPD
+from test_data.exercises_ru_pages_data import ExercisesRuPagesData as erPD
 from test_data.links import ExercisesUrls as ExUrls
 
 
@@ -74,7 +75,7 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             tab_title_value = page.get_value_of_tab_title()
             assert tab_title_value, "The title value of the tab is empty"
-            assert tab_title_value in erwPD.tab_title_ru, "The title on the tab doesn't match the valid value"
+            assert tab_title_value in erPD.tab_title_ru, "The title on the tab doesn't match the valid value"
 
         @allure.title("Verify value of the breadcrumbs on the page")
         def test_erw_02_02_verify_page_breadcrumbs_text(self, driver, exercises_ru_words_page_open):
