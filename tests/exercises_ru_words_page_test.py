@@ -82,7 +82,7 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             breadcrumbs_text = page.get_value_of_breadcrumbs()
             assert breadcrumbs_text, "The breadcrumbs value on the page are empty"
-            assert all(element in erwPD.breadcrumbs_text for element in breadcrumbs_text), \
+            assert all(element in erPD.breadcrumbs_text_words_ru for element in breadcrumbs_text), \
                 "Text in breadcrumbs mismatches valid values"
 
         @allure.title("Verify text in group links on the page")
