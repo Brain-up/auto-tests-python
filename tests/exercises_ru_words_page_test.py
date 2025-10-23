@@ -90,7 +90,7 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             links_text = page.get_group_links_text()
             assert links_text, "Text in group links is absent"
-            assert all(element in erwPD.group_links_text for element in links_text), \
+            assert all(element in erPD.group_links_text for element in links_text), \
                 "Text in group links mismatches valid values"
 
         @allure.title("Verify text in cards on the page")
