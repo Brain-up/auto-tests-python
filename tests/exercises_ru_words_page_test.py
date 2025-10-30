@@ -122,7 +122,7 @@ class TestExercisesRuWordsPage:
             group_link_active_links = page.get_group_link_active_links()
             assert group_links_clickability, "Group links are unclickable"
             assert group_link_titles, "Group link titles values are empty"
-            assert all(element in erwPD.group_link_titles for element in group_link_titles), \
+            assert all(element in erPD.group_link_titles for element in group_link_titles), \
                 "Group link titles mismatch valid values"
             assert group_link_active_links, "Attributes 'active-link' of links in group links are empty"
             assert all(element in erwPD.group_link_active_links for element in group_link_active_links), \
