@@ -125,7 +125,7 @@ class TestExercisesRuWordsPage:
             assert all(element in erPD.group_link_titles for element in group_link_titles), \
                 "Group link titles mismatch valid values"
             assert group_link_active_links, "Attributes 'active-link' of links in group links are empty"
-            assert all(element in erwPD.group_link_active_links for element in group_link_active_links), \
+            assert all(element in erPD.group_link_active_links for element in group_link_active_links), \
                 "Attributes 'active-link' of links in group links mismatch valid values"
 
         @allure.title("Verify clickability, titles, href, status code of subgroup links on the page")
