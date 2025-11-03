@@ -172,7 +172,7 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             links_style = page.get_links_style()
             assert links_style, "The 'style' attribute value of links is empty"
-            assert all(element in erwPD.subgroup_links_style for element in links_style), \
+            assert all(element in erPD.subgroup_links_style_words_ru for element in links_style), \
                 "The 'style' attribute value of links mismatches valid values"
 
         @allure.title("Verify sizes of background-images in links on the page")

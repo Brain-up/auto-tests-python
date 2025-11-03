@@ -5,9 +5,6 @@ from test_data.links import ExercisesUrls as ExUrls
 class ExercisesRuWordsPageData:
     # tab_title = ("Речевые упражнения (готовы для занятий) | BrainUp", "Speech exercises | BrainUp")
 
-    # group_link_active_links = ('Слова', 'Слова Королёвой', 'Похожие фразы', 'Группа слов', 'Предложения',
-    #                            'Дихотическое слушание', 'Слова с частотной группировкой')
-
     subgroup_links_text = ('Семья', 'Любимый дом', 'Что я ем', 'Одежда', 'В школе', 'Математика', 'Домашние питомцы',
                            'Мир животных', 'Транспорт', 'Цвета и форма', 'В городе', 'В деревне', 'На прогулке',
                            'Погода', 'Стану кем хочу', 'Тело человека', 'Развлечения', 'Путешествия', 'В больнице',
@@ -33,17 +30,3 @@ class ExercisesRuWordsPageData:
     breadcrumbs_urls = (ExUrls.STARTING_POINT, f"{ExUrls.STARTING_POINT}/2", ExUrls.URL_EXERCISES_RU_WORDS_PAGE)
 
     links_status_code = (200,)
-
-    s = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/'
-    e = '.svg");'
-    subgroup_links_style = (f"{s}family{e}", f"{s}home{e}", f"{s}food{e}", f"{s}clothes{e}", f"{s}school{e}",
-                            f"{s}math{e}", f"{s}pets{e}", f"{s}animals{e}", f"{s}transport{e}", f"{s}colors{e}",
-                            f"{s}city{e}", f"{s}country{e}", f"{s}walk{e}", f"{s}weather{e}", f"{s}future{e}",
-                            f"{s}body{e}", f"{s}game{e}", f"{s}adventure{e}", f"{s}hospital{e}", f"{s}feelings{e}",
-                            f"{s}toys{e}", f"{s}insects{e}", f"{s}interior{e}", f"{s}kitchen{e}", f"{s}music{e}",
-                            f"{s}musical_instruments{e}", f"{s}birds{e}", f"{s}jewelry{e}", f"{s}history{e}",
-                            f"{s}actions{e}", f"{s}audible_actions{e}", f"{s}more_transport{e}",
-                            f"{s}special_transport{e}", f"{s}fruit_trees{e}", f"{s}plants{e}", f"{s}trees{e}",
-                            f"{s}sport{e}", f"{s}shop{e}", f"{s}artiodactyls{e}", f"{s}dogs{e}", f"{s}stationery{e}",
-                            f"{s}flowers{e}", f"{s}literature{e}", f"{s}physics{e}", f"{s}biology{e}",
-                            f"{s}instruments{e}")
