@@ -3,8 +3,6 @@ from test_data.links import ExercisesUrls as ExUrls
 
 
 class ExercisesRuSimilarPhrasesPageData:
-    # group_link_active_links = ('Слова', 'Слова Королёвой', 'Похожие фразы', 'Группа слов', 'Предложения',
-    #                            'Дихотическое слушание', 'Слова с частотной группировкой')
 
     subgroup_links_text = ('Разной длительности', 'С частицей Не', 'Похожие',
                            'С разным окончанием', 'Из коротких слов', 'С разными предлогами')
@@ -13,8 +11,3 @@ class ExercisesRuSimilarPhrasesPageData:
                         ExUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE)
 
     links_status_code = (200,)
-
-    s = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/'
-    e = '.svg");'
-    subgroup_links_style = (f"{s}longShortPhrases{e}", f"{s}noPhrases{e}", f"{s}similarPhrases{e}",
-                            f"{s}differentEndPhrases{e}", f"{s}shortWords{e}", f"{s}prepositionPhrases{e}")
