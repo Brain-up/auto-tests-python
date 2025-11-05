@@ -1,0 +1,26 @@
+name: Initialize Allure History
+
+on:
+  workflow_dispatch
+
+jobs:
+  init-allure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          
+      - name: Create basic structure
+        run: |
+          mkdir -p allure-history
+          echo "# Allure Reports History" > allure-history/README.md
+          date > allure-history/initialized.txt
+          
+      - name: Commit initial structure
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.CI_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: .
