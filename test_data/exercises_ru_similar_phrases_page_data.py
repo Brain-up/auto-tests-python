@@ -9,5 +9,3 @@ class ExercisesRuSimilarPhrasesPageData:
 
     breadcrumbs_urls = (ExUrls.STARTING_POINT, f"{ExUrls.STARTING_POINT}/2",
                         ExUrls.URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE)
-
-    links_status_code = (200,)
