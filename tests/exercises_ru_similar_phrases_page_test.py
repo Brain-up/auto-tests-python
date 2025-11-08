@@ -111,7 +111,7 @@ class TestExercisesRuSimilarPhrasesPage:
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
             assert all(element in erspPD.breadcrumbs_urls for element in breadcrumbs_links_href), \
                 "Attributes 'href' of links in breadcrumbs mismatch valid values"
-            assert all(element in erspPD.links_status_code for element in breadcrumbs_link_status_codes), \
+            assert all(element in erPD.links_status_code for element in breadcrumbs_link_status_codes), \
                 "Status codes of links in breadcrumbs mismatch valid values"
 
         @allure.title("Verify clickability, titles, attributes of group links on the page")
@@ -137,7 +137,7 @@ class TestExercisesRuSimilarPhrasesPage:
             assert subgroup_links_clickability, "Subgroup links are unclickable"
             assert all(element in ExUrls.subgroup_link_urls for element in subgroup_links_href), \
                 "Attributes 'href' of subgroup links mismatch valid values"
-            assert all(element in erspPD.links_status_code for element in subgroup_links_status_codes), \
+            assert all(element in erPD.links_status_code for element in subgroup_links_status_codes), \
                 "Status codes of subgroup links mismatch valid values"
 
         @allure.title("Verify if breadcrumbs links lead to correct pages after clicking")

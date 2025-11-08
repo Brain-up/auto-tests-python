@@ -37,3 +37,5 @@ class ExercisesRuPagesData:
         f"{s}plants{e}", f"{s}trees{e}", f"{s}sport{e}", f"{s}shop{e}", f"{s}artiodactyls{e}", f"{s}dogs{e}",
         f"{s}stationery{e}", f"{s}flowers{e}", f"{s}literature{e}", f"{s}physics{e}", f"{s}biology{e}",
         f"{s}instruments{e}")
+
+    links_status_code = (200,)
