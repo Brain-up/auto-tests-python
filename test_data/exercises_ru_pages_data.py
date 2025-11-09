@@ -2,13 +2,19 @@
 
 
 class ExercisesRuPagesData:
+
+    # common
     tab_title_ru = ("Речевые упражнения (готовы для занятий) | BrainUp",)
 
+    links_status_code = (200,)
+
+    # breadcrumbs
     b1 = ''
     b2 = 'Речевые упражнения (готовы для занятий)'
     breadcrumbs_text_ru_similar_phrases = (b1, b2, 'Похожие фразы')
     breadcrumbs_text_words_ru = (b1, b2, 'Слова')
 
+    # group links
     group_links_text = ('СЛОВА', 'СЛОВА КОРОЛЁВОЙ', 'ПОХОЖИЕ ФРАЗЫ', 'ГРУППА СЛОВ', 'ПРЕДЛОЖЕНИЯ',
                         'СЛОВА С ЧАСТОТНОЙ ГРУППИРОВКОЙ')
 
@@ -20,6 +26,7 @@ class ExercisesRuPagesData:
     group_link_active_links = ('Слова', 'Слова Королёвой', 'Похожие фразы', 'Группа слов', 'Предложения',
                                'Слова с частотной группировкой')
 
+    # subgroup links
     s = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/'
     e = '.svg");'
 
@@ -38,4 +45,5 @@ class ExercisesRuPagesData:
         f"{s}stationery{e}", f"{s}flowers{e}", f"{s}literature{e}", f"{s}physics{e}", f"{s}biology{e}",
         f"{s}instruments{e}")
 
-    links_status_code = (200,)
+    subgroup_links_text_similar_phrases_ru = ('Разной длительности', 'С частицей Не', 'Похожие', 'С разным окончанием',
+                                              'Из коротких слов', 'С разными предлогами')
