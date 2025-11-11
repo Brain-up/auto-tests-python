@@ -28,5 +28,3 @@ class ExercisesRuWordsPageData:
                             'Цветы', 'Русский язык и литература', 'Физика', 'Биология', 'Инструменты')
 
     breadcrumbs_urls = (ExUrls.STARTING_POINT, f"{ExUrls.STARTING_POINT}/2", ExUrls.URL_EXERCISES_RU_WORDS_PAGE)
-
-    links_status_code = (200,)
