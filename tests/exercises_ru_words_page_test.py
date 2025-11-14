@@ -98,7 +98,7 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             subgroup_links_text = page.get_subgroup_links_text()
             assert subgroup_links_text, "Text in cards is absent"
-            assert all(element in erwPD.subgroup_links_text for element in subgroup_links_text), \
+            assert all(element in erPD.subgroup_links_text_words_ru for element in subgroup_links_text), \
                 "Text in subgroup links mismatches valid values"
 
     class TestExRuWordsPageLinks:
