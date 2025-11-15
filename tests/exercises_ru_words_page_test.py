@@ -137,7 +137,7 @@ class TestExercisesRuWordsPage:
             subgroup_links_status_codes = page.get_subgroup_link_status_codes()
             assert subgroup_links_clickability, "Subgroup links are unclickable"
             assert subgroup_link_titles, "Subgroup link titles values are empty"
-            assert all(element in erwPD.subgroup_link_titles for element in subgroup_link_titles), \
+            assert all(element in erPD.subgroup_links_titles_words_ru for element in subgroup_link_titles), \
                 "Subgroup link titles mismatch valid values"
             assert all(element in ExUrls.subgroup_link_urls_ru_words for element in subgroup_links_href), \
                 "Attributes 'href' of subgroup links mismatch valid values"
