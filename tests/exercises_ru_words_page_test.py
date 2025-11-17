@@ -109,7 +109,7 @@ class TestExercisesRuWordsPage:
             breadcrumbs_links_href = page.get_breadcrumbs_links_href()
             breadcrumbs_link_status_codes = page.get_link_status_codes_in_breadcrumbs()
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
-            assert all(element in erwPD.breadcrumbs_urls for element in breadcrumbs_links_href), \
+            assert all(element in ExUrls.breadcrumbs_urls_ru_words for element in breadcrumbs_links_href), \
                 "Attributes 'href' of links in breadcrumbs mismatch valid values"
             assert all(element in erPD.links_status_code for element in breadcrumbs_link_status_codes), \
                 "Status codes of links in breadcrumbs mismatch valid values"
@@ -137,7 +137,7 @@ class TestExercisesRuWordsPage:
             subgroup_links_status_codes = page.get_subgroup_link_status_codes()
             assert subgroup_links_clickability, "Subgroup links are unclickable"
             assert subgroup_link_titles, "Subgroup link titles values are empty"
-            assert all(element in erwPD.subgroup_link_titles for element in subgroup_link_titles), \
+            assert all(element in erPD.subgroup_links_titles_words_ru for element in subgroup_link_titles), \
                 "Subgroup link titles mismatch valid values"
             assert all(element in ExUrls.subgroup_link_urls_ru_words for element in subgroup_links_href), \
                 "Attributes 'href' of subgroup links mismatch valid values"
@@ -149,7 +149,8 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             opened_pages = page.click_on_breadcrumbs_links()
             assert opened_pages, "Transitions to pages have not performed"
-            assert all(element in erwPD.breadcrumbs_urls for element in opened_pages), "Links lead to incorrect pages"
+            assert all(element in ExUrls.breadcrumbs_urls_ru_words for element in opened_pages), \
+                "Links lead to incorrect pages"
 
         @allure.title("Verify if group links lead to correct pages after clicking")
         def test_erw_03_05_verify_group_links_navigation(self, driver, exercises_ru_words_page_open):

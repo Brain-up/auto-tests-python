@@ -18,6 +18,8 @@ class MainPageLinks:
 
 class ExercisesUrls:
     STARTING_POINT = MainPageLinks.URL_GROUPS_PAGE
+    breadcrumbs_urls_ru = (STARTING_POINT, f"{STARTING_POINT}/2")
+
     a = f"{STARTING_POINT}/2/series/"
     group_link_urls = (f"{a}1", f"{a}2", f"{a}3", f"{a}4", f"{a}5", f"{a}6", f"{a}17")
 
@@ -28,6 +30,9 @@ class ExercisesUrls:
 
     # Speech Exercises RU > Words
     URL_EXERCISES_RU_WORDS_PAGE = f"{STARTING_POINT}/2/series/1"
+
+    breadcrumbs_urls_ru_words = breadcrumbs_urls_ru + (URL_EXERCISES_RU_WORDS_PAGE,)
+
     c = f"{URL_EXERCISES_RU_WORDS_PAGE}/subgroup/"
     subgroup_link_urls_ru_words = (
         f"{c}1", f"{c}2", f"{c}3", f"{c}4", f"{c}5", f"{c}6", f"{c}7", f"{c}8", f"{c}9", f"{c}10", f"{c}11", f"{c}12",
