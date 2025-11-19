@@ -1,7 +1,6 @@
 """Auto tests for verifying web elements on the 'Exercises "Words"' page on the 'ru' local"""
 import allure
 from pages.exercises_ru_words_page import ExercisesRuWordsPage as erwPage
-from test_data.exercises_ru_words_page_data import ExercisesRuWordsPageData as erwPD
 from test_data.exercises_ru_pages_data import ExercisesRuPagesData as erPD
 from test_data.links import ExercisesUrls as ExUrls
 
