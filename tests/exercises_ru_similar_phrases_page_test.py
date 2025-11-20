@@ -1,7 +1,6 @@
 """Auto tests for verifying web elements on the 'Exercises "Similar phrases"' page on the 'ru' local"""
 import allure
 from pages.exercises_ru_similar_phrases_page import ExercisesRuSimilarPhrasesPage as erspPage
-from test_data.exercises_ru_similar_phrases_page_data import ExercisesRuSimilarPhrasesPageData as erspPD
 from test_data.exercises_ru_pages_data import ExercisesRuPagesData as erPD
 from test_data.links import ExercisesUrls as ExUrls
 
@@ -109,7 +108,7 @@ class TestExercisesRuSimilarPhrasesPage:
             breadcrumbs_links_href = page.get_breadcrumbs_links_href()
             breadcrumbs_link_status_codes = page.get_link_status_codes_in_breadcrumbs()
             assert breadcrumbs_clickability, "Breadcrumbs are unclickable"
-            assert all(element in erspPD.breadcrumbs_urls for element in breadcrumbs_links_href), \
+            assert all(element in ExUrls.breadcrumbs_urls_ru_similar_phrases for element in breadcrumbs_links_href), \
                 "Attributes 'href' of links in breadcrumbs mismatch valid values"
             assert all(element in erPD.links_status_code for element in breadcrumbs_link_status_codes), \
                 "Status codes of links in breadcrumbs mismatch valid values"
@@ -145,7 +144,8 @@ class TestExercisesRuSimilarPhrasesPage:
             page = erspPage(driver)
             opened_pages = page.click_on_breadcrumbs_links()
             assert opened_pages, "Transitions to pages have not performed"
-            assert all(element in erspPD.breadcrumbs_urls for element in opened_pages), "Links lead to incorrect pages"
+            assert all(element in ExUrls.breadcrumbs_urls_ru_similar_phrases for element in opened_pages), \
+                "Links lead to incorrect pages"
 
         @allure.title("Verify if group links lead to correct pages after clicking")
         def test_ersp_03_05_verify_group_links_navigation(self, driver, exercises_ru_similar_phrases_page_open):
