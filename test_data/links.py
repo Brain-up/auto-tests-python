@@ -25,6 +25,9 @@ class ExercisesUrls:
 
     # Speech Exercises RU > Similar Phrases
     URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE = f"{STARTING_POINT}/2/series/2"
+
+    breadcrumbs_urls_ru_similar_phrases = breadcrumbs_urls_ru + (URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE,)
+
     b = f"{URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}/subgroup/"
     subgroup_link_urls = (f"{b}60", f"{b}61", f"{b}62", f"{b}63", f"{b}64", f"{b}65")
 
