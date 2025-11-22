@@ -29,7 +29,7 @@ class ExercisesUrls:
     breadcrumbs_urls_ru_similar_phrases = breadcrumbs_urls_ru + (URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE,)
 
     b = f"{URL_EXERCISES_RU_SIMILAR_PHRASES_PAGE}/subgroup/"
-    subgroup_link_urls = (f"{b}60", f"{b}61", f"{b}62", f"{b}63", f"{b}64", f"{b}65")
+    subgroup_link_urls_ru_similar_phrases = (f"{b}60", f"{b}61", f"{b}62", f"{b}63", f"{b}64", f"{b}65")
 
     # Speech Exercises RU > Words
     URL_EXERCISES_RU_WORDS_PAGE = f"{STARTING_POINT}/2/series/1"
