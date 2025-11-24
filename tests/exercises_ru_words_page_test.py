@@ -55,7 +55,7 @@ class TestExercisesRuWordsPage:
             list1_visibility = page.check_list1_visibility()
             list2_on_5th_level = page.get_list2_of_group_links()
             list2_visibility = page.check_list2_visibility()
-            list3_on_5th_level = page.get_list3_of_subgroup_links()
+            list3_on_5th_level = page.get_list3_of_series_links()
             list3_visibility = page.check_list3_visibility()
             list4_on_6th_level = page.get_list4_of_links()
             list4_visibility = page.check_list4_visibility()
@@ -93,12 +93,12 @@ class TestExercisesRuWordsPage:
                 "Text in group links mismatches valid values"
 
         @allure.title("Verify text in cards on the page")
-        def test_erw_02_04_verify_subgroup_links_text(self, driver, exercises_ru_words_page_open):
+        def test_erw_02_04_verify_series_links_text(self, driver, exercises_ru_words_page_open):
             page = erwPage(driver)
-            subgroup_links_text = page.get_subgroup_links_text()
-            assert subgroup_links_text, "Text in cards is absent"
-            assert all(element in erPD.subgroup_links_text_words_ru for element in subgroup_links_text), \
-                "Text in subgroup links mismatches valid values"
+            series_links_text = page.get_series_links_text()
+            assert series_links_text, "Text in cards is absent"
+            assert all(element in erPD.series_links_text_words_ru for element in series_links_text), \
+                "Text in series links mismatches valid values"
 
     class TestExRuWordsPageLinks:
         @allure.title("Verify clickability, href, status code of links in breadcrumbs on the page")
@@ -127,21 +127,21 @@ class TestExercisesRuWordsPage:
             assert all(element in erPD.group_link_active_links for element in group_link_active_links), \
                 "Attributes 'active-link' of links in group links mismatch valid values"
 
-        @allure.title("Verify clickability, titles, href, status code of subgroup links on the page")
-        def test_erw_03_03_verify_subgroup_links(self, driver, exercises_ru_words_page_open):
+        @allure.title("Verify clickability, titles, href, status code of series links on the page")
+        def test_erw_03_03_verify_series_links(self, driver, exercises_ru_words_page_open):
             page = erwPage(driver)
-            subgroup_links_clickability = page.check_subgroup_links_clickability()
-            subgroup_link_titles = page.get_subgroup_link_titles()
-            subgroup_links_href = page.get_subgroup_links_href()
-            subgroup_links_status_codes = page.get_subgroup_link_status_codes()
-            assert subgroup_links_clickability, "Subgroup links are unclickable"
-            assert subgroup_link_titles, "Subgroup link titles values are empty"
-            assert all(element in erPD.subgroup_links_titles_words_ru for element in subgroup_link_titles), \
-                "Subgroup link titles mismatch valid values"
-            assert all(element in ExUrls.subgroup_link_urls_ru_words for element in subgroup_links_href), \
-                "Attributes 'href' of subgroup links mismatch valid values"
-            assert all(element in erPD.links_status_code for element in subgroup_links_status_codes), \
-                "Status codes of subgroup links mismatch valid values"
+            series_links_clickability = page.check_series_links_clickability()
+            series_link_titles = page.get_series_link_titles()
+            series_links_href = page.get_series_links_href()
+            series_links_status_codes = page.get_series_link_status_codes()
+            assert series_links_clickability, "series links are unclickable"
+            assert series_link_titles, "series link titles values are empty"
+            assert all(element in erPD.series_links_titles_words_ru for element in series_link_titles), \
+                "series link titles mismatch valid values"
+            assert all(element in ExUrls.series_link_urls_ru_words for element in series_links_href), \
+                "Attributes 'href' of series links mismatch valid values"
+            assert all(element in erPD.links_status_code for element in series_links_status_codes), \
+                "Status codes of series links mismatch valid values"
 
         @allure.title("Verify if breadcrumbs links lead to correct pages after clicking")
         def test_erw_03_04_verify_breadcrumbs_links_navigation(self, driver, exercises_ru_words_page_open):
@@ -158,12 +158,12 @@ class TestExercisesRuWordsPage:
             assert opened_pages, "Transitions to pages have not performed"
             assert all(element in ExUrls.group_link_urls for element in opened_pages), "Links lead to incorrect pages"
 
-        @allure.title("Verify if subgroup links 1-4 lead to correct pages after clicking")
-        def test_erw_03_06_verify_subgroup_links_navigation(self, driver, exercises_ru_words_page_open):
+        @allure.title("Verify if series links 1-4 lead to correct pages after clicking")
+        def test_erw_03_06_verify_series_links_navigation(self, driver, exercises_ru_words_page_open):
             page = erwPage(driver)
-            opened_pages = page.click_on_subgroup_links()
+            opened_pages = page.click_on_series_links()
             assert opened_pages, "Transitions to pages have not performed"
-            assert all(element in ExUrls.subgroup_link_urls_ru_words for element in opened_pages), \
+            assert all(element in ExUrls.series_link_urls_ru_words for element in opened_pages), \
                 "Links lead to incorrect pages"
 
     class TestExRuWordsPageImages:
@@ -172,7 +172,7 @@ class TestExercisesRuWordsPage:
             page = erwPage(driver)
             links_style = page.get_links_style()
             assert links_style, "The 'style' attribute value of links is empty"
-            assert all(element in erPD.subgroup_links_style_words_ru for element in links_style), \
+            assert all(element in erPD.series_links_style_words_ru for element in links_style), \
                 "The 'style' attribute value of links mismatches valid values"
 
         @allure.title("Verify sizes of background-images in links on the page")

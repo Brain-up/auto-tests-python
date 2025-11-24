@@ -4,12 +4,11 @@ import requests
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait as Wait
 from pages.base_page import BasePage
-from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators, HeaderLocators
+from locators.exercises_ru_words_page_locators import ExercisesRuWordsPageLocators
 
 
 class ExercisesRuWordsPage(BasePage):
     locators = ExercisesRuWordsPageLocators
-    locators1 = HeaderLocators
 
     # Checking the structure and display of elements on the page
     @allure.step("Check if some content is present in DOM")
@@ -94,12 +93,12 @@ class ExercisesRuWordsPage(BasePage):
         return all(element.is_displayed() for element in self.get_list2_of_group_links())
 
     @allure.step("Check the list3 on the 5th level of nesting is present on the page")
-    def get_list3_of_subgroup_links(self):
+    def get_list3_of_series_links(self):
         return self.elements_are_present(self.locators.PAGE_LIST3)
 
     @allure.step("Check the list3 is visible")
     def check_list3_visibility(self):
-        return all(element.is_displayed() for element in self.get_list3_of_subgroup_links())
+        return all(element.is_displayed() for element in self.get_list3_of_series_links())
 
     @allure.step("Check the list4 on the 6th level of nesting is present on the page")
     def get_list4_of_links(self):
@@ -123,9 +122,9 @@ class ExercisesRuWordsPage(BasePage):
     def get_group_links_text(self):
         return [element.text for element in self.get_list2_of_group_links()]
 
-    @allure.step("Get text in subgroup links on the page")
-    def get_subgroup_links_text(self):
-        return [element.text for element in self.get_list3_of_subgroup_links()]
+    @allure.step("Get text in series links on the page")
+    def get_series_links_text(self):
+        return [element.text for element in self.get_list3_of_series_links()]
 
     # Checking links on the page
     @allure.step("Check if breadcrumbs are clickable")
@@ -152,22 +151,22 @@ class ExercisesRuWordsPage(BasePage):
     def get_group_link_active_links(self):
         return [el.get_attribute("data-test-active-link") for el in self.get_list2_of_group_links()]
 
-    @allure.step("Check if subgroup links are clickable")
-    def check_subgroup_links_clickability(self):
-        return all(link.is_enabled() for link in self.get_list3_of_subgroup_links())
+    @allure.step("Check if series links are clickable")
+    def check_series_links_clickability(self):
+        return all(link.is_enabled() for link in self.get_list3_of_series_links())
 
-    @allure.step("Get attribute 'title' of subgroup links")
-    def get_subgroup_link_titles(self):
-        return [element.get_attribute("title") for element in self.get_list3_of_subgroup_links()]
+    @allure.step("Get attribute 'title' of series links")
+    def get_series_link_titles(self):
+        return [element.get_attribute("title") for element in self.get_list3_of_series_links()]
 
-    @allure.step("Get attribute 'href' of subgroup links")
-    def get_subgroup_links_href(self):
-        # print(len(subgroup_links_href), *subgroup_links_href, sep='\n')
-        return [element.get_attribute("href") for element in self.get_list3_of_subgroup_links()]
+    @allure.step("Get attribute 'href' of series links")
+    def get_series_links_href(self):
+        # print(len(series_links_href), *series_links_href, sep='\n')
+        return [element.get_attribute("href") for element in self.get_list3_of_series_links()]
 
-    @allure.step("Get status code of subgroup links")
-    def get_subgroup_link_status_codes(self):
-        return [requests.head(link_href).status_code for link_href in self.get_subgroup_links_href()]
+    @allure.step("Get status code of series links")
+    def get_series_link_status_codes(self):
+        return [requests.head(link_href).status_code for link_href in self.get_series_links_href()]
 
     @allure.step("Click on breadcrumbs links and thereby open corresponding web pages in the same tab")
     def click_on_breadcrumbs_links(self):
@@ -197,14 +196,14 @@ class ExercisesRuWordsPage(BasePage):
 
         return opened_pages
 
-    @allure.step("""Click on subgroup links and thereby open corresponding web pages in the same tab""")
-    def click_on_subgroup_links(self):
-        subgroup_locators = [self.locators.PAGE_LIST3_1, self.locators.PAGE_LIST3_2,
-                             self.locators.PAGE_LIST3_3, self.locators.PAGE_LIST3_4]
+    @allure.step("""Click on series links and thereby open corresponding web pages in the same tab""")
+    def click_on_series_links(self):
+        series_locators = [self.locators.PAGE_LIST3_1, self.locators.PAGE_LIST3_2,
+                           self.locators.PAGE_LIST3_3, self.locators.PAGE_LIST3_4]
         group_page_url = self.get_current_tab_url()
         opened_pages = []
 
-        for link_locator in subgroup_locators:
+        for link_locator in series_locators:
             self.element_is_clickable(link_locator).click()
             Wait(self.driver, self.timeout).until(EC.url_changes(group_page_url))
             opened_pages.append(self.get_current_tab_url())

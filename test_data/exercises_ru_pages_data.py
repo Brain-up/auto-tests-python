@@ -26,19 +26,19 @@ class ExercisesRuPagesData:
     group_link_active_links = ('Слова', 'Слова Королёвой', 'Похожие фразы', 'Группа слов', 'Предложения',
                                'Слова с частотной группировкой')
 
-    # subgroup links data
+    # series links data
     s = 'background-image: url("https://brnup.s3.eu-north-1.amazonaws.com/pictures/theme/'
     e = '.svg");'
 
-    subgroup_links_style_similar_phrases_ru = (
+    series_links_style_similar_phrases_ru = (
         f"{s}longShortPhrases{e}", f"{s}noPhrases{e}", f"{s}similarPhrases{e}", f"{s}differentEndPhrases{e}",
         f"{s}shortWords{e}", f"{s}prepositionPhrases{e}")
 
-    subgroup_links_text_similar_phrases_ru = (
+    series_links_text_similar_phrases_ru = (
         'Разной длительности', 'С частицей Не', 'Похожие', 'С разным окончанием', 'Из коротких слов',
         'С разными предлогами')
 
-    subgroup_links_style_words_ru = (
+    series_links_style_words_ru = (
         f"{s}family{e}", f"{s}home{e}", f"{s}food{e}", f"{s}clothes{e}", f"{s}school{e}", f"{s}math{e}", f"{s}pets{e}",
         f"{s}animals{e}", f"{s}transport{e}", f"{s}colors{e}", f"{s}city{e}", f"{s}country{e}", f"{s}walk{e}",
         f"{s}weather{e}", f"{s}future{e}", f"{s}body{e}", f"{s}game{e}", f"{s}adventure{e}", f"{s}hospital{e}",
@@ -49,7 +49,7 @@ class ExercisesRuPagesData:
         f"{s}stationery{e}", f"{s}flowers{e}", f"{s}literature{e}", f"{s}physics{e}", f"{s}biology{e}",
         f"{s}instruments{e}")
 
-    subgroup_links_text_words_ru = (
+    series_links_text_words_ru = (
         'Семья', 'Любимый дом', 'Что я ем', 'Одежда', 'В школе', 'Математика', 'Домашние питомцы', 'Мир животных',
         'Транспорт', 'Цвета и форма', 'В городе', 'В деревне', 'На прогулке', 'Погода', 'Стану кем хочу',
         'Тело человека', 'Развлечения', 'Путешествия', 'В больнице', 'Что я чувствую', 'Игрушки', 'Насекомые',
@@ -58,7 +58,7 @@ class ExercisesRuPagesData:
         'Растения', 'Деревья и кустарники', 'Спорт', 'В магазине', 'Парнокопытные', 'Породы собак',
         'Канцелярские принадлежности', 'Цветы', 'Русский язык и литература', 'Физика', 'Биология', 'Инструменты')
 
-    subgroup_links_titles_words_ru = (
+    series_links_titles_words_ru = (
         'Слова про семью', 'Слова про дом', 'Слова о еде', 'Слова об одежде', 'Слова о школе и учёбе',
         'Математика и её термины', 'Слова о домашних питомцах', 'Слова о животных', 'Слова о транспорте',
         'Слова о понятиях цета и формы', 'Слова о жизни города', 'Слова из деревенской жизни', 'Слова о прогулке',
