@@ -24,7 +24,3 @@ class ExercisesRuWordsPageLocators:
     PAGE_LIST3_4 = (By.XPATH, '(//div[contains(@class, "series-page")]//a)[4]')
     # PAGE_LIST3 = (By.XPATH, "//main//div/a")
     CARD_IMAGES_LIST4 = (By.XPATH, '//div[contains(@style, "svg")]')
-
-
-class HeaderLocators:
-    RU_BUTTON = (By.XPATH, "(//span/button)[1]")
