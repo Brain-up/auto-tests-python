@@ -45,4 +45,5 @@ class ExercisesUrls:
         f"{c}46")
 
     # Speech Exercises > Words > Family
+    URL_EXERCISES_RU_WORDS_FAMILY_PAGE = f"{STARTING_POINT}/2/series/1/subgroup/1"
     URL_EXERCISE1_MODAL_WINDOW_PAGE = f"{STARTING_POINT}/4/series/9/subgroup/73/exercise/919/task/919"

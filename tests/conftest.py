@@ -120,6 +120,12 @@ def exercises_ru_words_page_open(driver, groups_ru_page_open):
 
 
 @pytest.fixture()
+@allure.step(f'Open page: {ExercisesUrls.URL_EXERCISES_RU_WORDS_FAMILY_PAGE} on the "ru" local')
+def exercises_ru_words_family_page_open(driver, groups_ru_page_open):
+    driver.get(ExercisesUrls.URL_EXERCISES_RU_WORDS_FAMILY_PAGE)
+
+
+@pytest.fixture()
 @allure.step(f'Open page: {MainPageLinks.URL_LOGIN_PAGE}')
 def login_page_open(driver, main_page_open):
     page = BasePage(driver)
