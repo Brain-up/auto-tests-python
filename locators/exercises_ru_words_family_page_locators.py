@@ -1,5 +1,6 @@
-"""Locators of web elements on the 'Exercises "Family"' page in the series "Words" on the 'ru' local"""
+"""Locators of web elements on the exercises subgroup "Family" page in the series "Words" on the "ru" local"""
+from selenium.webdriver.common.by import By
 
 
 class ExercisesRuWordsFamilyPageLocators:
-    pass
+    PAGE_CONTENT = (By.TAG_NAME, "main")
