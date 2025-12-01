@@ -57,7 +57,7 @@ def description_page_open(driver):
 
 @pytest.fixture()
 @allure.step(f'Open page: {ExercisesUrls.STARTING_POINT} on the "ru" local')
-def groups_ru_page_open(driver, auto_test_user_authorized):
+def groups_ru_page_open1(driver, auto_test_user_authorized):
     page = GroupsPage(driver)
     ru_button = page.element_is_present_and_clickable(huLocators.RU_BUTTON)
     subtitles_before = [el.text for el in page.elements_are_located(GroupsPageLocators.PAGE_SUBTITLES)]
@@ -68,6 +68,22 @@ def groups_ru_page_open(driver, auto_test_user_authorized):
         return current_subtitles != subtitles_before and all(current_subtitles)
 
     Wait(driver, 20).until(subtitles_changed)
+    page.elements_are_visible(GroupsPageLocators.PAGE_SUBTITLES)
+
+
+@pytest.fixture()
+@allure.step(f'Open page: {ExercisesUrls.STARTING_POINT} on the "ru" local')
+def groups_ru_page_open(driver, auto_test_user_authorized):
+    page = GroupsPage(driver)
+    current_url_before = driver.current_url
+    ru_button = page.element_is_present_and_clickable(huLocators.RU_BUTTON)
+    ru_button.click()
+
+    def url_locale_changed(driver):
+        current_url = driver.current_url
+        return current_url != current_url_before and "locale=ru-ru" in current_url
+
+    Wait(driver, 20).until(url_locale_changed)
     page.elements_are_visible(GroupsPageLocators.PAGE_SUBTITLES)
 
 
