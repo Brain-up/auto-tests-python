@@ -1,5 +1,6 @@
 """Methods for verifying web elements on the exercises subgroup "Family" page
 in the series "Words" on the "ru" local"""
+
 import allure
 from pages.base_page import BasePage
 from locators.exercises_ru_words_family_page_locators import ExercisesRuWordsFamilyPageLocators
@@ -43,7 +44,15 @@ class ExercisesRuWordsFamilyPage(BasePage):
 
     @allure.step("Get structure of the 4th level of nesting on the page")
     def get_structure_of_4th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
+        return self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
+
+    @allure.step("Check if elements of the 4th level of nesting are visible")
+    def check_elements_visibility_on_4th_level(self):
+        return all(element.is_displayed() for element in self.get_structure_of_4th_level())
+
+    @allure.step("Get structure of the 5th level of nesting on the page")
+    def get_structure_of_5th_level(self):
+        elements = self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
         print(*tags, sep='\n')
         return elements
