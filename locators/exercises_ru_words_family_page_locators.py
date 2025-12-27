@@ -9,3 +9,4 @@ class ExercisesRuWordsFamilyPageLocators:
     PAGE_THIRD_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*")
     PAGE_FOURTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*")
     PAGE_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*")
+    PAGE_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*")
