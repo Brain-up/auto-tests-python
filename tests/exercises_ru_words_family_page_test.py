@@ -15,7 +15,7 @@ class TestExercisesRuWordsFamilyPage:
             assert page_content_presence, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible"
 
-        @allure.title("Verify composition, visibility of elements on the 1st-7th levels of nesting on the page")
+        @allure.title("Verify composition, visibility of elements on the 1st-8th levels of nesting on the page")
         def test_erwf_01_02_verify_page_structure_and_visibility(self, driver, exercises_ru_words_family_page_open):
             page = erwfPage(driver)
             structure_of_1st_level = page.get_structure_of_1st_level()
@@ -31,6 +31,7 @@ class TestExercisesRuWordsFamilyPage:
             visibility_of_elements_on_6th_level = page.check_elements_visibility_on_6th_level()
             structure_of_7th_level = page.get_structure_of_7th_level()
             visibility_of_elements_on_7th_level = page.check_elements_visibility_on_7th_level()
+            structure_of_8th_level = page.get_structure_of_8th_level()
             assert structure_of_1st_level, "The page is empty"
             assert visibility_of_elements_on_1st_level, "1th-level elements are invisible"
             assert structure_of_2nd_level, "Elements on the 2nd level are absent on the page"
@@ -44,3 +45,4 @@ class TestExercisesRuWordsFamilyPage:
             assert visibility_of_elements_on_6th_level, "6th-level elements are invisible"
             assert structure_of_7th_level, "Elements on the 7th level are absent on the page"
             assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
+            assert structure_of_8th_level, "Elements on the 8th level are absent on the page"
