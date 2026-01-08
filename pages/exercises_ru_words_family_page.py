@@ -72,7 +72,11 @@ class ExercisesRuWordsFamilyPage(BasePage):
 
     @allure.step("Get structure of the 8th level of nesting on the page")
     def get_structure_of_8th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_EIGHTH_LEVEL_ELEMENTS)
+        return self.elements_are_present(self.locators.PAGE_EIGHTH_LEVEL_ELEMENTS)
+
+    @allure.step("Get structure of the 9th level of nesting on the page")
+    def get_structure_of_9th_level(self):
+        elements = self.elements_are_present(self.locators.PAGE_NINTH_LEVEL_ELEMENTS)
         tags = [element.tag_name for element in elements]
         print(*tags, sep='\n')
         return elements
