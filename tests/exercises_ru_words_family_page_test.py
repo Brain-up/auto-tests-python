@@ -32,6 +32,7 @@ class TestExercisesRuWordsFamilyPage:
             structure_of_7th_level = page.get_structure_of_7th_level()
             visibility_of_elements_on_7th_level = page.check_elements_visibility_on_7th_level()
             structure_of_8th_level = page.get_structure_of_8th_level()
+            visibility_of_elements_on_8th_level = page.check_elements_visibility_on_8th_level()
             structure_of_9th_level = page.get_structure_of_9th_level()
             structure_of_10th_level = page.get_structure_of_10th_level()
             visibility_of_elements_on_10th_level = page.check_elements_visibility_on_10th_level()
@@ -49,6 +50,7 @@ class TestExercisesRuWordsFamilyPage:
             assert structure_of_7th_level, "Elements on the 7th level are absent on the page"
             assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
             assert structure_of_8th_level, "Elements on the 8th level are absent on the page"
+            assert not visibility_of_elements_on_8th_level, "8th-level elements are visible"
             assert structure_of_9th_level, "Elements on the 9th level are absent on the page"
             assert structure_of_10th_level, "Elements on the 10th level are absent on the page"
             assert visibility_of_elements_on_10th_level, "10th-level elements are invisible"

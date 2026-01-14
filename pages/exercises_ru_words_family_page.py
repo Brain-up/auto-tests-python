@@ -74,6 +74,13 @@ class ExercisesRuWordsFamilyPage(BasePage):
     def get_structure_of_8th_level(self):
         return self.elements_are_present(self.locators.PAGE_EIGHTH_LEVEL_ELEMENTS)
 
+    @allure.step("Check if elements of the 8th level of nesting are visible")
+    def check_elements_visibility_on_8th_level(self):
+        return all(element.is_displayed() for element in self.get_structure_of_8th_level())
+
+    def check_elements_invisibility_on_8th_level(self):
+        return all(not el.is_displayed() for el in self.driver.find_elements(*self.locators.PAGE_EIGHTH_LEVEL_ELEMENTS))
+
     @allure.step("Get structure of the 9th level of nesting on the page")
     def get_structure_of_9th_level(self):
         return self.elements_are_present(self.locators.PAGE_NINTH_LEVEL_ELEMENTS)
