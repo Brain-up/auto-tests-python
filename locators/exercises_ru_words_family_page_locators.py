@@ -17,3 +17,4 @@ class ExercisesRuWordsFamilyPageLocators:
     PAGE_ELEVENTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*/*/*/*/*")
     PAGE_TWELFTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*/*/*/*/*/*")
     PAGE_THIRTEENTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*/*/*/*/*/*/*")
+    PAGE_FOURTEENTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*/*/*/*/*/*/*/*")

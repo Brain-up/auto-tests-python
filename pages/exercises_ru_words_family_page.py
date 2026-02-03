@@ -115,11 +115,15 @@ class ExercisesRuWordsFamilyPage(BasePage):
 
     @allure.step("Get structure of the 13th level of nesting on the page")
     def get_structure_of_13th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_THIRTEENTH_LEVEL_ELEMENTS)
-        # tags = [element.tag_name for element in elements]
-        # print(*tags, len(tags), sep='\n')
-        return elements
+        return self.elements_are_present(self.locators.PAGE_THIRTEENTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 13th level of nesting are visible")
     def check_elements_visibility_on_13th_level(self):
         return all(element.is_displayed() for element in self.get_structure_of_13th_level())
+
+    @allure.step("Get structure of the 14th level of nesting on the page")
+    def get_structure_of_14th_level(self):
+        elements = self.elements_are_present(self.locators.PAGE_FOURTEENTH_LEVEL_ELEMENTS)
+        tags = [element.tag_name for element in elements]
+        print(*tags, len(tags), sep='\n')
+        return elements
