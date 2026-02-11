@@ -17,7 +17,7 @@ class FooterData:
 
     links_href = (link1, link2, link3, link4, link5, link6)
 
-    link_status_codes = (200, 403)
+    link_status_codes = (200, 301, 403)
 
     s = f"{Links.URL_MAIN_PAGE}logos/"
     images_src = (f"{s}logo_ARASAAC_black-6aced95542b919137b28bced5be83596.png",
