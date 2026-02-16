@@ -80,3 +80,9 @@ class TestExercisesRuWordsFamilyPage:
             assert visibility_of_elements_on_13th_level, "13th-level elements are invisible"
             assert structure_of_14th_level, "Elements on the 14th level are absent on the page"
             assert visibility_of_elements_on_14th_level, "14th-level elements are invisible"
+
+        @allure.title("Verify presence, visibility of lists on the page")
+        def test_erwf_01_05_verify_page_structural_elements(self, driver, exercises_ru_words_family_page_open):
+            page = erwfPage(driver)
+            list1_on_5th_level = page.get_list1_of_breadcrumbs_links()
+            assert list1_on_5th_level, "The list1 on the 5th level is absent on the page"
