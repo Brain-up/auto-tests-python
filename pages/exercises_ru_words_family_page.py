@@ -138,3 +138,7 @@ class ExercisesRuWordsFamilyPage(BasePage):
         att = [element.get_attribute("href") for element in elements]
         print(*att, len(att), sep='\n')
         return elements
+
+    @allure.step("Check the list1 is visible")
+    def check_list1_visibility(self):
+        return all(element.is_displayed() for element in self.get_list1_of_breadcrumbs_links())

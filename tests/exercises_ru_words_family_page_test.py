@@ -85,4 +85,6 @@ class TestExercisesRuWordsFamilyPage:
         def test_erwf_01_05_verify_page_structural_elements(self, driver, exercises_ru_words_family_page_open):
             page = erwfPage(driver)
             list1_on_5th_level = page.get_list1_of_breadcrumbs_links()
+            list1_visibility = page.check_list1_visibility()
             assert list1_on_5th_level, "The list1 on the 5th level is absent on the page"
+            assert list1_visibility, "The list1 on the 5th level is invisible"
