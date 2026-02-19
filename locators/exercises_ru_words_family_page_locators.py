@@ -19,3 +19,4 @@ class ExercisesRuWordsFamilyPageLocators:
     PAGE_THIRTEENTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*/*/*/*/*/*/*")
     PAGE_FOURTEENTH_LEVEL_ELEMENTS = (By.XPATH, "//main/*/*/*/*/*/*/*/*/*/*/*/*/*/*")
     PAGE_LIST1 = (By.XPATH, '//ul[@aria-label="Breadcrumbs"]//a')
+    PAGE_LIST2 = (By.XPATH, "//aside//button")
