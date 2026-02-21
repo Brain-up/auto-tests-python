@@ -87,6 +87,8 @@ class TestExercisesRuWordsFamilyPage:
             list1_on_5th_level = page.get_list1_of_breadcrumbs_links()
             list1_visibility = page.check_list1_visibility()
             list2_on_5th_level = page.get_list2_of_group_links()
+            list2_visibility = page.check_list2_visibility()
             assert list1_on_5th_level, "The list1 on the 5th level is absent on the page"
             assert list1_visibility, "The list1 on the 5th level is invisible"
             assert list2_on_5th_level, "The list2 on the 5th level is absent on the page"
+            assert list2_visibility, "The list2 on the 5th level is invisible"
