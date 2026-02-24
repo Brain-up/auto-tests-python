@@ -141,12 +141,16 @@ class ExercisesRuWordsFamilyPage(BasePage):
         return all(element.is_displayed() for element in self.get_list1_of_breadcrumbs_links())
 
     @allure.step("Check the list2 on the 5th level of nesting is present on the page")
-    def get_list2_of_group_links(self):
-        elements = self.elements_are_present(self.locators.PAGE_LIST2)
-        # att = [element.get_attribute("title") for element in elements]
-        # print(*att, len(att), sep='\n')
-        return elements
+    def get_list2_of_series_links(self):
+        return self.elements_are_present(self.locators.PAGE_LIST2)
 
     @allure.step("Check the list2 is visible")
     def check_list2_visibility(self):
-        return all(element.is_displayed() for element in self.get_list2_of_group_links())
+        return all(element.is_displayed() for element in self.get_list2_of_series_links())
+
+    @allure.step("Check the list3 on the 11th level of nesting is present on the page")
+    def get_list3_of_exercises_links(self):
+        elements = self.elements_are_present(self.locators.PAGE_LIST3)
+        att = [element.get_attribute("title") for element in elements]
+        print(*att, len(att), sep='\n')
+        return elements
