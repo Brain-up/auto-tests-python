@@ -154,3 +154,7 @@ class ExercisesRuWordsFamilyPage(BasePage):
         att = [element.get_attribute("title") for element in elements]
         print(*att, len(att), sep='\n')
         return elements
+
+    @allure.step("Check the list3 is visible")
+    def check_list3_visibility(self):
+        return all(element.is_displayed() for element in self.get_list3_of_exercises_links())
