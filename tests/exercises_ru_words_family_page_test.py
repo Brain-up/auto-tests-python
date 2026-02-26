@@ -89,8 +89,10 @@ class TestExercisesRuWordsFamilyPage:
             list2_on_5th_level = page.get_list2_of_series_links()
             list2_visibility = page.check_list2_visibility()
             list3_on_11th_level = page.get_list3_of_exercises_links()
+            list3_visibility = page.check_list3_visibility()
             assert list1_on_5th_level, "The list1 on the 5th level is absent on the page"
             assert list1_visibility, "The list1 on the 5th level is invisible"
             assert list2_on_5th_level, "The list2 on the 5th level is absent on the page"
             assert list2_visibility, "The list2 on the 5th level is invisible"
             assert list3_on_11th_level, "The list3 on the 11th level is absent on the page"
+            assert list3_visibility, "The list3 on the 11th level is invisible"
