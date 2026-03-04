@@ -55,11 +55,11 @@ class TestExercisesRuWordsFamilyPage:
             assert structure_of_7th_level, "Elements on the 7th level are absent on the page"
             assert visibility_of_elements_on_7th_level, "7th-level elements are invisible"
             assert structure_of_8th_level, "Elements on the 8th level are absent on the page"
-            assert not visibility_of_elements_on_8th_level, "8th-level elements are visible"
+            assert visibility_of_elements_on_8th_level, "8th-level elements are invisible"
             assert structure_of_9th_level, "Elements on the 9th level are absent on the page"
             assert not visibility_of_elements_on_9th_level, "9th-level elements are visible"
             assert structure_of_10th_level, "Elements on the 10th level are absent on the page"
-            assert visibility_of_elements_on_10th_level, "10th-level elements are invisible"
+            assert not visibility_of_elements_on_10th_level, "10th-level elements are visible"
 
         @allure.title("Verify composition, visibility of elements on the 11st-14th levels of nesting on the page")
         def test_erwf_01_04_verify_page_structure_and_visibility(self, driver, exercises_ru_words_family_page_open):
