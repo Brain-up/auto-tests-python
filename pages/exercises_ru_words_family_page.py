@@ -72,10 +72,7 @@ class ExercisesRuWordsFamilyPage(BasePage):
 
     @allure.step("Get structure of the 8th level of nesting on the page")
     def get_structure_of_8th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_EIGHTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(*tags, len(tags), sep='\n')
-        return elements
+        return self.elements_are_present(self.locators.PAGE_EIGHTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 8th level of nesting are visible")
     def check_elements_visibility_on_8th_level(self):
@@ -86,10 +83,7 @@ class ExercisesRuWordsFamilyPage(BasePage):
 
     @allure.step("Get structure of the 9th level of nesting on the page")
     def get_structure_of_9th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_NINTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(*tags, len(tags), sep='\n')
-        return elements
+        return self.elements_are_present(self.locators.PAGE_NINTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 9th level of nesting are visible")
     def check_elements_visibility_on_9th_level(self):
@@ -97,10 +91,7 @@ class ExercisesRuWordsFamilyPage(BasePage):
 
     @allure.step("Get structure of the 10th level of nesting on the page")
     def get_structure_of_10th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_TENTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(*tags, len(tags), sep='\n')
-        return elements
+        return self.elements_are_present(self.locators.PAGE_TENTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 10th level of nesting are visible")
     def check_elements_visibility_on_10th_level(self):
@@ -124,10 +115,7 @@ class ExercisesRuWordsFamilyPage(BasePage):
 
     @allure.step("Get structure of the 13th level of nesting on the page")
     def get_structure_of_13th_level(self):
-        elements = self.elements_are_present(self.locators.PAGE_THIRTEENTH_LEVEL_ELEMENTS)
-        tags = [element.tag_name for element in elements]
-        print(*tags, len(tags), sep='\n')
-        return elements
+        return self.elements_are_present(self.locators.PAGE_THIRTEENTH_LEVEL_ELEMENTS)
 
     @allure.step("Check if elements of the 13th level of nesting are visible")
     def check_elements_visibility_on_13th_level(self):
