@@ -20,5 +20,5 @@ class SpecialistsPageLocators:
     PAGE_TEXT = (By.XPATH, "//div[contains(@class, 'text-lg')]")
     PAGE_TITLE = (By.TAG_NAME, "h2")
     SPECIALIST_CARDS = (By.XPATH, "//div[contains(@class, 'rounded-lg')]")
-    SPECIALIST_NAMES = (By.XPATH, "//div[contains(@class, 'mb-4')]")
+    SPECIALIST_NAMES = (By.XPATH, "//div[contains(@class, 'mb-4 font')]")
     SPECIALIST_PROFESSIONS = (By.XPATH, "//div[@class='font-openSans']")
