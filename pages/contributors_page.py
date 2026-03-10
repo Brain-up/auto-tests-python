@@ -119,9 +119,7 @@ class ContributorsPage(BasePage):
 
     @allure.step("Get content of the text on the page")
     def get_text_content_on_page(self):
-        text = self.element_is_present(self.locators.PAGE_TEXT).text
-        print(text)
-        return text
+        return self.element_is_present(self.locators.PAGE_TEXT).text
 
     @allure.step("Check the content of descriptions in cards")
     def check_values_of_card_descriptions(self):
