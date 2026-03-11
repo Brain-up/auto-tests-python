@@ -185,7 +185,10 @@ class FooterPage(BasePage):
     # Checking images in the Footer
     @allure.step("Get the list of attribute 'src' values of images in links")
     def get_images_src(self):
-        return [image.get_attribute('src') for image in self.get_list_of_images()]
+        att = [image.get_attribute('src') for image in self.get_list_of_images()]
+        print(*att, len(att), sep='\n')
+        return att
+        # return [image.get_attribute('src') for image in self.get_list_of_images()]
 
     @allure.step("Get the list of attribute 'alt' values of images in links")
     def get_images_alt(self):
