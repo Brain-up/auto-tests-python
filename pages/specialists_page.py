@@ -160,10 +160,7 @@ class SpecialistsPage(BasePage):
 
     @allure.step("Get the list of name values in specialist cards on the page")
     def get_name_values_in_cards(self):
-        text = [name.text for name in self.get_list_of_names_in_cards()]
-        print(*text)
-        return text
-        # return [name.text for name in self.get_list_of_names_in_cards()]
+        return [name.text for name in self.get_list_of_names_in_cards()]
 
     @allure.step("Get the list of profession values in specialist cards on the page")
     def get_profession_values_in_cards(self):
