@@ -26,7 +26,7 @@ class FooterData:
                   f"{s}reg-ru.svg",
                   f"{s}selectel.png")
 
-    images_src1 = (f"{s}logo_ARASAAC_black-6aced95542b919137b28bced5be83596.png",
+    images_src_old = (f"{s}logo_ARASAAC_black-6aced95542b919137b28bced5be83596.png",
                   f"{s}epam-cd401151c8ee5f14afbba10b72cd5fea.png",
                   f"{s}jetbrains-variant-4_-fb6c06f46c4a6267ac60e84343940d8b.png",
                   f"{s}reg-ru.svg",

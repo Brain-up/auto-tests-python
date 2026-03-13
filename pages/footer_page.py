@@ -209,4 +209,4 @@ class FooterPage(BasePage):
             changed.append(i) if images_sizes_before[i] != images_sizes_after[i] else unchanged.append(i)
             lost.append(i) if images_sizes_after[i] == {'height': 0, 'width': 0} else None
         # print('All images have changed sizes' if len(changed) == len(images) else 'Not all images have changed sizes')
-        return changed
+        return unchanged
