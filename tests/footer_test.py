@@ -129,7 +129,7 @@ class TestFooter:
             images_size = page.get_images_sizes()
             images_size_unchanged = page.check_size_changes_of_images()
             assert images_size != 0, "Images in links have not sizes"
-            assert len(images_size_unchanged) == len(fPD.images_src), "Not all images in links have changed sizes"
+            assert len(images_size_unchanged) == len(fPD.images_src), "Some images in links have changed sizes"
 
     class TestFooterAuthorized:
 
