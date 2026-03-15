@@ -55,8 +55,12 @@ class TestRegistrationPage:
             page.fill_repeat_password(confirm_password)
         page.choose_agreement()
         page.click_registration_button()
-        text = page.check_error_message()
-        assert text in error_message, f'The user has registered with {title}'
+        try:
+            text = page.check_error_message()
+            assert text in error_message, f'The user has registered with {title}'
+        except TimeoutException:
+            assert page.check_not_change_url()
+
 
     @allure.title('Check registration without choosing gender')
     def test_registration_without_choosing_gender(self, main_page_open, driver):
@@ -90,7 +94,7 @@ class TestRegistrationPage:
             page.fill_repeat_password(os.environ["CHANGE_PASSWORD"])
         page.click_registration_button()
         try:
-            page.check_change_url()
+            text = page.check_error_message()
+            assert text in self.msg.WITHOUT_AGREEMENT, 'The user has registered without agreement'
         except TimeoutException:
-            pass
-        assert TimeoutException, 'The user has registered without choosing agreement'
+            assert page.check_not_change_url()

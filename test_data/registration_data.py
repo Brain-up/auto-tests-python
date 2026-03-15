@@ -19,6 +19,7 @@ class Messages:
     EMPTY_EMAIL = ['Please enter your login and password', 'Пожалуйста, введите логин и пароль.']
     EMPTY_PASSWORD = ['Passwords should match', 'Пароли должны совпадать']
     ONLY_FIRST_NAME = ['Empty LastName', 'Фамилия не Указана']
+    WITHOUT_AGREEMENT = ['You must agree to the terms before registering', 'Вы должны согласиться с условиями перед регистрацией']
 
 
 class Registration:

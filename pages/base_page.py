@@ -86,8 +86,17 @@ class BasePage:
 
     def wait_changed_url(self, url):
         with allure.step(f'Wait until url: {url} will be changed.'):
-            Wait(self.driver, self.timeout).until(
+            Wait(self.driver, timeout=20).until(
                 EC.url_changes(url), message=f"Url: {url} has not been changed!!!")
+
+    def check_has_not_changed_url(self, url):
+        with allure.step(f"Wait until url: {url} hasn't changed."):
+            try:
+                Wait(self.driver, self.timeout).until(EC.url_changes(url), message=f"Url: {url} hasn't changed!!!")
+                return False
+            except TimeoutException:
+                return True
+
 
     def wait_url_to_be(self, url):
         with allure.step(f'Wait until url to be: {url}.'):
