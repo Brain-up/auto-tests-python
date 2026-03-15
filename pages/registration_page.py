@@ -55,3 +55,7 @@ class RegistrationPage(BasePage):
     @allure.step("Check REGISTRATION button is not clickable")
     def check_registration_button_is_not_clickable(self):
         self.element_is_not_clickable(self.locators.SUBMIT_BUTTON).click()
+
+    @allure.step("Wait not changing url")
+    def check_not_change_url(self):
+        return self.check_has_not_changed_url(self.links.URL_REGISTRATION_PAGE)

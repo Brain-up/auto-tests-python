@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from selenium.common import TimeoutException
 from locators.login_page_locators import LoginPageLocators
-from locators.authotised_user_home_page_locators import AuthorizedUserHomePageLocators
+from locators.authorised_user_home_page_locators import AuthorizedUserHomePageLocators
 from locators.start_unauthorized_page_locators import StartUnauthorizedPageLocators
 from locators.profile_page_locators import ProfilePageLocators
 from pages.base_page import BasePage
