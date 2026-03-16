@@ -326,7 +326,7 @@ class TestHeaderPage:
                     "Some of external links lead to incorrect pages after clicking"
 
             @allure.title("""Verify that the Logo link on the Start Authorized Page 
-                             doesn't refresh the current page or lead to other pages after clicking""")
+                             refreshes the current page and doesn't lead to other pages after clicking""")
             def test_hpa_03_04_verify_click_auth_logo_link(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 handles_before = driver.window_handles
@@ -336,8 +336,8 @@ class TestHeaderPage:
                 handles_after = driver.window_handles
                 current_page_source = page.driver.page_source
                 assert len(handles_before) == len(handles_after), "The number of open tabs changed after clicking"
-                assert initial_page_source == current_page_source, \
-                    "Logo link in the Header refreshes the page after clicking"
+                assert initial_page_source != current_page_source, \
+                    "Logo link in the Header doesn't refresh the page after clicking"
                 assert initial_page_url == current_page_url, "Logo link in the Header leads to some page after clicking"
 
             @allure.title("""Verify the dropdown opens/closes after clicking on the 'More' button in the Header 
