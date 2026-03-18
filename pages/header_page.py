@@ -78,7 +78,11 @@ class HeaderPage(BasePage):
 
     @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user")
     def get_list_of_links_auth(self):
-        return self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
+        links = self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
+        att = [element.get_attribute("href") for element in links]
+        print(*att, len(att), sep='\n')
+        return links
+        # return self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
 
     @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
                  for an unauthorized user""")
@@ -316,7 +320,10 @@ class HeaderPage(BasePage):
 
     @allure.step("Get attribute 'href' of links in the Header for an authorized user")
     def get_links_href_auth(self):
-        return [element.get_attribute("href") for element in self.get_list_of_links_auth()]
+        att = [element.get_attribute("href") for element in self.get_list_of_links_auth()]
+        print(*att, len(att), sep='\n')
+        return att
+        # return [element.get_attribute("href") for element in self.get_list_of_links_auth()]
 
     @allure.step("Get status codes of links in the Header for an unauthorized user")
     def get_links_status_codes_unauth(self):
