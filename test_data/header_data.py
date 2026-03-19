@@ -37,22 +37,23 @@ class HeaderData:
 
     link_titles = "Телеграм чат для пользователей"
 
-    s = Links.URL_MAIN_PAGE
-    s1 = f"{s}contact"
-    s2 = f"{s}contributors"
-    s3 = f"{s}description"
-    s4 = f"{s}groups?locale=ru-ru"
+    s = Links.URL_MAIN_PAGE                         #
+    s0 = f"{s}audiometry"                           # dropdown
+    s1 = f"{s}contact"                              # dropdown
+    s2 = f"{s}contributors"                         # dropdown
+    s3 = f"{s}description"                          #, # dropdown
+    s4 = f"{s}groups?locale=ru-ru"                  #, # dropdown
     s5 = f"{s}groups?locale=en-us"
-    s6 = f"{s}profile"
-    s7 = f"{s}profile/statistics"
+    s6 = f"{s}profile"                              # icon
+    s7 = f"{s}profile/statistics"                   #, # dropdown, # icon
     s8 = f"{s}registration"
-    s9 = f"{s}specialists"
-    s10 = f"{s}used-resources"
-    s11 = "https://github.com/Brain-up/brn"
-    s12 = "https://opencollective.com/brainup"
-    s13 = "https://t.me/BrainUpUsers"
+    s9 = f"{s}specialists"                          # dropdown
+    s10 = f"{s}used-resources"                      # dropdown
+    s11 = "https://github.com/Brain-up/brn"         # dropdown
+    s12 = "https://opencollective.com/brainup"      # dropdown
+    s13 = "https://t.me/BrainUpUsers"               #, # dropdown
 
-    set_auth = (s, s1, s2, s3, s4, s5, s6, s7, s9, s10, s11, s12, s13)
+    set_auth = (s, s0, s1, s2, s3, s4, s5, s6, s7, s9, s10, s11, s12, s13)
     set_unauth = (s, s1, s2, s3, s8, s9, s10, s11, s12, s13)
 
     link_status_codes = (200,)
