@@ -1,4 +1,5 @@
 """Methods for verifying web elements in the Header of the site"""
+import time
 import allure
 import requests
 from selenium.webdriver.support import expected_conditions as EC
@@ -488,14 +489,24 @@ class HeaderPage(BasePage):
         # print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
         return changes
 
-    @allure.step("Check if size of the 'Logo' image changes after resizing in the Header for an authorized user")
+    @allure.step("Check if size of the 'Logo' image doesn't change after resizing in the Header for an authorized user")
     def check_size_changes_of_auth_logo_image(self):
         image_size_before = self.get_size_of_auth_logo_image()
-        self.driver.set_window_size(220, 1100)
+        self.driver.set_window_size(800, 1100)
+        window_size = self.driver.get_window_size()
+        # Wait(self.driver, 10).until(lambda d: self.get_size_of_auth_logo_image()['width'] > 0)
+        window_resolution = f"{window_size['width']}x{window_size['height']}"
         image_size_after = self.get_size_of_auth_logo_image()
-        changes = 1 if image_size_before == image_size_after else 0
-        # print("\nAn image size is not changed after resizing" if changes == 1 else "\nThe 'Logo' image size is changed")
-        return changes
+        changes = 0 if image_size_before == image_size_after else 1
+        print(f"\nAfter resizing the screen till {window_resolution} px")
+        print(f"the 'Logo' image size {image_size_before} is not changed" if changes == 0
+              else f"the 'Logo' image size is changed from {image_size_before} to {image_size_before}")
+        if image_size_before == image_size_after:
+            return f"Image size unchanged after resizing to {window_resolution}"
+        else:
+            return f"Image size changed after resizing to {window_resolution}"
+        # return changes
+
 
     @allure.step("Check if the profile avatar is present in the Header for an authorized user")
     def check_auth_profile_avatar_presence(self):
