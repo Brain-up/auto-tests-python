@@ -507,6 +507,22 @@ class HeaderPage(BasePage):
             return f"Image size changed after resizing to {window_resolution}"
         # return changes
 
+    @allure.step("Check if the 'Logo' image is hidden after resizing in the Header for an authorized user")
+    def check_invisibility_of_auth_logo_image(self):
+        image_size_before = self.get_size_of_auth_logo_image()
+        self.driver.set_window_size(780, 1100)
+        window_size = self.driver.get_window_size()
+        window_resolution = f"{window_size['width']}x{window_size['height']}"
+        image_invisibility = self.element_is_not_visible(self.locators1.LOGO_IMAGE_AUTH)
+        hiding = 1 if image_invisibility else 0
+        print(f"\nAfter resizing the screen till {window_resolution} px")
+        print(f"The 'Logo' image is hidden" if hiding == 1 else f"The 'Logo' image isn't hidden")
+        if image_invisibility:
+            return f"The 'Logo' image is hidden after resizing to {window_resolution}"
+        else:
+            return f"The 'Logo' image isn't hidden after resizing to {window_resolution}"
+        # return image_invisibility
+
 
     @allure.step("Check if the profile avatar is present in the Header for an authorized user")
     def check_auth_profile_avatar_presence(self):
