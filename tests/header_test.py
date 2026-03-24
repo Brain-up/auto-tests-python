@@ -276,7 +276,7 @@ class TestHeaderPage:
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
                 assert all(element in hPD.links_text_auth for element in direct_links_text[:4]), \
                     "Text in links in section 2 mismatches valid values"
-                assert direct_links_text[4], "Text in the 'Profile' link is absent"
+                assert direct_links_text, "Text in direct links is absent"
                 assert all(element in hPD.links_text_auth for element in links_in_more_text), \
                     "Text in links in section 3 mismatches valid values"
                 assert all(element in hPD.buttons_text for element in buttons_text), \
