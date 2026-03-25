@@ -1,5 +1,4 @@
 """Methods for verifying web elements in the Header of the site"""
-import time
 import allure
 import requests
 from selenium.webdriver.support import expected_conditions as EC
@@ -99,8 +98,10 @@ class HeaderPage(BasePage):
     def get_list_of_direct_links_auth(self):
         links = self.get_list_of_links_auth()
         direct_links = []
-        for i in [1, 2, 3, 4, 11, 0]:
+        # for i in [1, 2, 3, 4, 11, 0]:
+        for i in [1, 2, 3, 4, 17, 0]:
             direct_links.append(links[i])
+        # print(*direct_links)
         return direct_links
 
     @allure.step("Check the 'About', 'Telegram', 'Registration', 'Logo' links are visible for an unauthorized user")
@@ -279,16 +280,22 @@ class HeaderPage(BasePage):
     def get_text_in_direct_links_unauth(self):
         return [link.text for link in self.get_list_of_direct_links_unauth()[:3]]
 
-    @allure.step("""Get text in the 'Groups', 'Statistics', 'About', 'Telegram', 'Profile' links in the Header 
+    @allure.step("""Get text in the 'Groups', 'Statistics', 'About', 'Telegram' links in the Header 
     for an authorized user""")
     def get_text_in_direct_links_auth(self):
-        return [link.text for link in self.get_list_of_direct_links_auth()[:5]]
+        direct_links_text = [link.text for link in self.get_list_of_direct_links_auth()[:4]]
+        print(*direct_links_text, len(direct_links_text), sep='\n')
+        return direct_links_text
+        # return [link.text for link in self.get_list_of_direct_links_auth()[:5]]
 
     @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
     links in the Header""")
     def get_text_of_links_in_more(self):
         self.click_more_button()
-        return [link.text for link in self.get_list_of_links_in_more()]
+        more_links_text = [link.text for link in self.get_list_of_links_in_more()]
+        print(*more_links_text, len(more_links_text), sep='\n')
+        return more_links_text
+        # return [link.text for link in self.get_list_of_links_in_more()]
 
     @allure.step("Get text in buttons in the Header for an unauthorized user")
     def get_text_in_buttons_unauth(self):

@@ -13,16 +13,17 @@ class HeaderData:
                          "Используемые ресурсы", "Used Resources",
                          "Регистрация", "Registration")
 
-    links_text_auth = ("УПРАЖНЕНИЯ", "GROUPS",
-                       "СТАТИСТИКА", "STATISTICS",
-                       "ОПИСАНИЕ", "ABOUT",
-                       "TELEGRAM",
+    links_text_auth = ("УПРАЖНЕНИЯ", "Упражнения", "GROUPS",
+                       "СТАТИСТИКА", "Статистика", "STATISTICS",
+                       "ОПИСАНИЕ", "Описание", "ABOUT",
+                       "TELEGRAM", "Telegram",
                        "Пожертвовать", "Donate",
                        "GitHub",
                        "Контакты", "Contacts",
                        "Специалисты", "Specialists",
                        "Наша команда", "Contributors",
-                       "Используемые ресурсы", "Used Resources")
+                       "Используемые ресурсы", "Used Resources",
+                       "Аудиометрия", "Audiometry")
 
     buttons_text = ('RU', 'EN', 'ЕЩЕ...', 'MORE...')
 
