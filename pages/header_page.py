@@ -232,7 +232,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Get the list of buttons in the Header for an authorized user")
     def get_list_of_buttons_auth(self):
-        all_buttons = self.elements_are_present(self.locators.HEADER_BUTTONS)[:3]
+        all_buttons = self.elements_are_present(self.locators.HEADER_BUTTONS)
         header_buttons = all_buttons[:3]
         header_buttons.append(all_buttons[-1])
         att = [element.get_attribute("type") for element in header_buttons]
