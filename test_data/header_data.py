@@ -13,9 +13,9 @@ class HeaderData:
                          "Используемые ресурсы", "Used Resources",
                          "Регистрация", "Registration")
 
-    links_text_auth = ("УПРАЖНЕНИЯ", "Упражнения", "GROUPS",
-                       "СТАТИСТИКА", "Статистика", "STATISTICS",
-                       "ОПИСАНИЕ", "Описание", "ABOUT",
+    links_text_auth = ("УПРАЖНЕНИЯ", "Упражнения", "GROUPS", "Groups",
+                       "СТАТИСТИКА", "Статистика", "STATISTICS", "Statistics",
+                       "ОПИСАНИЕ", "Описание", "ABOUT", "About",
                        "TELEGRAM", "Telegram",
                        "Пожертвовать", "Donate",
                        "GitHub",

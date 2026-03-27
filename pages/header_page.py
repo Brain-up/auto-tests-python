@@ -78,11 +78,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user")
     def get_list_of_links_auth(self):
-        links = self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
-        att = [element.get_attribute("href") for element in links]
-        print(*att, len(att), sep='\n')
-        return links
-        # return self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
+        return self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
 
     @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
                  for an unauthorized user""")
@@ -236,7 +232,13 @@ class HeaderPage(BasePage):
 
     @allure.step("Get the list of buttons in the Header for an authorized user")
     def get_list_of_buttons_auth(self):
-        return self.elements_are_present(self.locators.HEADER_BUTTONS)[:4]
+        all_buttons = self.elements_are_present(self.locators.HEADER_BUTTONS)
+        header_buttons = all_buttons[:3]
+        header_buttons.append(all_buttons[-1])
+        att = [element.get_attribute("type") for element in header_buttons]
+        print(*att, len(att), sep='\n')
+        return header_buttons
+        # return self.elements_are_present(self.locators.HEADER_BUTTONS)[:4]
 
 
     @allure.step("Check buttons are visible are visible for an authorized user")
