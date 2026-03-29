@@ -92,17 +92,17 @@ class TestURPage:
                 "Links in the sections lead to incorrect pages after clicking"
 
     class TestURPageIcons:
-        @allure.title("Verify presence, visibility and attributes of icons in sections")
+        @allure.title("Verify presence, visibility and attributes of icons on the page")
         def test_ur_04_01_verify_icons_in_sections(self, driver, used_resources_page_open):
             page = urPage(driver)
             icons_presence = page.get_list_of_icons()
             icons_visibility = page.check_icons_visibility()
             icons_xmlns = page.get_icons_xmlns()
             assert icons_presence, "Icons in sections are absent"
-            assert icons_visibility, "Icons in sections are invisible"
-            assert icons_xmlns, "The 'xmlns' attribute value of icons in sections are empty"
+            assert icons_visibility, "Icons on the page are invisible"
+            assert icons_xmlns, "The 'xmlns' attribute value of icons on the page are empty"
             assert all(element == urPD.icons_xmlns for element in icons_xmlns), \
-                "The 'xmlns' attribute value of some icons is empty or invalid"
+                "The 'xmlns' attribute value of some icons on the page is empty or invalid"
 
         @allure.title("Verify sizes of icons in sections")
         def test_ur_04_02_verify_icons_sizes(self, driver, used_resources_page_open):
