@@ -3,7 +3,7 @@ from test_data.links import MainPageLinks as Links
 
 
 class StartUnauthorizedPageData:
-    amount_of_sections_with_content_on_page = 2
+    amount_of_sections_with_content_on_page = 3
 
     tab_title = "BrainUp"
 
