@@ -88,7 +88,10 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get the list of title values")
     def get_values_of_titles(self):
-        return [title.text for title in self.get_list_of_titles()]
+        titles = [title.text for title in self.get_list_of_titles()]
+        print(*titles, len(titles), sep='\n')
+        return titles
+        # return [title.text for title in self.get_list_of_titles()]
 
     @allure.step("Get the list of subtitles h4 on the page")
     def get_list_of_subtitles(self):
