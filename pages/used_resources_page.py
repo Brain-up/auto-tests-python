@@ -115,17 +115,11 @@ class UsedResourcesPage(BasePage):
 
     @allure.step("Check all icons on the page are visible")
     def check_icons_visibility(self):
-        visible_icons = self.get_list_of_icons()[2:]
-        print(len(visible_icons))
-        return all(icon.is_displayed() for icon in visible_icons)
-        # return all(icon.is_displayed() for icon in self.get_list_of_icons())
+        return all(icon.is_displayed() for icon in self.get_list_of_icons()[2:])
 
     @allure.step("Get attribute 'xmlns' of icons on the page")
     def get_icons_xmlns(self):
-        icons_xmlns = [icon.get_attribute('xmlns') for icon in self.get_list_of_icons()[2:]]
-        print(*icons_xmlns, len(icons_xmlns), sep='\n')
-        return icons_xmlns
-        # return [icon.get_attribute('xmlns') for icon in self.get_list_of_icons()]
+        return [icon.get_attribute('xmlns') for icon in self.get_list_of_icons()[2:]]
 
     @allure.step("Get the list of sizes of icons")
     def get_icons_sizes(self):

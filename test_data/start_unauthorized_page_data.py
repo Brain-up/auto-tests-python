@@ -7,8 +7,8 @@ class StartUnauthorizedPageData:
 
     tab_title = "BrainUp"
 
-    page_titles = ("BrainUP - онлайн занятия для детей и взрослых", "Преимущества",
-                   "BrainUP - online classes for children and adults", "Advantages")
+    page_titles = ("BrainUP - онлайн занятия для детей и взрослых", "Преимущества", "Отзыв специалиста",
+                   "BrainUP - online classes for children and adults", "Advantages", "Expert Feedback")
 
     page_subtitles = ("BRAINUP", "ОНЛАЙН ЗАНЯТИЯ", "РАЗВИТИЕ",
                       "ONLINE LESSONS", "SELF-DEVELOPMENT")
