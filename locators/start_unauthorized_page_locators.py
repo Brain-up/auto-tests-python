@@ -16,5 +16,6 @@ class StartUnauthorizedPageLocators:
     SECTION_1_FOURTH_LEVEL_ELEMENTS = (By.XPATH, "(//section)[1]/*/*/*/*")
     SECTION_2_FIRST_LEVEL_ELEMENTS = (By.XPATH, "(//section)[2]/*")
     SECTION_2_SECOND_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'm-auto')]/*")
-    SECTION_2_TEXT = (By.XPATH, "//div[contains(@class, 'font')]")
+    SECTION_2_TEXT = (By.XPATH, "(//div[contains(@class, 'font')])[position() <= 4]")
     SECTION_2_THIRD_LEVEL_ELEMENTS = (By.XPATH, "(//section)[2]/*//*//*")
+    SECTION_3_TEXT = (By.XPATH, "(//div[contains(@class, 'font')])[5]")
