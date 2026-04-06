@@ -88,10 +88,7 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get the list of title values")
     def get_values_of_titles(self):
-        titles = [title.text for title in self.get_list_of_titles()]
-        print(*titles, len(titles), sep='\n')
-        return titles
-        # return [title.text for title in self.get_list_of_titles()]
+        return [title.text for title in self.get_list_of_titles()]
 
     @allure.step("Get the list of subtitles h4 on the page")
     def get_list_of_subtitles(self):
@@ -111,7 +108,15 @@ class StartUnauthorizedPage(BasePage):
 
     @allure.step("Get the list of text content in the section 2")
     def get_text_content_in_section2(self):
-        return [element.text for element in self.get_list_of_elements_with_text_in_section2()]
+        elements = self.get_list_of_elements_with_text_in_section2()
+        elements_text = [element.text for element in elements]
+        print(*elements_text, len(elements_text), sep='\n')
+        return elements_text
+        # return [element.text for element in self.get_list_of_elements_with_text_in_section2()]
+
+    @allure.step("Get the list of text content in the section 3")
+    def get_text_content_in_section3(self):
+        return self.get_text(self.locators.SECTION_3_TEXT)
 
     @allure.step("Get text in the 'Login' link in the section 1")
     def get_text_in_login_link(self):

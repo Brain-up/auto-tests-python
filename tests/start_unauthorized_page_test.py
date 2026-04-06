@@ -80,17 +80,21 @@ class TestStartUnauthorizedPage:
             assert all(element in suPD.page_subtitles for element in subtitle_values), \
                 "Subtitles mismatch any valid values"
 
-        @allure.title("Verify content of the text in sections 1, 2")
+        @allure.title("Verify content of the text in sections 1, 2, 3")
         def test_su_02_03_verify_page_text(self, driver, main_page_open):
             page = suPage(driver)
             text_content_section1 = page.get_text_content_in_section1()
             text_content_section2 = page.get_text_content_in_section2()
+            text_content_section3 = page.get_text_content_in_section3()
             assert text_content_section1, "Text content in the section 1 is empty"
             assert text_content_section1 in suPD.text_on_page["text_in_section1"], \
                 "Text in the section 1 mismatches any valid values"
             assert text_content_section2, "The text content in the section 2 is empty"
-            assert all(element in suPD.text_on_page["text_in_section2"]
-                       for element in text_content_section2), "Text in the section 2 mismatches any valid values"
+            assert all(element in suPD.text_on_page["text_in_section2"] for element in text_content_section2), \
+                "Text in the section 2 mismatches valid values"
+            assert text_content_section3, "The text content in the section 3 is empty"
+            assert text_content_section3 in suPD.text_on_page["text_in_section3"], \
+                "Text in the section 3 mismatches any valid values"
 
         @allure.title("Verify text in the 'Login' link in the section 1")
         def test_su_02_04_verify_text_in_links(self, driver, main_page_open):
