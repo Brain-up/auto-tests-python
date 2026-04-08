@@ -72,24 +72,24 @@ class StartUnauthorizedPageData:
             "логика развития как речевого, так и неречевого слуха. "
             "Надеемся, что дальнейшее развитие приложения будет способствовать еще большим успехам наших пациентов!»",
 
-            "The BrainUP application is designed for auditory training in children "
-            "with central and peripheral hearing impairments. "
-            "The relevance of its use is due to the fact that even with peripheral hearing loss, "
-            "problems of auditory analysis are observed, especially in children with concomitant disorders. "
-            "The prevalence of auditory neuropathy spectrum disorders and central auditory processing disorders "
-            "is also growing, in which hearing correction cannot be limited "
-            "to the use of hearing aids or cochlear implants alone. "
-            "Research has shown that systematic auditory training helps improve sound discrimination, "
-            "speech recognition in quiet and in the presence of noise, sound localization, "
-            "and other aspects of auditory processing. "
-            "The lack of Russian-language programs for auditory training "
-            "limited the rehabilitation options for such patients. "
-            "With the advent of the BrainUP application, the situation has improved significantly. "
-            "BrainUP features a simple and intuitive interface, "
-            "gradual task complexity as previous levels are completed, "
-            "and a logical development of both speech and non-speech hearing. "
-            "We hope that the further development of the application will contribute to even greater success "
-            "for our patients!"
+            '"The BrainUP application is designed for auditory training in children '
+            'with central and peripheral hearing impairments. '
+            'The relevance of its use is due to the fact that even with peripheral hearing loss, '
+            'problems of auditory analysis are observed, especially in children with concomitant disorders. '
+            'The prevalence of auditory neuropathy spectrum disorders and central auditory processing disorders '
+            'is also growing, in which hearing correction cannot be limited '
+            'to the use of hearing aids or cochlear implants alone. '
+            'Research has shown that systematic auditory training helps improve sound discrimination, '
+            'speech recognition in quiet and in the presence of noise, sound localization, '
+            'and other aspects of auditory processing. '
+            'The lack of Russian-language programs for auditory training '
+            'limited the rehabilitation options for such patients. '
+            'With the advent of the BrainUP application, the situation has improved significantly. '
+            'BrainUP features a simple and intuitive interface, '
+            'gradual task complexity as previous levels are completed, '
+            'and a logical development of both speech and non-speech hearing. '
+            'We hope that the further development of the application will contribute to even greater success '
+            'for our patients!"'
         )
     }
 
