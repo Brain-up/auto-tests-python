@@ -46,4 +46,9 @@ class ExercisesUrls:
 
     # Speech Exercises > Words > Family
     URL_EXERCISES_RU_WORDS_FAMILY_PAGE = f"{STARTING_POINT}/2/series/1/subgroup/1"
-    URL_EXERCISE1_MODAL_WINDOW_PAGE = f"{STARTING_POINT}/4/series/9/subgroup/73/exercise/919/task/919"
+    # URL_EXERCISE1_MODAL_WINDOW_PAGE = f"{STARTING_POINT}/4/series/9/subgroup/73/exercise/919/task/919"
+    URL_EXERCISE1_MODAL_WINDOW_PAGE = f"{STARTING_POINT}/2/series/1/subgroup/1/exercise/1/task/1"
+
+    # Speech Exercises > Similar Phrases > With different lengths
+    URL_EXERCISES_RU_SIM_PHR_DIFF_LENGTHS_PAGE = f"{STARTING_POINT}/2/series/2/subgroup/60"
+    URL_EXERCISE2_MODAL_WINDOW_PAGE = f"{STARTING_POINT}/2/series/2/subgroup/60/exercise/1311/task/1311"

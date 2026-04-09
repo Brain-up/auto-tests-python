@@ -1,3 +1,5 @@
+import time
+
 import allure
 import requests
 from selenium.webdriver.support.wait import WebDriverWait as Wait
@@ -21,6 +23,7 @@ class FooterPage(BasePage):
 
     @allure.step("Check the Footer is invisible")
     def check_footer_invisibility(self):
+        time.sleep(5)
         return self.element_is_not_visible(self.locators.FOOTER)
 
     @allure.step("Get structure of the 1st level of nesting in the Footer")
