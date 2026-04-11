@@ -46,9 +46,13 @@ class BasePage:
         return Wait(self.driver, self.timeout).until(
             EC.visibility_of_element_located(locator), message=f"Can't find element by locator {locator}")
 
-    def element_is_not_visible(self, locator):
+    def element_is_not_visible1(self, locator):
         return Wait(self.driver, self.timeout).until(
-            EC.invisibility_of_element_located(locator), message=f"The element located by {locator} is invisible")
+            EC.invisibility_of_element_located(locator), message=f"The element located by {locator} is visible")
+
+    def element_is_not_visible(self, locator):
+        return Wait(self.driver, 10).until(  # timeout has raised since self.timeout till 10 second
+            EC.invisibility_of_element_located(locator), message=f"The element located by {locator} is visible")
 
     def elements_are_present(self, locator):
         return Wait(self.driver, self.timeout).until(
