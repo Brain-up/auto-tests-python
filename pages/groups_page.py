@@ -189,21 +189,50 @@ class GroupsPage(BasePage):
     @allure.step("Click on links on the 'en' local and thereby open corresponding web pages in the same tab")
     def click_on_links_on_en_local(self):
         opened_pages = []
+        starting_url = self.driver.current_url
+        print(starting_url)
 
         link1 = self.element_is_present_and_clickable(self.locators.PAGE_LINK1)
-        current_url = self.driver.current_url
         link1.click()
-        Wait(self.driver, 10).until(EC.url_changes(current_url))
+
+        # Waiting for the first URL change (intermediate page)
+        Wait(self.driver, 10).until(EC.url_changes(starting_url))
+        intermediate_url = self.driver.current_url
+        print(intermediate_url)
+
+        # Waiting for the second URL change (aimed page)
+        Wait(self.driver, 10).until(EC.url_changes(intermediate_url))
+        current_url = self.driver.current_url
+        print(current_url)
+
         opened_pages.append(self.get_current_tab_url())
 
         self.driver.back()
+        intermediate_url = self.driver.current_url
+        print(intermediate_url)
+
+        self.driver.back()
+        starting_url = self.driver.current_url
+        print(starting_url)
+
+        # Waiting for the starting page loading
         Wait(self.driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "h3")))
 
         link2 = self.element_is_present_and_clickable(self.locators.PAGE_LINK2)
-        current_url = self.driver.current_url
         link2.click()
-        Wait(self.driver, 10).until(EC.url_changes(current_url))
+
+        # Waiting for the first URL change (intermediate page)
+        Wait(self.driver, 10).until(EC.url_changes(starting_url))
+        intermediate_url = self.driver.current_url
+        print(intermediate_url)
+
+        # Waiting for the second URL change (aimed page)
+        Wait(self.driver, 10).until(EC.url_changes(intermediate_url))
+        current_url = self.driver.current_url
+        print(current_url)
+
         opened_pages.append(self.get_current_tab_url())
+        print(opened_pages)
 
         return opened_pages
 

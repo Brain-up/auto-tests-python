@@ -3,7 +3,6 @@ name: Test-All-Daily
 on:
   workflow_dispatch
 
-
 permissions:
   contents: read
 
@@ -11,10 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4  # Обновлено с v3 до v4
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5  # Обновлено с v3 до v5
         with:
           python-version: "3.12"
 
@@ -44,7 +43,6 @@ jobs:
         run: |
           pytest -s -v --alluredir=allure-results
         continue-on-error: true
-
 
       - name: Add allure information
         working-directory: allure-results
@@ -77,23 +75,23 @@ jobs:
 
       - name: Commit Allure report
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
+        uses: peaceiris/actions-gh-pages@v4  # Обновлено с v2 до v4
         env:
           PERSONAL_TOKEN: ${{ secrets.CI_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
         continue-on-error: true
 
-
-  messsage:
+  message:  # Исправлено: было messsage (опечатка)
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Send message to Telegram
-        uses: "appleboy/telegram-action@master"
+        uses: appleboy/telegram-action@master
         with:
-          to: ${{secrets.CHAT_ID}}
-          token: ${{secrets.TELEGRAM_TOKEN}}
+          to: ${{ secrets.CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           args: Daily full report https://brain-up.github.io/auto-tests-python/
         continue-on-error: true
+
