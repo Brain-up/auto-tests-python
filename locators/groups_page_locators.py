@@ -18,6 +18,7 @@ class GroupsPageLocators:
     PAGE_TILES = (By.CSS_SELECTOR, ".list-item")
     PAGE_TITLE = (By.TAG_NAME, "h3")
     PAGE_SUBTITLES = (By.XPATH, "//button/h4")
+    PAGE_SUBTITLE2 = (By.XPATH, "(//button/h4)[2]")
 
 
 class HeaderLocators:
