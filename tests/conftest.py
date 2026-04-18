@@ -21,6 +21,7 @@ from pages.base_page import BasePage
 from pages.contributors_page import ContributorsPage
 from pages.groups_page import GroupsPage
 from pages.profile_page import ProfilePage
+from test_data.groups_page_data import GroupsPageData
 from test_data.links import MainPageLinks, ExercisesUrls
 
 load_dotenv()
@@ -60,14 +61,14 @@ def description_page_open(driver):
 def groups_ru_page_open1(driver, auto_test_user_authorized):
     page = GroupsPage(driver)
     ru_button = page.element_is_present_and_clickable(huLocators.RU_BUTTON)
-    subtitles_before = [el.text for el in page.elements_are_located(GroupsPageLocators.PAGE_SUBTITLES)]
     ru_button.click()
 
-    def subtitles_changed(driver):
-        current_subtitles = [el.text for el in page.elements_are_located(GroupsPageLocators.PAGE_SUBTITLES)]
-        return current_subtitles != subtitles_before and all(current_subtitles)
+    def subtitle2(driver):
+        subtitle2 = driver.find_element(*GroupsPageLocators.PAGE_SUBTITLE2).text
+        print(subtitle2)
+        return subtitle2 in GroupsPageData.page_subtitles_ru
 
-    Wait(driver, 20).until(subtitles_changed)
+    Wait(driver, 20).until(subtitle2)
     page.elements_are_visible(GroupsPageLocators.PAGE_SUBTITLES)
 
 
