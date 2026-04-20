@@ -21,8 +21,8 @@ class GroupsPageData:
 
     pages_urls = (f"{s}groups/1/series/18", f"{s}groups/2/series/1", f"{s}groups/3/series/14", f"{s}groups/4/series/10")
 
-    images_src = (f"{s}pictures/exercise-type/speech-exercises.svg",
-                  f"{s}pictures/exercise-type/non-speech-exercises.svg")
+    images_src = (f"{s}pictures/exercise-type/speech-exercises.png",
+                  f"{s}pictures/exercise-type/non-speech-exercises.png")
 
     links_status_code = (200,)
 
