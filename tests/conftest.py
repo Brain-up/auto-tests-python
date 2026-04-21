@@ -65,7 +65,6 @@ def groups_ru_page_open1(driver, auto_test_user_authorized):
 
     def subtitle2(driver):
         subtitle2 = driver.find_element(*GroupsPageLocators.PAGE_SUBTITLE2).text
-        print(subtitle2)
         return subtitle2 in GroupsPageData.page_subtitles_ru
 
     Wait(driver, 20).until(subtitle2)
