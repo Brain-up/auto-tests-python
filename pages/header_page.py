@@ -397,7 +397,15 @@ class HeaderPage(BasePage):
 
     @allure.step("Click on the 'Logo' link for every user")
     def click_on_logo_link(self):
-        self.element_is_present_and_clickable(self.locators.LOGO_LINK).click()
+
+        # Wait until the logo becomes clickable and click it
+        Wait(self.driver, 10).until(EC.element_to_be_clickable(self.locators.LOGO_LINK)).click()
+
+        # Wait for the page to reload (document readiness)
+        Wait(self.driver, 10).until(EC.presence_of_element_located(self.locators.LOGO_LINK))
+
+        # Wait until the logo becomes visible
+        Wait(self.driver, 10).until(EC.visibility_of_element_located(self.locators.LOGO_LINK))
         return self.driver.current_url
 
     # Checks of buttons clicking in the Header
