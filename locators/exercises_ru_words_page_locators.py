@@ -15,7 +15,7 @@ class ExercisesRuWordsPageLocators:
     PAGE_LIST1_1 = (By.XPATH, '(//ul[@aria-label="Breadcrumbs"]//a)[1]')
     PAGE_LIST1_2 = (By.XPATH, '(//ul[@aria-label="Breadcrumbs"]//a)[2]')
     PAGE_LIST1_3 = (By.XPATH, '(//ul[@aria-label="Breadcrumbs"]//a)[3]')
-    PAGE_LIST2 = (By.XPATH, "//aside//button")
+    PAGE_LIST2 = (By.XPATH, "//aside//a")
     PAGE_LIST2_3 = (By.XPATH, "(//aside//button)[3]")
     PAGE_LIST3 = (By.XPATH, '//div[contains(@class, "series-page")]//a')
     PAGE_LIST3_1 = (By.XPATH, '(//div[contains(@class, "series-page")]//a)[1]')
