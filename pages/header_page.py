@@ -363,7 +363,7 @@ class HeaderPage(BasePage):
 
     @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
     for an authorized user""")
-    def click_on_internal_links_in_header_auth(self):
+    def click_on_internal_links_in_header_auth1(self):
         opened_pages = []
         # Click on the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links
         for link in self.get_list_of_direct_internal_links_auth():
@@ -378,6 +378,20 @@ class HeaderPage(BasePage):
             link.click()
             Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
+        return opened_pages
+
+    @allure.step("""Click on direct internal links in the Header 
+    and thereby open corresponding web pages in the same tab for an authorized user""")
+    def click_on_direct_internal_links_in_header_auth(self):
+        opened_pages = []
+        current_url = self.get_current_tab_url()
+
+        # Click on the 'Groups' link
+        self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH).click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
+        opened_pages.append(self.get_current_tab_url())                         # to be continued
+        print(opened_pages)
+
         return opened_pages
 
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
