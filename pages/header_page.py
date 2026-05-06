@@ -236,7 +236,7 @@ class HeaderPage(BasePage):
         header_buttons = all_buttons[:3]
         header_buttons.append(all_buttons[-1])
         att = [element.get_attribute("type") for element in header_buttons]
-        print(*att, len(att), sep='\n')
+        # print(*att, len(att), sep='\n')
         return header_buttons
         # return self.elements_are_present(self.locators.HEADER_BUTTONS)[:4]
 
@@ -286,7 +286,7 @@ class HeaderPage(BasePage):
     for an authorized user""")
     def get_text_in_direct_links_auth(self):
         direct_links_text = [link.text for link in self.get_list_of_direct_links_auth()[:4]]
-        print(*direct_links_text, len(direct_links_text), sep='\n')
+        # print(*direct_links_text, len(direct_links_text), sep='\n')
         return direct_links_text
         # return [link.text for link in self.get_list_of_direct_links_auth()[:5]]
 
@@ -295,7 +295,7 @@ class HeaderPage(BasePage):
     def get_text_of_links_in_more(self):
         self.click_more_button()
         more_links_text = [link.text for link in self.get_list_of_links_in_more()]
-        print(*more_links_text, len(more_links_text), sep='\n')
+        # print(*more_links_text, len(more_links_text), sep='\n')
         return more_links_text
         # return [link.text for link in self.get_list_of_links_in_more()]
 
@@ -331,7 +331,7 @@ class HeaderPage(BasePage):
     @allure.step("Get attribute 'href' of links in the Header for an authorized user")
     def get_links_href_auth(self):
         att = [element.get_attribute("href") for element in self.get_list_of_links_auth()]
-        print(*att, len(att), sep='\n')
+        # print(*att, len(att), sep='\n')
         return att
         # return [element.get_attribute("href") for element in self.get_list_of_links_auth()]
 
@@ -386,10 +386,17 @@ class HeaderPage(BasePage):
         opened_pages = []
         current_url = self.get_current_tab_url()
 
+        # Click on the 'Statistics' link
+        self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH).click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
+        current_url = self.get_current_tab_url()
+        opened_pages.append(current_url)
+
         # Click on the 'Groups' link
         self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
-        opened_pages.append(self.get_current_tab_url())                         # to be continued
+        current_url = self.get_current_tab_url()
+        opened_pages.append(current_url)                         # to be continued
         print(opened_pages)
 
         return opened_pages
