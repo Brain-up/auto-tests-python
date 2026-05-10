@@ -49,6 +49,7 @@ class HeaderAuthorizedLocators:
     HEADER_LINKS_AUTH = (By.XPATH, "//nav//a")
     HEADER_ICONS = (By.XPATH, "//nav//*[name()='svg']")
     HEADPHONE_ICON = (By.XPATH, "(//nav//*[name()='svg'])[2]")
+    LINK_ABOUT_AUTH = (By.XPATH, "(//nav//a)[4]")
     LINK_GROUPS_AUTH = (By.XPATH, "(//nav//a)[2]")
     LINK_STATISTICS_AUTH = (By.XPATH, "(//nav//a)[3]")
     LINK_PROFILE = (By.XPATH, "(//nav//a)[12]")
