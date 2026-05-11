@@ -591,6 +591,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Check all icons are visible in the Header for an authorized user")
     def check_auth_icons_visibility(self):
+        self.click_more_button()
         return all(icon.is_displayed() for icon in self.get_list_of_auth_icons())
 
     @allure.step("Get attribute 'xmlns' of icons in the Header for an authorized user")
