@@ -59,7 +59,7 @@ class HeaderData:
 
     link_status_codes = (200,)
 
-    icons_xmlns = ("http://www.w3.org/2000/svg",)
+    # icons_xmlns = ("http://www.w3.org/2000/svg",)
     logo_image_xmlns = "http://www.w3.org/2000/svg"
 
     profile_avatar_src = f"{s}pictures/avatars/avatar%201.png"

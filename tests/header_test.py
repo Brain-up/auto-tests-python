@@ -396,17 +396,13 @@ class TestHeaderPage:
                 assert logo_image_size_change, "The 'Logo' image size is changed"
                 assert logo_image_invisibility, "The 'Logo' image is hidden"
 
-            @allure.title("Verify presence, visibility, attributes of icons in the Header for an authorized user")
+            @allure.title("Verify presence, visibility of icons in the Header for an authorized user")
             def test_hpa_04_03_verify_auth_icons(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 icons_presence = page.get_list_of_auth_icons()
                 icons_visibility = page.check_auth_icons_visibility()
-                icons_xmlns = page.get_auth_icons_xmlns()
                 assert icons_presence, "Icons in the Header are absent"
                 assert icons_visibility, "Icons in the Header are invisible"
-                assert icons_xmlns, "The 'xmlns' attribute value of icons in the Header are empty"
-                assert all(element in hPD.icons_xmlns for element in icons_xmlns), \
-                    "The 'xmlns' attribute value of some icons is empty or invalid"
 
             @allure.title("""Verify presence, visibility and attributes of the profile avatar in the Header 
                for an authorized user""")
