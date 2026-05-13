@@ -143,7 +143,7 @@ class HeaderPage(BasePage):
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
                     in the 'More' dropdown for every user""")
     def get_list_of_external_links_in_more(self):
-        return self.get_list_of_links_in_more()[:2]
+        return self.get_list_of_links_in_more()[4:6]
 
     @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
     def get_list_of_internal_links(self):
@@ -554,7 +554,7 @@ class HeaderPage(BasePage):
     @allure.step("Check if the 'Logo' image is hidden after resizing in the Header for an authorized user")
     def check_invisibility_of_auth_logo_image(self):
         image_size_before = self.get_size_of_auth_logo_image()
-        self.driver.set_window_size(780, 1100)
+        self.driver.set_window_size(750, 1100)
         window_size = self.driver.get_window_size()
         window_resolution = f"{window_size['width']}x{window_size['height']}"
         image_invisibility = self.element_is_not_visible(self.locators1.LOGO_IMAGE_AUTH)
