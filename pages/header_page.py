@@ -143,7 +143,8 @@ class HeaderPage(BasePage):
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
                     in the 'More' dropdown for every user""")
     def get_list_of_external_links_in_more(self):
-        return self.get_list_of_links_in_more()[4:6]
+        # return self.get_list_of_links_in_more()[4:6]
+        return self.get_list_of_links_in_more()[:3]
 
     @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
     def get_list_of_internal_links(self):
@@ -415,11 +416,15 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
         # Click on the 'GitHub', 'Donate' links
         self.click_more_button()
+
         new_tabs = [link.click() for link in self.get_list_of_external_links_in_more()]
+        print(len(new_tabs))
         # Get the list of opened tabs urls
-        for i in range(1, len(new_tabs) + 2):
+        # for i in range(1, len(new_tabs) + 2):
+        for i in range(len(new_tabs)):
             self.driver.switch_to.window(self.driver.window_handles[i])
             opened_pages.append(self.get_current_tab_url())
+        print(*opened_pages)
         return opened_pages
 
     @allure.step("Click on the 'Logo' link for every user")
