@@ -330,11 +330,11 @@ class TestHeaderPage:
             lead to correct pages after click""")
             def test_hpa_03_03_verify_auth_external_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                external_links_in_more = page.get_list_of_external_links_in_more()
-                # opened_pages = page.click_on_external_links_in_header()
+                external_links_in_more = page.get_list_of_external_links_in_more_auth()
+                opened_pages = page.click_on_external_links_in_header()
                 assert external_links_in_more, "External links are not collected in the list"
-                # assert all(element in hPD.set_auth for element in opened_pages), \
-                #     "Some of external links lead to incorrect pages after clicking"
+                assert all(element in hPD.set_auth for element in opened_pages), \
+                    "Some of external links lead to incorrect pages after clicking"
 
             @allure.title("""Verify that the Logo link on the Start Authorized Page 
                              refreshes the current page and doesn't lead to other pages after clicking""")

@@ -146,6 +146,12 @@ class HeaderPage(BasePage):
         # return self.get_list_of_links_in_more()[4:6]
         return self.get_list_of_links_in_more()[:3]
 
+    @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
+                    in the 'More' dropdown for authorized user""")
+    def get_list_of_external_links_in_more_auth(self):
+        return self.get_list_of_links_in_more()[4:7]
+        # return self.get_list_of_links_in_more()[:3]
+
     @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
     def get_list_of_internal_links(self):
         links = self.get_list_of_links_unauth()
@@ -414,10 +420,11 @@ class HeaderPage(BasePage):
         opened_pages = []
         # Click on the 'Telegram' link
         self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
+
         # Click on the 'GitHub', 'Donate' links
         self.click_more_button()
 
-        new_tabs = [link.click() for link in self.get_list_of_external_links_in_more()]
+        new_tabs = [link.click() for link in self.get_list_of_external_links_in_more_auth()]
         print(len(new_tabs))
         # Get the list of opened tabs urls
         # for i in range(1, len(new_tabs) + 2):
