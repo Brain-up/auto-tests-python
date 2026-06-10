@@ -107,7 +107,9 @@ class TestHeaderPage:
                 links_clickability = page.check_links_clickability_unauth()
                 tg_link_title = page.get_tg_link_title()
                 links_href = page.get_links_href_unauth()
+                print(*links_href)
                 link_status_codes = page.get_links_status_codes_unauth()
+                print(*link_status_codes)
                 assert links_clickability, "Links are unclickable"
                 assert tg_link_title, "The link title value is empty"
                 assert tg_link_title in hPD.link_titles, "The link title mismatches the valid value"

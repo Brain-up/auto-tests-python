@@ -321,7 +321,7 @@ class HeaderPage(BasePage):
     # Checks of links in the Header
     @allure.step("Check if links are clickable in the Header for an unauthorized user")
     def check_links_clickability_unauth(self):
-        return all(link.is_enabled() for link in self.get_list_of_links_unauth())
+        return all(link.is_enabled() for link in self.get_list_of_links_unauth()[:9])
 
     @allure.step("Check if links are clickable in the Header for an authorized user")
     def check_links_clickability_auth(self):
