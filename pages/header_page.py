@@ -415,7 +415,7 @@ class HeaderPage(BasePage):
         return opened_pages
 
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
-    for every user""")
+    for authorized user""")
     def click_on_auth_external_links_in_header(self):
         opened_pages = []
         # Click on the 'Telegram' link
