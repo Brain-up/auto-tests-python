@@ -434,25 +434,23 @@ class HeaderPage(BasePage):
         print(*opened_pages)
         return opened_pages
 
-    @allure.step("Click on the 'More' button for every user")
-    def click_more_button(self):
-        return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
-
-    @allure.step("Click on the 'Telegram' link for unauthorized user")
-    def click_on_Telegram_link(self):
-        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        return self.get_current_tab_url()
-
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
     for unauthorized user""")
     def click_on_unauth_external_links_in_header(self):
         opened_pages = []
         # Click on the 'Telegram' link
-        opened_pages.append(self.click_on_Telegram_link())      # to be continued
-
-        print(*opened_pages)
+        opened_pages.append(self.click_on_Telegram_link())
+        # Click on the 'GitHub' link
+        opened_pages.append(self.click_on_GitHub_link())      # to be continued
         return opened_pages
+
+    @allure.step("Click on the 'Telegram' link for unauthorized user")
+    def click_on_Telegram_link(self):
+        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        current_tab_url = self.get_current_tab_url()
+        print(current_tab_url)
+        return current_tab_url
 
     @allure.step("Click on the 'Logo' link for every user")
     def click_on_logo_link(self):
