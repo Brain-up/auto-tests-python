@@ -452,6 +452,15 @@ class HeaderPage(BasePage):
         print(current_tab_url)
         return current_tab_url
 
+    @allure.step("Click on the 'GitHub' link for unauthorized user")
+    def click_on_GitHub_link(self):
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators.LINK_GITHUB).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        current_tab_url = self.get_current_tab_url()
+        print(current_tab_url)
+        return current_tab_url
+
     @allure.step("Click on the 'Logo' link for every user")
     def click_on_logo_link(self):
 
