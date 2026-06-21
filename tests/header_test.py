@@ -147,9 +147,16 @@ class TestHeaderPage:
                 opened_page = page.click_on_Telegram_link()
                 assert opened_page in hPD.set_unauth, "The Telegram link leads to an incorrect page after clicking"
 
+            @allure.title("""Verify if external Donate link in the Header for an unauthorized user 
+            leads to a correct page after click""")
+            def test_hpu_03_03_02_verify_unauth_Donate_link_navigation(self, driver, main_page_open):
+                page = hPage(driver)
+                opened_page = page.click_on_Donate_link()
+                assert opened_page in hPD.set_unauth, "The Donate link leads to an incorrect page after clicking"
+
             @allure.title("""Verify if external GitHub link in the Header for an unauthorized user 
             leads to a correct page after click""")
-            def test_hpu_03_03_02_verify_unauth_GitHub_link_navigation(self, driver, main_page_open):
+            def test_hpu_03_03_03_verify_unauth_GitHub_link_navigation(self, driver, main_page_open):
                 page = hPage(driver)
                 opened_page = page.click_on_GitHub_link()
                 assert opened_page in hPD.set_unauth, "The GitHub link leads to an incorrect page after clicking"
