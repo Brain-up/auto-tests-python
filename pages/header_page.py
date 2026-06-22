@@ -149,7 +149,10 @@ class HeaderPage(BasePage):
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
                     in the 'More' dropdown for authorized user""")
     def get_list_of_external_links_in_more_auth(self):
-        return self.get_list_of_links_in_more()[4:7]
+        links = self.get_list_of_links_in_more()[3:6]
+        att = [element.get_attribute("href") for element in links]
+        print(*att, len(att), sep='\n')
+        return links
         # return self.get_list_of_links_in_more()[:3]
 
     @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
@@ -427,12 +430,22 @@ class HeaderPage(BasePage):
         new_tabs = [link.click() for link in self.get_list_of_external_links_in_more_auth()]
         print(len(new_tabs))
         # Get the list of opened tabs urls
-        # for i in range(1, len(new_tabs) + 2):
-        for i in range(len(new_tabs)):
+        for i in range(1, len(new_tabs) + 2):
+        # for i in range(len(new_tabs)):
             self.driver.switch_to.window(self.driver.window_handles[i])
             opened_pages.append(self.get_current_tab_url())
         print(*opened_pages)
         return opened_pages
+
+    @allure.step("Click on the 'Telegram' link for authorized user")
+    def click_on_Telegram_link_auth1(self):
+        self.element_is_present_and_clickable(self.locators1.LINK_TELEGRAM_AUTH).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        current_tab_url = self.get_current_tab_url()
+        print(current_tab_url)
+        return current_tab_url
+
+
 
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
     for unauthorized user""")
