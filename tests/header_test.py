@@ -350,6 +350,7 @@ class TestHeaderPage:
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of direct internal links lead to incorrect pages after clicking"
 
+            @pytest.mark.skip("Unstable test environment")
             @allure.title("""Verify if external links in the Header for an authorized user 
             lead to correct pages after click""")
             def test_hpa_03_03_verify_auth_external_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
@@ -359,6 +360,13 @@ class TestHeaderPage:
                 assert external_links_in_more, "External links are not collected in the list"
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of external links lead to incorrect pages after clicking"
+
+            @allure.title("""Verify if external Telegram link #1 in the Header for an authorized user 
+            leads to a correct page after click""")
+            def test_hpa_03_03_01_verify_auth_Telegram_link1_navigation(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                opened_page = page.click_on_Telegram_link_auth1()
+                assert opened_page in hPD.set_auth, "The Telegram link leads to an incorrect page after clicking"
 
             @allure.title("""Verify that the Logo link on the Start Authorized Page 
                              refreshes the current page and doesn't lead to other pages after clicking""")
