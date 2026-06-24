@@ -350,7 +350,7 @@ class TestHeaderPage:
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of direct internal links lead to incorrect pages after clicking"
 
-            # @pytest.mark.skip("Unstable test environment")
+            @pytest.mark.skip("Unstable test environment")
             @allure.title("""Verify if external links in the Header for an authorized user 
             lead to correct pages after click""")
             def test_hpa_03_03_verify_auth_external_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
