@@ -361,12 +361,15 @@ class TestHeaderPage:
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of external links lead to incorrect pages after clicking"
 
-            @allure.title("""Verify if external Telegram link #1 in the Header for an authorized user 
-            leads to a correct page after click""")
-            def test_hpa_03_03_01_verify_auth_Telegram_link1_navigation(self, driver, auto_test_user_authorized):
+            @allure.title("""Verify if external Telegram links #1,2 in the Header for an authorized user 
+            lead to the correct page after click""")
+            def test_hpa_03_03_01_verify_auth_telegram_links_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                opened_page = page.click_on_Telegram_link_auth1()
-                assert opened_page in hPD.set_auth, "The Telegram link leads to an incorrect page after clicking"
+                opened_page1 = page.click_on_Telegram_link_auth1()
+                opened_page2 = page.click_on_Telegram_link_auth2()
+                assert opened_page1 in hPD.set_auth, "The Telegram link #1 leads to an incorrect page after clicking"
+                assert opened_page2 in hPD.set_auth, "The Telegram link #2 leads to an incorrect page after clicking"
+                assert opened_page1 == opened_page2, "The Telegram links #1,2 are the same"
 
             @allure.title("""Verify that the Logo link on the Start Authorized Page 
                              refreshes the current page and doesn't lead to other pages after clicking""")

@@ -437,12 +437,25 @@ class HeaderPage(BasePage):
         print(*opened_pages)
         return opened_pages
 
-    @allure.step("Click on the 'Telegram' link for authorized user")
+    @allure.step("Click on the 'Telegram' link #1 for authorized user")
     def click_on_Telegram_link_auth1(self):
         self.element_is_present_and_clickable(self.locators1.LINK_TELEGRAM_AUTH).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
         current_tab_url = self.get_current_tab_url()
         print(current_tab_url)
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        print(self.get_current_tab_url())
+        return current_tab_url
+
+    @allure.step("Click on the 'Telegram' link #2 for authorized user")
+    def click_on_Telegram_link_auth2(self):
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_TELEGRAM_AUTH2).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        current_tab_url = self.get_current_tab_url()
+        print(current_tab_url)
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        print(self.get_current_tab_url())
         return current_tab_url
 
 
