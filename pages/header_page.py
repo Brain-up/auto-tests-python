@@ -417,6 +417,14 @@ class HeaderPage(BasePage):
 
         return opened_pages
 
+    @allure.step("Click on the 'Groups' link #2 for authorized user")
+    def click_on_Groups_link_auth2(self):
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH2).click()
+        current_tab_url = self.get_current_tab_url()
+        print(current_tab_url)
+        return current_tab_url
+
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
     for authorized user""")
     def click_on_auth_external_links_in_header(self):
