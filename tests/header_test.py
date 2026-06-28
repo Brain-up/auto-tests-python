@@ -331,7 +331,7 @@ class TestHeaderPage:
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
-            # @pytest.mark.xfail
+            @pytest.mark.xfail
             @allure.title("""Verify if internal links in the Header for an authorized user 
             lead to correct pages after click""")
             def test_hpa_03_02_verify_auth_internal_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
