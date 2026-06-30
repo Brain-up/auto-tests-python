@@ -53,6 +53,7 @@ class HeaderAuthorizedLocators:
     LINK_DONATE_AUTH = (By.XPATH, "(//nav//a)[10]")
     LINK_GITHUB_AUTH = (By.XPATH, "(//nav//a)[11]")
     LINK_GROUPS_AUTH = (By.XPATH, "(//nav//a)[2]")
+    LINK_GROUPS_AUTH2 = (By.XPATH, "(//nav//a)[6]")
     LINK_STATISTICS_AUTH = (By.XPATH, "(//nav//a)[3]")
     LINK_PROFILE = (By.XPATH, "(//nav//a)[12]")
     LINK_TELEGRAM_AUTH = (By.XPATH, "(//nav//a)[5]")

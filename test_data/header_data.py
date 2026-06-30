@@ -53,8 +53,9 @@ class HeaderData:
     s11 = "https://github.com/Brain-up/brn"         # dropdown
     s12 = "https://opencollective.com/brainup"      # dropdown
     s13 = "https://t.me/BrainUpUsers"               #, # dropdown
+    s14 = f"{s}groups"
 
-    set_auth = (s, s0, s1, s2, s3, s4, s5, s6, s7, s9, s10, s11, s12, s13)
+    set_auth = (s, s0, s1, s2, s3, s4, s5, s6, s7, s9, s10, s11, s12, s13, s14)
     set_unauth = (s, s1, s2, s3, s8, s9, s10, s11, s12, s13)
 
     link_status_codes = (200,)
