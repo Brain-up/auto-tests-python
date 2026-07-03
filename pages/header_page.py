@@ -341,7 +341,7 @@ class HeaderPage(BasePage):
     @allure.step("Get attribute 'href' of links in the Header for an authorized user")
     def get_links_href_auth(self):
         att = [element.get_attribute("href") for element in self.get_list_of_links_auth()]
-        # print(*att, len(att), sep='\n')
+        print(*att, len(att), sep='\n')
         return att
         # return [element.get_attribute("href") for element in self.get_list_of_links_auth()]
 
@@ -421,6 +421,14 @@ class HeaderPage(BasePage):
     def click_on_Groups_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH2).click()
+        current_tab_url = self.get_current_tab_url()
+        # print(current_tab_url)
+        return current_tab_url
+
+    @allure.step("Click on the 'Statistics' link #2 for authorized user")
+    def click_on_Statistics_link_auth2(self):
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH2).click()
         current_tab_url = self.get_current_tab_url()
         print(current_tab_url)
         return current_tab_url

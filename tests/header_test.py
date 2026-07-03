@@ -331,9 +331,9 @@ class TestHeaderPage:
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
-            @pytest.mark.xfail
-            @allure.title("""Verify if internal links in the Header for an authorized user 
-            lead to correct pages after click""")
+            @pytest.mark.skip
+            @allure.title("""test_hpa.03.02 Verify if internal links in the Header for an authorized user 
+            lead to correct pages after clicking""")
             def test_hpa_03_02_verify_auth_internal_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 internal_links_in_more = page.get_list_of_internal_links_in_more()
@@ -342,20 +342,27 @@ class TestHeaderPage:
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
 
-            @allure.title("""Verify if direct internal links in the Header for an authorized user 
-            lead to correct pages after click""")
+            @allure.title("""test_hpa.03.02.01 Verify if direct internal links in the Header for an authorized user 
+            lead to correct pages after clicking""")
             def test_hpa_03_02_01_verify_auth_direct_internal_links_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 opened_pages = page.click_on_direct_internal_links_in_header_auth()
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of direct internal links lead to incorrect pages after clicking"
 
-            @allure.title("""Verify if internal 'Group' link #2 in the Header for an authorized user 
-            leads to the correct page after click""")
+            @allure.title("""test_hpa.03.02.02 Verify if internal 'Groups' link #2 in the Header for an authorized user 
+            leads to the correct page after clicking""")
             def test_hpa_03_02_02_verify_auth_groups_link2_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 opened_page2 = page.click_on_Groups_link_auth2()
-                assert opened_page2 in hPD.set_auth, "The Group link #2 leads to an incorrect page after clicking"
+                assert opened_page2 in hPD.set_auth, "The Groups link #2 leads to an incorrect page after clicking"
+
+            @allure.title("""test_hpa.03.02.03 Verify if internal 'Statistics' link #2 in the Header 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_02_03_verify_auth_statistics_link2_navigation(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                opened_page2 = page.click_on_Statistics_link_auth2()
+                assert opened_page2 in hPD.set_auth, "The Statistics link #2 leads to an incorrect page after clicking"
 
             @pytest.mark.skip("Unstable test environment")
             @allure.title("""Verify if external links in the Header for an authorized user 
