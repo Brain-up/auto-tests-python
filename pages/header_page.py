@@ -413,7 +413,7 @@ class HeaderPage(BasePage):
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
         opened_pages.append(current_url)                         # to be continued
-        print(opened_pages)
+        # print(opened_pages)
 
         return opened_pages
 
@@ -429,6 +429,14 @@ class HeaderPage(BasePage):
     def click_on_Statistics_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH2).click()
+        current_tab_url = self.get_current_tab_url()
+        # print(current_tab_url)
+        return current_tab_url
+
+    @allure.step("Click on the 'About' link #2 for authorized user")
+    def click_on_About_link_auth2(self):
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH2).click()
         current_tab_url = self.get_current_tab_url()
         print(current_tab_url)
         return current_tab_url

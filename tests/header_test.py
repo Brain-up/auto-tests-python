@@ -364,6 +364,13 @@ class TestHeaderPage:
                 opened_page2 = page.click_on_Statistics_link_auth2()
                 assert opened_page2 in hPD.set_auth, "The Statistics link #2 leads to an incorrect page after clicking"
 
+            @allure.title("""test_hpa.03.02.04 Verify if internal 'About' link #2 in the Header 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_02_04_verify_auth_about_link2_navigation(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                opened_page2 = page.click_on_About_link_auth2()
+                assert opened_page2 in hPD.set_auth, "The About link #2 leads to an incorrect page after clicking"
+
             @pytest.mark.skip("Unstable test environment")
             @allure.title("""Verify if external links in the Header for an authorized user 
             lead to correct pages after click""")
