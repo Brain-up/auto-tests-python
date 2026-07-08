@@ -466,9 +466,7 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_TELEGRAM_AUTH).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
         current_tab_url = self.get_current_tab_url()
-        print(current_tab_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
-        print(self.get_current_tab_url())
         return current_tab_url
 
     @allure.step("Click on the 'Telegram' link #2 for authorized user")
@@ -477,15 +475,22 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_TELEGRAM_AUTH2).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
         current_tab_url = self.get_current_tab_url()
-        print(current_tab_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
-        print(self.get_current_tab_url())
         return current_tab_url
 
     @allure.step("Click on the 'Donate' link for authorized user")
     def click_on_Donate_link_auth(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_DONATE_AUTH).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        current_tab_url = self.get_current_tab_url()
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        return current_tab_url
+
+    @allure.step("Click on the 'GitHub' link for authorized user")
+    def click_on_GitHub_link_auth(self):
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_GITHUB_AUTH).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
         current_tab_url = self.get_current_tab_url()
         print(current_tab_url)
