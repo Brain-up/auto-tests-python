@@ -341,7 +341,7 @@ class HeaderPage(BasePage):
     @allure.step("Get attribute 'href' of links in the Header for an authorized user")
     def get_links_href_auth(self):
         att = [element.get_attribute("href") for element in self.get_list_of_links_auth()]
-        print(*att, len(att), sep='\n')
+        # print(*att, len(att), sep='\n')
         return att
         # return [element.get_attribute("href") for element in self.get_list_of_links_auth()]
 
@@ -388,6 +388,7 @@ class HeaderPage(BasePage):
             link.click()
             Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
+        print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("""Click on direct internal links in the Header 
@@ -396,8 +397,8 @@ class HeaderPage(BasePage):
         opened_pages = []
         current_url = self.get_current_tab_url()
 
-        # Click on the 'Statistics' link
-        self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH).click()
+        # Click on the 'Statistics' link #1
+        self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH1).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
         opened_pages.append(current_url)
@@ -412,8 +413,14 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
+        opened_pages.append(current_url)
+
+        # Click on the 'Statistics' link #3
+        self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH3).click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
+        current_url = self.get_current_tab_url()
         opened_pages.append(current_url)                         # to be continued
-        # print(opened_pages)
+        print(*opened_pages, sep='\n')
 
         return opened_pages
 
