@@ -107,9 +107,7 @@ class TestHeaderPage:
                 links_clickability = page.check_links_clickability_unauth()
                 tg_link_title = page.get_tg_link_title()
                 links_href = page.get_links_href_unauth()
-                print(*links_href)
                 link_status_codes = page.get_links_status_codes_unauth()
-                print(*link_status_codes)
                 assert links_clickability, "Links are unclickable"
                 assert tg_link_title, "The link title value is empty"
                 assert tg_link_title in hPD.link_titles, "The link title mismatches the valid value"
@@ -342,7 +340,7 @@ class TestHeaderPage:
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
 
-            @allure.title("""test_hpa.03.02.01 Verify if direct internal links in the Header for an authorized user 
+            @allure.title("""test_hpa.03.02.01 Verify if 4 direct internal links in the Header for an authorized user 
             lead to correct pages after clicking""")
             def test_hpa_03_02_01_verify_auth_direct_internal_links_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
