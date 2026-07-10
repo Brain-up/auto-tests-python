@@ -1,1 +1,0 @@
-# Allure Reports History
