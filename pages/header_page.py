@@ -410,13 +410,19 @@ class HeaderPage(BasePage):
         opened_pages.append(current_url)
 
         # Click on the 'About' link
-        self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH).click()
+        self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH1).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
         opened_pages.append(current_url)
 
         # Click on the 'Statistics' link #3
         self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH3).click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
+        current_url = self.get_current_tab_url()
+        opened_pages.append(current_url)
+
+        # Click on the 'Profile' link
+        self.element_is_present_and_clickable(self.locators1.LINK_PROFILE_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
         opened_pages.append(current_url)                         # to be continued
