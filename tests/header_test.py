@@ -340,7 +340,7 @@ class TestHeaderPage:
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of internal links lead to incorrect pages after clicking"
 
-            @allure.title("""test_hpa.03.02.01 Verify if 4 direct internal links in the Header for an authorized user 
+            @allure.title("""test_hpa.03.02.01 Verify if 5 direct internal links in the Header for an authorized user 
             lead to correct pages after clicking""")
             def test_hpa_03_02_01_verify_auth_direct_internal_links_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
