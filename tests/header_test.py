@@ -291,16 +291,21 @@ class TestHeaderPage:
                 assert logout_button_visibility, "The 'Logout' button is invisible"
 
         class TestAuHdPageText:
-            @allure.title("Verify values of the text in links, buttons in the Header for an authorized user")
-            def test_hpa_02_01_verify_auth_text_in_links_and_buttons(self, driver, auto_test_user_authorized):
+            @allure.title("test_hpa.02.01 Verify text in direct links in the Header for an authorized user")
+            def test_hpa_02_01_verify_text_in_direct_links_auth(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 direct_links_text = page.get_text_in_direct_links_auth()
+                assert direct_links_text, "Text in direct links is absent"
+                assert all(element in hPD.links_text_auth for element in direct_links_text), \
+                    "Text in direct links mismatches valid value"
+
+            @allure.title("test_hpa.02.02 Verify text in links in 'More' button and buttons "
+                          "in the Header for an authorized user")
+            def test_hpa_02_02_verify_auth_text_in_links_and_buttons(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
                 links_in_more_text = page.get_text_of_links_in_more()
                 buttons_text = page.get_text_in_buttons_auth()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
-                assert all(element in hPD.links_text_auth for element in direct_links_text[:4]), \
-                    "Text in links in section 2 mismatches valid values"
-                assert direct_links_text, "Text in direct links is absent"
                 assert all(element in hPD.links_text_auth for element in links_in_more_text), \
                     "Text in links in section 3 mismatches valid values"
                 assert all(element in hPD.buttons_text for element in buttons_text), \
@@ -309,7 +314,7 @@ class TestHeaderPage:
                     "Text in 'ru-en' buttons mismatches valid values"
 
             @allure.title("Verify presence, visibility of the user name in the Header for an authorized user")
-            def test_hpa_02_02_verify_auth_user_name(self, driver, auto_test_user_authorized):
+            def test_hpa_02_03_verify_auth_user_name(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 user_name_presence = page.check_user_name_presence()
                 user_name_visibility = page.check_user_name_visibility()

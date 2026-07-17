@@ -296,7 +296,7 @@ class HeaderPage(BasePage):
     for an authorized user""")
     def get_text_in_direct_links_auth(self):
         direct_links_text = [link.text for link in self.get_list_of_direct_links_auth()[:4]]
-        # print(*direct_links_text, len(direct_links_text), sep='\n')
+        print(*direct_links_text, len(direct_links_text), sep='\n')
         return direct_links_text
         # return [link.text for link in self.get_list_of_direct_links_auth()[:5]]
 
@@ -305,7 +305,7 @@ class HeaderPage(BasePage):
     def get_text_of_links_in_more(self):
         self.click_more_button()
         more_links_text = [link.text for link in self.get_list_of_links_in_more()]
-        # print(*more_links_text, len(more_links_text), sep='\n')
+        print(*more_links_text, len(more_links_text), sep='\n')
         return more_links_text
         # return [link.text for link in self.get_list_of_links_in_more()]
 
@@ -435,7 +435,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH2).click()
         current_tab_url = self.get_current_tab_url()
-        # print(current_tab_url)
+        print(current_tab_url)
         return current_tab_url
 
     @allure.step("Click on the 'Statistics' link #2 for authorized user")
