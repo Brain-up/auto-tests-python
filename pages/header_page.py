@@ -226,11 +226,11 @@ class HeaderPage(BasePage):
 
     @allure.step("Check the 'Profile' link is present in the Header for an authorized user")
     def check_profile_link_presence(self):
-        return self.element_is_present(self.locators1.LINK_PROFILE)
+        return self.element_is_present(self.locators1.LINK_PROFILE_AUTH)
 
     @allure.step("Check the 'Profile' link is visible for an authorized user")
     def check_profile_link_visibility(self):
-        return self.element_is_visible(self.locators1.LINK_PROFILE)
+        return self.element_is_visible(self.locators1.LINK_PROFILE_AUTH)
 
     @allure.step("Get the list of buttons in the Header for an unauthorized user")
     def get_list_of_buttons_unauth(self):
