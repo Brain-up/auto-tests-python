@@ -374,19 +374,15 @@ class TestHeaderPage:
                 opened_page2 = page.click_on_About_link_auth2()
                 assert opened_page2 in hPD.set_auth, "The About link #2 leads to an incorrect page after clicking"
 
-            @pytest.mark.skip("Unstable test environment")
-            @allure.title("""Verify if external links in the Header for an authorized user 
-            lead to correct pages after click""")
-            def test_hpa_03_03_verify_auth_external_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
+            @allure.title("""test_hpa.03.03 Verify the list of external links in the Header's dropdown 
+            for an authorized user""")
+            def test_hpa_03_03_verify_auth_external_links_in_dropdown(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                external_links_in_more = page.get_list_of_external_links_in_more_auth()
-                opened_pages = page.click_on_auth_external_links_in_header()
-                assert external_links_in_more, "External links are not collected in the list"
-                assert all(element in hPD.set_auth for element in opened_pages), \
-                    "Some of external links lead to incorrect pages after clicking"
+                external_links_in_dropdown = page.get_list_of_external_links_in_more_auth()
+                assert external_links_in_dropdown, "External links are not collected in the list"
 
-            @allure.title("""test_hpa.03.03.01 Verify if external Telegram links #1,2 in the Header for an authorized user 
-            lead to the correct page after clicking""")
+            @allure.title("""test_hpa.03.03.01 Verify if external Telegram links #1,2 in the Header 
+            for an authorized user lead to the correct page after clicking""")
             def test_hpa_03_03_01_verify_auth_telegram_links_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 opened_page1 = page.click_on_Telegram_link_auth1()
