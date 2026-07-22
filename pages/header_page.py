@@ -455,7 +455,7 @@ class HeaderPage(BasePage):
         return current_tab_url
 
     @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
-    for authorized user""")
+    for authorized user  --  unusable till changing UI""")
     def click_on_auth_external_links_in_header(self):
         opened_pages = []
         # Click on the 'Telegram' link
@@ -467,8 +467,8 @@ class HeaderPage(BasePage):
         new_tabs = [link.click() for link in self.get_list_of_external_links_in_more_auth()]
         print(len(new_tabs))
         # Get the list of opened tabs urls
-        for i in range(1, len(new_tabs) + 2):
-        # for i in range(len(new_tabs)):
+        # for i in range(1, len(new_tabs) + 2):
+        for i in range(len(new_tabs)):
             self.driver.switch_to.window(self.driver.window_handles[i])
             opened_pages.append(self.get_current_tab_url())
         print(*opened_pages)
