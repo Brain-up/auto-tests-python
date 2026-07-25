@@ -253,8 +253,8 @@ class TestHeaderPage:
             @allure.title("Verify presence, visibility of links, buttons in the Header for an authorized user")
             def test_hpa_01_03_verify_auth_header_structural_elements(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                header_links = page.get_list_of_links_auth()
-                header_direct_links = page.get_list_of_direct_links_auth()
+                header_links = page.get_links_auth_list()
+                header_direct_links = page.get_direct_links_auth_list()
                 header_direct_links_visibility = page.check_direct_links_visibility_auth()
                 links_in_more_presence = page.get_list_of_links_in_more()
                 links_in_more_invisibility = page.check_links_invisibility_in_more()
@@ -334,16 +334,20 @@ class TestHeaderPage:
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
-            @pytest.mark.skip
-            @allure.title("""test_hpa.03.02 Verify if internal links in the Header for an authorized user 
-            lead to correct pages after clicking""")
-            def test_hpa_03_02_verify_auth_internal_links_lead_to_proper_pages(self, driver, auto_test_user_authorized):
+            # @pytest.mark.skip
+            @allure.title("""test_hpa.03.02 Verify the list of internal links in the Header 
+            for an authorized user""")
+            def test_hpa_03_02_verify_auth_internal_links_in_more(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 internal_links_in_more = page.get_list_of_internal_links_in_more()
-                opened_pages = page.click_on_internal_links_in_header_auth1()
                 assert internal_links_in_more, "Internal links are not collected in the list"
-                assert all(element in hPD.set_auth for element in opened_pages), \
-                    "Some of internal links lead to incorrect pages after clicking"
+
+            @allure.title("""test_hpa.03.02.00 Verify the list of direct internal links in the Header 
+            for an authorized user """)
+            def test_hpa_03_02_00_verify_auth_direct_internal_links_list(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                direct_internal_links = page.get_direct_internal_links_auth_list()
+                assert direct_internal_links, "Links are not collected in the list"
 
             @allure.title("""test_hpa.03.02.01 Verify if 5 direct internal links in the Header for an authorized user 
             lead to correct pages after clicking""")
