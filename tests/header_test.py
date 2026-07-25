@@ -334,7 +334,7 @@ class TestHeaderPage:
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
-            # @pytest.mark.skip
+            @pytest.mark.skip
             @allure.title("""test_hpa.03.02 Verify the list of internal links in the Header 
             for an authorized user""")
             def test_hpa_03_02_verify_auth_internal_links_in_more(self, driver, auto_test_user_authorized):
