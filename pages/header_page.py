@@ -76,8 +76,8 @@ class HeaderPage(BasePage):
     def get_list_of_links_unauth(self):
         return self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
 
-    @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user")
-    def get_list_of_links_auth(self):
+    @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user -- ACTUAL")
+    def get_links_auth_list(self):
         return self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
 
     @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
@@ -89,16 +89,28 @@ class HeaderPage(BasePage):
             direct_links.append(links[i])
         return direct_links
 
-    @allure.step("""Get the list of the 'Groups', 'Statistics', 'About', 'Telegram', 'Profile', 'Logo' links 
-                    (direct links) in the Header for an authorized user""")
-    def get_list_of_direct_links_auth(self):
-        links = self.get_list_of_links_auth()
+    @allure.step("""Get the list of the 'Groups', 'Statistics' (x2), 'About', 'Telegram', 'Profile', 'Logo' links 
+                    (direct links) in the Header for an AUTHORIZED user  --  ACTUAL""")
+    def get_direct_links_auth_list(self):
+        links = self.get_links_auth_list()
         direct_links = []
-        # for i in [1, 2, 3, 4, 11, 0]:
-        for i in [1, 2, 3, 4, 17, 0]:
+        for i in [1, 2, 3, 4, 16, 17, 0]:
             direct_links.append(links[i])
-        # print(*direct_links)
         return direct_links
+
+    @allure.step("""Get the list of the 'Groups', 'Statistics' (x2), 'About', 'Profile', 'Logo' links 
+                     (direct internal links) in the Header for an AUTHORIZED user  --  ACTUAL""")
+    def get_direct_internal_links_auth_list(self):
+        direct_links = self.get_direct_links_auth_list()
+        direct_internal_links = []
+        for i in [0, 1, 2, 4, 5, 6]:
+            direct_internal_links.append(direct_links[i])
+        att1 = [element.get_attribute("href") for element in direct_links]
+        print(*att1, len(att1), sep='\n')
+        att2 = [element.get_attribute("href") for element in direct_internal_links]
+        print(*att2, len(att2), sep='\n')
+        return direct_internal_links
+
 
     @allure.step("Check the 'About', 'Telegram', 'Registration', 'Logo' links are visible for an unauthorized user")
     def check_direct_links_visibility_unauth(self):
@@ -107,7 +119,7 @@ class HeaderPage(BasePage):
     @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Registration', 'Logo' links are visible "
                  for an authorized user""")
     def check_direct_links_visibility_auth(self):
-        return all(link.is_displayed() for link in self.get_list_of_direct_links_auth())
+        return all(link.is_displayed() for link in self.get_direct_links_auth_list())
 
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources', "
                   'Donate', 'GitHub' links in the 'More' dropdown in the Header for every user""")
@@ -138,7 +150,12 @@ class HeaderPage(BasePage):
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
                   (internal links) in the 'More' dropdown for every user""")
     def get_list_of_internal_links_in_more(self):
-        return self.get_list_of_links_in_more()[2:]
+        links = self.get_list_of_links_in_more()[2:]
+        print(links)
+        att = [element.get_attribute("href") for element in links]
+        print(*att, len(att), sep='\n')
+        return links
+        # return self.get_list_of_links_in_more()[2:]
 
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
                     in the 'More' dropdown for every user""")
@@ -183,7 +200,7 @@ class HeaderPage(BasePage):
     @allure.step("""Get the list of the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links (direct internal links)
      in the Header for an authorized user""")
     def get_list_of_direct_internal_links_auth(self):
-        links = self.get_list_of_links_auth()
+        links = self.get_links_auth_list()
         direct_internal_links = []
         for i in [2, 1, 3, 11, 0]:
             direct_internal_links.append(links[i])
@@ -295,10 +312,9 @@ class HeaderPage(BasePage):
     @allure.step("""Get text in the 'Groups', 'Statistics', 'About', 'Telegram' links in the Header 
     for an authorized user""")
     def get_text_in_direct_links_auth(self):
-        direct_links_text = [link.text for link in self.get_list_of_direct_links_auth()[:4]]
+        direct_links_text = [link.text for link in self.get_direct_links_auth_list()[:4]]
         print(*direct_links_text, len(direct_links_text), sep='\n')
         return direct_links_text
-        # return [link.text for link in self.get_list_of_direct_links_auth()[:5]]
 
     @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
     links in the Header""")
@@ -328,7 +344,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Check if links are clickable in the Header for an authorized user")
     def check_links_clickability_auth(self):
-        return all(link.is_enabled() for link in self.get_list_of_links_auth())
+        return all(link.is_enabled() for link in self.get_links_auth_list())
 
     @allure.step("Get attribute 'title' of the 'Telegram' link in the Header")
     def get_tg_link_title(self):
@@ -340,7 +356,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Get attribute 'href' of links in the Header for an authorized user")
     def get_links_href_auth(self):
-        att = [element.get_attribute("href") for element in self.get_list_of_links_auth()]
+        att = [element.get_attribute("href") for element in self.get_links_auth_list()]
         # print(*att, len(att), sep='\n')
         return att
         # return [element.get_attribute("href") for element in self.get_list_of_links_auth()]
@@ -371,8 +387,8 @@ class HeaderPage(BasePage):
             opened_pages.append(self.get_current_tab_url())
         return opened_pages
 
-    @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
-    for an authorized user""")
+    @allure.step("""Click on internal links in the Header 
+    and thereby open corresponding web pages in the same tab for an AUTHORIZED user   --  unusable till changing UI""")
     def click_on_internal_links_in_header_auth1(self):
         opened_pages = []
         # Click on the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links
@@ -392,7 +408,7 @@ class HeaderPage(BasePage):
         return opened_pages
 
     @allure.step("""Click on direct internal links in the Header 
-    and thereby open corresponding web pages in the same tab for an authorized user""")
+    and thereby open corresponding web pages in the same tab for an AUTHORIZED user""")
     def click_on_direct_internal_links_in_header_auth(self):
         opened_pages = []
         current_url = self.get_current_tab_url()
@@ -430,7 +446,7 @@ class HeaderPage(BasePage):
 
         return opened_pages
 
-    @allure.step("Click on the 'Groups' link #2 for authorized user")
+    @allure.step("Click on the 'Groups' link #2 for AUTHORIZED user")
     def click_on_Groups_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH2).click()
@@ -438,7 +454,7 @@ class HeaderPage(BasePage):
         print(current_tab_url)
         return current_tab_url
 
-    @allure.step("Click on the 'Statistics' link #2 for authorized user")
+    @allure.step("Click on the 'Statistics' link #2 for AUTHORIZED user")
     def click_on_Statistics_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH2).click()
@@ -446,7 +462,7 @@ class HeaderPage(BasePage):
         # print(current_tab_url)
         return current_tab_url
 
-    @allure.step("Click on the 'About' link #2 for authorized user")
+    @allure.step("Click on the 'About' link #2 for AUTHORIZED user")
     def click_on_About_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH2).click()
@@ -454,8 +470,8 @@ class HeaderPage(BasePage):
         print(current_tab_url)
         return current_tab_url
 
-    @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
-    for authorized user  --  unusable till changing UI""")
+    @allure.step("""Click on external links in the Header 
+    and thereby open corresponding web pages on new tabs for AUTHORIZED user  --  unusable till changing UI""")
     def click_on_auth_external_links_in_header(self):
         opened_pages = []
         # Click on the 'Telegram' link
@@ -474,7 +490,7 @@ class HeaderPage(BasePage):
         print(*opened_pages)
         return opened_pages
 
-    @allure.step("Click on the 'Telegram' link #1 for authorized user")
+    @allure.step("Click on the 'Telegram' link #1 for AUTHORIZED user")
     def click_on_Telegram_link_auth1(self):
         self.element_is_present_and_clickable(self.locators1.LINK_TELEGRAM_AUTH).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
@@ -482,7 +498,7 @@ class HeaderPage(BasePage):
         self.driver.switch_to.window(self.driver.window_handles[0])
         return current_tab_url
 
-    @allure.step("Click on the 'Telegram' link #2 for authorized user")
+    @allure.step("Click on the 'Telegram' link #2 for AUTHORIZED user")
     def click_on_Telegram_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_TELEGRAM_AUTH2).click()
@@ -491,7 +507,7 @@ class HeaderPage(BasePage):
         self.driver.switch_to.window(self.driver.window_handles[0])
         return current_tab_url
 
-    @allure.step("Click on the 'Donate' link for authorized user")
+    @allure.step("Click on the 'Donate' link for AUTHORIZED user")
     def click_on_Donate_link_auth(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_DONATE_AUTH).click()
@@ -500,7 +516,7 @@ class HeaderPage(BasePage):
         self.driver.switch_to.window(self.driver.window_handles[0])
         return current_tab_url
 
-    @allure.step("Click on the 'GitHub' link for authorized user")
+    @allure.step("Click on the 'GitHub' link for AUTHORIZED user")
     def click_on_GitHub_link_auth(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_GITHUB_AUTH).click()
@@ -511,8 +527,8 @@ class HeaderPage(BasePage):
         print(self.get_current_tab_url())
         return current_tab_url
 
-    @allure.step("""Click on external links in the Header and thereby open corresponding web pages on new tabs 
-    for unauthorized user""")
+    @allure.step("""Click on external links in the Header 
+    and thereby open corresponding web pages on new tabs for unauthorized user""")
     def click_on_unauth_external_links_in_header(self):
         opened_pages = []
         # Click on the 'Telegram' link
