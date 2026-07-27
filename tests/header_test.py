@@ -334,14 +334,6 @@ class TestHeaderPage:
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
-            @pytest.mark.skip
-            @allure.title("""test_hpa.03.02 Verify the list of internal links in the Header 
-            for an authorized user""")
-            def test_hpa_03_02_verify_auth_internal_links_in_more(self, driver, auto_test_user_authorized):
-                page = hPage(driver)
-                internal_links_in_more = page.get_list_of_internal_links_in_more()
-                assert internal_links_in_more, "Internal links are not collected in the list"
-
             @allure.title("""test_hpa.03.02.00 Verify the list of direct internal links in the Header 
             for an authorized user """)
             def test_hpa_03_02_00_verify_auth_direct_internal_links_list(self, driver, auto_test_user_authorized):
@@ -378,9 +370,16 @@ class TestHeaderPage:
                 opened_page2 = page.click_on_About_link_auth2()
                 assert opened_page2 in hPD.set_auth, "The About link #2 leads to an incorrect page after clicking"
 
-            @allure.title("""test_hpa.03.03 Verify the list of external links in the Header's dropdown 
+            @allure.title("""test_hpa.03.03 Verify the list of links in the Header's dropdown
             for an authorized user""")
-            def test_hpa_03_03_verify_auth_external_links_in_dropdown(self, driver, auto_test_user_authorized):
+            def test_hpa_03_03_verify_auth_dropdown_links_list(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                links_in_dropdown = page.get_dropdown_links_auth_list()
+                assert links_in_dropdown, "Links in the Header's dropdown are not collected in the list"
+
+            @allure.title("""test_hpa.03.03.00 Verify the list of external links in the Header's dropdown 
+            for an authorized user""")
+            def test_hpa_03_03_00_verify_auth_external_links_in_dropdown(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 external_links_in_dropdown = page.get_list_of_external_links_in_more_auth()
                 assert external_links_in_dropdown, "External links are not collected in the list"

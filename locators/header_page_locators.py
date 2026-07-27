@@ -46,6 +46,7 @@ class HeaderUnauthorizedLocators:
 
 
 class HeaderAuthorizedLocators:
+    DROPDOWN_LINKS_AUTH = (By.XPATH, "//div[contains(@class, 'bottom')]/a")
     HEADER_LINKS_AUTH = (By.XPATH, "//nav//a")
     HEADER_ICONS = (By.XPATH, "//nav//*[name()='svg']")
     HEADPHONE_ICON = (By.XPATH, "(//nav//*[name()='svg'])[2]")
