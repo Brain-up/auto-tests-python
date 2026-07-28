@@ -76,10 +76,6 @@ class HeaderPage(BasePage):
     def get_list_of_links_unauth(self):
         return self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
 
-    @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user -- ACTUAL")
-    def get_links_auth_list(self):
-        return self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
-
     @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
                  for an unauthorized user""")
     def get_list_of_direct_links_unauth(self):
@@ -88,6 +84,13 @@ class HeaderPage(BasePage):
         for i in [1, 2, 9, 0]:
             direct_links.append(links[i])
         return direct_links
+
+
+    # Lists of links for an AUTHORIZED user
+
+    @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user -- ACTUAL")
+    def get_links_auth_list(self):
+        return self.elements_are_present(self.locators1.HEADER_LINKS_AUTH)
 
     @allure.step("""Get the list of the 'Groups', 'Statistics' (x2), 'About', 'Telegram', 'Profile', 'Logo' links 
                     (direct links) in the Header for an AUTHORIZED user  --  ACTUAL""")
@@ -110,6 +113,13 @@ class HeaderPage(BasePage):
         att2 = [element.get_attribute("href") for element in direct_internal_links]
         print(*att2, len(att2), sep='\n')
         return direct_internal_links
+
+    @allure.step("""Get the list of links in the 'More' dropdown in the Header for an AUTHORIZED user""")
+    def get_dropdown_links_auth_list(self):
+        dropdown_auth_links = self.elements_are_present(self.locators1.DROPDOWN_LINKS_AUTH)
+        att1 = [element.get_attribute("href") for element in dropdown_auth_links]
+        print(*att1, len(att1), sep='\n')
+        return dropdown_auth_links
 
 
     @allure.step("Check the 'About', 'Telegram', 'Registration', 'Logo' links are visible for an unauthorized user")
