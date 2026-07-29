@@ -334,6 +334,13 @@ class TestHeaderPage:
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
 
+            @allure.title("""test_hpa.03.02 Verify the list of direct links in the Header 
+            for an authorized user """)
+            def test_hpa_03_02_verify_auth_direct_links_list(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                direct_links = page.get_direct_links_auth_list()
+                assert direct_links, "Links are not collected in the list"
+
             @allure.title("""test_hpa.03.02.00 Verify the list of direct internal links in the Header 
             for an authorized user """)
             def test_hpa_03_02_00_verify_auth_direct_internal_links_list(self, driver, auto_test_user_authorized):
@@ -379,7 +386,7 @@ class TestHeaderPage:
 
             @allure.title("""test_hpa.03.03.00 Verify the list of external links in the Header's dropdown 
             for an authorized user""")
-            def test_hpa_03_03_00_verify_auth_external_links_in_dropdown(self, driver, auto_test_user_authorized):
+            def test_hpa_03_03_00_verify_auth_external_dropdown_links(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 external_links_in_dropdown = page.get_list_of_external_links_in_more_auth()
                 assert external_links_in_dropdown, "External links are not collected in the list"

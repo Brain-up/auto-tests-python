@@ -99,6 +99,8 @@ class HeaderPage(BasePage):
         direct_links = []
         for i in [1, 2, 3, 4, 16, 17, 0]:
             direct_links.append(links[i])
+        att1 = [element.get_attribute("href") for element in direct_links]
+        print(*att1, len(att1), sep='\n')
         return direct_links
 
     @allure.step("""Get the list of the 'Groups', 'Statistics' (x2), 'About', 'Profile', 'Logo' links 
@@ -108,17 +110,15 @@ class HeaderPage(BasePage):
         direct_internal_links = []
         for i in [0, 1, 2, 4, 5, 6]:
             direct_internal_links.append(direct_links[i])
-        att1 = [element.get_attribute("href") for element in direct_links]
-        print(*att1, len(att1), sep='\n')
         att2 = [element.get_attribute("href") for element in direct_internal_links]
-        print(*att2, len(att2), sep='\n')
+        # print(*att2, len(att2), sep='\n')
         return direct_internal_links
 
     @allure.step("""Get the list of links in the 'More' dropdown in the Header for an AUTHORIZED user""")
     def get_dropdown_links_auth_list(self):
         dropdown_auth_links = self.elements_are_present(self.locators1.DROPDOWN_LINKS_AUTH)
         att1 = [element.get_attribute("href") for element in dropdown_auth_links]
-        print(*att1, len(att1), sep='\n')
+        # print(*att1, len(att1), sep='\n')
         return dropdown_auth_links
 
 
@@ -178,9 +178,8 @@ class HeaderPage(BasePage):
     def get_list_of_external_links_in_more_auth(self):
         links = self.get_list_of_links_in_more()[3:6]
         att = [element.get_attribute("href") for element in links]
-        print(*att, len(att), sep='\n')
+        # print(*att, len(att), sep='\n')
         return links
-        # return self.get_list_of_links_in_more()[:3]
 
     @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
     def get_list_of_internal_links(self):
@@ -323,7 +322,7 @@ class HeaderPage(BasePage):
     for an authorized user""")
     def get_text_in_direct_links_auth(self):
         direct_links_text = [link.text for link in self.get_direct_links_auth_list()[:4]]
-        print(*direct_links_text, len(direct_links_text), sep='\n')
+        # print(*direct_links_text, len(direct_links_text), sep='\n')
         return direct_links_text
 
     @allure.step("""Get text in the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources'  
@@ -331,7 +330,7 @@ class HeaderPage(BasePage):
     def get_text_of_links_in_more(self):
         self.click_more_button()
         more_links_text = [link.text for link in self.get_list_of_links_in_more()]
-        print(*more_links_text, len(more_links_text), sep='\n')
+        # print(*more_links_text, len(more_links_text), sep='\n')
         return more_links_text
         # return [link.text for link in self.get_list_of_links_in_more()]
 
@@ -461,7 +460,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH2).click()
         current_tab_url = self.get_current_tab_url()
-        print(current_tab_url)
+        # print(current_tab_url)
         return current_tab_url
 
     @allure.step("Click on the 'Statistics' link #2 for AUTHORIZED user")
@@ -477,7 +476,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH2).click()
         current_tab_url = self.get_current_tab_url()
-        print(current_tab_url)
+        # print(current_tab_url)
         return current_tab_url
 
     @allure.step("""Click on external links in the Header 
@@ -532,9 +531,9 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_GITHUB_AUTH).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
         current_tab_url = self.get_current_tab_url()
-        print(current_tab_url)
+        # print(current_tab_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
-        print(self.get_current_tab_url())
+        # print(self.get_current_tab_url())
         return current_tab_url
 
     @allure.step("""Click on external links in the Header 
