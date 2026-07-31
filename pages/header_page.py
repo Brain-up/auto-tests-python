@@ -531,9 +531,9 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_GITHUB_AUTH).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
         current_tab_url = self.get_current_tab_url()
-        # print(current_tab_url)
+        print(current_tab_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
-        # print(self.get_current_tab_url())
+        print(self.get_current_tab_url())
         return current_tab_url
 
     @allure.step("""Click on external links in the Header 

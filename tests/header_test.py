@@ -356,26 +356,15 @@ class TestHeaderPage:
                 assert all(element in hPD.set_auth for element in opened_pages), \
                     "Some of direct internal links lead to incorrect pages after clicking"
 
-            @allure.title("""test_hpa.03.02.02 Verify if internal 'Groups' link #2 in the Header for an authorized user 
-            leads to the correct page after clicking""")
-            def test_hpa_03_02_02_verify_auth_groups_link2_navigation(self, driver, auto_test_user_authorized):
-                page = hPage(driver)
-                opened_page2 = page.click_on_Groups_link_auth2()
-                assert opened_page2 in hPD.set_auth, "The Groups link #2 leads to an incorrect page after clicking"
+            @allure.title("""test_hpa.03.02.02 Verify the list of direct external links in the Header 
+            for an authorized user """)
+            def test_hpa_03_02_02_verify_auth_direct_external_links_list(self, driver, auto_test_user_authorized):
+                pass
 
-            @allure.title("""test_hpa.03.02.03 Verify if internal 'Statistics' link #2 in the Header 
-            for an authorized user leads to the correct page after clicking""")
-            def test_hpa_03_02_03_verify_auth_statistics_link2_navigation(self, driver, auto_test_user_authorized):
-                page = hPage(driver)
-                opened_page2 = page.click_on_Statistics_link_auth2()
-                assert opened_page2 in hPD.set_auth, "The Statistics link #2 leads to an incorrect page after clicking"
-
-            @allure.title("""test_hpa.03.02.04 Verify if internal 'About' link #2 in the Header 
-            for an authorized user leads to the correct page after clicking""")
-            def test_hpa_03_02_04_verify_auth_about_link2_navigation(self, driver, auto_test_user_authorized):
-                page = hPage(driver)
-                opened_page2 = page.click_on_About_link_auth2()
-                assert opened_page2 in hPD.set_auth, "The About link #2 leads to an incorrect page after clicking"
+            @allure.title("""test_hpa.03.02.03 Verify if direct external links in the Header 
+            for an authorized user lead to correct pages after clicking""")
+            def test_hpa_03_02_03_verify_auth_direct_external_links_navigation(self, driver, auto_test_user_authorized):
+                pass
 
             @allure.title("""test_hpa.03.03 Verify the list of links in the Header's dropdown
             for an authorized user""")
@@ -384,16 +373,67 @@ class TestHeaderPage:
                 links_in_dropdown = page.get_dropdown_links_auth_list()
                 assert links_in_dropdown, "Links in the Header's dropdown are not collected in the list"
 
-            @allure.title("""test_hpa.03.03.00 Verify the list of external links in the Header's dropdown 
+            @allure.title("""test_hpa.03.03.00 Verify the list of internal links in the Header's dropdown 
             for an authorized user""")
-            def test_hpa_03_03_00_verify_auth_external_dropdown_links(self, driver, auto_test_user_authorized):
+            def test_hpa_03_03_00_verify_auth_dropdown_internal_links_list(self, driver, auto_test_user_authorized):
+                pass
+
+            @allure.title("""test_hpa.03.03.01 Verify if internal Groups link #2 in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_01_verify_auth_groups_link2_navigation(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                opened_page2 = page.click_on_Groups_link_auth2()
+                assert opened_page2 in hPD.set_auth, "The Groups link #2 leads to an incorrect page after clicking"
+
+            @allure.title("""test_hpa.03.03.02 Verify if internal Statistics link #2 in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_02_verify_auth_statistics_link2_navigation(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                opened_page2 = page.click_on_Statistics_link_auth2()
+                assert opened_page2 in hPD.set_auth, "The Statistics link #2 leads to an incorrect page after clicking"
+
+            @allure.title("""test_hpa.03.03.03 Verify if internal About link #2 in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_03_verify_auth_about_link2_navigation(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                opened_page2 = page.click_on_About_link_auth2()
+                assert opened_page2 in hPD.set_auth, "The About link #2 leads to an incorrect page after clicking"
+
+            @allure.title("""test_hpa.03.03.04 Verify if internal Contacts link in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_04_verify_auth_contacts_link_navigation(self, driver, auto_test_user_authorized):
+                pass
+
+            @allure.title("""test_hpa.03.03.05 Verify if internal Specialists link in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_05_verify_auth_specialists_link_navigation(self, driver, auto_test_user_authorized):
+                pass
+
+            @allure.title("""test_hpa.03.03.06 Verify if internal Our Team link in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_06_verify_auth_our_team_link_navigation(self, driver, auto_test_user_authorized):
+                pass
+
+            @allure.title("""test_hpa.03.03.07 Verify if internal Used Resources link in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_07_verify_auth_used_resources_link_navigation(self, driver, auto_test_user_authorized):
+                pass
+
+            @allure.title("""test_hpa.03.03.08 Verify if internal Audiometry link in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_08_verify_auth_audiometry_link_navigation(self, driver, auto_test_user_authorized):
+                pass
+
+            @allure.title("""test_hpa.03.03.09 Verify the list of external links in the Header's dropdown 
+            for an authorized user""")
+            def test_hpa_03_03_09_verify_auth_dropdown_external_links(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 external_links_in_dropdown = page.get_list_of_external_links_in_more_auth()
                 assert external_links_in_dropdown, "External links are not collected in the list"
 
-            @allure.title("""test_hpa.03.03.01 Verify if external Telegram links #1,2 in the Header 
+            @allure.title("""test_hpa.03.03.10 Verify if external Telegram links #1,2 in the Header's dropdown 
             for an authorized user lead to the correct page after clicking""")
-            def test_hpa_03_03_01_verify_auth_telegram_links_navigation(self, driver, auto_test_user_authorized):
+            def test_hpa_03_03_10_verify_auth_telegram_links_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 opened_page1 = page.click_on_Telegram_link_auth1()
                 opened_page2 = page.click_on_Telegram_link_auth2()
@@ -401,16 +441,16 @@ class TestHeaderPage:
                 assert opened_page2 in hPD.set_auth, "The Telegram link #2 leads to an incorrect page after clicking"
                 assert opened_page1 == opened_page2, "The Telegram links #1,2 are the same"
 
-            @allure.title("""test_hpa.03.03.02 Verify if external Donate link in the Header for an authorized user 
-            leads to the correct page after clicking""")
-            def test_hpa_03_03_02_verify_auth_donate_link_navigation(self, driver, auto_test_user_authorized):
+            @allure.title("""test_hpa.03.03.11 Verify if external Donate link in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_11_verify_auth_donate_link_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 opened_page = page.click_on_Donate_link_auth()
                 assert opened_page in hPD.set_auth, "The Donate link leads to an incorrect page after clicking"
 
-            @allure.title("""test_hpa.03.03.03 Verify if external GitHub link in the Header for an authorized user 
-            leads to the correct page after clicking""")
-            def test_hpa_03_03_03_verify_auth_github_link_navigation(self, driver, auto_test_user_authorized):
+            @allure.title("""test_hpa.03.03.12 Verify if external GitHub link in the Header's dropdown 
+            for an authorized user leads to the correct page after clicking""")
+            def test_hpa_03_03_12_verify_auth_github_link_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 opened_page = page.click_on_GitHub_link_auth()
                 assert opened_page in hPD.set_auth, "The GitHub link leads to an incorrect page after clicking"
