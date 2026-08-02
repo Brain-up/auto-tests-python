@@ -111,8 +111,19 @@ class HeaderPage(BasePage):
         for i in [0, 1, 2, 4, 5, 6]:
             direct_internal_links.append(direct_links[i])
         att2 = [element.get_attribute("href") for element in direct_internal_links]
-        # print(*att2, len(att2), sep='\n')
+        print(*att2, len(att2), sep='\n')
         return direct_internal_links
+
+    @allure.step("""Get the list with the 'Telegram' link #1 
+                     (direct external links) in the Header for an AUTHORIZED user  --  ACTUAL""")
+    def get_direct_external_links_auth_list(self):
+        direct_links = self.get_direct_links_auth_list()
+        direct_external_links = []
+        for i in [3]:
+            direct_external_links.append(direct_links[i])
+        att3 = [element.get_attribute("href") for element in direct_external_links]
+        print(*att3, len(att3), sep='\n')
+        return direct_external_links
 
     @allure.step("""Get the list of links in the 'More' dropdown in the Header for an AUTHORIZED user""")
     def get_dropdown_links_auth_list(self):
@@ -141,24 +152,24 @@ class HeaderPage(BasePage):
         return more_links
 
     @allure.step("""Get the list of links (internal and external) in the 'More' dropdown in the Header
-                 for every user""")
+                 for every user -- FOR REVIEW""")
     def get_list_of_links_in_more(self):
         return self.elements_are_present(self.locators.LINKS_IN_MORE)
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-                    in the 'More' dropdown are invisible for every user""")
+                    in the 'More' dropdown are invisible for every user  -- FOR REVIEW""")
     def check_links_invisibility_in_more(self):
         return all(self.element_is_not_visible(element) for element in self.get_list_of_links_in_more())
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-                    in the 'More' dropdown are visible for every user""")
+                    in the 'More' dropdown are visible for every user  -- FOR REVIEW""")
     def check_links_visibility_in_more(self):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_list_of_links_in_more())
 
     # Lists of links
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
-                  (internal links) in the 'More' dropdown for every user""")
+                  (internal links) in the 'More' dropdown for every user  -- FOR REVIEW""")
     def get_list_of_internal_links_in_more(self):
         links = self.get_list_of_links_in_more()[2:]
         print(links)
@@ -168,13 +179,13 @@ class HeaderPage(BasePage):
         # return self.get_list_of_links_in_more()[2:]
 
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
-                    in the 'More' dropdown for every user""")
+                    in the 'More' dropdown for every user  -- FOR REVIEW""")
     def get_list_of_external_links_in_more(self):
         # return self.get_list_of_links_in_more()[4:6]
         return self.get_list_of_links_in_more()[:3]
 
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
-                    in the 'More' dropdown for authorized user""")
+                    in the 'More' dropdown for authorized user  -- FOR REVIEW""")
     def get_list_of_external_links_in_more_auth(self):
         links = self.get_list_of_links_in_more()[3:6]
         att = [element.get_attribute("href") for element in links]
@@ -204,16 +215,6 @@ class HeaderPage(BasePage):
         direct_internal_links = []
         for i in [1, 9, 0]:
             direct_internal_links.append(links[i])
-        return direct_internal_links
-
-    @allure.step("""Get the list of the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links (direct internal links)
-     in the Header for an authorized user""")
-    def get_list_of_direct_internal_links_auth(self):
-        links = self.get_links_auth_list()
-        direct_internal_links = []
-        for i in [2, 1, 3, 11, 0]:
-            direct_internal_links.append(links[i])
-        # print([element.get_attribute("href") for element in direct_internal_links])
         return direct_internal_links
 
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
@@ -401,7 +402,8 @@ class HeaderPage(BasePage):
     def click_on_internal_links_in_header_auth1(self):
         opened_pages = []
         # Click on the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links
-        for link in self.get_list_of_direct_internal_links_auth():
+        # for link in self.get_list_of_direct_internal_links_auth():
+        for link in self.get_direct_internal_links_auth_list():
             current_url = self.get_current_tab_url()
             link.click()
             Wait(self.driver, 10).until(EC.url_changes(current_url))

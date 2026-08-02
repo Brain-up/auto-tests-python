@@ -359,7 +359,9 @@ class TestHeaderPage:
             @allure.title("""test_hpa.03.02.02 Verify the list of direct external links in the Header 
             for an authorized user """)
             def test_hpa_03_02_02_verify_auth_direct_external_links_list(self, driver, auto_test_user_authorized):
-                pass
+                page = hPage(driver)
+                direct_internal_links = page.get_direct_external_links_auth_list()
+                assert direct_internal_links, "Links are not collected in the list"
 
             @allure.title("""test_hpa.03.02.03 Verify if direct external links in the Header 
             for an authorized user lead to correct pages after clicking""")
