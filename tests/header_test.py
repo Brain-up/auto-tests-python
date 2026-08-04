@@ -363,10 +363,13 @@ class TestHeaderPage:
                 direct_internal_links = page.get_direct_external_links_auth_list()
                 assert direct_internal_links, "Links are not collected in the list"
 
-            @allure.title("""test_hpa.03.02.03 Verify if direct external links in the Header 
+            @allure.title("""test_hpa.03.02.03 Verify if direct external links in the Header ('Telegram')
             for an authorized user lead to correct pages after clicking""")
             def test_hpa_03_02_03_verify_auth_direct_external_links_navigation(self, driver, auto_test_user_authorized):
-                pass
+                page = hPage(driver)
+                opened_pages = page.click_on_direct_external_links_in_header_auth()
+                assert all(element in hPD.set_auth for element in opened_pages), \
+                    "Some of direct external links lead to incorrect pages after clicking"
 
             @allure.title("""test_hpa.03.03 Verify the list of links in the Header's dropdown
             for an authorized user""")
@@ -433,15 +436,12 @@ class TestHeaderPage:
                 external_links_in_dropdown = page.get_list_of_external_links_in_more_auth()
                 assert external_links_in_dropdown, "External links are not collected in the list"
 
-            @allure.title("""test_hpa.03.03.10 Verify if external Telegram links #1,2 in the Header's dropdown 
+            @allure.title("""test_hpa.03.03.10 Verify if external Telegram link #2 in the Header's dropdown 
             for an authorized user lead to the correct page after clicking""")
             def test_hpa_03_03_10_verify_auth_telegram_links_navigation(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                opened_page1 = page.click_on_Telegram_link_auth1()
                 opened_page2 = page.click_on_Telegram_link_auth2()
-                assert opened_page1 in hPD.set_auth, "The Telegram link #1 leads to an incorrect page after clicking"
                 assert opened_page2 in hPD.set_auth, "The Telegram link #2 leads to an incorrect page after clicking"
-                assert opened_page1 == opened_page2, "The Telegram links #1,2 are the same"
 
             @allure.title("""test_hpa.03.03.11 Verify if external Donate link in the Header's dropdown 
             for an authorized user leads to the correct page after clicking""")

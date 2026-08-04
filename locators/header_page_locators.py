@@ -61,7 +61,7 @@ class HeaderAuthorizedLocators:
     LINK_STATISTICS_AUTH2 = (By.XPATH, "(//nav//a)[7]")
     LINK_STATISTICS_AUTH3 = (By.XPATH, "(//nav//a)[17]")
     LINK_PROFILE_AUTH = (By.XPATH, "(//nav//a)[18]")
-    LINK_TELEGRAM_AUTH = (By.XPATH, "(//nav//a)[5]")
+    LINK_TELEGRAM_AUTH1 = (By.XPATH, "(//nav//a)[5]")
     LINK_TELEGRAM_AUTH2 = (By.XPATH, "(//nav//a)[9]")
     LOGO_IMAGE_AUTH = (By.XPATH, "(//nav//*[name()='svg'])[1]")
     LOGOUT_BUTTON = (By.XPATH, "//button[@data-test-logout-button]")
