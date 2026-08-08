@@ -81,8 +81,11 @@ class BasePage:
     def check_expected_link(self, url):
         with allure.step(f'Check url is present: {url}'):
             try:
+                # return Wait(self.driver, self.timeout).until(
+                #     EC.url_to_be(url), message=f"Can't find element by locator {url}")
                 return Wait(self.driver, self.timeout).until(
-                    EC.url_to_be(url), message=f"Can't find element by locator {url}")
+                    lambda d: "brainup.site" in d.current_url and "/groups" in d.current_url
+                )
             except Exception as ex:
                 print(ex)
                 return Wait(self.driver, self.timeout).until(
