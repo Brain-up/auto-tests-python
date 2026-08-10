@@ -495,6 +495,14 @@ class HeaderPage(BasePage):
         # print(current_tab_url)
         return current_tab_url
 
+    @allure.step("Click on the 'Contacts' link for AUTHORIZED user  --  ACTUAL")
+    def click_on_Contacts_link_auth(self):
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_CONTACTS_AUTH).click()
+        current_tab_url = self.get_current_tab_url()
+        print(current_tab_url)
+        return current_tab_url
+
     @allure.step("""Click on external links in the Header 
     and thereby open corresponding web pages on new tabs for AUTHORIZED user  --  unusable till changing UI""")
     def click_on_auth_external_links_in_header(self):
