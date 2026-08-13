@@ -7,7 +7,6 @@ from pages.base_page import BasePage
 from locators.header_page_locators import (HeaderUnauthorizedLocators, HeaderAuthorizedLocators,
                                            StartPagesLocators)
 
-
 class HeaderPage(BasePage):
     locators = HeaderUnauthorizedLocators
     locators1 = HeaderAuthorizedLocators
@@ -430,13 +429,13 @@ class HeaderPage(BasePage):
         current_url = self.get_current_tab_url()
         opened_pages.append(current_url)
 
-        # Click on the 'Groups' link
+        # Click on the 'Groups' link #1
         self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
         opened_pages.append(current_url)
 
-        # Click on the 'About' link
+        # Click on the 'About' link #1
         self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH1).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
@@ -475,33 +474,43 @@ class HeaderPage(BasePage):
     def click_on_Groups_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH2).click()
-        current_tab_url = self.get_current_tab_url()
-        print(current_tab_url)
-        return current_tab_url
+        current_url = self.get_current_tab_url()
+        print(current_url)
+        return current_url
 
     @allure.step("Click on the 'Statistics' link #2 for AUTHORIZED user")
     def click_on_Statistics_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH2).click()
-        current_tab_url = self.get_current_tab_url()
-        print(current_tab_url)
-        return current_tab_url
+        current_url = self.get_current_tab_url()
+        print(current_url)
+        return current_url
 
     @allure.step("Click on the 'About' link #2 for AUTHORIZED user")
     def click_on_About_link_auth2(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH2).click()
-        current_tab_url = self.get_current_tab_url()
-        # print(current_tab_url)
-        return current_tab_url
+        current_url = self.get_current_tab_url()
+        print(current_url)
+        return current_url
 
     @allure.step("Click on the 'Contacts' link for AUTHORIZED user  --  ACTUAL")
     def click_on_Contacts_link_auth(self):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_CONTACTS_AUTH).click()
-        current_tab_url = self.get_current_tab_url()
-        print(current_tab_url)
-        return current_tab_url
+        current_url = self.get_current_tab_url()
+        print(current_url)
+        return current_url
+
+    @allure.step("Click on the 'Specialists' link for AUTHORIZED user  --  ACTUAL")
+    def click_on_Specialists_link_auth(self):
+        current_url = self.get_current_tab_url()
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_SPECIALISTS_AUTH).click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
+        current_url = self.get_current_tab_url()
+        print(current_url)
+        return current_url
 
     @allure.step("""Click on external links in the Header 
     and thereby open corresponding web pages on new tabs for AUTHORIZED user  --  unusable till changing UI""")
