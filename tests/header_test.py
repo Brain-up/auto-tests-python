@@ -418,10 +418,12 @@ class TestHeaderPage:
                 opened_page = page.click_on_Specialists_link_auth()
                 assert opened_page in hPD.set_auth, "The Specialists link leads to an incorrect page after clicking"
 
-            @allure.title("""test_hpa.03.03.06 Verify if internal Our Team link in the Header's dropdown 
+            @allure.title("""test_hpa.03.03.06 Verify if internal Contributors link in the Header's dropdown 
             for an authorized user leads to the correct page after clicking""")
-            def test_hpa_03_03_06_verify_auth_our_team_link_navigation(self, driver, auto_test_user_authorized):
-                pass
+            def test_hpa_03_03_06_verify_auth_contributors_link_navigation(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                opened_page = page.click_on_Contributors_link_auth()
+                assert opened_page in hPD.set_auth, "The Contributors link leads to an incorrect page after clicking"
 
             @allure.title("""test_hpa.03.03.07 Verify if internal Used Resources link in the Header's dropdown 
             for an authorized user leads to the correct page after clicking""")

@@ -57,6 +57,7 @@ class HeaderAuthorizedLocators:
     LINK_GITHUB_AUTH = (By.XPATH, "(//nav//a)[11]")
     LINK_GROUPS_AUTH = (By.XPATH, "(//nav//a)[2]")
     LINK_GROUPS_AUTH2 = (By.XPATH, "(//nav//a)[6]")
+    LINK_CONTRIBUTORS_AUTH = (By.XPATH, "(//nav//a)[14]")
     LINK_SPECIALISTS_AUTH = (By.XPATH, "(//nav//a)[13]")
     LINK_STATISTICS_AUTH1 = (By.XPATH, "(//nav//a)[3]")
     LINK_STATISTICS_AUTH2 = (By.XPATH, "(//nav//a)[7]")
