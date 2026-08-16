@@ -84,7 +84,7 @@ class BasePage:
                 # return Wait(self.driver, self.timeout).until(
                 #     EC.url_to_be(url), message=f"Can't find element by locator {url}")
                 return Wait(self.driver, self.timeout).until(
-                    lambda d: "brainup.site" in d.current_url and "/groups" in d.current_url
+                    lambda driver: driver.current_url.startswith(url), message=f"Can't find element by locator {url}"
                 )
             except Exception as ex:
                 print(ex)
