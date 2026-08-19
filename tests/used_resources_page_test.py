@@ -67,14 +67,15 @@ class TestURPage:
             assert all(element in urPD.links_text for element in links_text), "Text in links mismatch valid values"
 
     class TestURPageLinks:
-        @allure.title("""Verify presence, visibility, clickability, href, status code of links in sections""")
+        @allure.title("""test_ur_03.01 Verify presence, visibility, clickability, href, status code of links""")
         def test_ur_03_01_verify_links_in_sections(self, driver, used_resources_page_open):
             page = urPage(driver)
             links_presence = page.get_list_of_links()
             links_visibility = page.check_links_visibility()
             links_clickability = page.check_links_clickability()
             links_href = page.get_links_href()
-            link_status_codes = page.get_links_status_codes()
+            # link_status_codes1 = page.get_links_status_codes()
+            link_status_codes = page.get_links_status_codes_detail()
             assert links_presence, "Links are absent on the page"
             assert links_visibility, "Links are invisible"
             assert links_clickability, "Links are unclickable"
