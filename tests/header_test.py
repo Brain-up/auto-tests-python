@@ -428,7 +428,9 @@ class TestHeaderPage:
             @allure.title("""test_hpa.03.03.07 Verify if internal Used Resources link in the Header's dropdown 
             for an authorized user leads to the correct page after clicking""")
             def test_hpa_03_03_07_verify_auth_used_resources_link_navigation(self, driver, auto_test_user_authorized):
-                pass
+                page = hPage(driver)
+                opened_page = page.click_on_Used_Resources_link_auth()
+                assert opened_page in hPD.set_auth, "The Used Resources link leads to an incorrect page after clicking"
 
             @allure.title("""test_hpa.03.03.08 Verify if internal Audiometry link in the Header's dropdown 
             for an authorized user leads to the correct page after clicking""")

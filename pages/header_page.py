@@ -522,6 +522,16 @@ class HeaderPage(BasePage):
         print(current_url)
         return current_url
 
+    @allure.step("Click on the 'Used Resources' link for AUTHORIZED user  --  ACTUAL")
+    def click_on_Used_Resources_link_auth(self):
+        current_url = self.get_current_tab_url()
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_USED_RESOURCES_AUTH).click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
+        current_url = self.get_current_tab_url()
+        print(current_url)
+        return current_url
+
     @allure.step("""Click on external links in the Header 
     and thereby open corresponding web pages on new tabs for AUTHORIZED user  --  unusable till changing UI""")
     def click_on_auth_external_links_in_header(self):
