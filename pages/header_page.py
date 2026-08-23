@@ -414,7 +414,7 @@ class HeaderPage(BasePage):
             link.click()
             Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("""Click on direct internal links in the Header 
@@ -452,7 +452,7 @@ class HeaderPage(BasePage):
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
         opened_pages.append(current_url)
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
 
         return opened_pages
 
@@ -467,7 +467,7 @@ class HeaderPage(BasePage):
         current_tab_url = self.get_current_tab_url()
         opened_pages.append(current_tab_url)
         self.driver.switch_to.window(self.driver.window_handles[0])
-        print(*opened_pages, sep='\n')
+        # print(*opened_pages, sep='\n')
         return opened_pages
 
     @allure.step("Click on the 'Groups' link #2 for AUTHORIZED user")
@@ -475,7 +475,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_GROUPS_AUTH2).click()
         current_url = self.get_current_tab_url()
-        print(current_url)
+        # print(current_url)
         return current_url
 
     @allure.step("Click on the 'Statistics' link #2 for AUTHORIZED user")
@@ -483,7 +483,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH2).click()
         current_url = self.get_current_tab_url()
-        print(current_url)
+        # print(current_url)
         return current_url
 
     @allure.step("Click on the 'About' link #2 for AUTHORIZED user")
@@ -491,7 +491,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH2).click()
         current_url = self.get_current_tab_url()
-        print(current_url)
+        # print(current_url)
         return current_url
 
     @allure.step("Click on the 'Contacts' link for AUTHORIZED user  --  ACTUAL")
@@ -499,7 +499,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_CONTACTS_AUTH).click()
         current_url = self.get_current_tab_url()
-        print(current_url)
+        # print(current_url)
         return current_url
 
     @allure.step("Click on the 'Specialists' link for AUTHORIZED user  --  ACTUAL")
@@ -509,7 +509,7 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_SPECIALISTS_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
-        print(current_url)
+        # print(current_url)
         return current_url
 
     @allure.step("Click on the 'Contributors' link for AUTHORIZED user  --  ACTUAL")
@@ -519,7 +519,7 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_CONTRIBUTORS_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
-        print(current_url)
+        # print(current_url)
         return current_url
 
     @allure.step("Click on the 'Used Resources' link for AUTHORIZED user  --  ACTUAL")
@@ -527,6 +527,16 @@ class HeaderPage(BasePage):
         current_url = self.get_current_tab_url()
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_USED_RESOURCES_AUTH).click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
+        current_url = self.get_current_tab_url()
+        # print(current_url)
+        return current_url
+
+    @allure.step("Click on the 'Audiometry' link for AUTHORIZED user  --  ACTUAL")
+    def click_on_Audiometry_link_auth(self):
+        current_url = self.get_current_tab_url()
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators1.LINK_AUDIOMETRY_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
         print(current_url)

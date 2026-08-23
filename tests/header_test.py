@@ -435,7 +435,9 @@ class TestHeaderPage:
             @allure.title("""test_hpa.03.03.08 Verify if internal Audiometry link in the Header's dropdown 
             for an authorized user leads to the correct page after clicking""")
             def test_hpa_03_03_08_verify_auth_audiometry_link_navigation(self, driver, auto_test_user_authorized):
-                pass
+                page = hPage(driver)
+                opened_page = page.click_on_Audiometry_link_auth()
+                assert opened_page in hPD.set_auth, "The Audiometry link leads to an incorrect page after clicking"
 
             @allure.title("""test_hpa.03.03.09 Verify the list of external links in the Header's dropdown 
             for an authorized user""")
