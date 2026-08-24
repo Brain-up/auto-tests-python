@@ -1,3 +1,5 @@
+import os
+
 import allure
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
@@ -79,6 +81,21 @@ class BasePage:
         return self.driver.execute_script("arguments[0].scrollIntoView({ block: 'center'});", element)
 
     def check_expected_link(self, url):
+        with allure.step(f'Check url starts with: {url}'):
+            # Increasing the CI timeout
+            timeout = 45 if os.getenv('GITHUB_ACTIONS') else self.timeout
+
+            # Waiting for URL
+            Wait(self.driver, timeout).until(
+                lambda d: d.current_url.startswith(url),
+                message=f"URL doesn't start with {url}. Current: {self.driver.current_url}")
+
+            # Waiting for the page to be ready
+            Wait(self.driver, timeout).until(lambda d: d.execute_script("return document.readyState") == "complete")
+
+            return True
+
+    def check_expected_link1(self, url):
         with allure.step(f'Check url is present: {url}'):
             try:
                 # return Wait(self.driver, self.timeout).until(

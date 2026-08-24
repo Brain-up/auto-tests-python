@@ -483,7 +483,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_STATISTICS_AUTH2).click()
         current_url = self.get_current_tab_url()
-        # print(current_url)
+        print(current_url)
         return current_url
 
     @allure.step("Click on the 'About' link #2 for AUTHORIZED user")
@@ -491,7 +491,7 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators1.LINK_ABOUT_AUTH2).click()
         current_url = self.get_current_tab_url()
-        # print(current_url)
+        print(current_url)
         return current_url
 
     @allure.step("Click on the 'Contacts' link for AUTHORIZED user  --  ACTUAL")
@@ -519,7 +519,7 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_CONTRIBUTORS_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
-        # print(current_url)
+        print(current_url)
         return current_url
 
     @allure.step("Click on the 'Used Resources' link for AUTHORIZED user  --  ACTUAL")
@@ -529,7 +529,7 @@ class HeaderPage(BasePage):
         self.element_is_present_and_clickable(self.locators1.LINK_USED_RESOURCES_AUTH).click()
         Wait(self.driver, 10).until(EC.url_changes(current_url))
         current_url = self.get_current_tab_url()
-        # print(current_url)
+        print(current_url)
         return current_url
 
     @allure.step("Click on the 'Audiometry' link for AUTHORIZED user  --  ACTUAL")
