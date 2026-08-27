@@ -701,8 +701,13 @@ class HeaderPage(BasePage):
     @allure.step("Check for user logout after clicking on the button 'Logout' in the Header for an authorized user")
     def check_auth_user_logout(self):
         start_element = self.element_is_present(self.locators2.START_AUTHORIZED_PAGE_TITLE).text
+        print(start_element)
         self.click_logout_button_auth()
-        return self.element_is_present(self.locators2.START_UNAUTHORIZED_PAGE_TITLE).text
+        # Waiting for the final URL
+        Wait(self.driver, 60).until(lambda d: d.current_url.startswith("https://www.brainup.site/"))
+        final_element = self.element_is_present(self.locators2.START_UNAUTHORIZED_PAGE_TITLE).text
+        print(final_element)
+        return final_element
 
     # Checking images in the Header
     @allure.step("Check if the 'Logo' image is present in the Header for an unauthorized user")
