@@ -94,8 +94,8 @@ class UsedResourcesPage(BasePage):
         links_href = self.get_links_href()
 
         for link_href in links_href:
-            link_status_code = requests.head(link_href).status_code
-            # print(f'For the link: {link_href}, \nstatus code: {link_status_code}')
+            link_status_code = requests.head(link_href, timeout=60).status_code
+            print(f'For the link: {link_href}, \nstatus code: {link_status_code}')
             status_codes.append(link_status_code)
         return status_codes
 

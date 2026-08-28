@@ -74,6 +74,7 @@ class TestURPage:
             links_visibility = page.check_links_visibility()
             links_clickability = page.check_links_clickability()
             links_href = page.get_links_href()
+            print(links_href)
             link_status_codes = page.get_links_status_codes_detail()
             assert links_presence, "Links are absent on the page"
             assert links_visibility, "Links are invisible"
