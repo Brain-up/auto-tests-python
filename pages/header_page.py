@@ -695,8 +695,14 @@ class HeaderPage(BasePage):
         return self.element_is_present(self.locators2.START_AUTHORIZED_PAGE_TITLE).text
 
     @allure.step("Click on the 'Logout' button in the Header for an authorized user")
-    def click_logout_button_auth(self):
+    def click_logout_button_auth1(self):
         self.check_logout_button_presence().click()
+
+    @allure.step("Click on the 'Logout' button in the Header for an authorized user  --  ACTUAL")
+    def click_logout_button_auth(self):
+        button = self.check_logout_button_presence()
+        button.click()
+        Wait(self.driver, 10).until(EC.staleness_of(button))
 
     @allure.step("Check for user logout after clicking on the button 'Logout' in the Header for an authorized user")
     def check_auth_user_logout(self):
