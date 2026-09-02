@@ -121,15 +121,23 @@ class HeaderPage(BasePage):
         for i in [3]:
             direct_external_links.append(direct_links[i])
         att3 = [element.get_attribute("href") for element in direct_external_links]
-        print(*att3, len(att3), sep='\n')
+        # print(*att3, len(att3), sep='\n')
         return direct_external_links
 
-    @allure.step("""Get the list of links in the 'More' dropdown in the Header for an AUTHORIZED user""")
+    @allure.step("""Get the list of links in the 'More' dropdown in the Header for an AUTHORIZED user  --  ACTUAL""")
     def get_dropdown_links_auth_list(self):
         dropdown_auth_links = self.elements_are_present(self.locators1.DROPDOWN_LINKS_AUTH)
         att1 = [element.get_attribute("href") for element in dropdown_auth_links]
         # print(*att1, len(att1), sep='\n')
         return dropdown_auth_links
+
+    @allure.step("""Get the list of the 'Telegram', 'Donate', 'GitHub' links (external links) 
+                    in the 'More' dropdown in the Header for AUTHORIZED user  -- ACTUAL""")
+    def get_dropdown_external_links_auth_list(self):
+        links = self.get_dropdown_links_auth_list()[3:6]
+        att = [element.get_attribute("href") for element in links]
+        print(*att, len(att), sep='\n')
+        return links
 
 
     @allure.step("Check the 'About', 'Telegram', 'Registration', 'Logo' links are visible for an unauthorized user")
@@ -178,18 +186,10 @@ class HeaderPage(BasePage):
         # return self.get_list_of_links_in_more()[2:]
 
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
-                    in the 'More' dropdown for every user  -- FOR REVIEW""")
+                    in the 'More' dropdown for an unauthorized user  -- FOR REVIEW""")
     def get_list_of_external_links_in_more(self):
         # return self.get_list_of_links_in_more()[4:6]
         return self.get_list_of_links_in_more()[:3]
-
-    @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
-                    in the 'More' dropdown for authorized user  -- FOR REVIEW""")
-    def get_list_of_external_links_in_more_auth(self):
-        links = self.get_list_of_links_in_more()[3:6]
-        att = [element.get_attribute("href") for element in links]
-        # print(*att, len(att), sep='\n')
-        return links
 
     @allure.step("Get the general list of internal links in the Header for an unauthorized user""")
     def get_list_of_internal_links(self):
@@ -552,7 +552,7 @@ class HeaderPage(BasePage):
         # Click on the 'GitHub', 'Donate' links
         self.click_more_button()
 
-        new_tabs = [link.click() for link in self.get_list_of_external_links_in_more_auth()]
+        new_tabs = [link.click() for link in self.get_dropdown_external_links_auth_list()]
         print(len(new_tabs))
         # Get the list of opened tabs urls
         # for i in range(1, len(new_tabs) + 2):
