@@ -443,7 +443,7 @@ class TestHeaderPage:
             for an authorized user""")
             def test_hpa_03_03_09_verify_auth_dropdown_external_links(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                external_links_in_dropdown = page.get_list_of_external_links_in_more_auth()
+                external_links_in_dropdown = page.get_dropdown_external_links_auth_list()
                 assert external_links_in_dropdown, "External links are not collected in the list"
 
             @allure.title("""test_hpa.03.03.10 Verify if external Telegram link #2 in the Header's dropdown 
