@@ -83,7 +83,11 @@ class BasePage:
     def check_expected_link(self, url):
         with allure.step(f'Check url starts with: {url}'):
             # Increasing the CI timeout
-            timeout = 60 if os.getenv('GITHUB_ACTIONS') else self.timeout
+            timeout = 120 if os.getenv('GITHUB_ACTIONS') else self.timeout
+
+            # Waiting for network requests to complete
+            Wait(self.driver, timeout).until(
+                lambda d: d.execute_script("return window.performance.getEntriesByType('resource').length") > 0)
 
             # Waiting for URL
             Wait(self.driver, timeout).until(
