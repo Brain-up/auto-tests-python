@@ -4,6 +4,7 @@ in the series "Words" on the "ru" local"""
 import allure
 from pages.base_page import BasePage
 from locators.exercises_ru_words_family_page_locators import ExercisesRuWordsFamilyPageLocators
+from selenium.webdriver.support.wait import WebDriverWait as Wait
 
 
 class ExercisesRuWordsFamilyPage(BasePage):
@@ -29,7 +30,8 @@ class ExercisesRuWordsFamilyPage(BasePage):
     @allure.step("Check if elements of the 1st level of nesting are visible  --  ACTUAL")
     def check_elements_visibility_on_1st_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FIRST_LEVEL_ELEMENTS)
-        return all(element.is_displayed() for element in elements)
+        Wait(self.driver, 10).until(lambda d: all(element.is_displayed() for element in elements))
+        return True
 
     @allure.step("Get structure of the 2nd level of nesting on the page  --  FOR REVIEW")
     def get_structure_of_2nd_level(self):
@@ -42,7 +44,8 @@ class ExercisesRuWordsFamilyPage(BasePage):
     @allure.step("Check if elements of the 2nd level of nesting are visible  --  ACTUAL")
     def check_elements_visibility_on_2nd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_SECOND_LEVEL_ELEMENTS)
-        return all(element.is_displayed() for element in elements)
+        Wait(self.driver, 10).until(lambda d: all(element.is_displayed() for element in elements))
+        return True
 
     @allure.step("Get structure of the 3rd level of nesting on the page  --  FOR REVIEW")
     def get_structure_of_3rd_level(self):
@@ -55,7 +58,8 @@ class ExercisesRuWordsFamilyPage(BasePage):
     @allure.step("Check if elements of the 3rd level of nesting are visible  --  ACTUAL")
     def check_elements_visibility_on_3rd_level(self):
         elements = self.elements_are_present(self.locators.PAGE_THIRD_LEVEL_ELEMENTS)
-        return all(element.is_displayed() for element in elements)
+        Wait(self.driver, 10).until(lambda d: all(element.is_displayed() for element in elements))
+        return True
 
     @allure.step("Get structure of the 4th level of nesting on the page")
     def get_structure_of_4th_level(self):
@@ -64,7 +68,8 @@ class ExercisesRuWordsFamilyPage(BasePage):
     @allure.step("Check if elements of the 4th level of nesting are visible  --  ACTUAL")
     def check_elements_visibility_on_4th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FOURTH_LEVEL_ELEMENTS)
-        return all(element.is_displayed() for element in elements)
+        Wait(self.driver, 10).until(lambda d: all(element.is_displayed() for element in elements))
+        return True
 
     @allure.step("Get structure of the 5th level of nesting on the page  --  FOR REVIEW")
     def get_structure_of_5th_level(self):
@@ -77,7 +82,8 @@ class ExercisesRuWordsFamilyPage(BasePage):
     @allure.step("Check if elements of the 5th level of nesting are visible  --  ACTUAL")
     def check_elements_visibility_on_5th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FIFTH_LEVEL_ELEMENTS)
-        return all(element.is_displayed() for element in elements)
+        Wait(self.driver, 10).until(lambda d: all(element.is_displayed() for element in elements))
+        return True
 
     @allure.step("Get structure of the 6th level of nesting on the page")
     def get_structure_of_6th_level(self):
