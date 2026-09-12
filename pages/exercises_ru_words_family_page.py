@@ -99,13 +99,13 @@ class ExercisesRuWordsFamilyPage(BasePage):
     @allure.step("Check if elements of the 9th level of nesting are visible  -- "
                  "NOT USED due to the ineffectiveness of unification")
     def check_elements_visibility_on_9th_level(self):
-        Wait(self.driver).until(EC.visibility_of_all_elements_located(self.locators.PAGE_NINTH_LEVEL_ELEMENTS))
+        Wait(self.driver, 5).until(EC.visibility_of_all_elements_located(self.locators.PAGE_NINTH_LEVEL_ELEMENTS))
         return True
 
     @allure.step("Check if elements of the 10th level of nesting are visible  -- "
                  "NOT USED due to the ineffectiveness of unification")
     def check_elements_visibility_on_10th_level(self):
-        Wait(self.driver).until(EC.visibility_of_all_elements_located(self.locators.PAGE_TENTH_LEVEL_ELEMENTS))
+        Wait(self.driver, 5).until(EC.visibility_of_all_elements_located(self.locators.PAGE_TENTH_LEVEL_ELEMENTS))
         return True
 
     @allure.step("Get structure of the 11th level of nesting on the page")
