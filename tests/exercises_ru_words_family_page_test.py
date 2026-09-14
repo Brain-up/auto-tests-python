@@ -40,21 +40,13 @@ class TestExercisesRuWordsFamilyPage:
         @allure.title("Verify composition, visibility of elements on the 11st-14th levels of nesting on the page")
         def test_erwf_01_04_verify_page_structure_and_visibility(self, driver, exercises_ru_words_family_page_open):
             page = erwfPage(driver)
-            structure_of_11th_level = page.get_structure_of_11th_level()
-            # visibility_of_elements_on_11th_level = page.check_elements_visibility_on_11th_level()
-            structure_of_12th_level = page.get_structure_of_12th_level()
-            # visibility_of_elements_on_12th_level = page.check_elements_visibility_on_12th_level()
-            structure_of_13th_level = page.get_structure_of_13th_level()
+            visibility_of_elements_on_11th_level = page.check_elements_visibility_on_11th_level()
+            visibility_of_elements_on_12th_level = page.check_elements_visibility_on_12th_level()
             visibility_of_elements_on_13th_level = page.check_elements_visibility_on_13th_level()
-            structure_of_14th_level = page.get_structure_of_14th_level()
             visibility_of_elements_on_14th_level = page.check_elements_visibility_on_14th_level()
-            assert structure_of_11th_level, "Elements on the 11th level are absent on the page"
-            # assert visibility_of_elements_on_11th_level, "11th-level elements are invisible"
-            assert structure_of_12th_level, "Elements on the 12th level are absent on the page"
-            # assert visibility_of_elements_on_12th_level, "12th-level elements are invisible"
-            assert structure_of_13th_level, "Elements on the 13th level are absent on the page"
+            assert visibility_of_elements_on_11th_level, "11th-level elements are invisible"
+            assert visibility_of_elements_on_12th_level, "12th-level elements are invisible"
             assert visibility_of_elements_on_13th_level, "13th-level elements are invisible"
-            assert structure_of_14th_level, "Elements on the 14th level are absent on the page"
             assert visibility_of_elements_on_14th_level, "14th-level elements are invisible"
 
         @allure.title("Verify presence, visibility of lists on the page")

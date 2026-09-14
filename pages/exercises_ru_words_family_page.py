@@ -55,37 +55,17 @@ class ExercisesRuWordsFamilyPage(BasePage):
         Wait(self.driver, 10).until(lambda d: all(element.is_displayed() for element in elements))
         return True
 
-    @allure.step("Get structure of the 6th level of nesting on the page --  for REVIEW")
-    def get_structure_of_6th_level(self):
-        return self.elements_are_present(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS)
-
-    @allure.step("Check if elements of the 6th level of nesting are visible --  for REVIEW")
-    def check_elements_visibility_on_6th_level1(self):
-        return all(element.is_displayed() for element in self.get_structure_of_6th_level())
-
     @allure.step("Check if elements of the 6th level of nesting are visible  --  ACTUAL")
     def check_elements_visibility_on_6th_level(self):
         Wait(self.driver, 20).until(
             EC.visibility_of_all_elements_located(self.locators.PAGE_SIXTH_LEVEL_ELEMENTS))
         return True
 
-    @allure.step("Get structure of the 7th level of nesting on the page --  for REVIEW")
-    def get_structure_of_7th_level(self):
-        return self.elements_are_present(self.locators.PAGE_SEVENTH_LEVEL_ELEMENTS)
-
     @allure.step("Check if elements of the 7th level of nesting are visible  --  ACTUAL")
     def check_elements_visibility_on_7th_level(self):
         Wait(self.driver, 20).until(
             EC.visibility_of_all_elements_located(self.locators.PAGE_SEVENTH_LEVEL_ELEMENTS))
         return True
-
-    @allure.step("Get structure of the 8th level of nesting on the page --  for REVIEW")
-    def get_structure_of_8th_level(self):
-        return self.elements_are_present(self.locators.PAGE_EIGHTH_LEVEL_ELEMENTS)
-
-    @allure.step("Check if elements of the 8th level of nesting are visible --  for REVIEW")
-    def check_elements_visibility_on_8th_level1(self):
-        return all(element.is_displayed() for element in self.get_structure_of_8th_level())
 
     def check_elements_invisibility_on_8th_level(self):
         return all(not el.is_displayed() for el in self.driver.find_elements(*self.locators.PAGE_EIGHTH_LEVEL_ELEMENTS))
@@ -108,40 +88,64 @@ class ExercisesRuWordsFamilyPage(BasePage):
         Wait(self.driver, 5).until(EC.visibility_of_all_elements_located(self.locators.PAGE_TENTH_LEVEL_ELEMENTS))
         return True
 
-    @allure.step("Get structure of the 11th level of nesting on the page")
+    @allure.step("Get structure of the 11th level of nesting on the page --  for REVIEW")
     def get_structure_of_11th_level(self):
         return self.elements_are_present(self.locators.PAGE_ELEVENTH_LEVEL_ELEMENTS)
 
-    @allure.step("Check if elements of the 11th level of nesting are visible")
-    def check_elements_visibility_on_11th_level(self):
+    @allure.step("Check if elements of the 11th level of nesting are visible --  for REVIEW")
+    def check_elements_visibility_on_11th_level1(self):
         return all(element.is_displayed() for element in self.get_structure_of_11th_level())
 
-    @allure.step("Get structure of the 12th level of nesting on the page")
+    @allure.step("Check if elements of the 11th level of nesting are visible  --  ACTUAL")
+    def check_elements_visibility_on_11th_level(self):
+        Wait(self.driver, 20).until(
+            EC.visibility_of_all_elements_located(self.locators.PAGE_ELEVENTH_LEVEL_ELEMENTS))
+        return True
+
+    @allure.step("Get structure of the 12th level of nesting on the page --  for REVIEW")
     def get_structure_of_12th_level(self):
         return self.elements_are_present(self.locators.PAGE_TWELFTH_LEVEL_ELEMENTS)
 
-    @allure.step("Check if elements of the 12th level of nesting are visible")
-    def check_elements_visibility_on_12th_level(self):
+    @allure.step("Check if elements of the 12th level of nesting are visible --  for REVIEW")
+    def check_elements_visibility_on_12th_level1(self):
         return all(element.is_displayed() for element in self.get_structure_of_12th_level())
 
-    @allure.step("Get structure of the 13th level of nesting on the page")
+    @allure.step("Check if elements of the 12th level of nesting are visible  --  ACTUAL")
+    def check_elements_visibility_on_12th_level(self):
+        Wait(self.driver, 20).until(
+            EC.visibility_of_all_elements_located(self.locators.PAGE_TWELFTH_LEVEL_ELEMENTS))
+        return True
+
+    @allure.step("Get structure of the 13th level of nesting on the page --  for REVIEW")
     def get_structure_of_13th_level(self):
         return self.elements_are_present(self.locators.PAGE_THIRTEENTH_LEVEL_ELEMENTS)
 
-    @allure.step("Check if elements of the 13th level of nesting are visible")
-    def check_elements_visibility_on_13th_level(self):
+    @allure.step("Check if elements of the 13th level of nesting are visible --  for REVIEW")
+    def check_elements_visibility_on_13th_level1(self):
         return all(element.is_displayed() for element in self.get_structure_of_13th_level())
 
-    @allure.step("Get structure of the 14th level of nesting on the page")
+    @allure.step("Check if elements of the 13th level of nesting are visible  --  ACTUAL")
+    def check_elements_visibility_on_13th_level(self):
+        Wait(self.driver, 20).until(
+            EC.visibility_of_all_elements_located(self.locators.PAGE_THIRTEENTH_LEVEL_ELEMENTS))
+        return True
+
+    @allure.step("Get structure of the 14th level of nesting on the page --  for REVIEW")
     def get_structure_of_14th_level(self):
         elements = self.elements_are_present(self.locators.PAGE_FOURTEENTH_LEVEL_ELEMENTS)
         # tags = [element.tag_name for element in elements]
         # print(*tags, len(tags), sep='\n')
         return elements
 
-    @allure.step("Check if elements of the 14th level of nesting are visible")
-    def check_elements_visibility_on_14th_level(self):
+    @allure.step("Check if elements of the 14th level of nesting are visible --  for REVIEW")
+    def check_elements_visibility_on_14th_level1(self):
         return all(element.is_displayed() for element in self.get_structure_of_14th_level())
+
+    @allure.step("Check if elements of the 14th level of nesting are visible  --  ACTUAL")
+    def check_elements_visibility_on_14th_level(self):
+        Wait(self.driver, 20).until(
+            EC.visibility_of_all_elements_located(self.locators.PAGE_FOURTEENTH_LEVEL_ELEMENTS))
+        return True
 
     @allure.step("Check the list1 on the 5th level of nesting is present on the page")
     def get_list1_of_breadcrumbs_links(self):
