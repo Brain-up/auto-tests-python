@@ -168,13 +168,32 @@ def used_resources_page_open(driver, main_page_open):
 
 
 @pytest.fixture()
-@allure.step('Auto test user authorized')
-def auto_test_user_authorized(driver, main_page_open):
+@allure.step('Auto test user authorized  --  FOR REVIEW')
+def auto_test_user_authorized1(driver, main_page_open):
     page = BasePage(driver)
     page.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
     page.element_is_visible(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["LOGIN"])
     page.element_is_visible(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+    page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
+    page = ProfilePage(driver)
+    page.loader_checking()
+
+
+@pytest.fixture()
+@allure.step('Auto test user authorized  --  ACTUAL, with checks of input fields accessibility')
+def auto_test_user_authorized(driver, main_page_open):
+    page = BasePage(driver)
+    page.element_is_present_and_clickable(MainPageLocators.LOGIN_BUTTON).click()
+    page.element_is_present_and_clickable(LoginPageLocators.INPUT_LOGIN).click()
+    page.element_is_present_and_clickable(LoginPageLocators.INPUT_LOGIN).send_keys(os.environ["LOGIN"])
+    page.element_is_present_and_clickable(LoginPageLocators.INPUT_PASSWORD).click()
+    page.element_is_present_and_clickable(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
+    page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
+    Wait(driver, 10).until(
+        lambda d: not d.current_url.endswith('/login'),
+        message=f"Form was not submitted, URL is still {driver.current_url}"
+    )
     page.check_expected_link(MainPageLinks.URL_GROUPS_PAGE)
     page = ProfilePage(driver)
     page.loader_checking()
