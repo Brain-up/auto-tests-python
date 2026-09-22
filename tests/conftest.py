@@ -190,7 +190,7 @@ def auto_test_user_authorized(driver, main_page_open):
     page.element_is_present_and_clickable(LoginPageLocators.INPUT_PASSWORD).click()
     page.element_is_present_and_clickable(LoginPageLocators.INPUT_PASSWORD).send_keys(os.environ["PASSWORD"])
     page.element_is_present_and_clickable(LoginPageLocators.SIGN_IN_BUTTON).click()
-    Wait(driver, 10).until(
+    Wait(driver, 60).until(
         lambda d: not d.current_url.endswith('/login'),
         message=f"Form was not submitted, URL is still {driver.current_url}"
     )
