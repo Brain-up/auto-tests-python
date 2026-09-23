@@ -372,11 +372,15 @@ class HeaderPage(BasePage):
 
     @allure.step("Get status codes of links in the Header for an unauthorized user")
     def get_links_status_codes_unauth(self):
-        return [requests.head(link_href).status_code for link_href in self.get_links_href_unauth()]
+        status_codes = [requests.head(link_href).status_code for link_href in self.get_links_href_unauth()]
+        print(status_codes, len(status_codes), sep='\n')
+        return status_codes
 
     @allure.step("Get status codes of links in the Header for an authorized user")
     def get_links_status_codes_auth(self):
-        return [requests.head(link_href).status_code for link_href in self.get_links_href_auth()]
+        status_codes = [requests.head(link_href).status_code for link_href in self.get_links_href_auth()]
+        print(status_codes, len(status_codes), sep='\n')
+        return status_codes
 
     # Checks of links navigation
     @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 

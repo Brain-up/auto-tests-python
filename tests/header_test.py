@@ -101,7 +101,8 @@ class TestHeaderPage:
                     "Text in 'ru-en' buttons mismatches valid values"
 
         class TestUnHdPageLinks:
-            @allure.title("Verify clickability, href, status code of links in the Header for an unauthorized user")
+            @allure.title("""test_hpa_03.01 Verify clickability, href, status code of links in the Header 
+            for an unauthorized user""")
             def test_hpu_03_01_verify_unauth_header_links(self, driver, main_page_open):
                 page = hPage(driver)
                 links_clickability = page.check_links_clickability_unauth()
@@ -322,7 +323,8 @@ class TestHeaderPage:
                 assert user_name_visibility, "The user name is invisible"
 
         class TestAuHdPageLinks:
-            @allure.title("Verify clickability, href, status code of links in the Header for an authorized user")
+            @allure.title("""test_hpa_03.01 Verify clickability, href, status code of links in the Header 
+            for an authorized user""")
             def test_hpa_03_01_verify_auth_header_links(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 links_clickability = page.check_links_clickability_auth()
