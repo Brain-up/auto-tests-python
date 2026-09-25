@@ -131,6 +131,17 @@ class HeaderPage(BasePage):
         # print(*att1, len(att1), sep='\n')
         return dropdown_auth_links
 
+    @allure.step("""Get the list of the 'Groups', 'Statistics', 'About', 'Contacts', 'Specialists', 'Contributors',
+     'Used Resources', 'Audiometry' links (internal links) in the 'More' dropdown in the Header for AUTHORIZED user  
+     --  ACTUAL""")
+    def get_dropdown_internal_links_auth_list(self):
+        links1 = self.get_dropdown_links_auth_list()[:3]
+        links2 = self.get_dropdown_links_auth_list()[6:]
+        links = links1 + links2
+        att = [element.get_attribute("href") for element in links]
+        print(*att, len(att), sep='\n')
+        return links
+
     @allure.step("""Get the list of the 'Telegram', 'Donate', 'GitHub' links (external links) 
                     in the 'More' dropdown in the Header for AUTHORIZED user  -- ACTUAL""")
     def get_dropdown_external_links_auth_list(self):
