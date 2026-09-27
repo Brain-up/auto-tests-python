@@ -383,7 +383,9 @@ class TestHeaderPage:
             @allure.title("""test_hpa.03.03.00 Verify the list of internal links in the Header's dropdown 
             for an authorized user""")
             def test_hpa_03_03_00_verify_auth_dropdown_internal_links_list(self, driver, auto_test_user_authorized):
-                pass
+                page = hPage(driver)
+                internal_links_in_dropdown = page.get_dropdown_internal_links_auth_list()
+                assert internal_links_in_dropdown, "Internal links are not collected in the list"
 
             @allure.title("""test_hpa.03.03.01 Verify if internal Groups link #2 in the Header's dropdown 
             for an authorized user leads to the correct page after clicking""")
