@@ -71,17 +71,21 @@ class HeaderPage(BasePage):
     def check_elements_invisibility_on_6th_level_in_header(self):
         return all(self.element_is_not_visible(element) for element in self.get_structure_of_6th_level()[:6])
 
-    @allure.step("Get the list of links on different levels of nesting in the Header for an unauthorized user")
+    # Lists of links for an UNAUTHORIZED user
+
+    @allure.step("Get the list of links on different levels of nesting in the Header for an unauthorized user - ACTUAL")
     def get_list_of_links_unauth(self):
         return self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
 
     @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
-                 for an unauthorized user""")
-    def get_list_of_direct_links_unauth(self):
+                 for an unauthorized user  --  ACTUAL""")
+    def get_direct_links_unauth_list(self):
         links = self.get_list_of_links_unauth()
         direct_links = []
         for i in [1, 2, 9, 0]:
             direct_links.append(links[i])
+        att1 = [element.get_attribute("href") for element in direct_links]
+        print(*att1, len(att1), sep='\n')
         return direct_links
 
 
@@ -99,7 +103,7 @@ class HeaderPage(BasePage):
         for i in [1, 2, 3, 4, 16, 17, 0]:
             direct_links.append(links[i])
         att1 = [element.get_attribute("href") for element in direct_links]
-        print(*att1, len(att1), sep='\n')
+        # print(*att1, len(att1), sep='\n')
         return direct_links
 
     @allure.step("""Get the list of the 'Groups', 'Statistics' (x2), 'About', 'Profile', 'Logo' links 
@@ -110,7 +114,7 @@ class HeaderPage(BasePage):
         for i in [0, 1, 2, 4, 5, 6]:
             direct_internal_links.append(direct_links[i])
         att2 = [element.get_attribute("href") for element in direct_internal_links]
-        print(*att2, len(att2), sep='\n')
+        # print(*att2, len(att2), sep='\n')
         return direct_internal_links
 
     @allure.step("""Get the list with the 'Telegram' link #1 
@@ -139,7 +143,7 @@ class HeaderPage(BasePage):
         links2 = self.get_dropdown_links_auth_list()[6:]
         links = links1 + links2
         att = [element.get_attribute("href") for element in links]
-        print(*att, len(att), sep='\n')
+        # print(*att, len(att), sep='\n')
         return links
 
     @allure.step("""Get the list of the 'Telegram', 'Donate', 'GitHub' links (external links) 
@@ -147,13 +151,13 @@ class HeaderPage(BasePage):
     def get_dropdown_external_links_auth_list(self):
         links = self.get_dropdown_links_auth_list()[3:6]
         att = [element.get_attribute("href") for element in links]
-        print(*att, len(att), sep='\n')
+        # print(*att, len(att), sep='\n')
         return links
 
 
     @allure.step("Check the 'About', 'Telegram', 'Registration', 'Logo' links are visible for an unauthorized user")
     def check_direct_links_visibility_unauth(self):
-        return all(link.is_displayed() for link in self.get_list_of_direct_links_unauth())
+        return all(link.is_displayed() for link in self.get_direct_links_unauth_list())
 
     @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Registration', 'Logo' links are visible "
                  for an authorized user""")
@@ -190,9 +194,9 @@ class HeaderPage(BasePage):
                   (internal links) in the 'More' dropdown for every user  -- FOR REVIEW""")
     def get_list_of_internal_links_in_more(self):
         links = self.get_list_of_links_in_more()[2:]
-        print(links)
+        # print(links)
         att = [element.get_attribute("href") for element in links]
-        print(*att, len(att), sep='\n')
+        # print(*att, len(att), sep='\n')
         return links
         # return self.get_list_of_links_in_more()[2:]
 
@@ -327,7 +331,7 @@ class HeaderPage(BasePage):
     # Checks of text in the Header
     @allure.step("Get text in the 'About', 'Telegram', 'Registration' links in the Header for an unauthorized user")
     def get_text_in_direct_links_unauth(self):
-        return [link.text for link in self.get_list_of_direct_links_unauth()[:3]]
+        return [link.text for link in self.get_direct_links_unauth_list()[:3]]
 
     @allure.step("""Get text in the 'Groups', 'Statistics', 'About', 'Telegram' links in the Header 
     for an authorized user""")
@@ -384,13 +388,13 @@ class HeaderPage(BasePage):
     @allure.step("Get status codes of links in the Header for an unauthorized user")
     def get_links_status_codes_unauth(self):
         status_codes = [requests.head(link_href).status_code for link_href in self.get_links_href_unauth()]
-        print(status_codes, len(status_codes), sep='\n')
+        # print(status_codes, len(status_codes), sep='\n')
         return status_codes
 
     @allure.step("Get status codes of links in the Header for an authorized user")
     def get_links_status_codes_auth(self):
         status_codes = [requests.head(link_href).status_code for link_href in self.get_links_href_auth()]
-        print(status_codes, len(status_codes), sep='\n')
+        # print(status_codes, len(status_codes), sep='\n')
         return status_codes
 
     # Checks of links navigation

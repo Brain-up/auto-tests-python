@@ -101,7 +101,7 @@ class TestHeaderPage:
                     "Text in 'ru-en' buttons mismatches valid values"
 
         class TestUnHdPageLinks:
-            @allure.title("""test_hpa_03.01 Verify clickability, href, status code of links in the Header 
+            @allure.title("""test_hpu_03.01 Verify clickability, href, status code of links in the Header 
             for an unauthorized user""")
             def test_hpu_03_01_verify_unauth_header_links(self, driver, main_page_open):
                 page = hPage(driver)
@@ -117,6 +117,13 @@ class TestHeaderPage:
                     "Attributes 'href' of links mismatch valid values"
                 assert all(element in hPD.link_status_codes for element in link_status_codes), \
                     "Status codes of links mismatch valid values"
+
+            @allure.title("""test_hpu.03.01.00 Verify the list of direct links in the Header 
+            for an unauthorized user""")
+            def test_hpu_03_01_00_verify_unauth_direct_links_list(self, driver, main_page_open):
+                page = hPage(driver)
+                direct_links = page.get_direct_links_unauth_list()
+                assert direct_links, "Links are not collected in the list"
 
             @allure.title("""Verify if internal links in the Header for an unauthorized user 
             lead to correct pages after click""")
