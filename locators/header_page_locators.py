@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 
 class HeaderUnauthorizedLocators:
+    DROPDOWN_LINKS_UNAUTH = (By.XPATH, "//div[contains(@class, 'bottom')]/a")
     HEADER_BUTTONS = (By.XPATH, "//button")
     HEADER_CONTENT = (By.XPATH, "//div[contains(@class, 'header')]")
     HEADER_LINKS_UNAUTH = (By.XPATH, "//nav//a")
@@ -23,7 +24,7 @@ class HeaderUnauthorizedLocators:
     LINK_SPECIALISTS = (By.XPATH, "(//nav//a)[7]")
     LINK_TELEGRAM = (By.XPATH, '//a[@href="https://t.me/BrainUpUsers"]')
     LINK_USED_RESOURCES = (By.XPATH, "(//nav//a)[9]")
-    LINKS_IN_MORE = (By.XPATH, "//div[contains(@class, 'bottom')]/a")
+    LINKS_IN_MORE = (By.XPATH, "//div[contains(@class, 'bottom')]/a")       # to be deleted after refactoring
     # LINK_ABOUT = (By.XPATH, "//div[contains(@class, 'text-s')]/a[1]")
     # LINK_CONTACTS = (By.XPATH, "//div[contains(@class, 'bottom')]/a[3]")
     # LINK_CONTRIBUTORS = (By.XPATH, "//div[contains(@class, 'bottom')]/a[5]")
