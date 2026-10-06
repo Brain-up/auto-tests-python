@@ -47,13 +47,14 @@ class TestHeaderPage:
                 assert structure_of_6th_level, "Elements on the 6th level are absent in the Header"
                 assert invisibility_of_elements_on_6th_level, "6th-level elements are visible"
 
-            @allure.title("Verify presence, visibility of links, buttons in the Header for an unauthorized user")
+            @allure.title("""test_hpu_01.03 Verify presence, visibility of links, buttons in the Header 
+            for an unauthorized user""")
             def test_hpu_01_03_verify_unauth_header_structural_elements(self, driver, main_page_open):
                 page = hPage(driver)
                 header_links = page.get_list_of_links_unauth()
-                header_direct_links = page.get_list_of_direct_links_unauth()
+                header_direct_links = page.get_direct_links_unauth_list()
                 header_direct_links_visibility = page.check_direct_links_visibility_unauth()
-                links_in_more_presence = page.get_list_of_links_in_more()
+                links_in_more_presence = page.get_dropdown_links_unauth_list()
                 links_in_more_invisibility = page.check_links_invisibility_in_more()
                 links_in_more_visibility = page.check_links_visibility_in_more()
                 logo_link_presence = page.check_logo_link_presence()
