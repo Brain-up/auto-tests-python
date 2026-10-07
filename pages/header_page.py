@@ -183,9 +183,22 @@ class HeaderPage(BasePage):
 
 
     @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Registration', 'Logo' links are visible "
-                 for an authorized user""")
+                 for an authorized user  --  ACTUAL""")
     def check_direct_links_visibility_auth(self):
         return all(link.is_displayed() for link in self.get_direct_links_auth_list())
+
+    @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Donate', 'GitHub', 'Contacts', 
+                'Specialists', 'Contributors', 'Used Resources', 'Audiometry' links in the 'More' dropdown are invisible 
+                for an authorized user  --  ACTUAL""")
+    def check_dropdown_links_invisibility_auth(self):
+        return all(self.element_is_not_visible(element) for element in self.get_dropdown_links_auth_list())
+
+    @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Donate', 'GitHub', 'Contacts', 
+                'Specialists', 'Contributors', 'Used Resources', 'Audiometry' links in the 'More' dropdown are visible 
+                for an authorized user  --  ACTUAL""")
+    def check_dropdown_links_visibility_auth(self):
+        self.click_more_button()
+        return all(link.is_displayed() for link in self.get_dropdown_links_auth_list())
 
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources', "
                   'Donate', 'GitHub' links in the 'More' dropdown in the Header for every user""")
