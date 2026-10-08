@@ -259,15 +259,11 @@ class TestHeaderPage:
                 assert structure_of_6th_level, "Elements on the 6th level are absent in the Header"
                 assert invisibility_of_elements_on_6th_level, "6th-level elements are visible"
 
-            @allure.title("Verify presence, visibility of links, buttons in the Header for an authorized user")
+            @allure.title("""test_hpa_01.03 Verify presence, visibility of links, buttons in the Header 
+            for an authorized user""")
             def test_hpa_01_03_verify_auth_header_structural_elements(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 header_links = page.get_links_auth_list()
-                header_direct_links = page.get_direct_links_auth_list()
-                header_direct_links_visibility = page.check_direct_links_visibility_auth()
-                links_in_more_presence = page.get_list_of_links_in_more()
-                links_in_more_invisibility = page.check_links_invisibility_in_more()
-                links_in_more_visibility = page.check_links_visibility_in_more()
                 logo_link_presence = page.check_logo_link_presence()
                 logo_link_visibility = page.check_logo_link_visibility()
                 profile_link_presence = page.check_profile_link_presence()
@@ -281,11 +277,6 @@ class TestHeaderPage:
                 logout_button_presence = page.check_logout_button_presence()
                 logout_button_visibility = page.check_logout_button_visibility()
                 assert header_links, "Links are absent in the Header"
-                assert header_direct_links, "Direct links are absent in the Header"
-                assert header_direct_links_visibility, "Direct links are invisible"
-                assert links_in_more_presence, "Links in the dropdown 'More' are absent in the Header"
-                assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
-                assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
                 assert logo_link_presence, "The 'Logo' link is absent in the Header"
                 assert logo_link_visibility, "The 'Logo' link is invisible"
                 assert profile_link_presence, "The 'Profile' link is absent in the Header"
@@ -349,7 +340,9 @@ class TestHeaderPage:
             def test_hpa_03_02_verify_auth_direct_links_list(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 direct_links = page.get_direct_links_auth_list()
+                direct_links_visibility = page.check_direct_links_visibility_auth()
                 assert direct_links, "Links are not collected in the list"
+                assert direct_links_visibility, "Direct links are invisible"
 
             @allure.title("""test_hpa.03.02.00 Verify the list of direct internal links in the Header 
             for an authorized user """)
@@ -385,8 +378,12 @@ class TestHeaderPage:
             for an authorized user""")
             def test_hpa_03_03_verify_auth_dropdown_links_list(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                links_in_dropdown = page.get_dropdown_links_auth_list()
-                assert links_in_dropdown, "Links in the Header's dropdown are not collected in the list"
+                dropdown_links = page.get_dropdown_links_auth_list()
+                dropdown_links_invisibility = page.check_dropdown_links_invisibility_auth()
+                dropdown_links_visibility = page.check_dropdown_links_visibility_auth()
+                assert dropdown_links, "Links in the Header's dropdown are not collected in the list"
+                assert dropdown_links_invisibility, "Links in the dropdown 'More' are visible"
+                assert dropdown_links_visibility, "Links in the dropdown 'More' are invisible"
 
             @allure.title("""test_hpa.03.03.00 Verify the list of internal links in the Header's dropdown 
             for an authorized user""")
