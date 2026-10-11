@@ -113,6 +113,23 @@ class HeaderPage(BasePage):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_list_of_links_in_more())
 
+    @allure.step("Check the 'Logo' link is present in the Header for an unauthorized user  --  ACTUAL")
+    def check_logo_link_unauth(self):
+        return self.element_is_present(self.locators.LOGO_LINK_UNAUTH)
+
+    @allure.step("Check the 'Logo' link is visible for an unauthorized user  --  ACTUAL")
+    def check_logo_link_unauth_visibility(self):
+        return self.element_is_visible(self.locators.LOGO_LINK_UNAUTH)
+
+
+    @allure.step("Check the 'Registration' link is present in the Header for an unauthorized user -- FOR REVIEW")
+    def check_registration_link_presence(self):
+        return self.element_is_present(self.locators.LINK_REGISTRATION)
+
+    @allure.step("Check the 'Registration' link is visible for an unauthorized user -- FOR REVIEW")
+    def check_registration_link_visibility(self):
+        return self.element_is_visible(self.locators.LINK_REGISTRATION)
+
 
 
 
@@ -200,22 +217,32 @@ class HeaderPage(BasePage):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_dropdown_links_auth_list())
 
-    @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources', "
-                  'Donate', 'GitHub' links in the 'More' dropdown in the Header for every user""")
-    def get_list_of_links_in_more1(self):
-        links = self.get_list_of_links_unauth()
-        more_links = []
-        for i in range(3, 9):
-            more_links.append(links[i])
-        return more_links
+    @allure.step("Check the 'Logo' link is present in the Header for an authorized user  --  ACTUAL")
+    def check_logo_link_auth(self):
+        return self.element_is_present(self.locators1.LOGO_LINK_AUTH)
 
+    @allure.step("Check the 'Logo' link is visible for an authorized user  --  ACTUAL")
+    def check_logo_link_auth_visibility(self):
+        return self.element_is_visible(self.locators1.LOGO_LINK_AUTH)
+
+
+# Next step of refactoring
+    @allure.step("Check the 'Profile' link is present in the Header for an authorized user -- FOR REVIEW")
+    def check_profile_link_presence(self):
+        return self.element_is_present(self.locators1.LINK_PROFILE_AUTH)
+
+    @allure.step("Check the 'Profile' link is visible for an authorized user -- FOR REVIEW")
+    def check_profile_link_visibility(self):
+        return self.element_is_visible(self.locators1.LINK_PROFILE_AUTH)
+
+
+    # Lists of links  --  to be deleted after review
     @allure.step("""Get the list of links (internal and external) in the 'More' dropdown in the Header
                  for every user -- FOR REVIEW""")
     def get_list_of_links_in_more(self):
         return self.elements_are_present(self.locators.LINKS_IN_MORE)
 
 
-    # Lists of links
     @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
                   (internal links) in the 'More' dropdown for every user  -- FOR REVIEW""")
     def get_list_of_internal_links_in_more(self):
@@ -257,47 +284,7 @@ class HeaderPage(BasePage):
             direct_internal_links.append(links[i])
         return direct_internal_links
 
-    @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
-                 (internal links) in the 'More' dropdown for an unauthorized user""")
-    def get_list_of_internal_links_in_more1(self):
-        links = self.get_list_of_links_unauth()
-        more_internal_links = []
-        for i in range(5, 9):
-            more_internal_links.append(links[i])
-        return more_internal_links
 
-    @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) in the 'More' dropdown 
-                    for an unauthorized user""")
-    def get_list_of_external_links_in_more1(self):
-        links = self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
-        external_links = []
-        for i in range(3, 5):
-            external_links.append(links[i])
-        return external_links
-
-    @allure.step("Check the 'Logo' link is present in the Header for every user")
-    def check_logo_link_presence(self):
-        return self.element_is_present(self.locators.LOGO_LINK)
-
-    @allure.step("Check the 'Logo' link is visible for every user")
-    def check_logo_link_visibility(self):
-        return self.element_is_visible(self.locators.LOGO_LINK)
-
-    @allure.step("Check the 'Registration' link is present in the Header for an unauthorized user")
-    def check_registration_link_presence(self):
-        return self.element_is_present(self.locators.LINK_REGISTRATION)
-
-    @allure.step("Check the 'Registration' link is visible for an unauthorized user")
-    def check_registration_link_visibility(self):
-        return self.element_is_visible(self.locators.LINK_REGISTRATION)
-
-    @allure.step("Check the 'Profile' link is present in the Header for an authorized user")
-    def check_profile_link_presence(self):
-        return self.element_is_present(self.locators1.LINK_PROFILE_AUTH)
-
-    @allure.step("Check the 'Profile' link is visible for an authorized user")
-    def check_profile_link_visibility(self):
-        return self.element_is_visible(self.locators1.LINK_PROFILE_AUTH)
 
     @allure.step("Get the list of buttons in the Header for an unauthorized user")
     def get_list_of_buttons_unauth(self):

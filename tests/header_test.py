@@ -51,14 +51,14 @@ class TestHeaderPage:
             for an unauthorized user""")
             def test_hpu_01_03_verify_unauth_header_structural_elements(self, driver, main_page_open):
                 page = hPage(driver)
-                header_links = page.get_list_of_links_unauth()
+                header_links_unauth = page.get_list_of_links_unauth()
                 header_direct_links = page.get_direct_links_unauth_list()
                 header_direct_links_visibility = page.check_direct_links_visibility_unauth()
                 links_in_more_presence = page.get_dropdown_links_unauth_list()
                 links_in_more_invisibility = page.check_links_invisibility_in_more()
                 links_in_more_visibility = page.check_links_visibility_in_more()
-                logo_link_presence = page.check_logo_link_presence()
-                logo_link_visibility = page.check_logo_link_visibility()
+                logo_link_unauth = page.check_logo_link_unauth()
+                logo_link_unauth_visibility = page.check_logo_link_unauth_visibility()
                 registration_link_presence = page.check_registration_link_presence()
                 registration_link_visibility = page.check_registration_link_visibility()
                 buttons_presence = page.get_list_of_buttons_unauth()
@@ -67,14 +67,14 @@ class TestHeaderPage:
                 ru_en_buttons_visibility = page.check_ru_en_buttons_visibility()
                 more_button_presence = page.check_more_button_presence()
                 more_button_visibility = page.check_more_button_visibility()
-                assert header_links, "Links are absent in the Header"
+                assert header_links_unauth, "Links are absent in the Header"
                 assert header_direct_links, "Direct links are absent in the Header"
                 assert header_direct_links_visibility, "Direct links are invisible"
                 assert links_in_more_presence, "Links in the dropdown 'More' are absent in the Header"
                 assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
                 assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
-                assert logo_link_presence, "The 'Logo' link is absent in the Header"
-                assert logo_link_visibility, "The 'Logo' link is invisible"
+                assert logo_link_unauth, "The 'Logo' link is absent in the Header"
+                assert logo_link_unauth_visibility, "The 'Logo' link is invisible"
                 assert registration_link_presence, "The 'Registration' link is in the Header"
                 assert registration_link_visibility, "The 'Registration' link is invisible"
                 assert buttons_presence, "Buttons are absent in the Header"
@@ -263,9 +263,7 @@ class TestHeaderPage:
             for an authorized user""")
             def test_hpa_01_03_verify_auth_header_structural_elements(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                header_links = page.get_links_auth_list()
-                logo_link_presence = page.check_logo_link_presence()
-                logo_link_visibility = page.check_logo_link_visibility()
+                header_links_auth = page.get_links_auth_list()
                 profile_link_presence = page.check_profile_link_presence()
                 profile_link_visibility = page.check_profile_link_visibility()
                 buttons_presence = page.get_list_of_buttons_auth()
@@ -276,9 +274,7 @@ class TestHeaderPage:
                 more_button_visibility = page.check_more_button_visibility()
                 logout_button_presence = page.check_logout_button_presence()
                 logout_button_visibility = page.check_logout_button_visibility()
-                assert header_links, "Links are absent in the Header"
-                assert logo_link_presence, "The 'Logo' link is absent in the Header"
-                assert logo_link_visibility, "The 'Logo' link is invisible"
+                assert header_links_auth, "Links are absent in the Header"
                 assert profile_link_presence, "The 'Profile' link is absent in the Header"
                 assert profile_link_visibility, "The 'Profile' link is invisible"
                 assert buttons_presence, "Buttons are absent in the Header"
@@ -476,9 +472,17 @@ class TestHeaderPage:
                 opened_page = page.click_on_GitHub_link_auth()
                 assert opened_page in hPD.set_auth, "The GitHub link leads to an incorrect page after clicking"
 
-            @allure.title("""Verify that the Logo link on the Start Authorized Page 
+            @allure.title("""test_hpa_03.04.00 Verify Logo link in the Header for an authorized user""")
+            def test_hpa_03_04_00_verify_auth_logo_link(self, driver, auto_test_user_authorized):
+                page = hPage(driver)
+                logo_link_auth = page.check_logo_link_auth()
+                logo_link_auth_visibility = page.check_logo_link_auth_visibility()
+                assert logo_link_auth, "The 'Logo' link is absent in the Header"
+                assert logo_link_auth_visibility, "The 'Logo' link is invisible"
+
+            @allure.title("""test_hpa_03.04.01 Verify if Logo link in the Header 
                              refreshes the current page and doesn't lead to other pages after clicking""")
-            def test_hpa_03_04_verify_click_auth_logo_link(self, driver, auto_test_user_authorized):
+            def test_hpa_03_04_01_verify_click_auth_logo_link(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
