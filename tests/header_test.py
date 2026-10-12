@@ -168,14 +168,14 @@ class TestHeaderPage:
                 opened_page = page.click_on_GitHub_link()
                 assert opened_page in hPD.set_unauth, "The GitHub link leads to an incorrect page after clicking"
 
-            @allure.title("""Verify that the 'Logo' link on the Start Unauthorized Page 
+            @allure.title("""test_hpu_03.04 Verify that the 'Logo' link on the Start Unauthorized Page 
                              doesn't refresh the current page or lead to other pages after clicking""")
             def test_hpu_03_04_verify_click_unauth_logo_link(self, driver, main_page_open):
                 page = hPage(driver)
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
                 initial_page_url = page.driver.current_url
-                current_page_url = page.click_on_logo_link()
+                current_page_url = page.click_on_logo_link_unauth()
                 handles_after = driver.window_handles
                 current_page_source = page.driver.page_source
                 assert len(handles_before) == len(handles_after), "The number of open tabs changed after clicking"
@@ -487,7 +487,7 @@ class TestHeaderPage:
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
                 initial_page_url = page.driver.current_url
-                current_page_url = page.click_on_logo_link()
+                current_page_url = page.click_on_logo_link_auth()
                 handles_after = driver.window_handles
                 current_page_source = page.driver.page_source
                 assert len(handles_before) == len(handles_after), "The number of open tabs changed after clicking"
