@@ -411,6 +411,7 @@ class HeaderPage(BasePage):
         return status_codes
 
     # Checks of links navigation
+
     @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
     for an unauthorized user""")
     def click_on_internal_links_in_header_unauth(self):
@@ -631,6 +632,21 @@ class HeaderPage(BasePage):
         print(self.get_current_tab_url())
         return current_tab_url
 
+    @allure.step("Click on the 'Logo' link for AUTHORIZED user  --  ACTUAL")
+    def click_on_logo_link_auth(self):
+
+        # Wait until the logo becomes clickable and click it
+        Wait(self.driver, 10).until(EC.element_to_be_clickable(self.locators1.LOGO_LINK_AUTH)).click()
+
+        # Wait for the page to reload (document readiness)
+        Wait(self.driver, 10).until(EC.presence_of_element_located(self.locators1.LOGO_LINK_AUTH))
+
+        # Wait until the logo becomes visible
+        Wait(self.driver, 10).until(EC.visibility_of_element_located(self.locators1.LOGO_LINK_AUTH))
+        return self.driver.current_url
+
+
+
     @allure.step("""Click on external links in the Header 
     and thereby open corresponding web pages on new tabs for unauthorized user""")
     def click_on_unauth_external_links_in_header(self):
@@ -667,18 +683,20 @@ class HeaderPage(BasePage):
         print(current_tab_url)
         return current_tab_url
 
-    @allure.step("Click on the 'Logo' link for every user")
-    def click_on_logo_link(self):
+    @allure.step("Click on the 'Logo' link for unauthorized user  --  ACTUAL")
+    def click_on_logo_link_unauth(self):
 
         # Wait until the logo becomes clickable and click it
-        Wait(self.driver, 10).until(EC.element_to_be_clickable(self.locators.LOGO_LINK)).click()
+        Wait(self.driver, 10).until(EC.element_to_be_clickable(self.locators.LOGO_LINK_UNAUTH)).click()
 
         # Wait for the page to reload (document readiness)
-        Wait(self.driver, 10).until(EC.presence_of_element_located(self.locators.LOGO_LINK))
+        Wait(self.driver, 10).until(EC.presence_of_element_located(self.locators.LOGO_LINK_UNAUTH))
 
         # Wait until the logo becomes visible
-        Wait(self.driver, 10).until(EC.visibility_of_element_located(self.locators.LOGO_LINK))
+        Wait(self.driver, 10).until(EC.visibility_of_element_located(self.locators.LOGO_LINK_UNAUTH))
         return self.driver.current_url
+
+
 
     # Checks of buttons clicking in the Header
     @allure.step("Click on the 'More' button for every user")
