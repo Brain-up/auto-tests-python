@@ -57,8 +57,6 @@ class TestHeaderPage:
                 links_in_more_presence = page.get_dropdown_links_unauth_list()
                 links_in_more_invisibility = page.check_links_invisibility_in_more()
                 links_in_more_visibility = page.check_links_visibility_in_more()
-                logo_link_unauth = page.check_logo_link_unauth()
-                logo_link_unauth_visibility = page.check_logo_link_unauth_visibility()
                 registration_link_presence = page.check_registration_link_presence()
                 registration_link_visibility = page.check_registration_link_visibility()
                 buttons_presence = page.get_list_of_buttons_unauth()
@@ -73,8 +71,6 @@ class TestHeaderPage:
                 assert links_in_more_presence, "Links in the dropdown 'More' are absent in the Header"
                 assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
                 assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
-                assert logo_link_unauth, "The 'Logo' link is absent in the Header"
-                assert logo_link_unauth_visibility, "The 'Logo' link is invisible"
                 assert registration_link_presence, "The 'Registration' link is in the Header"
                 assert registration_link_visibility, "The 'Registration' link is invisible"
                 assert buttons_presence, "Buttons are absent in the Header"
@@ -168,9 +164,17 @@ class TestHeaderPage:
                 opened_page = page.click_on_GitHub_link()
                 assert opened_page in hPD.set_unauth, "The GitHub link leads to an incorrect page after clicking"
 
-            @allure.title("""test_hpu_03.04 Verify that the 'Logo' link on the Start Unauthorized Page 
+            @allure.title("""test_hpu_03.04.00 Verify Logo link in the Header for an unauthorized user""")
+            def test_hpu_03_04_00_verify_unauth_logo_link(self, driver, main_page_open):
+                page = hPage(driver)
+                logo_link_unauth = page.check_logo_link_unauth()
+                logo_link_unauth_visibility = page.check_logo_link_unauth_visibility()
+                assert logo_link_unauth, "The Logo link is absent in the Header"
+                assert logo_link_unauth_visibility, "The Logo link is invisible"
+
+            @allure.title("""test_hpu_03.04.01 Verify that the Logo link in the Header for an unauthorized user 
                              doesn't refresh the current page or lead to other pages after clicking""")
-            def test_hpu_03_04_verify_click_unauth_logo_link(self, driver, main_page_open):
+            def test_hpu_03_04_01_verify_click_unauth_logo_link(self, driver, main_page_open):
                 page = hPage(driver)
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
