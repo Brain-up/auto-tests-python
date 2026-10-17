@@ -53,10 +53,10 @@ class TestHeaderPage:
                 page = hPage(driver)
                 header_links_unauth = page.get_list_of_links_unauth()
                 header_direct_links = page.get_direct_links_unauth_list()
-                header_direct_links_visibility = page.check_direct_links_visibility_unauth()
-                links_in_more_presence = page.get_dropdown_links_unauth_list()
-                links_in_more_invisibility = page.check_links_invisibility_in_more()
-                links_in_more_visibility = page.check_links_visibility_in_more()
+                header_direct_links_visibility = page.check_direct_links_unauth_visibility()
+                dropdown_links = page.get_dropdown_links_unauth_list()
+                dropdown_links_invisibility = page.check_dropdown_links_unauth_invisibility()
+                dropdown_links_visibility = page.check_dropdown_links_unauth_visibility()
                 registration_link_presence = page.check_registration_link_presence()
                 registration_link_visibility = page.check_registration_link_visibility()
                 buttons_presence = page.get_list_of_buttons_unauth()
@@ -68,9 +68,9 @@ class TestHeaderPage:
                 assert header_links_unauth, "Links are absent in the Header"
                 assert header_direct_links, "Direct links are absent in the Header"
                 assert header_direct_links_visibility, "Direct links are invisible"
-                assert links_in_more_presence, "Links in the dropdown 'More' are absent in the Header"
-                assert links_in_more_invisibility, "Links in the dropdown 'More' are visible"
-                assert links_in_more_visibility, "Links in the dropdown 'More' are invisible"
+                assert dropdown_links, "Links in the dropdown 'More' are absent in the Header"
+                assert dropdown_links_invisibility, "Links in the dropdown 'More' are visible"
+                assert dropdown_links_visibility, "Links in the dropdown 'More' are invisible"
                 assert registration_link_presence, "The 'Registration' link is in the Header"
                 assert registration_link_visibility, "The 'Registration' link is invisible"
                 assert buttons_presence, "Buttons are absent in the Header"
