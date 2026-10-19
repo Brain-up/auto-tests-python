@@ -95,23 +95,25 @@ class HeaderPage(BasePage):
         print(*att1, len(att1), sep='\n')
         return dropdown_unauth_links
 
-    @allure.step("""Check the 'About', 'Telegram', 'Registration', 'Logo' links are visible for an unauthorized user  
-    --  ACTUAL""")
+# Link properties for an UNAUTHORIZED user
+
+    @allure.step("""Check the 'About', 'Telegram', 'Registration', 'Logo' links are visible 
+    for an UNAUTHORIZED user  --  ACTUAL""")
     def check_direct_links_unauth_visibility(self):
         return all(link.is_displayed() for link in self.get_direct_links_unauth_list())
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-                    in the 'More' dropdown are invisible for every user  --  ACTUAL""")
+                    in the 'More' dropdown are invisible for an UNAUTHORIZED user  --  ACTUAL""")
     def check_dropdown_links_unauth_invisibility(self):
         return all(self.element_is_not_visible(element) for element in self.get_dropdown_links_unauth_list())
 
     @allure.step("""Check the 'Donate', 'GitHub', 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
-                    in the 'More' dropdown are visible for every user  --  ACTUAL""")
+                    in the 'More' dropdown are visible for an UNAUTHORIZED user  --  ACTUAL""")
     def check_dropdown_links_unauth_visibility(self):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_dropdown_links_unauth_list())
 
-    @allure.step("Check the 'Logo' link is present in the Header for an unauthorized user  --  ACTUAL")
+    @allure.step("Check the 'Logo' link is present in the Header for an UNAUTHORIZED user  --  ACTUAL")
     def check_logo_link_unauth(self):
         return self.element_is_present(self.locators.LOGO_LINK_UNAUTH)
 
@@ -131,7 +133,7 @@ class HeaderPage(BasePage):
 
 
 
-    # Lists of links for an AUTHORIZED user
+# Lists of links for an AUTHORIZED user
 
     @allure.step("Get the list of links on different levels of nesting in the Header for an authorized user -- ACTUAL")
     def get_links_auth_list(self):
@@ -174,7 +176,7 @@ class HeaderPage(BasePage):
     def get_dropdown_links_auth_list(self):
         dropdown_auth_links = self.elements_are_present(self.locators1.DROPDOWN_LINKS_AUTH)
         att1 = [element.get_attribute("href") for element in dropdown_auth_links]
-        # print(*att1, len(att1), sep='\n')
+        print(*att1, len(att1), sep='\n')
         return dropdown_auth_links
 
     @allure.step("""Get the list of the 'Groups', 'Statistics', 'About', 'Contacts', 'Specialists', 'Contributors',
@@ -196,6 +198,7 @@ class HeaderPage(BasePage):
         # print(*att, len(att), sep='\n')
         return links
 
+# Link properties for an AUTHORIZED user
 
     @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Registration', 'Logo' links are visible "
                  for an authorized user  --  ACTUAL""")
@@ -204,13 +207,13 @@ class HeaderPage(BasePage):
 
     @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Donate', 'GitHub', 'Contacts', 
                 'Specialists', 'Contributors', 'Used Resources', 'Audiometry' links in the 'More' dropdown are invisible 
-                for an authorized user  --  ACTUAL""")
+                for an AUTHORIZED user  --  ACTUAL""")
     def check_dropdown_links_invisibility_auth(self):
         return all(self.element_is_not_visible(element) for element in self.get_dropdown_links_auth_list())
 
     @allure.step("""Check the 'Groups', 'Statistics', 'About', 'Telegram', 'Donate', 'GitHub', 'Contacts', 
                 'Specialists', 'Contributors', 'Used Resources', 'Audiometry' links in the 'More' dropdown are visible 
-                for an authorized user  --  ACTUAL""")
+                for an AUTHORIZED user  --  ACTUAL""")
     def check_dropdown_links_visibility_auth(self):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_dropdown_links_auth_list())
@@ -282,7 +285,7 @@ class HeaderPage(BasePage):
             direct_internal_links.append(links[i])
         return direct_internal_links
 
-
+# Buttons for an UNAUTHORIZED user
 
     @allure.step("Get the list of buttons in the Header for an unauthorized user")
     def get_list_of_buttons_unauth(self):
@@ -291,6 +294,10 @@ class HeaderPage(BasePage):
     @allure.step("Check buttons are visible for an unauthorized user")
     def check_buttons_unauth_visibility(self):
         return all(button.is_displayed() for button in self.get_list_of_buttons_unauth())
+
+
+
+# Buttons for an AUTHORIZED user
 
     @allure.step("Get the list of buttons in the Header for an authorized user")
     def get_list_of_buttons_auth(self):
@@ -408,7 +415,7 @@ class HeaderPage(BasePage):
         # print(status_codes, len(status_codes), sep='\n')
         return status_codes
 
-    # Checks of links navigation
+# Checks of links navigation
 
     @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
     for an unauthorized user""")
@@ -695,24 +702,47 @@ class HeaderPage(BasePage):
         return self.driver.current_url
 
 
+# Checks of buttons clicking in the Header for UNAUTHORIZED user
 
-    # Checks of buttons clicking in the Header
+    @allure.step("""Check for dropdown is open/closed after clicking on the button 'More' in the Header 
+    for UNAUTHORIZED user  --  ACTUAL""")
+    def check_dropdown_opens_and_closes_unauth(self):
+        dropdown_state = 0
+        if self.check_dropdown_links_unauth_invisibility():
+            dropdown_state = 1
+        if self.check_dropdown_links_unauth_visibility():
+            dropdown_state = 2
+        self.click_more_button()
+        if self.check_dropdown_links_unauth_invisibility():
+            dropdown_state = 3
+        if dropdown_state == 3:
+            return True
+
+
+
+# Checks of buttons clicking in the Header for an AUTHORIZED user
+
+    @allure.step("""Check for dropdown is open/closed after clicking on the button 'More' in the Header 
+    for an AUTHORIZED user  --  ACTUAL""")
+    def check_dropdown_opens_and_closes_auth(self):
+        dropdown_state = 0
+        if self.check_dropdown_links_invisibility_auth():
+            dropdown_state = 1
+        if self.check_dropdown_links_visibility_auth():
+            dropdown_state = 2
+        self.click_more_button()
+        if self.check_dropdown_links_invisibility_auth():
+            dropdown_state = 3
+        if dropdown_state == 3:
+            return True
+
+
+
+    # Checks of buttons clicking in the Header  --  for REVIEW
     @allure.step("Click on the 'More' button for every user")
     def click_more_button(self):
         return self.element_is_present_and_clickable(self.locators.MORE_BUTTON).click()
 
-    @allure.step("Check for dropdown is open/closed after clicking on the button 'More' in the Header for every user")
-    def check_dropdown_opens_and_closes(self):
-        dropdown_state = 0
-        if self.check_links_invisibility_in_more():
-            dropdown_state = 1
-        if self.check_links_visibility_in_more():
-            dropdown_state = 2
-        self.click_more_button()
-        if self.check_links_invisibility_in_more():
-            dropdown_state = 3
-        if dropdown_state == 3:
-            return True
 
     @allure.step("Click on the 'ru' button in the Header for every user")
     def click_on_ru_button(self):

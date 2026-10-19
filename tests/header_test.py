@@ -187,11 +187,11 @@ class TestHeaderPage:
                     "Logo link in the Header refreshes the page after clicking"
                 assert initial_page_url == current_page_url, "Logo link in the Header leads to some page after clicking"
 
-            @allure.title("""Verify the dropdown opens/closes after clicking on the 'More' button in the Header 
-            on the Start Unauthorized Page""")
+            @allure.title("""test_hpu_03.05 Verify the dropdown opens/closes after clicking on the 'More' button 
+            in the Header for an unauthorized user""")
             def test_hpu_03_05_verify_unauth_more_button_click(self, driver, main_page_open):
                 page = hPage(driver)
-                button_click = page.check_dropdown_opens_and_closes()
+                button_click = page.check_dropdown_opens_and_closes_unauth()
                 assert button_click, "The dropdown isn't open/closed after clicking the 'More' button"
 
             @allure.title("Verify switching of the 'ru', 'en' buttons in the Header on the Start Unauthorized Page")
@@ -499,11 +499,11 @@ class TestHeaderPage:
                     "Logo link in the Header doesn't refresh the page after clicking"
                 assert initial_page_url == current_page_url, "Logo link in the Header leads to some page after clicking"
 
-            @allure.title("""Verify the dropdown opens/closes after clicking on the 'More' button in the Header 
-               for an authorized user""")
+            @allure.title("""test_hpa_03.05 Verify the dropdown opens/closes after clicking on the 'More' button 
+            in the Header for an authorized user""")
             def test_hpa_03_05_verify_auth_more_button_click(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                button_click = page.check_dropdown_opens_and_closes()
+                button_click = page.check_dropdown_opens_and_closes_auth()
                 assert button_click, "The dropdown isn't open/closed after clicking the 'More' button"
 
             @allure.title("Verify switching of the 'ru', 'en' buttons in the Header for an authorized user")
