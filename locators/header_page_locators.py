@@ -20,7 +20,7 @@ class HeaderUnauthorizedLocators:
     LINK_DONATE = (By.XPATH, "(//nav//a)[4]")
     LINK_GITHUB = (By.XPATH, "(//nav//a)[5]")
     LINK_LOGO = (By.XPATH, "(//nav//a)[1]")
-    LINK_REGISTRATION = (By.XPATH, "(//nav//a)[10]")
+    LINK_REGISTRATION_UNAUTH = (By.XPATH, "(//nav//a)[10]")
     LINK_SPECIALISTS = (By.XPATH, "(//nav//a)[7]")
     LINK_TELEGRAM = (By.XPATH, '//a[@href="https://t.me/BrainUpUsers"]')
     LINK_USED_RESOURCES = (By.XPATH, "(//nav//a)[9]")

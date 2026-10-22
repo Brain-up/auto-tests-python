@@ -121,14 +121,13 @@ class HeaderPage(BasePage):
     def check_logo_link_unauth_visibility(self):
         return self.element_is_visible(self.locators.LOGO_LINK_UNAUTH)
 
+    @allure.step("Check the 'Registration' link is present in the Header for an UNAUTHORIZED user  --  ACTUAL")
+    def check_registration_link_unauth(self):
+        return self.element_is_present(self.locators.LINK_REGISTRATION_UNAUTH)
 
-    @allure.step("Check the 'Registration' link is present in the Header for an unauthorized user -- FOR REVIEW")
-    def check_registration_link_presence(self):
-        return self.element_is_present(self.locators.LINK_REGISTRATION)
-
-    @allure.step("Check the 'Registration' link is visible for an unauthorized user -- FOR REVIEW")
-    def check_registration_link_visibility(self):
-        return self.element_is_visible(self.locators.LINK_REGISTRATION)
+    @allure.step("Check the 'Registration' link is visible for an UNAUTHORIZED user  --  ACTUAL")
+    def check_registration_link_unauth_visibility(self):
+        return self.element_is_visible(self.locators.LINK_REGISTRATION_UNAUTH)
 
 
 
