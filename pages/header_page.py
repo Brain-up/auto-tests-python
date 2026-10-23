@@ -78,7 +78,7 @@ class HeaderPage(BasePage):
         return self.elements_are_present(self.locators.HEADER_LINKS_UNAUTH)
 
     @allure.step("""Get the list of the 'About', 'Telegram', 'Registration', 'Logo' links (direct links) in the Header 
-                 for an unauthorized user  --  ACTUAL""")
+                 for an UNAUTHORIZED user  --  ACTUAL""")
     def get_direct_links_unauth_list(self):
         links = self.get_list_of_links_unauth()
         direct_links = []
@@ -88,11 +88,22 @@ class HeaderPage(BasePage):
         # print(*att1, len(att1), sep='\n')
         return direct_links
 
+    @allure.step("""Get the list of the 'About', 'Registration', 'Logo' links (direct internal links) in the Header 
+                for an UNAUTHORIZED user  --  ACTUAL""")
+    def get_direct_internal_links_unauth_list(self):
+        direct_links = self.get_direct_links_unauth_list()
+        direct_internal_links = []
+        for i in [0, 2, 3]:
+            direct_internal_links.append(direct_links[i])
+        att2 = [element.get_attribute("href") for element in direct_internal_links]
+        print(*att2, len(att2), sep='\n')
+        return direct_internal_links
+
     @allure.step("""Get the list of links in the 'More' dropdown in the Header for an UNAUTHORIZED user  --  ACTUAL""")
     def get_dropdown_links_unauth_list(self):
         dropdown_unauth_links = self.elements_are_present(self.locators.DROPDOWN_LINKS_UNAUTH)
         att1 = [element.get_attribute("href") for element in dropdown_unauth_links]
-        print(*att1, len(att1), sep='\n')
+        # print(*att1, len(att1), sep='\n')
         return dropdown_unauth_links
 
 # Link properties for an UNAUTHORIZED user
