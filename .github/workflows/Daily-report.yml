@@ -3,17 +3,19 @@ name: Test-All-Daily
 on:
   workflow_dispatch
 
+# 1. Даем права на запись, иначе деплой упадет с ошибкой 403 (Permission denied)
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # 2. Фиксируем версию Ubuntu, чтобы убрать уведомления о миграции
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4  # Обновлено с v3 до v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v5  # Обновлено с v3 до v5
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -64,6 +66,7 @@ jobs:
           path: gh-pages
         continue-on-error: true
 
+      # Оставляем ваш экшен. Если упадет с ошибкой 429 - просто перезапустите позже.
       - name: Allure Report action
         uses: simple-elf/allure-report-action@master
         if: always()
@@ -75,16 +78,17 @@ jobs:
 
       - name: Commit Allure report
         if: always()
-        uses: peaceiris/actions-gh-pages@v2  # Возврат с v4 на v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.CI_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
+        # 3. Обновили версию до v4 и используем блок with: со строчными буквами
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.CI_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
         continue-on-error: true
 
-  message:  # Исправлено: было messsage (опечатка)
+  message:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Send message to Telegram
@@ -94,4 +98,3 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           args: Daily full report https://brain-up.github.io/auto-tests-python/
         continue-on-error: true
-
