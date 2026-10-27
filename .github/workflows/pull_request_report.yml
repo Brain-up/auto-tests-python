@@ -11,12 +11,13 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Зафиксирована версия, чтобы убрать уведомления о миграции ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4  # Обновлено с v3 до v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v5  # Обновлено с v3 до v5
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -59,6 +60,15 @@ jobs:
           echo CHROME_VERSION=$(google-chrome --product-version) >> environment.properties
         continue-on-error: true
 
+      # Новый шаг: сохраняем результаты тестов как артефакт (использует upload-artifact@v7)
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-results
+          path: allure-results/
+          retention-days: 7
+
       - name: Get Allure history
         uses: actions/checkout@v4
         if: always()
@@ -78,16 +88,16 @@ jobs:
 
       - name: Commit Allure report
         if: always()
-        uses: peaceiris/actions-gh-pages@v2  # Обновлено с v2 до v4 - вернула 2
+        uses: peaceiris/actions-gh-pages@v4
         env:
           PERSONAL_TOKEN: ${{ secrets.CI_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
         continue-on-error: true
 
-  message:  # Исправлено: было messsage (опечатка)
+  message:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Send message to Telegram
