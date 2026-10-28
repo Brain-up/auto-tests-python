@@ -125,6 +125,14 @@ class TestHeaderPage:
                 direct_internal_links = page.get_direct_internal_links_unauth_list()
                 assert direct_internal_links, "Links are not collected in the list"
 
+            @allure.title("""test_hpu.03.02.01 Verify if 3 direct internal links in the Header 
+            for an unauthorized user lead to correct pages after clicking""")
+            def test_hpu_03_02_01_verify_unauth_direct_internal_links_navigation(self, driver, main_page_open):
+                page = hPage(driver)
+                opened_pages = page.click_on_direct_internal_links_in_header_unauth()
+                assert all(element in hPD.set_unauth for element in opened_pages), \
+                    "Some of direct internal links lead to incorrect pages after clicking"
+
             @allure.title("""test_hpu_03.01.01 Verify Logo link in the Header for an unauthorized user""")
             def test_hpu_03_01_01_verify_unauth_logo_link(self, driver, main_page_open):
                 page = hPage(driver)
