@@ -85,7 +85,7 @@ class HeaderPage(BasePage):
         for i in [1, 2, 9, 0]:
             direct_links.append(links[i])
         att1 = [element.get_attribute("href") for element in direct_links]
-        # print(*att1, len(att1), sep='\n')
+        print(*att1, len(att1), sep='\n')
         return direct_links
 
     @allure.step("""Get the list of the 'About', 'Registration', 'Logo' links (direct internal links) in the Header 
@@ -96,8 +96,19 @@ class HeaderPage(BasePage):
         for i in [0, 2, 3]:
             direct_internal_links.append(direct_links[i])
         att2 = [element.get_attribute("href") for element in direct_internal_links]
-        print(*att2, len(att2), sep='\n')
+        # print(*att2, len(att2), sep='\n')
         return direct_internal_links
+
+    @allure.step("""Get the list with the 'Telegram' link (direct external links) in the Header 
+                 for an UNAUTHORIZED user  --  ACTUAL""")
+    def get_direct_external_links_unauth_list(self):
+        direct_links = self.get_direct_links_unauth_list()
+        direct_external_links = []
+        for i in [1]:
+            direct_external_links.append(direct_links[i])
+        att3 = [element.get_attribute("href") for element in direct_external_links]
+        print(*att3, len(att3), sep='\n')
+        return direct_external_links
 
     @allure.step("""Get the list of links in the 'More' dropdown in the Header for an UNAUTHORIZED user  --  ACTUAL""")
     def get_dropdown_links_unauth_list(self):
