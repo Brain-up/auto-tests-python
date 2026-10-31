@@ -133,6 +133,13 @@ class TestHeaderPage:
                 assert all(element in hPD.set_unauth for element in opened_pages), \
                     "Some of direct internal links lead to incorrect pages after clicking"
 
+            @allure.title("""test_hpu.03.02.02 Verify the list of direct external links in the Header 
+            for an unauthorized user """)
+            def test_hpu_03_02_02_verify_unauth_direct_external_links_list(self, driver, main_page_open):
+                page = hPage(driver)
+                direct_external_links = page.get_direct_external_links_unauth_list()
+                assert direct_external_links, "Links are not collected in the list"
+
             @allure.title("""test_hpu_03.01.01 Verify Logo link in the Header for an unauthorized user""")
             def test_hpu_03_01_01_verify_unauth_logo_link(self, driver, main_page_open):
                 page = hPage(driver)
@@ -184,13 +191,6 @@ class TestHeaderPage:
                 assert external_links_in_more, "External links are not collected in the list"
                 assert all(element in hPD.set_unauth for element in opened_pages), \
                     "Some of external links lead to incorrect pages after clicking"
-
-            @allure.title("""Verify if external Telegram link in the Header for an unauthorized user 
-            leads to a correct page after click""")
-            def test_hpu_03_03_01_verify_unauth_telegram_link_navigation(self, driver, main_page_open):
-                page = hPage(driver)
-                opened_page = page.click_on_Telegram_link()
-                assert opened_page in hPD.set_unauth, "The Telegram link leads to an incorrect page after clicking"
 
             @allure.title("""Verify if external Donate link in the Header for an unauthorized user 
             leads to a correct page after click""")
@@ -383,8 +383,8 @@ class TestHeaderPage:
             for an authorized user """)
             def test_hpa_03_02_02_verify_auth_direct_external_links_list(self, driver, auto_test_user_authorized):
                 page = hPage(driver)
-                direct_internal_links = page.get_direct_external_links_auth_list()
-                assert direct_internal_links, "Links are not collected in the list"
+                direct_external_links = page.get_direct_external_links_auth_list()
+                assert direct_external_links, "Links are not collected in the list"
 
             @allure.title("""test_hpa.03.02.03 Verify if direct external links in the Header ('Telegram')
             for an authorized user lead to correct pages after clicking""")
