@@ -462,6 +462,18 @@ class HeaderPage(BasePage):
         for link in self.get_direct_internal_links_unauth_list():
             link.click()
             opened_pages.append(self.get_current_tab_url())
+        # print(*opened_pages, sep='\n')
+        return opened_pages
+
+    @allure.step("""Click on the 'Telegram' (direct external) link in the Header
+    and thereby open corresponding web pages in the new tab for an UNAUTHORIZED user  --  ACTUAL""")
+    def click_on_direct_external_links_in_header_unauth(self):
+        opened_pages = []
+        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM_UNAUTH).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        current_tab_url = self.get_current_tab_url()
+        opened_pages.append(current_tab_url)
+        self.driver.switch_to.window(self.driver.window_handles[0])
         print(*opened_pages, sep='\n')
         return opened_pages
 
@@ -524,15 +536,13 @@ class HeaderPage(BasePage):
         current_url = self.get_current_tab_url()
         opened_pages.append(current_url)
         # print(*opened_pages, sep='\n')
-
         return opened_pages
 
-    @allure.step("""Click on direct external links in the Header 
+    @allure.step("""Click on direct external links in the Header ('Telegram' link #1)
     and thereby open corresponding web pages in the new tab for an AUTHORIZED user  --  ACTUAL""")
     def click_on_direct_external_links_in_header_auth(self):
         opened_pages = []
 
-        # Click on the 'Telegram' link #1
         self.element_is_present_and_clickable(self.locators1.LINK_TELEGRAM_AUTH1).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
         current_tab_url = self.get_current_tab_url()
