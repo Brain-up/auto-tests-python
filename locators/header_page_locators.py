@@ -22,7 +22,7 @@ class HeaderUnauthorizedLocators:
     LINK_LOGO = (By.XPATH, "(//nav//a)[1]")
     LINK_REGISTRATION_UNAUTH = (By.XPATH, "(//nav//a)[10]")
     LINK_SPECIALISTS = (By.XPATH, "(//nav//a)[7]")
-    LINK_TELEGRAM = (By.XPATH, '//a[@href="https://t.me/BrainUpUsers"]')
+    LINK_TELEGRAM_UNAUTH = (By.XPATH, '//a[@href="https://t.me/BrainUpUsers"]')
     LINK_USED_RESOURCES = (By.XPATH, "(//nav//a)[9]")
     LINKS_IN_MORE = (By.XPATH, "//div[contains(@class, 'bottom')]/a")       # to be deleted after refactoring
     # LINK_ABOUT = (By.XPATH, "//div[contains(@class, 'text-s')]/a[1]")
