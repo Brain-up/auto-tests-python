@@ -145,6 +145,17 @@ class TestHeaderPage:
                 assert all(element in hPD.set_unauth for element in opened_pages), \
                     "Some of direct external links lead to incorrect pages after clicking"
 
+            @allure.title("""test_hpu.03.03 Verify the list of links in the Header's dropdown
+            for an unauthorized user""")
+            def test_hpu_03_03_verify_unauth_dropdown_links_list(self, driver, main_page_open):
+                page = hPage(driver)
+                dropdown_links = page.get_dropdown_links_unauth_list()
+                dropdown_links_invisibility = page.check_dropdown_links_unauth_invisibility()
+                dropdown_links_visibility = page.check_dropdown_links_unauth_visibility()
+                assert dropdown_links, "Links in the Header's dropdown are not collected in the list"
+                assert dropdown_links_invisibility, "Links in the dropdown 'More' are visible before clicking"
+                assert dropdown_links_visibility, "Links in the dropdown 'More' are invisible after clicking"
+
             @allure.title("""test_hpu_03.01.01 Verify Logo link in the Header for an unauthorized user""")
             def test_hpu_03_01_01_verify_unauth_logo_link(self, driver, main_page_open):
                 page = hPage(driver)
@@ -407,8 +418,8 @@ class TestHeaderPage:
                 dropdown_links_invisibility = page.check_dropdown_links_invisibility_auth()
                 dropdown_links_visibility = page.check_dropdown_links_visibility_auth()
                 assert dropdown_links, "Links in the Header's dropdown are not collected in the list"
-                assert dropdown_links_invisibility, "Links in the dropdown 'More' are visible"
-                assert dropdown_links_visibility, "Links in the dropdown 'More' are invisible"
+                assert dropdown_links_invisibility, "Links in the dropdown 'More' are visible before clicking"
+                assert dropdown_links_visibility, "Links in the dropdown 'More' are invisible after clicking"
 
             @allure.title("""test_hpa.03.03.00 Verify the list of internal links in the Header's dropdown 
             for an authorized user""")
