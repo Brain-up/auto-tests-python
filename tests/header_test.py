@@ -156,6 +156,13 @@ class TestHeaderPage:
                 assert dropdown_links_invisibility, "Links in the dropdown 'More' are visible before clicking"
                 assert dropdown_links_visibility, "Links in the dropdown 'More' are invisible after clicking"
 
+            @allure.title("""test_hpu.03.03.00 Verify the list of internal links in the Header's dropdown 
+            for an unauthorized user""")
+            def test_hpu_03_03_00_verify_unauth_dropdown_internal_links_list(self, driver, main_page_open):
+                page = hPage(driver)
+                internal_links_in_dropdown = page.get_dropdown_internal_links_unauth_list()
+                assert internal_links_in_dropdown, "Internal links are not collected in the list"
+
             @allure.title("""test_hpu_03.01.01 Verify Logo link in the Header for an unauthorized user""")
             def test_hpu_03_01_01_verify_unauth_logo_link(self, driver, main_page_open):
                 page = hPage(driver)
