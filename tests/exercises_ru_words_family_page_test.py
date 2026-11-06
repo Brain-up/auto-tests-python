@@ -15,7 +15,7 @@ class TestExercisesRuWordsFamilyPage:
             assert page_content_presence, "The page content is absent in DOM"
             assert page_content_visibility, "The page content is invisible"
 
-        @allure.title("Verify composition, visibility of elements on the 1st-4th levels of nesting on the page")
+        @allure.title("test_erwf.01.02 Verify composition, visibility of elements on the 1st-4th levels of nesting")
         def test_erwf_01_02_verify_page_structure_and_visibility(self, driver, exercises_ru_words_family_page_open):
             page = erwfPage(driver)
             visibility_of_elements_on_1st_level = page.check_elements_visibility_on_1st_level()

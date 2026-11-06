@@ -114,8 +114,16 @@ class HeaderPage(BasePage):
     def get_dropdown_links_unauth_list(self):
         dropdown_unauth_links = self.elements_are_present(self.locators.DROPDOWN_LINKS_UNAUTH)
         att4 = [element.get_attribute("href") for element in dropdown_unauth_links]
-        print(*att4, len(att4), sep='\n')
+        # print(*att4, len(att4), sep='\n')
         return dropdown_unauth_links
+
+    @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links 
+     (internal links) in the 'More' dropdown in the Header for UNAUTHORIZED user  --  ACTUAL""")
+    def get_dropdown_internal_links_unauth_list(self):
+        links = self.get_dropdown_links_unauth_list()[2:]
+        att5 = [element.get_attribute("href") for element in links]
+        print(*att5, len(att5), sep='\n')
+        return links
 
 
 
@@ -272,9 +280,9 @@ class HeaderPage(BasePage):
                   (internal links) in the 'More' dropdown for every user  -- FOR REVIEW""")
     def get_list_of_internal_links_in_more(self):
         links = self.get_list_of_links_in_more()[2:]
-        # print(links)
+        print(links)
         att = [element.get_attribute("href") for element in links]
-        # print(*att, len(att), sep='\n')
+        print(*att, len(att), sep='\n')
         return links
         # return self.get_list_of_links_in_more()[2:]
 
@@ -442,7 +450,7 @@ class HeaderPage(BasePage):
 # Checks of links navigation for an UNAUTHORIZED user
 
     @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
-    for an unauthorized user""")
+    for an unauthorized user   --   FOR REVIEW """)
     def click_on_internal_links_in_header_unauth(self):
         opened_pages = []
         # Click on the 'About', 'Registration', 'Logo' links
@@ -456,6 +464,7 @@ class HeaderPage(BasePage):
             link.click()
             Wait(self.driver, 10).until(EC.url_changes(current_url))
             opened_pages.append(self.get_current_tab_url())
+        print(*opened_pages, len(opened_pages), sep='\n')
         return opened_pages
 
     @allure.step("""Click on the 'About', 'Registration', 'Logo' (direct internal) links in the Header 
