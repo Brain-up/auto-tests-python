@@ -163,6 +163,14 @@ class TestHeaderPage:
                 internal_links_in_dropdown = page.get_dropdown_internal_links_unauth_list()
                 assert internal_links_in_dropdown, "Internal links are not collected in the list"
 
+            @allure.title("""test_hpu.03.03.01 Verify if internal links in the Header's dropdown 
+            for an unauthorized user lead to correct pages after click""")
+            def test_hpu_03_03_01_verify_unauth_dropdown_internal_links_navigation(self, driver, main_page_open):
+                page = hPage(driver)
+                opened_pages = page.click_on_dropdown_internal_links_in_header_unauth()
+                assert all(element in hPD.set_unauth for element in opened_pages), \
+                    "Some of dropdown internal links lead to incorrect pages after clicking"
+
             @allure.title("""test_hpu_03.01.01 Verify Logo link in the Header for an unauthorized user""")
             def test_hpu_03_01_01_verify_unauth_logo_link(self, driver, main_page_open):
                 page = hPage(driver)
@@ -193,16 +201,6 @@ class TestHeaderPage:
                 registration_link_unauth_visibility = page.check_registration_link_unauth_visibility()
                 assert registration_link_unauth, "The Registration link is absent in the Header"
                 assert registration_link_unauth_visibility, "The Registration link is invisible"
-
-            @allure.title("""Verify if internal links in the Header for an unauthorized user 
-            lead to correct pages after click""")
-            def test_hpu_03_02_verify_unauth_internal_links_lead_to_correct_pages(self, driver, main_page_open):
-                page = hPage(driver)
-                internal_links_in_more = page.get_list_of_internal_links_in_more()
-                opened_pages = page.click_on_internal_links_in_header_unauth()
-                assert internal_links_in_more, "Internal links are not collected in the list"
-                assert all(element in hPD.set_unauth for element in opened_pages), \
-                    "Some of internal links lead to incorrect pages after clicking"
 
             @pytest.mark.skip("Unstable test environment")
             @allure.title("""Verify if external links in the Header for an unauthorized user 
