@@ -163,6 +163,57 @@ class HeaderPage(BasePage):
         return self.element_is_visible(self.locators.LINK_REGISTRATION_UNAUTH)
 
 
+# Links navigation for an UNAUTHORIZED user
+
+    @allure.step("""Click on the 'About', 'Registration', 'Logo' (direct internal) links in the Header 
+    and thereby open corresponding web pages in the same tab for an UNAUTHORIZED user  --  ACTUAL""")
+    def click_on_direct_internal_links_in_header_unauth(self):
+        opened_pages = []
+        for link in self.get_direct_internal_links_unauth_list():
+            link.click()
+            opened_pages.append(self.get_current_tab_url())
+        # print(*opened_pages, sep='\n')
+        return opened_pages
+
+    @allure.step("""Click on the 'Telegram' (direct external) link in the Header
+    and thereby open corresponding web pages in the new tab for an UNAUTHORIZED user  --  ACTUAL""")
+    def click_on_direct_external_links_in_header_unauth(self):
+        opened_pages = []
+        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM_UNAUTH).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        current_tab_url = self.get_current_tab_url()
+        opened_pages.append(current_tab_url)
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        # print(*opened_pages, sep='\n')
+        return opened_pages
+
+    @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
+    for an UNAUTHORIZED user user   --   ACTUAL""")
+    def click_on_dropdown_internal_links_in_header_unauth(self):
+        opened_pages = []
+        for link in self.get_dropdown_internal_links_unauth_list():
+            self.click_more_button()
+            current_url = self.get_current_tab_url()
+            link.click()
+            Wait(self.driver, 10).until(EC.url_changes(current_url))
+            opened_pages.append(self.get_current_tab_url())
+        # print(*opened_pages, len(opened_pages), sep='\n')
+        return opened_pages
+
+    @allure.step("Click on the 'Logo' link for unauthorized user  --  ACTUAL")
+    def click_on_logo_link_unauth(self):
+
+        # Wait until the logo becomes clickable and click it
+        Wait(self.driver, 10).until(EC.element_to_be_clickable(self.locators.LOGO_LINK_UNAUTH)).click()
+
+        # Wait for the page to reload (document readiness)
+        Wait(self.driver, 10).until(EC.presence_of_element_located(self.locators.LOGO_LINK_UNAUTH))
+
+        # Wait until the logo becomes visible
+        Wait(self.driver, 10).until(EC.visibility_of_element_located(self.locators.LOGO_LINK_UNAUTH))
+        return self.driver.current_url
+
+
 
 
 # Lists of links for an AUTHORIZED user
@@ -448,43 +499,6 @@ class HeaderPage(BasePage):
         return status_codes
 
 
-# Checks of links navigation for an UNAUTHORIZED user
-
-    @allure.step("""Click on the 'About', 'Registration', 'Logo' (direct internal) links in the Header 
-    and thereby open corresponding web pages in the same tab for an UNAUTHORIZED user  --  ACTUAL""")
-    def click_on_direct_internal_links_in_header_unauth(self):
-        opened_pages = []
-        for link in self.get_direct_internal_links_unauth_list():
-            link.click()
-            opened_pages.append(self.get_current_tab_url())
-        # print(*opened_pages, sep='\n')
-        return opened_pages
-
-    @allure.step("""Click on the 'Telegram' (direct external) link in the Header
-    and thereby open corresponding web pages in the new tab for an UNAUTHORIZED user  --  ACTUAL""")
-    def click_on_direct_external_links_in_header_unauth(self):
-        opened_pages = []
-        self.element_is_present_and_clickable(self.locators.LINK_TELEGRAM_UNAUTH).click()
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        current_tab_url = self.get_current_tab_url()
-        opened_pages.append(current_tab_url)
-        self.driver.switch_to.window(self.driver.window_handles[0])
-        # print(*opened_pages, sep='\n')
-        return opened_pages
-
-    @allure.step("""Click on internal links in the Header and thereby open corresponding web pages in the same tab 
-    for an UNAUTHORIZED user user   --   ACTUAL""")
-    def click_on_dropdown_internal_links_in_header_unauth(self):
-        opened_pages = []
-        for link in self.get_dropdown_internal_links_unauth_list():
-            self.click_more_button()
-            current_url = self.get_current_tab_url()
-            link.click()
-            Wait(self.driver, 10).until(EC.url_changes(current_url))
-            opened_pages.append(self.get_current_tab_url())
-        print(*opened_pages, len(opened_pages), sep='\n')
-        return opened_pages
-
 
 
 # Checks of links navigation for an AUTHORIZED user
@@ -741,18 +755,7 @@ class HeaderPage(BasePage):
         print(current_tab_url)
         return current_tab_url
 
-    @allure.step("Click on the 'Logo' link for unauthorized user  --  ACTUAL")
-    def click_on_logo_link_unauth(self):
 
-        # Wait until the logo becomes clickable and click it
-        Wait(self.driver, 10).until(EC.element_to_be_clickable(self.locators.LOGO_LINK_UNAUTH)).click()
-
-        # Wait for the page to reload (document readiness)
-        Wait(self.driver, 10).until(EC.presence_of_element_located(self.locators.LOGO_LINK_UNAUTH))
-
-        # Wait until the logo becomes visible
-        Wait(self.driver, 10).until(EC.visibility_of_element_located(self.locators.LOGO_LINK_UNAUTH))
-        return self.driver.current_url
 
 
 # Checks of buttons clicking in the Header for UNAUTHORIZED user
