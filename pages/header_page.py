@@ -146,6 +146,14 @@ class HeaderPage(BasePage):
         self.click_more_button()
         return all(link.is_displayed() for link in self.get_dropdown_links_unauth_list())
 
+    @allure.step("Check the About link is present in the Header for an UNAUTHORIZED user  --  ACTUAL")
+    def check_about_link_unauth(self):
+        return self.element_is_present(self.locators.LINK_ABOUT_UNAUTH)
+
+    @allure.step("Check the About link is visible for an UNAUTHORIZED user  --  ACTUAL")
+    def check_about_link_unauth_visibility(self):
+        return self.element_is_visible(self.locators.LINK_ABOUT_UNAUTH)
+
     @allure.step("Check the Registration link is present in the Header for an UNAUTHORIZED user  --  ACTUAL")
     def check_registration_link_unauth(self):
         return self.element_is_present(self.locators.LINK_REGISTRATION_UNAUTH)
@@ -453,7 +461,7 @@ class HeaderPage(BasePage):
     links in the Header""")
     def get_text_of_links_in_more(self):
         self.click_more_button()
-        more_links_text = [link.text for link in self.get_list_of_links_in_more()]
+        more_links_text = [link.text for link in self.get_dropdown_links_unauth_list()]
         # print(*more_links_text, len(more_links_text), sep='\n')
         return more_links_text
         # return [link.text for link in self.get_list_of_links_in_more()]

@@ -14,7 +14,7 @@ class HeaderUnauthorizedLocators:
     HEADER_FOURTH_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*/*/*")
     HEADER_FIFTH_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*/*/*/*")
     HEADER_SIXTH_LEVEL_ELEMENTS = (By.XPATH, "//div[contains(@class, 'header')]/*/*/*/*/*/*")
-    LINK_ABOUT = (By.XPATH, "(//nav//a)[2]")
+    LINK_ABOUT_UNAUTH = (By.XPATH, "(//nav//a)[2]")
     LINK_CONTACTS = (By.XPATH, "(//nav//a)[6]")
     LINK_CONTRIBUTORS = (By.XPATH, "(//nav//a)[8]")
     LINK_DONATE = (By.XPATH, "(//nav//a)[4]")
