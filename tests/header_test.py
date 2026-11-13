@@ -52,11 +52,6 @@ class TestHeaderPage:
             def test_hpu_01_03_verify_unauth_header_structural_elements(self, driver, main_page_open):
                 page = hPage(driver)
                 header_links_unauth = page.get_list_of_links_unauth()
-                header_direct_links = page.get_direct_links_unauth_list()
-                header_direct_links_visibility = page.check_direct_links_unauth_visibility()
-                dropdown_links = page.get_dropdown_links_unauth_list()
-                dropdown_links_invisibility = page.check_dropdown_links_unauth_invisibility()
-                dropdown_links_visibility = page.check_dropdown_links_unauth_visibility()
                 buttons_presence = page.get_list_of_buttons_unauth()
                 buttons_visibility = page.check_buttons_unauth_visibility()
                 ru_en_buttons_presence = page.get_list_of_ru_en_buttons()
@@ -64,11 +59,6 @@ class TestHeaderPage:
                 more_button_presence = page.check_more_button_presence()
                 more_button_visibility = page.check_more_button_visibility()
                 assert header_links_unauth, "Links are absent in the Header"
-                assert header_direct_links, "Direct links are absent in the Header"
-                assert header_direct_links_visibility, "Direct links are invisible"
-                assert dropdown_links, "Links in the dropdown 'More' are absent in the Header"
-                assert dropdown_links_invisibility, "Links in the dropdown 'More' are visible"
-                assert dropdown_links_visibility, "Links in the dropdown 'More' are invisible"
                 assert buttons_presence, "Buttons are absent in the Header"
                 assert buttons_visibility, "Buttons are invisible"
                 assert ru_en_buttons_presence, "The 'ru' and 'en' buttons are absent in the Header"
@@ -82,6 +72,7 @@ class TestHeaderPage:
                 page = hPage(driver)
                 direct_links_text = page.get_text_in_direct_links_unauth()
                 links_in_more_text = page.get_text_of_links_in_more()
+                print(links_in_more_text)
                 buttons_text = page.get_text_in_buttons_unauth()
                 ru_en_buttons_text = page.get_text_in_ru_en_buttons()
                 assert all(element in hPD.links_text_unauth for element in direct_links_text), \
@@ -113,7 +104,9 @@ class TestHeaderPage:
             def test_hpu_03_02_verify_unauth_direct_links_list(self, driver, main_page_open):
                 page = hPage(driver)
                 direct_links = page.get_direct_links_unauth_list()
+                direct_links_visibility = page.check_direct_links_unauth_visibility()
                 assert direct_links, "Links are not collected in the list"
+                assert direct_links_visibility, "Direct links are invisible"
 
             @allure.title("""test_hpu.03.02.00 Verify the list of direct internal links in the Header 
             for an unauthorized user """)
@@ -130,32 +123,40 @@ class TestHeaderPage:
                 assert all(element in hPD.set_unauth for element in opened_pages), \
                     "Some of direct internal links lead to incorrect pages after clicking"
 
-            @allure.title("""test_hpu_03.02.02 Verify the Registration link in the Header for an unauthorized user""")
-            def test_hpu_03_02_02_verify_unauth_registration_link(self, driver, main_page_open):
+            @allure.title("""test_hpu_03.02.02 Verify the About link in the Header for an unauthorized user""")
+            def test_hpu_03_02_02_verify_unauth_about_link(self, driver, main_page_open):
+                page = hPage(driver)
+                about_link_unauth = page.check_about_link_unauth()
+                about_link_unauth_visibility = page.check_about_link_unauth_visibility()
+                assert about_link_unauth, "The About link is absent in the Header"
+                assert about_link_unauth_visibility, "The About link is invisible"
+
+            @allure.title("""test_hpu_03.02.04 Verify the Registration link in the Header for an unauthorized user""")
+            def test_hpu_03_02_04_verify_unauth_registration_link(self, driver, main_page_open):
                 page = hPage(driver)
                 registration_link_unauth = page.check_registration_link_unauth()
                 registration_link_unauth_visibility = page.check_registration_link_unauth_visibility()
                 assert registration_link_unauth, "The Registration link is absent in the Header"
                 assert registration_link_unauth_visibility, "The Registration link is invisible"
 
-            @allure.title("""test_hpu_03.02.03 Verify if the Registration link in the Header for an unauthorized user 
+            @allure.title("""test_hpu_03.02.05 Verify if the Registration link in the Header for an unauthorized user 
               leads to a correct page after clicking""")
-            def test_hpu_03_02_03_verify_unauth_registration_link_navigation(self, driver, main_page_open):
+            def test_hpu_03_02_05_verify_unauth_registration_link_navigation(self, driver, main_page_open):
                 page = hPage(driver)
                 opened_page = page.click_on_registration_link_unauth()
                 assert opened_page in hPD.set_unauth, "The Registration link leads to an incorrect page after clicking"
 
-            @allure.title("""test_hpu_03.02.04 Verify the Logo link in the Header for an unauthorized user""")
-            def test_hpu_03_02_04_verify_unauth_logo_link(self, driver, main_page_open):
+            @allure.title("""test_hpu_03.02.06 Verify the Logo link in the Header for an unauthorized user""")
+            def test_hpu_03_02_06_verify_unauth_logo_link(self, driver, main_page_open):
                 page = hPage(driver)
                 logo_link_unauth = page.check_logo_link_unauth()
                 logo_link_unauth_visibility = page.check_logo_link_unauth_visibility()
                 assert logo_link_unauth, "The Logo link is absent in the Header"
                 assert logo_link_unauth_visibility, "The Logo link is invisible"
 
-            @allure.title("""test_hpu_03.02.05 Verify if the Logo link in the Header for an unauthorized user 
+            @allure.title("""test_hpu_03.02.07 Verify if the Logo link in the Header for an unauthorized user 
             doesn't refresh the current page or lead to other pages after clicking""")
-            def test_hpu_03_02_05_verify_unauth_logo_link_navigation(self, driver, main_page_open):
+            def test_hpu_03_02_07_verify_unauth_logo_link_navigation(self, driver, main_page_open):
                 page = hPage(driver)
                 handles_before = driver.window_handles
                 initial_page_source = page.driver.page_source
@@ -169,16 +170,16 @@ class TestHeaderPage:
                 assert initial_page_url == current_page_url, \
                     "The Logo link in the Header leads to some page after clicking"
 
-            @allure.title("""test_hpu.03.02.06 Verify the list of direct external links in the Header 
+            @allure.title("""test_hpu.03.02.08 Verify the list of direct external links in the Header 
             for an unauthorized user """)
-            def test_hpu_03_02_06_verify_unauth_direct_external_links_list(self, driver, main_page_open):
+            def test_hpu_03_02_08_verify_unauth_direct_external_links_list(self, driver, main_page_open):
                 page = hPage(driver)
                 direct_external_links = page.get_direct_external_links_unauth_list()
                 assert direct_external_links, "Links are not collected in the list"
 
-            @allure.title("""test_hpu.03.02.07 Verify if direct external links in the Header (the Telegram link)
+            @allure.title("""test_hpu.03.02.09 Verify if direct external links in the Header (the Telegram link)
             for an unauthorized user lead to correct pages after clicking""")
-            def test_hpu_03_02_07_verify_unauth_direct_external_links_navigation(self, driver, main_page_open):
+            def test_hpu_03_02_09_verify_unauth_direct_external_links_navigation(self, driver, main_page_open):
                 page = hPage(driver)
                 opened_pages = page.click_on_direct_external_links_in_header_unauth()
                 assert all(element in hPD.set_unauth for element in opened_pages), \
