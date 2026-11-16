@@ -131,6 +131,13 @@ class TestHeaderPage:
                 assert about_link_unauth, "The About link is absent in the Header"
                 assert about_link_unauth_visibility, "The About link is invisible"
 
+            @allure.title("""test_hpu_03.02.03 Verify if the About link in the Header for an unauthorized user 
+              leads to a correct page after clicking""")
+            def test_hpu_03_02_03_verify_unauth_about_link_navigation(self, driver, main_page_open):
+                page = hPage(driver)
+                opened_page = page.click_on_about_link_unauth()
+                assert opened_page in hPD.set_unauth, "The About link leads to an incorrect page after clicking"
+
             @allure.title("""test_hpu_03.02.04 Verify the Registration link in the Header for an unauthorized user""")
             def test_hpu_03_02_04_verify_unauth_registration_link(self, driver, main_page_open):
                 page = hPage(driver)

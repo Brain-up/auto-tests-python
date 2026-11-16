@@ -210,11 +210,18 @@ class HeaderPage(BasePage):
         # print(*opened_pages, len(opened_pages), sep='\n')
         return opened_pages
 
+    @allure.step("Click on the About link for an UNAUTHORIZED user   --   ACTUAL")
+    def click_on_about_link_unauth(self):
+        self.element_is_present_and_clickable(self.locators.LINK_ABOUT_UNAUTH).click()
+        current_url = self.get_current_tab_url()
+        print(current_url)
+        return current_url
+
     @allure.step("Click on the Registration link for an UNAUTHORIZED user   --   ACTUAL")
     def click_on_registration_link_unauth(self):
         self.element_is_present_and_clickable(self.locators.LINK_REGISTRATION_UNAUTH).click()
         current_url = self.get_current_tab_url()
-        print(current_url)
+        # print(current_url)
         return current_url
 
     @allure.step("Click on the Logo link for an UNAUTHORIZED user  --  ACTUAL")
