@@ -170,6 +170,15 @@ class HeaderPage(BasePage):
     def check_logo_link_unauth_visibility(self):
         return self.element_is_visible(self.locators.LOGO_LINK_UNAUTH)
 
+    @allure.step("Check the Contacts link is present in the Header for an UNAUTHORIZED user  --  ACTUAL")
+    def check_contacts_link_unauth(self):
+        return self.element_is_present(self.locators.LINK_CONTACTS_UNAUTH)
+
+    @allure.step("Check the Contacts link is visible for an UNAUTHORIZED user  --  ACTUAL")
+    def check_contacts_link_unauth_visibility(self):
+        self.click_more_button()
+        return self.element_is_visible(self.locators.LINK_CONTACTS_UNAUTH)
+
 
 
 
