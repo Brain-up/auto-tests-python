@@ -226,6 +226,14 @@ class TestHeaderPage:
                 assert contacts_link_unauth, "The Contacts link is absent in the Header"
                 assert contacts_link_unauth_visibility, "The Contacts link is invisible"
 
+            @allure.title("""test_hpu_03.03.03 Verify the Specialists link in the Header for an unauthorized user""")
+            def test_hpu_03_03_03_verify_unauth_specialists_link(self, driver, main_page_open):
+                page = hPage(driver)
+                specialists_link_unauth = page.check_specialists_link_unauth()
+                specialists_link_unauth_visibility = page.check_specialists_link_unauth_visibility()
+                assert specialists_link_unauth, "The Specialists link is absent in the Header"
+                assert specialists_link_unauth_visibility, "The Specialists link is invisible"
+
             @pytest.mark.skip("Unstable test environment")
             @allure.title("""Verify if the external links in the Header for an unauthorized user 
             lead to correct pages after clicking""")

@@ -179,6 +179,15 @@ class HeaderPage(BasePage):
         self.click_more_button()
         return self.element_is_visible(self.locators.LINK_CONTACTS_UNAUTH)
 
+    @allure.step("Check the Specialists link is present in the Header for an UNAUTHORIZED user  --  ACTUAL")
+    def check_specialists_link_unauth(self):
+        return self.element_is_present(self.locators.LINK_SPECIALISTS_UNAUTH)
+
+    @allure.step("Check the Specialists link is visible for an UNAUTHORIZED user  --  ACTUAL")
+    def check_specialists_link_unauth_visibility(self):
+        self.click_more_button()
+        return self.element_is_visible(self.locators.LINK_SPECIALISTS_UNAUTH)
+
 
 
 
@@ -358,17 +367,6 @@ class HeaderPage(BasePage):
     def get_list_of_links_in_more(self):
         return self.elements_are_present(self.locators.LINKS_IN_MORE)
 
-
-    @allure.step("""Get the list of the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links "
-                  (internal links) in the 'More' dropdown for every user  -- FOR REVIEW""")
-    def get_list_of_internal_links_in_more(self):
-        links = self.get_list_of_links_in_more()[2:]
-        print(links)
-        att = [element.get_attribute("href") for element in links]
-        print(*att, len(att), sep='\n')
-        return links
-        # return self.get_list_of_links_in_more()[2:]
-
     @allure.step("""Get the list of the 'Donate', 'GitHub' links (external links) 
                     in the 'More' dropdown for an unauthorized user  -- FOR REVIEW""")
     def get_list_of_external_links_in_more(self):
@@ -534,27 +532,6 @@ class HeaderPage(BasePage):
 
 
 # Checks of links navigation for an AUTHORIZED user
-
-    @allure.step("""Click on internal links in the Header 
-    and thereby open corresponding web pages in the same tab for an AUTHORIZED user   --  unusable till changing UI""")
-    def click_on_internal_links_in_header_auth1(self):
-        opened_pages = []
-        # Click on the 'Statistics', 'Groups', 'About', 'Profile', 'Logo' links
-        # for link in self.get_list_of_direct_internal_links_auth():
-        for link in self.get_direct_internal_links_auth_list():
-            current_url = self.get_current_tab_url()
-            link.click()
-            Wait(self.driver, 10).until(EC.url_changes(current_url))
-            opened_pages.append(self.get_current_tab_url())
-        # Click on the 'Contacts', 'Specialists', 'Contributors', 'Used Resources' links
-        for link in self.get_list_of_internal_links_in_more():
-            self.click_more_button()
-            current_url = self.get_current_tab_url()
-            link.click()
-            Wait(self.driver, 10).until(EC.url_changes(current_url))
-            opened_pages.append(self.get_current_tab_url())
-        # print(*opened_pages, sep='\n')
-        return opened_pages
 
     @allure.step("""Click on direct internal links in the Header and thereby open corresponding web pages 
                 for an AUTHORIZED user  --  ACTUAL""")
