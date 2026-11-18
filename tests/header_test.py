@@ -218,6 +218,14 @@ class TestHeaderPage:
                 assert all(element in hPD.set_unauth for element in opened_pages), \
                     "Some of dropdown internal links lead to incorrect pages after clicking"
 
+            @allure.title("""test_hpu_03.03.02 Verify the Contacts link in the Header for an unauthorized user""")
+            def test_hpu_03_03_02_verify_unauth_contacts_link(self, driver, main_page_open):
+                page = hPage(driver)
+                contacts_link_unauth = page.check_contacts_link_unauth()
+                contacts_link_unauth_visibility = page.check_contacts_link_unauth_visibility()
+                assert contacts_link_unauth, "The Contacts link is absent in the Header"
+                assert contacts_link_unauth_visibility, "The Contacts link is invisible"
+
             @pytest.mark.skip("Unstable test environment")
             @allure.title("""Verify if the external links in the Header for an unauthorized user 
             lead to correct pages after clicking""")
