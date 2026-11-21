@@ -255,6 +255,14 @@ class HeaderPage(BasePage):
         Wait(self.driver, 10).until(EC.visibility_of_element_located(self.locators.LOGO_LINK_UNAUTH))
         return self.driver.current_url
 
+    @allure.step("Click on the Contacts link for an UNAUTHORIZED user   --   ACTUAL")
+    def click_on_contacts_link_unauth(self):
+        self.click_more_button()
+        self.element_is_present_and_clickable(self.locators.LINK_CONTACTS_UNAUTH).click()
+        current_url = self.get_current_tab_url()
+        print(current_url)
+        return current_url
+
 
 
 
