@@ -226,8 +226,15 @@ class TestHeaderPage:
                 assert contacts_link_unauth, "The Contacts link is absent in the Header"
                 assert contacts_link_unauth_visibility, "The Contacts link is invisible"
 
-            @allure.title("""test_hpu_03.03.03 Verify the Specialists link in the Header for an unauthorized user""")
-            def test_hpu_03_03_03_verify_unauth_specialists_link(self, driver, main_page_open):
+            @allure.title("""test_hpu_03.03.03 Verify if the Contacts link in the Header for an unauthorized user 
+              leads to a correct page after clicking""")
+            def test_hpu_03_03_03_verify_unauth_contacts_link_navigation(self, driver, main_page_open):
+                page = hPage(driver)
+                opened_page = page.click_on_contacts_link_unauth()
+                assert opened_page in hPD.set_unauth, "The Contacts link leads to an incorrect page after clicking"
+
+            @allure.title("""test_hpu_03.03.04 Verify the Specialists link in the Header for an unauthorized user""")
+            def test_hpu_03_03_04_verify_unauth_specialists_link(self, driver, main_page_open):
                 page = hPage(driver)
                 specialists_link_unauth = page.check_specialists_link_unauth()
                 specialists_link_unauth_visibility = page.check_specialists_link_unauth_visibility()
