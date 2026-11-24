@@ -188,6 +188,15 @@ class HeaderPage(BasePage):
         self.click_more_button()
         return self.element_is_visible(self.locators.LINK_SPECIALISTS_UNAUTH)
 
+    @allure.step("Check the Contributors link is present in the Header for an UNAUTHORIZED user  --  ACTUAL")
+    def check_contributors_link_unauth(self):
+        return self.element_is_present(self.locators.LINK_CONTRIBUTORS_UNAUTH)
+
+    @allure.step("Check the Contributors link is visible for an UNAUTHORIZED user  --  ACTUAL")
+    def check_contributors_link_unauth_visibility(self):
+        self.click_more_button()
+        return self.element_is_visible(self.locators.LINK_CONTRIBUTORS_UNAUTH)
+
 
 
 
