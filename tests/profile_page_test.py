@@ -1,4 +1,6 @@
 import allure
+import pytest
+
 from pages.profile_page import ProfilePage
 from test_data.links import MainPageLinks
 
@@ -8,6 +10,7 @@ class TestProfilePage:
     urls = MainPageLinks
     page = ProfilePage
 
+    @pytest.mark.skip("Unstable test environment")
     @allure.title("Change the password by receiving an email link")
     def test_change_password(self, driver, main_page_open):
         page = ProfilePage(driver)

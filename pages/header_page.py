@@ -232,7 +232,7 @@ class HeaderPage(BasePage):
     def click_on_about_link_unauth(self):
         self.element_is_present_and_clickable(self.locators.LINK_ABOUT_UNAUTH).click()
         current_url = self.get_current_tab_url()
-        print(current_url)
+        # print(current_url)
         return current_url
 
     @allure.step("Click on the Registration link for an UNAUTHORIZED user   --   ACTUAL")
@@ -260,8 +260,19 @@ class HeaderPage(BasePage):
         self.click_more_button()
         self.element_is_present_and_clickable(self.locators.LINK_CONTACTS_UNAUTH).click()
         current_url = self.get_current_tab_url()
+        # print(current_url)
+        return current_url
+
+    @allure.step("Click on the Specialists link for an UNAUTHORIZED user   --   ACTUAL")
+    def click_on_specialists_link_unauth(self):
+        self.click_more_button()
+        current_url = self.get_current_tab_url()
+        self.element_is_present_and_clickable(self.locators.LINK_SPECIALISTS_UNAUTH).click()
+        Wait(self.driver, 10).until(EC.url_changes(current_url))
+        current_url = self.get_current_tab_url()
         print(current_url)
         return current_url
+
 
 
 
