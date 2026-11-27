@@ -256,6 +256,13 @@ class TestHeaderPage:
                 assert contributors_link_unauth, "The Contributors link is absent in the Header"
                 assert contributors_link_unauth_visibility, "The Contributors link is invisible"
 
+            @allure.title("""test_hpu_03.03.07 Verify if the Contributors link in the Header for an unauthorized user 
+              leads to a correct page after clicking""")
+            def test_hpu_03_03_07_verify_unauth_contributors_link_navigation(self, driver, main_page_open):
+                page = hPage(driver)
+                opened_page = page.click_on_contributors_link_unauth()
+                assert opened_page in hPD.set_unauth, "The Contributors link leads to an incorrect page after clicking"
+
             @pytest.mark.skip("Unstable test environment")
             @allure.title("""Verify if the external links in the Header for an unauthorized user 
             lead to correct pages after clicking""")
